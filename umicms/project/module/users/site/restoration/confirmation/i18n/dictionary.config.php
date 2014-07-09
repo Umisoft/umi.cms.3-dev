@@ -15,7 +15,7 @@ return [
         'New password' => 'New password',
         'Your new password on the website {site}' => 'Your new password on the website {site}',
 
-        'role:viewer:displayName' => 'Confirmation restoration'
+        'role:viewer:displayName' => 'Confirm'
     ],
 
     'ru-RU' => [

@@ -10,14 +10,23 @@
 
 namespace umicms\hmvc\component\admin\layout\control;
 
+use umicms\hmvc\component\admin\collection\CollectionComponent;
+
 /**
  * Административный контрол "Таблица для управления коллекцией"
  */
 class TableControl extends CollectionControl
 {
     /**
-     * Конфигурирует toolbar.
-     * @return $this
+     * {@inheritdoc}
+     */
+    protected function configureParams()
+    {
+        $this->params['action'] = CollectionComponent::ACTION_GET_FILTER;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function configureToolbar()
     {
@@ -27,7 +36,7 @@ class TableControl extends CollectionControl
     }
 
     /**
-     * Конфигурирует дополнительные лейблы контрола.
+     * {@inheritdoc}
      */
     protected function configureI18n()
     {

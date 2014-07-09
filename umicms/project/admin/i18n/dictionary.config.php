@@ -12,7 +12,7 @@ return [
 
     'en-US' => [
         'component:admin:displayName' => 'Admin panel',
-        'role:viewer:displayName' => 'Ability to log into the admin panel',
+        'role:viewer:displayName' => 'Admin panel access',
         'role:restExecutor:displayName' => 'Admin panel'
     ],
 

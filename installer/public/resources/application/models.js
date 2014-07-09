@@ -1,6 +1,7 @@
 define([], function(){
     'use strict';
 
+
     return function(UMI){
 
         /**
@@ -14,6 +15,14 @@ define([], function(){
 
             htmlSafe: function(value){
                 return Ember.String.htmlSafe(value);
+            },
+
+            stripTags: function(value){//TODO: add filter
+                return value;
+            },
+
+            slug: function(value){//TODO: add filter
+                return value;
             }
         };
 
@@ -257,6 +266,8 @@ define([], function(){
                         fields[collection.fields[i].name] = fieldValue;
                     }
                 }
+
+                fields.meta = DS.attr('raw');
 
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
 

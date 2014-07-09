@@ -1,12 +1,12 @@
-define(['App', 'text!./dateTimeElement.hbs'], function(UMI, dateTimeElement){
+define(['App'], function(UMI){
     'use strict';
 
     return function(){
 
         UMI.DateTimeElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(dateTimeElement),
+            templateName: 'partials/dateTimeElement',
 
-            classNames: ['umi-element', 'umi-element-date'],
+            classNames: ['row', 'collapse'],
 
             value: null,
 

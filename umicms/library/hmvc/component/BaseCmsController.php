@@ -29,6 +29,8 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -98,6 +100,10 @@ abstract class BaseCmsController extends BaseController
         $url .= $this->getContext()->getBaseUrl();
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
+        if ($postfix = $this->getUrlManager()->getSiteUrlPostfix()) {
+            $url .= '.' . $postfix;
+        }
+
         return $url;
     }
 
@@ -147,18 +153,30 @@ abstract class BaseCmsController extends BaseController
     {
         /**
          * @var UsersModule $usersModule
+         * @var SearchModule $searchModule
          */
         $usersModule = $this->getModuleByClass(UsersModule::className());
+        $searchModule = $this->getModuleByClass(SearchModule::className());
+
         $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
+        $searchIndexApi = $searchModule->getSearchIndexApi();
 
         $persister = $this->getObjectPersister();
         /**
-         * @var ICmsObject|IRecoverableObject $object
+         * @var ICmsObject|ICmsPage|IRecoverableObject $object
          */
         foreach ($persister->getModifiedObjects() as $object) {
             $collection = $object->getCollection();
             if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
                 $collection->createBackup($object);
+            }
+            if ($object instanceof ICmsPage) {
+                $searchIndexApi->buildIndexForObject($object);
+            }
+        }
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $searchIndexApi->buildIndexForObject($object);
             }
         }
         foreach ($persister->getNewObjects() as $object) {
@@ -168,6 +186,16 @@ abstract class BaseCmsController extends BaseController
         foreach ($persister->getModifiedObjects() as $object) {
             $object->editor = $currentUser;
             $object->setUpdatedTime();
+        }
+
+        foreach ($persister->getDeletedObjects() as $object) {
+            $deletedPages = [];
+            if ($object instanceof ICmsPage) {
+                $deletedPages[] = $object;
+            }
+            if ($deletedPages) {
+                $searchIndexApi->deleteObjectIndexes($deletedPages);
+            }
         }
 
         $invalidObjects = $persister->getInvalidObjects();

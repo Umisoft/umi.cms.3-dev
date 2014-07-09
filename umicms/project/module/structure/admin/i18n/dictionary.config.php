@@ -13,9 +13,9 @@ return [
     'en-US' => [
         'component:structure:displayName' => 'Site structure',
 
-        'role:pageExecutor:displayName' => 'Page',
-        'role:layoutExecutor:displayName' => 'Layout',
-        'role:infoblockExecutor:displayName' => 'Information block',
+        'role:pageExecutor:displayName' => 'Pages',
+        'role:layoutExecutor:displayName' => 'Layouts',
+        'role:infoblockExecutor:displayName' => 'Information blocks',
         'role:menuExecutor:displayName' => 'Menu'
     ],
 

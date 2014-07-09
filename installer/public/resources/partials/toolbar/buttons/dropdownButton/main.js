@@ -1,39 +1,61 @@
-define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
-    function(UMI, moment, template, backupListTemplate){
+define(['App', 'moment'],
+    function(UMI, moment){
         "use strict";
 
         return function(){
             UMI.DropdownButtonView = Ember.View.extend({
-                template: Ember.Handlebars.compile(template),
+                templateName: 'partials/dropdownButton',
                 tagName: 'a',
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 didInsertElement: function(){
-                    this.$().click(function(){
-                        $(this).find('.umi-toolbar-create-list').toggle();
+                    var $el = this.$();
+                    $el.on('click.umi.dropdown', function(event){
+                        if(!$(event.target).closest('.f-dropdown').length){
+                            event.stopPropagation();
+                            var $button = $(this);
+                            $button.toggleClass('open');
+                            setTimeout(function(){
+                                if($button.hasClass('open')){
+                                    $('body').on('click.umi.dropdown.close', function(bodyEvent){
+                                        bodyEvent.stopPropagation();
+                                        var $buttonDropdown = $(bodyEvent.target).closest('.dropdown');
+                                        if(!$buttonDropdown.length || $buttonDropdown[0].getAttribute('id') !== $button[0].getAttribute('id')){
+                                            $('body').off('click.umi.dropdown.close');
+                                            $button.toggleClass('open');
+                                        }
+                                    });
+                                }
+                            }, 0);
+                        }
                     });
+                },
+                willDestroyElement: function(){
+                    var $el = this.$();
+                    $el.off('click.umi.dropdown');
                 },
                 actions: {
                     sendActionForBehaviour: function(behaviour){
-                        this.send(behaviour.name, behaviour);
+                        this.send(behaviour.name, {behaviour: behaviour});
                     }
                 }
             });
 
             UMI.dropdownButtonBehaviour = UMI.GlobalBehaviour.extend({
                 backupList: {
-                    classNames: ['dropdown', 'coupled'],
+                    classNames: ['coupled'],
                     classNameBindings: ['isOpen:open'],
                     isOpen: false,
                     iScroll: null,
                     tagName: 'div',
-                    template: Ember.Handlebars.compile(backupListTemplate),
+                    templateName: 'partials/dropdownButton/backupList',
 
                     getBackupList: function(){
                         var backupList;
                         var object = this.get('controller.object');
                         var settings = this.get('controller.settings');
+                        var getBackupListAction = UMI.Utils.replacePlaceholder(object, settings.actions.getBackupList.source);
 
                         var currentVersion = {
                             objectId: object.get('id'),
@@ -45,10 +67,9 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
                         };
 
                         var results = [currentVersion];
-                        var params = '?id=' + object.get('id');
 
                         var promiseArray = DS.PromiseArray.create({
-                            promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
+                            promise: $.get(getBackupListAction).then(function(data){
                                 return results.concat(data.result.getBackupList.serviceBackup);
                             })
                         });
@@ -88,17 +109,18 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
                             var self = this;
                             var object = this.get('controller.object');
                             var list = self.get('backupList');
+                            var current = list.findBy('id', backup.id);
                             var setCurrent = function(){
                                 list.setEach('isActive', false);
-                                var current = list.findBy('id', backup.id);
                                 Ember.set(current, 'isActive', true);
                             };
+                            var backupObjectAction;
                             if(backup.current){
                                 object.rollback();
                                 setCurrent();
                             } else{
-                                var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                                $.get(self.get('controller.settings').actions.getBackup.source + params).then(function(data){
+                                backupObjectAction = UMI.Utils.replacePlaceholder(current, Ember.get(self.get('controller.settings'), 'actions.getBackup.source'));
+                                $.get(backupObjectAction).then(function(data){
                                     object.rollback();
                                     delete data.result.getBackup.version;
                                     delete data.result.getBackup.id;

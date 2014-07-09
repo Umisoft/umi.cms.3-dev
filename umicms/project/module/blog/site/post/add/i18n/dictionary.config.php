@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Create a post',
+        'role:author:displayName' => 'Create post',
         'PostHasBeenAdded' => 'Post has been added'
     ],
 

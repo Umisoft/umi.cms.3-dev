@@ -21,7 +21,6 @@ use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\manager\IObjectManagerAware;
 use umi\orm\manager\TObjectManagerAware;
 use umi\orm\metadata\IObjectType;
-use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
@@ -31,14 +30,15 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
@@ -99,7 +99,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     {
         $this->dbCluster = $dbCluster;
         $this->usersModule = $usersModule;
-        $this->searchIndexApi = $searchModule->getSearchApi();
+        $this->searchIndexApi = $searchModule->getSearchIndexApi();
     }
 
     /**
@@ -137,17 +137,18 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $this->installGratitude();
             echo "Installing blog...\n";
             $this->installBlog();
+            echo "Install search...\n";
+            $this->installSearch();
 
             $this->commit();
             $this->getObjectManager()->unloadObjects();
 
-            //$this->installSearch();
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
+            echo $e->getTraceAsString() . "\n";
             while ($e = $e->getPrevious()) {
                 echo '... ' . $e->getMessage() . "\n";
             }
-            debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 100);
         }
 
         exit('Done');
@@ -255,7 +256,12 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 'blogExecutor',
                 'searchExecutor',
                 'viewer',
-                'widgetExecutor'
+                'widgetExecutor',
+                'searchExecutor'
+            ],
+
+            'project.site.search' => [
+                'viewer'
             ],
 
             'project.site.users' => [
@@ -1416,6 +1422,22 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
     }
 
+    protected function installSearch()
+    {
+        /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $searchRoot = $structureCollection->add('search', 'system')
+            ->setValue('displayName', 'Поиск')
+            ->setValue('displayName', 'News', 'en-US')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
+
+        $searchRoot->getProperty('locked')->setValue(true);
+        $searchRoot->getProperty('componentName')->setValue('search');
+        $searchRoot->getProperty('componentPath')->setValue('search');
+    }
+
     protected function dropTables()
     {
         $connection = $this->dbCluster->getConnection();
@@ -1424,31 +1446,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         foreach ($tables as $table) {
             $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
         }
-    }
-
-    private function installSearch()
-    {
-        /**
-         * @var SimpleHierarchicCollection $structureCollection
-         */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        $searchRoot = $structureCollection->add('search', 'system')
-            ->setValue('displayName', 'Поиск')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
-
-        $searchRoot->getProperty('locked')->setValue(true);
-        $searchRoot->getProperty('componentName')->setValue('search');
-        $searchRoot->getProperty('componentPath')->setValue('search');
-
-
-//        $this->searchIndexApi->buildIndex('structure');
-        $this->searchIndexApi->buildIndex('newsRubric');
-        $this->searchIndexApi->buildIndex('newsItem');
-        $this->searchIndexApi->buildIndex('newsSubject');
-        $this->searchIndexApi->buildIndex('blogCategory');
-        $this->searchIndexApi->buildIndex('blogPost');
-        $this->searchIndexApi->buildIndex('blogComment');
-        $this->commit();
     }
 
     /**
@@ -1465,23 +1462,24 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $currentUser = $this->usersModule->user()->get('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
 
         $persister = $this->getObjectPersister();
-
         /**
-         * @var ICmsObject|IRecoverableObject $object
+         * @var ICmsObject|ICmsPage|IRecoverableObject $object
          */
-        foreach ($persister->getModifiedObjects() as $object) {
-            $collection = $object->getCollection();
-            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
-                $collection->createBackup($object);
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof IActiveAccessibleObject) {
+                $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'ru-RU');
+                $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'en-US');
             }
         }
         foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $this->searchIndexApi->buildIndexForObject($object);
+            }
+        }
+
+        foreach ($persister->getNewObjects() as $object) {
             $object->owner = $currentUser;
             $object->setCreatedTime();
-        }
-        foreach ($persister->getModifiedObjects() as $object) {
-            $object->editor = $currentUser;
-            $object->setUpdatedTime();
         }
 
         $invalidObjects = $persister->getInvalidObjects();

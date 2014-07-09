@@ -18,7 +18,7 @@ return [
         'textColor' => 'Text color',
         'backgroundColor' => 'Background color',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

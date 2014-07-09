@@ -1,0 +1,17 @@
+<nav class="umi-top-bar">
+    <ul class="umi-top-bar-list left">
+        <li>
+            <a href="javascript:void(0)" {{action 'viewOnSite'}} class="button tiny flat umi-top-bar-button">
+                {{i18n "Open site in new tab"}}
+                <i class="icon icon-viewOnSite"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="umi-top-bar-list right">
+        <li>
+            {{view 'dropdownButton' tagName="span" class="button tiny flat dropdown umi-top-bar-button"}}
+        </li>
+        {{view "notificationList"}}
+    </ul>
+</nav>

@@ -1,0 +1,50 @@
+form{
+    .input-icon{
+        position: relative;
+        top: em-calc(12);
+        margin-left: em-calc(6);
+        vertical-align: top;
+        display: block;
+        ~ input{
+            padding-left: em-calc(32);
+            margin-top: -15px;
+            &.collapse{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.umi-form-label{
+    display: inline-block;
+    font-size: rem-calc(13);
+    margin-bottom: rem-calc(5);
+}
+.umi-form-control{
+    background: #f5f6f7;
+}
+
+.umi-form-control .magellan-content{
+    overflow-y: scroll!important;
+}
+
+.umi-form-control-buttons{
+    position: fixed;
+    bottom: 0;
+    right: 18px;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 0px 3px 0px #7C99AC;
+    > li > .button{
+        margin-bottom: 0;
+        border-left-width: 0;
+        border-right: 0;
+        &:last-child{
+            border-right: 1px solid #D1D1D1;
+        }
+    }
+    .f-dropdown{
+        left: auto;
+        right: 0;
+    }
+}
