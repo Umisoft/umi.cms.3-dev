@@ -13,7 +13,7 @@ return [
         'install' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'priority' => 0,
-            'route' => '/install',
+            'route' => '/installProject',
             'defaults' => [
                 'controller' => 'install'
             ]

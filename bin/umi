@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use umicms\console\PackCoreCommand;
+use umicms\console\PackProjectCommand;
+use umicms\console\ProjectDumpCommand;
+use umicms\project\Environment;
+
+
+require dirname(__DIR__) .'/umicms/bootstrap.php';
+
+Environment::$directoryProjects = dirname(__DIR__);
+
+error_reporting(-1);
+ini_set('display_errors', 1);
+
+$application = new Application('UMI.CMS 3.0 Console application.', '1.0');
+$application->add(new PackCoreCommand());
+$application->add(new PackProjectCommand());
+$application->add(new ProjectDumpCommand());
+$application->run();

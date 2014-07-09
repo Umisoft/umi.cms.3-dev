@@ -22,6 +22,7 @@ use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\selector\CmsSelector;
 
 /**
  * Интерфейс коллекции объектов UMI.CMS

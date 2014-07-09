@@ -7,17 +7,22 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms;
+namespace umicms\console;
 
 use Phar;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Process\Process;
 
 /**
- * Компилятор ядра UMI.CMS 3 в phar-пакет
+ * Упаковывает ядро в пакет.
  */
-class CoreCompiler
+class PackCoreCommand extends BaseCommand
 {
     /**
      * @var string $version
@@ -27,60 +32,62 @@ class CoreCompiler
      * @var string $versionDate
      */
     public $versionDate;
-    /**
-     * @var string $pharAlias алиас для обращения к пакету через стрим.
-     */
-    public $pharAlias = 'umicms.phar';
-    /**
-     * @var bool $obfuscate обфусцировать ли ядро
-     */
-    public $obfuscate = false;
 
     /**
-     * @var string $outputPharPath полый путь пакета, который будет создан
+     * {@inheritdoc}
      */
-    private $outputPharPath;
-    /**
-     * @var string $baseDirectory базовая директория UMI.CMS
-     */
-    private $baseDirectory;
-    /**
-     * @var string $coreDirectory директория ядра UMI.CMS
-     */
-    private $coreDirectory;
-
-
-
-    /**
-     * Конструктор
-     * @param string $outputPharPath полый путь пакета, который будет создан
-     */
-    public function __construct($outputPharPath)
+    protected function configure()
     {
+        $this
+            ->setName('pack-core')
+            ->setDescription('Упаковывает ядро в пакет')
+            ->addArgument(
+                'output',
+                InputArgument::OPTIONAL,
+                'Директория, в которой будет создан пакет.',
+                '.'
+            )
+            ->addArgument(
+                'obfuscate',
+                InputArgument::OPTIONAL,
+                'Если установлено, ядро будет обфусцировано.',
+                false
+            );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->detectVersionInfo();
+        $outputPharPath = $input->getArgument('output') . '/' . 'umicms.phar';
+
         if (is_file($outputPharPath)) {
             unlink($outputPharPath);
         }
-        $this->outputPharPath = $outputPharPath;
-        $this->coreDirectory = dirname(dirname(__FILE__));
-        $this->baseDirectory = dirname($this->coreDirectory);
 
-        $this->detectVersionInfo();
-    }
-
-    public function compile()
-    {
-        $phar = new Phar($this->outputPharPath, 0, $this->pharAlias);
+        $phar = new Phar($outputPharPath, 0, 'umicms.phar');
         $phar->setSignatureAlgorithm(Phar::SHA1);
 
         $phar->startBuffering();
 
-        $this->addCoreFiles($phar);
-        $this->addVendorFiles($phar);
-        $this->setStub($phar);
+        $style = new OutputFormatterStyle('blue', null, array('bold'));
+        $output->getFormatter()->setStyle('process', $style);
 
+        $output->writeln('<process>Упаковка файлов ядра</process>');
+        $this->addCoreFiles($phar, $input, $output);
+
+        $output->writeln('<process>Упаковка вендоров</process>');
+        $this->addVendorFiles($phar, $input, $output);
+
+        $output->writeln('<process>Запись пакета в файл</process>');
+        $this->setStub($phar);
         $phar->stopBuffering();
 
         unset($phar);
+
+        $output->writeln('<process>Complete.</process>');
     }
 
     /**
@@ -91,7 +98,19 @@ class CoreCompiler
     {
         $stub = <<<EOF
 <?php
+/**
+ * This file is part of UMI.CMS.
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+Phar::mapPhar('umicms.phar');
+
+require 'phar://umicms.phar/umicms/bootstrap.php';
+
+__HALT_COMPILER();
 EOF;
 
         $phar->setStub($stub);
@@ -100,38 +119,55 @@ EOF;
     /**
      * Добавляет файлы ядра в phar
      * @param Phar $phar
+     * @param InputInterface $input
+     * @param OutputInterface $output
      */
-    private function addCoreFiles(Phar $phar)
+    private function addCoreFiles(Phar $phar, InputInterface $input, OutputInterface $output)
     {
+        $obfuscate = (bool) $input->getArgument('obfuscate');
+
         $finder = new Finder();
         $finder->files()
             ->ignoreVCS(true)
             ->notName('CoreCompiler.php')
-            ->in($this->coreDirectory)
-        ;
+            ->in(CMS_DIR);
+
+        $progress = $this->startProgressBar($output, $finder->count());
 
         foreach ($finder as $file) {
-            $this->packFile($phar, $file, $this->obfuscate);
+            $this->packFile($phar, $file, $obfuscate, $progress);
+            $progress->advance();
         }
+        $progress->setMessage('Complete.');
+
+        $progress->finish();
     }
 
     /**
      * Добавляет вендоров в phar
      * @param Phar $phar
+     * @param InputInterface $input
+     * @param OutputInterface $output
      */
-    private function addVendorFiles(Phar $phar)
+    private function addVendorFiles(Phar $phar, InputInterface $input, OutputInterface $output)
     {
         $finder = new Finder();
         $finder->files()
             ->name('*.php')
             ->exclude('Tests')
             ->notName('CoreCompiler.php')
-            ->in($this->baseDirectory .'/vendor')
-        ;
+            ->in(VENDOR_DIR);
+
+
+        $progress = $this->startProgressBar($output, $finder->count());
 
         foreach ($finder as $file) {
-            $this->packFile($phar, $file);
+            $this->packFile($phar, $file, false, $progress);
+            $progress->advance();
         }
+        $progress->setMessage('Complete.');
+
+        $progress->finish();
     }
 
     /**
@@ -139,10 +175,13 @@ EOF;
      * @param Phar $phar
      * @param SplFileInfo $file
      * @param bool $obfuscate обфусцировать ли файл
+     * @param ProgressBar $progress
      */
-    private function packFile(Phar $phar, SplFileInfo $file, $obfuscate = false) {
-        $localPath = strtr(str_replace($this->baseDirectory . '/', '', $file->getRealPath()), '\\', '/');
+    private function packFile(Phar $phar, SplFileInfo $file, $obfuscate, ProgressBar $progress)
+    {
+        $localPath = strtr(str_replace(dirname(VENDOR_DIR) . '/', '', $file->getRealPath()), '\\', '/');
 
+        $progress->setMessage('Запаковываю "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {
             $contents = file_get_contents($file);
             $contents = Obfuscator::obfuscate($contents);
@@ -186,7 +225,6 @@ EOF;
         $this->versionDate = $date->format('Y-m-d H:i:s');
     }
 }
-
 
 /**
  * Obfuscator

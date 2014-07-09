@@ -85,6 +85,10 @@ class Bootstrap
      * @var IConfig $config конфигурация текущего проекта
      */
     protected $projectConfig;
+    /**
+     * @var string $projectDestination возвращает директорию проекта
+     */
+    protected $projectDirectory = '.';
 
     /**
      * Конструктор.
@@ -101,15 +105,14 @@ class Bootstrap
     }
 
     /**
-     * Выполняет загрузчик.
+     * Выполняет запрос
      */
-    public function run()
+    public function run(Request $request = null)
     {
-        /**
-         * @var Request $request
-         */
-        $request = $this->toolkit->getService('umi\http\Request');
-        $this->prepareRequest($request);
+        if (!$request) {
+            $request = $this->toolkit->getService('umi\http\Request');
+            $this->prepareRequest($request);
+        }
 
         $routeResult = $this->routeProject($request);
         $routeMatches = $routeResult->getMatches();
@@ -161,60 +164,31 @@ class Bootstrap
     }
 
     /**
-     * Отправляет ответ.
-     * @param Response $response
-     * @param Request $request
+     * Возвращает тулкит.
+     * @return IToolkit
      */
-    protected function sendResponse(Response $response, Request $request)
+    public function getToolkit()
     {
-        $this->setUmiHeaders($response);
-
-        if (!$response->headers->has('content-type') && isset($this->allowedRequestFormats[$request->getRequestFormat()])) {
-            $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
-        }
-
-
-        $response->prepare($request)
-            ->send();
+       return $this->toolkit;
     }
 
     /**
-     * Выставляет заголовки UMI.CMS.
-     * @param Response $response
+     * Возвращает директорию текущего проекта
+     * @return string
      */
-    private function setUmiHeaders(Response $response)
+    public function getProjectDirectory()
     {
-        $response->headers->set('X-Generated-By', 'UMI.CMS');
-        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
-        if (Environment::$startTime > 0) {
-            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
-        }
+        return $this->projectDirectory;
     }
 
     /**
-     * Создает компонент проекта.
-     * @return IComponent
-     */
-    protected function createProject()
-    {
-        $config = $this->configToArray($this->projectConfig);
-
-        /**
-         * @var IMvcEntityFactory $mvcEntityFactory
-         */
-        $mvcEntityFactory = $this->toolkit->getService('umi\hmvc\IMvcEntityFactory');
-
-        return $mvcEntityFactory->createComponent('project', 'project', $config);
-    }
-
-    /**
-     * Производит предварительную маршрутизацию для определения конфигурации проекта.
+     * Производит предварительную маршрутизацию для определения текущего проекта.
      * @param Request $request
      * @throws RuntimeException
      * @throws UnexpectedValueException
      * @return IRouteResult
      */
-    protected function routeProject(Request $request)
+    public function routeProject(Request $request)
     {
         $fileName = Environment::$directoryProjects . '/configuration/projects.config.php';
         if (!is_file($fileName)) {
@@ -253,6 +227,7 @@ class Bootstrap
             $router = $routeFactory->createRouter($routes);
 
             $route = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();
+
             $routeResult = $router->match($route);
             $routeMatches = $routeResult->getMatches();
 
@@ -289,6 +264,7 @@ class Bootstrap
         if (!isset($directories[1])) {
             throw new UnexpectedValueException('Cannot resolve project destination.');
         }
+        $this->projectDirectory = $directories[1];
 
         $configIO->registerAlias(
             '~/project',
@@ -301,6 +277,52 @@ class Bootstrap
         $this->configureLocalesService($projectName, $router, $routeMatches);
 
         return $routeResult;
+    }
+
+    /**
+     * Отправляет ответ.
+     * @param Response $response
+     * @param Request $request
+     */
+    protected function sendResponse(Response $response, Request $request)
+    {
+        $this->setUmiHeaders($response);
+
+        if (!$response->headers->has('content-type') && isset($this->allowedRequestFormats[$request->getRequestFormat()])) {
+            $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
+        }
+
+        $response->prepare($request)
+            ->send();
+    }
+
+    /**
+     * Выставляет заголовки UMI.CMS.
+     * @param Response $response
+     */
+    private function setUmiHeaders(Response $response)
+    {
+        $response->headers->set('X-Generated-By', 'UMI.CMS');
+        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
+        if (Environment::$startTime > 0) {
+            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
+        }
+    }
+
+    /**
+     * Создает компонент проекта.
+     * @return IComponent
+     */
+    protected function createProject()
+    {
+        $config = $this->configToArray($this->projectConfig);
+
+        /**
+         * @var IMvcEntityFactory $mvcEntityFactory
+         */
+        $mvcEntityFactory = $this->toolkit->getService('umi\hmvc\IMvcEntityFactory');
+
+        return $mvcEntityFactory->createComponent('project', 'project', $config);
     }
 
     /**

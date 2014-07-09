@@ -34,6 +34,7 @@
         "jbroadway/urlify": "1.0.*",
 
         "symfony/finder": "~2.2",
-        "symfony/process": "~2.1"
+        "symfony/process": "~2.1",
+        "symfony/console": "~2.1"
     }
 }

@@ -15,17 +15,18 @@ ini_set('display_errors', 1);
 
 mb_internal_encoding("utf8");
 
-$vendorDirectory = dirname(__DIR__) . '/vendor';
-require $vendorDirectory . '/autoload.php';
+/**
+ * Директория с файлами ядра UMI.CMS
+ */
+defined('CMS_VENDOR_DIR') or define('VENDOR_DIR', dirname(__DIR__) . '/vendor');
+
+require VENDOR_DIR . '/autoload.php';
 
 
 Environment::$startTime = microtime(true);
 
-
-$toolkitPath = $vendorDirectory . '/umisoft/umi.framework';
-
 /**
- * Директория с ядра UMI.CMS
+ * Директория с файлами ядра UMI.CMS
  */
 defined('CMS_DIR') or define('CMS_DIR', __DIR__);
 /**
@@ -39,4 +40,4 @@ defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', __DIR__ . '/library');
 /**
  * Директория с инструментами фреймворка.
  */
-defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);
+defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', VENDOR_DIR . '/umisoft/umi.framework');

@@ -124,7 +124,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         try {
             echo "Sync table schemes...\n";
             foreach ($this->getModules() as $module) {
-                $module->getModels()->syncAllSchemes();
+                $module->getModelCollection()->syncAllSchemes();
             }
 
             echo "Installing structure...\n";
