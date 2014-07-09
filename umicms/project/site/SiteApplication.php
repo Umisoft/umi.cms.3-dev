@@ -130,11 +130,6 @@ class SiteApplication extends SiteComponent
     {
         $this->checkLicense();
 
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
-            return $redirectResponse;
-        }
-
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
         }*/
@@ -171,9 +166,20 @@ class SiteApplication extends SiteComponent
     {
         $request = $context->getDispatcher()->getCurrentRequest();
 
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
+        $currentPath = $request->getPathInfo();
+        $suffix = $request->getRequestFormat(null);
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
+        if ($suffix) {
+            $currentPath = substr($currentPath, 0, -strlen($suffix) - 1);
+        }
+
+        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
+
+        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+            return $redirectResponse;
+        }
+
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($suffix)) {
             return $redirectResponse;
         }
 
@@ -320,13 +326,18 @@ class SiteApplication extends SiteComponent
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
+     * @param string|null $suffix
      * @return Response|null
      */
-    protected function processDefaultPageRedirect()
+    protected function processDefaultPageRedirect($suffix = null)
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
+            $location = $this->getUrlManager()->getProjectUrl();
+            if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
+                $location .= '.' . $suffix;
+            }
+            $response->headers->set('Location', $location);
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 

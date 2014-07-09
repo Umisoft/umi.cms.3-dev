@@ -1,0 +1,17 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.getHeader() }} </h2>
+    {{ page.contents | raw }}
+
+    {{ include('form/form.twig', {'form' : form})  }}
+
+    {{ widget('search.results', {
+        'query' : query,
+        'limit' : 3,
+        'pagination' : {
+        'pageParam' : 'p',
+        'type' : 'sliding',
+        'pagesCount' : 5
+        }
+    }) }}
+
+</div>

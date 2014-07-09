@@ -23,6 +23,7 @@
         "php": ">=5.4.0",
         "lib-pcre": "*",
         "ext-mbstring": "*",
+        "ext-pdo": "*",
 
         "umisoft/umi.framework": "1.0.*",
         "umisoft/extension-twig": "1.0.*",

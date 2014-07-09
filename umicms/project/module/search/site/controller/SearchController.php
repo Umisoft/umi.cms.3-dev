@@ -10,28 +10,27 @@
 
 namespace umicms\project\module\search\site\controller;
 
+use umi\form\element\IFormElement;
 use umicms\hmvc\component\site\BaseSitePageController;
-use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Контроллер запроса и вывода результатов поиска
  */
 class SearchController extends BaseSitePageController
 {
+    /**
+     * @var SearchModule $api модуль "Поиск"
+     */
+    protected $module;
 
     /**
-     * модуль "Поиск"
-     * @var SearchApi $api
+     * Конструктор.
+     * @param SearchModule $module
      */
-    protected $api;
-
-    /**
-     * Внедряет API поиска
-     * @param SearchApi $api
-     */
-    public function __construct(SearchApi $api)
+    public function __construct(SearchModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -39,17 +38,19 @@ class SearchController extends BaseSitePageController
      */
     public function __invoke()
     {
-        $query = $this->getQueryVar('query');
+        $form = $this->getComponent()->getForm('search');
+        $form->setData($this->getAllQueryVars());
+        /**
+         * @var IFormElement $queryInput
+         */
+        $queryInput = $form->get('query');
 
-        $resultSet = null;
-        if (!is_null($query)) {
-            $resultSet = $this->api->search($query);
-        }
         return $this->createViewResponse(
-            'search/results',
+            'index',
             [
-                'results' => $resultSet,
-                'query' => $query
+                'page' => $this->getCurrentPage(),
+                'form' => $form->getView(),
+                'query' => $queryInput->getValue()
             ]
         );
     }

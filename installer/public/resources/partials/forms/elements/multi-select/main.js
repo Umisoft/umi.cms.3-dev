@@ -1,4 +1,4 @@
-define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-lazy-choices.hbs'], function(UMI, staticShoicesTpl, lazyShoicesTpl){
+define(['App'], function(UMI){
     'use strict';
 
     return function(){
@@ -7,7 +7,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              * Шаблон View
              * @property template
              */
-            template: Ember.Handlebars.compile(lazyShoicesTpl),
+            templateName: 'partials/multi-select-lazy-choices',
             /**
              * Изменяет связь hasMany для объекта
              * @param type
@@ -46,7 +46,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              * Шаблон View
              * @property template
              */
-            template: Ember.Handlebars.compile(staticShoicesTpl),
+            templateName: 'partials/multi-select',
             /**
              * Тригер списка значений
              * @property isOpen

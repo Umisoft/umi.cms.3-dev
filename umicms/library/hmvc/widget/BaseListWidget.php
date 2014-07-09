@@ -11,13 +11,13 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\exception\http\HttpNotFound;
+use umi\orm\selector\ISelector;
 use umi\pagination\IPaginationAware;
 use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\selector\CmsSelector;
 use umicms\orm\selector\TSelectorConfigurator;
 use umicms\templating\helper\PaginationHelper;
 
@@ -70,7 +70,7 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
     /**
      * Возвращает выборку для постраничной навигации.
-     * @return CmsSelector
+     * @return ISelector
      */
     abstract protected function getSelector();
 
@@ -101,10 +101,10 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
     /**
      * Пременяет условия выборки.
-     * @param CmsSelector $selector
-     * @return CmsSelector
+     * @param ISelector $selector
+     * @return ISelector
      */
-    protected function applySelectorConditions(CmsSelector $selector)
+    protected function applySelectorConditions(ISelector $selector)
     {
         if (!$this->fullyLoad) {
             $fields = ICmsObject::FIELD_DISPLAY_NAME;
@@ -131,12 +131,12 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
     /**
      * Возвращает контекст постраничной навигации.
-     * @param CmsSelector $selector выборка объектов
+     * @param ISelector $selector выборка объектов
      * @throws InvalidArgumentException если заданы не все настройки
      * @throws OutOfBoundsException если задан неверный тип
      * @return array
      */
-    protected function getPagination(CmsSelector $selector)
+    protected function getPagination(ISelector $selector)
     {
         static $helper;
 
@@ -211,11 +211,11 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
     /**
      * Возвращает постраничную навигацию.
-     * @param CmsSelector $selector выборка объектов
+     * @param ISelector $selector выборка объектов
      * @throws HttpNotFound если текущая страница не существует
      * @return IPaginator
      */
-    private function getPaginator(CmsSelector $selector)
+    protected function getPaginator(ISelector $selector)
     {
         $paginator = $this->createObjectPaginator($selector, (int) $this->limit);
 

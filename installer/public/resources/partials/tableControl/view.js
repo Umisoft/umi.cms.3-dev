@@ -8,7 +8,7 @@ define(['App', 'toolbar'], function(UMI){
              * Имя шаблона
              * @property templateName
              */
-            templateName: 'tableControl',
+            templateName: 'partials/tableControl',
             /**
              * Классы для view
              * @classNames
@@ -448,6 +448,8 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
+                    behaviour.classNames = ['white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

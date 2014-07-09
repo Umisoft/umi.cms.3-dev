@@ -5,50 +5,35 @@ require.config({
         text:       'libs/requirejs-text/text',
 
         App:        'application/application',
-
+        jquery:     'libs/jquery/dist/jquery',
+        jqueryUI:   'libs/jquery-ui/jquery-ui.min',
         Modernizr:  'libs/modernizr/modernizr',
-        jQuery:     'libs/jquery/dist/jquery',
-        jQueryUI:   'libs/jquery-ui/jquery-ui.min',
         Handlebars: 'libs/handlebars/handlebars',
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
-
         iscroll:    'libsStatic/iscroll-probe-5.1.1',
         ckEditor:   'libs/ckeditor/ckeditor',
-//        datepicker: 'libsStatic/datepicker',
         timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libsStatic/elFinder', //Почему папку с языками не сохраняем? Как это вообще сейчас работает?
-        chartJs:    'libs/chartjs/Chart'
+        elFinder:   'libsStatic/elFinder'
     },
 
     shim: {
-        //Устанавливаем зависимости между библиотеками
         Modernizr:  {exports: 'Modernizr'},
-        jQuery:     {exports: 'jQuery'},
-
-        /*
-        * jQueryUI
-        * elfinder требует selectable, draggable, droppable
-        * datetime требует datepicker, slider
-        * */
-        jQueryUI:   {exports: 'jQueryUI',   deps: ['jQuery']},
-        elFinder:   {exports: 'elFinder',   deps: ['jQuery', 'jQueryUI']},
-        Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jQuery']},
+        jquery:     {exports: 'jQuery'},
+        jqueryUI:   {exports: 'jQuery', deps: ['jquery']},
+        elFinder:   {exports: 'elFinder',   deps: ['jquery', 'jqueryUI']},
+        Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jquery']},
         DS:         {exports: 'DS',         deps: ['Ember']},
         ckEditor:   {exports: 'ckEditor'},
-//        datepicker: {exports: 'datepicker', deps: ['jQuery']},
-        timepicker: {exports: 'timepicker', deps: ['jQuery', 'jQueryUI']},
-        chartJs:    {exports: 'chartJs'}
+        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']}
     },
 
     packages: [
-        //Подключаем Partials. замена следуют по алфавиту, как и в структуре папок
-        {name: 'offcanvas',         location: "elements/offcanvas"},
-
         {name: 'accordion',         location: "partials/accordion"},
         {name: 'chartControl',      location: "partials/chartControl"},
         {name: 'dialog',            location: "partials/dialog"},
+        {name: 'divider',            location: "partials/divider"},
         {name: 'dock',              location: "partials/dock"},
         {name: 'fileManager',       location: "partials/fileManager"},
         {name: 'forms',              location: "partials/forms"},
@@ -58,7 +43,6 @@ require.config({
         {name: 'megaIndex',         location: "partials/seo/megaIndex"},
         {name: 'sideMenu',          location: "partials/sideMenu"},
         {name: 'yandexWebmaster',   location: "partials/seo/yandexWebmaster"},
-        //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},
         {name: 'tableControl',      location: "partials/tableControl"},
         {name: 'toolbar',           location: "partials/toolbar"},
@@ -68,7 +52,7 @@ require.config({
     ]
 });
 
-require(['jQuery'], function(jQuery){
+require(['jquery'], function(){
     "use strict";
 
     var deffer = $.get(window.UmiSettings.authUrl);
