@@ -11,8 +11,7 @@
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\hmvc\component\admin\layout\AdminComponentLayout;
-use umicms\hmvc\component\admin\layout\control\AdminControl;
+use umicms\project\module\statistics\admin\metrika\layout\MetrikaComponentLayout;
 
 /**
  * Контроллер вывода настроек компонента
@@ -24,14 +23,6 @@ class LayoutController extends BaseLayoutController
      */
     protected function getLayout()
     {
-        $layout = new AdminComponentLayout($this->getComponent());
-
-        $emptyContextControl = new AdminControl($this->getComponent());
-        $selectedContextControl = new AdminControl($this->getComponent());
-
-        $layout->addEmptyContextControl('counters', $emptyContextControl);
-        $layout->addSelectedContextControl('counter', $selectedContextControl);
-
-        return $layout;
+        return new MetrikaComponentLayout($this->getComponent(), $this->getUrlManager());
     }
 }
