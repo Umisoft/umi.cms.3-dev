@@ -118,7 +118,7 @@ define(['App'], function(UMI){
             setContent: function(){
                 var content = this.get('content');
                 var headers;
-                var data = Ember.get(content, 'control.data');
+                var data = Ember.get(content, 'control.data') || [];
                 if(data.length){
                     headers = data.shift();
                     this.setProperties({'headers': headers, 'rows': data});
