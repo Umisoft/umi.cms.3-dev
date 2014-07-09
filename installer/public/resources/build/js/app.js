@@ -125,6 +125,30 @@ define('application/utils',['Modernizr'], function(Modernizr){
             }
         };
 
+        UMI.Utils.getStringValue = function(prop){
+            var property;
+            var properties;
+            var value;
+            switch(Ember.typeOf(prop)){
+                case 'string':
+                    value = prop;
+                    break;
+                case 'array':
+                    value = prop.join(',');
+                    break;
+                case 'object':
+                    properties = [];
+                    for(property in prop){
+                        if(prop.hasOwnProperty(property)){
+                            properties.push(UMI.Utils.getStringValue(prop[property]));
+                        }
+                    }
+                    value = properties;
+                    break;
+            }
+            return value;
+        };
+
         /**
          * Local Storage
          */
@@ -393,6 +417,30 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["UMI/host"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaHostTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/indexed"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaIndexesTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
 Ember.TEMPLATES["UMI/megaIndex"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -434,6 +482,18 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "siteAnalyzeTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/tops"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaTopsTable", {hash:{
     'contentBinding': ("model")
   },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
@@ -4041,8 +4101,7 @@ define('application/router',[], function(){
                                 controlObject = routeData.createObject;
                             }
                             actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
-
-                            Ember.$.get(actionResource).then(function(results){
+                            $.get(actionResource).then(function(results){
                                 var dynamicControl;
                                 var dynamicControlName;
                                 if(actionName === 'dynamic'){
@@ -4062,12 +4121,12 @@ define('application/router',[], function(){
                                 deferred.resolve(routeData);
                             }, function(error){
                                 //Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                deferred.reject(transition.send('backgroundError', error));
+                                /*transition.send('backgroundError', error)*/
+                                deferred.resolve(routeData);
                              });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
-
                     }
                 } catch(error){
                     deferred.reject(transition.send('backgroundError', error));
@@ -9593,6 +9652,85 @@ define('table/view',['App'], function(UMI){
                     }
                     this.setProperties({'headers': headers, 'rows': rows});
                 }
+            }.observes('content').on('init')
+        });
+
+        UMI.YaHostTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var key;
+
+                if(Ember.typeOf(labels) === 'object'){
+                    for(key in labels){
+                        if(labels.hasOwnProperty(key)){
+                            headers.push(labels[key]);
+                        }
+                    }
+                }
+                if(Ember.typeOf(data) === 'object'){
+                    for(key in data){
+                        if(data.hasOwnProperty(key)){
+                            var row = UMI.Utils.getStringValue(data[key]);
+                            rows.push(row);
+                        }
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': [rows]});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaIndexesTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var url = Ember.get(data, 'last-week-index-urls.url');
+
+                headers.push(Ember.get(labels, 'last-week-index-urls'));
+
+                if(Ember.typeOf(url)  === 'array'){
+                    for(i = 0; i < url.length; i++){
+                        rows.push([UMI.Utils.getStringValue(url[i])]);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaTopsTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var row;
+                var topQueries = Ember.get(data, 'top-queries.top-clicks.top-info');
+
+                headers.push(Ember.get(labels, 'query'));
+                headers.push(Ember.get(labels, 'count'));
+                headers.push(Ember.get(labels, 'position'));
+                headers.push(Ember.get(labels, 'clicks-top-rank'));
+
+                if(Ember.typeOf(topQueries)  === 'array'){
+                    for(i = 0; i < topQueries.length; i++){
+                        row = [];
+                        row.push(UMI.Utils.getStringValue(topQueries[i].query));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].count));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].position));
+                        row.push(UMI.Utils.getStringValue(topQueries[i]['clicks-top-rank']));
+                        rows.push(row);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
             }.observes('content').on('init')
         });
 

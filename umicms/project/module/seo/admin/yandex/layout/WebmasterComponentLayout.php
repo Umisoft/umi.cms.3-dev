@@ -72,7 +72,7 @@ class WebmasterComponentLayout extends AdminComponentLayout
     protected function configureEmptyContextControls()
     {
         $control = new AdminControl($this->component);
-        $control->params['action'] = 'host';
+        $control->params['slug'] = 'host';
 
         $this->addEmptyContextControl('redirect', $control);
     }

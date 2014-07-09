@@ -36,6 +36,30 @@ define(['Modernizr'], function(Modernizr){
             }
         };
 
+        UMI.Utils.getStringValue = function(prop){
+            var property;
+            var properties;
+            var value;
+            switch(Ember.typeOf(prop)){
+                case 'string':
+                    value = prop;
+                    break;
+                case 'array':
+                    value = prop.join(',');
+                    break;
+                case 'object':
+                    properties = [];
+                    for(property in prop){
+                        if(prop.hasOwnProperty(property)){
+                            properties.push(UMI.Utils.getStringValue(prop[property]));
+                        }
+                    }
+                    value = properties;
+                    break;
+            }
+            return value;
+        };
+
         /**
          * Local Storage
          */

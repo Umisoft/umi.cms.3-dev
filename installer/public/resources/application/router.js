@@ -775,8 +775,7 @@ define([], function(){
                                 controlObject = routeData.createObject;
                             }
                             actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
-
-                            Ember.$.get(actionResource).then(function(results){
+                            $.get(actionResource).then(function(results){
                                 var dynamicControl;
                                 var dynamicControlName;
                                 if(actionName === 'dynamic'){
@@ -796,12 +795,12 @@ define([], function(){
                                 deferred.resolve(routeData);
                             }, function(error){
                                 //Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                deferred.reject(transition.send('backgroundError', error));
+                                /*transition.send('backgroundError', error)*/
+                                deferred.resolve(routeData);
                              });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
-
                     }
                 } catch(error){
                     deferred.reject(transition.send('backgroundError', error));
