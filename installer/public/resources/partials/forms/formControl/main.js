@@ -1,11 +1,9 @@
-define(
-    ['App', 'text!./form.hbs', 'partials/forms/partials/siblingsNavigation/main'],
+define(['App'],
 
-    function(UMI, formTpl, siblingsNavigation){
+    function(UMI){
         "use strict";
 
         return function(){
-            siblingsNavigation();
 
             UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
@@ -23,7 +21,7 @@ define(
                  * @property layout
                  * @type String
                  */
-                layout: Ember.Handlebars.compile(formTpl),
+                layoutName: 'partials/formControl',
 
                 classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control']
             });
@@ -44,8 +42,16 @@ define(
                     return '{{view "selectCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
+                checkboxTemplate: function(){
+                    return '{{view "checkboxCollectionElement" object=view.object meta=view.meta}}';
+                }.property(),
+
                 checkboxGroupTemplate: function(){
                     return '{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}';
+                }.property(),
+
+                permissionsTemplate: function(){
+                    return '{{view "permissions" object=object meta=view.meta}}';
                 }.property()
             });
         };

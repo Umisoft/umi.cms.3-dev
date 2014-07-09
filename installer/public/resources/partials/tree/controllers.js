@@ -5,6 +5,28 @@ define(['App'], function(UMI){
         UMI.TreeControlController = Ember.ObjectController.extend({
             needs: ['component', 'context'],
 
+            filterTrashed: null,
+
+            objectProperties: function(){
+                var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
+                var collectionName = this.get('collectionName');
+                var model = this.get('store').modelFor(collectionName);
+                var modelFields = Ember.get(model, 'fields');
+                modelFields = modelFields.keys.list;
+                for(var i = 0; i < objectProperties.length; i++){
+                    if(!modelFields.contains(objectProperties[i])){
+                        objectProperties.splice(i, 1);
+                        --i;
+                    }
+                }
+                if(modelFields.contains('trashed')){
+                    this.set('filterTrashed', true);
+                } else{
+                    this.set('filterTrashed', false);
+                }
+                return objectProperties;
+            }.property('model'),
+
             expandedBranches: [],
 
             collectionNameBinding: 'controllers.component.dataSource.name',
@@ -56,11 +78,17 @@ define(['App'], function(UMI){
                     }.property('children.length'),
                     children: function(){
                         var children;
+                        var objectProperties;
                         try{
                             if(!collectionName){
                                 throw new Error('Collection name is not defined.');
                             }
-                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': 'displayName,order,active,childCount,children,parent'});
+                            objectProperties = self.get('objectProperties').join(',');
+                            var requestParams = {'filters[parent]': 'null()', 'fields': objectProperties};
+                            if(self.get('filterTrashed')){
+                                requestParams['filters[trashed]'] = 'equals(0)';
+                            }
+                            var nodes = self.store.updateCollection(collectionName, requestParams);
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
@@ -72,8 +100,8 @@ define(['App'], function(UMI){
                                 'message': error.message,
                                 'stack': error.stack
                             };
-                            Ember.run.next(function(){
-                                self.send('templateLogs', errorObject, 'component');
+                            Ember.run.next(self, function(){
+                                this.send('templateLogs', errorObject, 'component');
                             });
                         }
                         return children;

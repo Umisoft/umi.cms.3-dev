@@ -13,7 +13,7 @@ namespace umicms\project\module\users\site\restoration\controller;
 use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umicms\exception\NonexistentEntityException;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
@@ -56,7 +56,7 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        return $this->module->user()->getForm(AuthorizedUser::FORM_RESTORE_PASSWORD, AuthorizedUser::TYPE_NAME);
+        return $this->module->user()->getForm(RegisteredUser::FORM_RESTORE_PASSWORD, RegisteredUser::TYPE_NAME);
     }
 
     /**
@@ -101,7 +101,7 @@ class IndexController extends BaseSitePageController
     /**
      * Отпраляет пользователю письмо с кодом подтверждения смены пароля
      */
-    protected function sendRestorePasswordConfirmation(AuthorizedUser $user)
+    protected function sendRestorePasswordConfirmation(RegisteredUser $user)
     {
         $this->mail(
             [$user->email => $user->displayName],
@@ -109,7 +109,7 @@ class IndexController extends BaseSitePageController
             'mail/confirmationSubject',
             'mail/confirmationBody',
             [
-                'activationCode' => $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
+                'activationCode' => $user->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->getValue(),
                 'user' => $user
             ]
         );

@@ -1,7 +1,9 @@
+{{ widget('search.form') }}
+
 {{ include('partial/authorization.twig') }}
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4>{{ translate('RSS feed') }}</h4>
+    <h4>{{ translate('RSSFeed') }}</h4>
     <p>{{ translate('Blogs') }}: {{ widget('blog.post.rssLink', {'template' : 'rssLink'}) }}</p>
 </div>
 <div class="sidebar-module">

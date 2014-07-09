@@ -11,11 +11,19 @@
 return [
 
     'en-US' => [
-        'component:users:displayName' => 'Users'
+        'component:users:displayName' => 'Users',
+
+        'role:userExecutor:displayName' => 'Users',
+        'role:groupExecutor:displayName' => 'Users groups',
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation'
     ],
 
     'ru-RU' => [
-        'component:users:displayName' => 'Пользователи'
+        'component:users:displayName' => 'Пользователи',
+
+        'role:userExecutor:displayName' => 'Пользователи',
+        'role:groupExecutor:displayName' => 'Группы пользователей',
+        'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы'
     ]
 
 ];

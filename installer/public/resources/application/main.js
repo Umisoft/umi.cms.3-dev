@@ -1,12 +1,8 @@
 define(
     [
         'App',
-
-        //Вызов elements
-        'offcanvas',
-
-        //Вызов partials
         'topBar',
+        'divider',
         'dock',
         'toolbar',
         'tableControl',
@@ -14,16 +10,11 @@ define(
         'treeSimple',
         'tree',
         'forms',
-        'search',
         'notification',
         'dialog',
         'popup',
-        'chartControl',
         'DS',
         'table',
-        'accordion',
-        'megaIndex',
-        'yandexWebmaster',
         'sideMenu'
     ],
     function(UMI){

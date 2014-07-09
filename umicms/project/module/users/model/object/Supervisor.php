@@ -15,12 +15,17 @@ use umi\hmvc\component\IComponent;
 /**
  * Супервайзер.
  */
-class Supervisor extends AuthorizedUser
+class Supervisor extends RegisteredUser
 {
+    /**
+     * Имя типа.
+     */
+    const TYPE_NAME = 'registered.supervisor';
+
     /**
      * {@inheritdoc}
      */
-    public function isAllowed(IComponent $component, $resourceName)
+    public function isComponentResourceAllowed(IComponent $component, $resourceName)
     {
         return true;
     }

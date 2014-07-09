@@ -1,4 +1,4 @@
-define(['App', 'text!./dialog-layout.hbs', 'text!./dialog.hbs'], function(UMI, dialogLayoutTpl, dialogTpl){
+define(['App'], function(UMI){
     'use strict';
 
     UMI.DialogController = Ember.ObjectController.extend({
@@ -29,8 +29,8 @@ define(['App', 'text!./dialog-layout.hbs', 'text!./dialog.hbs'], function(UMI, d
     UMI.dialog = UMI.DialogController.create();
 
     UMI.DialogView = Ember.View.extend({
-        layout: Ember.Handlebars.compile(dialogLayoutTpl),
-        template: Ember.Handlebars.compile(dialogTpl),
+        layoutName: 'partials/dialog-layout',
+        templateName: 'partials/dialog-template',
         modelBinding: 'controller.model',
         controller: UMI.dialog,
         showDialog: function(){

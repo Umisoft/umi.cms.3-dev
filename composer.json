@@ -4,45 +4,33 @@
     "type": "library",
     "license": "proprietary",
     "homepage": "http://umi-cms.ru/",
-    "minimum-stability": "dev",
+
     "autoload": {
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "project\\" : ""
+            "project\\" : "",
+            "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
-    "replace": {
-        "umi/cms" : "self.version"
+
+    "replace" : {
+        "umisoft/umi.cms.3": "self.version"
     },
+
     "require": {
         "php": ">=5.4.0",
-        "umisoft/umi.framework-dev": "*",
-        "guzzlehttp/guzzle": "4.*",
-        "twig/twig": "1.*",
-        "gregwar/captcha": "dev-master",
-        "ezyang/htmlpurifier": "dev-master",
-        "jbroadway/urlify": "1.0.3"
-    },
-    "require-dev":{
-        "mockery/mockery": "0.9.*"
-    },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "git@github.com:Umisoft/umi.framework-dev.git"
-        }
-    ],
-    "scripts": {
-        "post-install-cmd": [
-            "cd ./installer/public/resources",
-            "bower install"
-        ],
-        "post-update-cmd": [
-            "cd ./installer/public/resources",
-            "bower update"
-        ]
-    }
+        "lib-pcre": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
 
+        "umisoft/umi.framework": "1.0.*",
+        "umisoft/extension-twig": "1.0.*",
+
+        "guzzlehttp/guzzle": "4.*",
+        "gregwar/captcha": "1.0.*",
+        "ezyang/htmlpurifier": "4.6.*",
+        "jbroadway/urlify": "1.0.*"
+    }
 }

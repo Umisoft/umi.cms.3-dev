@@ -1,103 +1,192 @@
 define(['App'], function(UMI){
-//    'use strict';
+    'use strict';
 
     return function(){
         UMI.TableView = Ember.View.extend({
-            templateName: 'table',
-            classNames: ['umi-table-ajax'],
+            templateName: 'partials/table',
+            classNames: ['umi-table'],
             headers: [],
-            objectId: [],
-            data: [],
+            rows: [],
+            offset: 0,
+            limit: 25,
+            totalBinding: 'rows.length',
+            visibleRows: function(){
+                var rows = this.get('rows');
+                var offset = this.get('offset');
+                var limit = parseFloat(this.get('limit'));
+                var begin;
+                var end;
+                if(offset){
+                    begin = limit * offset;
+                } else{
+                    begin = 0;
+                }
+                end = begin + limit;
+                return rows.slice(begin, end);
+            }.property('offset', 'limit'),
 
             didInsertElement: function(){
-                var that = this;
+                var tableContent = this.$().find('.s-scroll-wrap')[0];
+                var tableHeader = this.$().find('.umi-table-header')[0];
+                var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
 
-                //Получаем список счётчиков
-                (function getCounters(){
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/api/statistics/metrika/action/counters",
-                        data: {},
-                        cache: false,
-
-                        beforeSend: function(){
-                            $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; overflow: hidden; z-index: 1; padding: 30px; width: 100%; height: 100%; background: #FFFFFF;"><i class="animate animate-loader-40"></i><h3>Идёт загрузка данных...</h3></div>';
-                            });
-                        },
-
-                        success: function(response){
-                            $('.umi-loader').remove();
-//                            if(!response){
-//                                $('.umi-component').css({'position':'relative'}).append(function(){
-//                                    return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Данные отсутствуют</h3></div>';
-//                                });
-//                            }
-
-                            var headers = [];
-                            headers.push(response.result.counters.labels.name, response.result.counters.labels.site, response.result.counters.labels['code_status']);
-
-                            var rows = response.result.counters.counters;
-                            var rowsLength = rows.length;
-                            var result = [];
-
-                            for(var i = 0; i < rowsLength; i++){
-                                result.push([rows[i].id, rows[i].site, rows[i].name, rows[i]['code_status']]);
-                            }
-                            renderCounters(headers, result);
-                        },
-
-                        error: function(code){
-                            $('.umi-loader').remove();
-                            $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Не удалось загрузить данные</h3></div>';
-                            });
-                        }
-                    });
-                })();
-
-
-                //Выводим таблицу со списком счётчиков
-                //headers - массив
-                //rows - двумерный массив
-                function renderCounters(headers, rows){
-
-                    //Заносим заголовки в переменную для шаблонизатора
-                    that.set('headers', headers);
-
-                    //Заносим содержимое таблицы с удалением первой колонки (id) в переменную шаблонизатора
-                    var rowsLength = rows.length;
-                    var objectId = [];
-                    that.set('data', rows);
-                    that.set('objectId', objectId);
-//                    console.log(that.get('objectId'));
-                }
-
-                $('.umi-table-ajax').on('click.umi.table','.umi-table-ajax-tr',function(){
-                    var counterId = $(this).data('object-id');
-                    that.get('controller').transitionToRoute('context', counterId);
+                scrollContent.on('scroll', function(){
+                    tableHeader.style.marginLeft = this.x + 'px';
                 });
 
+                $(window).on('resize.umi.table', function(){
+                    setTimeout(function(){
+                        tableHeader.style.marginLeft = scrollContent.x + 'px';
+                    }, 100);
+                });
             },
 
             willDestroyElement: function(){
-                $(window).off('.umi.table');
+                $(window).off('resize.umi.table');
+                this.removeObserver('content');
             },
 
-            row: Ember.View.extend({
-                tagName: 'tr',
-                classNames: ['umi-table-ajax-tr'],
-                attributeBindings: ['objectId:data-object-id'],
-                objectId: function(){
-                    return this.get('object')[0];
-                }.property('object'),
-                cell: function(){
-                    var object = this.get('object');
-                    object.shift(0);
-                    return object;
-                }.property('object')
-            })
+            paginationView: Ember.View.extend({
+                classNames: ['s-unselectable', 'umi-toolbar'],
+                templateName: 'partials/table/toolbar',
+                counter: function(){
+                    var label = 'из';
+                    var limit = this.get('parentView.limit');
+                    var offset = this.get('parentView.offset') + 1;
+                    var total = this.get('parentView.total');
+                    var maxCount = offset*limit;
+                    var start = maxCount - limit + 1;
+                    maxCount = maxCount < total ? maxCount : total;
+                    return start + '-' + maxCount + ' ' + label + ' ' + total;
+                }.property('parentView.limit', 'parentView.offset', 'parentView.total'),
 
+                prevButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+
+                    isActive: function(){
+                        return this.get('parentView.parentView.offset');
+                    }.property('parentView.parentView.offset'),
+
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('parentView.parentView').decrementProperty('offset');
+                        }
+                    }
+                }),
+
+                nextButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+
+                    isActive: function(){
+                        var limit = this.get('parentView.parentView.limit');
+                        var offset = this.get('parentView.parentView.offset') + 1;
+                        var total = this.get('parentView.parentView.total');
+                        return total > limit * offset;
+                    }.property('parentView.parentView.limit', 'parentView.parentView.offset', 'parentView.parentView.total'),
+
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('parentView.parentView').incrementProperty('offset');
+                        }
+                    }
+                }),
+
+                limitView: Ember.View.extend({
+                    tagName: 'input',
+                    classNames: ['s-margin-clear'],
+                    attributeBindings: ['value', 'type'],
+
+                    value: function(){
+                        return this.get('parentView.parentView.limit');
+                    }.property('parentView.parentView.limit'),
+
+                    type: 'text',
+
+                    keyDown: function(event){
+                        if(event.keyCode === 13){
+                            // При изменении количества строк на странице сбрасывается offset
+                            this.get('parentView.parentView').setProperties({'offset': 0, 'limit': this.$()[0].value});
+                        }
+                    }
+                })
+            })
+        });
+
+        UMI.SiteAnalyzeTableView = UMI.TableView.extend({
+            setContent: function(){
+                var content = this.get('content');
+                var headers;
+                var data = Ember.get(content, 'control.data') || [];
+                if(data.length){
+                    headers = data.shift();
+                    this.setProperties({'headers': headers, 'rows': data});
+                }
+            }.observes('content').on('init')
+        });
+
+        UMI.BacklinksTableView = UMI.TableView.extend({
+            setContent: function(){
+                var content = this.get('content');
+                var headers;
+                var data = Ember.get(content, 'control.data');
+                var rows = [];
+                if(data.length){
+                    headers = Ember.get(content, 'control.headers');
+                    for(var i = 0; i < data.length; i++){
+                        rows.push([Ember.get(data[0],'vs_from')]);
+                    }
+                    this.setProperties({'headers': headers, 'rows': rows});
+                }
+            }.observes('content').on('init')
+        });
+
+        UMI.TableCountersView = UMI.TableView.extend({
+            rowCount: function(){
+                var rows = this.get('rows') || [];
+                var row = rows[0] || {};
+                var count = [];
+                for(var key in row){
+                    if(row.hasOwnProperty(key)){
+                        count.push({});
+                    }
+                }
+                return count;
+            }.property('rows'),
+
+            rowView: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-content-tr'],
+                cell: function(){
+                    var object = this.get('row');
+                    var cell = [];
+                    for(var key in object){
+                        if(object.hasOwnProperty(key)){
+                            cell.push({'displayName': object[key]});
+                        }
+                    }
+                }
+            }),
+
+            setContent: function(){
+                var content = this.get('content');
+                var headers = Ember.get(content, 'control.meta.labels');
+                var headersList = [];
+                var rows = Ember.get(content, 'control.meta.objects');
+                for(var key in headers){
+                    if(headers.hasOwnProperty(key)){
+                        headersList.push(headers[key]);
+                    }
+                }
+                this.setProperties({'headers': headersList, 'rows': rows});
+            }.observes('content').on('init'),
+
+            actions: {
+                rowEvent: function(context){
+                    this.get('controller').transitionToRoute('context', Ember.get(context, 'id'));
+                }
+            }
         });
     };
 });

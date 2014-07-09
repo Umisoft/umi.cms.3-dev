@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
 use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
@@ -36,13 +35,6 @@ return [
                         'dataSource' => BlogComment::FIELD_DISPLAY_NAME
                     ],
                 ],
-                BlogComment::FIELD_ACTIVE => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => BlogComment::FIELD_ACTIVE,
-                    'options' => [
-                        'dataSource' => BlogComment::FIELD_ACTIVE
-                    ],
-                ],
                 BlogComment::FIELD_SLUG => [
                     'type' => Text::TYPE_NAME,
                     'label' => BlogComment::FIELD_SLUG,
@@ -56,6 +48,14 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'contents',
             'elements' => [
+                BlogComment::FIELD_POST => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogComment::FIELD_POST,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogComment::FIELD_POST
+                    ]
+                ],
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
                     'label' => BlogComment::FIELD_AUTHOR,
@@ -69,19 +69,6 @@ return [
                     'label' => BlogComment::FIELD_PUBLISH_TIME,
                     'options' => [
                         'dataSource' => BlogComment::FIELD_PUBLISH_TIME
-                    ]
-                ],
-                BlogComment::FIELD_PUBLISH_STATUS => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => BlogComment::FIELD_PUBLISH_STATUS,
-                    'options' => [
-                        'lazy' => false,
-                        'dataSource' => BlogComment::FIELD_PUBLISH_STATUS,
-                        'choices' => [
-                            BlogComment::COMMENT_STATUS_NEED_MODERATE => BlogComment::COMMENT_STATUS_NEED_MODERATE,
-                            BlogComment::COMMENT_STATUS_REJECTED => BlogComment::COMMENT_STATUS_REJECTED,
-                            BlogComment::COMMENT_STATUS_PUBLISHED => BlogComment::COMMENT_STATUS_PUBLISHED
-                        ]
                     ]
                 ],
                 BlogComment::FIELD_CONTENTS => [

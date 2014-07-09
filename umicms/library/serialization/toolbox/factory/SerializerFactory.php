@@ -89,7 +89,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
      */
     public function registerSerializers(array $serializers)
     {
-        $this->types = array_merge_recursive($this->types, $serializers);
+        $this->types = array_replace_recursive($this->types, $serializers);
 
         return $this;
     }
