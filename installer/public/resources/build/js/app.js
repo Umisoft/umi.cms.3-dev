@@ -2184,10 +2184,10 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> ");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Open site in new tab", options) : helperMissing.call(depth0, "i18n", "Open site in new tab", options))));
   data.buffer.push(" <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> <ul class=\"umi-top-bar-list right\"> <li> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "dropdownButton", {hash:{
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.dropdownView", {hash:{
     'tagName': ("span"),
     'class': ("button tiny flat dropdown umi-top-bar-button")
-  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push(" </li> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "notificationList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </ul> </nav>");
@@ -5357,7 +5357,8 @@ define('topBar/main',[
         templateName: 'partials/topBar',
         dropdownView: UMI.DropdownButtonView.extend({
             template: function(){
-                return Ember.Handlebars.compile('mail@yandex.ru<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
+                var userName = Ember.get(window, 'UmiSettings.user.displayName');
+                return Ember.Handlebars.compile(userName + '<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
             }.property()
         })
     });
