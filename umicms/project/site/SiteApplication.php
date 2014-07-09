@@ -403,10 +403,15 @@ class SiteApplication extends SiteComponent
                 'Do not set the default domain.'
             ));
         }
+        if ($this->getHostDomain() !== $defaultDomain) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key for domain.'
+            ));
+        }
         $licenseType = $this->getSiteSettings()->get('licenseType');
         if (empty($licenseType)) {
             throw new InvalidLicenseException($this->translate(
-                'Do not set the default domain.'
+                'Wrong license type.'
             ));
         }
         if (strstr($licenseType, base64_decode('dHJpYWw='))) {
@@ -449,6 +454,15 @@ class SiteApplication extends SiteComponent
             $defaultDomain = mb_substr($defaultDomain, 4);
         }
         return $defaultDomain;
+    }
+
+    private function getHostDomain()
+    {
+        $hostDomain = $_SERVER['HTTP_HOST'];
+        if (mb_strrpos($hostDomain, 'www.') === 0) {
+            $hostDomain = mb_substr($hostDomain, 4);
+        }
+        return $hostDomain;
     }
 
     /**

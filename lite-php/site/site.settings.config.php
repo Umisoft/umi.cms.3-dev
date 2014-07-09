@@ -6,8 +6,8 @@
 		'defaultTemplatingEngineType' => 'php',
 		'defaultTemplateExtension' => 'phtml',
 		'licenseKey' => '',
-		'defaultDomain' => 'umicms3',
-		'domainKey' => '6A0DCDB807A-F528764D624-09852738FE4',
-		'licenseType' => 'lite3trial',
-		'deactivation' => 'MTQwNzQ4NjkyMA==',
+		'defaultDomain' => '',
+		'domainKey' => '',
+		'licenseType' => '',
+		'deactivation' => '',
 	);
