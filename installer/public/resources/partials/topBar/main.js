@@ -1,10 +1,14 @@
 define([
-    'text!./templates/topBar.hbs',
-    'App'
-], function(topBarTpl, UMI){
+    'App', 'toolbar'
+], function(UMI){
     'use strict';
 
     UMI.TopBarView = Ember.View.extend({
-        template: Ember.Handlebars.compile(topBarTpl)
+        templateName: 'partials/topBar',
+        dropdownView: UMI.DropdownButtonView.extend({
+            template: function(){
+                return Ember.Handlebars.compile('mail@yandex.ru<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
+            }.property()
+        })
     });
 });

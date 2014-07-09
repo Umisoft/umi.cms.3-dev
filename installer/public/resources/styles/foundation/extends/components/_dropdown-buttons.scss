@@ -1,5 +1,5 @@
 .dropdown.button {
-    &.white:before{
+    &.white:after{
         border-color: $dropdown-button-pip-color-alt transparent transparent transparent;
     }
 }

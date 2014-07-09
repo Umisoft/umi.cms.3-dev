@@ -1,10 +1,10 @@
-define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
-    function(UMI, moment, template, backupListTemplate){
+define(['App', 'moment'],
+    function(UMI, moment){
         "use strict";
 
         return function(){
             UMI.DropdownButtonView = Ember.View.extend({
-                template: Ember.Handlebars.compile(template),
+                templateName: 'partials/dropdownButton',
                 tagName: 'a',
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
@@ -44,12 +44,12 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
 
             UMI.dropdownButtonBehaviour = UMI.GlobalBehaviour.extend({
                 backupList: {
-                    classNames: ['dropdown', 'coupled'],
+                    classNames: ['coupled'],
                     classNameBindings: ['isOpen:open'],
                     isOpen: false,
                     iScroll: null,
                     tagName: 'div',
-                    template: Ember.Handlebars.compile(backupListTemplate),
+                    templateName: 'partials/dropdownButton/backupList',
 
                     getBackupList: function(){
                         var backupList;

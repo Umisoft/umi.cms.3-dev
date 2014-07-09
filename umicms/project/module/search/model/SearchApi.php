@@ -42,7 +42,7 @@ class SearchApi extends BaseSearchApi
     public function search($searchString)
     {
         if (mb_strlen($searchString, 'utf-8') < $this->minimumPhraseLength) {
-            return [];
+            return $this->getSiteIndexCollection()->emptySelect();
         }
 
         $selector = $this->getSiteIndexCollection()
@@ -197,7 +197,8 @@ class SearchApi extends BaseSearchApi
         $selector->setSelectBuilderInitializer(
             function(ISelectBuilder $selectBuilder) use ($searchMetadata, $searchString, $wordBases) {
 
-                $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
+                $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName($this->getCurrentDataLocale());
+
                 $connection = $searchMetadata->getCollectionDataSource()->getConnection();
 
                 $selectBuilder->where(IExpressionGroup::MODE_OR)
