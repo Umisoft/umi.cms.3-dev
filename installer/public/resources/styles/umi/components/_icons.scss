@@ -145,7 +145,7 @@ $umi-icons: 'img/icons.png' !default;
     &.icon-backupList{
         background-position: -680px 0;
     }
-    &.icon-renew{
+    &.icon-renew, &.icon-untrash{
         background-position: -700px 0;
     }
     &.icon-calendar{
@@ -321,7 +321,7 @@ $umi-icons: 'img/icons.png' !default;
         &.icon-backupList{
             background-position: -680px -20px;
         }
-        &.icon-renew{
+        &.icon-renew, &.icon-untrash{
             background-position: -700px -20px;
         }
         &.icon-calendar{
@@ -498,7 +498,7 @@ $umi-icons: 'img/icons.png' !default;
         &.icon-backupList{
             background-position: -680px -40px;
         }
-        &.icon-renew{
+        &.icon-renew, &.icon-untrash{
             background-position: -700px -40px;
         }
         &.icon-calendar{

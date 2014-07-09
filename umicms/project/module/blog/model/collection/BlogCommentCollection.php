@@ -14,6 +14,8 @@ use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\object\IObject;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\object\BlogAuthor;
@@ -28,8 +30,10 @@ use umicms\project\module\blog\model\object\BlogPost;
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
-class BlogCommentCollection extends CmsHierarchicCollection
+class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {
+    use TRecyclableCollection;
+
     /**
      * {@inheritdoc}
      */

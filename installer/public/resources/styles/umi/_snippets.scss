@@ -63,3 +63,7 @@ $s-full-height-before-height: 32px;
 .s-gradient-grey{
     @include s-gradient-grey();
 }
+
+.s-pointer{
+    cursor: pointer;
+}
