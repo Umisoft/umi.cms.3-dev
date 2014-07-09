@@ -127,10 +127,6 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
-            return $redirectResponse;
-        }
 
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
@@ -168,15 +164,24 @@ class SiteApplication extends SiteComponent
     {
         $request = $context->getDispatcher()->getCurrentRequest();
 
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
+        $currentPath = $request->getPathInfo();
+        $requestFormat = $request->getRequestFormat(null);
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
+        if ($requestFormat) {
+            $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
+        }
+
+        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
+
+        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        $requestFormat = $request->getRequestFormat();
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
+            return $redirectResponse;
+        }
 
-        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if (!is_null($requestFormat) && $requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
@@ -317,13 +322,18 @@ class SiteApplication extends SiteComponent
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
+     * @param string|null $suffix
      * @return Response|null
      */
-    protected function processDefaultPageRedirect()
+    protected function processDefaultPageRedirect($suffix = null)
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
+            $location = $this->getUrlManager()->getProjectUrl();
+            if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
+                $location .= '.' . $suffix;
+            }
+            $response->headers->set('Location', $location);
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 

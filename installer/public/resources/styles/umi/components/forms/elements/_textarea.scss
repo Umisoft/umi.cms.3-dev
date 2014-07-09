@@ -1,0 +1,23 @@
+.umi-element-textarea{
+    position: relative;
+    //    height: 60px;
+    min-height: 60px;
+    textarea{
+        padding-bottom: 14px;
+        transition: none!important;
+        resize: none;
+        overflow: auto;
+    }
+}
+
+.umi-element-textarea-resizer{
+    position: absolute;
+    width: calc(100% - 1px);
+    height: 10px;
+    margin-top: -24px;
+    margin-left: 1px;
+    background: #D3D7DA;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    cursor: s-resize;
+}

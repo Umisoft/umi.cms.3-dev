@@ -15,7 +15,7 @@ return [
         'Import {count} posts.' => 'Import {count} posts.',
         'action:importFromRss' => 'Import RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [

@@ -54,7 +54,6 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->registerSelectorInitializer();
         $this->registerSerializers();
 
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
@@ -118,22 +117,6 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
         }
 
         return false;
-    }
-
-    /**
-     * Регистрирует иницициализотор для всех селекторов.
-     */
-    protected function registerSelectorInitializer()
-    {
-        BaseCollection::setSelectorInitializer(function(CmsSelector $selector) {
-
-            $collection = $selector->getCollection();
-
-            if ($collection instanceof IRecyclableCollection) {
-                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
-            }
-
-        });
     }
 
     /**

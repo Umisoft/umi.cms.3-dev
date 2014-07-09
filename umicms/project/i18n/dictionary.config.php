@@ -47,6 +47,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
@@ -131,6 +132,8 @@ return [
     'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
+    'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+
     'collection' => [
 
         'en-US' => [
@@ -201,6 +204,8 @@ return [
             IRecyclableObject::FIELD_TRASHED => 'В корзине',
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+            'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
         ]
     ],
 

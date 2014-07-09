@@ -17,16 +17,16 @@ return [
         'slugLength' => 'Slug length',
         'slugGeneratorActive' => 'Slug generate active',
 
-        'role:configurator:displayName' => 'Managing settings'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [
 
-        'component:slugify:displayName' => 'Настройки генератора slug',
+        'component:slugify:displayName' => 'Псевдостатический адрес',
 
-        'slugify' => 'Генератор slug\'ов',
-        'slugGeneratorType' => 'Тип генераторации slug\'ов',
-        'slugLength' => 'Длинна slug\'а',
+        'slugify' => 'Псевдостатический адрес',
+        'slugGeneratorType' => 'Тип псевдостатического адреса',
+        'slugLength' => 'Длина псевдостатического адреса',
         'slugGeneratorActive' => 'Включить автоматическую генерацию slug\'ов',
 
         'role:configurator:displayName' => 'Управление настройками'

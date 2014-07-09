@@ -13,7 +13,7 @@ define(['App'], function(UMI){
                     'width': 400,
                     'height': 300,
                     'contentOverflow': ['overflow', 'scroll']
-                })
+                });
             },
 
             didInsertElement: function(){
@@ -40,7 +40,7 @@ define(['App'], function(UMI){
             fade: true,
             drag: true,
             resize: true,
-            layoutName: 'popup',
+            layoutName: 'partials/popup',
 
             checkContentParams: function(){
                 this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);

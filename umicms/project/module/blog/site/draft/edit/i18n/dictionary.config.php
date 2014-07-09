@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Edit own drafts',
+        'role:author:displayName' => 'Edit drafts',
     ],
 
     'ru-RU' => [

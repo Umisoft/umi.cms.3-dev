@@ -343,6 +343,14 @@ class BlogPost extends CmsObject implements ICmsPage
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function isInIndex()
+    {
+        return ($this->publishStatus === self::POST_STATUS_PUBLISHED) && $this->active && !$this->trashed;
+    }
+
+    /**
      * Мутатор для поля статус публикации.
      * @param string $value статус публикации
      * @return $this
