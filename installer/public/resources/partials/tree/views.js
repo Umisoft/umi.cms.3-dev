@@ -230,7 +230,7 @@ define(['App', 'toolbar'], function(UMI){
             }.property('item.id'),
 
             inActive: function(){
-                return !this.get('item.active');
+                return this.get('item.active') === false ? true : false;
             }.property('item.active'),
 
             active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
@@ -281,10 +281,16 @@ define(['App', 'toolbar'], function(UMI){
                 var model = this.get('item');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
+                var self = this;
                 if(model.get('id') === 'root'){
                     promise = model.get('children');
                 } else{
-                    promise = this.get('controller').store.updateCollection(collectionName, {'filters[parent]': model.get('id'), 'fields': 'displayName,order,active,childCount,children,parent'});
+                    var objectProperties = self.get('controller').get('objectProperties').join(',');
+                    var requestParams = {'filters[parent]': model.get('id'), 'fields': objectProperties};
+                    if(self.get('controller').get('filterTrashed')){
+                        requestParams['filters[trashed]'] = 'equals(0)';
+                    }
+                    promise = this.get('controller').store.updateCollection(collectionName, requestParams);
                 }
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
@@ -299,10 +305,10 @@ define(['App', 'toolbar'], function(UMI){
 
             init: function(){
                 this._super();
-                var self = this;
+                var model = this.get('item');
                 if('needReloadHasMany' in this.get('item')){
                     this.get('item').on('needReloadHasMany', function(){
-                        self.get('children').then(function(children){
+                        model.get('children').then(function(children){
                             children.reloadLinks();
                         });
                     });
@@ -336,15 +342,17 @@ define(['App', 'toolbar'], function(UMI){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
+                                }
                             }
                         }
                     }
