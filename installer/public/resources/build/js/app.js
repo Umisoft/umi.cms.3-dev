@@ -2726,7 +2726,7 @@ define('application/models',[], function(){
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;
                     }
-                    if(collection.fields[i]['default']){
+                    if(Ember.typeOf(collection.fields[i]['default']) !== 'undefined'){
                         params.defaultValue = collection.fields[i]['default'];
                     }
 
@@ -3253,6 +3253,7 @@ define('application/router',[], function(){
                     },
 
                     function(results){
+                        results = results || {};
                         var self = this;
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -3858,6 +3859,7 @@ define('application/router',[], function(){
                 var deferred;
                 var actionResource;
                 var actionResourceName;
+                var controlObject;
 
                 try{
                     deferred = Ember.RSVP.defer();
@@ -3879,14 +3881,22 @@ define('application/router',[], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
+                            controlObject = routeData.object;
                             if(actionName === 'createForm'){
-                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                createdParams = {};
+                                if(componentController.get('dataSource.type') === 'collection'){
+                                    var meta = this.store.metadataFor(componentController.get('dataSource.name')) || {};
+                                    if(Ember.get(meta, 'collectionType') === 'hierarchic' && routeData.object.get('id') !== 'root'){
+                                        createdParams.parent = contextModel;
+                                    }
+                                }
                                 if(transition.queryParams.type){
-                                    routeData.object.type = createdParams.type = transition.queryParams.type;
+                                    createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
+                                controlObject = routeData.createObject;
                             }
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+                            actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -5023,12 +5033,15 @@ define('partials/toolbar/buttons/dropdownButton/main',['App', 'moment'],
                             self.set('backupList', self.getBackupList());
                         });
 
-                        self.get('controller').addObserver('object', function() {
-                            self.set('backupList', self.getBackupList());
+                        self.get('controller').addObserver('object', function() {//TODO: check event
+                            if(self.get('controller.control.name') === 'editForm'){
+                                self.set('backupList', self.getBackupList());
+                            }
                         });
                     },
                     willDestroyElement: function(){
-                        this.get('controller').removeObserver('content.object');
+                        this.get('controller').removeObserver('object');
+                        this.get('controller.object').off('didUpdate');
                     }
                 }
             }).create({});
@@ -6365,6 +6378,8 @@ define('tree/controllers',['App'], function(UMI){
         UMI.TreeControlController = Ember.ObjectController.extend({
             needs: ['component', 'context'],
 
+            filterTrashed: null,
+
             objectProperties: function(){
                 var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
                 var collectionName = this.get('collectionName');
@@ -6376,6 +6391,11 @@ define('tree/controllers',['App'], function(UMI){
                         objectProperties.splice(i, 1);
                         --i;
                     }
+                }
+                if(modelFields.contains('trashed')){
+                    this.set('filterTrashed', true);
+                } else{
+                    this.set('filterTrashed', false);
                 }
                 return objectProperties;
             }.property('model'),
@@ -6437,7 +6457,11 @@ define('tree/controllers',['App'], function(UMI){
                                 throw new Error('Collection name is not defined.');
                             }
                             objectProperties = self.get('objectProperties').join(',');
-                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': objectProperties});
+                            var requestParams = {'filters[parent]': 'null()', 'fields': objectProperties};
+                            if(self.get('filterTrashed')){
+                                requestParams['filters[trashed]'] = 'equals(0)';
+                            }
+                            var nodes = self.store.updateCollection(collectionName, requestParams);
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
@@ -6803,7 +6827,7 @@ define('tree/views',['App', 'toolbar'], function(UMI){
             }.property('item.id'),
 
             inActive: function(){
-                return !this.get('item.active');
+                return this.get('item.active') === false ? true : false;
             }.property('item.active'),
 
             active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
@@ -6854,10 +6878,16 @@ define('tree/views',['App', 'toolbar'], function(UMI){
                 var model = this.get('item');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
+                var self = this;
                 if(model.get('id') === 'root'){
                     promise = model.get('children');
                 } else{
-                    promise = this.get('controller').store.updateCollection(collectionName, {'filters[parent]': model.get('id'), 'fields': 'displayName,order,active,childCount,children,parent'});
+                    var objectProperties = self.get('controller').get('objectProperties').join(',');
+                    var requestParams = {'filters[parent]': model.get('id'), 'fields': objectProperties};
+                    if(self.get('controller').get('filterTrashed')){
+                        requestParams['filters[trashed]'] = 'equals(0)';
+                    }
+                    promise = this.get('controller').store.updateCollection(collectionName, requestParams);
                 }
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
@@ -6872,10 +6902,10 @@ define('tree/views',['App', 'toolbar'], function(UMI){
 
             init: function(){
                 this._super();
-                var self = this;
+                var model = this.get('item');
                 if('needReloadHasMany' in this.get('item')){
                     this.get('item').on('needReloadHasMany', function(){
-                        self.get('children').then(function(children){
+                        model.get('children').then(function(children){
                             children.reloadLinks();
                         });
                     });
@@ -6909,15 +6939,17 @@ define('tree/views',['App', 'toolbar'], function(UMI){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
+                                }
                             }
                         }
                     }
