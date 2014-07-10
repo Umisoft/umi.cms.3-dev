@@ -331,6 +331,64 @@ define([], function(){
                 },
 
                 /**
+                 * Восстанавливает объект из корзины
+                 * @method untrash
+                 * @param object
+                 * @returns {*|Promise}
+                 */
+                untrash: function(object){
+                    var self = this;
+                    var promise;
+                    var serializeObject;
+                    var untrashAction;
+                    var collectionName;
+                    var store = self.get('store');
+                    var objectId;
+                    try{
+                        objectId = object.get('id');
+                        serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        collectionName = object.constructor.typeKey;
+                        untrashAction = self.controllerFor('component').get('settings').actions.untrash;
+                        if(!untrashAction){
+                            throw new Error('Action untrash not supported for component.');
+                        }
+                        promise = $.ajax({
+                            url: untrashAction.source + '?id=' + objectId + '&collection=' + collectionName,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            var collection = store.all(collectionName);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var mpath = object.get('mpath');
+                                var parent;
+                                if(Ember.typeOf(mpath) === 'array' && mpath.length){
+                                    for(var i = 0; i < mpath.length; i++){
+                                        parent = collection.findBy('id', mpath[i]  + "");
+                                        if(parent){
+                                            invokedObjects.push(parent);
+                                        }
+                                    }
+                                }
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            UMI.notification.create(settings);
+                        }, function(){
+                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
+                            UMI.notification.create(settings);
+                        });
+                    } catch(error){
+                        self.send('backgroundError', error);
+                    } finally{
+                        return promise;
+                    }
+                },
+
+                /**
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
@@ -343,7 +401,9 @@ define([], function(){
                     var serializeObject;
                     var isActiveContext;
                     var trashAction;
+                    var objectId;
                     try{
+                        objectId = object.get('id');
                         serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         isActiveContext = this.modelFor('context') === object;
                         trashAction = this.controllerFor('component').get('settings').actions.trash;
@@ -351,12 +411,25 @@ define([], function(){
                             throw new Error('Action trash not supported for component.');
                         }
                         promise = $.ajax({
-                            url: trashAction.source + '?id=' + object.get('id'),
+                            url: trashAction.source + '?id=' + objectId,
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            store.unloadRecord(object);
+                            var collectionName = object.constructor.typeKey;
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var collection = store.all(collectionName);
+                                collection.find(function(item){
+                                    var mpath = item.get('mpath') || [];
+                                    if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                        invokedObjects.push(item);
+                                    }
+                                });
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
                             var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                             UMI.notification.create(settings);
                             if(isActiveContext){
@@ -391,7 +464,21 @@ define([], function(){
                     };
                     return UMI.dialog.open(data).then(
                         function(){
+                            var collectionName = object.constructor.typeKey;
+                            var store = object.get('store');
+                            var objectId = object.get('id');
                             return object.destroyRecord().then(function(){
+                                var invokedObjects = [];
+                                if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                    var collection = store.all(collectionName);
+                                    collection.find(function(item){
+                                        var mpath = item.get('mpath') || [];
+                                        if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                            invokedObjects.push(item);
+                                        }
+                                    });
+                                }
+                                invokedObjects.invoke('unloadRecord');
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
                                 if(isActiveContext){
@@ -410,6 +497,37 @@ define([], function(){
                  */
                 backToFilter: function(){
                     this.transitionTo('context', 'root');
+                },
+
+                /**
+                 * Импорт Rss ленты
+                 */
+                importFromRss: function(object){
+                    try{
+                        var data = {
+                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> Подождите..</div>',
+                            'close': false,
+                            'type': 'check-process'
+                        };
+                        UMI.dialog.open(data).then(
+                            function(){},
+                            function(){}
+                        );
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+
+                        var importFromRssSource = this.controllerFor('component').get('settings').actions.importFromRss.source;
+                        $.ajax({
+                            url: importFromRssSource,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(results){
+                            var model = UMI.dialog.get('model');
+                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
                 }
             },
 
