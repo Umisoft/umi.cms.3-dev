@@ -172,10 +172,40 @@ module.exports = function(grunt){
                 dest: 'deploy/css'
             },
 
+            js: {
+                expand: true,
+                cwd: 'build/js',
+                src: ['app.js'],
+                dest: 'deploy/js',
+                options: {
+                    process: function (content, srcpath){
+                        var modifyContent = content;
+                        modifyContent = modifyContent.replace(/'\/resources',/g, "'/resources/deploy',");
+
+                        modifyContent = modifyContent.replace(/libs\/requirejs-text\/text/g, "libs/text");
+                        modifyContent = modifyContent.replace(/libs\/jquery\/dist\/jquery/g, "libs/jquery.min");
+                        modifyContent = modifyContent.replace(/libs\/jquery-ui\/jquery-ui\.min/g, "libs/jquery-ui.min");
+                        modifyContent = modifyContent.replace(/libs\/modernizr\/modernizr/g, "libs/modernizr");
+                        modifyContent = modifyContent.replace(/libs\/handlebars\/handlebars/g, "libs/handlebars.min");
+                        modifyContent = modifyContent.replace(/libs\/ember\/ember/g, "libs/ember.min");
+                        modifyContent = modifyContent.replace(/libs\/ember-data\/ember-data/g, "libs/ember-data.min");
+                        modifyContent = modifyContent.replace(/libs\/ckeditor\/ckeditor/g, "libs/ckeditor");
+                        modifyContent = modifyContent.replace(/libs\/jqueryui-timepicker-addon\/src\/jquery-ui-timepicker-addon/g, "libs/jquery-ui-timepicker-addon");
+                        modifyContent = modifyContent.replace(/libs\/momentjs\/min\/moment-with-langs\.min/g, "libs/moment-with-langs.min");
+                        modifyContent = modifyContent.replace(/libsStatic\/iscroll-probe-5\.1\.1/g, "libs/iscroll-probe-5.1.1");
+                        modifyContent = modifyContent.replace(/libsStatic\/elFinder/g, "libs/elFinder");
+                        return modifyContent;
+                    }
+                }
+            },
+
             vendors: {
                 expand: true,
+                flatten: true,
                 cwd: './',
                 src: [
+                    'libs/requirejs/require.js',
+                    'libs/requirejs-text/text.js',
                     'libs/jquery/dist/jquery.min.js',
                     'libs/jquery-ui/jquery-ui.min.js',
                     'libs/modernizr/modernizr.js',
@@ -184,7 +214,9 @@ module.exports = function(grunt){
                     'libs/ember-data/ember-data.min.js',
                     'libs/ckeditor/ckeditor.js',
                     'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
-                    'libs/momentjs/min/moment-with-langs.min.js'
+                    'libs/momentjs/min/moment-with-langs.min.js',
+                    'libsStatic/iscroll-probe-5.1.1.js',
+                    'libsStatic/elFinder.js'
                 ],
                 dest: 'deploy/libs'
             }
@@ -236,9 +268,13 @@ module.exports = function(grunt){
         uglify: {
             app: {
                 files: {
-                    'deploy/js/app.js': ['build/js/app.js'],
-                    'deploy/libs/elFinder.min.js': ['libsStatic/elFinder.js'],
-                    'deploy/libs/iscroll-probe-5.1.1.min.js': ['libsStatic/iscroll-probe-5.1.1.js']
+                    'deploy/js/app.js': ['deploy/js/app.js'],
+                    'deploy/libs/elFinder.js': ['deploy/libs/elFinder.js'],
+                    'deploy/libs/iscroll-probe-5.1.1.js': ['deploy/libs/iscroll-probe-5.1.1.js'],
+                    'deploy/libs/jquery-ui-timepicker-addon.js': ['deploy/libs/jquery-ui-timepicker-addon.js'],
+                    'deploy/libs/modernizr.js': ['deploy/libs/modernizr.js'],
+                    'deploy/libs/require.js': ['deploy/libs/require.js'],
+                    'deploy/libs/text.js': ['deploy/libs/text.js']
                 }
             }
         },
@@ -273,7 +309,7 @@ module.exports = function(grunt){
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('deploy', ['clean', 'autoprefixer', 'csso', 'copy:png', 'copy:vendors', 'uglify']);
+    grunt.registerTask('deploy', ['clean', 'autoprefixer', 'csso', 'copy:png', 'copy:js', 'copy:vendors', 'uglify']);
     grunt.registerTask('require', ['requirejs']);
     grunt.registerTask('docs', ['yuidoc']);
     grunt.registerTask('install', ['install']);
