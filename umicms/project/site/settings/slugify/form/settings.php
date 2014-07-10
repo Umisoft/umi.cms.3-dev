@@ -8,9 +8,11 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\validation\Range;
 
 return [
@@ -29,6 +31,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => 'slugGeneratorType',
                     'options' => [
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
                         'dataSource' => 'generatorClassName',
                         'choices' => [
                             'umicms\slugify\filtration\FiltrationGenerator' => 'Фильтрация',
@@ -40,6 +45,9 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => 'slugLength',
                     'options' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_INT => []
+                        ],
                         'validators' => [
                             Range::NAME => [
                                 'min' => 1,
