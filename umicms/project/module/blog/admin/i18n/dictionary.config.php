@@ -19,13 +19,13 @@ return [
         'component:tag:displayName' => 'Tags',
         'component:rss:displayName' => 'Import RSS feed',
 
-        'role:categoryExecutor:displayName' => 'Category',
+        'role:categoryExecutor:displayName' => 'Categories',
         'role:postExecutor:displayName' => 'Posts',
         'role:authorExecutor:displayName' => 'Authors',
         'role:commentExecutor:displayName' => 'Comments',
         'role:tagExecutor:displayName' => 'Tags',
-        'role:posttagExecutor:displayName' => 'Manage relation posts-tags',
-        'role:rsstagExecutor:displayName' => 'Manage ralation RSS-tags',
+        'role:posttagExecutor:displayName' => 'Manage posts-tags relation',
+        'role:rsstagExecutor:displayName' => 'Manage RSS-tags relation',
         'role:rssExecutor:displayName' => 'Import RSS',
     ],
 
@@ -35,16 +35,16 @@ return [
         'component:post:displayName' => 'Посты',
         'component:author:displayName' => 'Авторы',
         'component:comment:displayName' => 'Комментарии',
-        'component:tag:displayName' => 'Тэги',
+        'component:tag:displayName' => 'Теги',
         'component:rss:displayName' => 'Управление импортом RSS-лент',
 
         'role:categoryExecutor:displayName' => 'Категории',
         'role:postExecutor:displayName' => 'Посты',
         'role:authorExecutor:displayName' => 'Авторы',
         'role:commentExecutor:displayName' => 'Комментарии',
-        'role:tagExecutor:displayName' => 'Тэги',
-        'role:posttagExecutor:displayName' => 'Управление связью посты-тэги',
-        'role:rsstagExecutor:displayName' => 'Управление связью RSS-тэги',
+        'role:tagExecutor:displayName' => 'Теги',
+        'role:posttagExecutor:displayName' => 'Управление связью посты-теги',
+        'role:rsstagExecutor:displayName' => 'Управление связью RSS-теги',
         'role:rssExecutor:displayName' => 'Управление импортом RSS-лент',
     ]
 

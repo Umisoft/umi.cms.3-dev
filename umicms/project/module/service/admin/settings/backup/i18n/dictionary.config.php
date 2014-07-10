@@ -7,11 +7,11 @@ return [
         'component:backup:displayName' => 'Backups',
         BackupCollection::SETTING_OBJECT_HISTORY_SIZE => 'Maximum number of stored object backups',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [
-        'component:backup:displayName' => 'Резервирование',
+        'component:backup:displayName' => 'Резервные копии',
         BackupCollection::SETTING_OBJECT_HISTORY_SIZE => 'Максимальное количество хранимых для объекта резервных копий',
 
         'role:configurator:displayName' => 'Управление настройками'

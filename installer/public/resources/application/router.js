@@ -116,6 +116,7 @@ define([], function(){
                     },
 
                     function(results){
+                        results = results || {};
                         var self = this;
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -167,6 +168,10 @@ define([], function(){
             },
 
             actions: {
+                willTransition: function(){
+                    UMI.notification.removeAll();
+                },
+
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
                     var maskLayout = document.createElement('div');
@@ -326,6 +331,64 @@ define([], function(){
                 },
 
                 /**
+                 * Восстанавливает объект из корзины
+                 * @method untrash
+                 * @param object
+                 * @returns {*|Promise}
+                 */
+                untrash: function(object){
+                    var self = this;
+                    var promise;
+                    var serializeObject;
+                    var untrashAction;
+                    var collectionName;
+                    var store = self.get('store');
+                    var objectId;
+                    try{
+                        objectId = object.get('id');
+                        serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        collectionName = object.constructor.typeKey;
+                        untrashAction = self.controllerFor('component').get('settings').actions.untrash;
+                        if(!untrashAction){
+                            throw new Error('Action untrash not supported for component.');
+                        }
+                        promise = $.ajax({
+                            url: untrashAction.source + '?id=' + objectId + '&collection=' + collectionName,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            var collection = store.all(collectionName);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var mpath = object.get('mpath');
+                                var parent;
+                                if(Ember.typeOf(mpath) === 'array' && mpath.length){
+                                    for(var i = 0; i < mpath.length; i++){
+                                        parent = collection.findBy('id', mpath[i]  + "");
+                                        if(parent){
+                                            invokedObjects.push(parent);
+                                        }
+                                    }
+                                }
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            UMI.notification.create(settings);
+                        }, function(){
+                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
+                            UMI.notification.create(settings);
+                        });
+                    } catch(error){
+                        self.send('backgroundError', error);
+                    } finally{
+                        return promise;
+                    }
+                },
+
+                /**
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
@@ -338,7 +401,9 @@ define([], function(){
                     var serializeObject;
                     var isActiveContext;
                     var trashAction;
+                    var objectId;
                     try{
+                        objectId = object.get('id');
                         serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         isActiveContext = this.modelFor('context') === object;
                         trashAction = this.controllerFor('component').get('settings').actions.trash;
@@ -346,12 +411,25 @@ define([], function(){
                             throw new Error('Action trash not supported for component.');
                         }
                         promise = $.ajax({
-                            url: trashAction.source + '?id=' + object.get('id'),
+                            url: trashAction.source + '?id=' + objectId,
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            store.unloadRecord(object);
+                            var collectionName = object.constructor.typeKey;
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var collection = store.all(collectionName);
+                                collection.find(function(item){
+                                    var mpath = item.get('mpath') || [];
+                                    if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                        invokedObjects.push(item);
+                                    }
+                                });
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
                             var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                             UMI.notification.create(settings);
                             if(isActiveContext){
@@ -386,7 +464,21 @@ define([], function(){
                     };
                     return UMI.dialog.open(data).then(
                         function(){
+                            var collectionName = object.constructor.typeKey;
+                            var store = object.get('store');
+                            var objectId = object.get('id');
                             return object.destroyRecord().then(function(){
+                                var invokedObjects = [];
+                                if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                    var collection = store.all(collectionName);
+                                    collection.find(function(item){
+                                        var mpath = item.get('mpath') || [];
+                                        if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                            invokedObjects.push(item);
+                                        }
+                                    });
+                                }
+                                invokedObjects.invoke('unloadRecord');
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
                                 if(isActiveContext){
@@ -405,6 +497,37 @@ define([], function(){
                  */
                 backToFilter: function(){
                     this.transitionTo('context', 'root');
+                },
+
+                /**
+                 * Импорт Rss ленты
+                 */
+                importFromRss: function(object){
+                    try{
+                        var data = {
+                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> Подождите..</div>',
+                            'close': false,
+                            'type': 'check-process'
+                        };
+                        UMI.dialog.open(data).then(
+                            function(){},
+                            function(){}
+                        );
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+
+                        var importFromRssSource = this.controllerFor('component').get('settings').actions.importFromRss.source;
+                        $.ajax({
+                            url: importFromRssSource,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(results){
+                            var model = UMI.dialog.get('model');
+                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
                 }
             },
 
@@ -713,11 +836,11 @@ define([], function(){
                 var contentControls;
                 var contentControl;
                 var routeData;
-                var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
                 var actionResourceName;
+                var controlObject;
 
                 try{
                     deferred = Ember.RSVP.defer();
@@ -731,7 +854,7 @@ define([], function(){
                         'control': contentControl
                     };
 
-                    if(Ember.get(contentControl, 'isStatic')){
+                    if(Ember.get(contentControl, 'params.isStatic')){
                         // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
                         deferred.resolve(routeData);
                     } else{
@@ -739,19 +862,22 @@ define([], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+                            controlObject = routeData.object;
                             if(actionName === 'createForm'){
-                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                createdParams = {};
+                                if(componentController.get('dataSource.type') === 'collection'){
+                                    var meta = this.store.metadataFor(componentController.get('dataSource.name')) || {};
+                                    if(Ember.get(meta, 'collectionType') === 'hierarchic' && routeData.object.get('id') !== 'root'){
+                                        createdParams.parent = contextModel;
+                                    }
+                                }
                                 if(transition.queryParams.type){
                                     createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                if(transition.queryParams.type){
-                                    actionParams.type = transition.queryParams.type;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
+                                controlObject = routeData.createObject;
                             }
+                            actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -776,7 +902,7 @@ define([], function(){
                              deferred.reject(transition.send('backgroundError', error));
                              }*/);
                         } else{
-                            throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
+                            throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
 
                     }
@@ -800,7 +926,7 @@ define([], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 

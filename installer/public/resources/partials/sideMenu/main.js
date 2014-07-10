@@ -1,9 +1,5 @@
-define(
-    [
-        'App',
-        'text!./templates/sideMenu.hbs'
-    ],
-    function(UMI, sideMenuTpl){
+define(['App'],
+    function(UMI){
         'use strict';
 
         UMI.SideMenuController = Ember.ObjectController.extend({
@@ -14,7 +10,7 @@ define(
         });
 
         UMI.SideMenuView = Ember.View.extend({
-            layout: Ember.Handlebars.compile(sideMenuTpl)
+            layoutName: 'partials/sideMenu'
         });
     }
 );

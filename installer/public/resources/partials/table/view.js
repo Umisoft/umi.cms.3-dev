@@ -1,9 +1,9 @@
 define(['App'], function(UMI){
-//    'use strict';
+    'use strict';
 
     return function(){
         UMI.TableView = Ember.View.extend({
-            templateName: 'table',
+            templateName: 'partials/table',
             classNames: ['umi-table-ajax'],
             headers: [],
             objectId: [],

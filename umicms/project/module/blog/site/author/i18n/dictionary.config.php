@@ -11,10 +11,10 @@
 return [
 
     'en-US' => [
-        'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer list authors',
+        'role:rssViewer:displayName' => 'View RSS-feeds',
+        'role:viewer:displayName' => 'View author list',
         'role:profileExecutor:displayName' => 'Edit profile',
-        'role:viewExecutor:displayName' => 'Viewer profile',
+        'role:viewExecutor:displayName' => 'View profile',
     ],
 
     'ru-RU' => [

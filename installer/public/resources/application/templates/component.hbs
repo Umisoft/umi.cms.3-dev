@@ -1,5 +1,5 @@
 <div class="s-full-height">
-    {{#view 'offcanvas' modelBinding="model"}}
+    {{#view 'divider' modelBinding="model"}}
 
         {{#if sideBarControl}}
             <div class="umi-divider-left">
@@ -9,19 +9,19 @@
 
                 <div class="umi-divider"></div>
             </div>
+
+            <div class="umi-left-bottom-panel s-unselectable">
+                <a href="javascript:void(0)" class="button white square umi-divider-left-toggle">
+                    <i class="icon icon-left"></i>
+                </a>
+            </div>
         {{/if}}
 
-        <div class="umi-divider-right">
-            <div class="umi-component columns small-12 s-padding-clear">
+        <div {{bind-attr class=":umi-divider-right sideBarControl::wide"}}>
+            <div class="umi-component columns small-12 s-padding-clear s-full-height">
                 {{outlet}}
             </div>
         </div>
 
     {{/view}}
-
-    <div class="umi-left-bottom-panel s-unselectable">
-        <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg umi-divider-left-toggle umi-disabled">
-            <i class="icon icon-left"></i>
-        </a>
-    </div>
 </div>

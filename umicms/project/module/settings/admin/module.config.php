@@ -21,7 +21,6 @@ return [
         'users' => '{#lazy:~/project/module/users/admin/settings/component.config.php}',
         'service' => '{#lazy:~/project/module/service/admin/settings/component.config.php}',
         'seo' => '{#lazy:~/project/module/seo/admin/settings/component.config.php}',
-        'statistics' => '{#lazy:~/project/module/statistics/admin/settings/component.config.php}',
         'forms' => '{#lazy:~/project/module/forms/admin/settings/component.config.php}',
     ],
 

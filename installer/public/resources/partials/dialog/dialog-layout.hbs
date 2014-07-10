@@ -1,9 +1,0 @@
-{{#if model}}
-    <div class="umi-overlay"></div>
-    <div class="umi-dialog">
-        {{#if model.close}}
-            <a href="" {{action 'close' model target="view"}} class="close">&times;</a>
-        {{/if}}
-        {{yield}}
-    </div>
-{{/if}}

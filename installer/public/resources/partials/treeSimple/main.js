@@ -1,18 +1,16 @@
 define([
-    'App',
-    'text!./list.hbs',
-    'text!./item.hbs'
-], function(UMI, listTpl, itemTpl){
+    'App'
+], function(UMI){
     'use strict';
 
     UMI.TreeSimpleView = Ember.View.extend({
         classNames: ['row', 's-full-height'],
-        template: Ember.Handlebars.compile(listTpl)
+        templateName: 'partials/treeSimple/list'
     });
 
     UMI.TreeSimpleItemView = Ember.View.extend({
         tagName: 'li',
-        template: Ember.Handlebars.compile(itemTpl),
+        templateName: 'partials/treeSimple/item',
         isExpanded: true,
         checkExpanded: function(){
             var params = this.get('controller.target.router.state.params');
