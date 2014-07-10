@@ -17,9 +17,6 @@
 
     <!-- Телефон в хедере <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="phone">
-        <textarea>
-            <xsl:copy-of select="infoBlock/property[@name = 'phone']" />
-        </textarea>
         <span class="phone">
             <xsl:value-of select="infoBlock/property[@name = 'phoneNumber']/value" disable-output-escaping="yes"/>
         </span>
@@ -28,20 +25,15 @@
 
     <!-- Копирайт в футере <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="copyright">
-        <textarea>
-            <xsl:copy-of select="infoBlock/property[@name = 'copyright']" />
-        </textarea>
-        <!--<xsl:value-of select="infoBlock/property[@name = 'copyright']/value" disable-output-escaping="yes"/>-->
-        UMI.CMS 2014 Все права защищены
+        <xsl:value-of select="infoBlock/property[@name = 'copyright']/value" disable-output-escaping="yes"/>
     </xsl:template>
     <!-- Копирайт в футере <Конец> -->
 
     <!-- Шаблон для логотипа <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
-        <textarea>
-            <xsl:copy-of select="infoBlock/property[@name = 'logo']" />
-        </textarea>
-        <xsl:value-of select="infoBlock/property[@name = 'logo']/value" disable-output-escaping="yes"/>
+        <a href="{$root}" class="logo">
+            <xsl:value-of select="infoBlock/property[@name = 'logo']/value" disable-output-escaping="yes"/>
+        </a>
     </xsl:template>
     <!-- Шаблон для логотипа <Конец> -->
 

@@ -6,16 +6,8 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
-
     <xsl:include href="template://module/news/item" />
+    <xsl:include href="template://module/news/list" />
 
 
 

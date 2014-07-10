@@ -6,15 +6,6 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-            encoding="utf-8"
-            method="html"
-            indent="yes"
-            cdata-section-elements="script noscript"
-            omit-xml-declaration="yes"
-            doctype-system="about:legacy-compat"
-            />
-
     <!-- Меню в хедере <Начало> -->
     <xsl:template match="result[@widget = 'structure.menu.auto']" mode="headerMenu">
         <textarea>
@@ -43,7 +34,8 @@
     <!-- Меню в хедере <Конец> -->
 
     <!-- Меню в футере <Начало> -->
-    <xsl:template match="result[@widget = 'structure.menu.auto']" mode="footerMenu">
+    <xsl:template match="result[@widget = 'structure.menu.auto']" mode="footer.content.root">
+        <textarea><xsl:copy-of select="." /></textarea>
         <xsl:apply-templates select="menu/item" mode="footerMenu"/>
     </xsl:template>
 
@@ -51,7 +43,7 @@
         <div class="col-md-2">
             <h5><xsl:value-of select="page/@displayName"/></h5>
             <ul class="menu">
-                <xsl:apply-templates select="children/item" mode="footerMenuLevel2"/>
+                <xsl:apply-templates select="children/item" mode="footer.content.root"/>
             </ul>
         </div>
     </xsl:template>

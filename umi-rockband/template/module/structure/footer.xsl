@@ -6,22 +6,15 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
-
     <xsl:template name="footer">
         <footer>
             <div class="container-fluid">
                 <div class="row">
-                    <!-- Меню в футере -->
-                    <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')" mode="footerMenu"/>
-
+                    <!-- Меню в футере <Начало>-->
+                    <xsl:apply-templates select="document('widget://blog.category.list')" mode="footer.blog.root" />
+                    <xsl:apply-templates select="document('widget://news.rubric.list')" mode="footer.news.root" />
+                    <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="footer.content.root"/>
+                    <!-- Меню в футере <Конец>-->
                     <div class="col-md-12 text-center">
                         <!-- Значки социальных сетей -->
                         <xsl:call-template name="footerSocial"/>

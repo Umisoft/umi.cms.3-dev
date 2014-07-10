@@ -15,6 +15,20 @@
         doctype-system="about:legacy-compat"
         />
 
+
+    <xsl:template match="result[@widget = 'blog.category.list']//item" mode="footer.blog.root">
+        <div class="col-md-2">
+            <h5><xsl:value-of select="@displayName" /></h5>
+            <ul class="menu">
+                <xsl:apply-templates select="document(concat('widget://blog.category.list?parentCategory=', @guid))" mode="footer.blog.categories" />
+            </ul>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="result[@widget = 'blog.category.list']//item" mode="footer.blog.categories">
+        <li><a href="{@url}"><xsl:value-of select="@displayName" /></a></li>
+    </xsl:template>
+
     <xsl:template match="result[@widget = 'blog.category.list']" mode="rss">
         <textarea>
             <xsl:copy-of select="." />

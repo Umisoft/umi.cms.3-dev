@@ -6,15 +6,6 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
-
     <!-- Список свежих новостей на главной <Начало> -->
     <xsl:template match="result[@widget = 'news.item.list']" mode="mainNewsList">
         <ul class="list-dev row">

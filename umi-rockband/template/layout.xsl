@@ -20,6 +20,7 @@
     <xsl:include href="template://module/blog/common" />
     <xsl:include href="template://system/common" />
 
+    <xsl:variable name="root" select="/layout/projectUrl" />
 
     <xsl:template match="/layout">
         <html xmlns="http://www.w3.org/1999/xhtml">
