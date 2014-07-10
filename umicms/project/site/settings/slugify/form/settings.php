@@ -11,7 +11,6 @@
 use umi\filter\IFilterFactory;
 use umi\form\element\Select;
 use umi\form\element\Text;
-use umi\form\fieldset\FieldSet;
 use umi\validation\IValidatorFactory;
 use umicms\validation\Range;
 
@@ -23,42 +22,36 @@ return [
     ],
 
     'elements' => [
-        'slugify' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'slugify',
-            'elements' => [
-                'slugGeneratorType' => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => 'slugGeneratorType',
-                    'options' => [
-                        'validators' => [
-                            IValidatorFactory::TYPE_REQUIRED => []
-                        ],
-                        'dataSource' => 'generatorClassName',
-                        'choices' => [
-                            'umicms\slugify\filtration\FiltrationGenerator' => 'Фильтрация',
-                            'umicms\slugify\transliteration\TransliterationGenerator' => 'Транслитерация'
-                        ]
-                    ]
+        'slugGeneratorType' => [
+            'type' => Select::TYPE_NAME,
+            'label' => 'slugGeneratorType',
+            'options' => [
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
                 ],
-                'slugLength' => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => 'slugLength',
-                    'options' => [
-                        'filters' => [
-                            IFilterFactory::TYPE_INT => []
-                        ],
-                        'validators' => [
-                            Range::NAME => [
-                                'min' => 1,
-                                'max' => 60
-                            ]
-                        ],
-                        'dataSource' => 'slugLength'
-                    ]
-
+                'dataSource' => 'generatorClassName',
+                'choices' => [
+                    'umicms\slugify\filtration\FiltrationGenerator' => 'Фильтрация',
+                    'umicms\slugify\transliteration\TransliterationGenerator' => 'Транслитерация'
                 ]
             ]
+        ],
+        'slugLength' => [
+            'type' => Text::TYPE_NAME,
+            'label' => 'slugLength',
+            'options' => [
+                'filters' => [
+                    IFilterFactory::TYPE_INT => []
+                ],
+                'validators' => [
+                    Range::NAME => [
+                        'min' => 1,
+                        'max' => 60
+                    ]
+                ],
+                'dataSource' => 'slugLength'
+            ]
+
         ]
     ]
 ];
