@@ -47,6 +47,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
@@ -136,6 +137,9 @@ return [
     'collection' => [
 
         'en-US' => [
+            'en-US' => 'English',
+            'ru-RU' => 'Russian',
+
             ICmsObject::FIELD_CREATED => 'Creation date',
             ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
             ICmsObject::FIELD_UPDATED => 'Update date',
@@ -176,6 +180,9 @@ return [
         ],
 
         'ru-RU' => [
+            'en-US' => 'Английский',
+            'ru-RU' => 'Русский',
+
             ICmsObject::FIELD_CREATED => 'Дата создания',
             ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',

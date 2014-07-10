@@ -35,4 +35,9 @@ $umi-dialog-z-index: 10000;
         margin-bottom: 20px;
         line-height: normal;
     }
+    &.check-process{
+        .umi-dialog-content{
+            margin-bottom: 0;
+        }
+    }
 }

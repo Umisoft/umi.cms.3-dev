@@ -371,6 +371,20 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["UMI/empty"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1;
+
+
+  data.buffer.push("<div class=\"s-full-height panel\"> <h3 class=\"text-center\">");
+  stack1 = helpers._triageMustache.call(depth0, "model.control.params.content", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</h3> </div> ");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["UMI/files"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -1807,7 +1821,7 @@ function program16(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "column", "in", "content.control.meta.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(17, program17, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "column", "in", "fieldsList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(17, program17, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <td class=\"umi-table-control-empty-column\"></td> ");
   return buffer;
@@ -1882,13 +1896,13 @@ function program24(depth0,data) {
   },hashTypes:{'toolbar': "ID"},hashContexts:{'toolbar': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <div class=\"umi-table-control-header s-unselectable\"> <div class=\"umi-table-control-header-center\"> <table class=\"umi-table-control-header\"> <tbody> <tr class=\"umi-table-control-row\"> ");
-  stack1 = helpers.each.call(depth0, "column", "in", "content.control.meta.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "column", "in", "fieldsList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <td class=\"umi-table-control-empty-column\"></td> </tr> <tr class=\"umi-table-control-row filters\"> ");
-  stack1 = helpers.each.call(depth0, "column", "in", "content.control.meta.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "column", "in", "fieldsList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <td class=\"umi-table-control-empty-column\"></td> </tr> </tbody> </table> </div> <div class=\"umi-table-control-header-fixed-right\"> <div class=\"umi-table-control-header-title\"> <div class=\"umi-table-control-header-fixed-right-first\"> </div> <div class=\"umi-table-control-header-fixed-right-second\"> </div> </div> <div class=\"umi-table-control-header-filter\"> </div> </div> </div> <div class=\"umi-table-control-content-wrapper\"> <div class=\"s-scroll-wrap\"> <table class=\"umi-table-control-content\"> <tbody> <tr class=\"umi-table-control-content-row-size\"> ");
-  stack1 = helpers.each.call(depth0, "column", "in", "content.control.meta.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "column", "in", "fieldsList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <td class=\"umi-table-control-empty-column\"></td> </tr> ");
   stack1 = helpers['if'].call(depth0, "objects.content.isFulfilled", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],data:data});
@@ -2170,10 +2184,10 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> ");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Open site in new tab", options) : helperMissing.call(depth0, "i18n", "Open site in new tab", options))));
   data.buffer.push(" <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> <ul class=\"umi-top-bar-list right\"> <li> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "dropdownButton", {hash:{
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.dropdownView", {hash:{
     'tagName': ("span"),
     'class': ("button tiny flat dropdown umi-top-bar-button")
-  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push(" </li> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "notificationList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </ul> </nav>");
@@ -2726,7 +2740,7 @@ define('application/models',[], function(){
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;
                     }
-                    if(collection.fields[i]['default']){
+                    if(Ember.typeOf(collection.fields[i]['default']) !== 'undefined'){
                         params.defaultValue = collection.fields[i]['default'];
                     }
 
@@ -3468,6 +3482,64 @@ define('application/router',[], function(){
                 },
 
                 /**
+                 * Восстанавливает объект из корзины
+                 * @method untrash
+                 * @param object
+                 * @returns {*|Promise}
+                 */
+                untrash: function(object){
+                    var self = this;
+                    var promise;
+                    var serializeObject;
+                    var untrashAction;
+                    var collectionName;
+                    var store = self.get('store');
+                    var objectId;
+                    try{
+                        objectId = object.get('id');
+                        serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        collectionName = object.constructor.typeKey;
+                        untrashAction = self.controllerFor('component').get('settings').actions.untrash;
+                        if(!untrashAction){
+                            throw new Error('Action untrash not supported for component.');
+                        }
+                        promise = $.ajax({
+                            url: untrashAction.source + '?id=' + objectId + '&collection=' + collectionName,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            var collection = store.all(collectionName);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var mpath = object.get('mpath');
+                                var parent;
+                                if(Ember.typeOf(mpath) === 'array' && mpath.length){
+                                    for(var i = 0; i < mpath.length; i++){
+                                        parent = collection.findBy('id', mpath[i]  + "");
+                                        if(parent){
+                                            invokedObjects.push(parent);
+                                        }
+                                    }
+                                }
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            UMI.notification.create(settings);
+                        }, function(){
+                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
+                            UMI.notification.create(settings);
+                        });
+                    } catch(error){
+                        self.send('backgroundError', error);
+                    } finally{
+                        return promise;
+                    }
+                },
+
+                /**
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
@@ -3480,7 +3552,9 @@ define('application/router',[], function(){
                     var serializeObject;
                     var isActiveContext;
                     var trashAction;
+                    var objectId;
                     try{
+                        objectId = object.get('id');
                         serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         isActiveContext = this.modelFor('context') === object;
                         trashAction = this.controllerFor('component').get('settings').actions.trash;
@@ -3488,12 +3562,25 @@ define('application/router',[], function(){
                             throw new Error('Action trash not supported for component.');
                         }
                         promise = $.ajax({
-                            url: trashAction.source + '?id=' + object.get('id'),
+                            url: trashAction.source + '?id=' + objectId,
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            store.unloadRecord(object);
+                            var collectionName = object.constructor.typeKey;
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
+                            if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                var collection = store.all(collectionName);
+                                collection.find(function(item){
+                                    var mpath = item.get('mpath') || [];
+                                    if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                        invokedObjects.push(item);
+                                    }
+                                });
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
                             var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                             UMI.notification.create(settings);
                             if(isActiveContext){
@@ -3528,7 +3615,21 @@ define('application/router',[], function(){
                     };
                     return UMI.dialog.open(data).then(
                         function(){
+                            var collectionName = object.constructor.typeKey;
+                            var store = object.get('store');
+                            var objectId = object.get('id');
                             return object.destroyRecord().then(function(){
+                                var invokedObjects = [];
+                                if(store.metadataFor(collectionName).collectionType === 'hierarchic'){
+                                    var collection = store.all(collectionName);
+                                    collection.find(function(item){
+                                        var mpath = item.get('mpath') || [];
+                                        if(mpath.contains(parseFloat(objectId)) && mpath.length > 1){
+                                            invokedObjects.push(item);
+                                        }
+                                    });
+                                }
+                                invokedObjects.invoke('unloadRecord');
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
                                 if(isActiveContext){
@@ -4778,6 +4879,16 @@ define(
                     }
                 },
 
+                untrash: {
+                    actions: {
+                        untrash: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
+                            this.get('controller').send('untrash', model);
+                        }
+                    }
+                },
+
                 "delete": {
                     actions: {
                         "delete": function(params){
@@ -5033,12 +5144,15 @@ define('partials/toolbar/buttons/dropdownButton/main',['App', 'moment'],
                             self.set('backupList', self.getBackupList());
                         });
 
-                        self.get('controller').addObserver('object', function() {
-                            self.set('backupList', self.getBackupList());
+                        self.get('controller').addObserver('object', function() {//TODO: check event
+                            if(self.get('controller.control.name') === 'editForm'){
+                                self.set('backupList', self.getBackupList());
+                            }
                         });
                     },
                     willDestroyElement: function(){
-                        this.get('controller').removeObserver('content.object');
+                        this.get('controller').removeObserver('object');
+                        this.get('controller.object').off('didUpdate');
                     }
                 }
             }).create({});
@@ -5243,7 +5357,8 @@ define('topBar/main',[
         templateName: 'partials/topBar',
         dropdownView: UMI.DropdownButtonView.extend({
             template: function(){
-                return Ember.Handlebars.compile('mail@yandex.ru<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
+                var userName = Ember.get(window, 'UmiSettings.user.displayName');
+                return Ember.Handlebars.compile(userName + '<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
             }.property()
         })
     });
@@ -5520,7 +5635,13 @@ define('tableControl/controllers',['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
-            collectionNameBinding: 'controllers.component.dataSource.name',
+            collectionName: function(){
+                var dataSource = this.get('controllers.component.dataSource.name');
+                if(!dataSource){
+                    dataSource = this.get('controllers.component.selectedContext');
+                }
+                return dataSource;
+            }.property('controllers.component.dataSource.name', 'controllers.component.selectedContext'),
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
                 var filter = this.get('control') || {};
@@ -5531,6 +5652,7 @@ define('tableControl/controllers',['App'], function(UMI){
              * @property objects
              */
             objects: null,
+            fieldsList: null,
             objectChange: function(){
                 Ember.run.once(this, 'updateObjectDeleted');
             }.observes('objects.@each.isDeleted'),
@@ -5628,6 +5750,11 @@ define('tableControl/controllers',['App'], function(UMI){
             }.property('relatedFieldsList'),
 
             /**
+             * Свойства фильтрации коллекции
+             * @collectionFilterParams
+             */
+            collectionFilterParams: null,
+            /**
              * Свойства фильтрации
              * @property filters
              */
@@ -5638,24 +5765,35 @@ define('tableControl/controllers',['App'], function(UMI){
              */
             filters: function(){
                 var filters = {};
+                var filter;
                 var filterParams = this.get('filterParams') || {};
-                for(var filter in filterParams){
+                var collectionFilterParams = this.get('collectionFilterParams') || {};
+                for(filter in collectionFilterParams){
+                    if(collectionFilterParams.hasOwnProperty(filter)){
+                        if(Ember.typeOf(collectionFilterParams[filter]) === 'string' && !collectionFilterParams[filter].length){
+                            delete filters[filter];
+                        } else{
+                            filters[filter] = collectionFilterParams[filter];
+                        }
+                    }
+                }
+                for(filter in filterParams){
                     if(filterParams.hasOwnProperty(filter)){
                         if(Ember.typeOf(filterParams[filter]) === 'string' && !filterParams[filter].length){
                             delete filters[filter];
                         } else{
-                            filters[filter] = 'like(' + filterParams[filter] + '%)';
+                            filters[filter] = filterParams[filter];
                         }
                     }
                 }
                 return filters;
-            }.property('filterParams.@each'),
+            }.property('filterParams.@each', 'collectionFilterParams.@each'),
 
-            setFilters: function(property, value){
+            setFilters: function(property, filter){
                 this.propertyWillChange('filterParams');
                 this.set('filterParams', null);
                 var filterParams = {};
-                filterParams[property] = value;
+                filterParams[property] = filter;
                 this.set('filterParams', filterParams);
                 this.propertyDidChange('filterParams');
             },
@@ -5708,6 +5846,7 @@ define('tableControl/controllers',['App'], function(UMI){
                 var modelForCollection = store.modelFor(collectionName);
                 var fieldsList = this.get('control.meta.form.elements') || [];
                 var defaultFields = this.get('control.meta.defaultFields') || [];
+
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
                     if(!defaultFields.contains(fieldsList[i].dataSource)){
@@ -5719,12 +5858,16 @@ define('tableControl/controllers',['App'], function(UMI){
                 var nativeFieldsList = [];
                 var relatedFieldsList = {};
 
+                var filterParams = this.get('control.params.filter') || {};
+
                 modelForCollection.eachAttribute(function(name){
                     var selfProperty = fieldsList.findBy('dataSource', name);
                     if(selfProperty){
                         nativeFieldsList.push(selfProperty.dataSource);
                     } else if(name === 'active'){
                         nativeFieldsList.push('active');
+                    } else if(name === 'trashed' && !Ember.get(filterParams, 'trashed')){
+                        filterParams.trashed = 'equals(0)';
                     }
                 });
 
@@ -5756,9 +5899,10 @@ define('tableControl/controllers',['App'], function(UMI){
                         relatedFieldsList[name] = relatedFieldsList[name].join(',');
                     }
                 });
+
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
-                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0});
+                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0, collectionFilterParams: filterParams});
                 this.set('withoutChangeQuery', false);
 
                 this.getObjects();
@@ -5766,6 +5910,7 @@ define('tableControl/controllers',['App'], function(UMI){
                     var self = this;
                     this.get('objects.content').then(function(){
                         self.set('total', metaForCollection.total);
+                        self.set('fieldsList', fieldsList);
                     });
                 });
             }.observes('content.object.id').on('init'),
@@ -5835,6 +5980,12 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
              * @classNames
              */
             classNames: ['umi-table-control'],
+
+            objectsEditable: function(){
+                var objectsEditable = this.get('controller.control.params.objectsEditable');
+                objectsEditable = objectsEditable === false ? false : true;
+                return objectsEditable;
+            }.property('controller.control.params.objectsEditable'),
             /**
              * @property iScroll
              */
@@ -6086,7 +6237,7 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'isActive::umi-inactive'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'objectsEditable:s-pointer'],
                 isActive: function(){
                     var object = this.get('object');
                     var hasActiveProperty  = false;
@@ -6106,8 +6257,13 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
 
                 objectIdBinding: 'object.id',
 
+                objectsEditable: function(){
+                    return this.get('parentView.objectsEditable');
+                }.property(),
+
                 click: function(){
-                    if(this.get('object.meta.editLink')){
+                    var objectsEditable = this.get('objectsEditable');
+                    if(this.get('object.meta.editLink') && objectsEditable){
                         this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
                     }
                 }
@@ -6138,14 +6294,14 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
                         case 'text':
                             $input.on('keypress.umi.tableControl.filters', function(event){
                                if(event.keyCode === 13){
-                                   self.setFilter(this.value);
+                                   self.setFilter('like(%' + this.value + '%)');
                                }
                            });
                             break;
                     }
                 },
-                setFilter: function(value){
-                    this.get('controller').setFilters(this.get('column.dataSource'), value);
+                setFilter: function(filter){
+                    this.get('controller').setFilters(this.get('column.dataSource'), filter);
                 }
             })
         });
@@ -6256,11 +6412,14 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
+                            action = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
+                                }
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             if(action){
                                 if(Ember.typeOf(behaviour.actions) !== 'object'){
                                     behaviour.actions = {};
