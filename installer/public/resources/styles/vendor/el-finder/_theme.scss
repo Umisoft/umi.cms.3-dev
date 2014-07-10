@@ -92,7 +92,7 @@
 }
 
 .elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow {
-    background-image: url('img/elfinder/img/arrows-active.png');
+    background-image: url(#{$images-path}elfinder/img/arrows-active.png);
 }
 
 .std42-dialog{

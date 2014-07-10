@@ -1,3 +1,5 @@
+@import "../../settings";
+
 .umi-overlay{
     position: absolute;
     z-index: 9000;
@@ -137,7 +139,7 @@
     width: calc(100% + 1px);
     left: 0;
     top: 0;
-    background: url(img/shadows/toBottomShadow.png);
+    background: url($image-to-bottom-shadow);
 }
 
 .umi-table-control-column-list-wrapper:after{
@@ -149,5 +151,5 @@
     width: calc(100% + 1px);
     left: 0;
     bottom: 0;
-    background: url(img/shadows/toTopShadow.png);
+    background: url($image-to-top-shadow);
 }

@@ -5,8 +5,8 @@ module.exports = function(grunt){
 
         watch: {
             scss: {
-                files: ['styles/**/*.scss'],//, 'partials/fileManager/elFinder/**/*.*'
-                tasks: ['sass', 'concat:css', 'autoprefixer', 'copy:styles']
+                files: ['styles/**/*.scss'],
+                tasks: ['sass', 'autoprefixer']
             },
 
             js: {
@@ -27,7 +27,7 @@ module.exports = function(grunt){
                 },
 
                 files: {
-                    'build/css/app.css': 'styles/main.scss'
+                    'build/css/styles.css': 'styles/main.scss'
                 }
             }
         },
@@ -61,6 +61,53 @@ module.exports = function(grunt){
                 },
                 files: {
                     "auth/templates.compile.js": "auth/**/*.hbs"
+                }
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: './',
+                    stubModules: ['text'],
+                    mainConfigFile: "main.js",
+                    name: 'main',
+                    out: 'build/js/app.js',
+                    inlineText: true,
+                    optimize: 'none',
+                    exclude: [
+                        'Modernizr',
+                        'jquery',
+                        'jqueryUI',
+                        'Handlebars',
+                        'Ember',
+                        'DS',
+                        'iscroll',
+                        'ckEditor',
+                        'timepicker',
+                        'moment',
+                        'elFinder'
+                    ],
+
+                    findNestedDependencies: true
+                }
+            }
+        },
+
+        autoprefixer: {
+            options: {
+                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
+            },
+
+            dist: {
+                src: 'build/css/styles.css'
+            }
+        },
+
+        csso: {
+            compress: {
+                files: {
+                    'deploy/css/styles.css': ['build/css/styles.css']
                 }
             }
         },
@@ -108,7 +155,7 @@ module.exports = function(grunt){
                 expand: true,
                 cwd: 'build/img',
                 src: ['**'],
-                dest: 'deploy/img/'
+                dest: 'deploy/img'
             },
 
             svg: {
@@ -122,7 +169,24 @@ module.exports = function(grunt){
                 expand: true,
                 cwd: 'build/css',
                 src: ['styles.css'],
-                dest: 'deploy/'
+                dest: 'deploy/css'
+            },
+
+            vendors: {
+                expand: true,
+                cwd: './',
+                src: [
+                    'libs/jquery/dist/jquery.min.js',
+                    'libs/jquery-ui/jquery-ui.min.js',
+                    'libs/modernizr/modernizr.js',
+                    'libs/handlebars/handlebars.min.js',
+                    'libs/ember/ember.min.js',
+                    'libs/ember-data/ember-data.min.js',
+                    'libs/ckeditor/ckeditor.js',
+                    'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
+                    'libs/momentjs/min/moment-with-langs.min.js'
+                ],
+                dest: 'deploy/libs'
             }
         },
 
@@ -166,61 +230,15 @@ module.exports = function(grunt){
                     'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
                 dest: 'libsStatic/elFinder.js'
-            },
-
-            css: {
-                src: [
-                    'build/css/app.css',
-                    'build/css/icons.data.svg.css',
-                    'build/css/icons.dock.svg.css'
-                ],
-                dest: 'build/css/styles.css'
             }
         },
 
-        autoprefixer: {
-            options: {
-                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
-            },
-
-            dist: {
-                src: 'build/css/styles.css'
-            }
-        },
-
-        csso: {
-            compress: {
+        uglify: {
+            app: {
                 files: {
-                    'deploy/styles.css': ['build/css/styles.css']
-                }
-            }
-        },
-
-        requirejs: {
-            compile: {
-                options: {
-                    baseUrl: './', //Устанавливаем пути относительно папки resources
-                    stubModules: ['text'], //Говорит сборщику, что мы используем модуль requirejs!text
-                    mainConfigFile: "main.js", //Основной конфиг (тот же что указан в layout.phtml)
-                    name: 'main',
-                    out: 'build/js/app.js',
-                    inlineText: true,
-                    optimize: 'none',
-                    exclude: [
-                        'Modernizr',
-                        'jquery',
-                        'jqueryUI',
-                        'Handlebars',
-                        'Ember',
-                        'DS',
-                        'iscroll',
-                        'ckEditor',
-                        'timepicker',
-                        'moment',
-                        'elFinder'
-                    ],
-
-                    findNestedDependencies: true
+                    'deploy/js/app.js': ['build/js/app.js'],
+                    'deploy/libs/elFinder.min.js': ['libsStatic/elFinder.js'],
+                    'deploy/libs/iscroll-probe-5.1.1.min.js': ['libsStatic/iscroll-probe-5.1.1.js']
                 }
             }
         },
@@ -236,16 +254,6 @@ module.exports = function(grunt){
                     outdir: 'docs/frontend'
                 }
             }
-        },
-
-        /*
-        * Задача для первоначальной развёртки
-        *
-        * Устновка зависимостей bower
-        * Вся сборка до рабочего состояния
-        */
-        install: {
-
         }
     });
 
@@ -261,10 +269,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-ember-templates');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('deploy', ['clean', 'copy:png', 'copy:svg', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
+    grunt.registerTask('deploy', ['clean', 'autoprefixer', 'csso', 'copy:png', 'copy:vendors', 'uglify']);
     grunt.registerTask('require', ['requirejs']);
     grunt.registerTask('docs', ['yuidoc']);
     grunt.registerTask('install', ['install']);

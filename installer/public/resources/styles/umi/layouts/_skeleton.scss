@@ -1,3 +1,4 @@
+@import "../../settings";
 @import "../components/dock";
 @import "../components/top-bar";
 
@@ -79,7 +80,7 @@ body{
         height: 3px;
         width: unquote("calc(100% + 1px)");
         top: -3px;
-        background: url(img/shadows/toTopShadow.png);
+        background: url($image-to-top-shadow);
     }
     &:after{
         content: "";
@@ -90,7 +91,7 @@ body{
         width: 3px;
         right: -3px;
         bottom: 0;
-        background: url(img/shadows/toRightShadow.png);
+        background: url($image-to-right-shadow);
     }
 }
 

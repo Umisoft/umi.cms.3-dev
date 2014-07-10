@@ -1,7 +1,8 @@
+@import "../../settings";
 //
 // Icons
 //
-$umi-icons: 'img/icons.png' !default;
+$umi-icons-img: $images-path + 'icons.png' + $images-version !default;
 
 .animate{
     background-position: 0 0;
@@ -15,11 +16,11 @@ $umi-icons: 'img/icons.png' !default;
         width: 20px;
         height: 20px;
         line-height: 16px;
-        background: url(svg/animation/spinner.svg) left top no-repeat;
+        background: url($image-spinner) left top no-repeat;
     }
 
     &.animate-loader-40{
-        background: url(svg/animation/spinner.svg) left top no-repeat;
+        background: url($image-spinner) left top no-repeat;
         vertical-align: middle;
         width: 32px;
         height: 32px;
@@ -37,7 +38,7 @@ $umi-icons: 'img/icons.png' !default;
     display: inline-block;
 
     line-height: 16px;
-    background: url($umi-icons) no-repeat;
+    background: url($umi-icons-img) no-repeat;
     background-color: transparent;
 
     &.icon-image{
@@ -166,18 +167,18 @@ $umi-icons: 'img/icons.png' !default;
     &.icon-9{
         background-position: -820px 0;
     }
-    //    &.icon-top {
-    //        background-position: -840px 0;
-    //    }
-    //    &.icon-right {
-    //        background-position: -860px 0;
-    //    }
-    //    &.icon-bottom {
-    //        background-position: -880px 0;
-    //    }
-    //    &.icon-left {
-    //        background-position: -900px 0;
-    //    }
+    &.icon-top {
+        background-position: -840px 0;
+    }
+    &.icon-right {
+        background-position: -860px 0;
+    }
+    &.icon-bottom {
+        background-position: -880px 0;
+    }
+    &.icon-left {
+        background-position: -900px 0;
+    }
     &.icon-exit{
         background-position: -940px 0;
     }
@@ -342,18 +343,18 @@ $umi-icons: 'img/icons.png' !default;
         &.icon-9{
             background-position: -820px -20px;
         }
-        //        &.icon-top {
-        //            background-position: -840px -20px;
-        //        }
-        //        &.icon-right {
-        //            background-position: -860px -20px;
-        //        }
-        //        &.icon-bottom {
-        //            background-position: -880px -20px;
-        //        }
-        //        &.icon-left {
-        //            background-position: -900px -20px;
-        //        }
+        &.icon-top {
+            background-position: -840px -20px;
+        }
+        &.icon-right {
+            background-position: -860px -20px;
+        }
+        &.icon-bottom {
+            background-position: -880px -20px;
+        }
+        &.icon-left {
+            background-position: -900px -20px;
+        }
         &.icon-exit{
             background-position: -940px -20px;
         }
@@ -519,18 +520,18 @@ $umi-icons: 'img/icons.png' !default;
         &.icon-9{
             background-position: -820px -40px;
         }
-        //        &.icon-top {
-        //            background-position: -840px -40px;
-        //        }
-        //        &.icon-right {
-        //            background-position: -860px -40px;
-        //        }
-        //        &.icon-bottom {
-        //            background-position: -880px -40px;
-        //        }
-        //        &.icon-left {
-        //            background-position: -900px -40px;
-        //        }
+        &.icon-top {
+            background-position: -840px -40px;
+        }
+        &.icon-right {
+            background-position: -860px -40px;
+        }
+        &.icon-bottom {
+            background-position: -880px -40px;
+        }
+        &.icon-left {
+            background-position: -900px -40px;
+        }
         &.icon-exit {
             background-position: -940px -40px;
         }

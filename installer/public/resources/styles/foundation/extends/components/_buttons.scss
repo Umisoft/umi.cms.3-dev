@@ -89,18 +89,6 @@
         transition: none;
         opacity: 1;
         cursor: default;
-        /*&:before{
-            position: absolute;
-            content: "";
-            width: 24px;
-            height: 24px;
-            line-height: 16px;
-            left: 50%;
-            top: 50%;
-            margin-top: -12px;
-            margin-left: -12px;
-            background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9z…iMC44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+DQogIDwvcGF0aD4NCjwvc3ZnPg==") center center no-repeat;
-        }*/
         &.secondary{
             background: $secondary-color;
             animation: animate-stripes-bg-secondary 2s linear infinite;
