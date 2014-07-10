@@ -14,6 +14,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umi\validation\IValidatorFactory;
+use umicms\validation\Range;
 
 return [
     'options' => [
@@ -49,6 +50,11 @@ return [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
                         ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
+                        ],
                         'dataSource' => 'humanTestsCount'
                     ]
                 ]
@@ -65,6 +71,11 @@ return [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
                         ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
+                        ],
                         'dataSource' => 'width'
                     ]
                 ],
@@ -74,6 +85,11 @@ return [
                     'options' => [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
+                        ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
                         ],
                         'dataSource' => 'height'
                     ]
