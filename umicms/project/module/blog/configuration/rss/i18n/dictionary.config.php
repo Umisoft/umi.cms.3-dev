@@ -21,7 +21,7 @@ return [
 
         'ru-RU' => [
             BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
-            BlogRssImportScenario::FIELD_TAGS => 'Тэги',
+            BlogRssImportScenario::FIELD_TAGS => 'Теги',
             BlogRssImportScenario::FIELD_CATEGORY => 'Категория',
             'type:base:displayName' => 'Управление импортом RSS-лент'
         ]
