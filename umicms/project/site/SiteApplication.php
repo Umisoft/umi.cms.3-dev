@@ -456,6 +456,10 @@ class SiteApplication extends SiteComponent
         return $defaultDomain;
     }
 
+    /**
+     * Возвращает текущий домен.
+     * @return string
+     */
     private function getHostDomain()
     {
         $hostDomain = $_SERVER['HTTP_HOST'];
