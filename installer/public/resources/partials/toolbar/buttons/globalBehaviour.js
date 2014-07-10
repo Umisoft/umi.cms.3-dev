@@ -95,6 +95,16 @@ define(
                     }
                 },
 
+                untrash: {
+                    actions: {
+                        untrash: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
+                            this.get('controller').send('untrash', model);
+                        }
+                    }
+                },
+
                 "delete": {
                     actions: {
                         "delete": function(params){
@@ -164,7 +174,16 @@ define(
                             }
                         }
                     }
-                }
+                },
+
+                importFromRss: {
+                    actions: {
+                        importFromRss: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('importFromRss', model);
+                        }
+                    }
+                },
             });
         };
     }

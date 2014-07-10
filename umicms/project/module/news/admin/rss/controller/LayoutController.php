@@ -27,10 +27,7 @@ class LayoutController extends BaseLayoutController
         $layout = new CollectionComponentLayout($this->getComponent());
 
         $editForm = $layout->getSelectedContextControl('editForm');
-        $editForm->addToolbarButton(
-            'execute',
-            $editForm->createActionButton('execute', ['action' => 'importFromRss'])
-        );
+        $editForm->addToolbarButton('importFromRss', $editForm->createActionButton('importFromRss'));
 
         return $layout;
     }
