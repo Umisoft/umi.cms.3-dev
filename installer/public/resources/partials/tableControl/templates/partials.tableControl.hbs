@@ -1,0 +1,119 @@
+{{#view 'toolbar' toolbar=toolbar}}
+    {{#view view.parentView.paginationView}}
+        <div class="right pagination-controls">
+            <span class="pagination-counter">
+                {{view.counter}}
+            </span>
+            {{#view view.prevButtonView}}
+                <i class="icon black icon-left-thin"></i>
+            {{/view}}
+            {{#view view.nextButtonView}}
+                <i class="icon black icon-right-thin"></i>
+            {{/view}}
+        </div>
+
+        <div class="right pagination-limit">
+            <span class="pagination-label">{{i18n "Rows on page" "tableControl"}}:</span>
+            {{view view.limitView}}
+        </div>
+    {{/view}}
+{{/view}}
+
+<div class="umi-table-control-header s-unselectable">
+    <div class="umi-table-control-header-center">
+        <table class="umi-table-control-header">
+            <tbody>
+                <tr class="umi-table-control-row">
+                    {{#each column in fieldsList}}
+                        <td class="umi-table-control-header-column column-id-{{filterClassName column.attributes.name}}" style="width: 200px">
+                            <div class="umi-table-control-cell-firefox-fix">
+                                <div class="umi-table-control-header-cell">
+                                    {{column.label}}
+                                </div>
+                                <div class="umi-table-control-column-resizer"></div>
+                            </div>
+                        </td>
+                    {{/each}}
+                    <td class="umi-table-control-empty-column"></td>
+                </tr>
+
+                <tr class="umi-table-control-row filters">
+                    {{#each column in fieldsList}}
+                        <td class="umi-table-control-header-column">
+                            <div class="umi-table-control-header-cell filter column-id-{{filterClassName column.attributes.name}}">
+                                {{view view.filterRowView column=column}}
+                                {{#view view.sortHandlerView propertyName=column.attributes.name}}
+                                    <i {{bind-attr class=":icon :black view.sortAscending:icon-bottom-thin:icon-top-thin"}}></i>
+                                {{/view}}
+                            </div>
+                        </td>
+                    {{/each}}
+                    <td class="umi-table-control-empty-column"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="umi-table-control-header-fixed-right">
+        <div class="umi-table-control-header-title">
+            <div class="umi-table-control-header-fixed-right-first">
+            </div>
+            <div class="umi-table-control-header-fixed-right-second">
+
+            </div>
+        </div>
+        <div class="umi-table-control-header-filter">
+
+        </div>
+    </div>
+</div>
+
+<div class="umi-table-control-content-wrapper">
+    <div class="s-scroll-wrap">
+        <table class="umi-table-control-content">
+            <tbody>
+                <tr class="umi-table-control-content-row-size">
+                    {{#each column in fieldsList}}
+                        <td class="umi-table-control-content-cell column-id-{{filterClassName column.attributes.name}}" style="width: 200px"></td>
+                    {{/each}}
+                    <td class="umi-table-control-empty-column"></td>
+                </tr>
+            {{#if objects.content.isFulfilled}}
+                {{#each object in objects}}
+                    {{#view view.rowView object=object}}
+                        {{#each column in fieldsList}}
+                            <td class="umi-table-control-content-cell">
+                                {{view "tableCellContent" objectBinding="object" column=column}}
+                            </td>
+                        {{/each}}
+                        <td class="umi-table-control-empty-column"></td>
+                    {{/view}}
+                    {{else}}
+                        <tr>
+                            <td>
+                                <div class="umi-table-control-content-div-empty">
+                                    <span>{{i18n "No data" "tableControl"}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                {{/each}}
+            {{/if}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Колонка справа от контента -->
+    <div class="umi-table-control-content-fixed-right">
+        {{#each object in objects itemController="tableControlContextToolbarItem"}}
+            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                {{#if controller.parentController.contextToolbar}}
+                    {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                        {{#each view.elements}}
+                            {{view view.elementView}}
+                        {{/each}}
+                    {{/view}}
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</div>

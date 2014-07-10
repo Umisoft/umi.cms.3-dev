@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Moderating posts'
+        'role:viewer:displayName' => 'Moderate all moderating posts'
     ],
 
     'ru-RU' => [

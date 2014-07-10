@@ -40,6 +40,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => StaticPage::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => StaticPage::FIELD_PAGE_LAYOUT
                     ],
@@ -56,6 +59,25 @@ return [
                     'label' => StaticPage::FIELD_ACTIVE,
                     'options' => [
                         'dataSource' => StaticPage::FIELD_ACTIVE
+                    ],
+                ],
+                StaticPage::FIELD_IN_MENU => [
+                    'type' => Checkbox::TYPE_NAME,
+                    'label' => StaticPage::FIELD_IN_MENU,
+                    'options' => [
+                        'dataSource' => StaticPage::FIELD_IN_MENU
+                    ],
+                ],
+                StaticPage::FIELD_SUBMENU_STATE => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => StaticPage::FIELD_SUBMENU_STATE,
+                    'options' => [
+                        'dataSource' => StaticPage::FIELD_SUBMENU_STATE,
+                        'choices' => [
+                            StaticPage::SUBMENU_NEVER_SHOWN => 'neverShown',
+                            StaticPage::SUBMENU_CURRENT_SHOWN => 'currentShown',
+                            StaticPage::SUBMENU_ALWAYS_SHOWN => 'alwaysShown'
+                        ]
                     ],
                 ]
             ]

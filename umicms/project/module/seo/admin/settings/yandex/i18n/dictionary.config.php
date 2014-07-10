@@ -8,7 +8,7 @@ return [
         YandexModel::YANDEX_HOST_ID => 'Host ID',
         YandexModel::YANDEX_OAUTH_TOKEN => 'oAuth token',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

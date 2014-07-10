@@ -35,6 +35,14 @@ return [
                         'dataSource' => BlogAuthor::FIELD_DISPLAY_NAME
                     ],
                 ],
+                BlogAuthor::FIELD_PAGE_LAYOUT => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_PAGE_LAYOUT,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogAuthor::FIELD_PAGE_LAYOUT
+                    ],
+                ],
                 BlogAuthor::FIELD_PAGE_SLUG => [
                     'type' => Text::TYPE_NAME,
                     'label' => BlogAuthor::FIELD_PAGE_SLUG,
@@ -51,6 +59,42 @@ return [
                 ]
             ]
         ],
+
+        'meta' => [
+            'type' => FieldSet::TYPE_NAME,
+            'label' => 'meta',
+            'elements' => [
+                BlogAuthor::FIELD_PAGE_H1 => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_PAGE_H1,
+                    'options' => [
+                        'dataSource' => BlogAuthor::FIELD_PAGE_H1
+                    ],
+                ],
+                BlogAuthor::FIELD_PAGE_META_TITLE => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_PAGE_META_TITLE,
+                    'options' => [
+                        'dataSource' => BlogAuthor::FIELD_PAGE_META_TITLE
+                    ],
+                ],
+                BlogAuthor::FIELD_PAGE_META_KEYWORDS => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_PAGE_META_KEYWORDS,
+                    'options' => [
+                        'dataSource' => BlogAuthor::FIELD_PAGE_META_KEYWORDS
+                    ]
+                ],
+                BlogAuthor::FIELD_PAGE_META_DESCRIPTION => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_PAGE_META_DESCRIPTION,
+                    'options' => [
+                        'dataSource' => BlogAuthor::FIELD_PAGE_META_DESCRIPTION
+                    ]
+                ]
+            ]
+        ],
+
         'contents' => [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'contents',

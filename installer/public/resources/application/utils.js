@@ -9,6 +9,33 @@ define(['Modernizr'], function(Modernizr){
          */
         UMI.Utils = {};
 
+        UMI.Utils.htmlEncode = function(str){
+            str = str + "";
+            return str.replace(/[&<>"']/g, function($0) {
+                return "&" + {"&":"amp", "<":"lt", ">":"gt", '"':"quot", "'":"#39"}[$0] + ";";
+            });
+        };
+
+        UMI.Utils.replacePlaceholder = function(object, pattern){
+            var deserialize;
+            deserialize = pattern.replace(/{\w+}/g, function(key) {
+                if(key){
+                    key = key.slice(1, -1);
+                }
+                return Ember.get(object, key) || key;//TODO: error handling
+            });
+            return deserialize;
+        };
+
+        UMI.Utils.objectsMerge = function(objectBase, objectProperty){
+            Ember.assert('Некорректный тип аргументов. Метод objectsMerge ожидает аргументы с типом "object"', Ember.typeOf(objectBase) === 'object' && Ember.typeOf(objectProperty) === 'object');
+            for(var key in objectProperty){
+                if(objectProperty.hasOwnProperty(key)){
+                    objectBase[key] = objectProperty[key];
+                }
+            }
+        };
+
         /**
          * Local Storage
          */
@@ -54,25 +81,13 @@ define(['Modernizr'], function(Modernizr){
             }
         };
 
+        Ember.Handlebars.registerHelper('filterClassName', function(value, options){
+            value = Ember.Handlebars.helpers.unbound.apply(this, [value, options]);
+            value =value.replace(/\./g, '__');//TODO: replace all deprecated symbols
+            return value;
+        });
+
         UMI.Utils.LS.init();
-
-        //Удалить после возвращения Foundation
-            $(document).mousedown(function(event){
-                    var targetElement = $(event.target).closest('.umi-hide-on-html');
-                    if(!targetElement.length){
-                        $('body').off('click.umi.tree.contextMenu');
-                        $('.umi-hide-on-html').hide();
-                    }
-                event.stopPropagation();
-            });
-
-            $(document).on('click', '.umi-top-bar-user-menu', function(){
-                $('.umi-top-bar-user-menu-drop-down').toggle();
-            });
-
-            $(document).on('click', '.umi-table-action-list-show', function(){
-                $(this).siblings('.umi-table-action-list').toggle();
-            });
 
         //Проверка браузера на мобильность
         window.mobileDetection = {

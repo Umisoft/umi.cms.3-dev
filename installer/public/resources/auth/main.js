@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
+define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
     "use strict";
 
     /**
@@ -203,6 +203,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                         helper = document.body.appendChild(helper);
                         $(helper.firstElementChild).unwrap();
                     }
+                    $('body').removeClass('loading');
 
                     var bubbles = document.querySelector('.bubbles');
                     var bubblesFront = document.querySelector('.bubbles-front');
@@ -249,8 +250,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                         if(!self.validator.check(this)){
                             return false;
                         }
-                        var container = $(this.parentNode);
-                        container.addClass('loading');
+                        var submitButton = this.querySelector('input[type="submit"]');
+                        $(submitButton).addClass('loading');
                         var submit = this.elements.submit;
                         submit.setAttribute('disabled', 'disabled');
                         var data = $(this).serialize();
@@ -258,7 +259,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                         var deffer = $.post(action, data);
 
                         var authFail = function(error){
-                            container.removeClass('loading');
+                            $(submitButton).removeClass('loading');
                             submit.removeAttribute('disabled');
                             var errorList = {error: error.responseJSON.result.error.message};
                             errorsBlock.innerHTML = self.TEMPLATES.errors(errorList);

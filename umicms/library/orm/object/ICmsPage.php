@@ -70,5 +70,11 @@ interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject, IA
      */
     public function getHeader();
 
+    /**
+     * Возвращает признак существования страницы в индексе.
+     * @return bool
+     */
+    public function isInIndex();
+
 }
  

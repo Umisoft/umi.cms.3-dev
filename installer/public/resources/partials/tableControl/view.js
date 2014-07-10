@@ -8,12 +8,18 @@ define(['App', 'toolbar'], function(UMI){
              * Имя шаблона
              * @property templateName
              */
-            templateName: 'tableControl',
+            templateName: 'partials/tableControl',
             /**
              * Классы для view
              * @classNames
              */
             classNames: ['umi-table-control'],
+
+            objectsEditable: function(){
+                var objectsEditable = this.get('controller.control.params.objectsEditable');
+                objectsEditable = objectsEditable === false ? false : true;
+                return objectsEditable;
+            }.property('controller.control.params.objectsEditable'),
             /**
              * @property iScroll
              */
@@ -32,13 +38,16 @@ define(['App', 'toolbar'], function(UMI){
                 var scrollUpdate = function(){
                     Ember.run.scheduleOnce('afterRender', self, function(){
                         // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                        var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                        //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                         var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                         var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
-                        iScroll.refresh();
-                        umiTableLeft.style.marginTop = 0;
+                        //umiTableLeft.style.marginTop = 0;
                         umiTableRight.style.marginTop = 0;
                         umiTableHeader.style.marginLeft = 0;
+                        setTimeout(function(){
+                            iScroll.refresh();
+                            iScroll.scrollTo(0, 0);
+                        }, 0);
                     });
                 };
 
@@ -59,7 +68,7 @@ define(['App', 'toolbar'], function(UMI){
                 var objects = this.get('controller.objects.content');
 
                 // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                 var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                 var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
 
@@ -74,26 +83,28 @@ define(['App', 'toolbar'], function(UMI){
                         }
 
                         Ember.run.scheduleOnce('afterRender', self, function(){
-                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll); //TODO Из-за этой строки не работают чекбоксы строк
+                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
                             self.set('iScroll', scrollContent);
 
                             scrollContent.on('scroll', function(){
-                                umiTableLeft.style.marginTop = this.y + 'px';
+                                //umiTableLeft.style.marginTop = this.y + 'px';
                                 umiTableRight.style.marginTop = this.y + 'px';
                                 umiTableHeader.style.marginLeft = this.x + 'px';
                             });
 
                             // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
                             $(window).on('resize.umi.tableControl', function(){
-                                umiTableLeft.style.marginTop = scrollContent.y + 'px';
-                                umiTableRight.style.marginTop = scrollContent.y + 'px';
-                                umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                                setTimeout(function(){
+                                    //umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
+                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                                }, 100);// TODO: заменить на событие окончания ресайза iScroll
                             });
 
                             // Событие изменения ширины колонки
                             tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 $('html').addClass('s-unselectable');
-                                var handler = this; //Почему не that или self? Зачем плодить понятия?
+                                var handler = this;
                                 $(handler).addClass('on-resize');
                                 var columnEl = handler.parentNode.parentNode;
                                 var columnName = columnEl.className;
@@ -116,6 +127,7 @@ define(['App', 'toolbar'], function(UMI){
                                     $('body').off('mousemove');
                                     $('body').off('mouseup.umi.tableControl');
                                     scrollContent.refresh();
+                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                                 });
                             });
 
@@ -129,12 +141,12 @@ define(['App', 'toolbar'], function(UMI){
                                         break;
                                     }
                                 }
-                                var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                //var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
                                 var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
                                 if(!isContentRow){
                                     el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
                                 }
-                                return [el, leftElements[i], rightElements[i]];
+                                return [el, rightElements[i]];//[el, leftElements[i], rightElements[i]];
                             };
 
                             tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
@@ -159,6 +171,8 @@ define(['App', 'toolbar'], function(UMI){
                 $(window).off('.umi.tableControl');
                 // Удаляем Observes для контоллера
                 this.get('controller').removeObserver('content.object.id');
+                this.get('controller').removeObserver('query');
+                this.get('controller').removeObserver('objects.@each.isDeleted');
             },
 
             paginationView: Ember.View.extend({
@@ -252,25 +266,164 @@ define(['App', 'toolbar'], function(UMI){
                     var sortAscending = this.get('sortAscending');
                     this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
+            }),
+
+            rowView: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-control-content-row'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'objectsEditable:s-pointer'],
+                isActive: function(){
+                    var object = this.get('object');
+                    var hasActiveProperty  = false;
+                    object.eachAttribute(function(name){
+                        if(name === 'active'){
+                            hasActiveProperty = true;
+                        }
+                    });
+                    if(hasActiveProperty){
+                        return object.get('active');
+                    } else{
+                        return true;
+                    }
+                }.property('object.active'),
+
+                attributeBindings: ['objectId'],
+
+                objectIdBinding: 'object.id',
+
+                objectsEditable: function(){
+                    return this.get('parentView.objectsEditable');
+                }.property(),
+
+                click: function(){
+                    var objectsEditable = this.get('objectsEditable');
+                    if(this.get('object.meta.editLink') && objectsEditable){
+                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
+                    }
+                }
+            }),
+
+            filterRowView: Ember.View.extend({
+                filterType: null,
+                template: function(){
+                    var column = this.get('column');
+                    var template = '';
+                    switch(Ember.get(column, 'attributes.type')){
+                        case 'text':
+                            this.set('filterType', 'text');
+                            template = '<input type="text" class="table-control-filter-input"/>';
+                            break;
+                    }
+                    return Ember.Handlebars.compile(template);
+                }.property('column'),
+                didInsertElement: function(){
+                    var self = this;
+                    var $el = this.$();
+                    var $input = $el.children('input');
+                    var filterType = this.get('filterType');
+                    $input.on('focus', function(){
+                        $(this).closest('.umi-table-control-row').find('.table-control-filter-input').val('');
+                    });
+                    switch(filterType){
+                        case 'text':
+                            $input.on('keypress.umi.tableControl.filters', function(event){
+                               if(event.keyCode === 13){
+                                   self.setFilter('like(%' + this.value + '%)');
+                               }
+                           });
+                            break;
+                    }
+                },
+                setFilter: function(filter){
+                    this.get('controller').setFilters(this.get('column.dataSource'), filter);
+                }
             })
         });
 
         UMI.TableCellContentView = Ember.View.extend({
             classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
-
+            promise: null,
             template: function(){
-                var meta = this.get('column');
-                var object = this.get('object');
-
-                var template;
-                if(meta.name === 'displayName'){
-                    template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
-                } else{
-                    template = object.get(meta.name) + '&nbsp;';
+                var column;
+                var object;
+                var template = '';
+                var value;
+                var self = this;
+                var properties;
+                function propertyHtmlEncode(value){
+                    if(Ember.typeOf(value) === 'null'){
+                        value = '';
+                    } else{
+                        value = UMI.Utils.htmlEncode(value);
+                    }
+                    return value;
                 }
-                return Ember.Handlebars.compile(template);
-            }.property('object','column')
+                try{
+                    object = this.get('object');
+                    column = this.get('column');
+                    switch(column.type){
+                        case 'checkbox':
+                            template = '<span {{bind-attr class="view.object.' + column.dataSource + ':umi-checkbox-state-checked:umi-checkbox-state-unchecked"}}></span>&nbsp;';
+                            break;
+                        case 'checkboxGroup':
+                        case 'multiSelect':
+                            value = object.get(column.dataSource);
+                            if(Ember.typeOf(value) === 'array'){
+                                template = value.join(', ');
+                            }
+                            break;
+                        case 'datetime':
+                            value = object.get(column.dataSource);
+                            if(value){
+                                try{
+                                    value = JSON.parse(value);
+                                    template = Ember.get(value, 'date');
+                                } catch(error){
+                                    this.get('controller').send('backgroundError', error);
+                                }
+                            }
+                            break;
+                        default:
+                            properties = column.dataSource.split('.');
+                            if(this.checkRelation(properties[0])){
+                                if(properties.length > 1){
+                                    value = object.get(properties[0]);
+                                    if(Ember.typeOf(value) === 'instance'){
+                                        value.then(function(object){
+                                            value = object.get(properties[1]);
+                                            value = propertyHtmlEncode(value);
+                                            self.set('promiseProperty', value);
+                                        });
+                                        template = '{{view.promiseProperty}}';
+                                    }
+                                } else{
+                                    template = '{{view.object.' + column.dataSource + '.displayName}}';
+                                }
+                            } else{
+                                value = object.get(column.dataSource);
+                                value = propertyHtmlEncode(value);
+                                template = value;
+                            }
+                            break;
+                    }
+                } catch(error){
+                    this.get('controller').send('backgroundError', error);
+                } finally{
+                    return Ember.Handlebars.compile(template);
+                }
+            }.property('column'),
+
+            checkRelation: function(property){
+                var object = this.get('object');
+                var isRelation = false;
+                object.eachRelationship(function(name, relatedModel){
+                    if(property === name){
+                        isRelation = true;
+                    }
+                });
+                return isRelation;
+            }
         });
 
 
@@ -293,11 +446,14 @@ define(['App', 'toolbar'], function(UMI){
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
+                            action = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
+                                }
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             if(action){
                                 if(Ember.typeOf(behaviour.actions) !== 'object'){
                                     behaviour.actions = {};
@@ -306,6 +462,8 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
+                    behaviour.classNames = ['white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

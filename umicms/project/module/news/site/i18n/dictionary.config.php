@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer structure',
+        'role:viewer:displayName' => 'View news structure',
         'role:rubricExecutor:displayName' => 'Rubrics',
         'role:itemExecutor:displayName' => 'News',
         'role:subjectExecutor:displayName' => 'Subjects',

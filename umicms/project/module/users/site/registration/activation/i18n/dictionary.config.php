@@ -14,7 +14,7 @@ return [
         'Activate' => 'Activate',
         'You have successfully activated your account' => 'You have successfully activated your account',
 
-        'role:viewer:displayName' => 'Activation user'
+        'role:viewer:displayName' => 'Activate'
     ],
 
     'ru-RU' => [

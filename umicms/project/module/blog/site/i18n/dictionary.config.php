@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer blogs',
+        'role:viewer:displayName' => 'View blog',
         'role:postExecutor:displayName' => 'Posts',
         'role:draftExecutor:displayName' => 'Drafts',
         'role:moderateExecutor:displayName' => 'Posts on moderation',

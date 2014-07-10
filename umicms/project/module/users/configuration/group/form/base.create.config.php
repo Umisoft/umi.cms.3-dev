@@ -34,15 +34,7 @@ return [
                     'options' => [
                         'dataSource' => UserGroup::FIELD_DISPLAY_NAME
                     ]
-                ],
-                UserGroup::FIELD_USERS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => UserGroup::FIELD_USERS,
-                    'options' => [
-                        'lazy' => true,
-                        'dataSource' => UserGroup::FIELD_USERS
-                    ]
-                ],
+                ]
             ]
 
         ],

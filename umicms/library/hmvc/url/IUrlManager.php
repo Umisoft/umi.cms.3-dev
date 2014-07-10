@@ -31,6 +31,13 @@ interface IUrlManager
     public function setUrlPrefix($urlPrefix);
 
     /**
+     * Устанавливает постфикс URL проекта.
+     * @param string $urlPostfix
+     * @return self
+     */
+    public function setSiteUrlPostfix($urlPostfix);
+
+    /**
      * Устанавливает схему и HTTP-хост проета.
      * @param string $schemeAndHttpHost
      * @return self
@@ -57,6 +64,12 @@ interface IUrlManager
      * @return string
      */
     public function getProjectUrl($isAbsolute = false);
+
+    /**
+     * Возвращает постфикс для URL проекта.
+     * @return string|null
+     */
+    public function getSiteUrlPostfix();
 
     /**
      * Возвращает схему и HTTP-хост проета.
@@ -145,7 +158,7 @@ interface IUrlManager
      * Возвращает URL действия компонента
      * @param AdminComponent $component
      * @param string $actionName имя действия
-     * @param array $params список GET-параметров
+     * @param array $params список GET-параметров. Значение может быть плейсхолдером, который будет обработан на клиенте.
      * @return string
      */
     public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = []);

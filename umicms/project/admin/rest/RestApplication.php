@@ -50,27 +50,15 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
     const DEFAULT_REQUEST_FORMAT = 'json';
 
     /**
-     * @var string $currentRequestFormat формат запроса к приложению
-     */
-    protected $currentRequestFormat = self::DEFAULT_REQUEST_FORMAT;
-    /**
-     * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
-     */
-    protected $supportedRequestPostfixes = ['json'];
-
-    /**
      * {@inheritdoc}
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->registerSelectorInitializer();
         $this->registerSerializers();
 
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
 
-        if (!$this->isRequestFormatSupported($requestFormat)) {
-            $request->setRequestFormat(self::DEFAULT_REQUEST_FORMAT);
-
+        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
                 'Request format "{format}" is not supported.',
                 ['format' => $requestFormat]
@@ -79,7 +67,6 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
 
         $request->setRequestFormat($requestFormat);
 
-        $this->currentRequestFormat = $requestFormat;
 
         if (!$this->checkCsrfToken($context, $request)) {
             throw new HttpForbidden('Cannot process request. Invalid csrf token.');
@@ -97,7 +84,7 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
             'result' => $response->getContent()
         ];
 
-        $serializer = $this->getSerializer($this->currentRequestFormat, $result);
+        $serializer = $this->getSerializer(self::DEFAULT_REQUEST_FORMAT, $result);
         $serializer->init();
         $serializer($result);
         $response->setContent($serializer->output());
@@ -130,32 +117,6 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
         }
 
         return false;
-    }
-
-    /**
-     * Проверяет, поддерживается ли указанный формат запроса
-     * @param string $format
-     * @return bool
-     */
-    protected function isRequestFormatSupported($format)
-    {
-        return in_array($format, $this->supportedRequestPostfixes);
-    }
-
-    /**
-     * Регистрирует иницициализотор для всех селекторов.
-     */
-    protected function registerSelectorInitializer()
-    {
-        BaseCollection::setSelectorInitializer(function(CmsSelector $selector) {
-
-            $collection = $selector->getCollection();
-
-            if ($collection instanceof IRecyclableCollection) {
-                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
-            }
-
-        });
     }
 
     /**

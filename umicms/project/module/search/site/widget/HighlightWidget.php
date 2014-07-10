@@ -10,9 +10,8 @@
 
 namespace umicms\project\module\search\site\widget;
 
-use umi\http\THttpAware;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Виджет, выделяющий подстроку с учетом морфологии в тексте
@@ -22,7 +21,7 @@ class HighlightWidget extends BaseCmsWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'search/highlight';
+    public $template = 'highlight';
 
     /**
      * Текст, в котором требуется выделить фрагмент
@@ -47,18 +46,17 @@ class HighlightWidget extends BaseCmsWidget
     public $highlightEnd = '</mark>';
 
     /**
-     * @var SearchApi $api модуль "Поиск"
+     * @var SearchModule $api модуль "Поиск"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi API поиска
-     * @internal param \umi\http\Request $request
+     * @param SearchModule $module
      */
-    public function __construct(SearchApi $searchApi)
+    public function __construct(SearchModule $module)
     {
-        $this->api = $searchApi;
+        $this->module = $module;
     }
 
     /**
@@ -66,7 +64,7 @@ class HighlightWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        return $this->api->highlightResult(
+        return $this->module->getSearchApi()->highlightResult(
             $this->query,
             $this->text,
             $this->highlightStart,

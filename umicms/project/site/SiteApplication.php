@@ -13,7 +13,6 @@ namespace umicms\project\site;
 use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
@@ -80,10 +79,6 @@ class SiteApplication extends SiteComponent
      */
     const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
     /**
-     * Имя настройки для задания постфикса всех URL
-     */
-    const SETTING_URL_POSTFIX = 'urlPostfix';
-    /**
      * Имя настройки для задания шаблонизатора по умолчанию
      */
     const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
@@ -132,6 +127,7 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
         }*/
@@ -167,24 +163,25 @@ class SiteApplication extends SiteComponent
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
         $request = $context->getDispatcher()->getCurrentRequest();
-        $routePath = $request->getPathInfo();
-        if ($suffix = $request->getRequestFormat(null)) {
-            $routePath = substr($routePath, 0, -strlen($suffix) - 1);
+
+        $currentPath = $request->getPathInfo();
+        $requestFormat = $request->getRequestFormat(null);
+
+        if ($requestFormat) {
+            $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
         }
 
-        $isRootPath = $routePath === $this->getUrlManager()->getProjectUrl();
+        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
 
         if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
             return $redirectResponse;
         }
 
-        $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
-
-        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if (!is_null($requestFormat) && $requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
@@ -295,28 +292,6 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Производит определение формата запроса по постфиксу
-     * @param string $postfix
-     * @throws HttpNotFound если постфикс запроса не поддерживается приложением
-     * @return string
-     */
-    protected function getRequestFormatByPostfix($postfix)
-    {
-        if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
-            return self::DEFAULT_REQUEST_FORMAT;
-        }
-
-        if (!in_array($postfix, $this->supportedRequestPostfixes)) {
-            throw new HttpNotFound($this->translate(
-                'Url postfix "{postfix}" is not supported.',
-                ['postfix' => $postfix]
-            ));
-        }
-
-        return $postfix;
-    }
-
-    /**
      * Производит редирект на url с постфиксом, если он задан в настройках
      * и запрос выполнен без его указания.
      * @param Request $request
@@ -324,7 +299,7 @@ class SiteApplication extends SiteComponent
      */
     protected function processUrlPostfixRedirect(Request $request)
     {
-        $postfix = $this->getSiteUrlPostfix();
+        $postfix = $this->getUrlManager()->getSiteUrlPostfix();
 
         if ($postfix && is_null($request->getRequestFormat(null))) {
             $redirectUrl = $request->getBaseUrl() . $request->getPathInfo() . '.' . $postfix;
@@ -347,13 +322,18 @@ class SiteApplication extends SiteComponent
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
+     * @param string|null $suffix
      * @return Response|null
      */
-    protected function processDefaultPageRedirect()
+    protected function processDefaultPageRedirect($suffix = null)
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
+            $location = $this->getUrlManager()->getProjectUrl();
+            if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
+                $location .= '.' . $suffix;
+            }
+            $response->headers->set('Location', $location);
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 

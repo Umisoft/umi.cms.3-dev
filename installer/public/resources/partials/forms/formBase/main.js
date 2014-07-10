@@ -1,11 +1,10 @@
 define(
     [
         'App',
-        'text!./form.hbs',
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, magellan, submitToolbar){
+    function(UMI, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -19,7 +18,13 @@ define(
             magellan();
             submitToolbar();
 
-            UMI.FormControllerMixin = Ember.Mixin.create({});
+            UMI.FormControllerMixin = Ember.Mixin.create(UMI.i18nInterface, {
+                dictionaryNamespace: 'form',
+                localDictionary: function(){
+                    var form = this.get('control') || {};
+                    return form.i18n;
+                }.property()
+            });
 
             UMI.FormViewMixin = Ember.Mixin.create({
                 /**
@@ -32,6 +37,15 @@ define(
                 submit: function(){
                     return false;
                 },
+                /**
+                 * Проверяет наличие fieldset
+                 * @method hasFieldset
+                 * @return bool
+                 */
+                hasFieldset: function(){
+                    return this.get('context.control.meta.elements').isAny('type', 'fieldset');
+                }.property('context.control.meta'),
+
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
                     isFieldset: function(){
@@ -64,13 +78,6 @@ define(
             });
 
             UMI.FieldMixin = Ember.Mixin.create({
-                /**
-                 * Метаданные свойства. В базовой реализации
-                 * соответствует самому объекту
-                 * @property metaBinding
-                 * @type String
-                 */
-                metaBinding: 'object',
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
                 template: function(){
                     var meta;
@@ -87,7 +94,7 @@ define(
                         template = this.extendTemplate(template);
                         return Ember.Handlebars.compile(template);
                     }
-                }.property('meta'),
+                }.property(),
                 /**
                  * Метод используется декораторами для расширения базового шаблона.
                  * @method extendTemplate
@@ -99,84 +106,75 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{view "textElement" object=object meta=view.meta}}';
+                    return '{{view "textElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 emailTemplate: function(){
-                    return '{{view "emailElement" object=object meta=view.meta}}';
+                    return '{{view "emailElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 passwordTemplate: function(){
-                    return '{{view "passwordElement" object=object meta=view.meta}}';
+                    return '{{view "passwordElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 numberTemplate: function(){
-                    return '{{view "numberElement" object=object meta=view.meta}}';
+                    return '{{view "numberElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{view "colorElement" object=object meta=view.meta}}';
+                    return '{{view "colorElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 timeTemplate: function(){
-                    return '{{time-element object=object meta=view.meta}}';
+                    return '{{time-element object=view.object meta=view.meta}}';
                 }.property(),
 
                 dateTemplate: function(){
-                    return '{{view "dateElement" object=object meta=view.meta}}';
+                    return '{{view "dateElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 datetimeTemplate: function(){
-                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
+                    return '{{view "dateTimeElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 fileTemplate: function(){
-                    return '{{view "fileElement" object=object meta=view.meta}}';
+                    return '{{view "fileElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 imageTemplate: function(){
-                    return '{{view "imageElement" object=object meta=view.meta}}';
+                    return '{{view "imageElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 textareaTemplate: function(){
-                    return '{{view "textareaElement" object=object meta=view.meta}}';
+                    return '{{view "textareaElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 wysiwygTemplate: function(){
-                    return '{{view "htmlEditor" object=object meta=view.meta}}';
+                    return '{{view "htmlEditor" object=view.object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
-                    return '{{view "select" object=object meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 multiSelectTemplate: function(){
-                    return '{{view "multiSelect" object=object meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "multiSelect" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{view "checkboxElement" meta=view.meta}}';
+                    return '{{view "checkboxElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
-                    return '{{view "checkboxGroupElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxGroupElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 radioTemplate: function(){
-                    return '{{view "radioElement" object=object meta=view.meta}}';
+                    return '{{view "radioElement" object=view.object meta=view.meta}}';
                 }.property()
             });
 
-            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
-                /**
-                 * Проверяет наличие fieldset
-                 * @method hasFieldset
-                 * @return bool
-                 */
-                hasFieldset: function(){
-                    return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model')
-            });
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {});
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
                 /**
@@ -184,7 +182,7 @@ define(
                  * @property layout
                  * @type String
                  */
-                layout: Ember.Handlebars.compile(formTpl),
+                layoutName: 'partials/form',
 
                 /**
                  * Классы view
@@ -196,8 +194,8 @@ define(
                 attributeBindings: ['action'],
 
                 action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model'),
+                    return this.get('context.control.meta.attributes.action');
+                }.property('context.control.meta.attributes.action'),
 
                 actions: {
                     submit: function(handler){
@@ -206,8 +204,13 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
-                        $.post(self.get('action'), data).then(function(){
+                        $.post(self.get('action'), data).then(function(results){
+                            var meta = Ember.get(results, 'result.save');
+                            var context = self.get('context');
+                            Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
+                            var params = {type: 'success', 'content': 'Сохранено.'};
+                            UMI.notification.create(params);
                         });
                     }
                 },
@@ -215,7 +218,7 @@ define(
                 submitToolbarView: UMI.SubmitToolbarView.extend({
                     elementView: UMI.ToolbarElementView.extend({
                         buttonView: function(){
-                            var button = this._super();
+                            var button = UMI.ButtonView.extend();
                             if(this.get('context.behaviour.name') === 'save'){
                                 button.reopen({
                                     actions: {
