@@ -15,6 +15,7 @@ use umicms\hmvc\component\admin\layout\action\Action;
 use umicms\hmvc\component\admin\layout\AdminComponentLayout;
 use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
+use umicms\project\module\seo\model\MegaindexModel;
 
 /**
  * Билдер сетки административного компонента Megaindex.
@@ -37,11 +38,15 @@ class MegaindexComponentLayout extends AdminComponentLayout
             'objects' => $this->getChildActionResources()
         ];
 
-        $this->addSideBarControl('menu',  new AdminControl($this->component));
+        if ($this->isIssetSettings()) {
+            $this->addSideBarControl('menu',  new AdminControl($this->component));
+        }
 
         $this->configureEmptyContextControls();
 
-        $this->configureDynamicControl();
+        if ($this->isIssetSettings()) {
+            $this->configureDynamicControl();
+        }
     }
 
     /**
@@ -69,10 +74,17 @@ class MegaindexComponentLayout extends AdminComponentLayout
      */
     protected function configureEmptyContextControls()
     {
-        $control = new AdminControl($this->component);
-        $control->params['slug'] = 'siteAnalyze';
+        if ($this->isIssetSettings()) {
+            $control = new AdminControl($this->component);
+            $control->params['slug'] = 'siteAnalyze';
 
-        $this->addEmptyContextControl('redirect', $control);
+            $this->addEmptyContextControl('redirect', $control);
+        } else {
+            $control = new AdminControl($this->component);
+            $control->params['message'] = $this->component->translate('Do not set auth data');
+
+            $this->addEmptyContextControl('empty', $control);
+        }
     }
 
     /**
@@ -84,6 +96,23 @@ class MegaindexComponentLayout extends AdminComponentLayout
         $dynamicControl->params['action'] = 'getResource';
 
         $this->addSelectedContextControl('dynamic', $dynamicControl);
+    }
+
+    /**
+     * Проверяет, что заданы все необходимые настройки
+     * @return bool
+     */
+    private function isIssetSettings()
+    {
+        $login = $this->component->getSetting(MegaindexModel::MEGAINDEX_LOGIN);
+        $password = $this->component->getSetting(MegaindexModel::MEGAINDEX_PASSWORD);
+        $siteUrl = $this->component->getSetting(MegaindexModel::MEGAINDEX_SITE_URL);
+
+        if (!empty($login) && !empty($password) && !empty($siteUrl)) {
+            return true;
+        }
+
+        return false;
     }
 }
  
