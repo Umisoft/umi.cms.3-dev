@@ -15,6 +15,7 @@ use umicms\hmvc\component\admin\layout\action\Action;
 use umicms\hmvc\component\admin\layout\AdminComponentLayout;
 use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
+use umicms\project\module\seo\model\YandexModel;
 
 /**
  * Билдер сетки админского компонента "Яндекс.Вебмастер".
@@ -39,11 +40,15 @@ class WebmasterComponentLayout extends AdminComponentLayout
             'objects' => $this->getChildActionResources()
         ];
 
-        $this->addSideBarControl('menu',  new AdminControl($this->component));
+        if ($this->isIssetSettings()) {
+            $this->addSideBarControl('menu',  new AdminControl($this->component));
+        }
 
         $this->configureEmptyContextControls();
 
-        $this->configureDynamicControl();
+        if ($this->isIssetSettings()) {
+            $this->configureDynamicControl();
+        }
     }
 
     /**
@@ -71,10 +76,17 @@ class WebmasterComponentLayout extends AdminComponentLayout
      */
     protected function configureEmptyContextControls()
     {
-        $control = new AdminControl($this->component);
-        $control->params['slug'] = 'host';
+        if ($this->isIssetSettings()) {
+            $control = new AdminControl($this->component);
+            $control->params['slug'] = 'host';
 
-        $this->addEmptyContextControl('redirect', $control);
+            $this->addEmptyContextControl('redirect', $control);
+        } else {
+            $control = new AdminControl($this->component);
+            $control->params['message'] = $this->component->translate('Do not set settings');
+
+            $this->addEmptyContextControl('empty', $control);
+        }
     }
 
     /**
@@ -86,6 +98,22 @@ class WebmasterComponentLayout extends AdminComponentLayout
         $dynamicControl->params['action'] = 'getResource';
 
         $this->addSelectedContextControl('dynamic', $dynamicControl);
+    }
+
+    /**
+     * Проверяет, что заданы все необходимые настройки.
+     * @return bool
+     */
+    private function isIssetSettings()
+    {
+        $hostId = $this->component->getSetting(YandexModel::YANDEX_HOST_ID);
+        $token = $this->component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
+
+        if (!empty($hostId) && !empty($token)) {
+            return true;
+        }
+
+        return false;
     }
 }
  

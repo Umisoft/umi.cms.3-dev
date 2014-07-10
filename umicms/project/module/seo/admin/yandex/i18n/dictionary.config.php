@@ -7,7 +7,9 @@ return [
         'action:host:displayName' => 'Host description',
         'action:indexed:displayName' => 'Page in index',
         'action:links:displayName' => 'Links on sile',
-        'action:tops:displayName' => 'Top queries'
+        'action:tops:displayName' => 'Top queries',
+
+        'Do not set settings' => 'Do not set settings'
     ],
 
     'ru-RU' => [
@@ -16,7 +18,9 @@ return [
         'action:host:displayName' => 'Описание хоста',
         'action:indexed:displayName' => 'Страницы в индексе',
         'action:links:displayName' => 'Ссылки на сайт',
-        'action:tops:displayName' => 'Популярные запросы'
+        'action:tops:displayName' => 'Популярные запросы',
+
+        'Do not set settings' => 'Не заданы необходимые настройки'
     ]
 ];
  
