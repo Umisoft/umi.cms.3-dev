@@ -11,14 +11,24 @@
 namespace umicms\project\module\survey\model;
 
 use umicms\module\BaseModule;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\module\survey\model\collection\SurveyCollection;
 use umicms\project\module\survey\model\collection\AnswerCollection;
+use umicms\project\module\survey\model\object\Answer;
+use umicms\project\module\survey\model\object\Survey;
 
 /**
  * Модуль "Опросы".
  */
 class SurveyModule extends BaseModule
 {
+
+    protected $statisticModule;
+
+    public function __construct($statistic)
+    {
+        $this->statisticModule = $statistic;
+    }
 
     /**
      * Возвращает коллекцию опросов.
@@ -38,4 +48,54 @@ class SurveyModule extends BaseModule
         return $this->getCollection('answer');
     }
 
+    /**
+     * Возвращает селектор для выборки опросов.
+     * @return CmsSelector|Survey[]
+     */
+    public function getSurveys()
+    {
+        return $this->survey()->select();
+    }
+
+    /**
+     * Возвращает селектор для выборки ответов.
+     * @return CmsSelector|Answer[]
+     */
+    public function getAnswers()
+    {
+        return $this->answer()->select();
+    }
+
+    /**
+     * Возвращает селектор для выбора ответов опроса.
+     * @param object\Survey $survey
+     * @return CmsSelector|Answer[]
+     */
+    public function getAnswersBySurvey(Survey $survey) {
+        $answers = $this->getAnswers();
+
+        $answers->begin();
+        $answers->where(Answer::FIELD_SURVEY)->equals($survey);
+        $answers->end();
+
+        return $answers;
+    }
+
+    /**
+     * Возвращет, голосовал ли текущий пользователь
+     * @param Survey $survey
+     */
+    public function checkIfVoted(Survey $survey)
+    {
+        //TODO: check with statistic module
+    }
+
+    /**
+     * Помечает текущего пользователя как проголововавшего
+     * @param Survey $survey
+     */
+    public function markAsVoted(Survey $survey)
+    {
+        //TODO: mark with statistic module
+    }
 }
