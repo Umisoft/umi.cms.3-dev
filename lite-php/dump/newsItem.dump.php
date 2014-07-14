@@ -9,26 +9,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '01d5834f-f682-4e23-8d9c-bc2c65554568',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-49',
-      'slug' => 'privideniya-49',
+      'guid' => '02b0fd28-1677-4afc-9676-21cedc7e3fe5',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-30',
+      'slug' => 'privideniya-30',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-49',
+        1 => 'Открыт метод устранения неврозов у привидений-30',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-49',
+        1 => 'Open method of elimination of neuroses in ghosts-30',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -52,7 +52,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-49',
+        1 => 'Открыт метод устранения неврозов у привидений-30',
       ),
       'contents#ru-RU' => 
       array (
@@ -113,26 +113,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '0358e144-361d-4994-b6f9-a25a80a80845',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-16',
-      'slug' => 'privideniya-16',
+      'guid' => '069c02fb-59c6-45b2-b30b-0254e4af176f',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-47',
+      'slug' => 'privideniya-47',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-16',
+        1 => 'Открыт метод устранения неврозов у привидений-47',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-16',
+        1 => 'Open method of elimination of neuroses in ghosts-47',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -156,7 +156,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-16',
+        1 => 'Открыт метод устранения неврозов у привидений-47',
       ),
       'contents#ru-RU' => 
       array (
@@ -217,26 +217,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '03e2a9a2-2f8d-4795-8a7b-a0868c9afba9',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-50',
-      'slug' => 'privideniya-50',
+      'guid' => '144b9a7b-ad5f-4386-bc27-53c5c9750bf8',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-16',
+      'slug' => 'privideniya-16',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-50',
+        1 => 'Открыт метод устранения неврозов у привидений-16',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-50',
+        1 => 'Open method of elimination of neuroses in ghosts-16',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -260,7 +260,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-50',
+        1 => 'Открыт метод устранения неврозов у привидений-16',
       ),
       'contents#ru-RU' => 
       array (
@@ -321,26 +321,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '18ae045b-4867-4ea4-8ecf-e5135ecd0d01',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-37',
-      'slug' => 'privideniya-37',
+      'guid' => '171eabcc-0df5-403d-a977-d6c45cc1d6d4',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-18',
+      'slug' => 'privideniya-18',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-37',
+        1 => 'Открыт метод устранения неврозов у привидений-18',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-37',
+        1 => 'Open method of elimination of neuroses in ghosts-18',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -364,7 +364,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-37',
+        1 => 'Открыт метод устранения неврозов у привидений-18',
       ),
       'contents#ru-RU' => 
       array (
@@ -425,26 +425,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '19daf57b-f159-4f44-a63a-81534c0e7f60',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-18',
-      'slug' => 'privideniya-18',
+      'guid' => '231db3e0-9da2-4f9a-9a30-da45ebd0100c',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-14',
+      'slug' => 'privideniya-14',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-18',
+        1 => 'Открыт метод устранения неврозов у привидений-14',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-18',
+        1 => 'Open method of elimination of neuroses in ghosts-14',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -468,7 +468,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-18',
+        1 => 'Открыт метод устранения неврозов у привидений-14',
       ),
       'contents#ru-RU' => 
       array (
@@ -529,26 +529,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '1b9e4666-307f-4b2f-a23a-aba61f0c0da8',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-27',
-      'slug' => 'privideniya-27',
+      'guid' => '28ccce62-aced-424e-9c96-252181ba501b',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-26',
+      'slug' => 'privideniya-26',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-27',
+        1 => 'Открыт метод устранения неврозов у привидений-26',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-27',
+        1 => 'Open method of elimination of neuroses in ghosts-26',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -572,7 +572,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-27',
+        1 => 'Открыт метод устранения неврозов у привидений-26',
       ),
       'contents#ru-RU' => 
       array (
@@ -633,26 +633,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '2248acdf-af1a-4541-b0cd-2f858b436d51',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-28',
-      'slug' => 'privideniya-28',
+      'guid' => '2b302b5d-7c59-47b3-acd2-f56dc95fc105',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-21',
+      'slug' => 'privideniya-21',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-28',
+        1 => 'Открыт метод устранения неврозов у привидений-21',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-28',
+        1 => 'Open method of elimination of neuroses in ghosts-21',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -676,7 +676,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-28',
+        1 => 'Открыт метод устранения неврозов у привидений-21',
       ),
       'contents#ru-RU' => 
       array (
@@ -737,26 +737,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '2b7e7822-31e7-43c5-a23e-dc5e2bfa7061',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-14',
-      'slug' => 'privideniya-14',
+      'guid' => '2e35eb8b-ef24-40c9-a88f-6c1fecfaef36',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-23',
+      'slug' => 'privideniya-23',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-14',
+        1 => 'Открыт метод устранения неврозов у привидений-23',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-14',
+        1 => 'Open method of elimination of neuroses in ghosts-23',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -780,7 +780,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-14',
+        1 => 'Открыт метод устранения неврозов у привидений-23',
       ),
       'contents#ru-RU' => 
       array (
@@ -841,26 +841,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '34bf498b-6af8-4e61-a530-8a8804ce98c4',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-23',
-      'slug' => 'privideniya-23',
+      'guid' => '2f2efb85-6b1c-47e8-b346-c26efaf2d878',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-38',
+      'slug' => 'privideniya-38',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-23',
+        1 => 'Открыт метод устранения неврозов у привидений-38',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-23',
+        1 => 'Open method of elimination of neuroses in ghosts-38',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -884,7 +884,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-23',
+        1 => 'Открыт метод устранения неврозов у привидений-38',
       ),
       'contents#ru-RU' => 
       array (
@@ -964,7 +964,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1054,26 +1054,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '48f7833a-a88b-47e8-93ea-42caeb37c96d',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-22',
-      'slug' => 'privideniya-22',
+      'guid' => '362994f8-b5a1-4573-9a6a-bf5dfcbe4a11',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-31',
+      'slug' => 'privideniya-31',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-22',
+        1 => 'Открыт метод устранения неврозов у привидений-31',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-22',
+        1 => 'Open method of elimination of neuroses in ghosts-31',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1097,7 +1097,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-22',
+        1 => 'Открыт метод устранения неврозов у привидений-31',
       ),
       'contents#ru-RU' => 
       array (
@@ -1158,26 +1158,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '49ebcd15-3250-4b57-a125-77fcc9cbceb8',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-12',
-      'slug' => 'privideniya-12',
+      'guid' => '447c3e67-a40f-4332-8f63-a2391c79d1e6',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-39',
+      'slug' => 'privideniya-39',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-12',
+        1 => 'Открыт метод устранения неврозов у привидений-39',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-12',
+        1 => 'Open method of elimination of neuroses in ghosts-39',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1201,7 +1201,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-12',
+        1 => 'Открыт метод устранения неврозов у привидений-39',
       ),
       'contents#ru-RU' => 
       array (
@@ -1262,7 +1262,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '4d71f6f7-7afe-4d76-ae45-08aeb2e0e01d',
+      'guid' => '4f8325db-feb0-4b41-b9f1-cff4c3defde3',
       'displayName' => 'Открыт метод устранения неврозов у привидений-41',
       'slug' => 'privideniya-41',
     ),
@@ -1281,7 +1281,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1366,6 +1366,110 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
+      'guid' => '5818ac85-017a-4964-ae04-f865f662d12d',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-28',
+      'slug' => 'privideniya-28',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-28',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-28',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-28',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  14 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
       'guid' => '60744128-996a-4cea-a937-c20ebc5c8c77',
       'displayName' => 'Александр',
       'slug' => 'aleksandr',
@@ -1385,7 +1489,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1469,136 +1573,32 @@ return array (
       ),
     ),
   ),
-  14 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => '63ff0c3c-fdd5-420f-8c3f-f49faf9179bd',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-30',
-      'slug' => 'privideniya-30',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-30',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-30',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-30',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-    ),
-  ),
   15 => 
   array (
     'meta' => 
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '64e4a2dd-e626-4851-9537-f2d971168737',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-29',
-      'slug' => 'privideniya-29',
+      'guid' => '61271e1c-551e-4e7b-a472-1064a0c84daf',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-34',
+      'slug' => 'privideniya-34',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-29',
+        1 => 'Открыт метод устранения неврозов у привидений-34',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-29',
+        1 => 'Open method of elimination of neuroses in ghosts-34',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1622,7 +1622,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-29',
+        1 => 'Открыт метод устранения неврозов у привидений-34',
       ),
       'contents#ru-RU' => 
       array (
@@ -1683,26 +1683,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '6875c25d-499a-479d-abe2-7d209aad6e1b',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-33',
-      'slug' => 'privideniya-33',
+      'guid' => '63ef0b01-606e-4b60-8666-f43ffbe81543',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-44',
+      'slug' => 'privideniya-44',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-33',
+        1 => 'Открыт метод устранения неврозов у привидений-44',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-33',
+        1 => 'Open method of elimination of neuroses in ghosts-44',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1726,7 +1726,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-33',
+        1 => 'Открыт метод устранения неврозов у привидений-44',
       ),
       'contents#ru-RU' => 
       array (
@@ -1787,26 +1787,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '6d7f2478-3f17-4cfd-afe5-9126a141b6a6',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-10',
-      'slug' => 'privideniya-10',
+      'guid' => '64777627-f63f-454c-9c87-6cb032199c1a',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-42',
+      'slug' => 'privideniya-42',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-10',
+        1 => 'Открыт метод устранения неврозов у привидений-42',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-10',
+        1 => 'Open method of elimination of neuroses in ghosts-42',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1830,7 +1830,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-10',
+        1 => 'Открыт метод устранения неврозов у привидений-42',
       ),
       'contents#ru-RU' => 
       array (
@@ -1891,26 +1891,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '6e13540e-56c5-4f03-a7ad-c5a95141f6ed',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-11',
-      'slug' => 'privideniya-11',
+      'guid' => '66e6cf91-6f09-4292-9332-27126d647772',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-50',
+      'slug' => 'privideniya-50',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-11',
+        1 => 'Открыт метод устранения неврозов у привидений-50',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-11',
+        1 => 'Open method of elimination of neuroses in ghosts-50',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1934,7 +1934,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-11',
+        1 => 'Открыт метод устранения неврозов у привидений-50',
       ),
       'contents#ru-RU' => 
       array (
@@ -1995,26 +1995,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '7050b85e-4b08-4f0a-9254-9e1c882df242',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-39',
-      'slug' => 'privideniya-39',
+      'guid' => '6747fd6d-1edb-40a7-ba39-0806b9e44b0b',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-27',
+      'slug' => 'privideniya-27',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-39',
+        1 => 'Открыт метод устранения неврозов у привидений-27',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-39',
+        1 => 'Open method of elimination of neuroses in ghosts-27',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2038,7 +2038,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-39',
+        1 => 'Открыт метод устранения неврозов у привидений-27',
       ),
       'contents#ru-RU' => 
       array (
@@ -2099,26 +2099,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '8571d213-caf3-4ca1-b4b4-d04bd5b4778f',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-13',
-      'slug' => 'privideniya-13',
+      'guid' => '715f0535-e9a8-44a2-9994-367dc074be0a',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-48',
+      'slug' => 'privideniya-48',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-13',
+        1 => 'Открыт метод устранения неврозов у привидений-48',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-13',
+        1 => 'Open method of elimination of neuroses in ghosts-48',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2142,7 +2142,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-13',
+        1 => 'Открыт метод устранения неврозов у привидений-48',
       ),
       'contents#ru-RU' => 
       array (
@@ -2203,26 +2203,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '99840044-5b59-4337-a9e7-9300eef9e4d8',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-36',
-      'slug' => 'privideniya-36',
+      'guid' => '818bfaab-0aba-4f1d-9535-e28d45207691',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-19',
+      'slug' => 'privideniya-19',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-36',
+        1 => 'Открыт метод устранения неврозов у привидений-19',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-36',
+        1 => 'Open method of elimination of neuroses in ghosts-19',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2246,7 +2246,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-36',
+        1 => 'Открыт метод устранения неврозов у привидений-19',
       ),
       'contents#ru-RU' => 
       array (
@@ -2307,26 +2307,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'a70f1a17-9402-4c02-9a9e-7d3fcd7688fd',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-26',
-      'slug' => 'privideniya-26',
+      'guid' => '8ebb4d8b-d8d9-4e34-a7d2-898bd65bc829',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-10',
+      'slug' => 'privideniya-10',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-26',
+        1 => 'Открыт метод устранения неврозов у привидений-10',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-26',
+        1 => 'Open method of elimination of neuroses in ghosts-10',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2350,7 +2350,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-26',
+        1 => 'Открыт метод устранения неврозов у привидений-10',
       ),
       'contents#ru-RU' => 
       array (
@@ -2411,26 +2411,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'b060f464-a18c-436a-a470-1f5cb0fb2311',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-48',
-      'slug' => 'privideniya-48',
+      'guid' => '8fee7bf8-9701-4c9d-ba38-132d7c876d5b',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-12',
+      'slug' => 'privideniya-12',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-48',
+        1 => 'Открыт метод устранения неврозов у привидений-12',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-48',
+        1 => 'Open method of elimination of neuroses in ghosts-12',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2454,7 +2454,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-48',
+        1 => 'Открыт метод устранения неврозов у привидений-12',
       ),
       'contents#ru-RU' => 
       array (
@@ -2515,26 +2515,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'bbbba919-aa5a-4d6b-84a8-075fcad341eb',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-42',
-      'slug' => 'privideniya-42',
+      'guid' => '959eb3ef-d6c2-4633-a810-96446071a05b',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-49',
+      'slug' => 'privideniya-49',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-42',
+        1 => 'Открыт метод устранения неврозов у привидений-49',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-42',
+        1 => 'Open method of elimination of neuroses in ghosts-49',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2558,7 +2558,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-42',
+        1 => 'Открыт метод устранения неврозов у привидений-49',
       ),
       'contents#ru-RU' => 
       array (
@@ -2619,26 +2619,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'c56b3e60-5cf3-4a6a-8e86-9e56c85f797a',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-32',
-      'slug' => 'privideniya-32',
+      'guid' => '9643ec86-7791-4257-b22b-d9831e12b930',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-35',
+      'slug' => 'privideniya-35',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-32',
+        1 => 'Открыт метод устранения неврозов у привидений-35',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-32',
+        1 => 'Open method of elimination of neuroses in ghosts-35',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2662,7 +2662,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-32',
+        1 => 'Открыт метод устранения неврозов у привидений-35',
       ),
       'contents#ru-RU' => 
       array (
@@ -2723,26 +2723,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'c7e6e63b-cdee-4882-9125-6a1de19c5756',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-31',
-      'slug' => 'privideniya-31',
+      'guid' => 'a153a2e1-7281-4896-bf26-94dac5179820',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-24',
+      'slug' => 'privideniya-24',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-31',
+        1 => 'Открыт метод устранения неврозов у привидений-24',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-31',
+        1 => 'Open method of elimination of neuroses in ghosts-24',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2766,7 +2766,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-31',
+        1 => 'Открыт метод устранения неврозов у привидений-24',
       ),
       'contents#ru-RU' => 
       array (
@@ -2827,26 +2827,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'cc8e6602-ce83-4d23-8179-b293ce355f89',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-44',
-      'slug' => 'privideniya-44',
+      'guid' => 'a38e299d-827f-4ff7-b864-41396e3b7a25',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-43',
+      'slug' => 'privideniya-43',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-44',
+        1 => 'Открыт метод устранения неврозов у привидений-43',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-44',
+        1 => 'Open method of elimination of neuroses in ghosts-43',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2870,7 +2870,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-44',
+        1 => 'Открыт метод устранения неврозов у привидений-43',
       ),
       'contents#ru-RU' => 
       array (
@@ -2931,26 +2931,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'ceb2ad56-ec67-463b-a8d5-baab6968df29',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-15',
-      'slug' => 'privideniya-15',
+      'guid' => 'a41942f3-df40-4240-887d-c5e16d83a1f9',
+      'displayName' => 'Российские биатлонисты взяли первые три места',
+      'slug' => 'biathlon',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-15',
+        1 => 'Российские биатлонисты взяли первые три места',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-15',
+        1 => 'Russian biathletes took the first three places',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2969,22 +2969,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
+        1 => 'Российские биатлонисты взяли первые три места',
       ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-15',
+        1 => 'Российские биатлонисты взяли первые три места',
       ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+        1 => '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>',
       ),
       'contents#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+        1 => '<p>At the Olympic Games in Sochi Russian biathletes took all the medals.</p>',
       ),
       'active#ru-RU' => 
       array (
@@ -3010,22 +3010,44 @@ return array (
           array (
             'collection' => 'newsRubric',
             'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
+            'guid' => 'd88643e8-940f-4a5e-8db1-278a88937c74',
+            'displayName' => 'Лыжи',
+            'branch' => 
+            array (
+              'meta' => 
+              array (
+                'collection' => 'newsRubric',
+                'type' => 'base',
+                'guid' => 'f1242e64-9e58-4f78-b6d5-26d6e899bfef',
+                'displayName' => 'Зимний спорт',
+                'branch' => 
+                array (
+                  'meta' => 
+                  array (
+                    'collection' => 'newsRubric',
+                    'type' => 'base',
+                    'guid' => '9496d079-f268-47b0-91d7-59977072accf',
+                    'displayName' => 'Новости спорта',
+                    'branch' => NULL,
+                    'slug' => 'sport',
+                  ),
+                ),
+                'slug' => 'winter',
+              ),
+            ),
+            'slug' => 'ski',
           ),
         ),
       ),
       'announcement#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+        1 => '<p>Чудо на олимпиаде в Сочи</p>',
       ),
       'announcement#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+        1 => '<p>Miracle at the Olympics in Sochi</p>',
       ),
     ),
   ),
@@ -3035,26 +3057,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'cec17c7f-e3c0-461f-8c17-133de74a5084',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-35',
-      'slug' => 'privideniya-35',
+      'guid' => 'a523c2cf-12e9-4ea0-881a-83223322a6d7',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-20',
+      'slug' => 'privideniya-20',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-35',
+        1 => 'Открыт метод устранения неврозов у привидений-20',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-35',
+        1 => 'Open method of elimination of neuroses in ghosts-20',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3078,7 +3100,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-35',
+        1 => 'Открыт метод устранения неврозов у привидений-20',
       ),
       'contents#ru-RU' => 
       array (
@@ -3139,26 +3161,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'd106204f-2e48-4563-92e8-6d3b1a4285be',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-47',
-      'slug' => 'privideniya-47',
+      'guid' => 'a64709b6-d6ce-4760-bb5e-0d891b901a1b',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-46',
+      'slug' => 'privideniya-46',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-47',
+        1 => 'Открыт метод устранения неврозов у привидений-46',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-47',
+        1 => 'Open method of elimination of neuroses in ghosts-46',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3182,7 +3204,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-47',
+        1 => 'Открыт метод устранения неврозов у привидений-46',
       ),
       'contents#ru-RU' => 
       array (
@@ -3243,6 +3265,526 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
+      'guid' => 'b008a44e-23a9-4ec8-a21b-515659fd05f1',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-37',
+      'slug' => 'privideniya-37',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-37',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-37',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-37',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  32 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
+      'guid' => 'b17b4135-404a-45f0-9c07-643b4e314fd5',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-17',
+      'slug' => 'privideniya-17',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-17',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-17',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-17',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  33 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
+      'guid' => 'b61c8e3c-13c1-4b1f-a0a7-0f3cc3c937b1',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-32',
+      'slug' => 'privideniya-32',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-32',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-32',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-32',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  34 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
+      'guid' => 'ca49b8f3-b437-4e34-ad67-f618d01004e9',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-36',
+      'slug' => 'privideniya-36',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-36',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-36',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-36',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  35 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
+      'guid' => 'd6859c5a-b450-436c-a3b4-244f921b17da',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-11',
+      'slug' => 'privideniya-11',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-11',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Open method of elimination of neuroses in ghosts-11',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Открыт метод устранения неврозов у привидений-11',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'rubric' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'newsRubric',
+            'type' => 'base',
+            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
+            'displayName' => 'Новости сайта',
+            'branch' => NULL,
+            'slug' => 'company',
+          ),
+        ),
+      ),
+      'announcement#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
+      ),
+      'announcement#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
+      ),
+    ),
+  ),
+  36 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsItem',
+      'type' => 'base',
       'guid' => 'd6eb9ad1-667e-429d-a476-fa64c5eec115',
       'displayName' => 'Названа причина социопатии современных зомби',
       'slug' => 'zombi',
@@ -3262,7 +3804,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3346,32 +3888,32 @@ return array (
       ),
     ),
   ),
-  32 => 
+  37 => 
   array (
     'meta' => 
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'd7f272e2-6bb5-4a87-9f2c-f98b6c7683f5',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-43',
-      'slug' => 'privideniya-43',
+      'guid' => 'd92c1989-187d-4f40-a383-40ebaeb44e43',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-33',
+      'slug' => 'privideniya-33',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-43',
+        1 => 'Открыт метод устранения неврозов у привидений-33',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-43',
+        1 => 'Open method of elimination of neuroses in ghosts-33',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3395,7 +3937,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-43',
+        1 => 'Открыт метод устранения неврозов у привидений-33',
       ),
       'contents#ru-RU' => 
       array (
@@ -3450,7 +3992,7 @@ return array (
       ),
     ),
   ),
-  33 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -3475,7 +4017,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3559,574 +4101,32 @@ return array (
       ),
     ),
   ),
-  34 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => 'dc236db5-d302-47d0-ba2a-59861dd376f0',
-      'displayName' => 'Российские биатлонисты взяли первые три места',
-      'slug' => 'biathlon',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Российские биатлонисты взяли первые три места',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Russian biathletes took the first three places',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Российские биатлонисты взяли первые три места',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Российские биатлонисты взяли первые три места',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>At the Olympic Games in Sochi Russian biathletes took all the medals.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '5880a3f8-6c19-4769-889a-07a703ec46cf',
-            'displayName' => 'Лыжи',
-            'branch' => 
-            array (
-              'meta' => 
-              array (
-                'collection' => 'newsRubric',
-                'type' => 'base',
-                'guid' => '983e7c26-05ab-41af-8424-4dee8103ee46',
-                'displayName' => 'Зимний спорт',
-                'branch' => 
-                array (
-                  'meta' => 
-                  array (
-                    'collection' => 'newsRubric',
-                    'type' => 'base',
-                    'guid' => '50cb987b-007c-40b9-b9fd-4007c67403d7',
-                    'displayName' => 'Новости спорта',
-                    'branch' => NULL,
-                    'slug' => 'sport',
-                  ),
-                ),
-                'slug' => 'winter',
-              ),
-            ),
-            'slug' => 'ski',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Чудо на олимпиаде в Сочи</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>Miracle at the Olympics in Sochi</p>',
-      ),
-    ),
-  ),
-  35 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => 'dd4a5c2a-3e3b-4d58-983f-5a02afe7a09e',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-20',
-      'slug' => 'privideniya-20',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-20',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-20',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-20',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-    ),
-  ),
-  36 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => 'df357879-b864-426c-8717-b7e3ca4280f3',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-40',
-      'slug' => 'privideniya-40',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-40',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-40',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-40',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-    ),
-  ),
-  37 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => 'e0a78c3d-61ac-48f6-9a61-a5ee67e964da',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-17',
-      'slug' => 'privideniya-17',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-17',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-17',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-17',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-    ),
-  ),
-  38 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsItem',
-      'type' => 'base',
-      'guid' => 'e42c90d2-368f-4dda-887a-6d45ad0dc74e',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-46',
-      'slug' => 'privideniya-46',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-46',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-46',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-46',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'rubric' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'newsRubric',
-            'type' => 'base',
-            'guid' => '8650706f-04ca-49b6-a93d-966a42377a61',
-            'displayName' => 'Новости сайта',
-            'branch' => NULL,
-            'slug' => 'company',
-          ),
-        ),
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>',
-      ),
-      'announcement#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-    ),
-  ),
   39 => 
   array (
     'meta' => 
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'e6d08e9f-9e03-4e02-aa37-840c6545aa50',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-34',
-      'slug' => 'privideniya-34',
+      'guid' => 'dca97a51-8f5e-4a16-9e75-ac9763f3dfb9',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-29',
+      'slug' => 'privideniya-29',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-34',
+        1 => 'Открыт метод устранения неврозов у привидений-29',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-34',
+        1 => 'Open method of elimination of neuroses in ghosts-29',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4150,7 +4150,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-34',
+        1 => 'Открыт метод устранения неврозов у привидений-29',
       ),
       'contents#ru-RU' => 
       array (
@@ -4211,26 +4211,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'ea44daa4-30bc-4d53-916e-b557f719fdde',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-21',
-      'slug' => 'privideniya-21',
+      'guid' => 'dcdbf7e6-a180-4d7a-bb77-1d6e4890dc9c',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-25',
+      'slug' => 'privideniya-25',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-21',
+        1 => 'Открыт метод устранения неврозов у привидений-25',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-21',
+        1 => 'Open method of elimination of neuroses in ghosts-25',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4254,7 +4254,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-21',
+        1 => 'Открыт метод устранения неврозов у привидений-25',
       ),
       'contents#ru-RU' => 
       array (
@@ -4315,26 +4315,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'efeb8ac7-8f06-4a7e-ab74-021e692c96ab',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-45',
-      'slug' => 'privideniya-45',
+      'guid' => 'deb00900-9da0-4c6f-9b15-57a343c03647',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-40',
+      'slug' => 'privideniya-40',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-45',
+        1 => 'Открыт метод устранения неврозов у привидений-40',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-45',
+        1 => 'Open method of elimination of neuroses in ghosts-40',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4358,7 +4358,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-45',
+        1 => 'Открыт метод устранения неврозов у привидений-40',
       ),
       'contents#ru-RU' => 
       array (
@@ -4419,26 +4419,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'f22e940d-77a4-4a59-b6fb-13651edb6fda',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-24',
-      'slug' => 'privideniya-24',
+      'guid' => 'e5d027d2-5528-46d3-8ab7-4d494ba39a6c',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-22',
+      'slug' => 'privideniya-22',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-24',
+        1 => 'Открыт метод устранения неврозов у привидений-22',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-24',
+        1 => 'Open method of elimination of neuroses in ghosts-22',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4462,7 +4462,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-24',
+        1 => 'Открыт метод устранения неврозов у привидений-22',
       ),
       'contents#ru-RU' => 
       array (
@@ -4523,26 +4523,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'f928023d-ce78-4ca1-b45f-5dce849d0631',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-19',
-      'slug' => 'privideniya-19',
+      'guid' => 'e734639d-0f82-4ce1-945e-14c3b1640cd8',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-45',
+      'slug' => 'privideniya-45',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-19',
+        1 => 'Открыт метод устранения неврозов у привидений-45',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-19',
+        1 => 'Open method of elimination of neuroses in ghosts-45',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4566,7 +4566,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-19',
+        1 => 'Открыт метод устранения неврозов у привидений-45',
       ),
       'contents#ru-RU' => 
       array (
@@ -4627,26 +4627,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'fef0eace-f6d2-435d-85dd-0300fd53be55',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-38',
-      'slug' => 'privideniya-38',
+      'guid' => 'ec26f083-ff23-44b7-8b49-4e953d40651e',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-13',
+      'slug' => 'privideniya-13',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-38',
+        1 => 'Открыт метод устранения неврозов у привидений-13',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-38',
+        1 => 'Open method of elimination of neuroses in ghosts-13',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4670,7 +4670,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-38',
+        1 => 'Открыт метод устранения неврозов у привидений-13',
       ),
       'contents#ru-RU' => 
       array (
@@ -4731,26 +4731,26 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'fffb2eeb-ea73-45af-bd32-68bcb50b6b08',
-      'displayName' => 'Открыт метод устранения неврозов у привидений-25',
-      'slug' => 'privideniya-25',
+      'guid' => 'f40756ca-22c2-4fb4-920b-b00a22c2c777',
+      'displayName' => 'Открыт метод устранения неврозов у привидений-15',
+      'slug' => 'privideniya-15',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-25',
+        1 => 'Открыт метод устранения неврозов у привидений-15',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Open method of elimination of neuroses in ghosts-25',
+        1 => 'Open method of elimination of neuroses in ghosts-15',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4774,7 +4774,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Открыт метод устранения неврозов у привидений-25',
+        1 => 'Открыт метод устранения неврозов у привидений-15',
       ),
       'contents#ru-RU' => 
       array (

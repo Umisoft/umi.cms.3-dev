@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'blogAuthor',
       'type' => 'base',
-      'guid' => 'acb5441f-c4ad-4814-b0d0-fd5049e9dc27',
+      'guid' => '276d3c62-fe91-4143-92a0-b968f6e081df',
       'displayName' => 'Бивес',
       'slug' => 'bives',
     ),
@@ -28,7 +28,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -96,7 +96,7 @@ return array (
     array (
       'collection' => 'blogAuthor',
       'type' => 'base',
-      'guid' => 'cb758fa0-8a7c-4ac7-8ab2-617dd96962c5',
+      'guid' => 'fc966ae1-e927-4884-8e13-abf69d913407',
       'displayName' => 'Батхед',
       'slug' => 'buthead',
     ),
@@ -115,7 +115,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -170,7 +170,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5ff110ff-a8a6-42f3-aa49-9ea15b1cc935',
+            'guid' => 'ad4a3c78-e06b-4794-8cc2-7656ce6ff00b',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),

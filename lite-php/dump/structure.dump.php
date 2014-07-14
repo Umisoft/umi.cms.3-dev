@@ -9,148 +9,203 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-      'displayName' => 'Элемент 11',
+      'guid' => '07af97d5-603b-4b52-9f6a-032708096ac7',
+      'displayName' => 'Элемент 16',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-          'displayName' => 'Элемент 10',
+          'guid' => '429f11cb-b112-4489-b46a-a0f5e6a55e72',
+          'displayName' => 'Элемент 15',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-              'displayName' => 'Элемент 9',
+              'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
+              'displayName' => 'Элемент 14',
               'branch' => 
               array (
                 'meta' => 
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                  'displayName' => 'Элемент 8',
+                  'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+                  'displayName' => 'Элемент 13',
                   'branch' => 
                   array (
                     'meta' => 
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                      'displayName' => 'Элемент 7',
+                      'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+                      'displayName' => 'Элемент 12',
                       'branch' => 
                       array (
                         'meta' => 
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                          'displayName' => 'Элемент 6',
+                          'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+                          'displayName' => 'Элемент 11',
                           'branch' => 
                           array (
                             'meta' => 
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                              'displayName' => 'Элемент 5',
+                              'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                              'displayName' => 'Элемент 10',
                               'branch' => 
                               array (
                                 'meta' => 
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                  'displayName' => 'Элемент 4',
+                                  'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                                  'displayName' => 'Элемент 9',
                                   'branch' => 
                                   array (
                                     'meta' => 
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                      'displayName' => 'Элемент 3',
+                                      'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                                      'displayName' => 'Элемент 8',
                                       'branch' => 
                                       array (
                                         'meta' => 
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                          'displayName' => 'Элемент 2',
+                                          'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                                          'displayName' => 'Элемент 7',
                                           'branch' => 
                                           array (
                                             'meta' => 
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                              'displayName' => 'Элемент 1',
+                                              'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                              'displayName' => 'Элемент 6',
                                               'branch' => 
                                               array (
                                                 'meta' => 
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                  'displayName' => 'Элемент 0',
-                                                  'branch' => NULL,
-                                                  'slug' => 'item0',
+                                                  'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                                  'displayName' => 'Элемент 5',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                                      'displayName' => 'Элемент 4',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                                          'displayName' => 'Элемент 3',
+                                                          'branch' => 
+                                                          array (
+                                                            'meta' => 
+                                                            array (
+                                                              'collection' => 'structure',
+                                                              'type' => 'static',
+                                                              'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                              'displayName' => 'Элемент 2',
+                                                              'branch' => 
+                                                              array (
+                                                                'meta' => 
+                                                                array (
+                                                                  'collection' => 'structure',
+                                                                  'type' => 'static',
+                                                                  'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                                  'displayName' => 'Элемент 1',
+                                                                  'branch' => 
+                                                                  array (
+                                                                    'meta' => 
+                                                                    array (
+                                                                      'collection' => 'structure',
+                                                                      'type' => 'static',
+                                                                      'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                                      'displayName' => 'Элемент 0',
+                                                                      'branch' => NULL,
+                                                                      'slug' => 'item0',
+                                                                    ),
+                                                                  ),
+                                                                  'slug' => 'item1',
+                                                                ),
+                                                              ),
+                                                              'slug' => 'item2',
+                                                            ),
+                                                          ),
+                                                          'slug' => 'item3',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item4',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item5',
                                                 ),
                                               ),
-                                              'slug' => 'item1',
+                                              'slug' => 'item6',
                                             ),
                                           ),
-                                          'slug' => 'item2',
+                                          'slug' => 'item7',
                                         ),
                                       ),
-                                      'slug' => 'item3',
+                                      'slug' => 'item8',
                                     ),
                                   ),
-                                  'slug' => 'item4',
+                                  'slug' => 'item9',
                                 ),
                               ),
-                              'slug' => 'item5',
+                              'slug' => 'item10',
                             ),
                           ),
-                          'slug' => 'item6',
+                          'slug' => 'item11',
                         ),
                       ),
-                      'slug' => 'item7',
+                      'slug' => 'item12',
                     ),
                   ),
-                  'slug' => 'item8',
+                  'slug' => 'item13',
                 ),
               ),
-              'slug' => 'item9',
+              'slug' => 'item14',
             ),
           ),
-          'slug' => 'item10',
+          'slug' => 'item15',
         ),
       ),
-      'slug' => 'item11',
+      'slug' => 'item16',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 11',
+        1 => 'Элемент 16',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 11',
+        1 => 'Item 16',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -185,6 +240,16 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (
@@ -204,225 +269,38 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '06d9c81a-5288-4d60-86b8-86f8b12a9732',
-      'displayName' => 'Элемент 18',
+      'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+      'displayName' => 'Элемент 1',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '1b28afce-202f-455f-98e7-f2620039d712',
-          'displayName' => 'Элемент 17',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '8a072987-a215-4a29-add4-10c441a04451',
-              'displayName' => 'Элемент 16',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '4b685445-5873-482b-898c-2a790a1a5317',
-                  'displayName' => 'Элемент 15',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
-                      'displayName' => 'Элемент 14',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-                          'displayName' => 'Элемент 13',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-                              'displayName' => 'Элемент 12',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-                                  'displayName' => 'Элемент 11',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                                      'displayName' => 'Элемент 10',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                                          'displayName' => 'Элемент 9',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                                              'displayName' => 'Элемент 8',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                                                  'displayName' => 'Элемент 7',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                                      'displayName' => 'Элемент 6',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                                          'displayName' => 'Элемент 5',
-                                                          'branch' => 
-                                                          array (
-                                                            'meta' => 
-                                                            array (
-                                                              'collection' => 'structure',
-                                                              'type' => 'static',
-                                                              'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                                              'displayName' => 'Элемент 4',
-                                                              'branch' => 
-                                                              array (
-                                                                'meta' => 
-                                                                array (
-                                                                  'collection' => 'structure',
-                                                                  'type' => 'static',
-                                                                  'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                                                  'displayName' => 'Элемент 3',
-                                                                  'branch' => 
-                                                                  array (
-                                                                    'meta' => 
-                                                                    array (
-                                                                      'collection' => 'structure',
-                                                                      'type' => 'static',
-                                                                      'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                                      'displayName' => 'Элемент 2',
-                                                                      'branch' => 
-                                                                      array (
-                                                                        'meta' => 
-                                                                        array (
-                                                                          'collection' => 'structure',
-                                                                          'type' => 'static',
-                                                                          'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                                          'displayName' => 'Элемент 1',
-                                                                          'branch' => 
-                                                                          array (
-                                                                            'meta' => 
-                                                                            array (
-                                                                              'collection' => 'structure',
-                                                                              'type' => 'static',
-                                                                              'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                                              'displayName' => 'Элемент 0',
-                                                                              'branch' => NULL,
-                                                                              'slug' => 'item0',
-                                                                            ),
-                                                                          ),
-                                                                          'slug' => 'item1',
-                                                                        ),
-                                                                      ),
-                                                                      'slug' => 'item2',
-                                                                    ),
-                                                                  ),
-                                                                  'slug' => 'item3',
-                                                                ),
-                                                              ),
-                                                              'slug' => 'item4',
-                                                            ),
-                                                          ),
-                                                          'slug' => 'item5',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item6',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item7',
-                                                ),
-                                              ),
-                                              'slug' => 'item8',
-                                            ),
-                                          ),
-                                          'slug' => 'item9',
-                                        ),
-                                      ),
-                                      'slug' => 'item10',
-                                    ),
-                                  ),
-                                  'slug' => 'item11',
-                                ),
-                              ),
-                              'slug' => 'item12',
-                            ),
-                          ),
-                          'slug' => 'item13',
-                        ),
-                      ),
-                      'slug' => 'item14',
-                    ),
-                  ),
-                  'slug' => 'item15',
-                ),
-              ),
-              'slug' => 'item16',
-            ),
-          ),
-          'slug' => 'item17',
+          'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+          'displayName' => 'Элемент 0',
+          'branch' => NULL,
+          'slug' => 'item0',
         ),
       ),
-      'slug' => 'item18',
+      'slug' => 'item1',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 18',
+        1 => 'Элемент 1',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 18',
+        1 => 'Item 1',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -457,6 +335,16 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (
@@ -476,38 +364,49 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '0a699781-70cb-4cad-8b29-35e15224aecb',
-      'displayName' => 'Черновики блога',
+      'guid' => '107531b1-fd09-471c-88f7-758a9b831589',
+      'displayName' => 'Очередь на модерацию',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-          'displayName' => 'Блог',
-          'branch' => NULL,
-          'slug' => 'blogik',
+          'guid' => '62d13af0-dead-4a36-9908-dcaa5ecbcfa6',
+          'displayName' => 'Посты на модерацию',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'needmoderation',
         ),
       ),
-      'slug' => 'drafts',
+      'slug' => 'all',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Черновики блога',
+        1 => 'Очередь на модерацию',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Drafts',
+        1 => 'Turn on moderation',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -541,17 +440,17 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'draft',
+        1 => 'all',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'blog.draft',
+        1 => 'blog.moderate.all',
       ),
       'inMenu' => 
       array (
@@ -576,181 +475,159 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
-      'displayName' => 'Элемент 14',
+      'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+      'displayName' => 'Элемент 12',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-          'displayName' => 'Элемент 13',
+          'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+          'displayName' => 'Элемент 11',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-              'displayName' => 'Элемент 12',
+              'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+              'displayName' => 'Элемент 10',
               'branch' => 
               array (
                 'meta' => 
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-                  'displayName' => 'Элемент 11',
+                  'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                  'displayName' => 'Элемент 9',
                   'branch' => 
                   array (
                     'meta' => 
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                      'displayName' => 'Элемент 10',
+                      'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                      'displayName' => 'Элемент 8',
                       'branch' => 
                       array (
                         'meta' => 
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                          'displayName' => 'Элемент 9',
+                          'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                          'displayName' => 'Элемент 7',
                           'branch' => 
                           array (
                             'meta' => 
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                              'displayName' => 'Элемент 8',
+                              'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                              'displayName' => 'Элемент 6',
                               'branch' => 
                               array (
                                 'meta' => 
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                                  'displayName' => 'Элемент 7',
+                                  'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                  'displayName' => 'Элемент 5',
                                   'branch' => 
                                   array (
                                     'meta' => 
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                      'displayName' => 'Элемент 6',
+                                      'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                      'displayName' => 'Элемент 4',
                                       'branch' => 
                                       array (
                                         'meta' => 
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                          'displayName' => 'Элемент 5',
+                                          'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                          'displayName' => 'Элемент 3',
                                           'branch' => 
                                           array (
                                             'meta' => 
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                              'displayName' => 'Элемент 4',
+                                              'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                              'displayName' => 'Элемент 2',
                                               'branch' => 
                                               array (
                                                 'meta' => 
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                                  'displayName' => 'Элемент 3',
+                                                  'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                  'displayName' => 'Элемент 1',
                                                   'branch' => 
                                                   array (
                                                     'meta' => 
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                      'displayName' => 'Элемент 2',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                          'displayName' => 'Элемент 1',
-                                                          'branch' => 
-                                                          array (
-                                                            'meta' => 
-                                                            array (
-                                                              'collection' => 'structure',
-                                                              'type' => 'static',
-                                                              'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                              'displayName' => 'Элемент 0',
-                                                              'branch' => NULL,
-                                                              'slug' => 'item0',
-                                                            ),
-                                                          ),
-                                                          'slug' => 'item1',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item2',
+                                                      'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                      'displayName' => 'Элемент 0',
+                                                      'branch' => NULL,
+                                                      'slug' => 'item0',
                                                     ),
                                                   ),
-                                                  'slug' => 'item3',
+                                                  'slug' => 'item1',
                                                 ),
                                               ),
-                                              'slug' => 'item4',
+                                              'slug' => 'item2',
                                             ),
                                           ),
-                                          'slug' => 'item5',
+                                          'slug' => 'item3',
                                         ),
                                       ),
-                                      'slug' => 'item6',
+                                      'slug' => 'item4',
                                     ),
                                   ),
-                                  'slug' => 'item7',
+                                  'slug' => 'item5',
                                 ),
                               ),
-                              'slug' => 'item8',
+                              'slug' => 'item6',
                             ),
                           ),
-                          'slug' => 'item9',
+                          'slug' => 'item7',
                         ),
                       ),
-                      'slug' => 'item10',
+                      'slug' => 'item8',
                     ),
                   ),
-                  'slug' => 'item11',
+                  'slug' => 'item9',
                 ),
               ),
-              'slug' => 'item12',
+              'slug' => 'item10',
             ),
           ),
-          'slug' => 'item13',
+          'slug' => 'item11',
         ),
       ),
-      'slug' => 'item14',
+      'slug' => 'item12',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 14',
+        1 => 'Элемент 12',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 14',
+        1 => 'Item 12',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -785,6 +662,16 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (
@@ -803,215 +690,50 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '1b28afce-202f-455f-98e7-f2620039d712',
-      'displayName' => 'Элемент 17',
+      'type' => 'system',
+      'guid' => '1b6cccad-0056-4d8d-b7df-8934614b92da',
+      'displayName' => 'Редактировать посты на модерации',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '8a072987-a215-4a29-add4-10c441a04451',
-          'displayName' => 'Элемент 16',
+          'type' => 'system',
+          'guid' => '62d13af0-dead-4a36-9908-dcaa5ecbcfa6',
+          'displayName' => 'Посты на модерацию',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '4b685445-5873-482b-898c-2a790a1a5317',
-              'displayName' => 'Элемент 15',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
-                  'displayName' => 'Элемент 14',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-                      'displayName' => 'Элемент 13',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-                          'displayName' => 'Элемент 12',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-                              'displayName' => 'Элемент 11',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                                  'displayName' => 'Элемент 10',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                                      'displayName' => 'Элемент 9',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                                          'displayName' => 'Элемент 8',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                                              'displayName' => 'Элемент 7',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                                  'displayName' => 'Элемент 6',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                                      'displayName' => 'Элемент 5',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                                          'displayName' => 'Элемент 4',
-                                                          'branch' => 
-                                                          array (
-                                                            'meta' => 
-                                                            array (
-                                                              'collection' => 'structure',
-                                                              'type' => 'static',
-                                                              'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                                              'displayName' => 'Элемент 3',
-                                                              'branch' => 
-                                                              array (
-                                                                'meta' => 
-                                                                array (
-                                                                  'collection' => 'structure',
-                                                                  'type' => 'static',
-                                                                  'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                                  'displayName' => 'Элемент 2',
-                                                                  'branch' => 
-                                                                  array (
-                                                                    'meta' => 
-                                                                    array (
-                                                                      'collection' => 'structure',
-                                                                      'type' => 'static',
-                                                                      'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                                      'displayName' => 'Элемент 1',
-                                                                      'branch' => 
-                                                                      array (
-                                                                        'meta' => 
-                                                                        array (
-                                                                          'collection' => 'structure',
-                                                                          'type' => 'static',
-                                                                          'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                                          'displayName' => 'Элемент 0',
-                                                                          'branch' => NULL,
-                                                                          'slug' => 'item0',
-                                                                        ),
-                                                                      ),
-                                                                      'slug' => 'item1',
-                                                                    ),
-                                                                  ),
-                                                                  'slug' => 'item2',
-                                                                ),
-                                                              ),
-                                                              'slug' => 'item3',
-                                                            ),
-                                                          ),
-                                                          'slug' => 'item4',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item5',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item6',
-                                                ),
-                                              ),
-                                              'slug' => 'item7',
-                                            ),
-                                          ),
-                                          'slug' => 'item8',
-                                        ),
-                                      ),
-                                      'slug' => 'item9',
-                                    ),
-                                  ),
-                                  'slug' => 'item10',
-                                ),
-                              ),
-                              'slug' => 'item11',
-                            ),
-                          ),
-                          'slug' => 'item12',
-                        ),
-                      ),
-                      'slug' => 'item13',
-                    ),
-                  ),
-                  'slug' => 'item14',
-                ),
-              ),
-              'slug' => 'item15',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
             ),
           ),
-          'slug' => 'item16',
+          'slug' => 'needmoderation',
         ),
       ),
-      'slug' => 'item17',
+      'slug' => 'edit',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 17',
+        1 => 'Редактировать посты на модерации',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 17',
+        1 => 'Edit posts to moderate',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1047,6 +769,16 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'edit',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.edit',
+      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1057,6 +789,11 @@ return array (
         0 => 'integer',
         1 => 0,
       ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   5 => 
@@ -1065,7 +802,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '1c157f64-d4d4-42a7-95b2-0d9aeb91d401',
+      'guid' => '1f2087a0-39c2-4d5e-8ed9-88411b1e92be',
       'displayName' => 'Просмотреть пост на модерации',
       'branch' => 
       array (
@@ -1073,7 +810,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'a59eccd0-cbf8-4c81-9dc3-e8db23018f91',
+          'guid' => '62d13af0-dead-4a36-9908-dcaa5ecbcfa6',
           'displayName' => 'Посты на модерацию',
           'branch' => 
           array (
@@ -1107,7 +844,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1176,117 +913,6 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '1f77b475-c1f9-4b87-aa75-6ba8a6bf5013',
-      'displayName' => 'Просмотр поста',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
-          'displayName' => 'Пост блога',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'post',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Просмотр поста',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'View post',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'view',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.post.view',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  7 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
       'guid' => '2099184c-013c-4653-8882-21c06d5e4e83',
       'displayName' => 'Комментарий блога',
       'branch' => 
@@ -1318,7 +944,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1381,7 +1007,7 @@ return array (
       ),
     ),
   ),
-  8 => 
+  7 => 
   array (
     'meta' => 
     array (
@@ -1418,7 +1044,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1481,6 +1107,122 @@ return array (
       ),
     ),
   ),
+  8 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '267b4dc3-6ba8-4540-9783-54913909ecce',
+      'displayName' => 'Подтверждение смены пароля',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '70b49aec-085d-48ca-be8f-831a6f13f78c',
+          'displayName' => 'Запрос смены пароля',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+              'displayName' => 'Пользователи',
+              'branch' => NULL,
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'restore',
+        ),
+      ),
+      'slug' => 'confirm',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подтверждение смены пароля',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подтверждение смены пароля',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подтверждение смены пароля',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'confirmation',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.confirmation',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
   9 => 
   array (
     'meta' => 
@@ -1518,7 +1260,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1586,146 +1328,6 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-      'displayName' => 'Элемент 6',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-          'displayName' => 'Элемент 5',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-              'displayName' => 'Элемент 4',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                  'displayName' => 'Элемент 3',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                      'displayName' => 'Элемент 2',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                          'displayName' => 'Элемент 1',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                              'displayName' => 'Элемент 0',
-                              'branch' => NULL,
-                              'slug' => 'item0',
-                            ),
-                          ),
-                          'slug' => 'item1',
-                        ),
-                      ),
-                      'slug' => 'item2',
-                    ),
-                  ),
-                  'slug' => 'item3',
-                ),
-              ),
-              'slug' => 'item4',
-            ),
-          ),
-          'slug' => 'item5',
-        ),
-      ),
-      'slug' => 'item6',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 6',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 6',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  11 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
       'type' => 'system',
       'guid' => '2ac90e34-16d0-4113-ab7c-de37c0287516',
       'displayName' => 'Авторы блога',
@@ -1758,7 +1360,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1821,55 +1423,132 @@ return array (
       ),
     ),
   ),
-  12 => 
+  11 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '2ae0398b-d9cd-41dd-a17d-86c641a77c22',
-      'displayName' => 'Редактировать отклонённый пост',
+      'type' => 'static',
+      'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+      'displayName' => 'Элемент 9',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'e3f15e94-adcd-464b-b32f-c5d4b8758e74',
-          'displayName' => 'Отклонённые посты',
+          'type' => 'static',
+          'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+          'displayName' => 'Элемент 8',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
+              'type' => 'static',
+              'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+              'displayName' => 'Элемент 7',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                  'displayName' => 'Элемент 6',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                      'displayName' => 'Элемент 5',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                          'displayName' => 'Элемент 4',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                              'displayName' => 'Элемент 3',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                  'displayName' => 'Элемент 2',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                      'displayName' => 'Элемент 1',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                          'displayName' => 'Элемент 0',
+                                          'branch' => NULL,
+                                          'slug' => 'item0',
+                                        ),
+                                      ),
+                                      'slug' => 'item1',
+                                    ),
+                                  ),
+                                  'slug' => 'item2',
+                                ),
+                              ),
+                              'slug' => 'item3',
+                            ),
+                          ),
+                          'slug' => 'item4',
+                        ),
+                      ),
+                      'slug' => 'item5',
+                    ),
+                  ),
+                  'slug' => 'item6',
+                ),
+              ),
+              'slug' => 'item7',
             ),
           ),
-          'slug' => 'rejected',
+          'slug' => 'item8',
         ),
       ),
-      'slug' => 'edit',
+      'slug' => 'item9',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Редактировать отклонённый пост',
+        1 => 'Элемент 9',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Edit rejected posts',
+        1 => 'Item 9',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1903,17 +1582,106 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'edit',
+        1 => 'structure',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'blog.reject.edit',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  12 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+      'displayName' => 'Пользователи',
+      'branch' => NULL,
+      'slug' => 'users',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Пользователи',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Пользователи',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Пользователи',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'users',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users',
       ),
       'inMenu' => 
       array (
@@ -1937,514 +1705,8 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-      'displayName' => 'Элемент 8',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-          'displayName' => 'Элемент 7',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-              'displayName' => 'Элемент 6',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                  'displayName' => 'Элемент 5',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                      'displayName' => 'Элемент 4',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                          'displayName' => 'Элемент 3',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                              'displayName' => 'Элемент 2',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                  'displayName' => 'Элемент 1',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                      'displayName' => 'Элемент 0',
-                                      'branch' => NULL,
-                                      'slug' => 'item0',
-                                    ),
-                                  ),
-                                  'slug' => 'item1',
-                                ),
-                              ),
-                              'slug' => 'item2',
-                            ),
-                          ),
-                          'slug' => 'item3',
-                        ),
-                      ),
-                      'slug' => 'item4',
-                    ),
-                  ),
-                  'slug' => 'item5',
-                ),
-              ),
-              'slug' => 'item6',
-            ),
-          ),
-          'slug' => 'item7',
-        ),
-      ),
-      'slug' => 'item8',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 8',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 8',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  14 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
       'type' => 'system',
-      'guid' => '2f38c8fa-10a0-42ce-b16f-a262e82b9d81',
-      'displayName' => 'Редактирование поста',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
-          'displayName' => 'Пост блога',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'post',
-        ),
-      ),
-      'slug' => 'edit',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Редактирование поста',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Edit post',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'edit',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.post.edit',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  15 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '35943f2f-6cff-4b50-b757-00e2d9791cc1',
-      'displayName' => 'Смена пароля',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'b42dbdeb-eb1c-4221-871b-be30fe7604f2',
-          'displayName' => 'Профиль',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-              'displayName' => 'Пользователи',
-              'branch' => NULL,
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'profile',
-        ),
-      ),
-      'slug' => 'pass',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Смена пароля',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Смена пароля',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Смена пароля',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'password',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'users.profile.password',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  16 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '38622a1a-0e50-4ad5-865e-4ba5faf4fdc4',
-      'displayName' => 'Menu Item 1.2.2.1',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '8279438c-10b3-4d9b-80ce-762e2e9c02c0',
-          'displayName' => 'Menu Item 1.2.2',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '781560a8-e2ac-48fc-836d-130a10615914',
-              'displayName' => 'Menu Item 1.2',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-                  'displayName' => 'Элемент меню 1',
-                  'branch' => NULL,
-                  'slug' => 'menu-item-1',
-                ),
-              ),
-              'slug' => 'menu-item-1-2',
-            ),
-          ),
-          'slug' => 'menu-item-1-2-2',
-        ),
-      ),
-      'slug' => 'menu-item-1-2-2-1',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Menu Item 1.2.2.1',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Menu Item 1.2.2.1',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  17 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '39c882c6-1540-451e-9f97-8eddcb3a9602',
+      'guid' => '33306801-4178-4c2e-8d27-5daf8c292cb9',
       'displayName' => 'Просмотр профиля автора',
       'branch' => 
       array (
@@ -2486,7 +1748,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2549,7 +1811,340 @@ return array (
       ),
     ),
   ),
-  18 => 
+  14 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '334a2b05-97d7-4d6a-bd48-518baebcd796',
+      'displayName' => 'Информационные блоки',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '84b924ec-332f-4377-bf7f-faed402754a2',
+          'displayName' => 'Структура',
+          'branch' => NULL,
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'infoblock',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Информационные блоки',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Information block',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'infoblock',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure.infoblock',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  15 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '39307ecd-cac2-4977-a8e1-fdd6a40ea426',
+      'displayName' => 'Активация',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => 'bacc44cf-ad63-4a09-8b29-18b5db5eebc9',
+          'displayName' => 'Регистрация',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+              'displayName' => 'Пользователи',
+              'branch' => NULL,
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'registration',
+        ),
+      ),
+      'slug' => 'activate',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Активация',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Активация',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Активация',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'activation',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.activation',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  16 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '3ad67320-4c10-441b-a28f-a906f3bd761e',
+      'displayName' => 'Menu Item 1.2.2.1',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'e5e829a9-7ac2-4dcb-a881-457a32b82e15',
+          'displayName' => 'Menu Item 1.2.2',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'cb4ddc64-8241-4b90-ac82-02910e890087',
+              'displayName' => 'Menu Item 1.2',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+                  'displayName' => 'Элемент меню 1',
+                  'branch' => NULL,
+                  'slug' => 'menu-item-1',
+                ),
+              ),
+              'slug' => 'menu-item-1-2',
+            ),
+          ),
+          'slug' => 'menu-item-1-2-2',
+        ),
+      ),
+      'slug' => 'menu-item-1-2-2-1',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.2.1',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.2.1',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  17 => 
   array (
     'meta' => 
     array (
@@ -2586,7 +2181,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2664,14 +2259,14 @@ return array (
       ),
     ),
   ),
-  19 => 
+  18 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'system',
       'guid' => '3fa39832-9239-48a5-a82a-1dd2fcd0f042',
-      'displayName' => 'Тэг блога',
+      'displayName' => 'Тег блога',
       'branch' => 
       array (
         'meta' => 
@@ -2691,7 +2286,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Тэг блога',
+        1 => 'Тег блога',
       ),
       'displayName#en-US' => 
       array (
@@ -2701,7 +2296,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2764,325 +2359,13 @@ return array (
       ),
     ),
   ),
-  20 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '41a6feb2-6668-4870-a1ce-97f0fbc8751b',
-      'displayName' => 'Просмотреть отклонённый пост',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'e3f15e94-adcd-464b-b32f-c5d4b8758e74',
-          'displayName' => 'Отклонённые посты',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'rejected',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Просмотреть отклонённый пост',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'View rejected posts',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'view',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.reject.view',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  21 => 
+  19 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-      'displayName' => 'Элемент 2',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-          'displayName' => 'Элемент 1',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-              'displayName' => 'Элемент 0',
-              'branch' => NULL,
-              'slug' => 'item0',
-            ),
-          ),
-          'slug' => 'item1',
-        ),
-      ),
-      'slug' => 'item2',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 2',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 2',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  22 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '4998bb39-1b6e-4b2b-9154-26beb948d912',
-      'displayName' => 'Авторизация',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-          'displayName' => 'Пользователи',
-          'branch' => NULL,
-          'slug' => 'users',
-        ),
-      ),
-      'slug' => 'auth',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Авторизация',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Авторизация',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Авторизация',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'authorization',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'users.authorization',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  23 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '4b685445-5873-482b-898c-2a790a1a5317',
+      'guid' => '429f11cb-b112-4489-b46a-a0f5e6a55e72',
       'displayName' => 'Элемент 15',
       'branch' => 
       array (
@@ -3090,7 +2373,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
+          'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
           'displayName' => 'Элемент 14',
           'branch' => 
           array (
@@ -3098,7 +2381,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
+              'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
               'displayName' => 'Элемент 13',
               'branch' => 
               array (
@@ -3106,7 +2389,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
+                  'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
                   'displayName' => 'Элемент 12',
                   'branch' => 
                   array (
@@ -3114,7 +2397,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
+                      'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
                       'displayName' => 'Элемент 11',
                       'branch' => 
                       array (
@@ -3122,7 +2405,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
+                          'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
                           'displayName' => 'Элемент 10',
                           'branch' => 
                           array (
@@ -3130,7 +2413,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
+                              'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
                               'displayName' => 'Элемент 9',
                               'branch' => 
                               array (
@@ -3138,7 +2421,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
+                                  'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
                                   'displayName' => 'Элемент 8',
                                   'branch' => 
                                   array (
@@ -3146,7 +2429,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
+                                      'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
                                       'displayName' => 'Элемент 7',
                                       'branch' => 
                                       array (
@@ -3154,7 +2437,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
+                                          'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
                                           'displayName' => 'Элемент 6',
                                           'branch' => 
                                           array (
@@ -3162,7 +2445,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
+                                              'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
                                               'displayName' => 'Элемент 5',
                                               'branch' => 
                                               array (
@@ -3170,7 +2453,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
+                                                  'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
                                                   'displayName' => 'Элемент 4',
                                                   'branch' => 
                                                   array (
@@ -3178,7 +2461,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
+                                                      'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
                                                       'displayName' => 'Элемент 3',
                                                       'branch' => 
                                                       array (
@@ -3186,7 +2469,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
+                                                          'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
                                                           'displayName' => 'Элемент 2',
                                                           'branch' => 
                                                           array (
@@ -3194,7 +2477,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
+                                                              'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
                                                               'displayName' => 'Элемент 1',
                                                               'branch' => 
                                                               array (
@@ -3202,7 +2485,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
+                                                                  'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
                                                                   'displayName' => 'Элемент 0',
                                                                   'branch' => NULL,
                                                                   'slug' => 'item0',
@@ -3267,7 +2550,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3303,6 +2586,16 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -3315,132 +2608,55 @@ return array (
       ),
     ),
   ),
-  24 => 
+  20 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-      'displayName' => 'Элемент 9',
+      'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+      'displayName' => 'Элемент 2',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-          'displayName' => 'Элемент 8',
+          'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+          'displayName' => 'Элемент 1',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-              'displayName' => 'Элемент 7',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                  'displayName' => 'Элемент 6',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                      'displayName' => 'Элемент 5',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                          'displayName' => 'Элемент 4',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                              'displayName' => 'Элемент 3',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                  'displayName' => 'Элемент 2',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                      'displayName' => 'Элемент 1',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                          'displayName' => 'Элемент 0',
-                                          'branch' => NULL,
-                                          'slug' => 'item0',
-                                        ),
-                                      ),
-                                      'slug' => 'item1',
-                                    ),
-                                  ),
-                                  'slug' => 'item2',
-                                ),
-                              ),
-                              'slug' => 'item3',
-                            ),
-                          ),
-                          'slug' => 'item4',
-                        ),
-                      ),
-                      'slug' => 'item5',
-                    ),
-                  ),
-                  'slug' => 'item6',
-                ),
-              ),
-              'slug' => 'item7',
+              'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+              'displayName' => 'Элемент 0',
+              'branch' => NULL,
+              'slug' => 'item0',
             ),
           ),
-          'slug' => 'item8',
+          'slug' => 'item1',
         ),
       ),
-      'slug' => 'item9',
+      'slug' => 'item2',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 9',
+        1 => 'Элемент 2',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 9',
+        1 => 'Item 2',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3476,6 +2692,16 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -3488,307 +2714,44 @@ return array (
       ),
     ),
   ),
-  25 => 
+  21 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-      'displayName' => 'Элемент 1',
+      'guid' => '4600436c-2947-41a5-9529-9be049ce5478',
+      'displayName' => 'Элемент меню 1.1',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-          'displayName' => 'Элемент 0',
+          'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+          'displayName' => 'Элемент меню 1',
           'branch' => NULL,
-          'slug' => 'item0',
+          'slug' => 'menu-item-1',
         ),
       ),
-      'slug' => 'item1',
+      'slug' => 'menu-item-1-1',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 1',
+        1 => 'Элемент меню 1.1',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 1',
+        1 => 'Menu Item 1.1',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  26 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '53ee40c8-8a04-4363-b342-f46ba764a71c',
-      'displayName' => 'Структура',
-      'branch' => NULL,
-      'slug' => 'structure',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Структура',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Structure',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  27 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '65f8c145-e90d-46c2-935c-4f878b0f2f8e',
-      'displayName' => 'Меню',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '53ee40c8-8a04-4363-b342-f46ba764a71c',
-          'displayName' => 'Структура',
-          'branch' => NULL,
-          'slug' => 'structure',
-        ),
-      ),
-      'slug' => 'menu',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Меню',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Menu',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'menu',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure.menu',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  28 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-      'displayName' => 'Элемент меню 1',
-      'branch' => NULL,
-      'slug' => 'menu-item-1',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент меню 1',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Menu Item 1',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3846,13 +2809,13 @@ return array (
       ),
     ),
   ),
-  29 => 
+  22 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
+      'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
       'displayName' => 'Элемент 4',
       'branch' => 
       array (
@@ -3860,7 +2823,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
+          'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
           'displayName' => 'Элемент 3',
           'branch' => 
           array (
@@ -3868,7 +2831,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
+              'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
               'displayName' => 'Элемент 2',
               'branch' => 
               array (
@@ -3876,7 +2839,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
+                  'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
                   'displayName' => 'Элемент 1',
                   'branch' => 
                   array (
@@ -3884,7 +2847,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
+                      'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
                       'displayName' => 'Элемент 0',
                       'branch' => NULL,
                       'slug' => 'item0',
@@ -3916,7 +2879,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3931,107 +2894,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  30 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '737230c3-5bb3-4f99-8dde-f52903b757c6',
-      'displayName' => 'Подтверждение смены пароля',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '759dd2b0-3381-46ed-9d11-bd13f538a2e6',
-          'displayName' => 'Запрос смены пароля',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-              'displayName' => 'Пользователи',
-              'branch' => NULL,
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'restore',
-        ),
-      ),
-      'slug' => 'confirm',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Подтверждение смены пароля',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Подтверждение смены пароля',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Подтверждение смены пароля',
       ),
       'active#ru-RU' => 
       array (
@@ -4056,12 +2918,1365 @@ return array (
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'confirmation',
+        1 => 'structure',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'users.restoration.confirmation',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  23 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+      'displayName' => 'Элемент меню 1',
+      'branch' => NULL,
+      'slug' => 'menu-item-1',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент меню 1',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  24 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5205bbb2-0b4f-4996-9505-030775ed6b0c',
+      'displayName' => 'Элемент 19',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'c938d57e-4e37-4f76-8765-8cda89b0f709',
+          'displayName' => 'Элемент 18',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '5ff6e4c5-edb4-4057-9492-a56d405fcbd1',
+              'displayName' => 'Элемент 17',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '07af97d5-603b-4b52-9f6a-032708096ac7',
+                  'displayName' => 'Элемент 16',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '429f11cb-b112-4489-b46a-a0f5e6a55e72',
+                      'displayName' => 'Элемент 15',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
+                          'displayName' => 'Элемент 14',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+                              'displayName' => 'Элемент 13',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+                                  'displayName' => 'Элемент 12',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+                                      'displayName' => 'Элемент 11',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                                          'displayName' => 'Элемент 10',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                                              'displayName' => 'Элемент 9',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                                                  'displayName' => 'Элемент 8',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                                                      'displayName' => 'Элемент 7',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                                          'displayName' => 'Элемент 6',
+                                                          'branch' => 
+                                                          array (
+                                                            'meta' => 
+                                                            array (
+                                                              'collection' => 'structure',
+                                                              'type' => 'static',
+                                                              'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                                              'displayName' => 'Элемент 5',
+                                                              'branch' => 
+                                                              array (
+                                                                'meta' => 
+                                                                array (
+                                                                  'collection' => 'structure',
+                                                                  'type' => 'static',
+                                                                  'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                                                  'displayName' => 'Элемент 4',
+                                                                  'branch' => 
+                                                                  array (
+                                                                    'meta' => 
+                                                                    array (
+                                                                      'collection' => 'structure',
+                                                                      'type' => 'static',
+                                                                      'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                                                      'displayName' => 'Элемент 3',
+                                                                      'branch' => 
+                                                                      array (
+                                                                        'meta' => 
+                                                                        array (
+                                                                          'collection' => 'structure',
+                                                                          'type' => 'static',
+                                                                          'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                                          'displayName' => 'Элемент 2',
+                                                                          'branch' => 
+                                                                          array (
+                                                                            'meta' => 
+                                                                            array (
+                                                                              'collection' => 'structure',
+                                                                              'type' => 'static',
+                                                                              'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                                              'displayName' => 'Элемент 1',
+                                                                              'branch' => 
+                                                                              array (
+                                                                                'meta' => 
+                                                                                array (
+                                                                                  'collection' => 'structure',
+                                                                                  'type' => 'static',
+                                                                                  'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                                                  'displayName' => 'Элемент 0',
+                                                                                  'branch' => NULL,
+                                                                                  'slug' => 'item0',
+                                                                                ),
+                                                                              ),
+                                                                              'slug' => 'item1',
+                                                                            ),
+                                                                          ),
+                                                                          'slug' => 'item2',
+                                                                        ),
+                                                                      ),
+                                                                      'slug' => 'item3',
+                                                                    ),
+                                                                  ),
+                                                                  'slug' => 'item4',
+                                                                ),
+                                                              ),
+                                                              'slug' => 'item5',
+                                                            ),
+                                                          ),
+                                                          'slug' => 'item6',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item7',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item8',
+                                                ),
+                                              ),
+                                              'slug' => 'item9',
+                                            ),
+                                          ),
+                                          'slug' => 'item10',
+                                        ),
+                                      ),
+                                      'slug' => 'item11',
+                                    ),
+                                  ),
+                                  'slug' => 'item12',
+                                ),
+                              ),
+                              'slug' => 'item13',
+                            ),
+                          ),
+                          'slug' => 'item14',
+                        ),
+                      ),
+                      'slug' => 'item15',
+                    ),
+                  ),
+                  'slug' => 'item16',
+                ),
+              ),
+              'slug' => 'item17',
+            ),
+          ),
+          'slug' => 'item18',
+        ),
+      ),
+      'slug' => 'item19',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 19',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 19',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  25 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '5656a045-3806-4dc2-8cec-b250ac15bbb2',
+      'displayName' => 'Просмотреть отклонённый пост',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => 'd95c4c52-0c51-422f-910c-288c3e2a6923',
+          'displayName' => 'Отклонённые посты',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'rejected',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотреть отклонённый пост',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View rejected posts',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'view',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  26 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
+      'displayName' => 'Элемент 14',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+          'displayName' => 'Элемент 13',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+              'displayName' => 'Элемент 12',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+                  'displayName' => 'Элемент 11',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                      'displayName' => 'Элемент 10',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                          'displayName' => 'Элемент 9',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                              'displayName' => 'Элемент 8',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                                  'displayName' => 'Элемент 7',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                      'displayName' => 'Элемент 6',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                          'displayName' => 'Элемент 5',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                              'displayName' => 'Элемент 4',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                                  'displayName' => 'Элемент 3',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                      'displayName' => 'Элемент 2',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                          'displayName' => 'Элемент 1',
+                                                          'branch' => 
+                                                          array (
+                                                            'meta' => 
+                                                            array (
+                                                              'collection' => 'structure',
+                                                              'type' => 'static',
+                                                              'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                              'displayName' => 'Элемент 0',
+                                                              'branch' => NULL,
+                                                              'slug' => 'item0',
+                                                            ),
+                                                          ),
+                                                          'slug' => 'item1',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item2',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item3',
+                                                ),
+                                              ),
+                                              'slug' => 'item4',
+                                            ),
+                                          ),
+                                          'slug' => 'item5',
+                                        ),
+                                      ),
+                                      'slug' => 'item6',
+                                    ),
+                                  ),
+                                  'slug' => 'item7',
+                                ),
+                              ),
+                              'slug' => 'item8',
+                            ),
+                          ),
+                          'slug' => 'item9',
+                        ),
+                      ),
+                      'slug' => 'item10',
+                    ),
+                  ),
+                  'slug' => 'item11',
+                ),
+              ),
+              'slug' => 'item12',
+            ),
+          ),
+          'slug' => 'item13',
+        ),
+      ),
+      'slug' => 'item14',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 14',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 14',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  27 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5ff6e4c5-edb4-4057-9492-a56d405fcbd1',
+      'displayName' => 'Элемент 17',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '07af97d5-603b-4b52-9f6a-032708096ac7',
+          'displayName' => 'Элемент 16',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '429f11cb-b112-4489-b46a-a0f5e6a55e72',
+              'displayName' => 'Элемент 15',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
+                  'displayName' => 'Элемент 14',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+                      'displayName' => 'Элемент 13',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+                          'displayName' => 'Элемент 12',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+                              'displayName' => 'Элемент 11',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                                  'displayName' => 'Элемент 10',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                                      'displayName' => 'Элемент 9',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                                          'displayName' => 'Элемент 8',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                                              'displayName' => 'Элемент 7',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                                  'displayName' => 'Элемент 6',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                                      'displayName' => 'Элемент 5',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                                          'displayName' => 'Элемент 4',
+                                                          'branch' => 
+                                                          array (
+                                                            'meta' => 
+                                                            array (
+                                                              'collection' => 'structure',
+                                                              'type' => 'static',
+                                                              'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                                              'displayName' => 'Элемент 3',
+                                                              'branch' => 
+                                                              array (
+                                                                'meta' => 
+                                                                array (
+                                                                  'collection' => 'structure',
+                                                                  'type' => 'static',
+                                                                  'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                                  'displayName' => 'Элемент 2',
+                                                                  'branch' => 
+                                                                  array (
+                                                                    'meta' => 
+                                                                    array (
+                                                                      'collection' => 'structure',
+                                                                      'type' => 'static',
+                                                                      'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                                      'displayName' => 'Элемент 1',
+                                                                      'branch' => 
+                                                                      array (
+                                                                        'meta' => 
+                                                                        array (
+                                                                          'collection' => 'structure',
+                                                                          'type' => 'static',
+                                                                          'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                                          'displayName' => 'Элемент 0',
+                                                                          'branch' => NULL,
+                                                                          'slug' => 'item0',
+                                                                        ),
+                                                                      ),
+                                                                      'slug' => 'item1',
+                                                                    ),
+                                                                  ),
+                                                                  'slug' => 'item2',
+                                                                ),
+                                                              ),
+                                                              'slug' => 'item3',
+                                                            ),
+                                                          ),
+                                                          'slug' => 'item4',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item5',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item6',
+                                                ),
+                                              ),
+                                              'slug' => 'item7',
+                                            ),
+                                          ),
+                                          'slug' => 'item8',
+                                        ),
+                                      ),
+                                      'slug' => 'item9',
+                                    ),
+                                  ),
+                                  'slug' => 'item10',
+                                ),
+                              ),
+                              'slug' => 'item11',
+                            ),
+                          ),
+                          'slug' => 'item12',
+                        ),
+                      ),
+                      'slug' => 'item13',
+                    ),
+                  ),
+                  'slug' => 'item14',
+                ),
+              ),
+              'slug' => 'item15',
+            ),
+          ),
+          'slug' => 'item16',
+        ),
+      ),
+      'slug' => 'item17',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 17',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 17',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  28 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+      'displayName' => 'Элемент 6',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+          'displayName' => 'Элемент 5',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+              'displayName' => 'Элемент 4',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                  'displayName' => 'Элемент 3',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                      'displayName' => 'Элемент 2',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                          'displayName' => 'Элемент 1',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                              'displayName' => 'Элемент 0',
+                              'branch' => NULL,
+                              'slug' => 'item0',
+                            ),
+                          ),
+                          'slug' => 'item1',
+                        ),
+                      ),
+                      'slug' => 'item2',
+                    ),
+                  ),
+                  'slug' => 'item3',
+                ),
+              ),
+              'slug' => 'item4',
+            ),
+          ),
+          'slug' => 'item5',
+        ),
+      ),
+      'slug' => 'item6',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 6',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 6',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  29 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '62d13af0-dead-4a36-9908-dcaa5ecbcfa6',
+      'displayName' => 'Посты на модерацию',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+          'displayName' => 'Блог',
+          'branch' => NULL,
+          'slug' => 'blogik',
+        ),
+      ),
+      'slug' => 'needmoderation',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Посты на модерацию',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Posts to moderate',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'moderate',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  30 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '6a03f78d-ff2e-458b-a0db-9433b9455ca2',
+      'displayName' => 'Добавить комментарий',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '2099184c-013c-4653-8882-21c06d5e4e83',
+          'displayName' => 'Комментарий блога',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'blogcomment',
+        ),
+      ),
+      'slug' => 'add',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавить комментарий',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add comment',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'add',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.add',
       ),
       'inMenu' => 
       array (
@@ -4086,7 +4301,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '759dd2b0-3381-46ed-9d11-bd13f538a2e6',
+      'guid' => '70b49aec-085d-48ca-be8f-831a6f13f78c',
       'displayName' => 'Запрос смены пароля',
       'branch' => 
       array (
@@ -4094,7 +4309,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
+          'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
           'displayName' => 'Пользователи',
           'branch' => NULL,
           'slug' => 'users',
@@ -4112,7 +4327,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4190,39 +4405,39 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '781560a8-e2ac-48fc-836d-130a10615914',
-      'displayName' => 'Menu Item 1.2',
+      'type' => 'system',
+      'guid' => '715a2abd-4ef9-4734-9f70-d65d459566fb',
+      'displayName' => 'Черновики блога',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-          'displayName' => 'Элемент меню 1',
+          'type' => 'system',
+          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+          'displayName' => 'Блог',
           'branch' => NULL,
-          'slug' => 'menu-item-1',
+          'slug' => 'blogik',
         ),
       ),
-      'slug' => 'menu-item-1-2',
+      'slug' => 'drafts',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Menu Item 1.2',
+        1 => 'Черновики блога',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Menu Item 1.2',
+        1 => 'Drafts',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4256,27 +4471,32 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'structure',
+        1 => 'draft',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'structure',
+        1 => 'blog.draft',
       ),
       'inMenu' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 2,
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -4286,33 +4506,49 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '7e695747-0f3a-4119-b2f8-bd46bba7fa7e',
-      'displayName' => 'Регистрация',
+      'guid' => '7b708e26-daf8-4326-a5a4-be4771b1c534',
+      'displayName' => 'Добавить пост',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-          'displayName' => 'Пользователи',
-          'branch' => NULL,
-          'slug' => 'users',
+          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
+          'displayName' => 'Пост блога',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'post',
         ),
       ),
-      'slug' => 'registration',
+      'slug' => 'add',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Регистрация',
+        1 => 'Добавить пост',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add post',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4327,16 +4563,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Регистрация',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Регистрация',
       ),
       'active#ru-RU' => 
       array (
@@ -4356,17 +4582,17 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'registration',
+        1 => 'add',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'users.registration',
+        1 => 'blog.post.add',
       ),
       'inMenu' => 
       array (
@@ -4390,50 +4616,28 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '8279438c-10b3-4d9b-80ce-762e2e9c02c0',
-      'displayName' => 'Menu Item 1.2.2',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '781560a8-e2ac-48fc-836d-130a10615914',
-          'displayName' => 'Menu Item 1.2',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-              'displayName' => 'Элемент меню 1',
-              'branch' => NULL,
-              'slug' => 'menu-item-1',
-            ),
-          ),
-          'slug' => 'menu-item-1-2',
-        ),
-      ),
-      'slug' => 'menu-item-1-2-2',
+      'type' => 'system',
+      'guid' => '84b924ec-332f-4377-bf7f-faed402754a2',
+      'displayName' => 'Структура',
+      'branch' => NULL,
+      'slug' => 'structure',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Menu Item 1.2.2',
+        1 => 'Структура',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Menu Item 1.2.2',
+        1 => 'Structure',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4467,7 +4671,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -4482,12 +4686,17 @@ return array (
       'inMenu' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 2,
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -4496,39 +4705,504 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '82fd9fb5-b564-4b48-8744-809ce866604b',
-      'displayName' => 'Элемент меню 1.1',
+      'type' => 'system',
+      'guid' => '8fd334e3-17d1-46c9-b2f9-6fae504fa19f',
+      'displayName' => 'Редактирование профиля автора',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-          'displayName' => 'Элемент меню 1',
-          'branch' => NULL,
-          'slug' => 'menu-item-1',
+          'type' => 'system',
+          'guid' => '2ac90e34-16d0-4113-ab7c-de37c0287516',
+          'displayName' => 'Авторы блога',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'author',
         ),
       ),
-      'slug' => 'menu-item-1-1',
+      'slug' => 'profile',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент меню 1.1',
+        1 => 'Редактирование профиля автора',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Menu Item 1.1',
+        1 => 'Edit author profile',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'profile',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.profile',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  36 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '9262cea7-6c81-4148-b5a3-94515aa0683f',
+      'displayName' => 'Просмотр черновика',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '715a2abd-4ef9-4734-9f70-d65d459566fb',
+          'displayName' => 'Черновики блога',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'drafts',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр черновика',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View draft',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'view',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  37 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '9269871f-9d9e-49d7-a4a3-d64f607391a7',
+      'displayName' => 'Редактировать отклонённый пост',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => 'd95c4c52-0c51-422f-910c-288c3e2a6923',
+          'displayName' => 'Отклонённые посты',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'rejected',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактировать отклонённый пост',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit rejected posts',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'edit',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.edit',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  38 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+      'displayName' => 'Элемент 13',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+          'displayName' => 'Элемент 12',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+              'displayName' => 'Элемент 11',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                  'displayName' => 'Элемент 10',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                      'displayName' => 'Элемент 9',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                          'displayName' => 'Элемент 8',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                              'displayName' => 'Элемент 7',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                  'displayName' => 'Элемент 6',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                      'displayName' => 'Элемент 5',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                          'displayName' => 'Элемент 4',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                              'displayName' => 'Элемент 3',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                  'displayName' => 'Элемент 2',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                      'displayName' => 'Элемент 1',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                          'displayName' => 'Элемент 0',
+                                                          'branch' => NULL,
+                                                          'slug' => 'item0',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item1',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item2',
+                                                ),
+                                              ),
+                                              'slug' => 'item3',
+                                            ),
+                                          ),
+                                          'slug' => 'item4',
+                                        ),
+                                      ),
+                                      'slug' => 'item5',
+                                    ),
+                                  ),
+                                  'slug' => 'item6',
+                                ),
+                              ),
+                              'slug' => 'item7',
+                            ),
+                          ),
+                          'slug' => 'item8',
+                        ),
+                      ),
+                      'slug' => 'item9',
+                    ),
+                  ),
+                  'slug' => 'item10',
+                ),
+              ),
+              'slug' => 'item11',
+            ),
+          ),
+          'slug' => 'item12',
+        ),
+      ),
+      'slug' => 'item13',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 13',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 13',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4577,135 +5251,6 @@ return array (
       'inMenu' => 
       array (
         0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  36 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-      'displayName' => 'Элемент 5',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-          'displayName' => 'Элемент 4',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-              'displayName' => 'Элемент 3',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                  'displayName' => 'Элемент 2',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                      'displayName' => 'Элемент 1',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                          'displayName' => 'Элемент 0',
-                          'branch' => NULL,
-                          'slug' => 'item0',
-                        ),
-                      ),
-                      'slug' => 'item1',
-                    ),
-                  ),
-                  'slug' => 'item2',
-                ),
-              ),
-              'slug' => 'item3',
-            ),
-          ),
-          'slug' => 'item4',
-        ),
-      ),
-      'slug' => 'item5',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 5',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 5',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
         1 => false,
       ),
       'submenuState' => 
@@ -4715,209 +5260,110 @@ return array (
       ),
     ),
   ),
-  37 => 
+  39 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '8a072987-a215-4a29-add4-10c441a04451',
-      'displayName' => 'Элемент 16',
+      'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+      'displayName' => 'Элемент 7',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '4b685445-5873-482b-898c-2a790a1a5317',
-          'displayName' => 'Элемент 15',
+          'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+          'displayName' => 'Элемент 6',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
-              'displayName' => 'Элемент 14',
+              'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+              'displayName' => 'Элемент 5',
               'branch' => 
               array (
                 'meta' => 
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-                  'displayName' => 'Элемент 13',
+                  'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                  'displayName' => 'Элемент 4',
                   'branch' => 
                   array (
                     'meta' => 
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-                      'displayName' => 'Элемент 12',
+                      'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                      'displayName' => 'Элемент 3',
                       'branch' => 
                       array (
                         'meta' => 
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-                          'displayName' => 'Элемент 11',
+                          'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                          'displayName' => 'Элемент 2',
                           'branch' => 
                           array (
                             'meta' => 
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                              'displayName' => 'Элемент 10',
+                              'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                              'displayName' => 'Элемент 1',
                               'branch' => 
                               array (
                                 'meta' => 
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                                  'displayName' => 'Элемент 9',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                                      'displayName' => 'Элемент 8',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                                          'displayName' => 'Элемент 7',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                              'displayName' => 'Элемент 6',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                                  'displayName' => 'Элемент 5',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                                      'displayName' => 'Элемент 4',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                                          'displayName' => 'Элемент 3',
-                                                          'branch' => 
-                                                          array (
-                                                            'meta' => 
-                                                            array (
-                                                              'collection' => 'structure',
-                                                              'type' => 'static',
-                                                              'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                              'displayName' => 'Элемент 2',
-                                                              'branch' => 
-                                                              array (
-                                                                'meta' => 
-                                                                array (
-                                                                  'collection' => 'structure',
-                                                                  'type' => 'static',
-                                                                  'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                                  'displayName' => 'Элемент 1',
-                                                                  'branch' => 
-                                                                  array (
-                                                                    'meta' => 
-                                                                    array (
-                                                                      'collection' => 'structure',
-                                                                      'type' => 'static',
-                                                                      'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                                      'displayName' => 'Элемент 0',
-                                                                      'branch' => NULL,
-                                                                      'slug' => 'item0',
-                                                                    ),
-                                                                  ),
-                                                                  'slug' => 'item1',
-                                                                ),
-                                                              ),
-                                                              'slug' => 'item2',
-                                                            ),
-                                                          ),
-                                                          'slug' => 'item3',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item4',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item5',
-                                                ),
-                                              ),
-                                              'slug' => 'item6',
-                                            ),
-                                          ),
-                                          'slug' => 'item7',
-                                        ),
-                                      ),
-                                      'slug' => 'item8',
-                                    ),
-                                  ),
-                                  'slug' => 'item9',
+                                  'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                  'displayName' => 'Элемент 0',
+                                  'branch' => NULL,
+                                  'slug' => 'item0',
                                 ),
                               ),
-                              'slug' => 'item10',
+                              'slug' => 'item1',
                             ),
                           ),
-                          'slug' => 'item11',
+                          'slug' => 'item2',
                         ),
                       ),
-                      'slug' => 'item12',
+                      'slug' => 'item3',
                     ),
                   ),
-                  'slug' => 'item13',
+                  'slug' => 'item4',
                 ),
               ),
-              'slug' => 'item14',
+              'slug' => 'item5',
             ),
           ),
-          'slug' => 'item15',
+          'slug' => 'item6',
         ),
       ),
-      'slug' => 'item16',
+      'slug' => 'item7',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 16',
+        1 => 'Элемент 7',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 16',
+        1 => 'Item 7',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4953,6 +5399,16 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -4965,7 +5421,112 @@ return array (
       ),
     ),
   ),
-  38 => 
+  40 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '9744ea7d-c12b-4f49-a053-953859a3ae42',
+      'displayName' => 'Авторизация',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+          'displayName' => 'Пользователи',
+          'branch' => NULL,
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'auth',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторизация',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторизация',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторизация',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'authorization',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  41 => 
   array (
     'meta' => 
     array (
@@ -4991,7 +5552,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5069,114 +5630,7 @@ return array (
       ),
     ),
   ),
-  39 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-      'displayName' => 'Элемент 3',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-          'displayName' => 'Элемент 2',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-              'displayName' => 'Элемент 1',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                  'displayName' => 'Элемент 0',
-                  'branch' => NULL,
-                  'slug' => 'item0',
-                ),
-              ),
-              'slug' => 'item1',
-            ),
-          ),
-          'slug' => 'item2',
-        ),
-      ),
-      'slug' => 'item3',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 3',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 3',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  40 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -5202,7 +5656,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5265,14 +5719,14 @@ return array (
       ),
     ),
   ),
-  41 => 
+  43 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'system',
       'guid' => '9ee6745f-f40d-46d8-8043-d95959462811',
-      'displayName' => 'Новостная рубрика',
+      'displayName' => 'Рубрика',
       'branch' => 
       array (
         'meta' => 
@@ -5292,7 +5746,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Новостная рубрика',
+        1 => 'Рубрика',
       ),
       'displayName#en-US' => 
       array (
@@ -5302,7 +5756,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5365,14 +5819,14 @@ return array (
       ),
     ),
   ),
-  42 => 
+  44 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'system',
       'guid' => '9ee6745f-f40d-46d8-8043-d95959462822',
-      'displayName' => 'Новостной сюжет',
+      'displayName' => 'Сюжет',
       'branch' => 
       array (
         'meta' => 
@@ -5392,7 +5846,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Новостной сюжет',
+        1 => 'Сюжет',
       ),
       'displayName#en-US' => 
       array (
@@ -5402,7 +5856,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5465,7 +5919,7 @@ return array (
       ),
     ),
   ),
-  43 => 
+  45 => 
   array (
     'meta' => 
     array (
@@ -5502,7 +5956,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5565,7 +6019,7 @@ return array (
       ),
     ),
   ),
-  44 => 
+  46 => 
   array (
     'meta' => 
     array (
@@ -5591,7 +6045,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5654,22 +6108,139 @@ return array (
       ),
     ),
   ),
-  45 => 
+  47 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+      'displayName' => 'Элемент 3',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+          'displayName' => 'Элемент 2',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+              'displayName' => 'Элемент 1',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                  'displayName' => 'Элемент 0',
+                  'branch' => NULL,
+                  'slug' => 'item0',
+                ),
+              ),
+              'slug' => 'item1',
+            ),
+          ),
+          'slug' => 'item2',
+        ),
+      ),
+      'slug' => 'item3',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 3',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 3',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  48 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'a35bb943-45ac-4d1c-90ec-a12532535589',
-      'displayName' => 'Просмотр черновика',
+      'guid' => 'ab7e8501-4e38-4ab3-aefd-510bad592436',
+      'displayName' => 'Редактирование поста',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '0a699781-70cb-4cad-8b29-35e15224aecb',
-          'displayName' => 'Черновики блога',
+          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
+          'displayName' => 'Пост блога',
           'branch' => 
           array (
             'meta' => 
@@ -5682,7 +6253,223 @@ return array (
               'slug' => 'blogik',
             ),
           ),
-          'slug' => 'drafts',
+          'slug' => 'post',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование поста',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit post',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'edit',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.edit',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  49 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => 'bacc44cf-ad63-4a09-8b29-18b5db5eebc9',
+      'displayName' => 'Регистрация',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+          'displayName' => 'Пользователи',
+          'branch' => NULL,
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'registration',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Регистрация',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Регистрация',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Регистрация',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'registration',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  50 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => 'c18cd5bf-49dd-4068-898f-76d6503829d3',
+      'displayName' => 'Просмотр поста',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
+          'displayName' => 'Пост блога',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+              'displayName' => 'Блог',
+              'branch' => NULL,
+              'slug' => 'blogik',
+            ),
+          ),
+          'slug' => 'post',
         ),
       ),
       'slug' => 'view',
@@ -5692,17 +6479,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Просмотр черновика',
+        1 => 'Просмотр поста',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'View draft',
+        1 => 'View post',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5746,7 +6533,7 @@ return array (
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'blog.draft.view',
+        1 => 'blog.post.view',
       ),
       'inMenu' => 
       array (
@@ -5762,639 +6549,6 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
-      ),
-    ),
-  ),
-  46 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'a59eccd0-cbf8-4c81-9dc3-e8db23018f91',
-      'displayName' => 'Посты на модерацию',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-          'displayName' => 'Блог',
-          'branch' => NULL,
-          'slug' => 'blogik',
-        ),
-      ),
-      'slug' => 'needmoderation',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Посты на модерацию',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Posts to moderate',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'moderate',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.moderate',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  47 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-      'displayName' => 'Пользователи',
-      'branch' => NULL,
-      'slug' => 'users',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Пользователи',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Пользователи',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Пользователи',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'users',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'users',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  48 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'a98ebef0-5462-4654-8c32-92820cb59292',
-      'displayName' => 'Добавить комментарий',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '2099184c-013c-4653-8882-21c06d5e4e83',
-          'displayName' => 'Комментарий блога',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'blogcomment',
-        ),
-      ),
-      'slug' => 'add',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Добавить комментарий',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Add comment',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'add',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.comment.add',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  49 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'aaa8787f-11a3-44f1-b342-ae1f85177d1c',
-      'displayName' => 'Добавить пост',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '257fb155-9fbf-4b99-8b1c-c0ae179070ca',
-          'displayName' => 'Пост блога',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'post',
-        ),
-      ),
-      'slug' => 'add',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Добавить пост',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Add post',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'add',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.post.add',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  50 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-      'displayName' => 'Элемент 13',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-          'displayName' => 'Элемент 12',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-              'displayName' => 'Элемент 11',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                  'displayName' => 'Элемент 10',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                      'displayName' => 'Элемент 9',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                          'displayName' => 'Элемент 8',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                              'displayName' => 'Элемент 7',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                  'displayName' => 'Элемент 6',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                      'displayName' => 'Элемент 5',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                          'displayName' => 'Элемент 4',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                              'displayName' => 'Элемент 3',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                  'displayName' => 'Элемент 2',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                      'displayName' => 'Элемент 1',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                          'displayName' => 'Элемент 0',
-                                                          'branch' => NULL,
-                                                          'slug' => 'item0',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item1',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item2',
-                                                ),
-                                              ),
-                                              'slug' => 'item3',
-                                            ),
-                                          ),
-                                          'slug' => 'item4',
-                                        ),
-                                      ),
-                                      'slug' => 'item5',
-                                    ),
-                                  ),
-                                  'slug' => 'item6',
-                                ),
-                              ),
-                              'slug' => 'item7',
-                            ),
-                          ),
-                          'slug' => 'item8',
-                        ),
-                      ),
-                      'slug' => 'item9',
-                    ),
-                  ),
-                  'slug' => 'item10',
-                ),
-              ),
-              'slug' => 'item11',
-            ),
-          ),
-          'slug' => 'item12',
-        ),
-      ),
-      'slug' => 'item13',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 13',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 13',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
       ),
     ),
   ),
@@ -6404,33 +6558,38 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'b42dbdeb-eb1c-4221-871b-be30fe7604f2',
-      'displayName' => 'Профиль',
+      'guid' => 'c716aa5c-03cd-4b59-bfb3-cb4691774df1',
+      'displayName' => 'Меню',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-          'displayName' => 'Пользователи',
+          'guid' => '84b924ec-332f-4377-bf7f-faed402754a2',
+          'displayName' => 'Структура',
           'branch' => NULL,
-          'slug' => 'users',
+          'slug' => 'structure',
         ),
       ),
-      'slug' => 'profile',
+      'slug' => 'menu',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Профиль',
+        1 => 'Меню',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6445,16 +6604,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Профиль',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Профиль',
       ),
       'active#ru-RU' => 
       array (
@@ -6474,17 +6623,17 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'profile',
+        1 => 'menu',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'users.profile',
+        1 => 'structure.menu',
       ),
       'inMenu' => 
       array (
@@ -6504,363 +6653,6 @@ return array (
     ),
   ),
   52 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-      'displayName' => 'Элемент 0',
-      'branch' => NULL,
-      'slug' => 'item0',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 0',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 0',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  53 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'c566eb32-9a34-45dc-bf67-c56e32c008c8',
-      'displayName' => 'Элемент 19',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '06d9c81a-5288-4d60-86b8-86f8b12a9732',
-          'displayName' => 'Элемент 18',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '1b28afce-202f-455f-98e7-f2620039d712',
-              'displayName' => 'Элемент 17',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '8a072987-a215-4a29-add4-10c441a04451',
-                  'displayName' => 'Элемент 16',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '4b685445-5873-482b-898c-2a790a1a5317',
-                      'displayName' => 'Элемент 15',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '177d4be1-e30d-41f3-8ea7-5c216a2b5dea',
-                          'displayName' => 'Элемент 14',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => 'af000820-542f-4cff-8d45-90c71128b053',
-                              'displayName' => 'Элемент 13',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-                                  'displayName' => 'Элемент 12',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-                                      'displayName' => 'Элемент 11',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-                                          'displayName' => 'Элемент 10',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                                              'displayName' => 'Элемент 9',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                                                  'displayName' => 'Элемент 8',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                                                      'displayName' => 'Элемент 7',
-                                                      'branch' => 
-                                                      array (
-                                                        'meta' => 
-                                                        array (
-                                                          'collection' => 'structure',
-                                                          'type' => 'static',
-                                                          'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                                                          'displayName' => 'Элемент 6',
-                                                          'branch' => 
-                                                          array (
-                                                            'meta' => 
-                                                            array (
-                                                              'collection' => 'structure',
-                                                              'type' => 'static',
-                                                              'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                                              'displayName' => 'Элемент 5',
-                                                              'branch' => 
-                                                              array (
-                                                                'meta' => 
-                                                                array (
-                                                                  'collection' => 'structure',
-                                                                  'type' => 'static',
-                                                                  'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                                                  'displayName' => 'Элемент 4',
-                                                                  'branch' => 
-                                                                  array (
-                                                                    'meta' => 
-                                                                    array (
-                                                                      'collection' => 'structure',
-                                                                      'type' => 'static',
-                                                                      'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                                                      'displayName' => 'Элемент 3',
-                                                                      'branch' => 
-                                                                      array (
-                                                                        'meta' => 
-                                                                        array (
-                                                                          'collection' => 'structure',
-                                                                          'type' => 'static',
-                                                                          'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                                                          'displayName' => 'Элемент 2',
-                                                                          'branch' => 
-                                                                          array (
-                                                                            'meta' => 
-                                                                            array (
-                                                                              'collection' => 'structure',
-                                                                              'type' => 'static',
-                                                                              'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                                              'displayName' => 'Элемент 1',
-                                                                              'branch' => 
-                                                                              array (
-                                                                                'meta' => 
-                                                                                array (
-                                                                                  'collection' => 'structure',
-                                                                                  'type' => 'static',
-                                                                                  'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                                                  'displayName' => 'Элемент 0',
-                                                                                  'branch' => NULL,
-                                                                                  'slug' => 'item0',
-                                                                                ),
-                                                                              ),
-                                                                              'slug' => 'item1',
-                                                                            ),
-                                                                          ),
-                                                                          'slug' => 'item2',
-                                                                        ),
-                                                                      ),
-                                                                      'slug' => 'item3',
-                                                                    ),
-                                                                  ),
-                                                                  'slug' => 'item4',
-                                                                ),
-                                                              ),
-                                                              'slug' => 'item5',
-                                                            ),
-                                                          ),
-                                                          'slug' => 'item6',
-                                                        ),
-                                                      ),
-                                                      'slug' => 'item7',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item8',
-                                                ),
-                                              ),
-                                              'slug' => 'item9',
-                                            ),
-                                          ),
-                                          'slug' => 'item10',
-                                        ),
-                                      ),
-                                      'slug' => 'item11',
-                                    ),
-                                  ),
-                                  'slug' => 'item12',
-                                ),
-                              ),
-                              'slug' => 'item13',
-                            ),
-                          ),
-                          'slug' => 'item14',
-                        ),
-                      ),
-                      'slug' => 'item15',
-                    ),
-                  ),
-                  'slug' => 'item16',
-                ),
-              ),
-              'slug' => 'item17',
-            ),
-          ),
-          'slug' => 'item18',
-        ),
-      ),
-      'slug' => 'item19',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 19',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 19',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  54 => 
   array (
     'meta' => 
     array (
@@ -6886,7 +6678,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6964,55 +6756,231 @@ return array (
       ),
     ),
   ),
-  55 => 
+  53 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'ccc9f785-b274-4f5b-bfd5-1ea2dafa1504',
-      'displayName' => 'Редактировать посты на модерации',
+      'type' => 'static',
+      'guid' => 'c938d57e-4e37-4f76-8765-8cda89b0f709',
+      'displayName' => 'Элемент 18',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'a59eccd0-cbf8-4c81-9dc3-e8db23018f91',
-          'displayName' => 'Посты на модерацию',
+          'type' => 'static',
+          'guid' => '5ff6e4c5-edb4-4057-9492-a56d405fcbd1',
+          'displayName' => 'Элемент 17',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
+              'type' => 'static',
+              'guid' => '07af97d5-603b-4b52-9f6a-032708096ac7',
+              'displayName' => 'Элемент 16',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '429f11cb-b112-4489-b46a-a0f5e6a55e72',
+                  'displayName' => 'Элемент 15',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '5cae07bc-bb53-4877-a360-dbff52d33302',
+                      'displayName' => 'Элемент 14',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '94768c61-977c-42c3-81c9-e026b6425b4d',
+                          'displayName' => 'Элемент 13',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => '1a1b9e0b-e285-4477-b264-0a1166d398fc',
+                              'displayName' => 'Элемент 12',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+                                  'displayName' => 'Элемент 11',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+                                      'displayName' => 'Элемент 10',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+                                          'displayName' => 'Элемент 9',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                                              'displayName' => 'Элемент 8',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                                                  'displayName' => 'Элемент 7',
+                                                  'branch' => 
+                                                  array (
+                                                    'meta' => 
+                                                    array (
+                                                      'collection' => 'structure',
+                                                      'type' => 'static',
+                                                      'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                                                      'displayName' => 'Элемент 6',
+                                                      'branch' => 
+                                                      array (
+                                                        'meta' => 
+                                                        array (
+                                                          'collection' => 'structure',
+                                                          'type' => 'static',
+                                                          'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                                                          'displayName' => 'Элемент 5',
+                                                          'branch' => 
+                                                          array (
+                                                            'meta' => 
+                                                            array (
+                                                              'collection' => 'structure',
+                                                              'type' => 'static',
+                                                              'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                                              'displayName' => 'Элемент 4',
+                                                              'branch' => 
+                                                              array (
+                                                                'meta' => 
+                                                                array (
+                                                                  'collection' => 'structure',
+                                                                  'type' => 'static',
+                                                                  'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                                                  'displayName' => 'Элемент 3',
+                                                                  'branch' => 
+                                                                  array (
+                                                                    'meta' => 
+                                                                    array (
+                                                                      'collection' => 'structure',
+                                                                      'type' => 'static',
+                                                                      'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                                                      'displayName' => 'Элемент 2',
+                                                                      'branch' => 
+                                                                      array (
+                                                                        'meta' => 
+                                                                        array (
+                                                                          'collection' => 'structure',
+                                                                          'type' => 'static',
+                                                                          'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                                                          'displayName' => 'Элемент 1',
+                                                                          'branch' => 
+                                                                          array (
+                                                                            'meta' => 
+                                                                            array (
+                                                                              'collection' => 'structure',
+                                                                              'type' => 'static',
+                                                                              'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                                              'displayName' => 'Элемент 0',
+                                                                              'branch' => NULL,
+                                                                              'slug' => 'item0',
+                                                                            ),
+                                                                          ),
+                                                                          'slug' => 'item1',
+                                                                        ),
+                                                                      ),
+                                                                      'slug' => 'item2',
+                                                                    ),
+                                                                  ),
+                                                                  'slug' => 'item3',
+                                                                ),
+                                                              ),
+                                                              'slug' => 'item4',
+                                                            ),
+                                                          ),
+                                                          'slug' => 'item5',
+                                                        ),
+                                                      ),
+                                                      'slug' => 'item6',
+                                                    ),
+                                                  ),
+                                                  'slug' => 'item7',
+                                                ),
+                                              ),
+                                              'slug' => 'item8',
+                                            ),
+                                          ),
+                                          'slug' => 'item9',
+                                        ),
+                                      ),
+                                      'slug' => 'item10',
+                                    ),
+                                  ),
+                                  'slug' => 'item11',
+                                ),
+                              ),
+                              'slug' => 'item12',
+                            ),
+                          ),
+                          'slug' => 'item13',
+                        ),
+                      ),
+                      'slug' => 'item14',
+                    ),
+                  ),
+                  'slug' => 'item15',
+                ),
+              ),
+              'slug' => 'item16',
             ),
           ),
-          'slug' => 'needmoderation',
+          'slug' => 'item17',
         ),
       ),
-      'slug' => 'edit',
+      'slug' => 'item18',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Редактировать посты на модерации',
+        1 => 'Элемент 18',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Edit posts to moderate',
+        1 => 'Item 18',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7051,12 +7019,12 @@ return array (
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'edit',
+        1 => 'structure',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'blog.moderate.edit',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (
@@ -7068,51 +7036,46 @@ return array (
         0 => 'integer',
         1 => 0,
       ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
     ),
   ),
-  56 => 
+  54 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'd10597ba-eda6-493c-864b-875d879210ff',
-      'displayName' => 'Информационные блоки',
+      'type' => 'static',
+      'guid' => 'cb4ddc64-8241-4b90-ac82-02910e890087',
+      'displayName' => 'Menu Item 1.2',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '53ee40c8-8a04-4363-b342-f46ba764a71c',
-          'displayName' => 'Структура',
+          'type' => 'static',
+          'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+          'displayName' => 'Элемент меню 1',
           'branch' => NULL,
-          'slug' => 'structure',
+          'slug' => 'menu-item-1',
         ),
       ),
-      'slug' => 'infoblock',
+      'slug' => 'menu-item-1-2',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Информационные блоки',
+        1 => 'Menu Item 1.2',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Information block',
+        1 => 'Menu Item 1.2',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7146,147 +7109,31 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'infoblock',
+        1 => 'structure',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'structure.infoblock',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
+        1 => 2,
       ),
     ),
   ),
-  57 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'd336d8a1-5efc-4c27-8b04-ed0c909fa97e',
-      'displayName' => 'Редактирование профиля автора',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '2ac90e34-16d0-4113-ab7c-de37c0287516',
-          'displayName' => 'Авторы блога',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'author',
-        ),
-      ),
-      'slug' => 'profile',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Редактирование профиля автора',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Edit author profile',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'profile',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.author.profile',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  58 => 
+  55 => 
   array (
     'meta' => 
     array (
@@ -7312,7 +7159,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7390,705 +7237,13 @@ return array (
       ),
     ),
   ),
-  59 => 
+  56 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'e297633d-4de7-4109-bd2d-7a7d2053f086',
-      'displayName' => 'Очередь на модерацию',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'a59eccd0-cbf8-4c81-9dc3-e8db23018f91',
-          'displayName' => 'Посты на модерацию',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-              'displayName' => 'Блог',
-              'branch' => NULL,
-              'slug' => 'blogik',
-            ),
-          ),
-          'slug' => 'needmoderation',
-        ),
-      ),
-      'slug' => 'all',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Очередь на модерацию',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Turn on moderation',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'all',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.moderate.all',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  60 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'e299bfaa-3227-499c-ae3f-514719ab2b1f',
-      'displayName' => 'Menu Item 1.2.1',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '781560a8-e2ac-48fc-836d-130a10615914',
-          'displayName' => 'Menu Item 1.2',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '6bd5aa6b-93cb-47be-aa64-e7d189b98e9b',
-              'displayName' => 'Элемент меню 1',
-              'branch' => NULL,
-              'slug' => 'menu-item-1',
-            ),
-          ),
-          'slug' => 'menu-item-1-2',
-        ),
-      ),
-      'slug' => 'menu-item-1-2-1',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Menu Item 1.2.1',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Menu Item 1.2.1',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  61 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'e3f15e94-adcd-464b-b32f-c5d4b8758e74',
-      'displayName' => 'Отклонённые посты',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-          'displayName' => 'Блог',
-          'branch' => NULL,
-          'slug' => 'blogik',
-        ),
-      ),
-      'slug' => 'rejected',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Отклонённые посты',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Rejected posts',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'reject',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog.reject',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  62 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-      'displayName' => 'Элемент 7',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-          'displayName' => 'Элемент 6',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-              'displayName' => 'Элемент 5',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                  'displayName' => 'Элемент 4',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                      'displayName' => 'Элемент 3',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                          'displayName' => 'Элемент 2',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                              'displayName' => 'Элемент 1',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                  'displayName' => 'Элемент 0',
-                                  'branch' => NULL,
-                                  'slug' => 'item0',
-                                ),
-                              ),
-                              'slug' => 'item1',
-                            ),
-                          ),
-                          'slug' => 'item2',
-                        ),
-                      ),
-                      'slug' => 'item3',
-                    ),
-                  ),
-                  'slug' => 'item4',
-                ),
-              ),
-              'slug' => 'item5',
-            ),
-          ),
-          'slug' => 'item6',
-        ),
-      ),
-      'slug' => 'item7',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Элемент 7',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Item 7',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  63 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
-      'displayName' => 'Блог',
-      'branch' => NULL,
-      'slug' => 'blogik',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Блог',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Blog',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Блог',
-      ),
-      'layout' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'layout',
-            'type' => 'base',
-            'guid' => '63c4f240-1c99-44d0-805e-a642f3c7c1a4',
-            'displayName' => 'Блог',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'blog',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'blog',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  64 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'e73fb445-0076-4695-bb08-a94a14cd1f1f',
-      'displayName' => 'Активация',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '7e695747-0f3a-4119-b2f8-bd46bba7fa7e',
-          'displayName' => 'Регистрация',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => 'a8816427-182d-4da0-a4a8-6a2455fb3020',
-              'displayName' => 'Пользователи',
-              'branch' => NULL,
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'registration',
-        ),
-      ),
-      'slug' => 'activate',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Активация',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Активация',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Активация',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'activation',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'users.registration.activation',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  65 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => 'ee039703-bb5f-4b40-9491-e789da02a411',
+      'guid' => 'd7244a28-e274-4c5d-8a7f-ff3d8e1f9a1d',
       'displayName' => 'Редактирование черновика',
       'branch' => 
       array (
@@ -8096,7 +7251,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '0a699781-70cb-4cad-8b29-35e15224aecb',
+          'guid' => '715a2abd-4ef9-4734-9f70-d65d459566fb',
           'displayName' => 'Черновики блога',
           'branch' => 
           array (
@@ -8130,7 +7285,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8193,165 +7348,188 @@ return array (
       ),
     ),
   ),
-  66 => 
+  57 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'f6b23f32-4bb8-4ec5-ac2e-e6835f370d99',
-      'displayName' => 'Элемент 12',
+      'type' => 'system',
+      'guid' => 'd95c4c52-0c51-422f-910c-288c3e2a6923',
+      'displayName' => 'Отклонённые посты',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '0355490d-3454-48a1-8e78-db308e5256c8',
-          'displayName' => 'Элемент 11',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
-              'displayName' => 'Элемент 10',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
-                  'displayName' => 'Элемент 9',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
-                      'displayName' => 'Элемент 8',
-                      'branch' => 
-                      array (
-                        'meta' => 
-                        array (
-                          'collection' => 'structure',
-                          'type' => 'static',
-                          'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
-                          'displayName' => 'Элемент 7',
-                          'branch' => 
-                          array (
-                            'meta' => 
-                            array (
-                              'collection' => 'structure',
-                              'type' => 'static',
-                              'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
-                              'displayName' => 'Элемент 6',
-                              'branch' => 
-                              array (
-                                'meta' => 
-                                array (
-                                  'collection' => 'structure',
-                                  'type' => 'static',
-                                  'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
-                                  'displayName' => 'Элемент 5',
-                                  'branch' => 
-                                  array (
-                                    'meta' => 
-                                    array (
-                                      'collection' => 'structure',
-                                      'type' => 'static',
-                                      'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
-                                      'displayName' => 'Элемент 4',
-                                      'branch' => 
-                                      array (
-                                        'meta' => 
-                                        array (
-                                          'collection' => 'structure',
-                                          'type' => 'static',
-                                          'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
-                                          'displayName' => 'Элемент 3',
-                                          'branch' => 
-                                          array (
-                                            'meta' => 
-                                            array (
-                                              'collection' => 'structure',
-                                              'type' => 'static',
-                                              'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
-                                              'displayName' => 'Элемент 2',
-                                              'branch' => 
-                                              array (
-                                                'meta' => 
-                                                array (
-                                                  'collection' => 'structure',
-                                                  'type' => 'static',
-                                                  'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
-                                                  'displayName' => 'Элемент 1',
-                                                  'branch' => 
-                                                  array (
-                                                    'meta' => 
-                                                    array (
-                                                      'collection' => 'structure',
-                                                      'type' => 'static',
-                                                      'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
-                                                      'displayName' => 'Элемент 0',
-                                                      'branch' => NULL,
-                                                      'slug' => 'item0',
-                                                    ),
-                                                  ),
-                                                  'slug' => 'item1',
-                                                ),
-                                              ),
-                                              'slug' => 'item2',
-                                            ),
-                                          ),
-                                          'slug' => 'item3',
-                                        ),
-                                      ),
-                                      'slug' => 'item4',
-                                    ),
-                                  ),
-                                  'slug' => 'item5',
-                                ),
-                              ),
-                              'slug' => 'item6',
-                            ),
-                          ),
-                          'slug' => 'item7',
-                        ),
-                      ),
-                      'slug' => 'item8',
-                    ),
-                  ),
-                  'slug' => 'item9',
-                ),
-              ),
-              'slug' => 'item10',
-            ),
-          ),
-          'slug' => 'item11',
+          'type' => 'system',
+          'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+          'displayName' => 'Блог',
+          'branch' => NULL,
+          'slug' => 'blogik',
         ),
       ),
-      'slug' => 'item12',
+      'slug' => 'rejected',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Элемент 12',
+        1 => 'Отклонённые посты',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Item 12',
+        1 => 'Rejected posts',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'reject',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  58 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+      'displayName' => 'Элемент 5',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+          'displayName' => 'Элемент 4',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+              'displayName' => 'Элемент 3',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                  'displayName' => 'Элемент 2',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                      'displayName' => 'Элемент 1',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                          'displayName' => 'Элемент 0',
+                          'branch' => NULL,
+                          'slug' => 'item0',
+                        ),
+                      ),
+                      'slug' => 'item1',
+                    ),
+                  ),
+                  'slug' => 'item2',
+                ),
+              ),
+              'slug' => 'item3',
+            ),
+          ),
+          'slug' => 'item4',
+        ),
+      ),
+      'slug' => 'item5',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 5',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 5',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8387,6 +7565,16 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -8399,13 +7587,203 @@ return array (
       ),
     ),
   ),
-  67 => 
+  59 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'fd0f04c4-032c-4034-ba16-bde450de45c3',
+      'guid' => 'dba54a37-54bc-4633-81f2-fb876b1da960',
+      'displayName' => 'Menu Item 1.2.1',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'cb4ddc64-8241-4b90-ac82-02910e890087',
+          'displayName' => 'Menu Item 1.2',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+              'displayName' => 'Элемент меню 1',
+              'branch' => NULL,
+              'slug' => 'menu-item-1',
+            ),
+          ),
+          'slug' => 'menu-item-1-2',
+        ),
+      ),
+      'slug' => 'menu-item-1-2-1',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.1',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.1',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  60 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+      'displayName' => 'Элемент 0',
+      'branch' => NULL,
+      'slug' => 'item0',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 0',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 0',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  61 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
       'displayName' => 'Элемент 10',
       'branch' => 
       array (
@@ -8413,7 +7791,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '5025f41c-4140-4626-87f6-49d1746bd867',
+          'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
           'displayName' => 'Элемент 9',
           'branch' => 
           array (
@@ -8421,7 +7799,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '2e013562-87cd-467b-b161-a8ebec46da16',
+              'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
               'displayName' => 'Элемент 8',
               'branch' => 
               array (
@@ -8429,7 +7807,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'e5081284-7233-49a1-9606-c42fdd287f6f',
+                  'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
                   'displayName' => 'Элемент 7',
                   'branch' => 
                   array (
@@ -8437,7 +7815,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '2a372403-42d5-4e40-b6c7-014be2a5e09b',
+                      'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
                       'displayName' => 'Элемент 6',
                       'branch' => 
                       array (
@@ -8445,7 +7823,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '85ebda69-1d95-4a1d-a357-8a3fd7967fdf',
+                          'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
                           'displayName' => 'Элемент 5',
                           'branch' => 
                           array (
@@ -8453,7 +7831,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '6eb7f0a1-1c75-4ac2-b7f6-7e65f3f8066f',
+                              'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
                               'displayName' => 'Элемент 4',
                               'branch' => 
                               array (
@@ -8461,7 +7839,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '9e834ff6-167a-4b22-bda2-54d647418bef',
+                                  'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
                                   'displayName' => 'Элемент 3',
                                   'branch' => 
                                   array (
@@ -8469,7 +7847,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '4290253b-0630-4c43-9f6b-cd5cb42a6fa8',
+                                      'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
                                       'displayName' => 'Элемент 2',
                                       'branch' => 
                                       array (
@@ -8477,7 +7855,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '52f4f85b-0ac7-4a84-bfd9-ef53a1448db5',
+                                          'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
                                           'displayName' => 'Элемент 1',
                                           'branch' => 
                                           array (
@@ -8485,7 +7863,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => 'b9d70dc6-e86d-4208-bc29-407ef933cb65',
+                                              'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
                                               'displayName' => 'Элемент 0',
                                               'branch' => NULL,
                                               'slug' => 'item0',
@@ -8535,7 +7913,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8570,6 +7948,828 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  62 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => 'e222399d-dded-4025-b9fd-60093d2248ed',
+      'displayName' => 'Смена пароля',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => 'e494957c-88e9-4c12-9e93-e4a7b37f6e30',
+          'displayName' => 'Профиль',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'system',
+              'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+              'displayName' => 'Пользователи',
+              'branch' => NULL,
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'profile',
+        ),
+      ),
+      'slug' => 'pass',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Смена пароля',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Смена пароля',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Смена пароля',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'password',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.password',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  63 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => 'e494957c-88e9-4c12-9e93-e4a7b37f6e30',
+      'displayName' => 'Профиль',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '311997df-b1e5-4444-a34e-68b213396ef9',
+          'displayName' => 'Пользователи',
+          'branch' => NULL,
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'profile',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Профиль',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Профиль',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Профиль',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'profile',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  64 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+      'displayName' => 'Элемент 8',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+          'displayName' => 'Элемент 7',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+              'displayName' => 'Элемент 6',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                  'displayName' => 'Элемент 5',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                      'displayName' => 'Элемент 4',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                          'displayName' => 'Элемент 3',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                              'displayName' => 'Элемент 2',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                  'displayName' => 'Элемент 1',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                      'displayName' => 'Элемент 0',
+                                      'branch' => NULL,
+                                      'slug' => 'item0',
+                                    ),
+                                  ),
+                                  'slug' => 'item1',
+                                ),
+                              ),
+                              'slug' => 'item2',
+                            ),
+                          ),
+                          'slug' => 'item3',
+                        ),
+                      ),
+                      'slug' => 'item4',
+                    ),
+                  ),
+                  'slug' => 'item5',
+                ),
+              ),
+              'slug' => 'item6',
+            ),
+          ),
+          'slug' => 'item7',
+        ),
+      ),
+      'slug' => 'item8',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 8',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 8',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  65 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e5e829a9-7ac2-4dcb-a881-457a32b82e15',
+      'displayName' => 'Menu Item 1.2.2',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'cb4ddc64-8241-4b90-ac82-02910e890087',
+          'displayName' => 'Menu Item 1.2',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '4db3e83c-dbc8-4066-a4da-6ccc309a0665',
+              'displayName' => 'Элемент меню 1',
+              'branch' => NULL,
+              'slug' => 'menu-item-1',
+            ),
+          ),
+          'slug' => 'menu-item-1-2',
+        ),
+      ),
+      'slug' => 'menu-item-1-2-2',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.2',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu Item 1.2.2',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  66 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => 'e6b89f38-7af3-4bda-80fd-3d5a4cf080cf',
+      'displayName' => 'Блог',
+      'branch' => NULL,
+      'slug' => 'blogik',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Блог',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Blog',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Блог',
+      ),
+      'layout' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'layout',
+            'type' => 'base',
+            'guid' => '53245770-160e-4218-b128-92da4c7eb651',
+            'displayName' => 'Блог',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'blog',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'blog',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  67 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'ee75e743-8b0e-4343-8d4f-eee079c36d4c',
+      'displayName' => 'Элемент 11',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'e0b160ce-a3c9-4be4-8120-5b2af97afda3',
+          'displayName' => 'Элемент 10',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '2f62ddb3-7bf4-4a58-9336-9ab069f6496c',
+              'displayName' => 'Элемент 9',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'e5630fdd-6eb9-4acc-b26c-4f29f6c243a8',
+                  'displayName' => 'Элемент 8',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => '95816d97-c517-4a9d-840d-2e2266e82d86',
+                      'displayName' => 'Элемент 7',
+                      'branch' => 
+                      array (
+                        'meta' => 
+                        array (
+                          'collection' => 'structure',
+                          'type' => 'static',
+                          'guid' => '60170f51-34ef-4234-8259-2969da8ba522',
+                          'displayName' => 'Элемент 6',
+                          'branch' => 
+                          array (
+                            'meta' => 
+                            array (
+                              'collection' => 'structure',
+                              'type' => 'static',
+                              'guid' => 'db033d16-d18e-4e88-8231-557db0e6ae1d',
+                              'displayName' => 'Элемент 5',
+                              'branch' => 
+                              array (
+                                'meta' => 
+                                array (
+                                  'collection' => 'structure',
+                                  'type' => 'static',
+                                  'guid' => '494f4b17-611b-4ce6-9a79-6fa3dbd21ebf',
+                                  'displayName' => 'Элемент 4',
+                                  'branch' => 
+                                  array (
+                                    'meta' => 
+                                    array (
+                                      'collection' => 'structure',
+                                      'type' => 'static',
+                                      'guid' => 'a302c68a-b266-4394-9eee-626a57cd1d7d',
+                                      'displayName' => 'Элемент 3',
+                                      'branch' => 
+                                      array (
+                                        'meta' => 
+                                        array (
+                                          'collection' => 'structure',
+                                          'type' => 'static',
+                                          'guid' => '44dfe530-9c98-4e77-83cd-365e14285002',
+                                          'displayName' => 'Элемент 2',
+                                          'branch' => 
+                                          array (
+                                            'meta' => 
+                                            array (
+                                              'collection' => 'structure',
+                                              'type' => 'static',
+                                              'guid' => '0b31a310-6230-472d-bc9e-0d95a93efb19',
+                                              'displayName' => 'Элемент 1',
+                                              'branch' => 
+                                              array (
+                                                'meta' => 
+                                                array (
+                                                  'collection' => 'structure',
+                                                  'type' => 'static',
+                                                  'guid' => 'df14c6c3-9cca-4a91-991e-4cd2a6c7d267',
+                                                  'displayName' => 'Элемент 0',
+                                                  'branch' => NULL,
+                                                  'slug' => 'item0',
+                                                ),
+                                              ),
+                                              'slug' => 'item1',
+                                            ),
+                                          ),
+                                          'slug' => 'item2',
+                                        ),
+                                      ),
+                                      'slug' => 'item3',
+                                    ),
+                                  ),
+                                  'slug' => 'item4',
+                                ),
+                              ),
+                              'slug' => 'item5',
+                            ),
+                          ),
+                          'slug' => 'item6',
+                        ),
+                      ),
+                      'slug' => 'item7',
+                    ),
+                  ),
+                  'slug' => 'item8',
+                ),
+              ),
+              'slug' => 'item9',
+            ),
+          ),
+          'slug' => 'item10',
+        ),
+      ),
+      'slug' => 'item11',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Элемент 11',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Item 11',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
       ),
       'inMenu' => 
       array (

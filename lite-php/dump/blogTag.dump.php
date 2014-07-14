@@ -9,26 +9,26 @@ return array (
     array (
       'collection' => 'blogTag',
       'type' => 'base',
-      'guid' => '2fb7760c-dbe3-4525-bd9e-e9105b336032',
-      'displayName' => 'Привидения',
-      'slug' => 'privideniya',
+      'guid' => 'e7e2a777-4d56-4684-ae2c-9049d9cd23a0',
+      'displayName' => 'Призраки',
+      'slug' => 'prizraki',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Привидения',
+        1 => 'Призраки',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Casts',
+        1 => 'Ghosts',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -67,26 +67,26 @@ return array (
     array (
       'collection' => 'blogTag',
       'type' => 'base',
-      'guid' => '8208fd7a-78cb-4384-b8e3-390058a89f41',
-      'displayName' => 'Призраки',
-      'slug' => 'prizraki',
+      'guid' => 'facd3372-9c65-4b24-b967-c5b1a606cc62',
+      'displayName' => 'Привидения',
+      'slug' => 'privideniya',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Призраки',
+        1 => 'Привидения',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Ghosts',
+        1 => 'Casts',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
