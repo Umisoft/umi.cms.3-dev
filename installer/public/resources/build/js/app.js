@@ -125,6 +125,30 @@ define('application/utils',['Modernizr'], function(Modernizr){
             }
         };
 
+        UMI.Utils.getStringValue = function(prop){
+            var property;
+            var properties;
+            var value;
+            switch(Ember.typeOf(prop)){
+                case 'string':
+                    value = prop;
+                    break;
+                case 'array':
+                    value = prop.join(',');
+                    break;
+                case 'object':
+                    properties = [];
+                    for(property in prop){
+                        if(prop.hasOwnProperty(property)){
+                            properties.push(UMI.Utils.getStringValue(prop[property]));
+                        }
+                    }
+                    value = properties;
+                    break;
+            }
+            return value;
+        };
+
         /**
          * Local Storage
          */
@@ -332,7 +356,7 @@ function program2(depth0,data) {
   
 });
 
-Ember.TEMPLATES["UMI/counter"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["UMI/counterLayout"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', escapeExpression=this.escapeExpression;
@@ -346,18 +370,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "table", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </div> </div> </div>");
   return buffer;
-  
-});
-
-Ember.TEMPLATES["UMI/counters"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "table", {hash:{
-    'contentBinding': ("this")
-  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
 });
 
@@ -407,6 +419,42 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["UMI/getBacklinks"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "backlinksTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/host"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaHostTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/indexed"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaIndexesTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
 Ember.TEMPLATES["UMI/megaIndex"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -426,6 +474,42 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "formBase", "model", options) : helperMissing.call(depth0, "render", "formBase", "model", options))));
+  
+});
+
+Ember.TEMPLATES["UMI/simpleTable"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "tableCounters", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/siteAnalyze"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "siteAnalyzeTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/tops"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaTopsTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
 });
 
@@ -553,7 +637,11 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <div class=\"umi-overlay\"></div> <div class=\"umi-dialog\"> ");
+  data.buffer.push(" <div class=\"umi-overlay\"></div> <div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":umi-dialog model.type")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("> ");
   stack1 = helpers['if'].call(depth0, "model.close", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
@@ -1641,7 +1729,7 @@ function program2(depth0,data) {
   
 });
 
-Ember.TEMPLATES["UMI/partials/table"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["UMI/__partials/table"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, self=this;
@@ -1649,7 +1737,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <td class=\"umi-table-ajax-header-column\"> <div class=\"umi-table-ajax-title-div\">");
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"> <div class=\"umi-table-cell\">");
   stack1 = helpers._triageMustache.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</div> </td> ");
@@ -1658,47 +1746,152 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  var buffer = '', stack1;
-  data.buffer.push(" ");
-  stack1 = helpers.view.call(depth0, "view.row", {hash:{
-    'object': ("element")
-  },hashTypes:{'object': "ID"},hashContexts:{'object': depth0},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  return buffer;
-  }
-function program4(depth0,data) {
   
-  var buffer = '', stack1;
-  data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "view.cell", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <td class=\"umi-table-ajax-empty-column\"></td> ");
-  return buffer;
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"></td> ");
   }
+
 function program5(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <td class=\"umi-table-ajax-cell-td\"> <div class=\"umi-table-ajax-cell-div\">");
+  data.buffer.push(" ");
+  stack1 = helpers.view.call(depth0, "view.rowView", {hash:{
+    'row': ("row")
+  },hashTypes:{'row': "ID"},hashContexts:{'row': depth0},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers.each.call(depth0, "property", "in", "view.cell", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> ");
+  return buffer;
+  }
+function program7(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <td class=\"umi-table-td\"> <div class=\"umi-table-cell\">");
+  stack1 = helpers._triageMustache.call(depth0, "property.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</div> </td> ");
+  return buffer;
+  }
+
+function program9(depth0,data) {
+  
+  
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> <td> Нет записей </td> </tr> ");
+  }
+
+  data.buffer.push("<div class=\"umi-table-header-wrap\"> <table class=\"umi-table-header\"> <tbody> <tr class=\"umi-table-tr\"> ");
+  stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> </tr> </tbody> </table> </div> <div class=\"s-scroll-wrap\"> <table class=\"umi-table-content\"> <tbody> <tr class=\"umi-table-content-sizer\"> ");
+  stack1 = helpers.each.call(depth0, "view.rowCount", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </tr> ");
+  stack1 = helpers.each.call(depth0, "row", "in", "view.rows", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(9, program9, data),fn:self.program(5, program5, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </tbody> </table> </div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["UMI/partials/table"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, self=this, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"> <div class=\"umi-table-cell\">");
   stack1 = helpers._triageMustache.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</div> </td> ");
   return buffer;
   }
 
-function program7(depth0,data) {
+function program3(depth0,data) {
   
   
-  data.buffer.push(" <tr class=\"umi-metrika-empty-row\"> <!-- TODO colspan заменить на переменную с количеством колонок --> <td class=\"umi-table-ajax-empty-result\" colspan=\"4\"> Нет записей </td> </tr> ");
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"></td> ");
   }
 
-  data.buffer.push("<style> .umi-table-ajax{ background: #D6E0E9;; } .umi-table-ajax tbody td{ border-left: 1px solid #E3E4E5; } .umi-table-ajax-tr:hover{ background: #BFE0F8; cursor: pointer; } </style> <div class=\"umi-table-ajax-control-content\"> <div class=\"umi-table-ajax-control-content-center\"> <table cellpadding=\"0\" class=\"umi-table-ajax-content\"> <thead> <tr class=\"umi-table-ajax-titles\"> ");
+function program5(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> ");
+  stack1 = helpers.each.call(depth0, "property", "in", "row", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> </tr> ");
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <td class=\"umi-table-td\"> <div class=\"umi-table-cell\">");
+  stack1 = helpers._triageMustache.call(depth0, "property", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</div> </td> ");
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> <td> Нет записей </td> </tr> ");
+  }
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.paginationView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" <div class=\"umi-table-header-wrap\"> <table class=\"umi-table-header\"> <tbody> <tr class=\"umi-table-tr\"> ");
   stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <td class=\"umi-table-ajax-empty-header-column\"></td> </tr> </thead> <tbody> ");
-  stack1 = helpers.each.call(depth0, "element", "in", "view.data", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(7, program7, data),fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> </tr> </tbody> </table> </div> <div class=\"s-scroll-wrap\"> <table class=\"umi-table-content\"> <tbody> <tr class=\"umi-table-content-sizer\"> ");
+  stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </tbody> </table> </div> </div>");
+  data.buffer.push(" </tr> ");
+  stack1 = helpers.each.call(depth0, "row", "in", "view.visibleRows", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(8, program8, data),fn:self.program(5, program5, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </tbody> </table> </div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["UMI/partials/table/toolbar"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push(" <i class=\"icon black icon-left-thin\"></i> ");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push(" <i class=\"icon black icon-right-thin\"></i> ");
+  }
+
+  data.buffer.push("<div class=\"right umi-table-control-pagination\"> <div class=\"right pagination-controls\"> <span class=\"pagination-counter\"> ");
+  stack1 = helpers._triageMustache.call(depth0, "view.counter", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </span> ");
+  stack1 = helpers.view.call(depth0, "view.prevButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  stack1 = helpers.view.call(depth0, "view.nextButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </div> <div class=\"right pagination-limit\"> <span class=\"pagination-label\">");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Rows on page", "tableControl", options) : helperMissing.call(depth0, "i18n", "Rows on page", "tableControl", options))));
+  data.buffer.push(":</span> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.limitView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </div> </div> ");
   return buffer;
   
 });
@@ -3648,6 +3841,37 @@ define('application/router',[], function(){
                  */
                 backToFilter: function(){
                     this.transitionTo('context', 'root');
+                },
+
+                /**
+                 * Импорт Rss ленты
+                 */
+                importFromRss: function(object){
+                    try{
+                        var data = {
+                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> Подождите..</div>',
+                            'close': false,
+                            'type': 'check-process'
+                        };
+                        UMI.dialog.open(data).then(
+                            function(){},
+                            function(){}
+                        );
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+
+                        var importFromRssSource = this.controllerFor('component').get('settings').actions.importFromRss.source;
+                        $.ajax({
+                            url: importFromRssSource,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(results){
+                            var model = UMI.dialog.get('model');
+                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
                 }
             },
 
@@ -3791,9 +4015,23 @@ define('application/router',[], function(){
                             var componentController = self.controllerFor('component');
                             if(Ember.typeOf(results) === 'object' && Ember.get(results, 'result.layout')){
                                 var settings = results.result.layout;
+                                var dataSource = Ember.get(settings, 'dataSource') || '';
                                 componentController.set('settings', settings);
                                 componentController.set('selectedContext', Ember.get(transition,'params.context') ? Ember.get(transition, 'params.context.context') : 'root');
-                                deferred.resolve(model);
+                                if(Ember.get(dataSource, 'type') === 'lazy'){
+                                    $.get(Ember.get(settings, 'actions.' + Ember.get(dataSource, 'action') + '.source')).then(
+                                        function(results){
+                                            var data = Ember.get(results, 'result.' + Ember.get(dataSource, 'action') + '.objects');
+                                            Ember.set(dataSource, 'objects', data);
+                                            deferred.resolve(model);
+                                        }, function(error){
+                                            deferred.reject(transition.send('backgroundError', error));
+                                        }
+                                    );
+                                } else{
+                                    deferred.resolve(model);
+                                }
+
                             } else{
                                 var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
                                 transition.send('backgroundError', error);
@@ -3879,6 +4117,7 @@ define('application/router',[], function(){
                     } else{
                         switch(Ember.get(collection, 'type')){
                             case 'static':
+                            case 'lazy':
                                 model = new Ember.RSVP.Promise(function(resolve, reject){
                                     var objects = Ember.get(collection, 'objects');
                                     var object;
@@ -3969,18 +4208,19 @@ define('application/router',[], function(){
                     componentController = this.controllerFor('component');
                     contentControls = componentController.get('contentControls');
                     contentControl = contentControls.findBy('id', actionName);
+                    if(!contentControl){
+                        throw new Error('Action "dynamic" is undefined for component.');
+                    }
                     routeData = {
                         'object': contextModel,
                         'control': contentControl
                     };
+                    actionResourceName = Ember.get(contentControl, 'params.action');
 
-                    if(Ember.get(contentControl, 'params.isStatic')){
-                        // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
+                    if(!actionResourceName){
                         deferred.resolve(routeData);
                     } else{
-                        actionResourceName = Ember.get(contentControl, 'params.action');
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
-
                         if(actionResource){
                             controlObject = routeData.object;
                             if(actionName === 'createForm'){
@@ -3998,36 +4238,39 @@ define('application/router',[], function(){
                                 controlObject = routeData.createObject;
                             }
                             actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
-
-                            Ember.$.get(actionResource).then(function(results){
-                                var dynamicControl;
-                                var dynamicControlName;
-                                if(actionName === 'dynamic'){
-                                    dynamicControl = Ember.get(results, 'result') || {};
-                                    for(var key in dynamicControl){
-                                        if(dynamicControl.hasOwnProperty(key)){
-                                            dynamicControlName = key;
+                            $.ajax({
+                                type: "GET",
+                                url: actionResource,
+                                global: false,
+                                success: function(results){
+                                    var dynamicControl;
+                                    var dynamicControlName;
+                                    if(actionName === 'dynamic'){
+                                        dynamicControl = Ember.get(results, 'result') || {};
+                                        for(var key in dynamicControl){
+                                            if(dynamicControl.hasOwnProperty(key)){
+                                                dynamicControlName = key;
+                                            }
                                         }
-                                    }
-                                    dynamicControl = dynamicControl[dynamicControlName] || {};
-                                    dynamicControl.name = dynamicControlName;
+                                        dynamicControl = dynamicControl[dynamicControlName] || {};
+                                        dynamicControl.name = dynamicControlName;
 
-                                    UMI.Utils.objectsMerge(routeData.control, dynamicControl);
-                                } else{
-                                    Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                        UMI.Utils.objectsMerge(routeData.control, dynamicControl);
+                                    } else{
+                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                    }
+                                    deferred.resolve(routeData);
+                                },
+                                error: function(error){
+                                    deferred.reject(transition.send('templateLogs', error, 'component'));
                                 }
-                                deferred.resolve(routeData);
-                            }/*, function(error){
-                             Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                             deferred.reject(transition.send('backgroundError', error));
-                             }*/);
+                            });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
-
                     }
                 } catch(error){
-                    deferred.reject(transition.send('backgroundError', error));
+                    deferred.reject(transition.send('templateLogs', error, 'component'));
                 } finally{
                     return deferred.promise;
                 }
@@ -4958,7 +5201,16 @@ define(
                             }
                         }
                     }
-                }
+                },
+
+                importFromRss: {
+                    actions: {
+                        importFromRss: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('importFromRss', model);
+                        }
+                    }
+                },
             });
         };
     }
@@ -9470,100 +9722,268 @@ define('table/view',['App'], function(UMI){
     return function(){
         UMI.TableView = Ember.View.extend({
             templateName: 'partials/table',
-            classNames: ['umi-table-ajax'],
+            classNames: ['umi-table'],
             headers: [],
-            objectId: [],
-            data: [],
+            rows: [],
+            offset: 0,
+            limit: 25,
+            totalBinding: 'rows.length',
+            visibleRows: function(){
+                var rows = this.get('rows');
+                var offset = this.get('offset');
+                var limit = parseFloat(this.get('limit'));
+                var begin;
+                var end;
+                if(offset){
+                    begin = limit * offset;
+                } else{
+                    begin = 0;
+                }
+                end = begin + limit;
+                return rows.slice(begin, end);
+            }.property('offset', 'limit'),
 
             didInsertElement: function(){
-                var that = this;
+                var tableContent = this.$().find('.s-scroll-wrap')[0];
+                var tableHeader = this.$().find('.umi-table-header')[0];
+                var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
 
-                //Получаем список счётчиков
-                (function getCounters(){
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/api/statistics/metrika/action/counters",
-                        data: {},
-                        cache: false,
-
-                        beforeSend: function(){
-                            $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; overflow: hidden; z-index: 1; padding: 30px; width: 100%; height: 100%; background: #FFFFFF;"><i class="animate animate-loader-40"></i><h3>Идёт загрузка данных...</h3></div>';
-                            });
-                        },
-
-                        success: function(response){
-                            $('.umi-loader').remove();
-//                            if(!response){
-//                                $('.umi-component').css({'position':'relative'}).append(function(){
-//                                    return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Данные отсутствуют</h3></div>';
-//                                });
-//                            }
-
-                            var headers = [];
-                            headers.push(response.result.counters.labels.name, response.result.counters.labels.site, response.result.counters.labels['code_status']);
-
-                            var rows = response.result.counters.counters;
-                            var rowsLength = rows.length;
-                            var result = [];
-
-                            for(var i = 0; i < rowsLength; i++){
-                                result.push([rows[i].id, rows[i].site, rows[i].name, rows[i]['code_status']]);
-                            }
-                            renderCounters(headers, result);
-                        },
-
-                        error: function(code){
-                            $('.umi-loader').remove();
-                            $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Не удалось загрузить данные</h3></div>';
-                            });
-                        }
-                    });
-                })();
-
-
-                //Выводим таблицу со списком счётчиков
-                //headers - массив
-                //rows - двумерный массив
-                function renderCounters(headers, rows){
-
-                    //Заносим заголовки в переменную для шаблонизатора
-                    that.set('headers', headers);
-
-                    //Заносим содержимое таблицы с удалением первой колонки (id) в переменную шаблонизатора
-                    var rowsLength = rows.length;
-                    var objectId = [];
-                    that.set('data', rows);
-                    that.set('objectId', objectId);
-//                    console.log(that.get('objectId'));
-                }
-
-                $('.umi-table-ajax').on('click.umi.table','.umi-table-ajax-tr',function(){
-                    var counterId = $(this).data('object-id');
-                    that.get('controller').transitionToRoute('context', counterId);
+                scrollContent.on('scroll', function(){
+                    tableHeader.style.marginLeft = this.x + 'px';
                 });
 
+                $(window).on('resize.umi.table', function(){
+                    setTimeout(function(){
+                        tableHeader.style.marginLeft = scrollContent.x + 'px';
+                    }, 100);
+                });
             },
 
             willDestroyElement: function(){
-                $(window).off('.umi.table');
+                $(window).off('resize.umi.table');
+                this.removeObserver('content');
             },
 
-            row: Ember.View.extend({
-                tagName: 'tr',
-                classNames: ['umi-table-ajax-tr'],
-                attributeBindings: ['objectId:data-object-id'],
-                objectId: function(){
-                    return this.get('object')[0];
-                }.property('object'),
-                cell: function(){
-                    var object = this.get('object');
-                    object.shift(0);
-                    return object;
-                }.property('object')
-            })
+            paginationView: Ember.View.extend({
+                classNames: ['s-unselectable', 'umi-toolbar'],
+                templateName: 'partials/table/toolbar',
+                counter: function(){
+                    var label = 'из';
+                    var limit = this.get('parentView.limit');
+                    var offset = this.get('parentView.offset') + 1;
+                    var total = this.get('parentView.total');
+                    var maxCount = offset*limit;
+                    var start = maxCount - limit + 1;
+                    maxCount = maxCount < total ? maxCount : total;
+                    return start + '-' + maxCount + ' ' + label + ' ' + total;
+                }.property('parentView.limit', 'parentView.offset', 'parentView.total'),
 
+                prevButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+
+                    isActive: function(){
+                        return this.get('parentView.parentView.offset');
+                    }.property('parentView.parentView.offset'),
+
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('parentView.parentView').decrementProperty('offset');
+                        }
+                    }
+                }),
+
+                nextButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+
+                    isActive: function(){
+                        var limit = this.get('parentView.parentView.limit');
+                        var offset = this.get('parentView.parentView.offset') + 1;
+                        var total = this.get('parentView.parentView.total');
+                        return total > limit * offset;
+                    }.property('parentView.parentView.limit', 'parentView.parentView.offset', 'parentView.parentView.total'),
+
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('parentView.parentView').incrementProperty('offset');
+                        }
+                    }
+                }),
+
+                limitView: Ember.View.extend({
+                    tagName: 'input',
+                    classNames: ['s-margin-clear'],
+                    attributeBindings: ['value', 'type'],
+
+                    value: function(){
+                        return this.get('parentView.parentView.limit');
+                    }.property('parentView.parentView.limit'),
+
+                    type: 'text',
+
+                    keyDown: function(event){
+                        if(event.keyCode === 13){
+                            // При изменении количества строк на странице сбрасывается offset
+                            this.get('parentView.parentView').setProperties({'offset': 0, 'limit': this.$()[0].value});
+                        }
+                    }
+                })
+            })
+        });
+
+        UMI.SiteAnalyzeTableView = UMI.TableView.extend({
+            setContent: function(){
+                var content = this.get('content');
+                var headers;
+                var data = Ember.get(content, 'control.data') || [];
+                if(data.length){
+                    headers = data.shift();
+                    this.setProperties({'headers': headers, 'rows': data});
+                }
+            }.observes('content').on('init')
+        });
+
+        UMI.BacklinksTableView = UMI.TableView.extend({
+            setContent: function(){
+                var content = this.get('content');
+                var headers;
+                var data = Ember.get(content, 'control.data');
+                var rows = [];
+                if(data.length){
+                    headers = Ember.get(content, 'control.headers');
+                    for(var i = 0; i < data.length; i++){
+                        rows.push([Ember.get(data[0],'vs_from')]);
+                    }
+                    this.setProperties({'headers': headers, 'rows': rows});
+                }
+            }.observes('content').on('init')
+        });
+
+        UMI.YaHostTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var key;
+
+                if(Ember.typeOf(labels) === 'object'){
+                    for(key in labels){
+                        if(labels.hasOwnProperty(key)){
+                            headers.push(labels[key]);
+                        }
+                    }
+                }
+                if(Ember.typeOf(data) === 'object'){
+                    for(key in data){
+                        if(data.hasOwnProperty(key)){
+                            var row = UMI.Utils.getStringValue(data[key]);
+                            rows.push(row);
+                        }
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': [rows]});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaIndexesTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var url = Ember.get(data, 'last-week-index-urls.url');
+
+                headers.push(Ember.get(labels, 'last-week-index-urls'));
+
+                if(Ember.typeOf(url)  === 'array'){
+                    for(i = 0; i < url.length; i++){
+                        rows.push([UMI.Utils.getStringValue(url[i])]);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaTopsTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var row;
+                var topQueries = Ember.get(data, 'top-queries.top-clicks.top-info');
+
+                headers.push(Ember.get(labels, 'query'));
+                headers.push(Ember.get(labels, 'count'));
+                headers.push(Ember.get(labels, 'position'));
+                headers.push(Ember.get(labels, 'clicks-top-rank'));
+
+                if(Ember.typeOf(topQueries)  === 'array'){
+                    for(i = 0; i < topQueries.length; i++){
+                        row = [];
+                        row.push(UMI.Utils.getStringValue(topQueries[i].query));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].count));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].position));
+                        row.push(UMI.Utils.getStringValue(topQueries[i]['clicks-top-rank']));
+                        rows.push(row);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
+            }.observes('content').on('init')
+        });
+
+        UMI.TableCountersView = UMI.TableView.extend({
+            rowCount: function(){
+                var rows = this.get('rows') || [];
+                var row = rows[0] || {};
+                var count = [];
+                for(var key in row){
+                    if(row.hasOwnProperty(key)){
+                        count.push({});
+                    }
+                }
+                return count;
+            }.property('rows'),
+
+            rowView: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-content-tr'],
+                cell: function(){
+                    var object = this.get('row');
+                    var cell = [];
+                    for(var key in object){
+                        if(object.hasOwnProperty(key)){
+                            cell.push({'displayName': object[key]});
+                        }
+                    }
+                }
+            }),
+
+            setContent: function(){
+                var content = this.get('content');
+                var headers = Ember.get(content, 'control.meta.labels');
+                var headersList = [];
+                var rows = Ember.get(content, 'control.meta.objects');
+                for(var key in headers){
+                    if(headers.hasOwnProperty(key)){
+                        headersList.push(headers[key]);
+                    }
+                }
+                this.setProperties({'headers': headersList, 'rows': rows});
+            }.observes('content').on('init'),
+
+            actions: {
+                rowEvent: function(context){
+                    this.get('controller').transitionToRoute('context', Ember.get(context, 'id'));
+                }
+            }
         });
     };
 });

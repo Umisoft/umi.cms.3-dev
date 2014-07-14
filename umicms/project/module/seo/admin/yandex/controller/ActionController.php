@@ -88,16 +88,7 @@ class ActionController extends BaseController
      */
     protected function getModel()
     {
-        $component = $this->getComponent();
-        $oauthToken = $component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
-        if (is_null($oauthToken)) {
-            throw new InvalidArgumentException($this->translate(
-                "Option {option} is required",
-                ['option' => YandexModel::YANDEX_OAUTH_TOKEN]
-            ));
-        }
-
-        return new YandexModel($oauthToken);
+        return new YandexModel($this->getComponent());
     }
 
     /**
