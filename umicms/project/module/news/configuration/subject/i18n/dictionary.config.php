@@ -20,6 +20,6 @@ return [
         'ru-RU' => [
             NewsSubject::FIELD_NEWS => 'Новости',
 
-            'type:base:displayName' => 'Новостной сюжет'
+            'type:base:displayName' => 'Сюжет'
         ]
     ];
