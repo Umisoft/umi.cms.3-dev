@@ -871,14 +871,12 @@ define([], function(){
                         'object': contextModel,
                         'control': contentControl
                     };
+                    actionResourceName = Ember.get(contentControl, 'params.action');
 
-                    if(Ember.get(contentControl, 'params.isStatic')){
-                        // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
+                    if(!actionResourceName){
                         deferred.resolve(routeData);
                     } else{
-                        actionResourceName = Ember.get(contentControl, 'params.action');
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
-
                         if(actionResource){
                             controlObject = routeData.object;
                             if(actionName === 'createForm'){
