@@ -29,7 +29,7 @@ class AddController extends BaseSitePageController
     protected $module;
 
     /**
-     * @var string|null $added флаг указывающий на публикацию комментария
+     * @var string|null $added флаг, указывающий на публикацию комментария
      */
     private $added;
 
@@ -93,7 +93,15 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> string|bool $added флаг, указывающий на статус добавленного комментария:
+     * published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </li>
+     * <li> ICmsPage $page текущая страница добавления комментария </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

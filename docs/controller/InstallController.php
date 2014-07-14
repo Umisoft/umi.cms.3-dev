@@ -12,6 +12,7 @@ namespace project\docs\controller;
 
 use project\docs\module\structure\model\object\ControllerPage;
 use project\docs\module\structure\model\object\WidgetPage;
+use Sami\Parser\Filter\TrueFilter;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
 use Sami\Reflection\MethodReflection;
@@ -253,7 +254,12 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->name('/(.)*[Widget|Controller]\.php$/')
             ->in($dir = Environment::$directoryCms);
 
-        $sami = new Sami($iterator);
+        $config = [];
+        $config['filter'] = function () {
+            return new TrueFilter();
+        };
+
+        $sami = new Sami($iterator, $config);
         $this->samiProject = $sami['project'];
         $this->samiProject->parse();
 
@@ -399,14 +405,19 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
         $returnValue = '';
         if (isset($invoke) && $invoke->getShortDesc() != '{@inheritdoc}') {
-            $returnValue = '<p>' . $invoke->getShortDesc() . '</p>';
             if ($longDescription = $invoke->getLongDesc()) {
                 $returnValue .= '<p>' . $longDescription . '</p>';
             }
         }
-         if (!$returnValue) {
-             //var_dump($className);
-         }
+
+        //var_dump('+++++++++++++++++++++++++++++++++', $className, array_keys($methods));
+
+        if (isset($methods['buildResponseContent'])) {
+            $buildResponseContentMethod = $methods['buildResponseContent'];
+            if ($extraDescription = $buildResponseContentMethod->getLongDesc()) {
+                $returnValue .= '<p>' . $extraDescription . '</p>';
+            }
+        }
 
         return $returnValue;
     }

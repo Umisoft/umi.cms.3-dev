@@ -84,7 +84,14 @@ class LoginController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $authenticated флаг, указывающий на то, авторизован пользователь или нет </li>
+     * <li> ICmsPage $page текущая страница авторизации </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

@@ -27,6 +27,10 @@ class IndexController extends BaseSitePageController
      * @var UsersModule $module модуль "Пользователи"
      */
     protected $module;
+    /**
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -63,16 +67,26 @@ class IndexController extends BaseSitePageController
     protected function processForm(IForm $form)
     {
         $this->commit();
+        $this->success = true;
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $success флаг, указывающий на успешное сохранение изменений </li>
+     * <li> RegisteredUser $user текущий пользователь </li>
+     * <li> ICmsPage $page текущая страница редактирования профиля пользователя </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {
         return [
             'user' => $this->module->getCurrentUser(),
-            'page' => $this->getCurrentPage()
+            'page' => $this->getCurrentPage(),
+            'success' => $this->success
         ];
     }
 }

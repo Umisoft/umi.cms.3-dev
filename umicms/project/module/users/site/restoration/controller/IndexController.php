@@ -88,7 +88,14 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $success флаг, указывающий на успешное выполнение запроса </li>
+     * <li> ICmsPage $page текущая страница запроса смены пароля </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

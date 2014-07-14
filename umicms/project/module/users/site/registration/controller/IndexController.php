@@ -78,7 +78,16 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $success флаг, указывающий на успешное сохранение изменений </li>
+     * <li> ICmsPage $page текущая страница регистрации пользователя </li>
+     * <li> bool $authenticated флаг, указывающий на то, авторизован пользователь или нет </li>
+     * <li> RegisteredUser $user новый зарегистрированный пользователь </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

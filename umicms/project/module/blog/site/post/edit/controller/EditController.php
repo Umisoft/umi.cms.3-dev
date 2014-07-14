@@ -30,7 +30,7 @@ class EditController extends BaseSitePageController
      */
     protected $module;
     /**
-     * @var bool $success флаг указывающий на успешное сохранение изменений
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
      */
     private $success = false;
 
@@ -81,6 +81,16 @@ class EditController extends BaseSitePageController
         $this->success = true;
     }
 
+    /**
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $success флаг, указывающий на успешное сохранение изменений </li>
+     * <li> ICmsPage $page текущая страница редактирования поста </li>
+     * </ul>
+     *
+     * @return array
+     */
     protected function buildResponseContent()
     {
         return [

@@ -31,7 +31,7 @@ class AddController extends BaseSitePageController
      */
     protected $module;
     /**
-     * @var bool $added флаг указывающий на статус добавление поста
+     * @var bool $added флаг, указывающий на статус добавление поста
      */
     private $added = false;
     /**
@@ -100,7 +100,15 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * <ul>
+     * <li> bool $success флаг, указывающий на успешное сохранение изменений </li>
+     * <li> ICmsPage $page текущая страница добавления поста </li>
+     * <li> BlogPost $blogPost созданный пост блога. Передается только, если пост был успешно добавлен </li>
+     * </ul>
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {
