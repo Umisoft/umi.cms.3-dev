@@ -16,7 +16,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 
 /**
- * Тэги блога.
+ * Теги блога.
  *
  * @property IManyToManyObjectSet $posts список постов, относящихся к тэгу
  * @property IManyToManyObjectSet $rss RSS-ленты тэга

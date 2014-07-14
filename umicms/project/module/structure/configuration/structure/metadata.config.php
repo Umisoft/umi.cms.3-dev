@@ -24,11 +24,13 @@ return array_replace_recursive(
             StructureElement::FIELD_COMPONENT_NAME     => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_name',
+                'defaultValue' => 'structure',
                 'readOnly'   => true
             ],
             StructureElement::FIELD_COMPONENT_PATH     => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_path',
+                'defaultValue' => 'structure',
                 'readOnly'   => true
             ],
             SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [

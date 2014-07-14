@@ -17,7 +17,7 @@ return [
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Создать тэг',
+        'action:create:base' => 'Создать тег',
 
         'role:editor:displayName' => 'Управление тегами'
     ]

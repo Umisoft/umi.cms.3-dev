@@ -33,7 +33,7 @@ use umicms\project\module\users\model\UsersModule;
  * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
- * @property IManyToManyObjectSet $tags тэги, к которым относится пост
+ * @property IManyToManyObjectSet $tags теги, к которым относится пост
  * @property DateTime $publishTime дата публикации поста
  * @property string $publishStatus статус публикации поста
  * @property int $commentsCount количество комментариев к посту

@@ -19,7 +19,7 @@ return [
     ],
 
     'ru-RU' => [
-        'component:rubric:displayName' => 'Новостные рубрики',
+        'component:rubric:displayName' => 'Рубрики',
 
         'action:create:base' => 'Добавить подрубрику',
 
