@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'infoblock',
       'type' => 'infoblock',
-      'guid' => 'c0db91b4-1170-43f0-a73a-74d792b9f343',
+      'guid' => '624aa9e4-c0dc-4869-bf03-39e2a05332f4',
       'displayName' => 'Общие',
     ),
     'data' => 
@@ -27,7 +27,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
-      'guid' => '45c6726f-b6f9-4e8d-9a28-ef65edb82269',
+      'guid' => '724969fc-f6db-456d-bbfb-0e353cae5d54',
       'displayName' => 'Супервайзер:Названа причина социопатии современных зомби:Призраки:ru-RU',
     ),
     'data' => 
@@ -22,7 +22,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -62,7 +62,7 @@ return array (
           array (
             'collection' => 'newsSubject',
             'type' => 'base',
-            'guid' => '50ab5e76-494d-41e6-abd8-3aecd57a7d09',
+            'guid' => 'fac65986-d2e4-4014-9a51-a43660ba6370',
             'displayName' => 'Призраки',
             'slug' => 'prizraki',
           ),
@@ -76,7 +76,7 @@ return array (
     array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
-      'guid' => 'b32e7b6b-4a9a-41b4-b753-6505a2e9973d',
+      'guid' => '7c90ed48-4df8-4e38-bc55-f21ac1ffa49e',
       'displayName' => 'Супервайзер:Названа причина социопатии современных зомби:Привидения:ru-RU',
     ),
     'data' => 
@@ -89,7 +89,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

@@ -8,8 +8,63 @@ return array (
     'meta' => 
     array (
       'collection' => 'menu',
+      'type' => 'externalItem',
+      'guid' => '53c0041f-2199-4d0b-8d95-2ea927f45264',
+      'displayName' => 'Внешняя ссылка',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'menu',
+          'type' => 'menu',
+          'guid' => '64bb59bc-cd22-4727-b56d-cc840605385e',
+          'displayName' => 'Нижнее меню',
+          'branch' => NULL,
+          'slug' => 'bottommenu',
+        ),
+      ),
+      'slug' => 'bottommenu-3',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Внешняя ссылка',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'resourceUrl' => 
+      array (
+        0 => 'string',
+        1 => 'http://ya.ru/',
+      ),
+    ),
+  ),
+  1 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'menu',
       'type' => 'menu',
-      'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
+      'guid' => '64bb59bc-cd22-4727-b56d-cc840605385e',
       'displayName' => 'Нижнее меню',
       'branch' => NULL,
       'slug' => 'bottommenu',
@@ -24,7 +79,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -47,79 +102,13 @@ return array (
       ),
     ),
   ),
-  1 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'menu',
-      'type' => 'internalItem',
-      'guid' => '0e6311ec-a007-42fe-8d17-6bcfcce5e9c0',
-      'displayName' => 'Главная',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'menu',
-          'type' => 'menu',
-          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
-          'displayName' => 'Нижнее меню',
-          'branch' => NULL,
-          'slug' => 'bottommenu',
-        ),
-      ),
-      'slug' => 'bottommenu',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Главная',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'pageRelation' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'structure',
-            'type' => 'static',
-            'guid' => 'd534fd83-0f12-4a0d-9853-583b9181a948',
-            'displayName' => 'Об отряде',
-            'branch' => NULL,
-            'slug' => 'ob-otryade',
-          ),
-        ),
-      ),
-    ),
-  ),
   2 => 
   array (
     'meta' => 
     array (
       'collection' => 'menu',
       'type' => 'internalItem',
-      'guid' => '2d04d56a-8034-4d33-9038-9b348b5e9e4d',
+      'guid' => '8540b88d-bdcd-4cee-a3e0-8a6f2e348b3a',
       'displayName' => 'Работа, за которую мы никогда не возьмемся',
       'branch' => 
       array (
@@ -127,7 +116,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
+          'guid' => '64bb59bc-cd22-4727-b56d-cc840605385e',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -145,7 +134,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -196,7 +185,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'internalItem',
-      'guid' => 'f8bb0122-97f3-4d36-b21d-9a29a364e402',
+      'guid' => 'b316044c-e0ff-422a-bf07-078e90e67ba0',
       'displayName' => 'Услуги и цены',
       'branch' => 
       array (
@@ -204,7 +193,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
+          'guid' => '64bb59bc-cd22-4727-b56d-cc840605385e',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -222,7 +211,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -261,34 +250,34 @@ return array (
     'meta' => 
     array (
       'collection' => 'menu',
-      'type' => 'externalItem',
-      'guid' => 'b87d907b-fc76-47dc-beb6-9254ce2789b4',
-      'displayName' => 'Внешняя ссылка',
+      'type' => 'internalItem',
+      'guid' => 'c178eb41-995c-4ec6-8ff1-2d7655468a1b',
+      'displayName' => 'Главная',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
+          'guid' => '64bb59bc-cd22-4727-b56d-cc840605385e',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
         ),
       ),
-      'slug' => 'bottommenu-3',
+      'slug' => 'bottommenu',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Внешняя ссылка',
+        1 => 'Главная',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -304,10 +293,21 @@ return array (
           ),
         ),
       ),
-      'resourceUrl' => 
+      'pageRelation' => 
       array (
-        0 => 'string',
-        1 => 'http://ya.ru/',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'structure',
+            'type' => 'static',
+            'guid' => 'd534fd83-0f12-4a0d-9853-583b9181a948',
+            'displayName' => 'Об отряде',
+            'branch' => NULL,
+            'slug' => 'ob-otryade',
+          ),
+        ),
       ),
     ),
   ),

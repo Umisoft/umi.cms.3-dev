@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'blogRssImportScenario',
       'type' => 'base',
-      'guid' => '8a330ae7-77f1-474b-8d36-a3800d69ed26',
+      'guid' => '43350d3a-380f-4702-ae96-928ead45360d',
       'displayName' => 'Scripting News',
     ),
     'data' => 
@@ -27,7 +27,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -56,7 +56,7 @@ return array (
     array (
       'collection' => 'blogRssImportScenario',
       'type' => 'base',
-      'guid' => 'e347bb31-5506-470c-bab2-e4ad3d142b4f',
+      'guid' => '4563da7b-b371-4fcc-9b50-6a7df96a7168',
       'displayName' => 'Хабрахабр / Захабренные / Тематические / Посты',
     ),
     'data' => 
@@ -74,7 +74,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -103,7 +103,7 @@ return array (
     array (
       'collection' => 'blogRssImportScenario',
       'type' => 'base',
-      'guid' => '24ece8b9-6cbd-4315-afe7-13f1193657d5',
+      'guid' => 'c957f281-18d7-4130-8b62-16b8a0215083',
       'displayName' => 'DLE-News (windows-1251)',
     ),
     'data' => 
@@ -121,7 +121,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 15:45:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
