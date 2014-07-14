@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\tag\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogTag;
@@ -44,7 +45,13 @@ class TagWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> BlogTag $blogTag тэг</li>
+     * </ul>
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

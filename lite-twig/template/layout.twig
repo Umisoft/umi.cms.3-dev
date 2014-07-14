@@ -10,7 +10,7 @@
     <div class="container">
 
         <div class="navbar-collapse collapse">
-            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+            {{ widget('structure.menu.auto', {'depth': 1, 'template': 'auto'})|raw }}
 
             {% if (locales) %}
                 <ul class="nav navbar-nav navbar-right">

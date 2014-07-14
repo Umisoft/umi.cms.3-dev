@@ -13,30 +13,29 @@ namespace project\docs\module\structure\model\object;
 use umicms\project\module\structure\model\object\StaticPage;
 
 /**
- * Страница виджета.
+ * Страница контроллера.
  *
- * @property string $parameters параметры виджета
  * @property string $description описание
  * @property string $returnValue описание
+ * @property string $templateName описание
  */
-class WidgetPage extends StaticPage
+class ControllerPage extends StaticPage
 {
     /**
      * Тип объекта
      */
-    const TYPE = 'static.widget';
+    const TYPE = 'static.controller';
     /**
-     *  Имя поля для хранения параметров виджета
-     */
-    const FIELD_PARAMETERS = 'parameters';
-    /**
-     * Имя поля для хранения описания виджета
+     * Имя поля для хранения описания контроллера
      */
     const FIELD_DESCRIPTION = 'description';
     /**
      * Имя поля для хранения возвращаемого значения
      */
     const FIELD_RETURN_VALUE = 'returnValue';
-
+    /**
+     * Имя поля для хранения используемого шаблона
+     */
+    const FIELD_TEMPLATE_NAME = 'templateName';
 }
  

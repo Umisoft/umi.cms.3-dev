@@ -12,6 +12,7 @@ namespace umicms\project\module\blog\site\reject\view\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -45,7 +46,14 @@ class PostWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> BlogPost $blogPost пост блога</li>
+     * </ul>
+     * @throws InvalidArgumentException
+     * @throws ResourceAccessForbiddenException
+     * @return CmsView
      */
     public function __invoke()
     {

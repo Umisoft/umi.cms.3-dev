@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use project\docs\module\structure\model\object\WidgetPage;
+use project\docs\module\structure\model\object\ControllerPage;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
@@ -28,22 +28,22 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                WidgetPage::FIELD_DISPLAY_NAME => [
+                ControllerPage::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_DISPLAY_NAME,
+                    'label' => ControllerPage::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_DISPLAY_NAME
+                        'dataSource' => ControllerPage::FIELD_DISPLAY_NAME
                     ],
                 ],
-                WidgetPage::FIELD_PAGE_LAYOUT => [
+                ControllerPage::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_LAYOUT,
+                    'label' => ControllerPage::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'choices' => [
                             null => 'Default or inherited layout'
                         ],
                         'lazy' => true,
-                        'dataSource' => WidgetPage::FIELD_PAGE_LAYOUT
+                        'dataSource' => ControllerPage::FIELD_PAGE_LAYOUT
                     ],
                 ]
             ]
@@ -53,32 +53,32 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'meta',
             'elements' => [
-                WidgetPage::FIELD_PAGE_H1 => [
+                ControllerPage::FIELD_PAGE_H1 => [
                     'type' => Text::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_H1,
+                    'label' => ControllerPage::FIELD_PAGE_H1,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_H1
+                        'dataSource' => ControllerPage::FIELD_PAGE_H1
                     ],
                 ],
-                WidgetPage::FIELD_PAGE_META_TITLE => [
+                ControllerPage::FIELD_PAGE_META_TITLE => [
                     'type' => Text::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_META_TITLE,
+                    'label' => ControllerPage::FIELD_PAGE_META_TITLE,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_META_TITLE
+                        'dataSource' => ControllerPage::FIELD_PAGE_META_TITLE
                     ],
                 ],
-                WidgetPage::FIELD_PAGE_META_KEYWORDS => [
+                ControllerPage::FIELD_PAGE_META_KEYWORDS => [
                     'type' => Text::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_META_KEYWORDS,
+                    'label' => ControllerPage::FIELD_PAGE_META_KEYWORDS,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_META_KEYWORDS
+                        'dataSource' => ControllerPage::FIELD_PAGE_META_KEYWORDS
                     ]
                 ],
-                WidgetPage::FIELD_PAGE_META_DESCRIPTION => [
+                ControllerPage::FIELD_PAGE_META_DESCRIPTION => [
                     'type' => Text::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_META_DESCRIPTION,
+                    'label' => ControllerPage::FIELD_PAGE_META_DESCRIPTION,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_META_DESCRIPTION
+                        'dataSource' => ControllerPage::FIELD_PAGE_META_DESCRIPTION
                     ]
                 ]
             ]
@@ -89,11 +89,11 @@ return [
             'label' => 'contents',
             'elements' => [
 
-                WidgetPage::FIELD_PAGE_CONTENTS => [
+                ControllerPage::FIELD_PAGE_CONTENTS => [
                     'type' => Wysiwyg::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_CONTENTS,
+                    'label' => ControllerPage::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_CONTENTS
+                        'dataSource' => ControllerPage::FIELD_PAGE_CONTENTS
                     ]
                 ],
 
@@ -105,30 +105,29 @@ return [
                     ]
                 ],
 
-                WidgetPage::FIELD_DESCRIPTION => [
+                ControllerPage::FIELD_DESCRIPTION => [
                     'type' => Wysiwyg::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_DESCRIPTION,
+                    'label' => ControllerPage::FIELD_DESCRIPTION,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_DESCRIPTION
+                        'dataSource' => ControllerPage::FIELD_DESCRIPTION
                     ]
                 ],
 
-                WidgetPage::FIELD_RETURN_VALUE => [
+                ControllerPage::FIELD_RETURN_VALUE => [
                     'type' => Wysiwyg::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_RETURN_VALUE,
+                    'label' => ControllerPage::FIELD_RETURN_VALUE,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_RETURN_VALUE
+                        'dataSource' => ControllerPage::FIELD_RETURN_VALUE
                     ]
                 ],
 
-                WidgetPage::FIELD_PARAMETERS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PARAMETERS,
+                ControllerPage::FIELD_TEMPLATE_NAME => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => ControllerPage::FIELD_TEMPLATE_NAME,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PARAMETERS
+                        'dataSource' => ControllerPage::FIELD_TEMPLATE_NAME
                     ]
                 ],
-
 
             ]
         ]

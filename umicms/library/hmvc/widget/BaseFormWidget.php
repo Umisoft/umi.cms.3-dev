@@ -12,6 +12,7 @@ namespace umicms\hmvc\widget;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umicms\hmvc\view\CmsView;
 
 /**
  * Базовый класс виджета вывода формы.
@@ -52,7 +53,14 @@ abstract class BaseFormWidget extends BaseCmsWidget
     abstract protected function getForm();
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> FormEntityView $form представление формы </li>
+     * </ul>
+     *
+     * @return CmsView
      */
     public function __invoke()
     {

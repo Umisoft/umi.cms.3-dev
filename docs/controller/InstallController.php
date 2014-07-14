@@ -10,9 +10,11 @@
 
 namespace project\docs\controller;
 
+use project\docs\module\structure\model\object\ControllerPage;
 use project\docs\module\structure\model\object\WidgetPage;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
+use Sami\Reflection\MethodReflection;
 use Sami\Reflection\PropertyReflection;
 use Sami\Sami;
 use Symfony\Component\Finder\Finder;
@@ -25,6 +27,7 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\component\site\SiteComponent;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\module\IModuleAware;
@@ -101,8 +104,8 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $this->installUsers();
             echo "Install search...\n";
             $this->installSearch();
-            echo "Install widgets documentation...\n";
-            $this->buildWidgetsStructure();
+            echo "Install components documentation...\n";
+            $this->buildComponentsStructure();
 
             $this->commit();
 
@@ -243,11 +246,11 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
     }
 
-    protected function buildWidgetsStructure()
+    protected function buildComponentsStructure()
     {
         $iterator = Finder::create()
             ->files()
-            ->name('/(.)*Widget\.php$/')
+            ->name('/(.)*[Widget|Controller]\.php$/')
             ->in($dir = Environment::$directoryCms);
 
         $sami = new Sami($iterator);
@@ -280,9 +283,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
             ->setValue('active', true);
 
-        $page->getProperty('componentName')->setValue('structure');
-        $page->getProperty('componentPath')->setValue('structure');
-
         foreach ($component->getChildComponentNames() as $childComponentName) {
             /**
              * @var SiteComponent $childComponent
@@ -291,10 +291,124 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $this->buildComponentStructure($childComponent, $page);
         }
 
-        foreach ($component->getWidgetNames() as $widgetName) {
-            $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
+        $widgetNames = $component->getWidgetNames();
+        if (count($widgetNames)) {
+            $widgetsPage = $structureCollection->add('widgets', StaticPage::TYPE, $page);
+            $widgetsPage->setValue('inMenu', true)
+                ->setValue('displayName', 'Виджеты')
+                ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
+                ->setValue('active', true);
+
+            foreach ($widgetNames as $widgetName) {
+                $this->buildWidgetPage($component->getWidget($widgetName),$component, $widgetsPage);
+            }
         }
 
+        $controllerNames = $component->getControllerNames();
+        if (count($controllerNames)) {
+            $controllersPage = $structureCollection->add('controllers', StaticPage::TYPE, $page);
+            $controllersPage->setValue('inMenu', true)
+                ->setValue('displayName', 'Контроллеры')
+                ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
+                ->setValue('active', true);
+
+            foreach ($controllerNames as $controllerName) {
+                $this->buildControllerPage($component->getController($controllerName), $component, $controllersPage);
+            }
+        }
+
+    }
+
+    protected function buildControllerPage(BaseCmsController $controller, SiteComponent $component, StaticPage $parentPage)
+    {
+        /**
+         * @var StructureElementCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        /**
+         * @var ControllerPage $controllerPage
+         */
+        $controllerPage = $structureCollection->add($controller->getName(), ControllerPage::TYPE, $parentPage)
+            ->setValue('inMenu', true)
+            ->setValue('active', true);
+
+        $controllerPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $controller->getName();
+        $controllerPage->active = true;
+
+        $className = get_class($controller);
+        $class = $this->samiProject->getClass($className);
+
+        $description = '';
+        if ($shortDescription = $class->getShortDesc()) {
+            $description .= '<p>' . $shortDescription . '</p>';
+        }
+        if ($longDescription = $class->getLongDesc()) {
+            $description .= '<p>' . $longDescription . '</p>';
+        }
+
+        $controllerPage->description = $description;
+        $controllerPage->returnValue = $this->getReturnValue($class);
+
+    }
+
+    protected function getReturnValue(ClassReflection $class)
+    {
+        $methods = $class->getMethods(true);
+        $className = $class->getName();
+
+        $invoke = null;
+        if (isset($methods['__invoke'])) {
+            $invoke = $methods['__invoke'];
+        }
+
+        /**
+         * @var MethodReflection $invoke
+         */
+        if (!$invoke || $invoke->getShortDesc() == '{@inheritdoc}') {
+            /**
+             * @var ClassReflection $parent
+             */
+            while ($parent = $class->getParent()) {
+                $parentMethods = $parent->getMethods();
+                if (isset($parentMethods['__invoke'])) {
+                    $invoke = $parentMethods['__invoke'];
+                    if ($invoke->getShortDesc() != '{@inheritdoc}') {
+                        break;
+                    }
+                }
+                $class = $parent;
+            }
+        }
+
+        if (!$invoke) {
+            if ($traits = class_uses($className)) {
+                foreach ($traits as $trait) {
+                    $traitClass = $this->samiProject->getClass($trait);
+                    $traitMethods = $traitClass->getMethods();
+
+                    if (isset($traitMethods['__invoke'])) {
+                        $invoke = $traitMethods['__invoke'];
+                        if ($invoke->getShortDesc() != '{@inheritdoc}') {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        $returnValue = '';
+        if (isset($invoke) && $invoke->getShortDesc() != '{@inheritdoc}') {
+            $returnValue = '<p>' . $invoke->getShortDesc() . '</p>';
+            if ($longDescription = $invoke->getLongDesc()) {
+                $returnValue .= '<p>' . $longDescription . '</p>';
+            }
+        }
+         if (!$returnValue) {
+             //var_dump($className);
+         }
+
+        return $returnValue;
     }
 
     protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
@@ -310,9 +424,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $widgetPage = $structureCollection->add($widget->getName(), WidgetPage::TYPE, $parentPage)
             ->setValue('inMenu', true)
             ->setValue('active', true);
-
-        $widgetPage->getProperty('componentName')->setValue('structure');
-        $widgetPage->getProperty('componentPath')->setValue('structure');
 
         $widgetPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
         $widgetPage->active = true;
@@ -400,6 +511,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         $widgetPage->parameters = $parameters;
+        $widgetPage->returnValue = $this->getReturnValue($class);
 
     }
 

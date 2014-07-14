@@ -60,7 +60,8 @@ class HighlightWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Возвращает размеченную строку.
+     * @return string
      */
     public function __invoke()
     {

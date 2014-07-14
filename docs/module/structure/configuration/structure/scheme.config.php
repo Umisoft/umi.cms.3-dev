@@ -18,6 +18,15 @@ return
         ],
         'description' => [
             'type' => Type::TEXT
+        ],
+        'second_contents' => [
+            'type' => Type::TEXT
+        ],
+        'return_value' => [
+            'type' => Type::TEXT
+        ],
+        'template_name' => [
+            'type' => Type::STRING
         ]
     ]
 ];

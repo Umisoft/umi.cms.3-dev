@@ -11,9 +11,11 @@
                 <div class="media-body">
                     <h4 class="media-heading"><a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a></h4>
 
-                    {% if (pageInfo.page.getTypeName() == 'static.widget') %}
+                    {% if (pageInfo.page.getTypeName() == 'static.widget' or pageInfo.page.getTypeName() == 'static.controller') %}
                         {{ pageInfo.page.description | raw }}
                     {% endif %}
+
+
 
                     {{ include('tree.twig', {'menu' : pageInfo.children, 'pullLeft': true}) }}
 

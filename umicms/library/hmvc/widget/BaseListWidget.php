@@ -17,6 +17,7 @@ use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
+use umicms\hmvc\view\CmsView;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\TSelectorConfigurator;
 use umicms\templating\helper\PaginationHelper;
@@ -74,8 +75,17 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      */
     abstract protected function getSelector();
 
+
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> array|ISelector $list список объектов </li>
+     * <li> array $pagination информация о постраничной навигации</li>
+     * </ul>
+     *
+     * @return CmsView
      */
     public function __invoke()
     {
