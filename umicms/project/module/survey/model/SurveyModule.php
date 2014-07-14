@@ -10,6 +10,8 @@
 
 namespace umicms\project\module\survey\model;
 
+use umi\http\IHttpAware;
+use umi\http\THttpAware;
 use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\survey\model\collection\SurveyCollection;
@@ -20,8 +22,9 @@ use umicms\project\module\survey\model\object\Survey;
 /**
  * Модуль "Опросы".
  */
-class SurveyModule extends BaseModule
+class SurveyModule extends BaseModule implements IHttpAware
 {
+    use THttpAware;
 
     protected $statisticModule;
 
@@ -84,10 +87,11 @@ class SurveyModule extends BaseModule
     /**
      * Возвращет, голосовал ли текущий пользователь
      * @param Survey $survey
+     * @return bool
      */
     public function checkIfVoted(Survey $survey)
     {
-        //TODO: check with statistic module
+        return $this->getHttpRequest()->cookies->has($survey->guid);
     }
 
     /**
@@ -96,6 +100,6 @@ class SurveyModule extends BaseModule
      */
     public function markAsVoted(Survey $survey)
     {
-        //TODO: mark with statistic module
+        //TODO: mark with statistic module. Now it's unavailable.
     }
 }
