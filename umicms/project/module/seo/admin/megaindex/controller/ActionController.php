@@ -37,7 +37,12 @@ class ActionController extends BaseController
      */
     protected function actionGetBacklinks()
     {
-        return $this->getModel()->queryApi('get_backlinks');
+        return [
+            'data' => $this->getModel()->queryApi('get_backlinks'),
+            'headers' => [
+                'На какой странице расположена ссылка'
+            ]
+        ];
     }
 
     /**

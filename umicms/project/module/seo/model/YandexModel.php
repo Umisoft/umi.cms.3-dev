@@ -11,15 +11,14 @@ namespace umicms\project\module\seo\model;
 
 use SimpleXMLElement;
 use umi\hmvc\model\IModel;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
+use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Модель, получающая данные от API Мегаиндекса.
  */
-class YandexModel implements IModel, ILocalizable
+class YandexModel implements IModel
 {
-    use TLocalizable;
 
     /**
      * Идентификатор хоста.
@@ -31,19 +30,36 @@ class YandexModel implements IModel, ILocalizable
     const YANDEX_OAUTH_TOKEN = 'oauthToken';
 
     /**
+     * @var  $component
+     */
+    private $component;
+
+    /**
      * @var string $oauthToken
      */
     private $oauthToken;
 
+    /**
+     * @var string $translationPrefix префикс переводимых меток
+     */
     private $translationPrefix = 'component:yandex:';
 
     /**
      * Конструктор модели, требует токен для запросов к Яндексу.
-     * @param string $oauthToken
+     * @param AdminComponent $component
+     * @throws InvalidArgumentException в случае если токен не задан
      */
-    public function __construct($oauthToken)
+    public function __construct(AdminComponent $component)
     {
-        $this->oauthToken = $oauthToken;
+        $this->component = $component;
+
+        $this->oauthToken = $this->component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
+        if (is_null($this->oauthToken)) {
+            throw new InvalidArgumentException($this->component->translate(
+                "Option {option} is required",
+                ['option' => YandexModel::YANDEX_OAUTH_TOKEN]
+            ));
+        }
     }
 
     /**
@@ -210,7 +226,7 @@ class YandexModel implements IModel, ILocalizable
         $labels = [];
         foreach($data as $key => $host) {
             if (!is_int($key)) {
-                $labels[$key] = $this->translate($this->translationPrefix . $resource . ucfirst($key));
+                $labels[$key] = $this->component->translate($this->translationPrefix . $resource . ucfirst($key));
             }
             if (is_array($host)) {
                 $labels = array_merge($labels, $this->getLabel($host, $resource));

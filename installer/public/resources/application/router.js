@@ -88,59 +88,66 @@ define([], function(){
              * @returns {promise} возвращает promise результатом которого является true в случае успешного сохранения
              */
             saveObject: function(params){
-                var isNewObject;
                 var self = this;
-                var deferred;
-
-                if(!params.object.get('isValid')){
-                    if(params.handler){
-                        $(params.handler).removeClass('loading');
+                var deferred = Ember.RSVP.defer();
+                try{
+                    params.object.validateObject();
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        deferred.reject();
                     }
-                    deferred = Ember.RSVP.defer();
-                    return deferred.resolve(false);
-                }
+                    params.object.save().then(
+                        function(){
+                            params.object.updateRelationhipsMap();
 
-                if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
-                    isNewObject = true;
-                }
-
-                return params.object.save().then(
-                    function(){
-                        params.object.updateRelationhipsMap();
-
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        return params.object;
-                    },
-
-                    function(results){
-                        results = results || {};
-                        var self = this;
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        var data = {
-                            'close': false,
-                            'title': results.errors,
-                            'content': results.message,
-                            'confirm': 'Загрузить объект с сервера'
-                        };
-
-                        return UMI.dialog.open(data).then(
-                            function(){
-                                //https://github.com/emberjs/data/issues/1632
-                                //params.object.transitionTo('updated.uncommitted');
-                                //                                    console.log(params.object.get('currentState.stateName'), results, self);
-                                /* params.object.rollback();
-                                 params.object.reload();*/
-                                return false;
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
                             }
-                        );
-                    }
-                );
+
+                            return params.object;
+                        },
+
+                        function(results){
+                            delete window.EmberDataXHRErrorBubbleOff;
+                            try{
+                                results = results || {};
+                                if(params.handler){
+                                    $(params.handler).removeClass('loading');
+                                }
+                                var store = self.get('store');
+                                var collection;
+                                var object;
+                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                var invalidObject;
+                                var invalidProperties;
+                                var i;
+                                if(Ember.typeOf(invalidObjects) === 'array'){
+                                    if(params.object.get('isValid')){
+                                        params.object.send('becameInvalid');
+                                    }
+                                    for(i = 0; i < invalidObjects.length; i++){
+                                        invalidObject = invalidObjects[i];
+                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                        collection = store.all(invalidObject.collection);
+                                        object = collection.findBy('guid', invalidObject.guid);
+                                        if(object){
+                                            object.setInvalidProperties(invalidProperties);
+                                        }
+                                    }
+                                }
+                                deferred.reject();
+                            } catch(error){
+                                self.send('backgroundError', error);
+                            }
+                        }
+                    );
+                } catch(error){
+                    self.send('backgroundError', error);
+                } finally{
+                    return deferred.promise;
+                }
             },
 
             beforeAdd: function(params){
@@ -671,9 +678,23 @@ define([], function(){
                             var componentController = self.controllerFor('component');
                             if(Ember.typeOf(results) === 'object' && Ember.get(results, 'result.layout')){
                                 var settings = results.result.layout;
+                                var dataSource = Ember.get(settings, 'dataSource') || '';
                                 componentController.set('settings', settings);
                                 componentController.set('selectedContext', Ember.get(transition,'params.context') ? Ember.get(transition, 'params.context.context') : 'root');
-                                deferred.resolve(model);
+                                if(Ember.get(dataSource, 'type') === 'lazy'){
+                                    $.get(Ember.get(settings, 'actions.' + Ember.get(dataSource, 'action') + '.source')).then(
+                                        function(results){
+                                            var data = Ember.get(results, 'result.' + Ember.get(dataSource, 'action') + '.objects');
+                                            Ember.set(dataSource, 'objects', data);
+                                            deferred.resolve(model);
+                                        }, function(error){
+                                            deferred.reject(transition.send('backgroundError', error));
+                                        }
+                                    );
+                                } else{
+                                    deferred.resolve(model);
+                                }
+
                             } else{
                                 var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
                                 transition.send('backgroundError', error);
@@ -759,6 +780,7 @@ define([], function(){
                     } else{
                         switch(Ember.get(collection, 'type')){
                             case 'static':
+                            case 'lazy':
                                 model = new Ember.RSVP.Promise(function(resolve, reject){
                                     var objects = Ember.get(collection, 'objects');
                                     var object;
@@ -849,18 +871,19 @@ define([], function(){
                     componentController = this.controllerFor('component');
                     contentControls = componentController.get('contentControls');
                     contentControl = contentControls.findBy('id', actionName);
+                    if(!contentControl){
+                        throw new Error('Action "dynamic" is undefined for component.');
+                    }
                     routeData = {
                         'object': contextModel,
                         'control': contentControl
                     };
+                    actionResourceName = Ember.get(contentControl, 'params.action');
 
-                    if(Ember.get(contentControl, 'params.isStatic')){
-                        // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
+                    if(!actionResourceName){
                         deferred.resolve(routeData);
                     } else{
-                        actionResourceName = Ember.get(contentControl, 'params.action');
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
-
                         if(actionResource){
                             controlObject = routeData.object;
                             if(actionName === 'createForm'){
@@ -878,36 +901,39 @@ define([], function(){
                                 controlObject = routeData.createObject;
                             }
                             actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
-
-                            Ember.$.get(actionResource).then(function(results){
-                                var dynamicControl;
-                                var dynamicControlName;
-                                if(actionName === 'dynamic'){
-                                    dynamicControl = Ember.get(results, 'result') || {};
-                                    for(var key in dynamicControl){
-                                        if(dynamicControl.hasOwnProperty(key)){
-                                            dynamicControlName = key;
+                            $.ajax({
+                                type: "GET",
+                                url: actionResource,
+                                global: false,
+                                success: function(results){
+                                    var dynamicControl;
+                                    var dynamicControlName;
+                                    if(actionName === 'dynamic'){
+                                        dynamicControl = Ember.get(results, 'result') || {};
+                                        for(var key in dynamicControl){
+                                            if(dynamicControl.hasOwnProperty(key)){
+                                                dynamicControlName = key;
+                                            }
                                         }
-                                    }
-                                    dynamicControl = dynamicControl[dynamicControlName] || {};
-                                    dynamicControl.name = dynamicControlName;
+                                        dynamicControl = dynamicControl[dynamicControlName] || {};
+                                        dynamicControl.name = dynamicControlName;
 
-                                    UMI.Utils.objectsMerge(routeData.control, dynamicControl);
-                                } else{
-                                    Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                        UMI.Utils.objectsMerge(routeData.control, dynamicControl);
+                                    } else{
+                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                    }
+                                    deferred.resolve(routeData);
+                                },
+                                error: function(error){
+                                    deferred.reject(transition.send('templateLogs', error, 'component'));
                                 }
-                                deferred.resolve(routeData);
-                            }/*, function(error){
-                             Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                             deferred.reject(transition.send('backgroundError', error));
-                             }*/);
+                            });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
-
                     }
                 } catch(error){
-                    deferred.reject(transition.send('backgroundError', error));
+                    deferred.reject(transition.send('templateLogs', error, 'component'));
                 } finally{
                     return deferred.promise;
                 }
