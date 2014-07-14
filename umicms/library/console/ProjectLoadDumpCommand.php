@@ -18,6 +18,8 @@ use Symfony\Component\Finder\Finder;
 use umi\orm\persister\IObjectPersister;
 use umicms\orm\dump\ICmsObjectImporter;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Загружает данные проекта из дампа.
@@ -47,15 +49,23 @@ class ProjectLoadDumpCommand extends BaseProjectCommand
 
         $bootstrap = $this->dispatchToProject($input, $output);
         $toolkit = $bootstrap->getToolkit();
+        /**
+         * @var ICmsObjectImporter $objectImporter
+         */
+        $objectImporter =  $toolkit->getService('umicms\orm\dump\ICmsObjectImporter');
+        /**
+         * @var IObjectPersister $objectPersister
+         */
+        $objectPersister =  $toolkit->getService('umi\orm\persister\IObjectPersister');
+        /**
+         * @var SearchModule $searchModule
+         */
+        $searchModule = $toolkit->getService('umicms\module\IModule', SearchModule::className());
 
         $dumpDirectory = $bootstrap->getProjectDirectory() . '/dump';
         if (!is_dir($dumpDirectory)) {
             mkdir($dumpDirectory);
         }
-        /**
-         * @var ICmsObjectImporter $objectImporter
-         */
-        $objectImporter =  $toolkit->getService('umicms\orm\dump\ICmsObjectImporter');
 
         $output->writeln('<process>Загружаем дамп в память.</process>');
 
@@ -66,7 +76,6 @@ class ProjectLoadDumpCommand extends BaseProjectCommand
             ->in($dumpDirectory);
 
         $progress = $this->startProgressBar($output, count($finder));
-
         foreach ($finder as $dumpFile)
         {
             $progress->setMessage('Загрузка файла "' . $dumpFile . '"');
@@ -77,13 +86,29 @@ class ProjectLoadDumpCommand extends BaseProjectCommand
 
         $progress->setMessage('Complete.');
         $progress->finish();
+        $output->writeln('');
+
+
+        $output->writeln('<process>Обновляем поисковый индекс.</process>');
 
         /**
-         * @var IObjectPersister $objectPersister
+         * @var ICmsPage $object
          */
-        $objectPersister =  $toolkit->getService('umi\orm\persister\IObjectPersister');
+        foreach ($objectPersister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $output->write('.');
+                $searchModule->getSearchIndexApi()->buildIndexForObject($object);
+            }
+        }
 
+        foreach ($objectPersister->getModifiedObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $output->write('.');
+                $searchModule->getSearchIndexApi()->buildIndexForObject($object);
+            }
+        }
         $output->writeln('');
+
         $output->writeln('<info>Загружено объектов на создание: ' . count($objectPersister->getNewObjects()) . ' </info>');
         $output->writeln('<info>Загружено объектов на модификацию: ' . count($objectPersister->getModifiedObjects()) . '</info>');
 
@@ -111,11 +136,6 @@ class ProjectLoadDumpCommand extends BaseProjectCommand
             $objectPersister->commit();
             $output->writeln('<process>Complete</process>');
         }
-
-
-
     }
-
-
 
 }

@@ -25,7 +25,7 @@ abstract class BaseCommand extends Command
      * @param int $max максимальное количество операций
      * @return ProgressBar
      */
-    protected function startProgressBar(OutputInterface $output, $max)
+    protected function startProgressBar(OutputInterface $output, $max = 0)
     {
         $output->writeln("");
 

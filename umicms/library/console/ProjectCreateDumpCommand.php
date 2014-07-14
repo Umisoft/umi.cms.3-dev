@@ -9,7 +9,6 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,6 +22,11 @@ use umicms\orm\object\ICmsObject;
  */
 class ProjectCreateDumpCommand extends BaseProjectCommand
 {
+    /**
+     * @var array $ignoreCollections имена коллекций, которые будут проигнорированы в дампе.
+     */
+    public $ignoreCollections = ['serviceBackup', 'searchIndex'];
+
     /**
      * {@inheritdoc}
      */
@@ -70,6 +74,12 @@ class ProjectCreateDumpCommand extends BaseProjectCommand
         {
             $progress->setMessage('Выгрузка данных коллекции "' . $collectionName . '"');
             $progress->advance();
+
+            if (in_array($collectionName, $this->ignoreCollections)) {
+                $progress->setMessage('Коллекция "' . $collectionName . '" проигнорирована.');
+                continue;
+            }
+
             /**
              * @var ICmsCollection $collection
              */
@@ -78,9 +88,13 @@ class ProjectCreateDumpCommand extends BaseProjectCommand
                 $collection->getInternalSelector()->orderBy(ICmsObject::FIELD_GUID)
             );
 
-            $progress->setMessage('Запись данных "' . $collectionName . '"');
-            $contents = $this->getDumpFile($collectionName, $dump);
-            file_put_contents($dumpDirectory . '/' . $collectionName . '.dump.php', $contents);
+            if (count($dump)) {
+                $progress->setMessage('Запись данных коллекции "' . $collectionName . '"');
+                $contents = $this->getDumpFile($collectionName, $dump);
+                file_put_contents($dumpDirectory . '/' . $collectionName . '.dump.php', $contents);
+            } else {
+                $progress->setMessage('Коллекция "' . $collectionName . '" пуста');
+            }
         }
 
         $progress->setMessage('Complete.');
