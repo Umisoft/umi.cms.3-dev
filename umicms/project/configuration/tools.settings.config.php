@@ -17,6 +17,7 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umi\validation\toolbox\ValidationTools;
 use umicms\filter\HtmlPurifier;
 use umicms\filter\Slug;
 use umicms\form\element\Captcha;
@@ -31,6 +32,7 @@ use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
+use umicms\validation\Range;
 
 return [
     AuthenticationTools::NAME => [
@@ -186,6 +188,16 @@ return [
                 'types' => [
                     HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
                     Slug::TYPE => 'umicms\filter\Slug'
+                ]
+            ]
+        ]
+    ],
+
+    ValidationTools::NAME => [
+        'factories' => [
+            'validator' => [
+                'types' => [
+                    Range::NAME => 'umicms\validation\Range',
                 ]
             ]
         ]

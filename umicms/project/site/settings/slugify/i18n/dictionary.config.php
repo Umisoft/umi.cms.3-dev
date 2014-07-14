@@ -15,7 +15,6 @@ return [
         'slugify' => 'Slug generator',
         'slugGeneratorType' => 'Slug generator type',
         'slugLength' => 'Slug length',
-        'slugGeneratorActive' => 'Slug generate active',
 
         'role:configurator:displayName' => 'Manage settings'
     ],
@@ -27,7 +26,6 @@ return [
         'slugify' => 'Псевдостатический адрес',
         'slugGeneratorType' => 'Тип псевдостатического адреса',
         'slugLength' => 'Длина псевдостатического адреса',
-        'slugGeneratorActive' => 'Включить автоматическую генерацию slug\'ов',
 
         'role:configurator:displayName' => 'Управление настройками'
     ]
