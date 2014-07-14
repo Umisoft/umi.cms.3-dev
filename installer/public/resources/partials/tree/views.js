@@ -325,28 +325,28 @@ define(['App', 'toolbar'], function(UMI){
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
-            elementView: UMI.ToolbarElementView.extend({
+            elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
-                    var behaviour;
+                    var behaviour = {};
+                    var splitButtonBehaviour;
                     var i;
                     var action;
                     if(behaviourName){
-                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
-                    } else{
-                        behaviour = {};
+                        splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                        for(var key in splitButtonBehaviour){
+                            if(splitButtonBehaviour.hasOwnProperty(key)){
+                                behaviour[key] = splitButtonBehaviour[key];
+                            }
+                        }
                     }
                     var choices = this.get('context.behaviour.choices');
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
-                            var prefix = '';
-                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
+                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
                             if(behaviourAction){
-                                if(behaviourAction.hasOwnProperty('_actions')){
-                                    prefix = '_';
-                                }
-                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                                action = behaviourAction.actions[choices[i].behaviour.name];
                                 if(action){
                                     if(Ember.typeOf(behaviour.actions) !== 'object'){
                                         behaviour.actions = {};
@@ -356,9 +356,9 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
-                    behaviour.actions.sendActionForBehaviour = function(behaviour){
+                    behaviour.actions.sendActionForBehaviour = function(contextBehaviour){
                         var object = this.get('controller.model');
-                        this.send(behaviour.name, {behaviour: behaviour, object: object});
+                        this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
                     };
                     behaviour.classNames = ['tiny white square'];
                     instance = instance.extend(behaviour);
