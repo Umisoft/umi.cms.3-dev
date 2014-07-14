@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+      'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
       'displayName' => 'Элемент 0',
       'branch' => NULL,
       'slug' => 'item0',
@@ -29,12 +29,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -49,56 +44,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -120,16 +65,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -148,7 +83,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+      'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
       'displayName' => 'Элемент 1',
       'branch' => 
       array (
@@ -156,7 +91,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+          'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
           'displayName' => 'Элемент 0',
           'branch' => NULL,
           'slug' => 'item0',
@@ -179,12 +114,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -199,56 +129,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -270,16 +150,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -298,7 +168,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+      'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
       'displayName' => 'Элемент 2',
       'branch' => 
       array (
@@ -306,7 +176,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+          'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
           'displayName' => 'Элемент 1',
           'branch' => 
           array (
@@ -314,7 +184,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+              'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
               'displayName' => 'Элемент 0',
               'branch' => NULL,
               'slug' => 'item0',
@@ -340,12 +210,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -360,56 +225,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -431,16 +246,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -459,7 +264,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+      'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
       'displayName' => 'Элемент 3',
       'branch' => 
       array (
@@ -467,7 +272,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+          'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
           'displayName' => 'Элемент 2',
           'branch' => 
           array (
@@ -475,7 +280,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+              'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
               'displayName' => 'Элемент 1',
               'branch' => 
               array (
@@ -483,7 +288,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                  'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                   'displayName' => 'Элемент 0',
                   'branch' => NULL,
                   'slug' => 'item0',
@@ -512,12 +317,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -532,56 +332,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -603,16 +353,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -631,7 +371,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+      'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
       'displayName' => 'Элемент 4',
       'branch' => 
       array (
@@ -639,7 +379,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+          'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
           'displayName' => 'Элемент 3',
           'branch' => 
           array (
@@ -647,7 +387,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+              'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
               'displayName' => 'Элемент 2',
               'branch' => 
               array (
@@ -655,7 +395,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                  'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                   'displayName' => 'Элемент 1',
                   'branch' => 
                   array (
@@ -663,7 +403,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                      'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                       'displayName' => 'Элемент 0',
                       'branch' => NULL,
                       'slug' => 'item0',
@@ -695,12 +435,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -715,56 +450,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -786,16 +471,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -814,7 +489,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+      'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
       'displayName' => 'Элемент 5',
       'branch' => 
       array (
@@ -822,7 +497,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+          'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
           'displayName' => 'Элемент 4',
           'branch' => 
           array (
@@ -830,7 +505,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+              'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
               'displayName' => 'Элемент 3',
               'branch' => 
               array (
@@ -838,7 +513,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                  'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                   'displayName' => 'Элемент 2',
                   'branch' => 
                   array (
@@ -846,7 +521,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                      'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                       'displayName' => 'Элемент 1',
                       'branch' => 
                       array (
@@ -854,7 +529,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                          'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                           'displayName' => 'Элемент 0',
                           'branch' => NULL,
                           'slug' => 'item0',
@@ -889,12 +564,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -909,56 +579,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -980,16 +600,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1008,7 +618,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+      'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
       'displayName' => 'Элемент 6',
       'branch' => 
       array (
@@ -1016,7 +626,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+          'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
           'displayName' => 'Элемент 5',
           'branch' => 
           array (
@@ -1024,7 +634,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+              'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
               'displayName' => 'Элемент 4',
               'branch' => 
               array (
@@ -1032,7 +642,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                  'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                   'displayName' => 'Элемент 3',
                   'branch' => 
                   array (
@@ -1040,7 +650,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                      'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                       'displayName' => 'Элемент 2',
                       'branch' => 
                       array (
@@ -1048,7 +658,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                          'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                           'displayName' => 'Элемент 1',
                           'branch' => 
                           array (
@@ -1056,7 +666,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                              'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                               'displayName' => 'Элемент 0',
                               'branch' => NULL,
                               'slug' => 'item0',
@@ -1094,12 +704,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1114,56 +719,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -1185,16 +740,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1213,7 +758,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+      'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
       'displayName' => 'Элемент 7',
       'branch' => 
       array (
@@ -1221,7 +766,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+          'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
           'displayName' => 'Элемент 6',
           'branch' => 
           array (
@@ -1229,7 +774,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+              'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
               'displayName' => 'Элемент 5',
               'branch' => 
               array (
@@ -1237,7 +782,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                  'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                   'displayName' => 'Элемент 4',
                   'branch' => 
                   array (
@@ -1245,7 +790,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                      'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                       'displayName' => 'Элемент 3',
                       'branch' => 
                       array (
@@ -1253,7 +798,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                          'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                           'displayName' => 'Элемент 2',
                           'branch' => 
                           array (
@@ -1261,7 +806,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                              'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                               'displayName' => 'Элемент 1',
                               'branch' => 
                               array (
@@ -1269,7 +814,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                  'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                   'displayName' => 'Элемент 0',
                                   'branch' => NULL,
                                   'slug' => 'item0',
@@ -1310,12 +855,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1330,56 +870,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -1401,16 +891,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1429,7 +909,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+      'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
       'displayName' => 'Элемент 8',
       'branch' => 
       array (
@@ -1437,7 +917,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+          'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
           'displayName' => 'Элемент 7',
           'branch' => 
           array (
@@ -1445,7 +925,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+              'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
               'displayName' => 'Элемент 6',
               'branch' => 
               array (
@@ -1453,7 +933,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                  'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                   'displayName' => 'Элемент 5',
                   'branch' => 
                   array (
@@ -1461,7 +941,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                      'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                       'displayName' => 'Элемент 4',
                       'branch' => 
                       array (
@@ -1469,7 +949,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                          'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                           'displayName' => 'Элемент 3',
                           'branch' => 
                           array (
@@ -1477,7 +957,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                              'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                               'displayName' => 'Элемент 2',
                               'branch' => 
                               array (
@@ -1485,7 +965,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                  'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                   'displayName' => 'Элемент 1',
                                   'branch' => 
                                   array (
@@ -1493,7 +973,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                      'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                       'displayName' => 'Элемент 0',
                                       'branch' => NULL,
                                       'slug' => 'item0',
@@ -1537,12 +1017,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1557,56 +1032,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -1628,16 +1053,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1656,7 +1071,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+      'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
       'displayName' => 'Элемент 9',
       'branch' => 
       array (
@@ -1664,7 +1079,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+          'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
           'displayName' => 'Элемент 8',
           'branch' => 
           array (
@@ -1672,7 +1087,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+              'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
               'displayName' => 'Элемент 7',
               'branch' => 
               array (
@@ -1680,7 +1095,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                  'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                   'displayName' => 'Элемент 6',
                   'branch' => 
                   array (
@@ -1688,7 +1103,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                      'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                       'displayName' => 'Элемент 5',
                       'branch' => 
                       array (
@@ -1696,7 +1111,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                          'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                           'displayName' => 'Элемент 4',
                           'branch' => 
                           array (
@@ -1704,7 +1119,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                              'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                               'displayName' => 'Элемент 3',
                               'branch' => 
                               array (
@@ -1712,7 +1127,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                  'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                   'displayName' => 'Элемент 2',
                                   'branch' => 
                                   array (
@@ -1720,7 +1135,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                      'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                       'displayName' => 'Элемент 1',
                                       'branch' => 
                                       array (
@@ -1728,7 +1143,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                          'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                           'displayName' => 'Элемент 0',
                                           'branch' => NULL,
                                           'slug' => 'item0',
@@ -1775,12 +1190,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1795,56 +1205,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -1866,16 +1226,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -1894,7 +1244,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+      'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
       'displayName' => 'Элемент 10',
       'branch' => 
       array (
@@ -1902,7 +1252,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+          'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
           'displayName' => 'Элемент 9',
           'branch' => 
           array (
@@ -1910,7 +1260,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+              'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
               'displayName' => 'Элемент 8',
               'branch' => 
               array (
@@ -1918,7 +1268,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                  'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                   'displayName' => 'Элемент 7',
                   'branch' => 
                   array (
@@ -1926,7 +1276,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                      'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                       'displayName' => 'Элемент 6',
                       'branch' => 
                       array (
@@ -1934,7 +1284,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                          'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                           'displayName' => 'Элемент 5',
                           'branch' => 
                           array (
@@ -1942,7 +1292,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                              'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                               'displayName' => 'Элемент 4',
                               'branch' => 
                               array (
@@ -1950,7 +1300,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                  'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                   'displayName' => 'Элемент 3',
                                   'branch' => 
                                   array (
@@ -1958,7 +1308,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                      'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                       'displayName' => 'Элемент 2',
                                       'branch' => 
                                       array (
@@ -1966,7 +1316,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                          'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                           'displayName' => 'Элемент 1',
                                           'branch' => 
                                           array (
@@ -1974,7 +1324,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                              'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                               'displayName' => 'Элемент 0',
                                               'branch' => NULL,
                                               'slug' => 'item0',
@@ -2024,12 +1374,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2044,56 +1389,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -2115,16 +1410,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -2143,7 +1428,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+      'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
       'displayName' => 'Элемент 11',
       'branch' => 
       array (
@@ -2151,7 +1436,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+          'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
           'displayName' => 'Элемент 10',
           'branch' => 
           array (
@@ -2159,7 +1444,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+              'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
               'displayName' => 'Элемент 9',
               'branch' => 
               array (
@@ -2167,7 +1452,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                  'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                   'displayName' => 'Элемент 8',
                   'branch' => 
                   array (
@@ -2175,7 +1460,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                      'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                       'displayName' => 'Элемент 7',
                       'branch' => 
                       array (
@@ -2183,7 +1468,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                          'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                           'displayName' => 'Элемент 6',
                           'branch' => 
                           array (
@@ -2191,7 +1476,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                              'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                               'displayName' => 'Элемент 5',
                               'branch' => 
                               array (
@@ -2199,7 +1484,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                  'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                   'displayName' => 'Элемент 4',
                                   'branch' => 
                                   array (
@@ -2207,7 +1492,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                      'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                       'displayName' => 'Элемент 3',
                                       'branch' => 
                                       array (
@@ -2215,7 +1500,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                          'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                           'displayName' => 'Элемент 2',
                                           'branch' => 
                                           array (
@@ -2223,7 +1508,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                              'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                               'displayName' => 'Элемент 1',
                                               'branch' => 
                                               array (
@@ -2231,7 +1516,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                  'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                   'displayName' => 'Элемент 0',
                                                   'branch' => NULL,
                                                   'slug' => 'item0',
@@ -2284,12 +1569,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2304,56 +1584,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -2375,16 +1605,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -2403,7 +1623,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+      'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
       'displayName' => 'Элемент 12',
       'branch' => 
       array (
@@ -2411,7 +1631,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+          'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
           'displayName' => 'Элемент 11',
           'branch' => 
           array (
@@ -2419,7 +1639,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+              'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
               'displayName' => 'Элемент 10',
               'branch' => 
               array (
@@ -2427,7 +1647,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                  'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                   'displayName' => 'Элемент 9',
                   'branch' => 
                   array (
@@ -2435,7 +1655,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                      'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                       'displayName' => 'Элемент 8',
                       'branch' => 
                       array (
@@ -2443,7 +1663,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                          'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                           'displayName' => 'Элемент 7',
                           'branch' => 
                           array (
@@ -2451,7 +1671,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                              'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                               'displayName' => 'Элемент 6',
                               'branch' => 
                               array (
@@ -2459,7 +1679,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                  'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                   'displayName' => 'Элемент 5',
                                   'branch' => 
                                   array (
@@ -2467,7 +1687,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                      'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                       'displayName' => 'Элемент 4',
                                       'branch' => 
                                       array (
@@ -2475,7 +1695,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                          'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                           'displayName' => 'Элемент 3',
                                           'branch' => 
                                           array (
@@ -2483,7 +1703,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                              'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                               'displayName' => 'Элемент 2',
                                               'branch' => 
                                               array (
@@ -2491,7 +1711,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                  'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                   'displayName' => 'Элемент 1',
                                                   'branch' => 
                                                   array (
@@ -2499,7 +1719,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                      'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                       'displayName' => 'Элемент 0',
                                                       'branch' => NULL,
                                                       'slug' => 'item0',
@@ -2555,12 +1775,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2575,56 +1790,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -2646,16 +1811,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -2674,7 +1829,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+      'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
       'displayName' => 'Элемент 13',
       'branch' => 
       array (
@@ -2682,7 +1837,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+          'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
           'displayName' => 'Элемент 12',
           'branch' => 
           array (
@@ -2690,7 +1845,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+              'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
               'displayName' => 'Элемент 11',
               'branch' => 
               array (
@@ -2698,7 +1853,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                  'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                   'displayName' => 'Элемент 10',
                   'branch' => 
                   array (
@@ -2706,7 +1861,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                      'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                       'displayName' => 'Элемент 9',
                       'branch' => 
                       array (
@@ -2714,7 +1869,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                          'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                           'displayName' => 'Элемент 8',
                           'branch' => 
                           array (
@@ -2722,7 +1877,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                              'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                               'displayName' => 'Элемент 7',
                               'branch' => 
                               array (
@@ -2730,7 +1885,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                  'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                   'displayName' => 'Элемент 6',
                                   'branch' => 
                                   array (
@@ -2738,7 +1893,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                      'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                       'displayName' => 'Элемент 5',
                                       'branch' => 
                                       array (
@@ -2746,7 +1901,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                          'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                           'displayName' => 'Элемент 4',
                                           'branch' => 
                                           array (
@@ -2754,7 +1909,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                              'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                               'displayName' => 'Элемент 3',
                                               'branch' => 
                                               array (
@@ -2762,7 +1917,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                  'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                   'displayName' => 'Элемент 2',
                                                   'branch' => 
                                                   array (
@@ -2770,7 +1925,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                      'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                       'displayName' => 'Элемент 1',
                                                       'branch' => 
                                                       array (
@@ -2778,7 +1933,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                          'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                           'displayName' => 'Элемент 0',
                                                           'branch' => NULL,
                                                           'slug' => 'item0',
@@ -2837,12 +1992,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2857,56 +2007,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -2928,16 +2028,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -2956,7 +2046,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+      'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
       'displayName' => 'Элемент 14',
       'branch' => 
       array (
@@ -2964,7 +2054,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+          'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
           'displayName' => 'Элемент 13',
           'branch' => 
           array (
@@ -2972,7 +2062,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+              'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
               'displayName' => 'Элемент 12',
               'branch' => 
               array (
@@ -2980,7 +2070,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                  'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                   'displayName' => 'Элемент 11',
                   'branch' => 
                   array (
@@ -2988,7 +2078,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                      'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                       'displayName' => 'Элемент 10',
                       'branch' => 
                       array (
@@ -2996,7 +2086,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                          'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                           'displayName' => 'Элемент 9',
                           'branch' => 
                           array (
@@ -3004,7 +2094,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                              'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                               'displayName' => 'Элемент 8',
                               'branch' => 
                               array (
@@ -3012,7 +2102,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                  'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                   'displayName' => 'Элемент 7',
                                   'branch' => 
                                   array (
@@ -3020,7 +2110,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                      'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                       'displayName' => 'Элемент 6',
                                       'branch' => 
                                       array (
@@ -3028,7 +2118,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                          'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                           'displayName' => 'Элемент 5',
                                           'branch' => 
                                           array (
@@ -3036,7 +2126,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                              'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                               'displayName' => 'Элемент 4',
                                               'branch' => 
                                               array (
@@ -3044,7 +2134,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                  'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                   'displayName' => 'Элемент 3',
                                                   'branch' => 
                                                   array (
@@ -3052,7 +2142,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                      'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                       'displayName' => 'Элемент 2',
                                                       'branch' => 
                                                       array (
@@ -3060,7 +2150,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                          'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                           'displayName' => 'Элемент 1',
                                                           'branch' => 
                                                           array (
@@ -3068,7 +2158,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                              'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                               'displayName' => 'Элемент 0',
                                                               'branch' => NULL,
                                                               'slug' => 'item0',
@@ -3130,12 +2220,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3150,56 +2235,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -3221,16 +2256,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -3249,7 +2274,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '4a0ac7d9-00c9-4768-8f09-980513bdb669',
+      'guid' => '56dab93b-09d2-4d6a-a459-20ab7ab87e88',
       'displayName' => 'Элемент 15',
       'branch' => 
       array (
@@ -3257,7 +2282,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+          'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
           'displayName' => 'Элемент 14',
           'branch' => 
           array (
@@ -3265,7 +2290,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+              'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
               'displayName' => 'Элемент 13',
               'branch' => 
               array (
@@ -3273,7 +2298,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+                  'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
                   'displayName' => 'Элемент 12',
                   'branch' => 
                   array (
@@ -3281,7 +2306,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                      'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                       'displayName' => 'Элемент 11',
                       'branch' => 
                       array (
@@ -3289,7 +2314,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                          'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                           'displayName' => 'Элемент 10',
                           'branch' => 
                           array (
@@ -3297,7 +2322,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                              'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                               'displayName' => 'Элемент 9',
                               'branch' => 
                               array (
@@ -3305,7 +2330,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                                  'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                                   'displayName' => 'Элемент 8',
                                   'branch' => 
                                   array (
@@ -3313,7 +2338,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                      'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                       'displayName' => 'Элемент 7',
                                       'branch' => 
                                       array (
@@ -3321,7 +2346,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                          'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                           'displayName' => 'Элемент 6',
                                           'branch' => 
                                           array (
@@ -3329,7 +2354,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                              'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                               'displayName' => 'Элемент 5',
                                               'branch' => 
                                               array (
@@ -3337,7 +2362,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                                  'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                                   'displayName' => 'Элемент 4',
                                                   'branch' => 
                                                   array (
@@ -3345,7 +2370,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                      'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                       'displayName' => 'Элемент 3',
                                                       'branch' => 
                                                       array (
@@ -3353,7 +2378,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                          'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                           'displayName' => 'Элемент 2',
                                                           'branch' => 
                                                           array (
@@ -3361,7 +2386,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                              'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                               'displayName' => 'Элемент 1',
                                                               'branch' => 
                                                               array (
@@ -3369,7 +2394,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                                  'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                                   'displayName' => 'Элемент 0',
                                                                   'branch' => NULL,
                                                                   'slug' => 'item0',
@@ -3434,12 +2459,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3454,56 +2474,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -3525,16 +2495,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -3553,7 +2513,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '617abf45-03c9-4f63-a533-d29528c8a009',
+      'guid' => 'f314d1b9-bae1-462e-be18-bcc1f0359f1e',
       'displayName' => 'Элемент 16',
       'branch' => 
       array (
@@ -3561,7 +2521,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '4a0ac7d9-00c9-4768-8f09-980513bdb669',
+          'guid' => '56dab93b-09d2-4d6a-a459-20ab7ab87e88',
           'displayName' => 'Элемент 15',
           'branch' => 
           array (
@@ -3569,7 +2529,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+              'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
               'displayName' => 'Элемент 14',
               'branch' => 
               array (
@@ -3577,7 +2537,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+                  'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
                   'displayName' => 'Элемент 13',
                   'branch' => 
                   array (
@@ -3585,7 +2545,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+                      'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
                       'displayName' => 'Элемент 12',
                       'branch' => 
                       array (
@@ -3593,7 +2553,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                          'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                           'displayName' => 'Элемент 11',
                           'branch' => 
                           array (
@@ -3601,7 +2561,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                              'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                               'displayName' => 'Элемент 10',
                               'branch' => 
                               array (
@@ -3609,7 +2569,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                                  'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                                   'displayName' => 'Элемент 9',
                                   'branch' => 
                                   array (
@@ -3617,7 +2577,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                                      'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                                       'displayName' => 'Элемент 8',
                                       'branch' => 
                                       array (
@@ -3625,7 +2585,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                          'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                           'displayName' => 'Элемент 7',
                                           'branch' => 
                                           array (
@@ -3633,7 +2593,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                              'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                               'displayName' => 'Элемент 6',
                                               'branch' => 
                                               array (
@@ -3641,7 +2601,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                                  'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                                   'displayName' => 'Элемент 5',
                                                   'branch' => 
                                                   array (
@@ -3649,7 +2609,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                                      'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                                       'displayName' => 'Элемент 4',
                                                       'branch' => 
                                                       array (
@@ -3657,7 +2617,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                          'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                           'displayName' => 'Элемент 3',
                                                           'branch' => 
                                                           array (
@@ -3665,7 +2625,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                              'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                               'displayName' => 'Элемент 2',
                                                               'branch' => 
                                                               array (
@@ -3673,7 +2633,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                                  'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                                   'displayName' => 'Элемент 1',
                                                                   'branch' => 
                                                                   array (
@@ -3681,7 +2641,7 @@ return array (
                                                                     array (
                                                                       'collection' => 'structure',
                                                                       'type' => 'static',
-                                                                      'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                                      'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                                       'displayName' => 'Элемент 0',
                                                                       'branch' => NULL,
                                                                       'slug' => 'item0',
@@ -3749,12 +2709,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3769,56 +2724,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -3840,16 +2745,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -3868,7 +2763,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '7833f730-d28c-45f7-bda5-af1274ef0d8f',
+      'guid' => 'c51600ac-ffeb-4879-8e0e-696bb4b56f0a',
       'displayName' => 'Элемент 17',
       'branch' => 
       array (
@@ -3876,7 +2771,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '617abf45-03c9-4f63-a533-d29528c8a009',
+          'guid' => 'f314d1b9-bae1-462e-be18-bcc1f0359f1e',
           'displayName' => 'Элемент 16',
           'branch' => 
           array (
@@ -3884,7 +2779,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '4a0ac7d9-00c9-4768-8f09-980513bdb669',
+              'guid' => '56dab93b-09d2-4d6a-a459-20ab7ab87e88',
               'displayName' => 'Элемент 15',
               'branch' => 
               array (
@@ -3892,7 +2787,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+                  'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
                   'displayName' => 'Элемент 14',
                   'branch' => 
                   array (
@@ -3900,7 +2795,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+                      'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
                       'displayName' => 'Элемент 13',
                       'branch' => 
                       array (
@@ -3908,7 +2803,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+                          'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
                           'displayName' => 'Элемент 12',
                           'branch' => 
                           array (
@@ -3916,7 +2811,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                              'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                               'displayName' => 'Элемент 11',
                               'branch' => 
                               array (
@@ -3924,7 +2819,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                                  'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                                   'displayName' => 'Элемент 10',
                                   'branch' => 
                                   array (
@@ -3932,7 +2827,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                                      'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                                       'displayName' => 'Элемент 9',
                                       'branch' => 
                                       array (
@@ -3940,7 +2835,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                                          'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                                           'displayName' => 'Элемент 8',
                                           'branch' => 
                                           array (
@@ -3948,7 +2843,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                              'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                               'displayName' => 'Элемент 7',
                                               'branch' => 
                                               array (
@@ -3956,7 +2851,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                                  'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                                   'displayName' => 'Элемент 6',
                                                   'branch' => 
                                                   array (
@@ -3964,7 +2859,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                                      'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                                       'displayName' => 'Элемент 5',
                                                       'branch' => 
                                                       array (
@@ -3972,7 +2867,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                                          'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                                           'displayName' => 'Элемент 4',
                                                           'branch' => 
                                                           array (
@@ -3980,7 +2875,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                              'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                               'displayName' => 'Элемент 3',
                                                               'branch' => 
                                                               array (
@@ -3988,7 +2883,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                                  'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                                   'displayName' => 'Элемент 2',
                                                                   'branch' => 
                                                                   array (
@@ -3996,7 +2891,7 @@ return array (
                                                                     array (
                                                                       'collection' => 'structure',
                                                                       'type' => 'static',
-                                                                      'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                                      'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                                       'displayName' => 'Элемент 1',
                                                                       'branch' => 
                                                                       array (
@@ -4004,7 +2899,7 @@ return array (
                                                                         array (
                                                                           'collection' => 'structure',
                                                                           'type' => 'static',
-                                                                          'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                                          'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                                           'displayName' => 'Элемент 0',
                                                                           'branch' => NULL,
                                                                           'slug' => 'item0',
@@ -4075,12 +2970,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4095,56 +2985,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -4166,16 +3006,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -4194,7 +3024,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'e558cf81-ee89-4b46-8a44-a83a43720e14',
+      'guid' => '7fcf57e8-2cf8-4061-9296-86bfd3e1f2ce',
       'displayName' => 'Элемент 18',
       'branch' => 
       array (
@@ -4202,7 +3032,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '7833f730-d28c-45f7-bda5-af1274ef0d8f',
+          'guid' => 'c51600ac-ffeb-4879-8e0e-696bb4b56f0a',
           'displayName' => 'Элемент 17',
           'branch' => 
           array (
@@ -4210,7 +3040,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '617abf45-03c9-4f63-a533-d29528c8a009',
+              'guid' => 'f314d1b9-bae1-462e-be18-bcc1f0359f1e',
               'displayName' => 'Элемент 16',
               'branch' => 
               array (
@@ -4218,7 +3048,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '4a0ac7d9-00c9-4768-8f09-980513bdb669',
+                  'guid' => '56dab93b-09d2-4d6a-a459-20ab7ab87e88',
                   'displayName' => 'Элемент 15',
                   'branch' => 
                   array (
@@ -4226,7 +3056,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+                      'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
                       'displayName' => 'Элемент 14',
                       'branch' => 
                       array (
@@ -4234,7 +3064,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+                          'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
                           'displayName' => 'Элемент 13',
                           'branch' => 
                           array (
@@ -4242,7 +3072,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+                              'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
                               'displayName' => 'Элемент 12',
                               'branch' => 
                               array (
@@ -4250,7 +3080,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                                  'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                                   'displayName' => 'Элемент 11',
                                   'branch' => 
                                   array (
@@ -4258,7 +3088,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                                      'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                                       'displayName' => 'Элемент 10',
                                       'branch' => 
                                       array (
@@ -4266,7 +3096,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                                          'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                                           'displayName' => 'Элемент 9',
                                           'branch' => 
                                           array (
@@ -4274,7 +3104,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                                              'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                                               'displayName' => 'Элемент 8',
                                               'branch' => 
                                               array (
@@ -4282,7 +3112,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                                  'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                                   'displayName' => 'Элемент 7',
                                                   'branch' => 
                                                   array (
@@ -4290,7 +3120,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                                      'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                                       'displayName' => 'Элемент 6',
                                                       'branch' => 
                                                       array (
@@ -4298,7 +3128,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                                          'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                                           'displayName' => 'Элемент 5',
                                                           'branch' => 
                                                           array (
@@ -4306,7 +3136,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                                              'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                                               'displayName' => 'Элемент 4',
                                                               'branch' => 
                                                               array (
@@ -4314,7 +3144,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                                  'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                                   'displayName' => 'Элемент 3',
                                                                   'branch' => 
                                                                   array (
@@ -4322,7 +3152,7 @@ return array (
                                                                     array (
                                                                       'collection' => 'structure',
                                                                       'type' => 'static',
-                                                                      'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                                      'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                                       'displayName' => 'Элемент 2',
                                                                       'branch' => 
                                                                       array (
@@ -4330,7 +3160,7 @@ return array (
                                                                         array (
                                                                           'collection' => 'structure',
                                                                           'type' => 'static',
-                                                                          'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                                          'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                                           'displayName' => 'Элемент 1',
                                                                           'branch' => 
                                                                           array (
@@ -4338,7 +3168,7 @@ return array (
                                                                             array (
                                                                               'collection' => 'structure',
                                                                               'type' => 'static',
-                                                                              'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                                              'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                                               'displayName' => 'Элемент 0',
                                                                               'branch' => NULL,
                                                                               'slug' => 'item0',
@@ -4412,12 +3242,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4432,56 +3257,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -4503,16 +3278,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -4531,7 +3296,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '0aeacf1b-d745-4caf-924c-8ad7a3d3a217',
+      'guid' => '9f629eae-6c23-41b8-adbe-9095fb353a15',
       'displayName' => 'Элемент 19',
       'branch' => 
       array (
@@ -4539,7 +3304,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'e558cf81-ee89-4b46-8a44-a83a43720e14',
+          'guid' => '7fcf57e8-2cf8-4061-9296-86bfd3e1f2ce',
           'displayName' => 'Элемент 18',
           'branch' => 
           array (
@@ -4547,7 +3312,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '7833f730-d28c-45f7-bda5-af1274ef0d8f',
+              'guid' => 'c51600ac-ffeb-4879-8e0e-696bb4b56f0a',
               'displayName' => 'Элемент 17',
               'branch' => 
               array (
@@ -4555,7 +3320,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '617abf45-03c9-4f63-a533-d29528c8a009',
+                  'guid' => 'f314d1b9-bae1-462e-be18-bcc1f0359f1e',
                   'displayName' => 'Элемент 16',
                   'branch' => 
                   array (
@@ -4563,7 +3328,7 @@ return array (
                     array (
                       'collection' => 'structure',
                       'type' => 'static',
-                      'guid' => '4a0ac7d9-00c9-4768-8f09-980513bdb669',
+                      'guid' => '56dab93b-09d2-4d6a-a459-20ab7ab87e88',
                       'displayName' => 'Элемент 15',
                       'branch' => 
                       array (
@@ -4571,7 +3336,7 @@ return array (
                         array (
                           'collection' => 'structure',
                           'type' => 'static',
-                          'guid' => '8aec06ac-2e23-4afc-83bb-6c891f45f6d3',
+                          'guid' => '710825b9-9c57-4665-a3ee-200c37ca4e93',
                           'displayName' => 'Элемент 14',
                           'branch' => 
                           array (
@@ -4579,7 +3344,7 @@ return array (
                             array (
                               'collection' => 'structure',
                               'type' => 'static',
-                              'guid' => 'e4f4a86c-4e55-4b3b-9f74-bfcd5939a58c',
+                              'guid' => '0e381bab-cbcc-407d-8a58-8597c3ad9a6a',
                               'displayName' => 'Элемент 13',
                               'branch' => 
                               array (
@@ -4587,7 +3352,7 @@ return array (
                                 array (
                                   'collection' => 'structure',
                                   'type' => 'static',
-                                  'guid' => 'b14c84b4-9cbd-46cc-8dc3-357bc906feca',
+                                  'guid' => 'beb0a90e-ea44-48ab-83fb-98152aa2bb20',
                                   'displayName' => 'Элемент 12',
                                   'branch' => 
                                   array (
@@ -4595,7 +3360,7 @@ return array (
                                     array (
                                       'collection' => 'structure',
                                       'type' => 'static',
-                                      'guid' => 'a85ed65e-1356-4dca-aa5d-c4fd1a3cd7c8',
+                                      'guid' => '5e48527f-1c77-47e7-b90e-eb8a6853e1ff',
                                       'displayName' => 'Элемент 11',
                                       'branch' => 
                                       array (
@@ -4603,7 +3368,7 @@ return array (
                                         array (
                                           'collection' => 'structure',
                                           'type' => 'static',
-                                          'guid' => '7bec5f75-8554-4069-9502-3678ba2b29b7',
+                                          'guid' => 'e761f1d0-357e-48f1-98bb-1c73e2f37505',
                                           'displayName' => 'Элемент 10',
                                           'branch' => 
                                           array (
@@ -4611,7 +3376,7 @@ return array (
                                             array (
                                               'collection' => 'structure',
                                               'type' => 'static',
-                                              'guid' => '7e553f0d-7362-4b21-a013-da4b3ae549ee',
+                                              'guid' => '09647e8d-8d76-46f5-808c-a46906dd4074',
                                               'displayName' => 'Элемент 9',
                                               'branch' => 
                                               array (
@@ -4619,7 +3384,7 @@ return array (
                                                 array (
                                                   'collection' => 'structure',
                                                   'type' => 'static',
-                                                  'guid' => 'c7850c82-ce26-49eb-83d6-3668f3dc7fc3',
+                                                  'guid' => 'a287fdde-c741-42e2-9063-f9f895fa5079',
                                                   'displayName' => 'Элемент 8',
                                                   'branch' => 
                                                   array (
@@ -4627,7 +3392,7 @@ return array (
                                                     array (
                                                       'collection' => 'structure',
                                                       'type' => 'static',
-                                                      'guid' => 'd036204c-203f-4239-b35e-34bb77162b53',
+                                                      'guid' => '326d64a8-28cc-41c6-a85f-06bfee87578b',
                                                       'displayName' => 'Элемент 7',
                                                       'branch' => 
                                                       array (
@@ -4635,7 +3400,7 @@ return array (
                                                         array (
                                                           'collection' => 'structure',
                                                           'type' => 'static',
-                                                          'guid' => '25d56ca0-e9ae-4c6f-a0fa-bb0e627f465c',
+                                                          'guid' => 'b0459744-12e5-4981-a8c5-c1d8916370ee',
                                                           'displayName' => 'Элемент 6',
                                                           'branch' => 
                                                           array (
@@ -4643,7 +3408,7 @@ return array (
                                                             array (
                                                               'collection' => 'structure',
                                                               'type' => 'static',
-                                                              'guid' => '99f80444-8190-4aa5-91d2-2dc9cd1ad1a1',
+                                                              'guid' => '25f36088-3872-42ba-9651-2f768bfc8384',
                                                               'displayName' => 'Элемент 5',
                                                               'branch' => 
                                                               array (
@@ -4651,7 +3416,7 @@ return array (
                                                                 array (
                                                                   'collection' => 'structure',
                                                                   'type' => 'static',
-                                                                  'guid' => '6251d297-5f09-4585-bb8e-c403bfd3fc08',
+                                                                  'guid' => 'c30f60e8-d040-4206-9835-cada93cab0cd',
                                                                   'displayName' => 'Элемент 4',
                                                                   'branch' => 
                                                                   array (
@@ -4659,7 +3424,7 @@ return array (
                                                                     array (
                                                                       'collection' => 'structure',
                                                                       'type' => 'static',
-                                                                      'guid' => 'ae26fa85-227b-490e-b3c9-88454fa67e0b',
+                                                                      'guid' => '4cb4de06-3f57-4c56-b86b-0427f9905a1f',
                                                                       'displayName' => 'Элемент 3',
                                                                       'branch' => 
                                                                       array (
@@ -4667,7 +3432,7 @@ return array (
                                                                         array (
                                                                           'collection' => 'structure',
                                                                           'type' => 'static',
-                                                                          'guid' => '7f60eaf1-8ccd-46c2-a4bf-ee753b90c1fb',
+                                                                          'guid' => '2137ce67-8818-4005-951e-8d06673afe09',
                                                                           'displayName' => 'Элемент 2',
                                                                           'branch' => 
                                                                           array (
@@ -4675,7 +3440,7 @@ return array (
                                                                             array (
                                                                               'collection' => 'structure',
                                                                               'type' => 'static',
-                                                                              'guid' => '8504748b-423f-4296-aa47-b78c62ca0d10',
+                                                                              'guid' => 'fd8d7505-5b07-4c12-bb6a-c27d7f402c8c',
                                                                               'displayName' => 'Элемент 1',
                                                                               'branch' => 
                                                                               array (
@@ -4683,7 +3448,7 @@ return array (
                                                                                 array (
                                                                                   'collection' => 'structure',
                                                                                   'type' => 'static',
-                                                                                  'guid' => 'e1233591-4680-4210-afe4-c062d762b117',
+                                                                                  'guid' => 'cf3f52e3-76d8-42a7-ad9f-8e1cdf668cff',
                                                                                   'displayName' => 'Элемент 0',
                                                                                   'branch' => NULL,
                                                                                   'slug' => 'item0',
@@ -4760,12 +3525,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4780,56 +3540,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -4851,16 +3561,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'componentName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'componentPath' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'inMenu' => 
       array (
         0 => 'boolean',
@@ -4879,7 +3579,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '7c418414-5c0f-4747-8f1e-802554949618',
+      'guid' => 'f25b215c-5edc-4e83-843b-0d96fd00c1b8',
       'displayName' => 'Структура',
       'branch' => NULL,
       'slug' => 'structure',
@@ -4899,12 +3599,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4919,56 +3614,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -5023,7 +3668,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'c73611b1-a9ab-4576-bd30-5cf171530fd3',
+      'guid' => 'e2b5598f-3ca2-431a-ad9d-b96ae6711ae1',
       'displayName' => 'Меню',
       'branch' => 
       array (
@@ -5031,7 +3676,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '7c418414-5c0f-4747-8f1e-802554949618',
+          'guid' => 'f25b215c-5edc-4e83-843b-0d96fd00c1b8',
           'displayName' => 'Структура',
           'branch' => NULL,
           'slug' => 'structure',
@@ -5054,12 +3699,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5074,56 +3714,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -5178,7 +3768,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '2dabb3dc-6410-4796-bbf3-e609d76cbb19',
+      'guid' => 'ce51a8f0-eae0-47c2-8085-0c93a9528752',
       'displayName' => 'Информационные блоки',
       'branch' => 
       array (
@@ -5186,7 +3776,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '7c418414-5c0f-4747-8f1e-802554949618',
+          'guid' => 'f25b215c-5edc-4e83-843b-0d96fd00c1b8',
           'displayName' => 'Структура',
           'branch' => NULL,
           'slug' => 'structure',
@@ -5209,12 +3799,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5229,56 +3814,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -5353,12 +3888,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5379,40 +3909,10 @@ return array (
         0 => 'string',
         1 => 'Об отряде',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Об отряде',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5503,12 +4003,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5529,40 +4024,10 @@ return array (
         0 => 'string',
         1 => 'Работа, за которую мы никогда не возьмемся',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Работа, за которую мы никогда не возьмемся',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5642,12 +4107,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5668,40 +4128,10 @@ return array (
         0 => 'string',
         1 => 'Услуги',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Услуги',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5781,12 +4211,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5807,40 +4232,10 @@ return array (
         0 => 'string',
         1 => 'Тарифы и цены',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Тарифы и цены',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5900,7 +4295,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+      'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
       'displayName' => 'Элемент меню 1',
       'branch' => NULL,
       'slug' => 'menu-item-1',
@@ -5920,12 +4315,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5940,56 +4330,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6039,7 +4379,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '86b3002e-76cc-4d0d-a383-201879b4c88b',
+      'guid' => 'da35524c-8375-461a-993c-eb9d5ad502f8',
       'displayName' => 'Элемент меню 1.1',
       'branch' => 
       array (
@@ -6047,7 +4387,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+          'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
           'displayName' => 'Элемент меню 1',
           'branch' => NULL,
           'slug' => 'menu-item-1',
@@ -6070,12 +4410,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6090,56 +4425,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6189,7 +4474,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'a26e29ac-35ec-4fc8-a054-9994ca00e8c4',
+      'guid' => '69a0f72c-c5bd-4b01-9e50-0fe5f64739de',
       'displayName' => 'Menu Item 1.2',
       'branch' => 
       array (
@@ -6197,7 +4482,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+          'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
           'displayName' => 'Элемент меню 1',
           'branch' => NULL,
           'slug' => 'menu-item-1',
@@ -6220,12 +4505,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6240,56 +4520,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6339,7 +4569,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'a91fbdeb-1ec0-4ec8-b0d4-71c4cfd01f28',
+      'guid' => 'e3ef3fec-46ca-4c75-bd57-d748b0424526',
       'displayName' => 'Menu Item 1.2.1',
       'branch' => 
       array (
@@ -6347,7 +4577,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'a26e29ac-35ec-4fc8-a054-9994ca00e8c4',
+          'guid' => '69a0f72c-c5bd-4b01-9e50-0fe5f64739de',
           'displayName' => 'Menu Item 1.2',
           'branch' => 
           array (
@@ -6355,7 +4585,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+              'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
               'displayName' => 'Элемент меню 1',
               'branch' => NULL,
               'slug' => 'menu-item-1',
@@ -6381,12 +4611,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6401,56 +4626,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6500,7 +4675,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'c8bd4104-bd60-44ad-93b8-b847d019ebfc',
+      'guid' => '7c4df0d2-f928-4f18-8f44-6cf84e36bc2d',
       'displayName' => 'Menu Item 1.2.2',
       'branch' => 
       array (
@@ -6508,7 +4683,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'a26e29ac-35ec-4fc8-a054-9994ca00e8c4',
+          'guid' => '69a0f72c-c5bd-4b01-9e50-0fe5f64739de',
           'displayName' => 'Menu Item 1.2',
           'branch' => 
           array (
@@ -6516,7 +4691,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+              'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
               'displayName' => 'Элемент меню 1',
               'branch' => NULL,
               'slug' => 'menu-item-1',
@@ -6542,12 +4717,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6562,56 +4732,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6661,7 +4781,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '8995cf06-a772-49c1-9240-adb16fc57f13',
+      'guid' => '99244b13-5a3b-447b-8b80-a9d3ef2e3975',
       'displayName' => 'Menu Item 1.2.2.1',
       'branch' => 
       array (
@@ -6669,7 +4789,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'c8bd4104-bd60-44ad-93b8-b847d019ebfc',
+          'guid' => '7c4df0d2-f928-4f18-8f44-6cf84e36bc2d',
           'displayName' => 'Menu Item 1.2.2',
           'branch' => 
           array (
@@ -6677,7 +4797,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'a26e29ac-35ec-4fc8-a054-9994ca00e8c4',
+              'guid' => '69a0f72c-c5bd-4b01-9e50-0fe5f64739de',
               'displayName' => 'Menu Item 1.2',
               'branch' => 
               array (
@@ -6685,7 +4805,7 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => '6c5d789d-3a61-4ef7-bbd4-2ae8b7017e86',
+                  'guid' => 'be285c6c-e0e4-4a14-9087-ccaa9bf3956e',
                   'displayName' => 'Элемент меню 1',
                   'branch' => NULL,
                   'slug' => 'menu-item-1',
@@ -6714,12 +4834,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6734,56 +4849,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6833,7 +4898,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+      'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
       'displayName' => 'Пользователи',
       'branch' => NULL,
       'slug' => 'users',
@@ -6845,20 +4910,10 @@ return array (
         0 => 'string',
         1 => 'Пользователи',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6879,50 +4934,10 @@ return array (
         0 => 'string',
         1 => 'Пользователи',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Пользователи',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -6977,7 +4992,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'a4a311d5-5baa-4970-b333-ed8b1d760c22',
+      'guid' => 'f54c8abf-f93a-4fe0-9b59-7c17885d82b2',
       'displayName' => 'Авторизация',
       'branch' => 
       array (
@@ -6985,7 +5000,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+          'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
           'displayName' => 'Пользователи',
           'branch' => NULL,
           'slug' => 'users',
@@ -7000,20 +5015,10 @@ return array (
         0 => 'string',
         1 => 'Авторизация',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7034,50 +5039,10 @@ return array (
         0 => 'string',
         1 => 'Авторизация',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Авторизация',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7132,7 +5097,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '57b06fc4-e453-4864-8dcc-1e6f600b0225',
+      'guid' => '2daf70dd-e3a6-4256-94da-ef3ff5d7931c',
       'displayName' => 'Регистрация',
       'branch' => 
       array (
@@ -7140,7 +5105,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+          'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
           'displayName' => 'Пользователи',
           'branch' => NULL,
           'slug' => 'users',
@@ -7155,20 +5120,10 @@ return array (
         0 => 'string',
         1 => 'Регистрация',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7189,50 +5144,10 @@ return array (
         0 => 'string',
         1 => 'Регистрация',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Регистрация',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7287,7 +5202,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '34c69d90-5ce6-4b8e-8af4-3781db5bff7f',
+      'guid' => 'f88897f0-c9e6-4661-9cc2-593a4a692351',
       'displayName' => 'Активация',
       'branch' => 
       array (
@@ -7295,7 +5210,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '57b06fc4-e453-4864-8dcc-1e6f600b0225',
+          'guid' => '2daf70dd-e3a6-4256-94da-ef3ff5d7931c',
           'displayName' => 'Регистрация',
           'branch' => 
           array (
@@ -7303,7 +5218,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'system',
-              'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+              'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
               'displayName' => 'Пользователи',
               'branch' => NULL,
               'slug' => 'users',
@@ -7321,20 +5236,10 @@ return array (
         0 => 'string',
         1 => 'Активация',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7355,50 +5260,10 @@ return array (
         0 => 'string',
         1 => 'Активация',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Активация',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7453,7 +5318,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'cbbdc5de-0dd3-4b87-b733-39997c7bf9ba',
+      'guid' => '4f86721d-3ebe-466e-a455-efdb37e26b3e',
       'displayName' => 'Запрос смены пароля',
       'branch' => 
       array (
@@ -7461,7 +5326,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+          'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
           'displayName' => 'Пользователи',
           'branch' => NULL,
           'slug' => 'users',
@@ -7476,20 +5341,10 @@ return array (
         0 => 'string',
         1 => 'Запрос смены пароля',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7510,50 +5365,10 @@ return array (
         0 => 'string',
         1 => 'Запрос смены пароля',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Запрос смены пароля',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7608,7 +5423,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '822176ab-f643-4e2e-8a8a-66280007ec92',
+      'guid' => '48da87ad-43f7-40bf-b78a-580ab6176d49',
       'displayName' => 'Подтверждение смены пароля',
       'branch' => 
       array (
@@ -7616,7 +5431,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'cbbdc5de-0dd3-4b87-b733-39997c7bf9ba',
+          'guid' => '4f86721d-3ebe-466e-a455-efdb37e26b3e',
           'displayName' => 'Запрос смены пароля',
           'branch' => 
           array (
@@ -7624,7 +5439,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'system',
-              'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+              'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
               'displayName' => 'Пользователи',
               'branch' => NULL,
               'slug' => 'users',
@@ -7642,20 +5457,10 @@ return array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7676,50 +5481,10 @@ return array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7774,7 +5539,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'b472b2e1-72c2-4c90-a12b-71ad129fce68',
+      'guid' => 'a2622c34-9573-472f-9e4d-282f58d11daf',
       'displayName' => 'Профиль',
       'branch' => 
       array (
@@ -7782,7 +5547,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+          'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
           'displayName' => 'Пользователи',
           'branch' => NULL,
           'slug' => 'users',
@@ -7797,20 +5562,10 @@ return array (
         0 => 'string',
         1 => 'Профиль',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7831,50 +5586,10 @@ return array (
         0 => 'string',
         1 => 'Профиль',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Профиль',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -7929,7 +5644,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'f98982ab-7ebe-45a2-9959-e6a9739cd15f',
+      'guid' => 'c04d7cc9-7e0d-43ba-8494-bd8d64017628',
       'displayName' => 'Смена пароля',
       'branch' => 
       array (
@@ -7937,7 +5652,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => 'b472b2e1-72c2-4c90-a12b-71ad129fce68',
+          'guid' => 'a2622c34-9573-472f-9e4d-282f58d11daf',
           'displayName' => 'Профиль',
           'branch' => 
           array (
@@ -7945,7 +5660,7 @@ return array (
             array (
               'collection' => 'structure',
               'type' => 'system',
-              'guid' => 'acce9cf5-0a4e-47be-ac36-bb9cc0d9e8a6',
+              'guid' => 'bfd33baa-06e6-437b-98e7-6274b830c565',
               'displayName' => 'Пользователи',
               'branch' => NULL,
               'slug' => 'users',
@@ -7963,20 +5678,10 @@ return array (
         0 => 'string',
         1 => 'Смена пароля',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -7997,50 +5702,10 @@ return array (
         0 => 'string',
         1 => 'Смена пароля',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Смена пароля',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -8115,12 +5780,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8135,56 +5795,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -8270,12 +5880,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8290,56 +5895,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -8425,12 +5980,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8445,56 +5995,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -8580,12 +6080,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8600,56 +6095,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -8724,12 +6169,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8745,55 +6185,10 @@ return array (
           ),
         ),
       ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Блог',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'layout' => 
       array (
@@ -8804,7 +6199,7 @@ return array (
           array (
             'collection' => 'layout',
             'type' => 'base',
-            'guid' => '1ce726e4-4620-4b61-adbf-cfc01211122e',
+            'guid' => '43656f21-135c-4de8-8e80-3031944be201',
             'displayName' => 'Блог',
           ),
         ),
@@ -8893,12 +6288,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -8913,56 +6303,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9048,12 +6388,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9068,56 +6403,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9203,12 +6488,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9223,56 +6503,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9327,7 +6557,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '39a11405-90ce-40cd-b244-4f741f5d2db7',
+      'guid' => 'b13b1519-85f2-4301-a6c7-c9e8a73b57ad',
       'displayName' => 'Добавить пост',
       'branch' => 
       array (
@@ -9369,12 +6599,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9389,56 +6614,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9493,7 +6668,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '6f3082d3-0dc4-4a30-a79b-2c4b85464e21',
+      'guid' => '8c2188d7-7605-40d3-9d01-883db12022f8',
       'displayName' => 'Редактирование поста',
       'branch' => 
       array (
@@ -9535,12 +6710,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9555,56 +6725,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9659,7 +6779,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '377aefbb-3f3c-4736-bc32-617180c3bc49',
+      'guid' => '9d36bb1b-740d-4479-ad4d-631c89ba2178',
       'displayName' => 'Просмотр поста',
       'branch' => 
       array (
@@ -9701,12 +6821,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9721,56 +6836,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9825,7 +6890,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '01f0eead-df23-4b37-8773-988ffdc6702d',
+      'guid' => '283a90f4-3c26-4d7a-a5b8-f540812e3161',
       'displayName' => 'Черновики блога',
       'branch' => 
       array (
@@ -9856,12 +6921,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -9876,56 +6936,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -9980,7 +6990,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '2d9b15d8-8db1-40df-8a57-701aba525d5f',
+      'guid' => 'ee18e55e-4eb8-4c66-b593-af1131ab4391',
       'displayName' => 'Просмотр черновика',
       'branch' => 
       array (
@@ -9988,7 +6998,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '01f0eead-df23-4b37-8773-988ffdc6702d',
+          'guid' => '283a90f4-3c26-4d7a-a5b8-f540812e3161',
           'displayName' => 'Черновики блога',
           'branch' => 
           array (
@@ -10022,12 +7032,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10042,56 +7047,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10146,7 +7101,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'df8f7fb6-bddd-4162-a426-1fe4b10fef9f',
+      'guid' => '880a9785-2969-442d-969a-14a0f89edce9',
       'displayName' => 'Редактирование черновика',
       'branch' => 
       array (
@@ -10154,7 +7109,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '01f0eead-df23-4b37-8773-988ffdc6702d',
+          'guid' => '283a90f4-3c26-4d7a-a5b8-f540812e3161',
           'displayName' => 'Черновики блога',
           'branch' => 
           array (
@@ -10188,12 +7143,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10208,56 +7158,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10312,7 +7212,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '4579b329-f13c-4f21-bb80-d9d01dd2cd57',
+      'guid' => '5a00b4d1-2c6d-4539-b088-48eb9dc19af8',
       'displayName' => 'Отклонённые посты',
       'branch' => 
       array (
@@ -10343,12 +7243,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10363,56 +7258,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10467,7 +7312,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '73e4cab9-d571-4346-8e9a-5e2c75d7ba88',
+      'guid' => 'a8ece22a-af78-4b98-935a-907c9d6ee40d',
       'displayName' => 'Редактировать отклонённый пост',
       'branch' => 
       array (
@@ -10475,7 +7320,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '4579b329-f13c-4f21-bb80-d9d01dd2cd57',
+          'guid' => '5a00b4d1-2c6d-4539-b088-48eb9dc19af8',
           'displayName' => 'Отклонённые посты',
           'branch' => 
           array (
@@ -10509,12 +7354,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10529,56 +7369,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10633,7 +7423,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'ba80866c-38c8-4694-9dc0-995c7a4a6fc0',
+      'guid' => '38e385d2-4d33-4bd6-bc02-87b6ddcd01c5',
       'displayName' => 'Просмотреть отклонённый пост',
       'branch' => 
       array (
@@ -10641,7 +7431,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '4579b329-f13c-4f21-bb80-d9d01dd2cd57',
+          'guid' => '5a00b4d1-2c6d-4539-b088-48eb9dc19af8',
           'displayName' => 'Отклонённые посты',
           'branch' => 
           array (
@@ -10675,12 +7465,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10695,56 +7480,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10799,7 +7534,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '774151e9-546c-4644-a345-8d3e13a1617a',
+      'guid' => '03a65898-5b70-4b30-a55b-37b0a1953e40',
       'displayName' => 'Посты на модерацию',
       'branch' => 
       array (
@@ -10830,12 +7565,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -10850,56 +7580,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -10954,7 +7634,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'be8a527a-8e50-46fb-97a6-ce06566637e5',
+      'guid' => 'af2c2919-abc0-43e9-99a7-0755a9616f34',
       'displayName' => 'Редактировать посты на модерации',
       'branch' => 
       array (
@@ -10962,7 +7642,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '774151e9-546c-4644-a345-8d3e13a1617a',
+          'guid' => '03a65898-5b70-4b30-a55b-37b0a1953e40',
           'displayName' => 'Посты на модерацию',
           'branch' => 
           array (
@@ -10996,12 +7676,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11016,56 +7691,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11120,7 +7745,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'e0f6a6e3-7cc6-4ad5-984b-65f280e5ecd4',
+      'guid' => '83375b47-a1a7-455b-bbb7-9270c407bbcf',
       'displayName' => 'Просмотреть пост на модерации',
       'branch' => 
       array (
@@ -11128,7 +7753,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '774151e9-546c-4644-a345-8d3e13a1617a',
+          'guid' => '03a65898-5b70-4b30-a55b-37b0a1953e40',
           'displayName' => 'Посты на модерацию',
           'branch' => 
           array (
@@ -11162,12 +7787,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11182,56 +7802,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11286,7 +7856,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '537022a5-69d4-4b32-96d9-7a386e417463',
+      'guid' => '6f35a8c7-09cf-4074-a347-6f3ad3f7a1bb',
       'displayName' => 'Очередь на модерацию',
       'branch' => 
       array (
@@ -11294,7 +7864,7 @@ return array (
         array (
           'collection' => 'structure',
           'type' => 'system',
-          'guid' => '774151e9-546c-4644-a345-8d3e13a1617a',
+          'guid' => '03a65898-5b70-4b30-a55b-37b0a1953e40',
           'displayName' => 'Посты на модерацию',
           'branch' => 
           array (
@@ -11328,12 +7898,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11348,56 +7913,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11483,12 +7998,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11503,56 +8013,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11607,7 +8067,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'a7bab7c5-76ca-4b9b-afef-197f958e0439',
+      'guid' => '83e58f12-0347-40ee-bc77-64e534c62b3a',
       'displayName' => 'Добавить комментарий',
       'branch' => 
       array (
@@ -11649,12 +8109,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11669,56 +8124,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11804,12 +8209,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11824,56 +8224,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -11928,7 +8278,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => 'db24f9f5-b460-49ed-9df4-475f70898dd5',
+      'guid' => 'be77d16e-6507-4838-87da-8aa04b40d374',
       'displayName' => 'Редактирование профиля автора',
       'branch' => 
       array (
@@ -11970,12 +8320,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -11990,56 +8335,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -12094,7 +8389,7 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
-      'guid' => '98e42c4e-e599-492a-84c6-59e6f1de1ca5',
+      'guid' => '3ed9ee84-7fa9-42a3-87c4-40f408aabcb4',
       'displayName' => 'Просмотр профиля автора',
       'branch' => 
       array (
@@ -12136,12 +8431,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -12156,56 +8446,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -12280,12 +8520,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -12300,56 +8535,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (

@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'newsRssImportScenario',
       'type' => 'base',
-      'guid' => '9be7d010-f4ae-48c8-aeb6-5333410db348',
+      'guid' => '88107220-b8ce-4365-ad16-778d57e58aa8',
       'displayName' => 'Scripting News',
     ),
     'data' => 
@@ -27,12 +27,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -61,7 +56,7 @@ return array (
     array (
       'collection' => 'newsRssImportScenario',
       'type' => 'base',
-      'guid' => 'a4aa8366-b8a9-48b9-ba81-eac6d0946457',
+      'guid' => 'e6f50fc1-d156-40ba-8bf3-ae224af98c9f',
       'displayName' => 'Хабрахабр / Захабренные / Тематические / Посты',
     ),
     'data' => 
@@ -79,12 +74,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -113,7 +103,7 @@ return array (
     array (
       'collection' => 'newsRssImportScenario',
       'type' => 'base',
-      'guid' => '3606cc27-1c3f-4130-b279-5ca0227bba3f',
+      'guid' => '5edee95a-2eae-4330-b477-a9da6619ce02',
       'displayName' => 'DLE-News (windows-1251)',
     ),
     'data' => 
@@ -131,12 +121,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

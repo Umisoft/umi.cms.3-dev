@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
-      'guid' => '3677d49f-4f87-40f3-818f-9aded1872c49',
+      'guid' => '45c6726f-b6f9-4e8d-9a28-ef65edb82269',
       'displayName' => 'Супервайзер:Названа причина социопатии современных зомби:Призраки:ru-RU',
     ),
     'data' => 
@@ -19,20 +19,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Названа причина социопатии современных зомби:Призраки:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -72,7 +62,7 @@ return array (
           array (
             'collection' => 'newsSubject',
             'type' => 'base',
-            'guid' => 'bf8fcad0-4e4e-4669-8b69-d9d7f7bcdc03',
+            'guid' => '50ab5e76-494d-41e6-abd8-3aecd57a7d09',
             'displayName' => 'Призраки',
             'slug' => 'prizraki',
           ),
@@ -86,7 +76,7 @@ return array (
     array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
-      'guid' => '82ca5c49-af71-41e8-80a1-c160790e58cd',
+      'guid' => 'b32e7b6b-4a9a-41b4-b753-6505a2e9973d',
       'displayName' => 'Супервайзер:Названа причина социопатии современных зомби:Привидения:ru-RU',
     ),
     'data' => 
@@ -96,20 +86,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Названа причина социопатии современных зомби:Привидения:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

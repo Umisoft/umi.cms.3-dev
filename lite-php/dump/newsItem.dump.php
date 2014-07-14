@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'd500a85f-d487-4c37-8094-da3517f6bdf9',
+      'guid' => 'bc639efb-55bc-486f-8f8b-2fdafc9be410',
       'displayName' => 'Российские биатлонисты взяли первые три места',
       'slug' => 'biathlon',
     ),
@@ -28,12 +28,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -54,40 +49,10 @@ return array (
         0 => 'string',
         1 => 'Российские биатлонисты взяли первые три места',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Российские биатлонисты взяли первые три места',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -123,7 +88,7 @@ return array (
           array (
             'collection' => 'newsRubric',
             'type' => 'base',
-            'guid' => 'cee8e86b-5a54-498c-9c01-b749ea1c087c',
+            'guid' => '10a460d7-5d7c-44db-8cb0-daad8aa51486',
             'displayName' => 'Лыжи',
             'branch' => 
             array (
@@ -131,7 +96,7 @@ return array (
               array (
                 'collection' => 'newsRubric',
                 'type' => 'base',
-                'guid' => 'cf138f7e-0380-4a77-95dd-3f8b5e38718b',
+                'guid' => 'fee90876-43f8-4dc9-9350-bbbc0ea3a973',
                 'displayName' => 'Зимний спорт',
                 'branch' => 
                 array (
@@ -139,7 +104,7 @@ return array (
                   array (
                     'collection' => 'newsRubric',
                     'type' => 'base',
-                    'guid' => '26efe57e-aa65-4348-b988-061587d87151',
+                    'guid' => 'c35a38ad-c590-4233-a84e-9a129031afeb',
                     'displayName' => 'Новости спорта',
                     'branch' => NULL,
                     'slug' => 'sport',
@@ -161,16 +126,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Miracle at the Olympics in Sochi</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
     ),
   ),
@@ -199,12 +154,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -225,40 +175,10 @@ return array (
         0 => 'string',
         1 => 'Названа причина социопатии современных зомби',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Названа причина социопатии современных зомби',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -311,11 +231,6 @@ return array (
         0 => 'string',
         1 => '<p>The study lovers and haters of the Association of zombies, the main reason is sociopathy zombie food from McDonald\'s restaurants.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'date' => 
       array (
         0 => 'object',
@@ -348,12 +263,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -374,40 +284,10 @@ return array (
         0 => 'string',
         1 => 'Смена состава в Отряде в бикини',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Смена состава в Отряде в бикини',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -460,11 +340,6 @@ return array (
         0 => 'string',
         1 => '<p>Note: The detachment occurred in bikini small permutations. In connection with a broken nail polish and a bad mood takes place Lolita Masha Andreeva Shikova.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'date' => 
       array (
         0 => 'object',
@@ -478,7 +353,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'fdcbc8c7-8e72-4c68-82a5-7210bae75da7',
+      'guid' => '7f0100d3-9b02-49ad-9b3e-7d17d3d5b715',
       'displayName' => 'Открыт метод устранения неврозов у привидений-10',
       'slug' => 'privideniya-10',
     ),
@@ -497,12 +372,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -523,40 +393,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-10',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -609,16 +449,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   4 => 
@@ -627,7 +457,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'ab3874ab-82c1-4180-b1e9-c254a30124a4',
+      'guid' => '3b2642e3-7dbc-4dd2-8c15-58a259598571',
       'displayName' => 'Открыт метод устранения неврозов у привидений-11',
       'slug' => 'privideniya-11',
     ),
@@ -646,12 +476,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -672,40 +497,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-11',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -758,16 +553,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   5 => 
@@ -776,7 +561,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '0c6695c7-d5d2-436d-8157-1f7228152250',
+      'guid' => 'b2658d3e-a93d-4e60-b885-871011f316d9',
       'displayName' => 'Открыт метод устранения неврозов у привидений-12',
       'slug' => 'privideniya-12',
     ),
@@ -795,12 +580,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -821,40 +601,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-12',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -907,16 +657,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   6 => 
@@ -925,7 +665,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'c98fd944-c984-45fe-9ac0-c7104ec744dc',
+      'guid' => 'f4fa4cd7-35a5-4fbc-ba61-72c9c6efa67b',
       'displayName' => 'Открыт метод устранения неврозов у привидений-13',
       'slug' => 'privideniya-13',
     ),
@@ -944,12 +684,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -970,40 +705,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-13',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1056,16 +761,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   7 => 
@@ -1074,7 +769,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '8939a6f6-2ce5-4c20-94d2-6ae16f12b518',
+      'guid' => '1b2ea230-27b9-45cc-b426-6a448647bfd7',
       'displayName' => 'Открыт метод устранения неврозов у привидений-14',
       'slug' => 'privideniya-14',
     ),
@@ -1093,12 +788,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1119,40 +809,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-14',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1205,16 +865,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   8 => 
@@ -1223,7 +873,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'd3c0f1d5-9ebe-493a-9a9b-5241562f35d7',
+      'guid' => '87a6be8e-bcbb-4691-b545-f37087e0255b',
       'displayName' => 'Открыт метод устранения неврозов у привидений-15',
       'slug' => 'privideniya-15',
     ),
@@ -1242,12 +892,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1268,40 +913,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-15',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1354,16 +969,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   9 => 
@@ -1372,7 +977,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '5605f5a2-a2cf-4601-90f8-ec7d1aa829f2',
+      'guid' => 'a7a5a510-0570-427e-adbc-e32f70523a99',
       'displayName' => 'Открыт метод устранения неврозов у привидений-16',
       'slug' => 'privideniya-16',
     ),
@@ -1391,12 +996,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1417,40 +1017,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-16',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1503,16 +1073,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   10 => 
@@ -1521,7 +1081,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'e6d9b0ab-6fc7-493a-94dc-e68868837e45',
+      'guid' => '752c2f43-046a-405b-9cc9-432b3817b942',
       'displayName' => 'Открыт метод устранения неврозов у привидений-17',
       'slug' => 'privideniya-17',
     ),
@@ -1540,12 +1100,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1566,40 +1121,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-17',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1652,16 +1177,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   11 => 
@@ -1670,7 +1185,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '50050ecd-15f0-4912-9ee0-e093caad463d',
+      'guid' => 'd5bd1983-69fd-4d8b-bded-2b969d8a2f00',
       'displayName' => 'Открыт метод устранения неврозов у привидений-18',
       'slug' => 'privideniya-18',
     ),
@@ -1689,12 +1204,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1715,40 +1225,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-18',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1801,16 +1281,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   12 => 
@@ -1819,7 +1289,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'c6d65728-4dba-4716-8c53-c3865ce340f1',
+      'guid' => 'bdd86848-1e2d-4337-805a-ee94fa01dd69',
       'displayName' => 'Открыт метод устранения неврозов у привидений-19',
       'slug' => 'privideniya-19',
     ),
@@ -1838,12 +1308,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -1864,40 +1329,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-19',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -1950,16 +1385,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   13 => 
@@ -1968,7 +1393,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '6d1e3f0a-e518-4ad4-b688-4a3f745c178d',
+      'guid' => '95826b28-4b46-42d8-b02d-1ddfec084a6e',
       'displayName' => 'Открыт метод устранения неврозов у привидений-20',
       'slug' => 'privideniya-20',
     ),
@@ -1987,12 +1412,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2013,40 +1433,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-20',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2099,16 +1489,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   14 => 
@@ -2117,7 +1497,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '70a7c672-3332-4e85-bf16-77712c5c669a',
+      'guid' => '702123ae-0c73-46c8-91bb-d564e96c95e0',
       'displayName' => 'Открыт метод устранения неврозов у привидений-21',
       'slug' => 'privideniya-21',
     ),
@@ -2136,12 +1516,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2162,40 +1537,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-21',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2248,16 +1593,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   15 => 
@@ -2266,7 +1601,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '59d1b0c1-44a5-432a-9957-de32c41aa7c3',
+      'guid' => 'e76e91e8-4fef-400c-9da5-d04c5874d5ae',
       'displayName' => 'Открыт метод устранения неврозов у привидений-22',
       'slug' => 'privideniya-22',
     ),
@@ -2285,12 +1620,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2311,40 +1641,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-22',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2397,16 +1697,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   16 => 
@@ -2415,7 +1705,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '4a222c30-a943-4f07-8b2c-521ed933aef8',
+      'guid' => '0a8a7ceb-1c97-4085-938c-a7b4dedb24ab',
       'displayName' => 'Открыт метод устранения неврозов у привидений-23',
       'slug' => 'privideniya-23',
     ),
@@ -2434,12 +1724,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2460,40 +1745,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-23',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2546,16 +1801,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   17 => 
@@ -2564,7 +1809,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '0a28fa5e-6951-4cad-9dc1-b1cc9161f9b4',
+      'guid' => '1d8434f6-4aa6-4ab0-93ae-2d372a7e994d',
       'displayName' => 'Открыт метод устранения неврозов у привидений-24',
       'slug' => 'privideniya-24',
     ),
@@ -2583,12 +1828,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2609,40 +1849,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-24',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2695,16 +1905,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   18 => 
@@ -2713,7 +1913,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '3d95f2b7-9c02-43f8-b8b3-39959e2a3af2',
+      'guid' => '3ad9bf0a-cfff-45ca-847f-92d8853a9be4',
       'displayName' => 'Открыт метод устранения неврозов у привидений-25',
       'slug' => 'privideniya-25',
     ),
@@ -2732,12 +1932,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2758,40 +1953,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-25',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2844,16 +2009,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   19 => 
@@ -2862,7 +2017,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '94fabcbd-52c6-4ffa-8932-24e6fbc332a8',
+      'guid' => 'adaf318e-fd18-4c8e-8613-a5c5e82533a5',
       'displayName' => 'Открыт метод устранения неврозов у привидений-26',
       'slug' => 'privideniya-26',
     ),
@@ -2881,12 +2036,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -2907,40 +2057,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-26',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -2993,16 +2113,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   20 => 
@@ -3011,7 +2121,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '34ae7c75-9ca2-4119-a594-8a17a788708f',
+      'guid' => '76fcf43d-992e-48a8-884f-6958278e57de',
       'displayName' => 'Открыт метод устранения неврозов у привидений-27',
       'slug' => 'privideniya-27',
     ),
@@ -3030,12 +2140,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3056,40 +2161,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-27',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3142,16 +2217,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   21 => 
@@ -3160,7 +2225,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '0bfc5338-c773-43f3-ad4e-aadaa45c13ab',
+      'guid' => '8b38a305-c573-4ff9-97ee-e3f33a494edd',
       'displayName' => 'Открыт метод устранения неврозов у привидений-28',
       'slug' => 'privideniya-28',
     ),
@@ -3179,12 +2244,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3205,40 +2265,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-28',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3291,16 +2321,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   22 => 
@@ -3309,7 +2329,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'bd87b76b-228f-4324-b25a-9740c10fa889',
+      'guid' => 'ee3d3178-f17f-4b6f-9ff1-a98e467a6eba',
       'displayName' => 'Открыт метод устранения неврозов у привидений-29',
       'slug' => 'privideniya-29',
     ),
@@ -3328,12 +2348,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3354,40 +2369,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-29',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3440,16 +2425,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   23 => 
@@ -3458,7 +2433,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'f6a8827a-3b7c-4534-8c2f-b05f7232f25a',
+      'guid' => 'cea8ce6d-2681-4fa8-a7de-f1fef25bebc7',
       'displayName' => 'Открыт метод устранения неврозов у привидений-30',
       'slug' => 'privideniya-30',
     ),
@@ -3477,12 +2452,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3503,40 +2473,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-30',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3589,16 +2529,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   24 => 
@@ -3607,7 +2537,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '49801491-0a30-43b3-8940-a4c8b6185762',
+      'guid' => '54cf1d38-9f03-4fac-b4a7-6dd9b586cef5',
       'displayName' => 'Открыт метод устранения неврозов у привидений-31',
       'slug' => 'privideniya-31',
     ),
@@ -3626,12 +2556,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3652,40 +2577,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-31',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3738,16 +2633,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   25 => 
@@ -3756,7 +2641,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '67dd3e93-1522-4985-8623-53f60b728ec0',
+      'guid' => '065581f1-b966-4839-9e08-4d0aedaf33fb',
       'displayName' => 'Открыт метод устранения неврозов у привидений-32',
       'slug' => 'privideniya-32',
     ),
@@ -3775,12 +2660,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3801,40 +2681,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-32',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -3887,16 +2737,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   26 => 
@@ -3905,7 +2745,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '20a02f67-12a2-46e2-b57d-fdd6e42960a1',
+      'guid' => '5f4b8582-3105-4435-952e-0faf7b1fdd0b',
       'displayName' => 'Открыт метод устранения неврозов у привидений-33',
       'slug' => 'privideniya-33',
     ),
@@ -3924,12 +2764,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -3950,40 +2785,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-33',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4036,16 +2841,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   27 => 
@@ -4054,7 +2849,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '4d79544d-28d3-4ea3-9874-5f53562e512b',
+      'guid' => '9d734b1d-18a4-4a74-b95b-a125ec277158',
       'displayName' => 'Открыт метод устранения неврозов у привидений-34',
       'slug' => 'privideniya-34',
     ),
@@ -4073,12 +2868,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4099,40 +2889,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-34',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4185,16 +2945,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   28 => 
@@ -4203,7 +2953,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '13180103-2630-49c3-a273-2160f1ea2168',
+      'guid' => 'b8b797df-f7e4-4b5d-b815-65e5720e25ad',
       'displayName' => 'Открыт метод устранения неврозов у привидений-35',
       'slug' => 'privideniya-35',
     ),
@@ -4222,12 +2972,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4248,40 +2993,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-35',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4334,16 +3049,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   29 => 
@@ -4352,7 +3057,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '2d92d6cb-ead1-450b-a9dc-1b2fb55256a8',
+      'guid' => '1b1fa89a-56dc-4344-b611-17b77abc6b74',
       'displayName' => 'Открыт метод устранения неврозов у привидений-36',
       'slug' => 'privideniya-36',
     ),
@@ -4371,12 +3076,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4397,40 +3097,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-36',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4483,16 +3153,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   30 => 
@@ -4501,7 +3161,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'eb172905-e0b1-4b88-aa36-771c6451caab',
+      'guid' => 'e5a3bfd3-26e2-4017-b529-e380a1c979fb',
       'displayName' => 'Открыт метод устранения неврозов у привидений-37',
       'slug' => 'privideniya-37',
     ),
@@ -4520,12 +3180,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4546,40 +3201,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-37',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4632,16 +3257,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   31 => 
@@ -4650,7 +3265,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '2ee3a13b-1814-49b4-ac6d-8cec977a3033',
+      'guid' => '3e751034-43ac-4e1d-912a-d5abebfab325',
       'displayName' => 'Открыт метод устранения неврозов у привидений-38',
       'slug' => 'privideniya-38',
     ),
@@ -4669,12 +3284,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4695,40 +3305,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-38',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4781,16 +3361,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   32 => 
@@ -4799,7 +3369,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '699e1fdd-4cde-4f14-aeda-d17dcfe62181',
+      'guid' => 'ec41b94a-8b4e-4698-bb5f-dc82862dc8a4',
       'displayName' => 'Открыт метод устранения неврозов у привидений-39',
       'slug' => 'privideniya-39',
     ),
@@ -4818,12 +3388,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4844,40 +3409,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-39',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -4930,16 +3465,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   33 => 
@@ -4948,7 +3473,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '066c18a1-cbab-485a-9961-e4bf9d0d73c2',
+      'guid' => '73148319-13d8-4efd-985f-87bc0659e17d',
       'displayName' => 'Открыт метод устранения неврозов у привидений-40',
       'slug' => 'privideniya-40',
     ),
@@ -4967,12 +3492,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -4993,40 +3513,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-40',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5079,16 +3569,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   34 => 
@@ -5097,7 +3577,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'a170eb6c-b7f3-4cc1-bd5d-94f691818770',
+      'guid' => 'c999564c-0482-4fa3-89fe-ab7eff31bd15',
       'displayName' => 'Открыт метод устранения неврозов у привидений-41',
       'slug' => 'privideniya-41',
     ),
@@ -5116,12 +3596,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5142,40 +3617,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-41',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5228,16 +3673,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   35 => 
@@ -5246,7 +3681,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'b6a3d23a-52b0-442a-bfbf-dea89e8eacbd',
+      'guid' => '4fc3a348-bad0-44c8-a425-86d13345f720',
       'displayName' => 'Открыт метод устранения неврозов у привидений-42',
       'slug' => 'privideniya-42',
     ),
@@ -5265,12 +3700,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5291,40 +3721,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-42',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5377,16 +3777,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   36 => 
@@ -5395,7 +3785,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'd1c89e21-eaaa-4954-8eb3-a97ebc6c9da0',
+      'guid' => 'cb94aa55-05fe-469c-89d7-76673a76395e',
       'displayName' => 'Открыт метод устранения неврозов у привидений-43',
       'slug' => 'privideniya-43',
     ),
@@ -5414,12 +3804,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5440,40 +3825,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-43',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5526,16 +3881,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   37 => 
@@ -5544,7 +3889,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'c316f438-55b8-4754-b93f-cf4f1a4360d6',
+      'guid' => 'fe5cc80c-9d12-46de-8c9b-c8350bcac050',
       'displayName' => 'Открыт метод устранения неврозов у привидений-44',
       'slug' => 'privideniya-44',
     ),
@@ -5563,12 +3908,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5589,40 +3929,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-44',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5675,16 +3985,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   38 => 
@@ -5693,7 +3993,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'ee0874c3-0790-4f94-b613-455db53327fe',
+      'guid' => 'b1b4be09-5bb0-4f0e-9b36-a7b0d015c987',
       'displayName' => 'Открыт метод устранения неврозов у привидений-45',
       'slug' => 'privideniya-45',
     ),
@@ -5712,12 +4012,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5738,40 +4033,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-45',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5824,16 +4089,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   39 => 
@@ -5842,7 +4097,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '79b37e0a-02ef-4dc0-b933-a0f3b25013b6',
+      'guid' => '919af9d3-b873-467b-94b8-e24d0639f573',
       'displayName' => 'Открыт метод устранения неврозов у привидений-46',
       'slug' => 'privideniya-46',
     ),
@@ -5861,12 +4116,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -5887,40 +4137,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-46',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -5973,16 +4193,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   40 => 
@@ -5991,7 +4201,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '002a70f4-3fcb-40c0-85cc-784bc4262f97',
+      'guid' => 'edc5142d-5d07-481d-bb57-c60c59cf1a5b',
       'displayName' => 'Открыт метод устранения неврозов у привидений-47',
       'slug' => 'privideniya-47',
     ),
@@ -6010,12 +4220,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6036,40 +4241,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-47',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6122,16 +4297,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   41 => 
@@ -6140,7 +4305,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '406bca8e-46ad-43c6-97b9-f8d61771663e',
+      'guid' => '67a89a31-c1a1-4395-a92a-5a32d31c2b51',
       'displayName' => 'Открыт метод устранения неврозов у привидений-48',
       'slug' => 'privideniya-48',
     ),
@@ -6159,12 +4324,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6185,40 +4345,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-48',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6271,16 +4401,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   42 => 
@@ -6289,7 +4409,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => '6b89d8da-e233-4f26-9472-bea57db50a4d',
+      'guid' => '4bb3266f-4586-4e07-a69a-3045468bb62c',
       'displayName' => 'Открыт метод устранения неврозов у привидений-49',
       'slug' => 'privideniya-49',
     ),
@@ -6308,12 +4428,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6334,40 +4449,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-49',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6420,16 +4505,6 @@ return array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   43 => 
@@ -6438,7 +4513,7 @@ return array (
     array (
       'collection' => 'newsItem',
       'type' => 'base',
-      'guid' => 'b3f658be-eadb-4622-80c6-789a455c5dc3',
+      'guid' => '76c065b4-54f6-43b6-92ec-1a2984a0c22a',
       'displayName' => 'Открыт метод устранения неврозов у привидений-50',
       'slug' => 'privideniya-50',
     ),
@@ -6457,12 +4532,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6483,40 +4553,10 @@ return array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Открыт метод устранения неврозов у привидений-50',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6568,16 +4608,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'date' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
     ),
   ),
@@ -6606,12 +4636,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6632,40 +4657,10 @@ return array (
         0 => 'string',
         1 => 'Наташа Рублева, домохозяйка',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Наташа Рублева, домохозяйка',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6718,11 +4713,6 @@ return array (
         0 => 'string',
         1 => '<p>Not that I believe in ghosts, but a couple of months ago I started regularly find in our marital bed someones blonde hair, earrings and lipstick traces. Husband also denies the existence of ghosts, but so could not continue</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'date' => 
       array (
         0 => 'object',
@@ -6755,12 +4745,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -6781,40 +4766,10 @@ return array (
         0 => 'string',
         1 => 'Александр, 35 лет, топ-менеджер сети строительных магазинов',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Александр, 35 лет, топ-менеджер сети строительных магазинов',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -6866,11 +4821,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'date' => 
       array (

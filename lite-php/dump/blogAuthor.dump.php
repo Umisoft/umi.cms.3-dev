@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'blogAuthor',
       'type' => 'base',
-      'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+      'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
       'displayName' => 'Бивес',
       'slug' => 'bives',
     ),
@@ -28,12 +28,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -49,45 +44,10 @@ return array (
           ),
         ),
       ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Бивес',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -113,16 +73,6 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'profile' => 
       array (
@@ -146,7 +96,7 @@ return array (
     array (
       'collection' => 'blogAuthor',
       'type' => 'base',
-      'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+      'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
       'displayName' => 'Батхед',
       'slug' => 'buthead',
     ),
@@ -165,12 +115,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -186,45 +131,10 @@ return array (
           ),
         ),
       ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Батхед',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -251,16 +161,6 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'profile' => 
       array (
         0 => 'relation',
@@ -270,7 +170,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+            'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),

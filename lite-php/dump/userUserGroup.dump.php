@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => '82fc1a51-85dc-44d3-a4cf-58fb2d5f03f7',
+      'guid' => '1454ac93-2980-4e04-9738-2b59fef8d1ac',
       'displayName' => 'Супервайзер:Администратор:Посетители:ru-RU',
     ),
     'data' => 
@@ -19,20 +19,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Администратор:Посетители:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -57,7 +47,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '258e0369-2ec3-41d4-b484-12ff97e6a586',
+            'guid' => '7bbba10a-de4f-4c41-b27e-9c79d48983a1',
             'displayName' => 'Администратор',
           ),
         ),
@@ -84,7 +74,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => 'fc905ca1-60e3-4ef8-9e79-7a1943f3a6b9',
+      'guid' => 'e970d6b6-14f8-4356-8473-b7c5df7055d1',
       'displayName' => 'Супервайзер:Администратор:Зaрегистрированные пользователи:ru-RU',
     ),
     'data' => 
@@ -94,20 +84,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Администратор:Зaрегистрированные пользователи:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -132,7 +112,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '258e0369-2ec3-41d4-b484-12ff97e6a586',
+            'guid' => '7bbba10a-de4f-4c41-b27e-9c79d48983a1',
             'displayName' => 'Администратор',
           ),
         ),
@@ -159,7 +139,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => 'feb95826-1f20-4f2f-8a9a-cb3293b8fcc8',
+      'guid' => '1f17a4d7-734c-4a59-87d2-00f6b5009642',
       'displayName' => 'Супервайзер:Администратор:Администраторы:ru-RU',
     ),
     'data' => 
@@ -169,20 +149,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Администратор:Администраторы:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -207,7 +177,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '258e0369-2ec3-41d4-b484-12ff97e6a586',
+            'guid' => '7bbba10a-de4f-4c41-b27e-9c79d48983a1',
             'displayName' => 'Администратор',
           ),
         ),
@@ -221,7 +191,7 @@ return array (
           array (
             'collection' => 'userGroup',
             'type' => 'base',
-            'guid' => '3f38bcdc-a181-4cfb-8d55-69635d4af777',
+            'guid' => '48705994-0b97-435d-bb49-070606f56f38',
             'displayName' => 'Администраторы',
           ),
         ),
@@ -234,7 +204,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => 'b7beb52e-36ac-435e-86a6-feae85042f2e',
+      'guid' => 'c096623e-9aa5-4910-96ad-df30d9333747',
       'displayName' => 'Супервайзер:Администратор:Модератор:ru-RU',
     ),
     'data' => 
@@ -244,20 +214,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Администратор:Модератор:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -282,7 +242,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '258e0369-2ec3-41d4-b484-12ff97e6a586',
+            'guid' => '7bbba10a-de4f-4c41-b27e-9c79d48983a1',
             'displayName' => 'Администратор',
           ),
         ),
@@ -296,7 +256,7 @@ return array (
           array (
             'collection' => 'userGroup',
             'type' => 'base',
-            'guid' => '2340319f-0ffd-4bcf-8604-23007162ac99',
+            'guid' => '7925a888-34e7-4f81-ade6-20df7ecb9e0f',
             'displayName' => 'Модератор',
           ),
         ),
@@ -309,7 +269,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => 'bac8ca09-d0ab-488b-98bf-b543e51c6b88',
+      'guid' => '0a1aeb85-bed3-49dd-bd1e-511d9725d1ac',
       'displayName' => 'Супервайзер:Зарегистрированный пользователь:Посетители:ru-RU',
     ),
     'data' => 
@@ -319,20 +279,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Зарегистрированный пользователь:Посетители:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -357,7 +307,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+            'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),
@@ -384,7 +334,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => 'd7581d97-c185-4dcc-bcc9-ef040b479312',
+      'guid' => '4fc59a5d-fc84-4653-8328-ce5bc1141e69',
       'displayName' => 'Супервайзер:Зарегистрированный пользователь:Авторы с премодерацией постов:ru-RU',
     ),
     'data' => 
@@ -394,20 +344,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Зарегистрированный пользователь:Авторы с премодерацией постов:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -432,7 +372,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+            'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),
@@ -446,7 +386,7 @@ return array (
           array (
             'collection' => 'userGroup',
             'type' => 'base',
-            'guid' => '81596ac0-3bb0-4fbc-96f5-28b40919b43d',
+            'guid' => 'f02f84a1-f462-43e5-b445-559324aadbe6',
             'displayName' => 'Авторы с премодерацией постов',
           ),
         ),
@@ -459,7 +399,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => '986a8070-9980-40d0-b6d8-326e55e619bf',
+      'guid' => 'ad8bf726-8e07-4b50-9f9c-174f78fe8efa',
       'displayName' => 'Супервайзер:Зарегистрированный пользователь:Комментарии с премодерацией:ru-RU',
     ),
     'data' => 
@@ -469,20 +409,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Зарегистрированный пользователь:Комментарии с премодерацией:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -507,7 +437,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+            'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),
@@ -521,7 +451,7 @@ return array (
           array (
             'collection' => 'userGroup',
             'type' => 'base',
-            'guid' => 'a74a122b-66db-4aba-abc7-c4467556228a',
+            'guid' => '15a969e9-449b-4e52-8a90-91f105c19cc5',
             'displayName' => 'Комментарии с премодерацией',
           ),
         ),
@@ -534,7 +464,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => '52ea0160-9e43-4523-ae0e-709d019b6403',
+      'guid' => '25fe1d2a-2036-419e-9fcd-6a5aa39eefb3',
       'displayName' => 'Супервайзер:Зарегистрированный пользователь:Зaрегистрированные пользователи:ru-RU',
     ),
     'data' => 
@@ -544,20 +474,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Зарегистрированный пользователь:Зaрегистрированные пользователи:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -582,7 +502,7 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered',
-            'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+            'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
             'displayName' => 'Зарегистрированный пользователь',
           ),
         ),
@@ -609,7 +529,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => '42efedf2-a27c-4155-8a59-e211c28c8d95',
+      'guid' => '707d5b2f-1664-417c-8a68-4cb3491c0bd3',
       'displayName' => 'Супервайзер:Гость:Посетители:ru-RU',
     ),
     'data' => 
@@ -619,20 +539,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Гость:Посетители:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -684,7 +594,7 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
-      'guid' => '900077f6-f0c7-4ed3-937e-adfe4c2b4f6e',
+      'guid' => '1247b728-eefb-4aef-961c-8f818b865398',
       'displayName' => 'Супервайзер:Гость:Комментарии с премодерацией:ru-RU',
     ),
     'data' => 
@@ -694,20 +604,10 @@ return array (
         0 => 'string',
         1 => 'Супервайзер:Гость:Комментарии с премодерацией:ru-RU',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -746,7 +646,7 @@ return array (
           array (
             'collection' => 'userGroup',
             'type' => 'base',
-            'guid' => 'a74a122b-66db-4aba-abc7-c4467556228a',
+            'guid' => '15a969e9-449b-4e52-8a90-91f105c19cc5',
             'displayName' => 'Комментарии с премодерацией',
           ),
         ),

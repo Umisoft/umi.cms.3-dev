@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'menu',
-      'guid' => '344bbe1f-e951-4b13-96fd-e1283636218a',
+      'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
       'displayName' => 'Нижнее меню',
       'branch' => NULL,
       'slug' => 'bottommenu',
@@ -21,20 +21,10 @@ return array (
         0 => 'string',
         1 => 'Нижнее меню',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -63,7 +53,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'internalItem',
-      'guid' => 'ce8634de-3092-445b-9d57-05fb7485adab',
+      'guid' => '0e6311ec-a007-42fe-8d17-6bcfcce5e9c0',
       'displayName' => 'Главная',
       'branch' => 
       array (
@@ -71,7 +61,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => '344bbe1f-e951-4b13-96fd-e1283636218a',
+          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -86,20 +76,10 @@ return array (
         0 => 'string',
         1 => 'Главная',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -139,7 +119,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'internalItem',
-      'guid' => '4aa28685-916f-4b4c-898d-6b71a762c05e',
+      'guid' => '2d04d56a-8034-4d33-9038-9b348b5e9e4d',
       'displayName' => 'Работа, за которую мы никогда не возьмемся',
       'branch' => 
       array (
@@ -147,7 +127,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => '344bbe1f-e951-4b13-96fd-e1283636218a',
+          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -162,20 +142,10 @@ return array (
         0 => 'string',
         1 => 'Работа, за которую мы никогда не возьмемся',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -226,7 +196,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'internalItem',
-      'guid' => '62858c1f-8480-4617-8a80-b213ac201b4a',
+      'guid' => 'f8bb0122-97f3-4d36-b21d-9a29a364e402',
       'displayName' => 'Услуги и цены',
       'branch' => 
       array (
@@ -234,7 +204,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => '344bbe1f-e951-4b13-96fd-e1283636218a',
+          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -249,20 +219,10 @@ return array (
         0 => 'string',
         1 => 'Услуги и цены',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -302,7 +262,7 @@ return array (
     array (
       'collection' => 'menu',
       'type' => 'externalItem',
-      'guid' => '80b120a1-01b2-41c1-99ee-a4f406184290',
+      'guid' => 'b87d907b-fc76-47dc-beb6-9254ce2789b4',
       'displayName' => 'Внешняя ссылка',
       'branch' => 
       array (
@@ -310,7 +270,7 @@ return array (
         array (
           'collection' => 'menu',
           'type' => 'menu',
-          'guid' => '344bbe1f-e951-4b13-96fd-e1283636218a',
+          'guid' => 'e55f7882-73b1-4469-8d9e-56bf55679849',
           'displayName' => 'Нижнее меню',
           'branch' => NULL,
           'slug' => 'bottommenu',
@@ -325,20 +285,10 @@ return array (
         0 => 'string',
         1 => 'Внешняя ссылка',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

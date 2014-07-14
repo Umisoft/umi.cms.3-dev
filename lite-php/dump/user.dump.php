@@ -27,12 +27,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -76,37 +71,17 @@ return array (
       'password' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf633904b5.776180u1fZTi8PoGzbL3Iubx2v2PBOnUxJnapW',
+        1 => '$2a$09$53c3d4344090c8.574217uABvLzl2sVKVXxM/irG3e2qfC7Obv9b6',
       ),
       'passwordSalt' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf633904b5.77618043$',
-      ),
-      'activationCode' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => '$2a$09$53c3d4344090c8.57421777$',
       ),
       'firstName' => 
       array (
         0 => 'string',
         1 => 'Супервайзер',
-      ),
-      'middleName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'lastName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'registrationDate' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
     ),
   ),
@@ -116,7 +91,7 @@ return array (
     array (
       'collection' => 'user',
       'type' => 'registered',
-      'guid' => '258e0369-2ec3-41d4-b484-12ff97e6a586',
+      'guid' => '7bbba10a-de4f-4c41-b27e-9c79d48983a1',
       'displayName' => 'Администратор',
     ),
     'data' => 
@@ -134,12 +109,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -183,37 +153,17 @@ return array (
       'password' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf6396cbc0.651053uTs8GWk2dzB30eS.dYPuqvwQYS2z46li',
+        1 => '$2a$09$53c3d434789028.091601u5LtoDPqMbcvcaihspbOr6KNYfnP/dm.',
       ),
       'passwordSalt' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf6396cbc0.65105371$',
-      ),
-      'activationCode' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => '$2a$09$53c3d434789028.09160168$',
       ),
       'firstName' => 
       array (
         0 => 'string',
         1 => 'Администратор',
-      ),
-      'middleName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'lastName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'registrationDate' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
     ),
   ),
@@ -223,7 +173,7 @@ return array (
     array (
       'collection' => 'user',
       'type' => 'registered',
-      'guid' => '5103a338-b1b0-46ef-82a9-9ac98eeffabd',
+      'guid' => '217b0ef0-7c41-410e-97a1-3531ae3acd00',
       'displayName' => 'Зарегистрированный пользователь',
     ),
     'data' => 
@@ -233,20 +183,10 @@ return array (
         0 => 'string',
         1 => 'Зарегистрированный пользователь',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -290,37 +230,17 @@ return array (
       'password' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf63c1a756.352931ujwdqL1mh9/2wZgOrz5fTwgAt40h92rm',
+        1 => '$2a$09$53c3d434a286d1.842968uyjObM9xqEd8a.yyot8vheUr9jQB/Nsu',
       ),
       'passwordSalt' => 
       array (
         0 => 'string',
-        1 => '$2a$09$53c3cf63c1a756.35293193$',
-      ),
-      'activationCode' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => '$2a$09$53c3d434a286d1.84296869$',
       ),
       'firstName' => 
       array (
         0 => 'string',
         1 => 'Зарегистрированный пользователь',
-      ),
-      'middleName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'lastName' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'registrationDate' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
     ),
   ),
@@ -348,12 +268,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (

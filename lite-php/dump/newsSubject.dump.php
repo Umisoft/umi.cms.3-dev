@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'newsSubject',
       'type' => 'base',
-      'guid' => 'bf8fcad0-4e4e-4669-8b69-d9d7f7bcdc03',
+      'guid' => '50ab5e76-494d-41e6-abd8-3aecd57a7d09',
       'displayName' => 'Призраки',
       'slug' => 'prizraki',
     ),
@@ -28,12 +28,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -48,56 +43,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -141,12 +86,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -161,56 +101,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (

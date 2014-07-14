@@ -28,12 +28,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -54,40 +49,10 @@ return array (
         0 => 'string',
         1 => 'Девиантное поведение призраков и домовых и способы влияния на него',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Девиантное поведение призраков и домовых и способы влияния на него',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -124,21 +89,6 @@ return array (
         0 => 'string',
         1 => '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'publishTime' => 
       array (
         0 => 'object',
@@ -158,7 +108,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+            'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
             'displayName' => 'Бивес',
             'slug' => 'bives',
           ),
@@ -191,12 +141,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -217,40 +162,10 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'contents#ru-RU' => 
       array (
@@ -287,21 +202,6 @@ return array (
         0 => 'string',
         1 => '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>',
       ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'category' => 
       array (
         0 => 'relation',
@@ -337,7 +237,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+            'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
             'displayName' => 'Бивес',
             'slug' => 'bives',
           ),
@@ -351,7 +251,7 @@ return array (
     array (
       'collection' => 'blogPost',
       'type' => 'base',
-      'guid' => '8ba87a0b-7376-4554-a025-396ebda2bc45',
+      'guid' => 'c413befb-31f3-4a68-984d-2c9dfa38a708',
       'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-2',
       'slug' => 'razreshenie-konfliktnyh-situacij-s-nlo-metodom-renaty-2',
     ),
@@ -370,12 +270,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -396,50 +291,15 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
         1 => '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -465,21 +325,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'category' => 
       array (
@@ -516,7 +361,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+            'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
             'displayName' => 'Бивес',
             'slug' => 'bives',
           ),
@@ -530,7 +375,7 @@ return array (
     array (
       'collection' => 'blogPost',
       'type' => 'base',
-      'guid' => '55c8f5c4-d8a4-4664-8f86-1ef0dd1252bd',
+      'guid' => '28a7a71b-6659-4665-912b-92e72a982721',
       'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-3',
       'slug' => 'razreshenie-konfliktnyh-situacij-s-nlo-metodom-renaty-3',
     ),
@@ -549,12 +394,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -575,50 +415,15 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
         1 => '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -644,21 +449,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'category' => 
       array (
@@ -695,7 +485,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+            'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
             'displayName' => 'Батхед',
             'slug' => 'buthead',
           ),
@@ -709,7 +499,7 @@ return array (
     array (
       'collection' => 'blogPost',
       'type' => 'base',
-      'guid' => '99f26df0-b924-4e83-8a4a-91a763e62109',
+      'guid' => '2ce90b3e-00c6-4819-b555-9ee0b08d8e17',
       'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-4',
       'slug' => 'razreshenie-konfliktnyh-situacij-s-nlo-metodom-renaty-4',
     ),
@@ -728,12 +518,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -754,50 +539,15 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
         1 => '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -823,21 +573,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'category' => 
       array (
@@ -874,7 +609,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+            'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
             'displayName' => 'Батхед',
             'slug' => 'buthead',
           ),
@@ -888,7 +623,7 @@ return array (
     array (
       'collection' => 'blogPost',
       'type' => 'base',
-      'guid' => 'ed5b3ca4-f043-4c76-81eb-274a7c0f66cf',
+      'guid' => 'e1ae429f-e3b7-4613-a795-ac7f0e4e9f32',
       'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-5',
       'slug' => 'razreshenie-konfliktnyh-situacij-s-nlo-metodom-renaty-5',
     ),
@@ -907,12 +642,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -933,50 +663,15 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'h1#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
         1 => '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'active#ru-RU' => 
       array (
@@ -1002,21 +697,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>',
-      ),
-      'source' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
-      'contentsRaw#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
       ),
       'category' => 
       array (
@@ -1053,7 +733,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+            'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
             'displayName' => 'Батхед',
             'slug' => 'buthead',
           ),

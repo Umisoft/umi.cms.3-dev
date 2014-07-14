@@ -9,7 +9,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'branchComment',
-      'guid' => '65efeed5-d813-4e86-bbd7-684511665bfe',
+      'guid' => '9182b598-d14a-4cf4-bba6-72de21da139d',
       'displayName' => 'Девиантное поведение призраков и домовых и способы влияния на него',
       'branch' => NULL,
       'slug' => 'branch1',
@@ -21,20 +21,10 @@ return array (
         0 => 'string',
         1 => 'Девиантное поведение призраков и домовых и способы влияния на него',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -80,11 +70,6 @@ return array (
           ),
         ),
       ),
-      'publishTime' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   1 => 
@@ -93,7 +78,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
-      'guid' => '4faf8093-f9e2-44d8-96e7-935b3e851d5e',
+      'guid' => 'dce4b7bc-f892-494b-a490-9f6a06ebd4ee',
       'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
       'branch' => 
       array (
@@ -101,7 +86,7 @@ return array (
         array (
           'collection' => 'blogComment',
           'type' => 'branchComment',
-          'guid' => '65efeed5-d813-4e86-bbd7-684511665bfe',
+          'guid' => '9182b598-d14a-4cf4-bba6-72de21da139d',
           'displayName' => 'Девиантное поведение призраков и домовых и способы влияния на него',
           'branch' => NULL,
           'slug' => 'branch1',
@@ -124,12 +109,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -184,7 +164,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+            'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
             'displayName' => 'Бивес',
             'slug' => 'bives',
           ),
@@ -228,7 +208,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
-      'guid' => '4b2e35d8-50c5-46ad-9a66-aca9d5b7921b',
+      'guid' => '54e2749a-9e2d-41f6-8165-c452641ce8bc',
       'displayName' => 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него',
       'branch' => 
       array (
@@ -236,7 +216,7 @@ return array (
         array (
           'collection' => 'blogComment',
           'type' => 'comment',
-          'guid' => '4faf8093-f9e2-44d8-96e7-935b3e851d5e',
+          'guid' => 'dce4b7bc-f892-494b-a490-9f6a06ebd4ee',
           'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
           'branch' => 
           array (
@@ -244,7 +224,7 @@ return array (
             array (
               'collection' => 'blogComment',
               'type' => 'branchComment',
-              'guid' => '65efeed5-d813-4e86-bbd7-684511665bfe',
+              'guid' => '9182b598-d14a-4cf4-bba6-72de21da139d',
               'displayName' => 'Девиантное поведение призраков и домовых и способы влияния на него',
               'branch' => NULL,
               'slug' => 'branch1',
@@ -270,12 +250,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -330,7 +305,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'a031a6c7-69fb-4eee-9213-35a357856921',
+            'guid' => '03fd1990-f944-4868-92c3-37592919ca95',
             'displayName' => 'Бивес',
             'slug' => 'bives',
           ),
@@ -374,7 +349,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'branchComment',
-      'guid' => 'ef364f3f-f5f4-4423-99a8-eb43a43a768b',
+      'guid' => 'ae74c0f0-2e9e-46a1-b4d4-86402c19c4cd',
       'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       'branch' => NULL,
       'slug' => 'branch2',
@@ -386,20 +361,10 @@ return array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'displayName#en-US' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -445,11 +410,6 @@ return array (
           ),
         ),
       ),
-      'publishTime' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
-      ),
     ),
   ),
   4 => 
@@ -458,7 +418,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
-      'guid' => 'bc8c9c65-49e8-4104-a470-0a279e9bf9cc',
+      'guid' => 'd981563e-096a-4567-8087-0278b9ce87f2',
       'displayName' => 'важный вопрос',
       'branch' => 
       array (
@@ -466,7 +426,7 @@ return array (
         array (
           'collection' => 'blogComment',
           'type' => 'branchComment',
-          'guid' => 'ef364f3f-f5f4-4423-99a8-eb43a43a768b',
+          'guid' => 'ae74c0f0-2e9e-46a1-b4d4-86402c19c4cd',
           'displayName' => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
           'branch' => NULL,
           'slug' => 'branch2',
@@ -489,12 +449,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -549,7 +504,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+            'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
             'displayName' => 'Батхед',
             'slug' => 'buthead',
           ),
@@ -593,7 +548,7 @@ return array (
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
-      'guid' => '3c09fd7c-50c9-4e64-9ea8-6f6b9f5583c5',
+      'guid' => 'b058249f-0407-49b5-97e4-5654977d1594',
       'displayName' => 'Вложенный комментарий',
       'branch' => 
       array (
@@ -601,7 +556,7 @@ return array (
         array (
           'collection' => 'blogComment',
           'type' => 'comment',
-          'guid' => '4b2e35d8-50c5-46ad-9a66-aca9d5b7921b',
+          'guid' => '54e2749a-9e2d-41f6-8165-c452641ce8bc',
           'displayName' => 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него',
           'branch' => 
           array (
@@ -609,7 +564,7 @@ return array (
             array (
               'collection' => 'blogComment',
               'type' => 'comment',
-              'guid' => '4faf8093-f9e2-44d8-96e7-935b3e851d5e',
+              'guid' => 'dce4b7bc-f892-494b-a490-9f6a06ebd4ee',
               'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
               'branch' => 
               array (
@@ -617,7 +572,7 @@ return array (
                 array (
                   'collection' => 'blogComment',
                   'type' => 'branchComment',
-                  'guid' => '65efeed5-d813-4e86-bbd7-684511665bfe',
+                  'guid' => '9182b598-d14a-4cf4-bba6-72de21da139d',
                   'displayName' => 'Девиантное поведение призраков и домовых и способы влияния на него',
                   'branch' => NULL,
                   'slug' => 'branch1',
@@ -646,12 +601,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:39:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'NULL',
-        1 => NULL,
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 14:59:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
       'owner' => 
       array (
@@ -706,7 +656,7 @@ return array (
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
-            'guid' => 'f1f1441e-4268-4194-ad18-554d0fdfe53e',
+            'guid' => '5cb3f39c-1abc-496a-8dde-d09dc914662c',
             'displayName' => 'Батхед',
             'slug' => 'buthead',
           ),
