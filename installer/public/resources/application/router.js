@@ -88,59 +88,66 @@ define([], function(){
              * @returns {promise} возвращает promise результатом которого является true в случае успешного сохранения
              */
             saveObject: function(params){
-                var isNewObject;
                 var self = this;
-                var deferred;
-
-                if(!params.object.get('isValid')){
-                    if(params.handler){
-                        $(params.handler).removeClass('loading');
+                var deferred = Ember.RSVP.defer();
+                try{
+                    params.object.validateObject();
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        deferred.reject();
                     }
-                    deferred = Ember.RSVP.defer();
-                    return deferred.resolve(false);
-                }
+                    params.object.save().then(
+                        function(){
+                            params.object.updateRelationhipsMap();
 
-                if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
-                    isNewObject = true;
-                }
-
-                return params.object.save().then(
-                    function(){
-                        params.object.updateRelationhipsMap();
-
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        return params.object;
-                    },
-
-                    function(results){
-                        results = results || {};
-                        var self = this;
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        var data = {
-                            'close': false,
-                            'title': results.errors,
-                            'content': results.message,
-                            'confirm': 'Загрузить объект с сервера'
-                        };
-
-                        return UMI.dialog.open(data).then(
-                            function(){
-                                //https://github.com/emberjs/data/issues/1632
-                                //params.object.transitionTo('updated.uncommitted');
-                                //                                    console.log(params.object.get('currentState.stateName'), results, self);
-                                /* params.object.rollback();
-                                 params.object.reload();*/
-                                return false;
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
                             }
-                        );
-                    }
-                );
+
+                            return params.object;
+                        },
+
+                        function(results){
+                            delete window.EmberDataXHRErrorBubbleOff;
+                            try{
+                                results = results || {};
+                                if(params.handler){
+                                    $(params.handler).removeClass('loading');
+                                }
+                                var store = self.get('store');
+                                var collection;
+                                var object;
+                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                var invalidObject;
+                                var invalidProperties;
+                                var i;
+                                if(Ember.typeOf(invalidObjects) === 'array'){
+                                    if(params.object.get('isValid')){
+                                        params.object.send('becameInvalid');
+                                    }
+                                    for(i = 0; i < invalidObjects.length; i++){
+                                        invalidObject = invalidObjects[i];
+                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                        collection = store.all(invalidObject.collection);
+                                        object = collection.findBy('guid', invalidObject.guid);
+                                        if(object){
+                                            object.setInvalidProperties(invalidProperties);
+                                        }
+                                    }
+                                }
+                                deferred.reject();
+                            } catch(error){
+                                self.send('backgroundError', error);
+                            }
+                        }
+                    );
+                } catch(error){
+                    self.send('backgroundError', error);
+                } finally{
+                    return deferred.promise;
+                }
             },
 
             beforeAdd: function(params){

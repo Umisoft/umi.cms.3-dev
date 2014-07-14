@@ -2738,7 +2738,10 @@ define('application/models',[], function(){
          */
         var propertyFilters = {
             stringTrim: function(value){
-                return value.replace(/^\s+|\s+$/g, '');
+                if(value){
+                    value = value.replace(/^\s+|\s+$/g, '');
+                }
+                return value;
             },
 
             htmlSafe: function(value){
@@ -2782,18 +2785,19 @@ define('application/models',[], function(){
                         switch(validators[i].type){
                             case "required":
                                 if(!value){
-                                    errors.push({'message': validators[i].message});
+                                    errors.push(validators[i].message);
                                 }
                                 break;
                             case "regexp":
                                 var pattern = eval(validators[i].options.pattern); //TODO: Заменить eval
                                 if(!pattern.test(value)){
-                                    errors.push({'message': validators[i].message});
+                                    errors.push(validators[i].message);
                                 }
                                 break;
                         }
 
                         if(errors.length){
+                            errors = errors.join(' ');
                             activeErrors = this.get('validErrors');
                             if(activeErrors){
                                 this.set('validErrors.' + propertyName, errors);
@@ -2824,9 +2828,59 @@ define('application/models',[], function(){
                 }
             },
 
+            validateObject: function(){
+                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
+                var filters = Ember.get(meta, 'filters');
+                var validators = Ember.get(meta, 'validators');
+                var key;
+                if(Ember.typeOf(filters) === 'object'){
+                    for(key in filters){
+                        if(filters.hasOwnProperty(key)){
+                            this.filterProperty(key);
+                        }
+                    }
+                }
+                if(Ember.typeOf(validators) === 'object'){
+                    for(key in validators){
+                        if(validators.hasOwnProperty(key)){
+                            this.validateProperty(key);
+                            if(!this.get('isValid')){
+                                break;
+                            }
+                        }
+                    }
+                }
+            },
+
+            setInvalidProperties: function(invalidProperties){
+                var i;
+                var self = this;
+                var errors;
+                var propertyName;
+                var activeErrors;
+                if(Ember.typeOf(invalidProperties) === 'array'){
+                    for(i = 0; i < invalidProperties.length; i++){
+                        errors = invalidProperties[i].errors;
+                        if(Ember.typeOf(errors) === 'array'){
+                            errors = errors.join(' ');
+                        }
+                        propertyName = invalidProperties[i].propertyName || '';
+                        propertyName = propertyName.replace(/#.*/g, '');
+                        activeErrors = self.get('validErrors');
+                        if(activeErrors){
+                            self.set('validErrors.' + propertyName, errors);
+                        } else{
+                            activeErrors = {};
+                            activeErrors[propertyName] = errors;
+                            self.set('validErrors', activeErrors);
+                        }
+                    }
+                }
+            },
+
             clearValidateForProperty: function(propertyName){
                 var activeErrors = this.get('validErrors');
-                if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
+                if(Ember.get(activeErrors, propertyName)){
                     delete activeErrors[propertyName];
                 }
                 // Объект пересобирается без свойств прототипа
@@ -2838,6 +2892,11 @@ define('application/models',[], function(){
                 }
                 activeErrors = i ? activeErrors : null;
                 this.set('validErrors', activeErrors);
+                if(!i){
+                    if(!this.get('isValid')){
+                        this.send('becameValid');
+                    }
+                }
             },
 
             loadedRelationshipsByName: {},
@@ -3432,59 +3491,66 @@ define('application/router',[], function(){
              * @returns {promise} возвращает promise результатом которого является true в случае успешного сохранения
              */
             saveObject: function(params){
-                var isNewObject;
                 var self = this;
-                var deferred;
-
-                if(!params.object.get('isValid')){
-                    if(params.handler){
-                        $(params.handler).removeClass('loading');
+                var deferred = Ember.RSVP.defer();
+                try{
+                    params.object.validateObject();
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        deferred.reject();
                     }
-                    deferred = Ember.RSVP.defer();
-                    return deferred.resolve(false);
-                }
+                    params.object.save().then(
+                        function(){
+                            params.object.updateRelationhipsMap();
 
-                if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
-                    isNewObject = true;
-                }
-
-                return params.object.save().then(
-                    function(){
-                        params.object.updateRelationhipsMap();
-
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        return params.object;
-                    },
-
-                    function(results){
-                        results = results || {};
-                        var self = this;
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-
-                        var data = {
-                            'close': false,
-                            'title': results.errors,
-                            'content': results.message,
-                            'confirm': 'Загрузить объект с сервера'
-                        };
-
-                        return UMI.dialog.open(data).then(
-                            function(){
-                                //https://github.com/emberjs/data/issues/1632
-                                //params.object.transitionTo('updated.uncommitted');
-                                //                                    console.log(params.object.get('currentState.stateName'), results, self);
-                                /* params.object.rollback();
-                                 params.object.reload();*/
-                                return false;
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
                             }
-                        );
-                    }
-                );
+
+                            return params.object;
+                        },
+
+                        function(results){
+                            delete window.EmberDataXHRErrorBubbleOff;
+                            try{
+                                results = results || {};
+                                if(params.handler){
+                                    $(params.handler).removeClass('loading');
+                                }
+                                var store = self.get('store');
+                                var collection;
+                                var object;
+                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                var invalidObject;
+                                var invalidProperties;
+                                var i;
+                                if(Ember.typeOf(invalidObjects) === 'array'){
+                                    if(params.object.get('isValid')){
+                                        params.object.send('becameInvalid');
+                                    }
+                                    for(i = 0; i < invalidObjects.length; i++){
+                                        invalidObject = invalidObjects[i];
+                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                        collection = store.all(invalidObject.collection);
+                                        object = collection.findBy('guid', invalidObject.guid);
+                                        if(object){
+                                            object.setInvalidProperties(invalidProperties);
+                                        }
+                                    }
+                                }
+                                deferred.reject();
+                            } catch(error){
+                                self.send('backgroundError', error);
+                            }
+                        }
+                    );
+                } catch(error){
+                    self.send('backgroundError', error);
+                } finally{
+                    return deferred.promise;
+                }
             },
 
             beforeAdd: function(params){
@@ -4603,20 +4669,24 @@ define(
                     UMI.__container__.lookup('router:main').send('logout');
                     return;
                 }
-                var message;
-                if(error.hasOwnProperty('responseJSON')){
-                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
-                        message = error.responseJSON.result.error.message;
-                    }
+                if (error.status === 422){
+                    return jqXHR;
                 } else{
-                    message = error.responseText;
+                    var message;
+                    if(error.hasOwnProperty('responseJSON')){
+                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                            message = error.responseJSON.result.error.message;
+                        }
+                    } else{
+                        message = error.responseText;
+                    }
+                    var data = {
+                        'close': true,
+                        'title': error.status + '. ' + error.statusText,
+                        'content': message
+                    };
+                    UMI.dialog.open(data).then();
                 }
-                var data = {
-                    'close': true,
-                    'title': error.status + '. ' + error.statusText,
-                    'content': message
-                };
-                UMI.dialog.open(data).then();
             }
         });
 
@@ -7414,9 +7484,7 @@ define('partials/forms/elements/mixins',['App'], function(UMI){
             validateErrorsTemplate: function(){
                 var propertyName = this.get('meta.dataSource');
                 var template = '{{#if view.object.validErrors.' + propertyName + '}}' +
-                    '<small class="error">{{#each object.validErrors.' + propertyName + '}}' +
-                    '{{message}} ' +
-                    '{{/each}}</small>' +
+                    '<small class="error">{{object.validErrors.' + propertyName + '}}</small>' +
                     '{{/if}}';
                 return template;
             }
