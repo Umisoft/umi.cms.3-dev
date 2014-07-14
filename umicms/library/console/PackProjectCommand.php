@@ -10,7 +10,6 @@
 namespace umicms\console;
 
 use Phar;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,7 +22,7 @@ use umicms\project\Environment;
 /**
  * Упаковывает файлы проекта в пакет.
  */
-class PackProjectCommand extends Command
+class PackProjectCommand extends BaseCommand
 {
     /**
      * {@inheritdoc}
@@ -122,9 +121,7 @@ EOF;
             ->ignoreVCS(true)
             ->in($projectDir);
 
-        $progress = new ProgressBar($output, $finder->count());
-        $progress->setFormat(' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%');
-        $progress->start();
+        $progress = $this->startProgressBar($output, $finder->count());
 
         foreach ($finder as $file) {
             $this->packFile($projectDir, $phar, $file);

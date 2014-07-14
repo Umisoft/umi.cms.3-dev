@@ -15,7 +15,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Абстрактный класс консольной команды.
+ * Базовый класс консольной команды UMI.CMS.
  */
 abstract class BaseCommand extends Command
 {

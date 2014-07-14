@@ -4,7 +4,8 @@
 use Symfony\Component\Console\Application;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackProjectCommand;
-use umicms\console\ProjectDumpCommand;
+use umicms\console\ProjectCreateDumpCommand;
+use umicms\console\ProjectLoadDumpCommand;
 use umicms\project\Environment;
 
 
@@ -18,5 +19,6 @@ ini_set('display_errors', 1);
 $application = new Application('UMI.CMS 3.0 Console application.', '1.0');
 $application->add(new PackCoreCommand());
 $application->add(new PackProjectCommand());
-$application->add(new ProjectDumpCommand());
+$application->add(new ProjectCreateDumpCommand());
+$application->add(new ProjectLoadDumpCommand());
 $application->run();

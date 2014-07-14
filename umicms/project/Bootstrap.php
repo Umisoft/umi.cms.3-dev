@@ -107,14 +107,15 @@ class Bootstrap
     /**
      * Выполняет запрос
      */
-    public function run(Request $request = null)
+    public function run()
     {
-        if (!$request) {
-            $request = $this->toolkit->getService('umi\http\Request');
-            $this->prepareRequest($request);
-        }
+        /**
+         * @var Request $request
+         */
+        $request = $this->toolkit->getService('umi\http\Request');
+        $this->prepareRequest($request);
 
-        $routeResult = $this->routeProject($request);
+        $routeResult = $this->routeProject();
         $routeMatches = $routeResult->getMatches();
 
         $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
@@ -183,13 +184,17 @@ class Bootstrap
 
     /**
      * Производит предварительную маршрутизацию для определения текущего проекта.
-     * @param Request $request
      * @throws RuntimeException
      * @throws UnexpectedValueException
      * @return IRouteResult
      */
-    public function routeProject(Request $request)
+    public function routeProject()
     {
+        /**
+         * @var Request $request
+         */
+        $request = $this->toolkit->getService('umi\http\Request');
+
         $fileName = Environment::$directoryProjects . '/configuration/projects.config.php';
         if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(

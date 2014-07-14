@@ -27,7 +27,6 @@ use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
-use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -126,7 +125,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             foreach ($this->getModules() as $module) {
                 $module->getModelCollection()->syncAllSchemes();
             }
-
+/*
             echo "Installing structure...\n";
             $this->installStructure();
             echo "Installing users...\n";
@@ -142,7 +141,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
             $this->commit();
             $this->getObjectManager()->unloadObjects();
-
+*/
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
             echo $e->getTraceAsString() . "\n";
@@ -792,7 +791,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue('metaTitle', 'Блог Охотниц за приведениями')
             ->setValue('h1', 'Блог Охотниц за приведениями')
             ->setValue('contents', '<p>Это блого обо всем на свете...</p>')
-            ->setGUID('29449a5c-e0b0-42ad-9f1c-3d015540b024');
+            ->setGUID('39449a5c-e1b0-42ad-9f1c-3d015540b124');
 
         $tag1 = $tagCollection->add()
             ->setValue('displayName', 'Призраки')

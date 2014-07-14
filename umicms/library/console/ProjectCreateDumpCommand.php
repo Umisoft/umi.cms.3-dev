@@ -9,22 +9,19 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use umi\http\Request;
 use umi\orm\collection\ICollectionManager;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\dump\ICmsObjectExporter;
-use umicms\project\Bootstrap;
+use umicms\orm\object\ICmsObject;
 
 /**
  * Создает дамп данных проекта.
  */
-class ProjectDumpCommand extends Command
+class ProjectCreateDumpCommand extends BaseProjectCommand
 {
     /**
      * {@inheritdoc}
@@ -32,17 +29,12 @@ class ProjectDumpCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('dump')
+            ->setName('create-dump')
             ->setDescription('Создает дамп данных проекта.')
             ->addArgument(
                 'uri',
                 InputArgument::REQUIRED,
                 'URI проекта'
-            )
-            ->addArgument(
-                'output',
-                InputArgument::OPTIONAL,
-                'Полый путь пакета, который будет создан.'
             );
     }
 
@@ -51,28 +43,16 @@ class ProjectDumpCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $projectUri = trim($input->getArgument('uri'));
 
-        $style = new OutputFormatterStyle('blue', null, array('bold'));
-        $output->getFormatter()->setStyle('process', $style);
-
-        $bootstrap = new Bootstrap();
+        $bootstrap = $this->dispatchToProject($input, $output);
         $toolkit = $bootstrap->getToolkit();
 
-        /**
-         * @var Request $request
-         */
-        $request = Request::create($projectUri);
-
-        $output->writeln('<process>Диспетчеризация проекта "' . $projectUri . '"</process>');
-
-        $bootstrap->routeProject($request);
-        $exportDirectory = $bootstrap->getProjectDirectory() . '/dump';
-        if (!is_dir($exportDirectory)) {
-            mkdir($exportDirectory);
+        $dumpDirectory = $bootstrap->getProjectDirectory() . '/dump';
+        if (!is_dir($dumpDirectory)) {
+            mkdir($dumpDirectory);
         }
 
-        $output->writeln('<process>Директория выгрузки "' . $exportDirectory . '"</process>');
+        $output->writeln('<info>Директория для дампа данных "' . $dumpDirectory . '"</info>');
 
         /**
          * @var ICollectionManager $collectionManager
@@ -84,10 +64,7 @@ class ProjectDumpCommand extends Command
         $objectExporter =  $toolkit->getService('umicms\orm\dump\ICmsObjectExporter');
 
 
-        $progress = new ProgressBar($output, count($collectionManager->getList()));
-
-        $progress->setFormat(' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%');
-        $progress->start();
+        $progress = $this->startProgressBar($output, count($collectionManager->getList()));
 
         foreach ($collectionManager->getList() as $collectionName)
         {
@@ -97,11 +74,13 @@ class ProjectDumpCommand extends Command
              * @var ICmsCollection $collection
              */
             $collection = $collectionManager->getCollection($collectionName);
-            $dump = $objectExporter->getDump($collection->getInternalSelector());
+            $dump = $objectExporter->getDump(
+                $collection->getInternalSelector()->orderBy(ICmsObject::FIELD_GUID)
+            );
 
             $progress->setMessage('Запись данных "' . $collectionName . '"');
             $contents = $this->getDumpFile($collectionName, $dump);
-            file_put_contents($exportDirectory . '/' . $collectionName . '.dump.php', $contents);
+            file_put_contents($dumpDirectory . '/' . $collectionName . '.dump.php', $contents);
         }
 
         $progress->setMessage('Complete.');
@@ -113,12 +92,12 @@ class ProjectDumpCommand extends Command
     /**
      * Возвращает содержимое файла дампа.
      * @param string $collectionName
-     * @param array $dump
+     * @param array $data
      * @return string
      */
-    private function getDumpFile($collectionName, array $dump)
+    private function getDumpFile($collectionName, array $data)
     {
-        $source =  var_export($dump, true);
+        $source =  var_export($data, true);
 
         return <<<FILE
 <?php
