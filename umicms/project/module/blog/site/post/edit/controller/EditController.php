@@ -26,6 +26,10 @@ class EditController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'editPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
@@ -48,7 +52,7 @@ class EditController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'editPost';
+        return $this->template;
     }
 
     /**

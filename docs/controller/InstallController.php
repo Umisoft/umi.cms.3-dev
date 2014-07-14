@@ -356,6 +356,11 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $controllerPage->description = $description;
         $controllerPage->returnValue = $this->getReturnValue($class);
 
+        $properties = $class->getProperties(true);
+        if (isset($properties['template'])) {
+            $controllerPage->templateName = $controller->template;
+        }
+
     }
 
     protected function getReturnValue(ClassReflection $class)
@@ -406,16 +411,17 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $returnValue = '';
         if (isset($invoke) && $invoke->getShortDesc() != '{@inheritdoc}') {
             if ($longDescription = $invoke->getLongDesc()) {
-                $returnValue .= '<p>' . $longDescription . '</p>';
+
+                $longDescription = str_replace('Для шаблонизации доступны следущие параметры:', '<h3>Параметры шаблонизации</h3>', $longDescription);
+
+                $returnValue .= $longDescription;
             }
         }
-
-        //var_dump('+++++++++++++++++++++++++++++++++', $className, array_keys($methods));
 
         if (isset($methods['buildResponseContent'])) {
             $buildResponseContentMethod = $methods['buildResponseContent'];
             if ($extraDescription = $buildResponseContentMethod->getLongDesc()) {
-                $returnValue .= '<p>' . $extraDescription . '</p>';
+                $returnValue .= $extraDescription;
             }
         }
 
@@ -459,6 +465,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
          */
         foreach ($class->getProperties(true) as $property) {
 
+            if (!$property->isPublic()) {
+                continue;
+            }
+
             $name = $property->getName();
 
             $hintDesc = $property->getHintDesc();
@@ -484,7 +494,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             }
 
             $hintDesc = substr($hintDesc, strlen($name) + 1);
-
 
             $default = '';
             if (is_array($property->getDefault())) {

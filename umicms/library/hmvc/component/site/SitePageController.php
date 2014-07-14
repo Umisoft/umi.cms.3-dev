@@ -10,6 +10,7 @@
 
 namespace umicms\hmvc\component\site;
 
+use umi\http\Response;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
@@ -19,6 +20,11 @@ use umicms\orm\object\ICmsPage;
  */
 class SitePageController extends BaseSitePageController
 {
+    /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'page';
+
     /**
      * Возвращает страницу для отображения.
      * @param string $uri
@@ -30,7 +36,14 @@ class SitePageController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> ICmsPage $page текущая страница </li>
+     * </ul>
+     *
+     * @return Response
      */
     public function __invoke()
     {
@@ -46,7 +59,7 @@ class SitePageController extends BaseSitePageController
         $this->pushCurrentPage($page);
 
         return $this->createViewResponse(
-            'page',
+            $this->template,
             [
                 'page' => $page
             ]

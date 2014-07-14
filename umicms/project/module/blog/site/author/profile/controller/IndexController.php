@@ -25,6 +25,10 @@ class IndexController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'editProfile';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
@@ -47,7 +51,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'editProfile';
+        return $this->template;
     }
 
     /**

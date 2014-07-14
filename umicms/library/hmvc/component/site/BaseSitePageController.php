@@ -29,6 +29,11 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
     use TPageCallStackAware;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'index';
+
+    /**
      * {@inheritdoc}
      */
     protected function createView($templateName, array $variables = []) {

@@ -27,6 +27,10 @@ class AddController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'addPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
@@ -53,7 +57,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'addPost';
+        return $this->template;
     }
 
     /**

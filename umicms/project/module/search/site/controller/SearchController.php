@@ -11,11 +11,12 @@
 namespace umicms\project\module\search\site\controller;
 
 use umi\form\element\IFormElement;
+use umi\http\Response;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\search\model\SearchModule;
 
 /**
- * Контроллер запроса и вывода результатов поиска
+ * Контроллер вывода страницы поиска.
  */
 class SearchController extends BaseSitePageController
 {
@@ -34,7 +35,16 @@ class SearchController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * <ul>
+     * <li> ICmsPage $page текущая страница </li>
+     * <li> FormEntityView $form представление формы поиска </li>
+     * <li> string $query текущий поисковый запрос </li>
+     * </ul>
+     *
+     * @return Response
      */
     public function __invoke()
     {
@@ -46,7 +56,7 @@ class SearchController extends BaseSitePageController
         $queryInput = $form->get('query');
 
         return $this->createViewResponse(
-            'index',
+            $this->template,
             [
                 'page' => $this->getCurrentPage(),
                 'form' => $form->getView(),
