@@ -83,8 +83,8 @@ class WebmasterComponentLayout extends AdminComponentLayout
             $this->addEmptyContextControl('redirect', $control);
         } else {
             $control = new AdminControl($this->component);
-            $control->params['message'] = $this->component->translate('Do not set settings');
-
+            $control->params['content'] = $this->component->translate('Do not set settings');
+            $control->params['isStatic'] = true;
             $this->addEmptyContextControl('empty', $control);
         }
     }
