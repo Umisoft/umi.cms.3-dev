@@ -17,10 +17,18 @@ return array_replace_recursive(
         'name' => 'structure',
         'columns'     =>  [
             'component_name' => [
-                'type' => Type::STRING
+                'type' => Type::STRING,
+                'options' => [
+                    'default' => 'structure',
+                    'notnull' => true
+                ]
             ],
             'component_path' => [
-                'type' => Type::STRING
+                'type' => Type::STRING,
+                'options' => [
+                    'default' => 'structure',
+                    'notnull' => true
+                ]
             ],
             'in_menu'          => [
                 'type'    => Type::BOOLEAN,

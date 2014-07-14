@@ -14,7 +14,6 @@ use umi\acl\IAclAssertionResolver;
 use umi\acl\IAclResource;
 use umi\form\IForm;
 use umi\form\IFormAware;
-use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalizable;
 use umi\orm\collection\ICollection;
 use umi\orm\collection\ICollectionManagerAware;
@@ -27,7 +26,7 @@ use umicms\orm\selector\CmsSelector;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware, IAclResource, IAclAssertionResolver
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, IAclResource, IAclAssertionResolver
 {
     /**
      * Имя формы для редактирования объектов по умолчанию

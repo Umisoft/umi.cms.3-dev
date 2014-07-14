@@ -644,7 +644,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $category->getProperty('componentPath')->setValue('blog.category');
 
         $tag = $structureCollection->add('blogtag', 'system', $blogPage)
-            ->setValue('displayName', 'Тэг блога')
+            ->setValue('displayName', 'Тег блога')
             ->setValue('displayName', 'Tag', 'en-US')
             ->setGUID('3fa39832-9239-48a5-a82a-1dd2fcd0f042');
 
@@ -1024,7 +1024,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $newsPage->getProperty('componentPath')->setValue('news');
 
         $rubric = $structureCollection->add('rubriki', 'system', $newsPage)
-            ->setValue('displayName', 'Новостная рубрика')
+            ->setValue('displayName', 'Рубрика')
             ->setValue('displayName', 'Second rubrics', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811');
 
@@ -1033,7 +1033,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $rubric->getProperty('componentPath')->setValue('news.rubric');
 
         $subject = $structureCollection->add('syuzhety', 'system', $newsPage)
-            ->setValue('displayName', 'Новостной сюжет')
+            ->setValue('displayName', 'Сюжет')
             ->setValue('displayName', 'News subject', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822');
 

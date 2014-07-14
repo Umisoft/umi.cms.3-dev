@@ -19,7 +19,7 @@ return [
     ],
 
     'ru-RU' => [
-        'component:subject:displayName' => 'Новостные сюжеты',
+        'component:subject:displayName' => 'Сюжеты',
 
         'action:create:base' => 'Добавить сюжет',
 

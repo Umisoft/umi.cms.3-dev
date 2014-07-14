@@ -1,6 +1,6 @@
 {{#if model}}
     <div class="umi-overlay"></div>
-    <div class="umi-dialog">
+    <div {{bind-attr class=":umi-dialog model.type"}}>
         {{#if model.close}}
             <a href="" {{action 'close' model target="view"}} class="close">&times;</a>
         {{/if}}

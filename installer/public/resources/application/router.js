@@ -497,6 +497,37 @@ define([], function(){
                  */
                 backToFilter: function(){
                     this.transitionTo('context', 'root');
+                },
+
+                /**
+                 * Импорт Rss ленты
+                 */
+                importFromRss: function(object){
+                    try{
+                        var data = {
+                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> Подождите..</div>',
+                            'close': false,
+                            'type': 'check-process'
+                        };
+                        UMI.dialog.open(data).then(
+                            function(){},
+                            function(){}
+                        );
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+
+                        var importFromRssSource = this.controllerFor('component').get('settings').actions.importFromRss.source;
+                        $.ajax({
+                            url: importFromRssSource,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(results){
+                            var model = UMI.dialog.get('model');
+                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
                 }
             },
 

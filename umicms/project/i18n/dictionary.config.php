@@ -137,6 +137,9 @@ return [
     'collection' => [
 
         'en-US' => [
+            'en-US' => 'English',
+            'ru-RU' => 'Russian',
+
             ICmsObject::FIELD_CREATED => 'Creation date',
             ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
             ICmsObject::FIELD_UPDATED => 'Update date',
@@ -177,6 +180,9 @@ return [
         ],
 
         'ru-RU' => [
+            'en-US' => 'Английский',
+            'ru-RU' => 'Русский',
+
             ICmsObject::FIELD_CREATED => 'Дата создания',
             ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
