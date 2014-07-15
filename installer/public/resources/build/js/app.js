@@ -9808,8 +9808,14 @@ define('table/view',['App'], function(UMI){
                 var content = this.get('content');
                 var headers;
                 var data = Ember.get(content, 'control.data') || [];
+                var index;
                 if(data.length){
                     headers = data.shift();
+                    index = headers.indexOf('n/a');
+                    headers.splice(index, 1);
+                    for(var i = 0; i < data.length; i++){
+                        data[i].splice(index, 1);
+                    }
                     this.setProperties({'headers': headers, 'rows': data});
                 }
             }.observes('content').on('init')
