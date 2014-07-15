@@ -51,6 +51,7 @@ define(['App'], function(UMI){
                     Ember.Object.create({
                         id: 'closeAll',
                         type: 'secondary',
+                        kind: 'closeAll',
                         content: 'Закрыть все'
                     })
                 );
@@ -89,10 +90,26 @@ define(['App'], function(UMI){
         }
     });
 
+    UMI.AlertBoxCloseAll = Ember.View.extend({
+        classNames: ['alert-box text-center alert-box-close-all'],
+        classNameBindings: ['content.type'],
+        layoutName: 'partials/alert-box/close-all',
+        click: function(){
+            UMI.notification.removeAll();
+        }
+    });
+
     UMI.NotificationListView = Ember.CollectionView.extend({
         tagName: 'div',
         classNames: ['umi-alert-wrapper'],
-        itemViewClass: UMI.AlertBox,
+        createChildView: function(viewClass, attrs) {
+            if (attrs.content.kind === 'closeAll') {
+                viewClass = UMI.AlertBoxCloseAll;
+            } else {
+                viewClass = UMI.AlertBox;
+            }
+            return this._super(viewClass, attrs);
+        },
         contentBinding: 'controller.content',
         controller: UMI.notificationList
     });
