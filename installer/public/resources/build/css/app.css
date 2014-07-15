@@ -5559,6 +5559,8 @@ select {
   .umi-dialog .umi-dialog-content {
     margin-bottom: 20px;
     line-height: normal; }
+  .umi-dialog.check-process .umi-dialog-content {
+    margin-bottom: 0; }
 
 .umi-divider-left {
   float: left;
@@ -5932,7 +5934,7 @@ select {
     background-position: -1080px 0; }
   .icon.icon-right-thin {
     background-position: -1100px 0; }
-  .icon.icon-allowRobots {
+  .icon.icon-allowRobots, .icon.icon-importFromRss {
     background-position: -1120px 0; }
   .icon.icon-disallowRobots {
     background-position: -1140px 0; }
@@ -6038,7 +6040,7 @@ select {
     background-position: -1080px -20px; }
   .icon.white.icon-right-thin {
     background-position: -1100px -20px; }
-  .icon.white.icon-allowRobots {
+  .icon.white.icon-allowRobots, .icon.white.icon-importFromRss {
     background-position: -1120px -20px; }
   .icon.white.icon-disallowRobots {
     background-position: -1140px -20px; }
@@ -6144,7 +6146,7 @@ select {
     background-position: -1080px -40px; }
   .icon.black.icon-right-thin {
     background-position: -1100px -40px; }
-  .icon.black.icon-allowRobots {
+  .icon.black.icon-allowRobots, .icon.black.icon-importFromRss {
     background-position: -1120px -40px; }
   .icon.black.icon-disallowRobots {
     background-position: -1140px -40px; }
@@ -6398,16 +6400,6 @@ select {
   position: relative;
   box-sizing: border-box;
   background: #F5F6F7; }
-  .umi-table:after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
-    height: 3px;
-    width: 100%;
-    left: 0;
-    top: 66px;
-    background: url(img/shadows/toBottomShadow.png); }
   .umi-table-tr {
     width: 100%;
     height: 2rem;
@@ -6436,6 +6428,16 @@ select {
     margin: 0;
     color: #575E6C;
     width: 100%; }
+    .umi-table-header-shadow {
+      content: "";
+      position: absolute;
+      float: left;
+      display: block;
+      height: 3px;
+      width: 100%;
+      left: 0;
+      top: 66px;
+      background: url(img/shadows/toBottomShadow.png); }
   .umi-table-content {
     border-collapse: collapse;
     float: left;

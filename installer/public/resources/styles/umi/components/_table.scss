@@ -5,17 +5,6 @@
     position: relative;
     box-sizing: border-box;
     background: #F5F6F7;
-    &:after{
-        content: "";
-        position: absolute;
-        float: left;
-        display: block;
-        height: 3px;
-        width: 100%;
-        left: 0;
-        top: 66px;
-        background: url(img/shadows/toBottomShadow.png);
-    }
     &-tr{
         width: 100%;
         height: rem-calc(32);
@@ -48,6 +37,17 @@
         margin: 0;
         color: #575E6C;
         width: 100%;
+        &-shadow{
+            content: "";
+            position: absolute;
+            float: left;
+            display: block;
+            height: 3px;
+            width: 100%;
+            left: 0;
+            top: 66px;
+            background: url(img/shadows/toBottomShadow.png);
+        }
     }
     &-content{
         border-collapse: collapse;

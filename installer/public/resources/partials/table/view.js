@@ -10,6 +10,7 @@ define(['App'], function(UMI){
             offset: 0,
             limit: 25,
             totalBinding: 'rows.length',
+            error: null,
             visibleRows: function(){
                 var rows = this.get('rows');
                 var offset = this.get('offset');
@@ -26,19 +27,21 @@ define(['App'], function(UMI){
             }.property('offset', 'limit'),
 
             didInsertElement: function(){
-                var tableContent = this.$().find('.s-scroll-wrap')[0];
-                var tableHeader = this.$().find('.umi-table-header')[0];
-                var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
+                if(!this.get('error')){
+                    var tableContent = this.$().find('.s-scroll-wrap')[0];
+                    var tableHeader = this.$().find('.umi-table-header')[0];
+                    var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
 
-                scrollContent.on('scroll', function(){
-                    tableHeader.style.marginLeft = this.x + 'px';
-                });
+                    scrollContent.on('scroll', function(){
+                        tableHeader.style.marginLeft = this.x + 'px';
+                    });
 
-                $(window).on('resize.umi.table', function(){
-                    setTimeout(function(){
-                        tableHeader.style.marginLeft = scrollContent.x + 'px';
-                    }, 100);
-                });
+                    $(window).on('resize.umi.table', function(){
+                        setTimeout(function(){
+                            tableHeader.style.marginLeft = scrollContent.x + 'px';
+                        }, 100);
+                    });
+                }
             },
 
             willDestroyElement: function(){
@@ -132,7 +135,9 @@ define(['App'], function(UMI){
                 var headers;
                 var data = Ember.get(content, 'control.data');
                 var rows = [];
-                if(data.length){
+                if(Ember.typeOf(data) === 'object' && 'error' in data){
+                    this.set('error', data.error);
+                } else if(Ember.typeOf(data) === 'array'){
                     headers = Ember.get(content, 'control.headers');
                     for(var i = 0; i < data.length; i++){
                         rows.push([Ember.get(data[0],'vs_from')]);

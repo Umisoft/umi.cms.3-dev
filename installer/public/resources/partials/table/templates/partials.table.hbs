@@ -1,43 +1,49 @@
-{{view view.paginationView}}
-<div class="umi-table-header-wrap">
-    <table class="umi-table-header">
-        <tbody>
-        <tr class="umi-table-tr">
-            {{#each view.headers}}
-                <td class="umi-table-td" style="width: 200px;">
-                    <div class="umi-table-cell">{{this}}</div>
-                </td>
-            {{/each}}
-            <td class="umi-table-empty-column"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="s-scroll-wrap">
-    <table class="umi-table-content">
-        <tbody>
-            <tr class="umi-table-content-sizer">
-                {{#each view.headers}}
-                    <td class="umi-table-td" style="width: 200px;"></td>
-                {{/each}}
-            </tr>
-            {{#each row in view.visibleRows}}
-                <tr class="umi-table-content-tr">
-                    {{#each property in row}}
-                        <td class="umi-table-td">
-                            <div class="umi-table-cell">{{property}}</div>
+{{#if view.error}}
+    <p></p>
+    <h3 class="text-center">{{view.error}}</h3>
+{{else}}
+    {{view view.paginationView}}
+    <div class="umi-table-header-wrap">
+        <table class="umi-table-header">
+            <tbody>
+                <tr class="umi-table-tr">
+                    {{#each view.headers}}
+                        <td class="umi-table-td" style="width: 200px;">
+                            <div class="umi-table-cell">{{this}}</div>
                         </td>
                     {{/each}}
                     <td class="umi-table-empty-column"></td>
                 </tr>
-            {{else}}
-                <tr class="umi-table-content-tr">
-                    <td>
-                        Нет записей
-                    </td>
+            </tbody>
+        </table>
+    </div>
+    <div class="umi-table-header-shadow"></div>
+
+    <div class="s-scroll-wrap">
+        <table class="umi-table-content">
+            <tbody>
+                <tr class="umi-table-content-sizer">
+                    {{#each view.headers}}
+                        <td class="umi-table-td" style="width: 200px;"></td>
+                    {{/each}}
                 </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
+                {{#each row in view.visibleRows}}
+                    <tr class="umi-table-content-tr">
+                        {{#each property in row}}
+                            <td class="umi-table-td">
+                                <div class="umi-table-cell">{{property}}</div>
+                            </td>
+                        {{/each}}
+                        <td class="umi-table-empty-column"></td>
+                    </tr>
+                {{else}}
+                    <tr class="umi-table-content-tr">
+                        <td>
+                            Нет записей
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
