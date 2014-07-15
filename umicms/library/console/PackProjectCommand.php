@@ -11,18 +11,16 @@ namespace umicms\console;
 
 use Phar;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use umicms\project\Environment;
 
 /**
  * Упаковывает файлы проекта в пакет.
  */
-class PackProjectCommand extends BaseCommand
+class PackProjectCommand extends BaseProjectCommand
 {
     /**
      * {@inheritdoc}
@@ -33,9 +31,9 @@ class PackProjectCommand extends BaseCommand
             ->setName('pack-project')
             ->setDescription('Упаковывает файлы проекта в пакет.')
             ->addArgument(
-                'name',
+                'uri',
                 InputArgument::REQUIRED,
-                'Имя проекта'
+                'URI проекта'
             )
             ->addArgument(
                 'output',
@@ -49,12 +47,13 @@ class PackProjectCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $bootstrap = $this->dispatchToProject($input, $output);
 
-        $projectName = $input->getArgument('name');
+        $projectName = $bootstrap->getProjectName();
 
         $outputPharPath = $input->getArgument('output');
         if (!$outputPharPath) {
-            $outputPharPath = './' . $projectName . '.phar';
+            $outputPharPath = './' .  $projectName . '.phar';
         }
 
         if (is_file($outputPharPath)) {
@@ -70,7 +69,7 @@ class PackProjectCommand extends BaseCommand
         $output->getFormatter()->setStyle('process', $style);
 
         $output->writeln('<process>Упаковка файлов проекта</process>');
-        $this->addProjectFiles($projectName, $phar, $output);
+        $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
         $output->writeln('<process>Запись пакета в файл</process>');
         $this->setStub($phar, $projectName . '.phar');
@@ -108,25 +107,22 @@ EOF;
 
     /**
      * Добавляет файлы проекта в phar
-     * @param string $projectName имя проекта
+     * @param string $projectDirectory директория проекта
      * @param Phar $phar
      * @param OutputInterface $output
      */
-    private function addProjectFiles($projectName, Phar $phar, OutputInterface $output)
+    private function addProjectFiles($projectDirectory, Phar $phar, OutputInterface $output)
     {
-        $projectDir = Environment::$directoryProjects . '/' . $projectName;
-
         $finder = new Finder();
         $finder->files()
             ->ignoreVCS(true)
-            ->in($projectDir);
+            ->in($projectDirectory);
 
         $progress = $this->startProgressBar($output, $finder->count());
 
         foreach ($finder as $file) {
-            $this->packFile($projectDir, $phar, $file);
             $progress->advance();
-            $progress->setMessage('Pack file ' . $file);
+            $progress->setMessage('Pack file ' . $this->packFile($projectDirectory, $phar, $file));
         }
         $progress->setMessage('Pack complete');
         $progress->finish();
@@ -134,15 +130,18 @@ EOF;
 
     /**
      * Добавляет файл проекта в пакет.
-     * @param string $projectDir директория проекта
+     * @param string $projectDirectory директория проекта
      * @param Phar $phar
      * @param SplFileInfo $file
+     * @return string
      */
-    private function packFile($projectDir, Phar $phar, SplFileInfo $file)
+    private function packFile($projectDirectory, Phar $phar, SplFileInfo $file)
     {
-        $localPath = strtr(str_replace($projectDir . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace($projectDirectory . '/', '', $file->getRealPath()), '\\', '/');
 
         $phar->addFile($file, $localPath);
+
+        return $localPath;
     }
 
 }

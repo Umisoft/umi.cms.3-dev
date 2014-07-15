@@ -1,8 +1,34 @@
-RewriteEngine On
+# Для редиректа всех пользователей на домен С 'www.', раскомментируйте следующие инструкции:
+# RewriteCond %{HTTP_HOST} .
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l [OR]
-RewriteCond %{REQUEST_FILENAME} -d
+# Для редиректа всех пользователей на домен БЕЗ 'www.', раскомментируйте следующие инструкции:
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ http://%1%{REQUEST_URI} [L,R=301]
 
-RewriteRule ^.*$ - [NC,L]
-RewriteRule ^.*$ /index.php [NC,L]
+
+# Start UMI.CMS settings
+
+Options -Indexes
+Options +FollowSymLinks
+ErrorDocument 404 /index.php
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send http auth headers for PHP
+    RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    # Block access to .svn / .git
+    RewriteRule "(^|/)\.(git|svn)" - [F]
+
+    # Pass all requests
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !=/favicon.ico
+    RewriteRule ^ index.php [L]
+
+</IfModule>
+
+# End UMI.CMS settings

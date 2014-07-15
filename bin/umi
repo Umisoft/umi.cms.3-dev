@@ -4,21 +4,31 @@
 use Symfony\Component\Console\Application;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackProjectCommand;
-use umicms\console\ProjectCreateDumpCommand;
-use umicms\console\ProjectLoadDumpCommand;
+use umicms\console\CreateDumpCommand;
+use umicms\console\LoadDumpCommand;
+use umicms\console\SyncSchemeCommand;
+use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
 
 require dirname(__DIR__) .'/umicms/bootstrap.php';
 
-Environment::$directoryProjects = dirname(__DIR__);
+$envConfigFile = dirname(__DIR__) . '/environment.config.php';
+if (is_file($envConfigFile)) {
+    /** @noinspection PhpIncludeInspection */
+    Environment::init(require $envConfigFile);
+}
+
 
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-$application = new Application('UMI.CMS 3.0 Console application.', '1.0');
+$application = new Application('UMI.CMS Console application.', Bootstrap::VERSION);
+
 $application->add(new PackCoreCommand());
 $application->add(new PackProjectCommand());
-$application->add(new ProjectCreateDumpCommand());
-$application->add(new ProjectLoadDumpCommand());
+$application->add(new CreateDumpCommand());
+$application->add(new LoadDumpCommand());
+$application->add(new SyncSchemeCommand());
+
 $application->run();

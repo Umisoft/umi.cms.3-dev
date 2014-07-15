@@ -48,21 +48,19 @@ class BaseProjectCommand extends BaseCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $bootstrap = new Bootstrap();
-        $toolkit = $bootstrap->getToolkit();
-
-        $output->writeln('<info>Диспетчеризация до проекта "' . $projectUri . '"</info>');
 
         /**
          * @var Request $request
          */
         $request = Request::create($projectUri);
 
-        $toolkit->overrideService('umi\http\Request', function() use ($request) {
-            return $request;
-        });
+        $bootstrap = new Bootstrap($request);
 
-        $bootstrap->routeProject();
+        $output->writeln('<info>Диспетчеризация до проекта "' . $projectUri . '"</info>');
+
+        $bootstrap->dispatchProject();
+
+        $output->writeln('<info>Имя проекта "' . $bootstrap->getProjectName() . '"</info>');
         $output->writeln('<info>Директория проекта "' . $bootstrap->getProjectDirectory() . '"</info>');
 
         return $bootstrap;

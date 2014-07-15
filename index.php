@@ -18,7 +18,7 @@ ini_set('display_errors', 1);
 
 require __DIR__ . '/umicms/bootstrap.php';
 
-$envConfigFile = __DIR__ . '/configuration/environment.config.php';
+$envConfigFile = __DIR__ . '/environment.config.php';
 if (is_file($envConfigFile)) {
     /** @noinspection PhpIncludeInspection */
     Environment::init(require $envConfigFile);

@@ -77,9 +77,11 @@ class PackCoreCommand extends BaseCommand
 
         $output->writeln('<process>Упаковка файлов ядра</process>');
         $this->addCoreFiles($phar, $input, $output);
+        $output->writeln('');
 
         $output->writeln('<process>Упаковка вендоров</process>');
         $this->addVendorFiles($phar, $input, $output);
+        $output->writeln('');
 
         $output->writeln('<process>Запись пакета в файл</process>');
         $this->setStub($phar);
