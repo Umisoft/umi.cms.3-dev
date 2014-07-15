@@ -9212,8 +9212,9 @@ define('notification/main',['App'], function(UMI){
 
     UMI.NotificationList = Ember.ArrayController.extend({
         content: [],
-        sortProperties: ['id'],
-        sortAscending: true,
+        sortContent: function(){
+            return this.get('content').sortBy('id');
+        }.property('content.length'),
         notificationId: 0,
         closeAll: false,
         itemCount: function(){
@@ -9282,7 +9283,7 @@ define('notification/main',['App'], function(UMI){
             }
             return this._super(viewClass, attrs);
         },
-        contentBinding: 'controller.content',
+        contentBinding: 'controller.sortContent',
         controller: UMI.notificationList
     });
 });
