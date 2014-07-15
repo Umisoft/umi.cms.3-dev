@@ -142,6 +142,85 @@ define(['App'], function(UMI){
             }.observes('content').on('init')
         });
 
+        UMI.YaHostTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var key;
+
+                if(Ember.typeOf(labels) === 'object'){
+                    for(key in labels){
+                        if(labels.hasOwnProperty(key)){
+                            headers.push(labels[key]);
+                        }
+                    }
+                }
+                if(Ember.typeOf(data) === 'object'){
+                    for(key in data){
+                        if(data.hasOwnProperty(key)){
+                            var row = UMI.Utils.getStringValue(data[key]);
+                            rows.push(row);
+                        }
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': [rows]});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaIndexesTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var url = Ember.get(data, 'last-week-index-urls.url');
+
+                headers.push(Ember.get(labels, 'last-week-index-urls'));
+
+                if(Ember.typeOf(url)  === 'array'){
+                    for(i = 0; i < url.length; i++){
+                        rows.push([UMI.Utils.getStringValue(url[i])]);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
+            }.observes('content').on('init')
+        });
+
+        UMI.YaTopsTableView = UMI.TableView.extend({
+            setContent: function(){
+                var control = this.get('content.control');
+                var headers = [];
+                var rows = [];
+                var labels = Ember.get(control, 'labels');
+                var data = Ember.get(control, 'data');
+                var i;
+                var row;
+                var topQueries = Ember.get(data, 'top-queries.top-clicks.top-info');
+
+                headers.push(Ember.get(labels, 'query'));
+                headers.push(Ember.get(labels, 'count'));
+                headers.push(Ember.get(labels, 'position'));
+                headers.push(Ember.get(labels, 'clicks-top-rank'));
+
+                if(Ember.typeOf(topQueries)  === 'array'){
+                    for(i = 0; i < topQueries.length; i++){
+                        row = [];
+                        row.push(UMI.Utils.getStringValue(topQueries[i].query));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].count));
+                        row.push(UMI.Utils.getStringValue(topQueries[i].position));
+                        row.push(UMI.Utils.getStringValue(topQueries[i]['clicks-top-rank']));
+                        rows.push(row);
+                    }
+                }
+                this.setProperties({'headers': headers, 'rows': rows});
+            }.observes('content').on('init')
+        });
+
         UMI.TableCountersView = UMI.TableView.extend({
             rowCount: function(){
                 var rows = this.get('rows') || [];

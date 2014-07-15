@@ -864,18 +864,19 @@ define([], function(){
                     componentController = this.controllerFor('component');
                     contentControls = componentController.get('contentControls');
                     contentControl = contentControls.findBy('id', actionName);
+                    if(!contentControl){
+                        throw new Error('Action "dynamic" is undefined for component.');
+                    }
                     routeData = {
                         'object': contextModel,
                         'control': contentControl
                     };
+                    actionResourceName = Ember.get(contentControl, 'params.action');
 
-                    if(Ember.get(contentControl, 'params.isStatic')){
-                        // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
+                    if(!actionResourceName){
                         deferred.resolve(routeData);
                     } else{
-                        actionResourceName = Ember.get(contentControl, 'params.action');
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
-
                         if(actionResource){
                             controlObject = routeData.object;
                             if(actionName === 'createForm'){
@@ -893,37 +894,39 @@ define([], function(){
                                 controlObject = routeData.createObject;
                             }
                             actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
-
-                            Ember.$.get(actionResource).then(function(results){
-                                var dynamicControl;
-                                var dynamicControlName;
-                                if(actionName === 'dynamic'){
-                                    dynamicControl = Ember.get(results, 'result') || {};
-                                    for(var key in dynamicControl){
-                                        if(dynamicControl.hasOwnProperty(key)){
-                                            dynamicControlName = key;
+                            $.ajax({
+                                type: "GET",
+                                url: actionResource,
+                                global: false,
+                                success: function(results){
+                                    var dynamicControl;
+                                    var dynamicControlName;
+                                    if(actionName === 'dynamic'){
+                                        dynamicControl = Ember.get(results, 'result') || {};
+                                        for(var key in dynamicControl){
+                                            if(dynamicControl.hasOwnProperty(key)){
+                                                dynamicControlName = key;
+                                            }
                                         }
-                                    }
-                                    dynamicControl = dynamicControl[dynamicControlName] || {};
-                                    dynamicControl.name = dynamicControlName;
+                                        dynamicControl = dynamicControl[dynamicControlName] || {};
+                                        dynamicControl.name = dynamicControlName;
 
-                                    UMI.Utils.objectsMerge(routeData.control, dynamicControl);
-                                } else{
-                                    Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                        UMI.Utils.objectsMerge(routeData.control, dynamicControl);
+                                    } else{
+                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                    }
+                                    deferred.resolve(routeData);
+                                },
+                                error: function(error){
+                                    deferred.reject(transition.send('templateLogs', error, 'component'));
                                 }
-                                deferred.resolve(routeData);
-                            }, function(error){
-                                //Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                //transition.send('backgroundError', error)
-                                deferred.resolve(routeData);
-                             });
+                            });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
-
                     }
                 } catch(error){
-                    deferred.reject(transition.send('backgroundError', error));
+                    deferred.reject(transition.send('templateLogs', error, 'component'));
                 } finally{
                     return deferred.promise;
                 }
