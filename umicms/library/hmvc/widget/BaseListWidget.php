@@ -13,13 +13,12 @@ namespace umicms\hmvc\widget;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\orm\selector\ISelector;
 use umi\pagination\IPaginationAware;
-use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\TSelectorConfigurator;
-use umicms\templating\helper\PaginationHelper;
+use umicms\pagination\CmsPaginator;
 
 /**
  * Базовый класс виджета вывода списков с постраничной навигацией.
@@ -82,13 +81,12 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
         $selector = $this->applySelectorConditions($this->getSelector());
 
         if ($this->pagination) {
-            /**
-             * @var IPaginator $paginator
-             */
-            list ($paginator, $pagination) = $this->getPagination($selector);
+
+            $paginator = $this->getPaginator($selector);
+
             $result = [
                 'list' => $paginator->getPageItems(),
-                'pagination' => $pagination
+                'paginator' => $paginator
             ];
         } else {
             if ($this->limit) {
@@ -134,12 +132,10 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      * @param ISelector $selector выборка объектов
      * @throws InvalidArgumentException если заданы не все настройки
      * @throws OutOfBoundsException если задан неверный тип
-     * @return array
+     * @return CmsPaginator
      */
-    protected function getPagination(ISelector $selector)
+    protected function getPaginator(ISelector $selector)
     {
-        static $helper;
-
         if (!isset($this->limit)) {
             throw new InvalidArgumentException(
                 $this->translate(
@@ -176,46 +172,22 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
             );
         }
 
-        $paginator = $this->getPaginator($selector);
+        $paginator = $this->createPaginator($selector);
 
-        if (!$helper) {
-            $helper = new PaginationHelper();
-            $helper->setUrlManager($this->getUrlManager());
-        }
+        $paginator->setType($this->pagination['type']);
+        $paginator->setPageParam($this->pagination['pageParam']);
+        $paginator->setPagesCount($this->pagination['pagesCount']);
 
-        if (!isset($this->pagination['type'])) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Cannot create pagination. Parameter "{param}" is required.',
-                    ['param' => 'type']
-                )
-            );
-        }
-
-        if (!method_exists($helper, $this->pagination['type'])) {
-            throw new OutOfBoundsException(
-                $this->translate(
-                    'Cannot create pagination. Pagination "{type}" is unknown.',
-                    ['type' => $this->pagination['type']]
-                )
-            );
-        }
-
-        $pagesCount = isset($this->pagination['pagesCount']) ? (int) $this->pagination['pagesCount'] : null;
-        $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, $pagesCount);
-
-        $pagination = array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
-
-        return [$paginator, $pagination];
+        return $paginator;
     }
 
     /**
      * Возвращает постраничную навигацию.
      * @param ISelector $selector выборка объектов
      * @throws HttpNotFound если текущая страница не существует
-     * @return IPaginator
+     * @return CmsPaginator
      */
-    protected function getPaginator(ISelector $selector)
+    protected function createPaginator(ISelector $selector)
     {
         $paginator = $this->createObjectPaginator($selector, (int) $this->limit);
 
