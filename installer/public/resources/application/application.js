@@ -118,7 +118,7 @@ define(
                     return;
                 }
                 if (error.status === 422){
-                    return jqXHR;
+                    return error;
                 } else{
                     var message;
                     if(error.hasOwnProperty('responseJSON')){

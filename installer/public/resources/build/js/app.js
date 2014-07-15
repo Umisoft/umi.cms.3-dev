@@ -3500,52 +3500,52 @@ define('application/router',[], function(){
                             $(params.handler).removeClass('loading');
                         }
                         deferred.reject();
-                    }
-                    params.object.save().then(
-                        function(){
-                            params.object.updateRelationhipsMap();
+                    } else{
+                        params.object.save().then(
+                            function(){
+                                params.object.updateRelationhipsMap();
 
-                            if(params.handler){
-                                $(params.handler).removeClass('loading');
-                            }
-
-                            return params.object;
-                        },
-
-                        function(results){
-                            delete window.EmberDataXHRErrorBubbleOff;
-                            try{
-                                results = results || {};
                                 if(params.handler){
                                     $(params.handler).removeClass('loading');
                                 }
-                                var store = self.get('store');
-                                var collection;
-                                var object;
-                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
-                                var invalidObject;
-                                var invalidProperties;
-                                var i;
-                                if(Ember.typeOf(invalidObjects) === 'array'){
-                                    if(params.object.get('isValid')){
-                                        params.object.send('becameInvalid');
+
+                                deferred.resolve(params.object);
+                            },
+
+                            function(results){
+                                try{
+                                    results = results || {};
+                                    if(params.handler){
+                                        $(params.handler).removeClass('loading');
                                     }
-                                    for(i = 0; i < invalidObjects.length; i++){
-                                        invalidObject = invalidObjects[i];
-                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
-                                        collection = store.all(invalidObject.collection);
-                                        object = collection.findBy('guid', invalidObject.guid);
-                                        if(object){
-                                            object.setInvalidProperties(invalidProperties);
+                                    var store = self.get('store');
+                                    var collection;
+                                    var object;
+                                    var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                    var invalidObject;
+                                    var invalidProperties;
+                                    var i;
+                                    if(Ember.typeOf(invalidObjects) === 'array'){
+                                        if(params.object.get('isValid')){
+                                            params.object.send('becameInvalid');
+                                        }
+                                        for(i = 0; i < invalidObjects.length; i++){
+                                            invalidObject = invalidObjects[i];
+                                            invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                            collection = store.all(invalidObject.collection);
+                                            object = collection.findBy('guid', invalidObject.guid);
+                                            if(object){
+                                                object.setInvalidProperties(invalidProperties);
+                                            }
                                         }
                                     }
+                                    deferred.reject();
+                                } catch(error){
+                                    self.send('backgroundError', error);
                                 }
-                                deferred.reject();
-                            } catch(error){
-                                self.send('backgroundError', error);
                             }
-                        }
-                    );
+                        );
+                    }
                 } catch(error){
                     self.send('backgroundError', error);
                 } finally{
@@ -4004,7 +4004,7 @@ define('application/router',[], function(){
          * @extends Ember.Route
          */
         UMI.ModuleRoute = Ember.Route.extend({
-            model: function(params, transition){
+            model: function(params){
                 var deferred;
                 var modules;
                 var module;
@@ -4323,7 +4323,12 @@ define('application/router',[], function(){
 
                                         UMI.Utils.objectsMerge(routeData.control, dynamicControl);
                                     } else{
-                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                        if(actionName === 'createForm'){
+                                            routeData.createObject.set('guid', Ember.get(results, 'result.' + actionResourceName + '.guid'));
+                                            Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName+ '.form'));
+                                        } else{
+                                            Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                        }
                                     }
                                     deferred.resolve(routeData);
                                 },
@@ -4670,7 +4675,7 @@ define(
                     return;
                 }
                 if (error.status === 422){
-                    return jqXHR;
+                    return error;
                 } else{
                     var message;
                     if(error.hasOwnProperty('responseJSON')){
