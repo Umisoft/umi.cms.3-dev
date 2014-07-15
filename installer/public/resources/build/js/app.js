@@ -4129,6 +4129,7 @@ define('application/router',[], function(){
                             }
                         );
                     }
+                    return true;
                 }
             }
         });
@@ -9169,14 +9170,23 @@ define('notification/main',['App'], function(UMI){
             'duration': 3000
         },
         create: function(params){
-            var settings = this.get('settings');
+            var defaultSettings = this.get('settings');
+            var settings = {};
+            var param;
+            for(param in defaultSettings){
+                if(defaultSettings.hasOwnProperty(param)){
+                    settings[param] = defaultSettings[param];
+                }
+            }
+
             if(params){
-                for(var param in params){
+                for(param in params){
                     if(params.hasOwnProperty(param)){
                         settings[param] = params[param];
                     }
                 }
             }
+
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
             Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});
