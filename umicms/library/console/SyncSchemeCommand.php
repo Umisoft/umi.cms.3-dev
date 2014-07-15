@@ -25,7 +25,7 @@ class SyncSchemeCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('sync-scheme')
+            ->setName('project:sync-scheme')
             ->setDescription('Обновляет схему БД для моделей проекта.')
             ->addArgument(
                 'uri',
@@ -61,6 +61,5 @@ class SyncSchemeCommand extends BaseProjectCommand
 
         $output->writeln('<process>Complete.</process>');
     }
-
 
 }

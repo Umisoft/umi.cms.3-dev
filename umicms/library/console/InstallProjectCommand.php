@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Создает проект.
+ * Устанавливает проект, обновляет схемы проекта и его данные.
  */
 class InstallProjectCommand extends BaseProjectCommand
 {
@@ -24,8 +24,8 @@ class InstallProjectCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('update-project')
-            ->setDescription('Обновляет данные проект.')
+            ->setName('project:install')
+            ->setDescription('Устанавливает проект, обновляет схемы проекта и его данные.')
             ->addArgument(
                 'uri',
                 InputArgument::REQUIRED,
@@ -38,8 +38,11 @@ class InstallProjectCommand extends BaseProjectCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $syncCommand = $this->getApplication()->find('project:sync-scheme');
+        $syncCommand->run($input, $output);
 
-        // TODO
+        $loadDumpCommand = $this->getApplication()->find('project:load-dump');
+        $loadDumpCommand->run($input, $output);
     }
 
 }

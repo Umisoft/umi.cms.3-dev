@@ -28,7 +28,7 @@ class PackProjectCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('pack-project')
+            ->setName('project:pack')
             ->setDescription('Упаковывает файлы проекта в пакет.')
             ->addArgument(
                 'uri',

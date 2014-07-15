@@ -2,6 +2,7 @@
 <?php
 
 use Symfony\Component\Console\Application;
+use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackProjectCommand;
 use umicms\console\CreateDumpCommand;
@@ -30,5 +31,6 @@ $application->add(new PackProjectCommand());
 $application->add(new CreateDumpCommand());
 $application->add(new LoadDumpCommand());
 $application->add(new SyncSchemeCommand());
+$application->add(new InstallProjectCommand());
 
 $application->run();

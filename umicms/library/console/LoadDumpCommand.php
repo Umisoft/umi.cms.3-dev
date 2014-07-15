@@ -32,7 +32,7 @@ class LoadDumpCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('load-dump')
+            ->setName('project:load-dump')
             ->setDescription('Загружает дамп данных проекта.')
             ->addArgument(
                 'uri',
