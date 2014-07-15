@@ -1,5 +1,8 @@
 module.exports = function(grunt){
     'use strict';
+
+    var baseUrl = '/resources/deploy';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -180,7 +183,7 @@ module.exports = function(grunt){
                 options: {
                     process: function (content, srcpath){
                         var modifyContent = content;
-                        modifyContent = modifyContent.replace(/'\/resources',/g, "'/resources/deploy',");
+                        modifyContent = modifyContent.replace(/'\/resources',/g, "'" + baseUrl + "',");
 
                         modifyContent = modifyContent.replace(/libs\/requirejs-text\/text/g, "libs/text");
                         modifyContent = modifyContent.replace(/libs\/jquery\/dist\/jquery/g, "libs/jquery.min");
@@ -309,7 +312,7 @@ module.exports = function(grunt){
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('deploy', ['clean', 'autoprefixer', 'csso', 'copy:png', 'copy:js', 'copy:vendors', 'uglify']);
+    grunt.registerTask('deploy', ['clean', 'sass', 'autoprefixer', 'csso', 'copy:png', 'copy:js', 'copy:vendors', 'uglify']);
     grunt.registerTask('require', ['requirejs']);
     grunt.registerTask('docs', ['yuidoc']);
     grunt.registerTask('install', ['install']);

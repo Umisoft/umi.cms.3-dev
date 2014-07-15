@@ -1,5 +1,6 @@
 //settings
-$images-version: '?version=1';
+@import "version";
+
 $images-path: '../img/';
 
 $image-to-top-shadow: $images-path + 'shadows/toTopShadow.png' + $images-version !default;
