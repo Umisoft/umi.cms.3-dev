@@ -31,7 +31,9 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      * Тип постраничной навигации для вывода текущей страницы и указанного количества последующих страниц
      */
     const TYPE_SLIDING = 'sliding';
-
+    /**
+     * Тип "прыгающей" постраничной навигации для вывода
+     */
     const TYPE_JUMPING = 'jumping';
     /**
      * Тип постраничной навигации для вывода текущей страницы и указанного количества страниц вокруг
@@ -49,7 +51,7 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
     /**
      * @var string $pageParam имя GET-параметра, хранящего номер страницы
      */
-    private $pageParam;
+    private $pageParam = 'p';
 
     /**
      * Возвращает ссылку на прсмотр страницы в постраничной навигации.

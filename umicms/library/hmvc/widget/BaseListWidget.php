@@ -146,21 +146,11 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
         }
 
         if (!isset($this->pagination['type'])) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Cannot create pagination. Option "{param}" is required for pagination.',
-                    ['param' => 'type']
-                )
-            );
+            $this->pagination['type'] = 'all';
         }
 
         if (!isset($this->pagination['pageParam'])) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Cannot create pagination. Option "{param}" is required for pagination.',
-                    ['param' => 'pageParam']
-                )
-            );
+            $this->pagination['pageParam'] = 'p';
         }
 
         if ($this->pagination['type'] != 'all' && !isset($this->pagination['pagesCount'])) {
@@ -176,7 +166,9 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
         $paginator->setType($this->pagination['type']);
         $paginator->setPageParam($this->pagination['pageParam']);
-        $paginator->setPagesCount($this->pagination['pagesCount']);
+        if (isset($this->pagination['pagesCount'])) {
+            $paginator->setPagesCount($this->pagination['pagesCount']);
+        }
 
         return $paginator;
     }
