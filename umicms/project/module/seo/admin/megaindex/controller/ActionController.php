@@ -41,6 +41,10 @@ class ActionController extends BaseController
             'data' => $this->getModel()->queryApi('get_backlinks'),
             'headers' => [
                 'На какой странице расположена ссылка'
+            ],
+            'i18n' => [
+                'Rows on page' => $this->translate("Rows on page"),
+                'No data' => $this->translate("No data")
             ]
         ];
     }

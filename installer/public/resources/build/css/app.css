@@ -6466,7 +6466,7 @@ select {
     overflow: hidden; }
   .umi-table .s-scroll-wrap {
     width: 100%;
-    height: calc(100% - 34px); }
+    height: calc(100% - 67px); }
 
 .umi-table-control {
   font-size: 0.8125rem;

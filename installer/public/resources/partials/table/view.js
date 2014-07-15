@@ -2,7 +2,12 @@ define(['App'], function(UMI){
     'use strict';
 
     return function(){
-        UMI.TableView = Ember.View.extend({
+        UMI.TableView = Ember.View.extend(UMI.i18nInterface, {
+            dictionaryNamespace: 'table',
+            localDictionary: function(){
+                var table = this.get('content.control') || {};
+                return table.i18n;
+            }.property(),
             templateName: 'partials/table',
             classNames: ['umi-table'],
             headers: [],
@@ -26,12 +31,24 @@ define(['App'], function(UMI){
                 return rows.slice(begin, end);
             }.property('offset', 'limit'),
 
+            iScroll: null,
+
+            iScrollUpdate: function(){
+                var iScroll = this.get('iScroll');
+                if(iScroll){
+                    setTimeout(function(){
+                        iScroll.refresh();
+                        iScroll.scrollTo(0, 0);
+                    }, 100);
+                }
+            }.observes('visibleRows'),
+
             didInsertElement: function(){
                 if(!this.get('error')){
                     var tableContent = this.$().find('.s-scroll-wrap')[0];
                     var tableHeader = this.$().find('.umi-table-header')[0];
                     var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
-
+                    this.set('iScroll', scrollContent);
                     scrollContent.on('scroll', function(){
                         tableHeader.style.marginLeft = this.x + 'px';
                     });
@@ -47,6 +64,7 @@ define(['App'], function(UMI){
             willDestroyElement: function(){
                 $(window).off('resize.umi.table');
                 this.removeObserver('content');
+                this.removeObserver('visibleRows');
             },
 
             paginationView: Ember.View.extend({

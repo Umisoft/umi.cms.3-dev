@@ -1435,7 +1435,7 @@ function program2(depth0,data) {
 Ember.TEMPLATES["UMI/partials/table"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var stack1, self=this, escapeExpression=this.escapeExpression;
+  var stack1, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
@@ -1501,8 +1501,11 @@ function program9(depth0,data) {
 
 function program11(depth0,data) {
   
-  
-  data.buffer.push(" <tr class=\"umi-table-content-tr\"> <td> Нет записей </td> </tr> ");
+  var buffer = '', helper, options;
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> <td> ");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "No data", "table", options) : helperMissing.call(depth0, "i18n", "No data", "table", options))));
+  data.buffer.push(" </td> </tr> ");
+  return buffer;
   }
 
   stack1 = helpers['if'].call(depth0, "view.error", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
@@ -1538,7 +1541,7 @@ function program3(depth0,data) {
   stack1 = helpers.view.call(depth0, "view.nextButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> <div class=\"right pagination-limit\"> <span class=\"pagination-label\">");
-  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Rows on page", "tableControl", options) : helperMissing.call(depth0, "i18n", "Rows on page", "tableControl", options))));
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Rows on page", "table", options) : helperMissing.call(depth0, "i18n", "Rows on page", "table", options))));
   data.buffer.push(":</span> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.limitView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push(" </div> </div> ");
