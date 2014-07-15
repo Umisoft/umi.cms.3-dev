@@ -9,7 +9,10 @@
                 <tr class="umi-table-tr">
                     {{#each view.headers}}
                         <td class="umi-table-td" style="width: 200px;">
-                            <div class="umi-table-cell">{{this}}</div>
+                            <div class="umi-table-td-relative-wrap">
+                                <div class="umi-table-cell">{{this}}</div>
+                                <div class="umi-table-header-column-resizer"></div>
+                            </div>
                         </td>
                     {{/each}}
                     <td class="umi-table-empty-column"></td>

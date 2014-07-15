@@ -6409,6 +6409,8 @@ select {
     table-layout: fixed;
     line-height: 1.375rem;
     padding: 0; }
+    .umi-table-td-relative-wrap {
+      position: relative; }
   .umi-table-empty-column {
     float: none !important;
     width: 100%;
@@ -6438,6 +6440,20 @@ select {
       left: 0;
       top: 66px;
       background: url(img/shadows/toBottomShadow.png); }
+    .umi-table-header-column-resizer {
+      position: absolute;
+      right: 0;
+      margin-right: -4px;
+      z-index: 1;
+      width: 7px;
+      height: 65px;
+      top: 0;
+      border: 0;
+      cursor: e-resize; }
+      .umi-table-header-column-resizer:hover {
+        background: #444444; }
+      .umi-table-header-column-resizer.on-resize {
+        background: #444444; }
   .umi-table-content {
     border-collapse: collapse;
     float: left;

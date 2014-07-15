@@ -15,6 +15,9 @@
         table-layout: fixed;
         line-height: rem-calc(22);
         padding: 0;
+        &-relative-wrap{
+            position: relative;
+        }
     }
     &-empty-column{
         float: none!important;
@@ -47,6 +50,23 @@
             left: 0;
             top: 66px;
             background: url(img/shadows/toBottomShadow.png);
+        }
+        &-column-resizer{
+            position: absolute;
+            right: 0;
+            margin-right: -4px;
+            z-index: 1;
+            width: 7px;
+            height: 65px;
+            top: 0;
+            border: 0;
+            cursor: e-resize;
+            &:hover{
+                background: #444444;
+            }
+            &.on-resize{
+                background: #444444;
+            }
         }
     }
     &-content{

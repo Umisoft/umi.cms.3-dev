@@ -45,9 +45,11 @@ define(['App'], function(UMI){
 
             didInsertElement: function(){
                 if(!this.get('error')){
-                    var tableContent = this.$().find('.s-scroll-wrap')[0];
-                    var tableHeader = this.$().find('.umi-table-header')[0];
+                    var $table = this.$();
+                    var tableContent = $table.find('.s-scroll-wrap')[0];
+                    var tableHeader = $table.find('.umi-table-header')[0];
                     var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
+                    var tableContentRowSize = $(tableContent).find('.umi-table-content-sizer')[0];
                     this.set('iScroll', scrollContent);
                     scrollContent.on('scroll', function(){
                         tableHeader.style.marginLeft = this.x + 'px';
@@ -58,13 +60,43 @@ define(['App'], function(UMI){
                             tableHeader.style.marginLeft = scrollContent.x + 'px';
                         }, 100);
                     });
+
+                    // Событие изменения ширины колонки
+                    $table.on('mousedown.umi.table', '.umi-table-header-column-resizer', function(){
+                        $('html').addClass('s-unselectable');
+                        var handler = this;
+                        $(handler).addClass('on-resize');
+                        var columnEl = handler.parentNode.parentNode;
+                        var columnIndex = $(columnEl).closest('tr').children('.umi-table-td').index(columnEl);
+                        var columnOffset = $(columnEl).offset().left;
+                        var columnWidth;
+                        var contentCell = tableContentRowSize.querySelectorAll('.umi-table-td')[columnIndex];
+                        $('body').on('mousemove.umi.table', function(event){
+                            event.stopPropagation();
+                            columnWidth = event.pageX - columnOffset;
+                            if(columnWidth >= 60 && columnEl.offsetWidth > 59){
+                                columnEl.style.width = contentCell.style.width = columnWidth + 'px';
+                            }
+                        });
+
+                        $('body').on('mouseup.umi.table', function(){
+                            $('html').removeClass('s-unselectable');
+                            $(handler).removeClass('on-resize');
+                            $('body').off('mousemove.umi.table');
+                            $('body').off('mouseup.umi.table');
+                            scrollContent.refresh();
+                            tableHeader.style.marginLeft = scrollContent.x + 'px';
+                        });
+                    });
                 }
             },
 
             willDestroyElement: function(){
+                var $table = this.$();
                 $(window).off('resize.umi.table');
                 this.removeObserver('content');
                 this.removeObserver('visibleRows');
+                $table.off('mousedown.umi.table');
             },
 
             paginationView: Ember.View.extend({
