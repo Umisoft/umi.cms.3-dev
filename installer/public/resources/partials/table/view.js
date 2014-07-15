@@ -196,7 +196,7 @@ define(['App'], function(UMI){
                 } else if(Ember.typeOf(data) === 'array'){
                     headers = Ember.get(content, 'control.headers');
                     for(var i = 0; i < data.length; i++){
-                        rows.push([Ember.get(data[0],'vs_from')]);
+                        rows.push([Ember.get(data[i],'vs_from')]);
                     }
                     this.setProperties({'headers': headers, 'rows': rows});
                 }
