@@ -430,35 +430,35 @@ define(['App', 'toolbar'], function(UMI){
         UMI.TableControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'table-context-toolbar'],
-            elementView: UMI.ToolbarElementView.extend({
+            elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
-                    var behaviour;
+                    var behaviour = {};
+                    var splitButtonBehaviour;
                     var i;
                     var action;
                     if(behaviourName){
-                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
-                    } else{
-                        behaviour = {};
+                        splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                        for(var key in splitButtonBehaviour){
+                            if(splitButtonBehaviour.hasOwnProperty(key)){
+                                behaviour[key] = splitButtonBehaviour[key];
+                            }
+                        }
                     }
                     var choices = this.get('context.behaviour.choices');
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
-                            var prefix = '';
                             action = '';
-                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
+                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
                             if(behaviourAction){
-                                if(behaviourAction.hasOwnProperty('_actions')){
-                                    prefix = '_';
+                                action = behaviourAction.actions[choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
                                 }
-                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            }
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
-                                }
-                                behaviour.actions[choices[i].behaviour.name] = action;
                             }
                         }
                     }
