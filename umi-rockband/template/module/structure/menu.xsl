@@ -35,23 +35,33 @@
 
     <!-- Меню в футере <Начало> -->
     <xsl:template match="result[@widget = 'structure.menu.auto']" mode="footer.content.root">
-        <textarea><xsl:copy-of select="." /></textarea>
-        <xsl:apply-templates select="menu/item" mode="footerMenu"/>
+        <xsl:apply-templates select="menu/item" mode="footer.content.list"/>
     </xsl:template>
 
-    <xsl:template match="item" mode="footerMenu">
-        <div class="col-md-2">
+    <xsl:template match="item" mode="footer.content.list">
+        <div class="col-md-3">
             <h5><xsl:value-of select="page/@displayName"/></h5>
             <ul class="menu">
-                <xsl:apply-templates select="children/item" mode="footer.content.root"/>
+                <xsl:apply-templates select="children/item" mode="footer.content.pages"/>
             </ul>
         </div>
     </xsl:template>
 
-    <xsl:template match="item" mode="footerMenuLevel2">
-        <li><a href="page/@url">
-            <xsl:value-of select="page/@displayName" />
-        </a></li>
+    <xsl:template match="item[position() = last()]" mode="footer.content.list">
+        <div class="col-md-2">
+            <h5><xsl:value-of select="page/@displayName"/></h5>
+            <ul class="menu">
+                <xsl:apply-templates select="children/item" mode="footer.content.pages"/>
+            </ul>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="item" mode="footer.content.pages">
+        <li>
+            <a href="{page/@url}">
+                <xsl:value-of select="page/@displayName" />
+            </a>
+        </li>
     </xsl:template>
     <!-- Меню в футере <Конец> -->
 

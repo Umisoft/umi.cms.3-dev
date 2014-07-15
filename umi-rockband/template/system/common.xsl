@@ -6,14 +6,6 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
 
     <!-- Языки в хедере <Начало> -->
     <xsl:template match="locales[locale]">
@@ -106,8 +98,12 @@
         <xsl:param name="stringTime" />
 
         <xsl:choose>
+            <xsl:when test="not($timestamp) and $stringTime">
+                <xsl:variable name="resultTimestamp" select="php:functionString('strtotime', $stringTime)" />
+                <xsl:value-of select="php:function('date', $format, $resultTimestamp)" />
+            </xsl:when>
             <xsl:when test="$stringTime">
-                <xsl:variable name="resultTimestamp" select="php:function('strtotime', $stringTime, $timestamp)" />
+                <xsl:variable name="resultTimestamp" select="php:functionString('strtotime', $stringTime, $timestamp)" />
                 <xsl:value-of select="php:function('date', $format, $resultTimestamp)" />
             </xsl:when>
             <xsl:otherwise>
@@ -119,22 +115,17 @@
     <!-- Шаблон для вывода даты/времени в нужном формат <Конец> -->
 
     <!-- Шаблоны для хлебных крошек <Начало> -->
-    <xsl:template match="breadcrumbs" mode="blog">
-        <xsl:apply-templates select="item" mode="blog" />
+    <xsl:template match="breadcrumbs">
+        <xsl:apply-templates select="item" mode="breadcrumbs" />
     </xsl:template>
 
-    <xsl:template match="item[position() = '1']" mode="blog">
-        <xsl:text>Главная</xsl:text>
+    <xsl:template match="item" mode="breadcrumbs">
+        <a href="{url}"><xsl:value-of select="displayName" /></a>
         <xsl:text> / </xsl:text>
     </xsl:template>
 
-    <xsl:template match="item" mode="blog">
-        <xsl:value-of select="displayName" />
-        <xsl:text> / </xsl:text>
-    </xsl:template>
-
-    <xsl:template match="item[position() = last()]" mode="blog">
-        <xsl:value-of select="displayName" />
+    <xsl:template match="item[position() = last()]" mode="breadcrumbs">
+        <a href="{url}"><xsl:value-of select="displayName" /></a>
     </xsl:template>
 
     <!-- Шаблоны для для хлебных крошек <Конец> -->

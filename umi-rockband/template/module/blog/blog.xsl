@@ -6,15 +6,6 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
-
     <xsl:template match="contents[@controller = 'blog.index'][page]" >
         <div class="site-name">
             <div class="container-fluid">

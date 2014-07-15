@@ -24,7 +24,7 @@
 
     <xsl:template match="item" mode="mainList">
         <xsl:apply-templates select="document(concat('widget://blog.post.view.view?blogPost=', @guid))/result/blogPost"
-                             mode="mainPost"/>
+                             mode="mainPost" />
     </xsl:template>
     <!-- Список последних постов блога на главной <Конец> -->
 

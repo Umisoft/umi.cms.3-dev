@@ -13,7 +13,7 @@
                     <!-- Меню в футере <Начало>-->
                     <xsl:apply-templates select="document('widget://blog.category.list')" mode="footer.blog.root" />
                     <xsl:apply-templates select="document('widget://news.rubric.list')" mode="footer.news.root" />
-                    <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="footer.content.root"/>
+                    <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')" mode="footer.content.root"/>
                     <!-- Меню в футере <Конец>-->
                     <div class="col-md-12 text-center">
                         <!-- Значки социальных сетей -->

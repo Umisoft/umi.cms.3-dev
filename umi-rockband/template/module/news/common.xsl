@@ -6,8 +6,10 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
+    <xsl:include href="template://module/news/news" />
     <xsl:include href="template://module/news/item" />
-    <xsl:include href="template://module/news/list" />
+    <xsl:include href="template://module/news/rubric" />
+    <xsl:include href="template://module/news/subject" />
 
 
 

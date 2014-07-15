@@ -6,17 +6,6 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:output
-        encoding="utf-8"
-        method="html"
-        indent="yes"
-        cdata-section-elements="script noscript"
-        omit-xml-declaration="yes"
-        doctype-system="about:legacy-compat"
-        />
-
-
-
     <!-- Отдельный пост на главной -->
     <xsl:template match="blogPost" mode="mainPost">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
