@@ -18,26 +18,43 @@ mb_internal_encoding("utf8");
 /**
  * Директория с файлами ядра UMI.CMS
  */
-defined('CMS_VENDOR_DIR') or define('VENDOR_DIR', dirname(__DIR__) . '/vendor');
+defined('VENDOR_DIR') or define('VENDOR_DIR', dirname(__DIR__) . '/vendor');
 
 require VENDOR_DIR . '/autoload.php';
 
 
 Environment::$startTime = microtime(true);
 
+$versionInfo = require __DIR__ . '/version.php';
+if (!is_array($versionInfo) || count($versionInfo) !== 2) {
+    throw new \RuntimeException('Version file corrupted.');
+}
+
+/**
+ * Версия UMI.CMS
+ */
+define('CMS_VERSION', $versionInfo[0]);
+/**
+ * Дата выхода версии UMI.CMS
+ */
+define('CMS_VERSION_DATE', $versionInfo[1]);
 /**
  * Директория с файлами ядра UMI.CMS
  */
-defined('CMS_DIR') or define('CMS_DIR', __DIR__);
+define('CMS_DIR', __DIR__);
 /**
  * Директория с коробочными файлами проекта CMS.
  */
-defined('CMS_PROJECT_DIR') or define('CMS_PROJECT_DIR', __DIR__ . '/project');
+define('CMS_PROJECT_DIR', __DIR__ . '/project');
+/**
+ * Директория с файлами административного приложения UMI.CMS
+ */
+define('CMS_ADMIN_FRONTEND', CMS_PROJECT_DIR . '/admin/asset');
 /**
  * Директория с инструментами CMS.
  */
-defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', __DIR__ . '/library');
+define('CMS_LIBRARY_DIR', __DIR__ . '/library');
 /**
  * Директория с инструментами фреймворка.
  */
-defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', VENDOR_DIR . '/umisoft/umi.framework');
+define('FRAMEWORK_LIBRARY_DIR', VENDOR_DIR . '/umisoft/umi.framework');

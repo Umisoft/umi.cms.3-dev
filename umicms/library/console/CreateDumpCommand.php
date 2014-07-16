@@ -32,7 +32,7 @@ class CreateDumpCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('create-dump')
+            ->setName('project:create-dump')
             ->setDescription('Create dump for project data.');
 
         parent::configure();

@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Symfony\Component\Process\Process;
+use umicms\Utils;
 
 /**
  * Упаковывает ядро в пакет.
@@ -25,21 +25,12 @@ use Symfony\Component\Process\Process;
 class PackCoreCommand extends BaseCommand
 {
     /**
-     * @var string $version
-     */
-    public $version;
-    /**
-     * @var string $versionDate
-     */
-    public $versionDate;
-
-    /**
      * {@inheritdoc}
      */
     protected function configure()
     {
         $this
-            ->setName('pack-core')
+            ->setName('core:pack')
             ->setDescription('Pack core')
             ->addArgument(
                 'output',
@@ -60,7 +51,11 @@ class PackCoreCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->detectVersionInfo();
+        list ($version, $versionDate) = Utils::getCurrentGitVersion();
+
+        $output->writeln('Version: ' . $version);
+        $output->writeln('Version date: ' . $versionDate);
+
         $outputPharPath = $input->getArgument('output') . '/' . 'umicms.phar';
 
         if (is_file($outputPharPath)) {
@@ -68,9 +63,11 @@ class PackCoreCommand extends BaseCommand
         }
 
         $phar = new Phar($outputPharPath, 0, 'umicms.phar');
+        $phar->setMetadata('UMI.CMS Core Version: ' . $version);
         $phar->setSignatureAlgorithm(Phar::SHA1);
 
         $phar->startBuffering();
+
 
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
@@ -80,7 +77,7 @@ class PackCoreCommand extends BaseCommand
         $output->writeln('');
 
         $output->writeln('<process>Packing vendor files...</process>');
-        $this->addVendorFiles($phar, $input, $output);
+        $this->addVendorFiles($phar, $output);
         $output->writeln('');
 
         $output->writeln('<process>Writing package on disc...</process>');
@@ -110,7 +107,7 @@ class PackCoreCommand extends BaseCommand
 
 Phar::mapPhar('umicms.phar');
 
-require 'phar://umicms.phar/umicms/bootstrap.php';
+require 'phar://umicms.phar/bootstrap.php';
 
 __HALT_COMPILER();
 EOF;
@@ -132,7 +129,21 @@ EOF;
         $finder->files()
             ->ignoreVCS(true)
             ->notName('CoreCompiler.php')
-            ->in(CMS_DIR);
+            ->notName('version.php')
+            ->in(CMS_DIR)
+            ->exclude('project/admin/asset');
+
+        $progress = $this->startProgressBar($output, $finder->count());
+
+        foreach ($finder as $file) {
+            $this->packFile($phar, $file, $obfuscate, $progress);
+            $progress->advance();
+        }
+
+        $finder = new Finder();
+        $finder->files()
+            ->ignoreVCS(true)
+            ->in(CMS_ADMIN_FRONTEND . '/deploy');
 
         $progress = $this->startProgressBar($output, $finder->count());
 
@@ -142,16 +153,42 @@ EOF;
         }
         $progress->setMessage('Complete.');
 
+        $this->addVersionFile($phar);
+
+
         $progress->finish();
+    }
+
+
+    /**
+     * Добавляет  с версией сборки
+     * @param Phar $phar
+     */
+    private function addVersionFile(Phar $phar) {
+        list ($version, $versionDate) = Utils::getCurrentGitVersion();
+        $version = <<<EOF
+<?php
+/**
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+return ['{$version}', '{$versionDate}'];
+EOF;
+
+        $phar->addFromString('version.php', $version);
     }
 
     /**
      * Добавляет вендоров в phar
      * @param Phar $phar
-     * @param InputInterface $input
      * @param OutputInterface $output
      */
-    private function addVendorFiles(Phar $phar, InputInterface $input, OutputInterface $output)
+    private function addVendorFiles(Phar $phar, OutputInterface $output)
     {
         $finder = new Finder();
         $finder->files()
@@ -181,50 +218,17 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, $obfuscate, ProgressBar $progress)
     {
-        $localPath = strtr(str_replace(dirname(VENDOR_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(CMS_DIR . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(VENDOR_DIR . '/', 'vendor/', $localPath), '\\', '/');
 
         $progress->setMessage('Packing "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {
             $contents = file_get_contents($file);
             $contents = Obfuscator::obfuscate($contents);
             $phar->addFromString($localPath, $contents);
-        } elseif ($localPath === 'umicms/Bootstrap.php') {
-            $contents = file_get_contents($file);
-            $contents = str_replace('%version%', $this->version, $contents);
-            $contents = str_replace('%versionDate%', $this->versionDate, $contents);
-            $phar->addFromString($localPath, $contents);
         } else {
             $phar->addFile($file, $localPath);
         }
-    }
-
-    /**
-     * Определяет версию (хэш последнего коммита, либо тэг версии) и дату версии
-     * @throws \RuntimeException
-     */
-    private function detectVersionInfo()
-    {
-        $process = new Process('git log --pretty="%H" -n1 HEAD');
-        if ($process->run() != 0) {
-            throw new \RuntimeException('Cannot detect last version hash. Can\'t run git log..');
-        }
-
-        $this->version = trim($process->getOutput());
-
-        $process = new Process('git describe --tags HEAD');
-        if ($process->run() == 0) {
-            $this->version = trim($process->getOutput());
-        }
-
-        $process = new Process('git log -n1 --pretty=%ci HEAD');
-        if ($process->run() != 0) {
-            throw new \RuntimeException('Cannot detect last version date. Can\'t run git log.');
-        }
-
-        $date = new \DateTime(trim($process->getOutput()));
-        $date->setTimezone(new \DateTimeZone('UTC'));
-
-        $this->versionDate = $date->format('Y-m-d H:i:s');
     }
 }
 

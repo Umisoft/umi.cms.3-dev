@@ -2,13 +2,13 @@
 <?php
 
 use Symfony\Component\Console\Application;
+use umicms\console\BuildAdminFrontentCommand;
 use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackProjectCommand;
 use umicms\console\CreateDumpCommand;
 use umicms\console\LoadDumpCommand;
 use umicms\console\SyncSchemeCommand;
-use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
 
@@ -24,7 +24,8 @@ if (is_file($envConfigFile)) {
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-$application = new Application('UMI.CMS Console application.', Bootstrap::VERSION);
+$application = new Application('UMI.CMS Console application.', CMS_VERSION);
+
 
 $application->add(new PackCoreCommand());
 $application->add(new PackProjectCommand());
@@ -32,5 +33,6 @@ $application->add(new CreateDumpCommand());
 $application->add(new LoadDumpCommand());
 $application->add(new SyncSchemeCommand());
 $application->add(new InstallProjectCommand());
+$application->add(new BuildAdminFrontentCommand());
 
 $application->run();

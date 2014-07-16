@@ -13,6 +13,7 @@ namespace umicms\console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Базовый класс консольной команды UMI.CMS.
@@ -34,6 +35,29 @@ abstract class BaseCommand extends Command
         $progress->start();
 
         return $progress;
+    }
+
+    /**
+     * Запускает дочерний процесс
+     * @param OutputInterface $output
+     * @param string $commandLine команда
+     * @param null $cwd
+     * @param null $input
+     * @throws \RuntimeException если процесс завершился не удачно
+     */
+    protected function executeRealTimeProcess(OutputInterface $output, $commandLine, $cwd = null, $input = null)
+    {
+        $gruntDeployProcess = new Process($commandLine, $cwd);
+        $gruntDeployProcess->setTimeout(null);
+        $gruntDeployProcess->run(function ($type, $buffer) use ($output) {
+            if (Process::ERR !== $type) {
+                $output->write($buffer);
+            }
+        });
+
+        if (!$gruntDeployProcess->isSuccessful()) {
+            throw new \RuntimeException($gruntDeployProcess->getErrorOutput());
+        }
     }
 }
  

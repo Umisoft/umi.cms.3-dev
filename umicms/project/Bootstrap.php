@@ -46,15 +46,6 @@ class Bootstrap
     use TConfigSupport;
 
     /**
-     * Текущая версия UMI.CMS
-     */
-    const VERSION = '%version%';
-    /**
-     * Дата выпуска текущей версии UMI.CMS
-     */
-    const VERSION_DATE = '%versionDate%';
-
-    /**
      * Имя куки сессии.
      */
     const SESSION_COOKIE_NAME = 'UMISESSID';
