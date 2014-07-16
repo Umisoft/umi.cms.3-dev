@@ -3,7 +3,7 @@
 return [
     'en-US' => [
         'component:megaindex:displayName' => 'MegaIndex',
-        'action:siteAnalyze:displayName' => 'Site analyze',
+        'action:siteAnalyze:displayName' => 'Site ranking',
         'action:getBacklinks:displayName' => 'Links to site',
 
         'Do not set auth data' => 'Do not set auth data',
