@@ -40,17 +40,17 @@ class PackCoreCommand extends BaseCommand
     {
         $this
             ->setName('pack-core')
-            ->setDescription('Упаковывает ядро в пакет')
+            ->setDescription('Pack core')
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Директория, в которой будет создан пакет.',
+                'Output directory for package.',
                 '.'
             )
             ->addArgument(
                 'obfuscate',
                 InputArgument::OPTIONAL,
-                'Если установлено, ядро будет обфусцировано.',
+                'Obfuscate core.',
                 false
             );
     }
@@ -75,15 +75,15 @@ class PackCoreCommand extends BaseCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Упаковка файлов ядра</process>');
+        $output->writeln('<process>Packing core files...</process>');
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
-        $output->writeln('<process>Упаковка вендоров</process>');
+        $output->writeln('<process>Packing vendor files...</process>');
         $this->addVendorFiles($phar, $input, $output);
         $output->writeln('');
 
-        $output->writeln('<process>Запись пакета в файл</process>');
+        $output->writeln('<process>Writing package on disc...</process>');
         $this->setStub($phar);
         $phar->stopBuffering();
 
@@ -183,7 +183,7 @@ EOF;
     {
         $localPath = strtr(str_replace(dirname(VENDOR_DIR) . '/', '', $file->getRealPath()), '\\', '/');
 
-        $progress->setMessage('Запаковываю "' . $localPath . '"');
+        $progress->setMessage('Packing "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {
             $contents = file_get_contents($file);
             $contents = Obfuscator::obfuscate($contents);

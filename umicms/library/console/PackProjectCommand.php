@@ -27,18 +27,16 @@ class PackProjectCommand extends BaseProjectCommand
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('project:pack')
-            ->setDescription('Упаковывает файлы проекта в пакет.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            )
+            ->setDescription('Pack project into package.')
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Полый путь пакета, который будет создан.'
+                'Output directory for package.',
+                '.'
             );
     }
 
@@ -68,10 +66,10 @@ class PackProjectCommand extends BaseProjectCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Упаковка файлов проекта</process>');
+        $output->writeln('<process>Packing project files...</process>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
-        $output->writeln('<process>Запись пакета в файл</process>');
+        $output->writeln('<process>Writing package...</process>');
         $this->setStub($phar, $projectName . '.phar');
         $phar->stopBuffering();
 

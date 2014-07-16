@@ -9,7 +9,6 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -23,14 +22,11 @@ class InstallProjectCommand extends BaseProjectCommand
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('project:install')
-            ->setDescription('Устанавливает проект, обновляет схемы проекта и его данные.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+            ->setDescription('Install project: sync database scheme, load project dump.');
     }
 
     /**

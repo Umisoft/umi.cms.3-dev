@@ -11,7 +11,6 @@ namespace umicms\console;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
@@ -31,14 +30,11 @@ class LoadDumpCommand extends BaseProjectCommand
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('project:load-dump')
-            ->setDescription('Загружает дамп данных проекта.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+            ->setDescription('Load project data into dump.');
     }
 
     /**
@@ -64,7 +60,7 @@ class LoadDumpCommand extends BaseProjectCommand
 
         $dumpDirectory = $bootstrap->getProjectDumpDirectory();
 
-        $output->writeln('<process>Загружаем дамп в память.</process>');
+        $output->writeln('<process>Loading dump in memory...</process>');
 
         $finder = new Finder();
         $finder->files()
@@ -75,7 +71,7 @@ class LoadDumpCommand extends BaseProjectCommand
         $progress = $this->startProgressBar($output, count($finder));
         foreach ($finder as $dumpFile)
         {
-            $progress->setMessage('Загрузка файла "' . $dumpFile . '"');
+            $progress->setMessage('Loading file "' . $dumpFile . '"');
             $progress->advance();
 
             $objectImporter->loadDump(require $dumpFile);
@@ -83,10 +79,9 @@ class LoadDumpCommand extends BaseProjectCommand
 
         $progress->setMessage('Complete.');
         $progress->finish();
+
         $output->writeln('');
-
-
-        $output->writeln('<process>Обновляем поисковый индекс.</process>');
+        $output->writeln('<process>Updating search index...</process>');
 
         /**
          * @var ICmsPage $object
@@ -106,11 +101,11 @@ class LoadDumpCommand extends BaseProjectCommand
         }
         $output->writeln('');
 
-        $output->writeln('<info>Загружено объектов на создание: ' . count($objectPersister->getNewObjects()) . ' </info>');
-        $output->writeln('<info>Загружено объектов на модификацию: ' . count($objectPersister->getModifiedObjects()) . '</info>');
+        $output->writeln('<info>New objects: ' . count($objectPersister->getNewObjects()) . ' </info>');
+        $output->writeln('<info>Modified objects: ' . count($objectPersister->getModifiedObjects()) . '</info>');
 
         if ($invalidObjects = $objectPersister->getInvalidObjects()) {
-            $output->writeln('<error>Ошибки валидации</error>');
+            $output->writeln('<error>Validation errors</error>');
 
             $table = new Table($output);
             $table->setHeaders(array('Guid', 'Type', 'DisplayName', 'Property', 'Error'));
@@ -129,7 +124,7 @@ class LoadDumpCommand extends BaseProjectCommand
 
             $table->render();
         } else {
-            $output->writeln('<info>Записываем объекты в БД</info>');
+            $output->writeln('<info>Persisting objects...</info>');
             $objectPersister->commit();
             $output->writeln('<process>Complete</process>');
         }

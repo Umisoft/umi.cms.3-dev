@@ -27,12 +27,11 @@ class BaseProjectCommand extends BaseCommand
      */
     protected function configure()
     {
-        $this
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+        $this->addArgument(
+            'uri',
+            InputArgument::REQUIRED,
+            'Project URI (Ex: http://localhost)'
+        );
     }
 
     /**
@@ -56,12 +55,12 @@ class BaseProjectCommand extends BaseCommand
 
         $bootstrap = new Bootstrap($request);
 
-        $output->writeln('<info>Диспетчеризация до проекта "' . $projectUri . '"</info>');
+        $output->writeln('<info>Dispatching to "' . $projectUri . '"</info>');
 
         $bootstrap->dispatchProject();
 
-        $output->writeln('<info>Имя проекта "' . $bootstrap->getProjectName() . '"</info>');
-        $output->writeln('<info>Директория проекта "' . $bootstrap->getProjectDirectory() . '"</info>');
+        $output->writeln('<info>Project name: "' . $bootstrap->getProjectName() . '"</info>');
+        $output->writeln('<info>Project directory: "' . $bootstrap->getProjectDirectory() . '"</info>');
 
         return $bootstrap;
     }

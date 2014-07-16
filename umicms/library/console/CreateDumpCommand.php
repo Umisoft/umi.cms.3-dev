@@ -9,7 +9,6 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use umi\orm\collection\ICollectionManager;
@@ -34,12 +33,9 @@ class CreateDumpCommand extends BaseProjectCommand
     {
         $this
             ->setName('create-dump')
-            ->setDescription('Создает дамп данных проекта.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+            ->setDescription('Create dump for project data.');
+
+        parent::configure();
     }
 
     /**
@@ -52,7 +48,7 @@ class CreateDumpCommand extends BaseProjectCommand
         $toolkit = $bootstrap->getToolkit();
 
         $dumpDirectory = $bootstrap->getProjectDumpDirectory();
-        $output->writeln('<info>Директория для дампа данных "' . $dumpDirectory . '"</info>');
+        $output->writeln('<info>Dump directory: "' . $dumpDirectory . '"</info>');
 
         if (!is_dir($dumpDirectory)) {
             mkdir($dumpDirectory, 0777, true);
@@ -72,11 +68,11 @@ class CreateDumpCommand extends BaseProjectCommand
 
         foreach ($collectionManager->getList() as $collectionName)
         {
-            $progress->setMessage('Выгрузка данных коллекции "' . $collectionName . '"');
+            $progress->setMessage('Create dump for "' . $collectionName . '".');
             $progress->advance();
 
             if (in_array($collectionName, $this->ignoreCollections)) {
-                $progress->setMessage('Коллекция "' . $collectionName . '" проигнорирована.');
+                $progress->setMessage('Collection "' . $collectionName . '" in ignore list.');
                 continue;
             }
 
@@ -89,17 +85,18 @@ class CreateDumpCommand extends BaseProjectCommand
             );
 
             if (count($dump)) {
-                $progress->setMessage('Запись данных коллекции "' . $collectionName . '"');
+                $progress->setMessage('Writing dump for "' . $collectionName . '".');
                 $contents = $this->getDumpFile($collectionName, $dump);
                 file_put_contents($dumpDirectory . '/' . $collectionName . '.dump.php', $contents);
             } else {
-                $progress->setMessage('Коллекция "' . $collectionName . '" пуста');
+                $progress->setMessage('Collection "' . $collectionName . '" is empty.');
             }
         }
 
         $progress->setMessage('Complete.');
         $progress->finish();
 
+        $output->writeln('');
         $output->writeln('<process>Complete.</process>');
     }
 

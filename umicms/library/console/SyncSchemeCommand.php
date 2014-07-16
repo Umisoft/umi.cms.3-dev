@@ -24,14 +24,11 @@ class SyncSchemeCommand extends BaseProjectCommand
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('project:sync-scheme')
-            ->setDescription('Обновляет схему БД для моделей проекта.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+            ->setDescription('Synchronize database scheme for project.');
     }
 
     /**
@@ -51,7 +48,7 @@ class SyncSchemeCommand extends BaseProjectCommand
         $progress = $this->startProgressBar($output, count($moduleTools->getModules()));
 
         foreach ($moduleTools->getModules() as $module) {
-            $progress->setMessage('Синхронизация схем таблиц для "' . $module->getName() . '"');
+            $progress->setMessage('Sync table schemes for module "' . $module->getName() . '"');
             $progress->advance();
             $module->getModelCollection()->syncAllSchemes();
         }

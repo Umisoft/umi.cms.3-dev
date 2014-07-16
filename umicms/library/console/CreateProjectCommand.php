@@ -9,7 +9,6 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -23,14 +22,11 @@ class CreateProjectCommand extends BaseProjectCommand
      */
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('project:create')
-            ->setDescription('Создает проект.')
-            ->addArgument(
-                'uri',
-                InputArgument::REQUIRED,
-                'URI проекта'
-            );
+            ->setDescription('Create new project.');
     }
 
     /**
