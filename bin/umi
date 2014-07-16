@@ -2,7 +2,6 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use umicms\console\BuildAdminFrontentCommand;
 use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackProjectCommand;
