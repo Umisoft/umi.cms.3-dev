@@ -35,8 +35,7 @@ class PackProjectCommand extends BaseProjectCommand
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Output directory for package.',
-                '.'
+                'Output directory for package.'
             );
     }
 
