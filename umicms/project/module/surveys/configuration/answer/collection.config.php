@@ -12,5 +12,9 @@ use umi\orm\collection\ICollectionFactory;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\survey\model\collection\AnswerCollection'
+    'class' => 'umicms\project\module\surveys\model\collection\AnswerCollection',
+
+    'handlers' => [
+        'admin' => 'surveys.answer'
+    ],
 ];

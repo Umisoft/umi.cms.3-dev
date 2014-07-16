@@ -12,5 +12,5 @@ use umi\orm\collection\ICollectionFactory;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\survey\model\collection\SurveyCollection'
+    'class' => 'umicms\project\module\surveys\model\collection\SurveyCollection'
 ];

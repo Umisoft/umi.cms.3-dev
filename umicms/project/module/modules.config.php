@@ -15,5 +15,5 @@ return [
     'umicms\project\module\blog\model\BlogModule' => '{#lazy:~/project/module/blog/configuration/module.config.php}',
     'umicms\project\module\search\model\SearchModule' => '{#lazy:~/project/module/search/configuration/module.config.php}',
     'umicms\project\module\service\model\ServiceModule' => '{#lazy:~/project/module/service/configuration/module.config.php}',
-    'umicms\project\module\survey\model\SurveyModule' => '{#lazy:~/project/module/survey/configuration/module.config.php}'
+    'umicms\project\module\surveys\model\SurveyModule' => '{#lazy:~/project/module/surveys/configuration/module.config.php}'
 ];

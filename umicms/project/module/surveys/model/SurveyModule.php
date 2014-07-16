@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\survey\model;
+namespace umicms\project\module\surveys\model;
 
 use umi\http\IHttpAware;
 use umi\http\THttpAware;
 use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\survey\model\collection\SurveyCollection;
-use umicms\project\module\survey\model\collection\AnswerCollection;
-use umicms\project\module\survey\model\object\Answer;
-use umicms\project\module\survey\model\object\Survey;
+use umicms\project\module\surveys\model\collection\SurveyCollection;
+use umicms\project\module\surveys\model\collection\AnswerCollection;
+use umicms\project\module\surveys\model\object\Answer;
+use umicms\project\module\surveys\model\object\Survey;
 
 /**
  * Модуль "Опросы".

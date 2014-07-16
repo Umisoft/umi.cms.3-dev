@@ -3,13 +3,13 @@
 return [
 
     'en-US' => [
-        'component:item:displayName' => 'Surveys',
+        'component:survey:displayName' => 'Surveys',
 
         'action:create:base' => 'Create survey'
     ],
 
     'ru-RU' => [
-        'component:item:displayName' => 'Опросы',
+        'component:survey:displayName' => 'Опросы',
 
         'action:create:base' => 'Добавить опрос'
     ]

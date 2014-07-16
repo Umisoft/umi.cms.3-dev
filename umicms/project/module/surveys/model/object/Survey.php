@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\survey\model\object;
+namespace umicms\project\module\surveys\model\object;
 
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -18,7 +18,7 @@ use umi\orm\objectset;
 
 /**
  * Class Survey
- * @package umicms\project\module\survey\model\object
+ * @package umicms\project\module\surveys\model\object
  * @property $answers ответы опроса
  * @property boolean $multipleChoice возможность множественного выбора
  */

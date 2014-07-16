@@ -136,6 +136,8 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $this->installGratitude();
             echo "Installing blog...\n";
             $this->installBlog();
+            echo "Install surveys...\n";
+            $this->installSurveys();
             echo "Install search...\n";
             $this->installSearch();
 
@@ -1392,6 +1394,30 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
             ->setValue(MenuExternalItem::FIELD_RESOURCE_URL, 'http://ya.ru/');
 
+    }
+
+    protected function installSurveys()
+    {
+        /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        $surveysModulePage = $structureCollection->add('surveys', 'system')
+            ->setValue('displayName', 'Опросы')
+            ->setValue('displayName', 'Surveys', 'en-US');
+
+        $surveysModulePage->getProperty('locked')->setValue(true);
+        $surveysModulePage->getProperty('componentName')->setValue('surveys');
+        $surveysModulePage->getProperty('componentPath')->setValue('surveys');
+
+        $surveyComponentPage = $structureCollection->add('survey', 'system', $surveysModulePage)
+            ->setValue('displayName', 'Опрос')
+            ->setValue('displayName', 'Survey', 'en-US');
+
+        $surveyComponentPage->getProperty('locked')->setValue(true);
+        $surveyComponentPage->getProperty('componentName')->setValue('survey');
+        $surveyComponentPage->getProperty('componentPath')->setValue('surveys.survey');
     }
 
     protected function installSearch()

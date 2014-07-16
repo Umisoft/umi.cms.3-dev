@@ -143,7 +143,10 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}'
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+
+            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/metadata.config.php}',
+            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/metadata.config.php}',
         ],
 
         'collections' => [
@@ -174,7 +177,11 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}'
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
+
+            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/collection.config.php}',
+            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/collection.config.php}',
+
         ]
     ],
 
@@ -213,6 +220,5 @@ return [
     ],
 
     SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
-
 
 ];

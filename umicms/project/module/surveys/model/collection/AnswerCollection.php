@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\survey\model\collection;
+namespace umicms\project\module\surveys\model\collection;
 
 use umicms\orm\collection\CmsCollection;
 
 /**
  * Коллекция для работы с ответами.
- * @package umicms\project\module\survey\model\collection
+ * @package umicms\project\module\surveys\model\collection
  */
 class AnswerCollection extends CmsCollection
 {

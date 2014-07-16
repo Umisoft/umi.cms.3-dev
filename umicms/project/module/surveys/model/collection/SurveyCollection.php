@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\survey\model\collection;
+namespace umicms\project\module\surveys\model\collection;
 
 use umicms\orm\collection\CmsPageCollection;
 use umi\acl\IAclResource;
@@ -16,7 +16,7 @@ use umi\acl\IAclAssertionResolver;
 
 /**
  * Коллекция для работы с опросами.
- * @package umicms\project\module\survey\model\collection
+ * @package umicms\project\module\surveys\model\collection
  */
 class SurveyCollection extends CmsPageCollection implements IAclResource, IAclAssertionResolver
 {

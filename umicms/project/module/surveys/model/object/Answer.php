@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\survey\model\object;
+namespace umicms\project\module\surveys\model\object;
 
 use umicms\orm\object\CmsObject;
 
 
 /**
  * Class Answer
- * @package umicms\project\module\survey\model\object
+ * @package umicms\project\module\surveys\model\object
  * @property Survey|null $survey опрос
  * @property integer $counter количество голосов
  */

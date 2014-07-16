@@ -1,6 +1,6 @@
 <?php
 
-namespace umicms\project\module\survey\site;
+namespace umicms\project\module\surveys\site;
 
 use umicms\hmvc\component\site\SiteGroupComponent;
 
@@ -14,6 +14,6 @@ return [
     ],
 
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/survey'],
+        'directories' => ['module/surveys'],
     ]
 ];
