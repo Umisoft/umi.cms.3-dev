@@ -1219,7 +1219,7 @@ button, .button {
   border-style: solid;
   border-width: 1px;
   cursor: pointer;
-  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: Arial, Helvetica, Garuda, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 0;
@@ -1229,10 +1229,10 @@ button, .button {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   display: inline-block;
-  padding-top: 0.375rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.4375rem;
-  padding-left: 0.75rem;
+  padding-top: 0.4375rem;
+  padding-right: 0.875rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.875rem;
   font-size: 0.8125rem;
   background-color: #259cec;
   border-color: #1280c9;
@@ -4932,9 +4932,10 @@ select {
   -webkit-transition: background-position 0.1s linear;
        -o-transition: background-position 0.1s linear;
           transition: background-position 0.1s linear;
-  vertical-align: top; }
+  vertical-align: top;
+  padding-bottom: 0.4375rem; }
   .button:hover, .button:focus, button:hover, button:focus {
-    background-position-y: -0.45rem;
+    background-position-y: -0.525rem;
     background-color: #0086cf; }
   .button:focus, button:focus {
     background-color: #0083ca; }
@@ -4949,7 +4950,7 @@ select {
          -o-transition: background-position 0.1s linear;
             transition: background-position 0.1s linear; }
     .button.secondary:hover, .button.secondary:focus, button.secondary:hover, button.secondary:focus {
-      background-position-y: -0.45rem;
+      background-position-y: -0.525rem;
       background-color: #f2f2f2; }
     .button.secondary:focus, button.secondary:focus {
       background-color: #f0f0f0; }
@@ -4963,7 +4964,7 @@ select {
          -o-transition: background-position 0.1s linear;
             transition: background-position 0.1s linear; }
     .button.success:hover, .button.success:focus, button.success:hover, button.success:focus {
-      background-position-y: -0.45rem;
+      background-position-y: -0.525rem;
       background-color: #0baee0; }
     .button.success:focus, button.success:focus {
       background-color: #0aabdb; }
@@ -4977,7 +4978,7 @@ select {
          -o-transition: background-position 0.1s linear;
             transition: background-position 0.1s linear; }
     .button.alert:hover, .button.alert:focus, button.alert:hover, button.alert:focus {
-      background-position-y: -0.45rem;
+      background-position-y: -0.525rem;
       background-color: #982614; }
     .button.alert:focus, button.alert:focus {
       background-color: #932514; }
@@ -4995,8 +4996,8 @@ select {
     padding-left: 2.5rem;
     padding-right: 2.5rem; }
   .button.square, button.square {
-    padding-left: 0.375rem;
-    padding-right: 0.375rem; }
+    padding-left: 0.4375rem;
+    padding-right: 0.4375rem; }
   .button .icon, button .icon {
     margin-top: -4px;
     margin-bottom: -3px; }
@@ -5115,9 +5116,15 @@ select {
     background: #e8e8e8; } }
 
 .button-group {
-  left: auto; }
-  .button-group > li > button.white, .button-group > li .button.white {
-    border-color: transparent; }
+  left: auto;
+  white-space: nowrap;
+  letter-spacing: -0.3em; }
+  .button-group > li {
+    float: none;
+    display: inline-block;
+    letter-spacing: normal; }
+    .button-group > li > button.white, .button-group > li .button.white {
+      border-color: transparent; }
 
 .f-dropdown {
   top: auto;
@@ -5671,6 +5678,8 @@ select {
   .umi-dialog .umi-dialog-content {
     margin-bottom: 20px;
     line-height: normal; }
+  .umi-dialog.check-process .umi-dialog-content {
+    margin-bottom: 0; }
 
 .umi-divider-left {
   float: left;
@@ -6058,7 +6067,7 @@ select {
     background-position: -1080px 0; }
   .icon.icon-right-thin {
     background-position: -1100px 0; }
-  .icon.icon-allowRobots {
+  .icon.icon-allowRobots, .icon.icon-importFromRss {
     background-position: -1120px 0; }
   .icon.icon-disallowRobots {
     background-position: -1140px 0; }
@@ -6164,7 +6173,7 @@ select {
     background-position: -1080px -20px; }
   .icon.white.icon-right-thin {
     background-position: -1100px -20px; }
-  .icon.white.icon-allowRobots {
+  .icon.white.icon-allowRobots, .icon.white.icon-importFromRss {
     background-position: -1120px -20px; }
   .icon.white.icon-disallowRobots {
     background-position: -1140px -20px; }
@@ -6270,7 +6279,7 @@ select {
     background-position: -1080px -40px; }
   .icon.black.icon-right-thin {
     background-position: -1100px -40px; }
-  .icon.black.icon-allowRobots {
+  .icon.black.icon-allowRobots, .icon.black.icon-importFromRss {
     background-position: -1120px -40px; }
   .icon.black.icon-disallowRobots {
     background-position: -1140px -40px; }
@@ -7106,10 +7115,6 @@ table td {
     .umi-toolbar .s-scroll-wrap .row:hover {
       cursor: pointer;
       background: #C5E2F7; }
-  .umi-toolbar .button-group {
-    white-space: nowrap; }
-    .umi-toolbar .button-group > * {
-      display: inline-block; }
 
 .umi-top-bar {
   background: -webkit-linear-gradient(#404959 0%, #181B21 100%);
