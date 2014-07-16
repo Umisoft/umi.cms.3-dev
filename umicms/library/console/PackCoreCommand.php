@@ -76,10 +76,6 @@ class PackCoreCommand extends BaseCommand
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
-        $phar->stopBuffering();
-        unset($phar);
-        exit;
-
         $output->writeln('<process>Packing vendor files...</process>');
         $this->addVendorFiles($phar, $output);
         $output->writeln('');
@@ -159,9 +155,9 @@ EOF;
 
         $this->addVersionFile($phar);
 
-        $phar->addFromString('.htaccess', file_get_contents(dirname(CMS_DIR) . '/.htaccess'));
-        $phar->addFromString('license.md', file_get_contents(dirname(CMS_DIR) . '/license.md'));
-        $phar->addFromString('project/.htaccess', file_get_contents(dirname(CMS_DIR) . '/project/.htaccess'));
+        $phar->addFile(dirname(CMS_DIR) . '/.htaccess', '.htaccess');
+        $phar->addFile(dirname(CMS_DIR) . '/license.md', 'license.md');
+        $phar->addFile(dirname(CMS_DIR) . '/project/.htaccess', 'project/.htaccess');
 
         $progress->finish();
     }
@@ -186,6 +182,7 @@ EOF;
 return ['{$version}', '{$versionDate}'];
 EOF;
 
+        $phar->addFromString('version.php', $version);
     }
 
     /**
