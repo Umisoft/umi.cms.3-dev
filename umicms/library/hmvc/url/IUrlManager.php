@@ -86,10 +86,10 @@ interface IUrlManager
     public function getProjectAssetsUrl();
 
     /**
-     * Возвращает базовый URL общих ассетов (js/css) для проектов.
+     * Возвращает базовый URL административных ассетов (js/css).
      * @return string
      */
-    public function getCommonAssetsUrl();
+    public function getAdminAssetsUrl();
 
     /**
      * Возвращает постфикс для URL проекта.

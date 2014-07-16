@@ -47,9 +47,9 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     protected $projectAssetsUrl;
     /**
-     * @var string $projectAssetsUrl базовый URL до общих ассетов (js/css) проектов
+     * @var string $projectAssetsUrl базовый URL до административных ассетов (js/css) проектов
      */
-    protected $commonAssetsUrl;
+    protected $adminAssetsUrl;
     /**
      * @var string $urlPrefix префикс URL проекта
      */
@@ -107,7 +107,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function setCommonAssetsUrl($assetsUrl)
     {
-        $this->commonAssetsUrl = $assetsUrl;
+        $this->adminAssetsUrl = $assetsUrl;
 
         return $this;
     }
@@ -175,9 +175,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getCommonAssetsUrl()
+    public function getAdminAssetsUrl()
     {
-        return $this->commonAssetsUrl;
+        return $this->adminAssetsUrl;
     }
 
     /**

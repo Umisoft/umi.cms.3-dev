@@ -332,10 +332,10 @@ class Bootstrap
         }
         $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
-        if (!isset($projectConfig['commonAssetsUrl'])) {
-            $projectConfig['commonAssetsUrl'] = '/project/common/asset';
+        if (!isset($projectConfig['adminAssetsUrl'])) {
+            $projectConfig['adminAssetsUrl'] = '/umicms/project/admin/asset';
         }
-        $urlManager->setCommonAssetsUrl($projectConfig['commonAssetsUrl']);
+        $urlManager->setCommonAssetsUrl($projectConfig['adminAssetsUrl']);
 
         return $routeResult;
     }

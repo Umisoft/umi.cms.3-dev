@@ -32,10 +32,10 @@
 
 
                 <!-- Bootstrap core CSS -->
-                <link href="{commonAssetsUrl}/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+                <link href="{assetsUrl}/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
                 <!-- Custom styles for this template -->
-                <link href="{commonAssetsUrl}/css/project.css" rel="stylesheet"/>
+                <link href="{assetsUrl}/css/project.css" rel="stylesheet"/>
 
                 <!-- Just for debugging purposes. Don't actually copy this line! -->
                 <!--[if lt IE 9]><script src="/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -108,8 +108,8 @@
                 ================================================== -->
                 <!-- Placed at the end of the document so the pages load faster -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                <script src="{commonAssetsUrl}/bootstrap/js/bootstrap.min.js"></script>
-                <script src="{commonAssetsUrl}/bootstrap/js/docs.min.js"></script>
+                <script src="{assetsUrl}/bootstrap/js/bootstrap.min.js"></script>
+                <script src="{assetsUrl}/bootstrap/js/docs.min.js"></script>
             </body>
         </html>
 

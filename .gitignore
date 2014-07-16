@@ -1,10 +1,10 @@
 /.idea
 /composer.phar
 /composer.lock
-/projects/common/configuration/db.config.php
+/project/db.config.php
 /vendor
-/projects/common/asset/admin/node_modules
-/projects/common/asset/admin/libs
+/umicms/project/admin/asset/admin/node_modules
+/umicms/project/admin/libs
 /Vagrantfile
 /.vagrant
 *.pp
