@@ -50,9 +50,9 @@ define(
                     }
                 },
 
-                'create': {
+                "create": {
                     actions: {
-                        'create': function(params){
+                        "create": function(params){
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});

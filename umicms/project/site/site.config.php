@@ -31,6 +31,7 @@ return [
             'umicms\hmvc\view\LocalesView' => 'umicms\serialization\xml\view\LocalesViewSerializer',
             'umi\form\EntityAttributesView' => 'umicms\serialization\xml\view\EntityAttributesViewSerializer',
             'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
+            'umicms\pagination\CmsPaginator' => 'umicms\serialization\xml\PaginatorSerializer',
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
@@ -43,6 +44,7 @@ return [
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\json\view\CmsTreeNodeSerializer',
             'umi\form\EntityAttributesView' => 'umicms\serialization\json\view\EntityAttributesViewSerializer',
             'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\json\MenuItemSerializer',
+            'umicms\pagination\CmsPaginator' => 'umicms\serialization\json\PaginatorSerializer',
         ]
     ],
 

@@ -4783,7 +4783,13 @@ define('toolbar/view',['App'], function(UMI){
 
             dropdownButtonView: function(){
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 var instance = UMI.DropdownButtonView.extend(behaviour);
                 return instance;
             }.property(),
@@ -4791,7 +4797,13 @@ define('toolbar/view',['App'], function(UMI){
             splitButtonView: function(){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 instance = instance.extend(behaviour);
                 return instance;
             }.property()
@@ -4864,9 +4876,9 @@ define(
                     }
                 },
 
-                'create': {
+                "create": {
                     actions: {
-                        'create': function(params){
+                        "create": function(params){
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});
