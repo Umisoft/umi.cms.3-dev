@@ -155,15 +155,13 @@ EOF;
 
         $this->addVersionFile($phar);
 
-        $phar->addFile(dirname(CMS_DIR) . '/.htaccess', '.htaccess');
-        $phar->addFile(dirname(CMS_DIR) . '/license.md', 'license.md');
-        $phar->addFile(dirname(CMS_DIR) . '/project/.htaccess', 'project/.htaccess');
 
         $progress->finish();
     }
 
+
     /**
-     * Добавляет файл с версией сборки
+     * Добавляет  с версией сборки
      * @param Phar $phar
      */
     private function addVersionFile(Phar $phar) {
