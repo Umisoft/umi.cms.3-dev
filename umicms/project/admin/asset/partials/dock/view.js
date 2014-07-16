@@ -100,7 +100,7 @@ define(['App'], function(UMI){
                 expanded = false;
                 move.oldtime = false;
                 move.proccess = false;
-                $(dock).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
+                $(dock).find('.umi-dock-module-icon').stop().animate({margin: '9px 11px 9px', height: 30, width: 30}, {
                     duration: 130,
                     easing: 'linear'
                 });
@@ -120,9 +120,6 @@ define(['App'], function(UMI){
             classNames: ['umi-dock-button', 'dropdown'],
             classNameBindings: ['open'],
             open: false,
-            icon: function(){
-                return '/resources/modules/' + this.get('module.name') + '/icon.svg';
-            }.property('module.name'),
             mouseEnter: function(){
                 var self = this;
                 var dock = this.$().closest('.dock');
@@ -135,7 +132,7 @@ define(['App'], function(UMI){
                         move.proccess = false;
                         var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
 
-                        $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
+                        $($el[0].parentNode).find('.umi-dock-module-icon').stop().animate({height: 48, width: 48, margin: '8px 36px 28px'}, {
                             duration: 280,
                             step: function(n, o){
                                 if(this.parentNode.parentNode === $el[0]){

@@ -7,7 +7,7 @@ module.exports = function(grunt){
         watch: {
             scss: {
                 files: ['styles/**/*.scss'],
-                tasks: ['sass', 'autoprefixer']
+                tasks: ['sass', 'autoprefixer', 'concat:development']
             },
 
             js: {
@@ -175,7 +175,9 @@ module.exports = function(grunt){
 
                 options: {
                     datasvgcss: 'icons.dock.svg.css',
-                    cssprefix: ".umi-dock-module-"
+                    cssprefix: ".umi-dock-module-",
+                    defaultWidth: '60px',
+                    defaultHeight: '60px'
                 }
             }
         },

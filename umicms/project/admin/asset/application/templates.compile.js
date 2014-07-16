@@ -417,7 +417,7 @@ function program2(depth0,data) {
   data.buffer.push(" ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'tagName': ("span"),
-    'class': ("dock-module {{unbound module.name}}")
+    'class': ("dock-module")
   },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "module", "module.name", options) : helperMissing.call(depth0, "link-to", "module", "module.name", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <ul class=\"f-dropdown center\"> ");
@@ -429,11 +429,9 @@ function program2(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <img ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'src': ("view.icon")
-  },hashTypes:{'src': "ID"},hashContexts:{'src': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" /> <span>");
+  data.buffer.push(" <div class=\"umi-dock-module-icon umi-dock-module-");
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.module.name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\"></div> <span>");
   stack1 = helpers._triageMustache.call(depth0, "module.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</span> ");

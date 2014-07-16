@@ -82,11 +82,12 @@ $umi-dock-wrapper-height: rem-calc(48);
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            img{
-                vertical-align: middle;
+            .umi-dock-module-icon{
                 min-width: 30px;
                 height: 30px;
                 margin: 9px $dock-img-padding 9px;
+                background-size: 90%;
+                background-position: center center;
             }
             span{
                 position: absolute;
