@@ -209,26 +209,26 @@ define(
                             var context = self.get('context');
                             Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
-                            var params = {type: 'success', 'content': 'Сохранено.'};
+                            var params = {type: 'success', 'content': 'Сохранено.', duration: false};
                             UMI.notification.create(params);
                         });
                     }
                 },
 
                 submitToolbarView: UMI.SubmitToolbarView.extend({
-                    elementView: UMI.ToolbarElementView.extend({
+                    elementView: Ember.View.extend(UMI.ToolbarElement, {
                         buttonView: function(){
-                            var button = UMI.ButtonView.extend();
+                            var params = {};
                             if(this.get('context.behaviour.name') === 'save'){
-                                button.reopen({
+                                params = {
                                     actions: {
                                         save: function(){
                                             this.get('parentView.parentView.parentView').send('submit', this.$());
                                         }
                                     }
-                                });
+                                };
                             }
-                            return button;
+                            return UMI.ButtonView.extend(params);
                         }.property()
                     })
                 })

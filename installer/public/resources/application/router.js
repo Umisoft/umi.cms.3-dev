@@ -974,6 +974,7 @@ define([], function(){
                             }
                         );
                     }
+                    return true;
                 }
             }
         });

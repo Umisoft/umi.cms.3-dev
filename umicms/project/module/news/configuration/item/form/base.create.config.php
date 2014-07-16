@@ -120,6 +120,7 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsItem::FIELD_SUBJECTS,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_SUBJECTS
                     ]
                 ],

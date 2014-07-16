@@ -3,7 +3,7 @@ define(['App'], function(UMI){
 
     return function(){
 
-        UMI.ToolbarElementView = Ember.View.extend({
+        UMI.ToolbarElement = Ember.Mixin.create({
             tagName: 'li',
 
             template: function(){
@@ -13,7 +13,7 @@ define(['App'], function(UMI){
                     return Ember.Handlebars.compile('{{view view.' + type + 'View meta=this}}');
                 } else{
                     try{
-                        throw new Error('View c типом ' + type + ' не зарегестрирован для toolbar контроллера');
+                        throw new Error('View c типом ' + type + ' не зарегестрирован для toolbar');
                     } catch(error){
                         Ember.run.next(function(){
                             self.get('controller').send('backgroundError', error);
@@ -23,22 +23,26 @@ define(['App'], function(UMI){
             }.property(),
 
             buttonView: function(){
-                var behaviour = this.get('context.behaviour.name');
-                if(behaviour){
-                    behaviour = UMI.buttonBehaviour.get(behaviour) || {};
-                } else{
-                    behaviour = {};
+                var behaviourName = this.get('context.behaviour.name');
+                var dirtyBehaviour = Ember.get(UMI.buttonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
                 }
                 var instance = UMI.ButtonView.extend(behaviour);
                 return instance;
             }.property(),
 
             dropdownButtonView: function(){
-                var behaviour = this.get('context.behaviour.name');
-                if(behaviour){
-                    behaviour = UMI.dropdownButtonBehaviour.get(behaviour) || {};
-                } else{
-                    behaviour = {};
+                var behaviourName = this.get('context.behaviour.name');
+                var dirtyBehaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
                 }
                 var instance = UMI.DropdownButtonView.extend(behaviour);
                 return instance;
@@ -46,11 +50,13 @@ define(['App'], function(UMI){
 
             splitButtonView: function(){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
-                var behaviour = this.get('context.behaviour.name');
-                if(behaviour){
-                    behaviour = UMI.splitButtonBehaviour.get(behaviour) || {};
-                } else{
-                    behaviour = {};
+                var behaviourName = this.get('context.behaviour.name');
+                var dirtyBehaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
                 }
                 instance = instance.extend(behaviour);
                 return instance;
@@ -68,7 +74,7 @@ define(['App'], function(UMI){
              */
             classNames: ['s-unselectable', 'umi-toolbar'],
 
-            elementView: UMI.ToolbarElementView
+            elementView: Ember.View.extend(UMI.ToolbarElement)
         });
     };
 });
