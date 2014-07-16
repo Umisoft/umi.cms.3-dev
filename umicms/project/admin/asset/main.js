@@ -1,21 +1,19 @@
 require.config({
-    baseUrl: '/resources',
-
     paths: {
-        text:       'libs/requirejs-text/text',
+        text:       'vendor/requirejs-text/text',
 
         App:        'application/application',
-        jquery:     'libs/jquery/dist/jquery',
-        jqueryUI:   'libs/jquery-ui/jquery-ui.min',
-        Modernizr:  'libs/modernizr/modernizr',
-        Handlebars: 'libs/handlebars/handlebars',
-        Ember:      'libs/ember/ember',
-        DS:         'libs/ember-data/ember-data',
-        iscroll:    'libsStatic/iscroll-probe-5.1.1',
-        ckEditor:   'libs/ckeditor/ckeditor',
-        timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
-        moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libsStatic/elFinder'
+        jquery:     'vendor/jquery/dist/jquery',
+        jqueryUI:   'vendor/jquery-ui/jquery-ui.min',
+        Modernizr:  'vendor/modernizr/modernizr',
+        Handlebars: 'vendor/handlebars/handlebars',
+        Ember:      'vendor/ember/ember',
+        DS:         'vendor/ember-data/ember-data',
+        iscroll:    'vendorExtend/iscroll-probe-5.1.1',
+        ckEditor:   'vendor/ckeditor/ckeditor',
+        timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
+        moment:     'vendor/momentjs/min/moment-with-langs.min',
+        elFinder:   'vendorExtend/elFinder'
     },
 
     shim: {

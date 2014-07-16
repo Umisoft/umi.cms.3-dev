@@ -20,7 +20,7 @@
 
 .umi-blur{
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-    filter: url(svg/elements/blur.svg#blur);
+    filter: url($images-path + svg/elements/blur.svg#blur);
     filter: blur(4px);
 }
 

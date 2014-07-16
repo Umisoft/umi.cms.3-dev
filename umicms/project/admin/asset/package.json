@@ -11,6 +11,7 @@
         "grunt-csso": "latest",
         "grunt-ember-templates": "latest",
         "grunt-contrib-handlebars": "latest",
+        "grunt-svgmin": "latest",
         "grunt-grunticon": "latest",
         "grunt-contrib-yuidoc": "latest",
         "grunt-contrib-requirejs": "latest",

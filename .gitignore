@@ -3,8 +3,9 @@
 /composer.lock
 /project/db.config.php
 /vendor
-/umicms/project/admin/asset/admin/node_modules
-/umicms/project/admin/libs
+/umicms/project/admin/asset/node_modules
+/umicms/project/admin/asset/vendor
+/umicms/project/admin/asset/development
 /Vagrantfile
 /.vagrant
 *.pp
