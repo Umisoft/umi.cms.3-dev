@@ -51,7 +51,7 @@ return [
         'action:links:displayName' => 'Ссылки на сайт',
         'action:tops:displayName' => 'Популярные запросы',
 
-        'Do not set settings' => 'Не заданы необходимые настройки',
+        'Do not set settings' => 'Не заданы необходимые настройки.',
 
         'component:yandex:hostsStatsName' => 'Имя сайта',
         'component:yandex:hostsStatsVerification' => 'Подтверждение сайта',
