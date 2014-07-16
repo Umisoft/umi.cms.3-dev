@@ -21,7 +21,9 @@ define(['App'],
                 }
             });
 
-            UMI.buttonBehaviour = UMI.GlobalBehaviour.extend({}).create({});
+            function ButtonBehaviour(){}
+            ButtonBehaviour.prototype = Object.create(UMI.globalBehaviour);
+            UMI.buttonBehaviour = new ButtonBehaviour();
         };
     }
 );

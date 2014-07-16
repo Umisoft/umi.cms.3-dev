@@ -1,53 +1,52 @@
-<style>
-    .umi-table-ajax{
-        background: #D6E0E9;;
-    }
-
-    .umi-table-ajax tbody td{
-        border-left: 1px solid #E3E4E5;
-    }
-
-    .umi-table-ajax-tr:hover{
-        background: #BFE0F8;
-        cursor: pointer;
-    }
-</style>
-
-<div class="umi-table-ajax-control-content">
-    <div class="umi-table-ajax-control-content-center">
-        <table cellpadding="0" class="umi-table-ajax-content">
-
-            <thead>
-                <tr class="umi-table-ajax-titles">
+{{#if view.error}}
+    <p></p>
+    <h3 class="text-center">{{view.error}}</h3>
+{{else}}
+    {{view view.paginationView}}
+    <div class="umi-table-header-wrap">
+        <table class="umi-table-header">
+            <tbody>
+                <tr class="umi-table-tr">
                     {{#each view.headers}}
-                        <td class="umi-table-ajax-header-column">
-                            <div class="umi-table-ajax-title-div">{{this}}</div>
+                        <td class="umi-table-td" style="width: 200px;">
+                            <div class="umi-table-td-relative-wrap">
+                                <div class="umi-table-cell">{{this}}</div>
+                                <div class="umi-table-header-column-resizer"></div>
+                            </div>
                         </td>
                     {{/each}}
-                    <td class="umi-table-ajax-empty-header-column"></td>
+                    <td class="umi-table-empty-column"></td>
                 </tr>
-            </thead>
+            </tbody>
+        </table>
+    </div>
+    <div class="umi-table-header-shadow"></div>
 
+    <div class="s-scroll-wrap">
+        <table class="umi-table-content">
             <tbody>
-                {{#each element in view.data}}
-                    {{#view view.row object=element}}
-                        {{#each view.cell}}
-                            <td class="umi-table-ajax-cell-td">
-                                <div class="umi-table-ajax-cell-div">{{this}}</div>
+                <tr class="umi-table-content-sizer">
+                    {{#each view.headers}}
+                        <td class="umi-table-td" style="width: 200px;"></td>
+                    {{/each}}
+                </tr>
+                {{#each row in view.visibleRows}}
+                    <tr class="umi-table-content-tr">
+                        {{#each property in row}}
+                            <td class="umi-table-td">
+                                <div class="umi-table-cell">{{property}}</div>
                             </td>
                         {{/each}}
-                        <td class="umi-table-ajax-empty-column"></td>
-                    {{/view}}
+                        <td class="umi-table-empty-column"></td>
+                    </tr>
                 {{else}}
-                    <tr class="umi-metrika-empty-row">
-                        <!-- TODO colspan заменить на переменную с количеством колонок -->
-                        <td class="umi-table-ajax-empty-result" colspan="4">
-                            Нет записей
+                    <tr class="umi-table-content-tr">
+                        <td>
+                            {{i18n "No data" "table"}}
                         </td>
                     </tr>
                 {{/each}}
             </tbody>
-
         </table>
     </div>
-</div>
+{{/if}}
