@@ -3,8 +3,8 @@
 /composer.lock
 /projects/common/configuration/db.config.php
 /vendor
-installer/public/resources/node_modules
-installer/public/resources/libs
+/projects/common/asset/admin/node_modules
+/projects/common/asset/admin/libs
 /Vagrantfile
 /.vagrant
 *.pp

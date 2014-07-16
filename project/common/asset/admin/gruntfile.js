@@ -1,7 +1,7 @@
 module.exports = function(grunt){
     'use strict';
 
-    var baseUrl = '/resources/deploy';
+    var baseUrl = '/project/common/asset/admin/deploy';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),

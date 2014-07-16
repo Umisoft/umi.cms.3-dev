@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UMI.CMS</title>
-        <link rel="stylesheet" type="text/css" href="/resources/deploy/css/styles.css?version=1">
+        <link rel="stylesheet" type="text/css" href="<?= $assetsUrl ?>/deploy/css/styles.css?version=1">
         <script>
             // Ember settings
             ENV = {
@@ -19,7 +19,7 @@
         </script>
     </head>
     <body id="body" class="loading">
-        <script data-main="/resources/deploy/js/app.js?version=1" src="/resources/deploy/libs/require.js?version=1"></script>
+        <script data-main="<?= $assetsUrl ?>/deploy/js/app.js?version=1" src="<?= $assetsUrl ?>/deploy/libs/require.js?version=1"></script>
 
         <noscript>
             <div class="auth-layout">
@@ -28,7 +28,7 @@
                 <div class="row vertical-center">
                     <div class="large-centered columns large-3">
                         <p class="text-center">
-                            <img src="/resources/deploy/img/auth-logo.png?version=1"/>
+                            <img src="<?= $assetsUrl ?>/deploy/img/auth-logo.png?version=1"/>
                         </p>
                         <div>
                             <div class="panel pretty radius shake-it">
