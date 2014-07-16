@@ -13,11 +13,14 @@ namespace umicms\project\module\blog\model\collection;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
-use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
-use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
+use umi\orm\object\IObject;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Коллекция комментариев блога.
@@ -27,9 +30,9 @@ use umicms\project\module\blog\model\object\BlogComment;
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
-class BlogCommentCollection extends CmsHierarchicCollection implements IActiveAccessibleCollection
+class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {
-    use TActiveAccessibleCollection;
+    use TRecyclableCollection;
 
     /**
      * {@inheritdoc}
@@ -37,6 +40,21 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IActiveAc
     public function getAclResourceName()
     {
         return 'collection:blogComment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(IObject $object)
+    {
+        if ($object instanceof BlogComment && $object->publishStatus === BlogComment::COMMENT_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
+            $object->author->decrementCommentCount();
+            if ($object->post instanceof BlogPost) {
+                $object->post->decrementCommentCount();
+            }
+        }
+
+        parent::delete($object);
     }
 }
  

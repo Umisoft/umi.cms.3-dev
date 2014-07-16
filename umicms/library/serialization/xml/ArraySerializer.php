@@ -31,7 +31,7 @@ class ArraySerializer extends BaseSerializer
             if (is_numeric($key)) {
                 $key = $this->listElementName;
             }
-            $this->writeElement($key, [], $value);
+            $this->writeElement($key, [], $value, $options);
         }
     }
 }

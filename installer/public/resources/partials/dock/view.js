@@ -6,8 +6,10 @@ define(['App'], function(UMI){
         var expanded = false;
         var move = {};
         var def = {old: 0, cur: 0, def: 0, coeff: 1 };
+        var intervalLeaveItem;
 
         UMI.DockView = Ember.View.extend({
+            templateName: 'partials/dock',
             classNames: ['umi-dock', 's-unselectable'],
             didInsertElement: function(){
                 var self = this;
@@ -58,33 +60,57 @@ define(['App'], function(UMI){
                         moving(this, event);
                     }
                 });
+
+                $(window).on('resize.umi.dock', function(){
+                    setTimeout(function(){
+                        dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                    }, 0);
+                });
+
+                $(dock).find('.f-dropdown').on('click.umi.dock.component', 'a', function(){
+                    self.set('closeDropdown', true);
+                    $(dock).find('.dropdown').removeClass('open');
+                    self.leaveDock();
+                    setTimeout(function(){
+                        self.set('closeDropdown', false);
+                    }, 300);
+                });
             },
             mouseLeave: function(event){
                 var self = this;
                 var dock = self.$().find('.dock')[0];
                 def.old = false;
-                var leaveDock = function(dock){
-                    expanded = false;
-                    move.oldtime = false;
-                    move.proccess = false;
-                    $(dock).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
-                        duration: 130,
-                        easing: 'linear'
-                    });
-                    $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
-                        $(dock).removeClass('full');
-                    }});
-                };
+
                 if(!event.relatedTarget){
                     $(document.body).bind('mouseover', function(e){
                         if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
-                            leaveDock(dock);
+                            self.leaveDock();
                         }
                         $(this).unbind('mouseover');
                     });
                     return;
                 }
-                leaveDock(dock);
+                this.leaveDock();
+            },
+
+            leaveDock: function(){
+                var self = this;
+                var dock = self.$().find('.dock')[0];
+
+                expanded = false;
+                move.oldtime = false;
+                move.proccess = false;
+                $(dock).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
+                    duration: 130,
+                    easing: 'linear'
+                });
+                $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
+                    $(dock).removeClass('full');
+                }});
+            },
+
+            willDestroyElement: function(){
+                $(window).off('resize.umi.dock');
             }
         });
 
@@ -92,45 +118,47 @@ define(['App'], function(UMI){
         UMI.DockModuleButtonView = Ember.View.extend({
             tagName: 'li',
             classNames: ['umi-dock-button', 'dropdown'],
-            classNameBindings: ['active', 'open'],
+            classNameBindings: ['open'],
             open: false,
-            active: function(){
-                return this.get('model.name') === this.get('controller.activeModule.name');
-            }.property('controller.activeModule'),
             icon: function(){
-                return '/resources/modules/' + this.get('model.name') + '/icon.svg';
-            }.property('model.name'),
+                return '/resources/modules/' + this.get('module.name') + '/icon.svg';
+            }.property('module.name'),
             mouseEnter: function(){
+                var self = this;
                 var dock = this.$().closest('.dock');
                 var $el = this.$();
-                var self = this;
-//                dropDownTimeout = setTimeout(
-//                    function(){
-                        self.set('open', true);
-//                    }, 380
-//                );
 
-                if(!expanded){
-                    expanded = true;
-                    move.proccess = false;
-                    var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
+                var onHover = function(){
+                    self.set('open', true);
+                    if(!expanded){
+                        expanded = true;
+                        move.proccess = false;
+                        var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
 
-                    $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
-                        duration: 280,
-                        step: function(n, o){
-                            if(this.parentNode.parentNode === $el[0]){
-                                dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
+                        $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
+                            duration: 280,
+                            step: function(n, o){
+                                if(this.parentNode.parentNode === $el[0]){
+                                    dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
+                                }
+                            },
+                            complete: function(){
+                                dock.addClass('full');
+                                move.proccess = true;
                             }
-                        },
-                        complete: function(){
-                            dock.addClass('full');
-                            move.proccess = true;
-                        }
-                    });
-                }
+                        });
+                    }
+                };
+
+                !intervalLeaveItem||clearTimeout(intervalLeaveItem);
+                intervalLeaveItem = setTimeout(function() {
+                    onHover();
+                }, 120);
             },
             mouseLeave: function(){
-                var $el = this.$();
+                if(intervalLeaveItem){
+                    clearTimeout(intervalLeaveItem);
+                }
                 if(dropDownTimeout){
                     clearInterval(dropDownTimeout);
                 }

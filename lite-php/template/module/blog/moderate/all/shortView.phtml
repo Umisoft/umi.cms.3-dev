@@ -17,7 +17,7 @@
 
     <?= $blogPost->announcement ?>
 
-    <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
+    <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('ReadMore')?></a>
 
     <div class="btn-toolbar">
         <?=$this->widget('blog.moderate.publishForm', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>

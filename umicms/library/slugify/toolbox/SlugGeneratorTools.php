@@ -34,7 +34,7 @@ class SlugGeneratorTools implements IToolbox
     public $options = [];
 
     /**
-     * @var string $generatorClassName стратегия генерация slug'ов
+     * @var string $generatorClassName имя класса стратегии генератора slug'ов
      */
     public $generatorClassName = 'umicms\slugify\filtration\FiltrationGenerator';
 

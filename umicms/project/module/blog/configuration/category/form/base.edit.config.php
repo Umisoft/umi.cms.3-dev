@@ -40,6 +40,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => BlogCategory::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => BlogCategory::FIELD_PAGE_LAYOUT
                     ],
@@ -92,15 +95,6 @@ return [
                     'label' => BlogCategory::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => BlogCategory::FIELD_PAGE_CONTENTS
-                    ]
-                ],
-
-                BlogCategory::FIELD_POSTS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => BlogCategory::FIELD_POSTS,
-                    'options' => [
-                        'dataSource' => BlogCategory::FIELD_POSTS,
-                        'lazy' => true
                     ]
                 ]
             ]

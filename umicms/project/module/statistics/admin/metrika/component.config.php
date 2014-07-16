@@ -24,7 +24,7 @@ return [
     ],
 
     AdminComponent::OPTION_QUERY_ACTIONS => [
-        'counter', 'counters', 'navigation'
+        'counter' => [], 'counters' => [], 'navigation' => []
     ],
 
     AdminComponent::OPTION_ROUTES => [

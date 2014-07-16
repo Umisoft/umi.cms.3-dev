@@ -2,6 +2,7 @@ define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
         UMI.TreeControlView = Ember.View.extend({
+            templateName: 'partials/treeControl',
             classNames: ['row', 's-full-height'],
 
             expandedBranchesChange: function(){
@@ -205,7 +206,7 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             willDestroyElement: function(){
-                this.get('controller').removeObserver('controllers.component.collectionName');
+                this.get('controller').removeObserver('collectionName');
                 this.get('controller').removeObserver('activeContext');
                 this.get('controller').removeObserver('objects.@each.isDeleted');
                 this.removeObserver('controller.expandedBranches');
@@ -214,39 +215,44 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             treeControlView: null,
-            templateName: 'treeItem',
+            templateName: 'partials/treeControl/treeItem',
             tagName: 'li',
-            classNameBindings: ['controller.model.isDragged:hide', 'controller.model.isDeleted:hide'],
+            classNameBindings: ['item.isDragged:hide', 'item.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
 
+            editLink: function(){
+                var link = this.get('item.meta.editLink');
+                return link;
+            }.property('item'),
+
             dataId: function(){
-                return this.get('controller.model.id');
-            }.property('controller.model'),
+                return this.get('item.id');
+            }.property('item.id'),
 
             inActive: function(){
-                return !this.get('controller.model.active');
-            }.property('controller.model.active'),
+                return this.get('item.active') === false ? true : false;
+            }.property('item.active'),
 
             active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
-                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('controller.model.id');
-            }.property('controller.controllers.treeControl.activeContext.id'),
+                return this.get('controller.activeContext.id') === this.get('item.id');
+            }.property('controller.activeContext.id'),
 
             savedDisplayName: function(){
-                if(this.get('controller.model.id') === 'root'){
-                    return this.get('controller.model.displayName');
+                if(this.get('item.id') === 'root'){
+                    return this.get('item.displayName');
                 } else{
-                    return this.get('controller.model._data.displayName');
+                    return this.get('item._data.displayName');
                 }
-            }.property('controller.model.currentState.loaded.saved'),//TODO: Отказаться от использования _data
+            }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
 
             expandActiveContext: function(){
                 Ember.run.once(this, function(){
-                    var expandedBranches = this.get('controller.controllers.treeControl.expandedBranches') || [];
+                    var expandedBranches = this.get('controller.expandedBranches') || [];
                     if(expandedBranches){
-                        if(this.get('controller.model.id') === 'root'){
+                        if(this.get('item.id') === 'root'){
                             return this.set('isExpanded', true);
                         }
-                        var contains = expandedBranches.contains(parseFloat(this.get('controller.model.id')));
+                        var contains = expandedBranches.contains(parseFloat(this.get('item.id')));
                         if(contains){
                             return this.set('isExpanded', true);
                         }
@@ -256,9 +262,9 @@ define(['App', 'toolbar'], function(UMI){
 
             actions: {
                 expanded: function(){
-                    var id = this.get('controller.model.id');
+                    var id = this.get('item.id');
                     id = id === 'root' ? id : parseFloat(id);
-                    var treeControl = this.get('controller.controllers.treeControl');
+                    var treeControl = this.get('controller');
                     var expandedBranches = treeControl.get('expandedBranches');
                     this.set('isExpanded', !this.get('isExpanded'));
                     if(this.get('isExpanded')){
@@ -270,43 +276,91 @@ define(['App', 'toolbar'], function(UMI){
                 }
             },
 
+
+            getChildren: function(){
+                var model = this.get('item');
+                var collectionName = model.get('typeKey') || model.constructor.typeKey;
+                var promise;
+                var self = this;
+                if(model.get('id') === 'root'){
+                    promise = model.get('children');
+                } else{
+                    var objectProperties = self.get('controller').get('objectProperties').join(',');
+                    var requestParams = {'filters[parent]': model.get('id'), 'fields': objectProperties};
+                    if(self.get('controller').get('filterTrashed')){
+                        requestParams['filters[trashed]'] = 'equals(0)';
+                    }
+                    promise = this.get('controller').store.updateCollection(collectionName, requestParams);
+                }
+                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                    content: promise,
+                    sortProperties: ['order', 'id'],
+                    sortAscending: true
+                });
+            },
+
+            sortedChildren: function(){
+                return this.getChildren();
+            }.property('item.didUpdate'),
+
+            init: function(){
+                this._super();
+                var model = this.get('item');
+                if('needReloadHasMany' in this.get('item')){
+                    this.get('item').on('needReloadHasMany', function(){
+                        model.get('children').then(function(children){
+                            children.reloadLinks();
+                        });
+                    });
+                }
+            },
+
             didInsertElement: function(){
-                this.expandActiveContext();
+                Ember.run.once(this, 'expandActiveContext');
             }
         });
+
+        UMI.TreeControlContextToolbarController = Ember.ObjectController.extend({});
 
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
-            elementView: UMI.ToolbarElementView.extend({
+            elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
-                    var behaviour;
+                    var behaviour = {};
+                    var splitButtonBehaviour;
                     var i;
                     var action;
                     if(behaviourName){
-                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
-                    } else{
-                        behaviour = {};
+                        splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                        for(var key in splitButtonBehaviour){
+                            if(splitButtonBehaviour.hasOwnProperty(key)){
+                                behaviour[key] = splitButtonBehaviour[key];
+                            }
+                        }
                     }
                     var choices = this.get('context.behaviour.choices');
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
-                            var prefix = '';
-                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
+                            if(behaviourAction){
+                                action = behaviourAction.actions[choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
                             }
                         }
                     }
+                    behaviour.actions.sendActionForBehaviour = function(contextBehaviour){
+                        var object = this.get('controller.model');
+                        this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
+                    };
+                    behaviour.classNames = ['tiny white square'];
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

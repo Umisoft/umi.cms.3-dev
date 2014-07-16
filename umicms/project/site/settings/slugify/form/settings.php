@@ -8,15 +8,17 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
+use umi\filter\IFilterFactory;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
+use umicms\validation\Range;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.site.slugify'
+            'project.admin.rest.settings.site.slugify'
         ]
     ],
 
@@ -25,17 +27,13 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'slugify',
             'elements' => [
-                'slugGeneratorActive' => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => 'slugGeneratorActive',
-                    'options' => [
-                        'dataSource' => 'slugGeneratorActive'
-                    ]
-                ],
                 'slugGeneratorType' => [
                     'type' => Select::TYPE_NAME,
                     'label' => 'slugGeneratorType',
                     'options' => [
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
                         'dataSource' => 'generatorClassName',
                         'choices' => [
                             'umicms\slugify\filtration\FiltrationGenerator' => 'Фильтрация',
@@ -47,6 +45,15 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => 'slugLength',
                     'options' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_INT => []
+                        ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 1,
+                                'max' => 60
+                            ]
+                        ],
                         'dataSource' => 'slugLength'
                     ]
 

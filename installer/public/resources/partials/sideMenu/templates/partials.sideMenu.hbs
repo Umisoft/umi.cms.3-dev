@@ -1,0 +1,5 @@
+<ul class="side-nav">
+    {{#each object in objects}}
+        {{#link-to 'context' object.id tagName="li"}}<a href="javascript:void(0)">{{object.displayName}}</a>{{/link-to}}
+    {{/each}}
+</ul>

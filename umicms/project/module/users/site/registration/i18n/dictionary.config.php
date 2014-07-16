@@ -20,6 +20,9 @@ return [
         'You have successfully registered and logged in' => 'You have successfully registered and logged in',
         'You have successfully registered on the website {site}' => 'You have successfully registered on the website {site}',
         'New user {user} has registered registered on the website {site}' => 'New user {user} has registered registered on the website {site}',
+
+        'role:viewer:displayName' => 'Register',
+        'role:activationExecutor:displayName' => 'User activation'
     ],
 
     'ru-RU' => [
@@ -33,6 +36,9 @@ return [
         'You have successfully registered and logged in' => 'Вы были успешно зарегистрировались и были авторизованы',
         'You have successfully registered on the website {site}' => 'Вы успешно зарегистрировались на сайте {site}',
         'New user {user} has registered registered on the website {site}' => 'Новый пользователь {user} зарегистрировался на сайте {site}',
+
+        'role:viewer:displayName' => 'Регистрация пользователя',
+        'role:activationExecutor:displayName' => 'Активация пользователя'
     ]
 
 ];

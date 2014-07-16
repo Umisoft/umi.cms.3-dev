@@ -38,27 +38,23 @@ return [
     ],
 
     RestApplication::OPTION_MODIFY_ACTIONS => [
-        'login', 'logout'
+        'login' => [], 'logout' => []
     ],
 
     RestApplication::OPTION_QUERY_ACTIONS => [
-        'form', 'auth'
+        'form' => [], 'auth' => []
     ],
 
     RestApplication::OPTION_COMPONENTS => [
 
-        'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}',
-        'service' => '{#lazy:~/project/module/service/admin/module.config.php}',
-        'files' => '{#lazy:~/project/module/files/admin/module.config.php}',
-        'models' => '{#lazy:~/project/module/models/admin/module.config.php}',
-        'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
-        'seo' => '{#lazy:~/project/module/seo/admin/module.config.php}',
-        'search' => '{#lazy:~/project/module/search/admin/module.config.php}',
-        'statistics' => '{#lazy:~/project/module/statistics/admin/module.config.php}',
         'structure' => '{#lazy:~/project/module/structure/admin/module.config.php}',
         'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
-        'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}',
-        'testmodule' => '{#lazy:~/project/module/testmodule/admin/module.config.php}'
+        'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
+        'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}',
+        'seo' => '{#lazy:~/project/module/seo/admin/module.config.php}',
+        'files' => '{#lazy:~/project/module/files/admin/module.config.php}',
+        'service' => '{#lazy:~/project/module/service/admin/module.config.php}',
+        'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}'
     ],
 
     RestApplication::OPTION_ACL => [

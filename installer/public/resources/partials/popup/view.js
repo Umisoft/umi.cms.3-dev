@@ -13,7 +13,7 @@ define(['App'], function(UMI){
                     'width': 400,
                     'height': 300,
                     'contentOverflow': ['overflow', 'scroll']
-                })
+                });
             },
 
             didInsertElement: function(){
@@ -37,10 +37,10 @@ define(['App'], function(UMI){
             height: 400,
             contentOverflow: ['overflow', 'hidden'],
             blur: false,
-            fade: false,
+            fade: true,
             drag: true,
             resize: true,
-            layoutName: 'popup',
+            layoutName: 'partials/popup',
 
             checkContentParams: function(){
                 this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);
@@ -83,7 +83,12 @@ define(['App'], function(UMI){
             },
 
             fadeIn: function(){
+                var self = this;
                 $('body').append('<div class="umi-popup-visible-overlay"></div>');
+                $('body').on('click.umi.popup', '.umi-popup-visible-overlay', function(){
+                    self.send('closePopup');
+                    $('body').off('click.umi.popup');
+                });
             },
 
             addBlur: function(){

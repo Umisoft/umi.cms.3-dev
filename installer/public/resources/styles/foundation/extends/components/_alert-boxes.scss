@@ -1,0 +1,38 @@
+$umi-alert-wrapper-index: 1000;
+
+.alert-box{
+    opacity: .9;
+    .subheader{
+        margin-top: 0;
+        color: #fff;
+    }
+    &.secondary{
+        .subheader{
+            color: $body-font-color;
+        }
+        .close{
+            color: #fff;
+        }
+    }
+    &.error{
+        @include alert-style($alert-color);
+    }
+}
+
+.umi-alert-wrapper{
+    position: absolute;
+    z-index: $umi-alert-wrapper-index;
+    right: rem-calc(10);
+    top: rem-calc(35);
+    width: 340px;
+    .alert-box{
+        margin-bottom: .6rem;
+        &-close-all{
+            padding-top: rem-calc(5);
+            padding-bottom: rem-calc(5);
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #D6D6D6;
+        }
+    }
+}

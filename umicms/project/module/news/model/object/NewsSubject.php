@@ -26,11 +26,7 @@ class NewsSubject extends CmsObject implements ICmsPage
     use TCmsPage;
 
     /**
-     *  Имя поля для хранения новостей
+     *  Имя поля для доступа к новостям, которые входят в сюжет
      */
     const FIELD_NEWS = 'news';
-    /**
-     * Имя поля для хранения RSS-ленты
-     */
-    const FIELD_RSS = 'rss';
 }

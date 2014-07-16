@@ -1,6 +1,7 @@
 define([], function(){
     'use strict';
 
+
     return function(UMI){
 
         /**
@@ -14,6 +15,14 @@ define([], function(){
 
             htmlSafe: function(value){
                 return Ember.String.htmlSafe(value);
+            },
+
+            stripTags: function(value){//TODO: add filter
+                return value;
+            },
+
+            slug: function(value){//TODO: add filter
+                return value;
             }
         };
 
@@ -196,7 +205,7 @@ define([], function(){
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;
                     }
-                    if(collection.fields[i]['default']){
+                    if(Ember.typeOf(collection.fields[i]['default']) !== 'undefined'){
                         params.defaultValue = collection.fields[i]['default'];
                     }
 
@@ -257,6 +266,8 @@ define([], function(){
                         fields[collection.fields[i].name] = fieldValue;
                     }
                 }
+
+                fields.meta = DS.attr('raw');
 
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
 

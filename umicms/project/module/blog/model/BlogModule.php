@@ -35,7 +35,7 @@ use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -290,7 +290,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
-        $comment->author = $this->getCurrentAuthor();
+        $comment->post = $post;
+        $comment->slug = $comment->getGUID();
+
+        if ($this->hasCurrentAuthor()) {
+            $comment->author = $this->getCurrentAuthor();
+        }
 
         return $comment;
     }
@@ -318,9 +323,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
-                BlogComment::COMMENT_STATUS_PUBLISHED
-            );
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
+                BlogComment::COMMENT_STATUS_PUBLISHED,
+                BlogComment::COMMENT_STATUS_UNPUBLISHED
+            ]);
 
         return $comments;
     }
@@ -338,7 +344,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
                 BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE
+                BlogComment::COMMENT_STATUS_NEED_MODERATE,
+                BlogComment::COMMENT_STATUS_UNPUBLISHED
             ]);
 
         return $comments;
@@ -386,11 +393,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
-        foreach ($rssFeed->getRssItems() as $item) {
+        $items = $rssFeed->getRssItems();
+
+        foreach ($items as $item) {
             $this->importRssPost($item, $blogRssImportScenario);
         }
 
-        return $this;
+        return count($items);
     }
 
     /**
@@ -403,6 +412,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     {
         $tagsCloud = [];
 
+        /** @var BlogTag[] $tags */
         $tags = $this->getTags()->getResult()->fetchAll();
         shuffle($tags);
 
@@ -471,10 +481,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Создаёт автора на основе юзера.
-     * @param AuthorizedUser $user
+     * @param BaseUser $user
      * @return BlogAuthor
      */
-    public function createAuthor(AuthorizedUser $user)
+    public function createAuthor(BaseUser $user)
     {
         if ($this->hasCurrentAuthor()) {
             return $this->getCurrentAuthor();
@@ -547,14 +557,16 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $blogPost->announcement = $item->getContent();
             }
             if ($item->getDate()) {
+                $blogPost->publishTime = new \DateTime();
                 $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());
-                $blogPost->publishTime->setTimezone($item->getDate()->getTimezone());
             }
             if ($item->getUrl()) {
                 $blogPost->source = $item->getUrl();
             }
             $blogPost->slug = $blogPost->guid;
             $blogPost->category = $blogRssImportScenario->category;
+            $blogPost->author = $blogRssImportScenario->author;
+            $blogPost->publishStatus = $blogRssImportScenario->publishStatus;
 
             foreach ($blogRssImportScenario->tags as $subject) {
                 $blogPost->tags->attach($subject);
@@ -663,6 +675,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
         $comment->displayName = $post->displayName;
         $comment->post = $post;
+        $comment->slug = $comment->getGUID();
 
         return $comment;
     }

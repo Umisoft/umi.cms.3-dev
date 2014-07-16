@@ -12,7 +12,7 @@ namespace umicms\project\module\users\site\registration;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
@@ -50,7 +50,7 @@ return [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{type:string}',
             'defaults' => [
-                'type' => AuthorizedUser::TYPE_NAME
+                'type' => RegisteredUser::TYPE_NAME
             ]
         ]
     ]
