@@ -33,6 +33,5 @@ $application->add(new CreateDumpCommand());
 $application->add(new LoadDumpCommand());
 $application->add(new SyncSchemeCommand());
 $application->add(new InstallProjectCommand());
-$application->add(new BuildAdminFrontentCommand());
 
 $application->run();

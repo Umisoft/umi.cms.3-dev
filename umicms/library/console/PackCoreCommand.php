@@ -143,7 +143,7 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->ignoreVCS(true)
-            ->in(CMS_ADMIN_FRONTEND . '/deploy');
+            ->in(CMS_ADMIN_FRONTEND . '/production');
 
         $progress = $this->startProgressBar($output, $finder->count());
 
