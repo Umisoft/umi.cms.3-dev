@@ -1,12 +1,15 @@
 module.exports = function(grunt){
     'use strict';
+
+    var baseUrl = '/resources/deploy';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {
             scss: {
-                files: ['styles/**/*.scss'],//, 'partials/fileManager/elFinder/**/*.*'
-                tasks: ['sass', 'concat:css', 'autoprefixer', 'copy:styles']
+                files: ['styles/**/*.scss'],
+                tasks: ['sass', 'autoprefixer']
             },
 
             js: {
@@ -27,7 +30,7 @@ module.exports = function(grunt){
                 },
 
                 files: {
-                    'build/css/app.css': 'styles/main.scss'
+                    'build/css/styles.css': 'styles/main.scss'
                 }
             }
         },
@@ -61,6 +64,53 @@ module.exports = function(grunt){
                 },
                 files: {
                     "auth/templates.compile.js": "auth/**/*.hbs"
+                }
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: './',
+                    stubModules: ['text'],
+                    mainConfigFile: "main.js",
+                    name: 'main',
+                    out: 'build/js/app.js',
+                    inlineText: true,
+                    optimize: 'none',
+                    exclude: [
+                        'Modernizr',
+                        'jquery',
+                        'jqueryUI',
+                        'Handlebars',
+                        'Ember',
+                        'DS',
+                        'iscroll',
+                        'ckEditor',
+                        'timepicker',
+                        'moment',
+                        'elFinder'
+                    ],
+
+                    findNestedDependencies: true
+                }
+            }
+        },
+
+        autoprefixer: {
+            options: {
+                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
+            },
+
+            dist: {
+                src: 'build/css/styles.css'
+            }
+        },
+
+        csso: {
+            compress: {
+                files: {
+                    'deploy/css/styles.css': ['build/css/styles.css']
                 }
             }
         },
@@ -108,7 +158,7 @@ module.exports = function(grunt){
                 expand: true,
                 cwd: 'build/img',
                 src: ['**'],
-                dest: 'deploy/img/'
+                dest: 'deploy/img'
             },
 
             svg: {
@@ -122,7 +172,56 @@ module.exports = function(grunt){
                 expand: true,
                 cwd: 'build/css',
                 src: ['styles.css'],
-                dest: 'deploy/'
+                dest: 'deploy/css'
+            },
+
+            js: {
+                expand: true,
+                cwd: 'build/js',
+                src: ['app.js'],
+                dest: 'deploy/js',
+                options: {
+                    process: function (content, srcpath){
+                        var modifyContent = content;
+                        modifyContent = modifyContent.replace(/'\/resources',/g, "'" + baseUrl + "',");
+
+                        modifyContent = modifyContent.replace(/libs\/requirejs-text\/text/g, "libs/text");
+                        modifyContent = modifyContent.replace(/libs\/jquery\/dist\/jquery/g, "libs/jquery.min");
+                        modifyContent = modifyContent.replace(/libs\/jquery-ui\/jquery-ui\.min/g, "libs/jquery-ui.min");
+                        modifyContent = modifyContent.replace(/libs\/modernizr\/modernizr/g, "libs/modernizr");
+                        modifyContent = modifyContent.replace(/libs\/handlebars\/handlebars/g, "libs/handlebars.min");
+                        modifyContent = modifyContent.replace(/libs\/ember\/ember/g, "libs/ember.min");
+                        modifyContent = modifyContent.replace(/libs\/ember-data\/ember-data/g, "libs/ember-data.min");
+                        modifyContent = modifyContent.replace(/libs\/ckeditor\/ckeditor/g, "libs/ckeditor");
+                        modifyContent = modifyContent.replace(/libs\/jqueryui-timepicker-addon\/src\/jquery-ui-timepicker-addon/g, "libs/jquery-ui-timepicker-addon");
+                        modifyContent = modifyContent.replace(/libs\/momentjs\/min\/moment-with-langs\.min/g, "libs/moment-with-langs.min");
+                        modifyContent = modifyContent.replace(/libsStatic\/iscroll-probe-5\.1\.1/g, "libs/iscroll-probe-5.1.1");
+                        modifyContent = modifyContent.replace(/libsStatic\/elFinder/g, "libs/elFinder");
+                        return modifyContent;
+                    }
+                }
+            },
+
+            vendors: {
+                expand: true,
+                flatten: true,
+                cwd: './',
+                src: [
+                    'libs/requirejs/require.js',
+                    'libs/requirejs-text/text.js',
+                    'libs/jquery/dist/jquery.min.js',
+                    'libs/jquery-ui/jquery-ui.min.js',
+                    'libs/modernizr/modernizr.js',
+                    'libs/handlebars/handlebars.min.js',
+                    'libs/ember/ember.min.js',
+                    'libs/ember-data/ember-data.min.js',
+                    'libs/ckeditor/ckeditor.js',
+                    'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
+                    'libs/momentjs/min/moment-with-langs.min.js',
+                    'libsStatic/iscroll-probe-5.1.1.js',
+                    'libsStatic/elFinder.js'
+                ],
+                dest: 'deploy/libs'
             }
         },
 
@@ -166,61 +265,19 @@ module.exports = function(grunt){
                     'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
                 dest: 'libsStatic/elFinder.js'
-            },
-
-            css: {
-                src: [
-                    'build/css/app.css',
-                    'build/css/icons.data.svg.css',
-                    'build/css/icons.dock.svg.css'
-                ],
-                dest: 'build/css/styles.css'
             }
         },
 
-        autoprefixer: {
-            options: {
-                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
-            },
-
-            dist: {
-                src: 'build/css/styles.css'
-            }
-        },
-
-        csso: {
-            compress: {
+        uglify: {
+            app: {
                 files: {
-                    'deploy/styles.css': ['build/css/styles.css']
-                }
-            }
-        },
-
-        requirejs: {
-            compile: {
-                options: {
-                    baseUrl: './', //Устанавливаем пути относительно папки resources
-                    stubModules: ['text'], //Говорит сборщику, что мы используем модуль requirejs!text
-                    mainConfigFile: "main.js", //Основной конфиг (тот же что указан в layout.phtml)
-                    name: 'main',
-                    out: 'build/js/app.js',
-                    inlineText: true,
-                    optimize: 'none',
-                    exclude: [
-                        'Modernizr',
-                        'jquery',
-                        'jqueryUI',
-                        'Handlebars',
-                        'Ember',
-                        'DS',
-                        'iscroll',
-                        'ckEditor',
-                        'timepicker',
-                        'moment',
-                        'elFinder'
-                    ],
-
-                    findNestedDependencies: true
+                    'deploy/js/app.js': ['deploy/js/app.js'],
+                    'deploy/libs/elFinder.js': ['deploy/libs/elFinder.js'],
+                    'deploy/libs/iscroll-probe-5.1.1.js': ['deploy/libs/iscroll-probe-5.1.1.js'],
+                    'deploy/libs/jquery-ui-timepicker-addon.js': ['deploy/libs/jquery-ui-timepicker-addon.js'],
+                    'deploy/libs/modernizr.js': ['deploy/libs/modernizr.js'],
+                    'deploy/libs/require.js': ['deploy/libs/require.js'],
+                    'deploy/libs/text.js': ['deploy/libs/text.js']
                 }
             }
         },
@@ -236,16 +293,6 @@ module.exports = function(grunt){
                     outdir: 'docs/frontend'
                 }
             }
-        },
-
-        /*
-        * Задача для первоначальной развёртки
-        *
-        * Устновка зависимостей bower
-        * Вся сборка до рабочего состояния
-        */
-        install: {
-
         }
     });
 
@@ -261,10 +308,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-ember-templates');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('deploy', ['clean', 'copy:png', 'copy:svg', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
+    grunt.registerTask('deploy', ['clean', 'sass', 'autoprefixer', 'csso', 'copy:png', 'copy:js', 'copy:vendors', 'uglify']);
     grunt.registerTask('require', ['requirejs']);
     grunt.registerTask('docs', ['yuidoc']);
     grunt.registerTask('install', ['install']);

@@ -1,4 +1,5 @@
 //TODO Вынести цвета в переменные
+@import "../../settings";
 
 $umi-dock-z-index: 1;
 $dock-img-padding: 11px;
@@ -198,12 +199,12 @@ $umi-dock-wrapper-height: rem-calc(48);
                     height: 100%;
                     top: 0;
                     left: -1px;
-                    background: url(img/shadows/toRightShadow.png);
+                    background: url($image-to-right-shadow);
                 }
                 &:after{
                     left: auto;
                     right: -3px;
-                    background: url(img/shadows/toLeftShadow.png);
+                    background: url($image-to-left-shadow);
                 }
             }
         }

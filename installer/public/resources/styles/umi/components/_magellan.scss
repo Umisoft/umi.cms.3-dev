@@ -1,7 +1,8 @@
+@import "../../settings";
+
 .magellan-menu{
     z-index: 10;
     background: #FFFFFF;
-    //    border-bottom: 1px solid #BFC4C8;
     box-sizing: border-box;
     height: 32px;
     &::after{
@@ -13,7 +14,7 @@
         width: unquote("calc(100% + 1px)");
         left: 0;
         bottom: -3px;
-        background: url(img/shadows/toBottomShadow.png);
+        background: url($image-to-bottom-shadow);
     }
     a{
         position: relative;
@@ -52,9 +53,6 @@
             &:before{
                 border-top-color: #BFC4C8;
             }
-            //            &:after{
-            //                border-top-color: #F7F7F7;
-            //            }
         }
     }
 }

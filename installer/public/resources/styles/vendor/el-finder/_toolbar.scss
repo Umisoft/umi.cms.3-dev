@@ -23,7 +23,7 @@
     width: 100%;
     bottom: -3px;
     left: 0;
-    background: url(img/shadows/toBottomShadow.png);
+    background: url(#{$images-path}shadows/toBottomShadow.png);
 }
 
 /* container for button's group */
@@ -101,7 +101,7 @@ div.elfinder-buttonset {
     width:16px;
     height:16px;
     display:block;
-    background:url('img/elfinder/img/toolbar.png') no-repeat;
+    background:url(#{$images-path}elfinder/img/toolbar.png) no-repeat;
 }
 
 /* buttons icons */

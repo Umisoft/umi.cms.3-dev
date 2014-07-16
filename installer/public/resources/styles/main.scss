@@ -4,6 +4,8 @@ UMI.CMS styles
 
 // Функции Foundation подключаются снала, так как необходим rem-calc()
 @import "foundation/functions";
+// Глобавльные переменные
+@import "settings";
 // Конфигурация Foundation
 @import "foundation/settings/main";
 // Компоненты Foundation

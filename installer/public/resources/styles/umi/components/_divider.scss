@@ -1,3 +1,5 @@
+@import "../../settings";
+
 .umi-divider-left{
     float: left;
     position: relative;
@@ -32,7 +34,7 @@
             width: 3px;
             right: -3px;
             bottom: 0;
-            background: url(img/shadows/toRightShadow.png);
+            background: url($image-to-right-shadow);
         }
         .umi-divider-left-content{
             margin-right: 0;

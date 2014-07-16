@@ -1,3 +1,5 @@
+@import "../../settings";
+
 $table-control-left-column-width: 32px;
 $table-control-row-height: 32px;
 $table-control-cell-border-color: #E3E4E5;
@@ -262,7 +264,7 @@ $table-control-row-bg-hover: #C8DEEE;
         width: 100%;
         left: 0;
         top: -1px;
-        background: url(img/shadows/toBottomShadow.png);
+        background: url($image-to-bottom-shadow);
         z-index: 3;
     }
     .umi-table-control-empty-column{
@@ -426,7 +428,7 @@ $table-control-row-bg-hover: #C8DEEE;
         height: 3px;
         width: 100%;
         top: -3px;
-        background: url(img/shadows/toTopShadow.png);
+        background: url($image-to-top-shadow);
     }
 }
 
