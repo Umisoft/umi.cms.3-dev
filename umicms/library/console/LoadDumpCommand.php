@@ -12,7 +12,7 @@ namespace umicms\console;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Output\OutputInterface    ;
 use Symfony\Component\Finder\Finder;
 use umi\orm\persister\IObjectPersister;
 use umicms\orm\dump\ICmsObjectImporter;
