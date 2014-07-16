@@ -113,6 +113,9 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->ignoreVCS(true)
+            ->notName('db.config.php')
+            ->notName('project.config.php')
+            ->notName('tools.settings.config.php')
             ->in($projectDirectory);
 
         $progress = $this->startProgressBar($output, $finder->count());
