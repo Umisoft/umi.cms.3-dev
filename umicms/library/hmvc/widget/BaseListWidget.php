@@ -81,7 +81,7 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      * Для шаблонизации доступны следущие параметры:
      * <ul>
      * <li> array|ISelector $list список объектов </li>
-     * <li> array $pagination информация о постраничной навигации</li>
+     * <li> CmsPaginator $paginator постраничная навигация, если была сформирована</li>
      * </ul>
      *
      * @return CmsView
