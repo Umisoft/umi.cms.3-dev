@@ -4129,6 +4129,7 @@ define('application/router',[], function(){
                             }
                         );
                     }
+                    return true;
                 }
             }
         });
@@ -4782,7 +4783,13 @@ define('toolbar/view',['App'], function(UMI){
 
             dropdownButtonView: function(){
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 var instance = UMI.DropdownButtonView.extend(behaviour);
                 return instance;
             }.property(),
@@ -4790,7 +4797,13 @@ define('toolbar/view',['App'], function(UMI){
             splitButtonView: function(){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 instance = instance.extend(behaviour);
                 return instance;
             }.property()
@@ -4863,9 +4876,9 @@ define(
                     }
                 },
 
-                'create': {
+                "create": {
                     actions: {
-                        'create': function(params){
+                        "create": function(params){
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});
@@ -9169,14 +9182,23 @@ define('notification/main',['App'], function(UMI){
             'duration': 3000
         },
         create: function(params){
-            var settings = this.get('settings');
+            var defaultSettings = this.get('settings');
+            var settings = {};
+            var param;
+            for(param in defaultSettings){
+                if(defaultSettings.hasOwnProperty(param)){
+                    settings[param] = defaultSettings[param];
+                }
+            }
+
             if(params){
-                for(var param in params){
+                for(param in params){
                     if(params.hasOwnProperty(param)){
                         settings[param] = params[param];
                     }
                 }
             }
+
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
             Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});

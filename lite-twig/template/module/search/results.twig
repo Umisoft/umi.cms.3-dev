@@ -8,7 +8,7 @@
         </div>
     {% endfor %}
 
-    {{ include('pagination.twig', {'pagination' : pagination}) }}
+    {{ include('pagination.twig', {'paginator' : paginator}) }}
 {% else %}
     <p>{{ translate('No results') }}</p>
 {% endif %}

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var umicms\orm\selector\CmsSelector $list
- * @var array $pagination
+ * @var umicms\pagination\CmsPaginator $paginator
  * @var umicms\project\module\news\model\object\NewsItem $newsItem
  */
 ?>
@@ -10,5 +10,5 @@
         <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
     <?php endforeach; ?>
 
-    <?= $this->render('pagination.phtml', ['pagination' => $pagination]); ?>
+    <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
 <?php endif; ?>

@@ -37,7 +37,13 @@ define(['App'], function(UMI){
 
             dropdownButtonView: function(){
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 var instance = UMI.DropdownButtonView.extend(behaviour);
                 return instance;
             }.property(),
@@ -45,7 +51,13 @@ define(['App'], function(UMI){
             splitButtonView: function(){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
                 var behaviourName = this.get('context.behaviour.name');
-                var behaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var behaviour = {};
+                for(var key in dirtyBehaviour){
+                    if(dirtyBehaviour.hasOwnProperty(key)){
+                        behaviour[key] = dirtyBehaviour[key];
+                    }
+                }
                 instance = instance.extend(behaviour);
                 return instance;
             }.property()
