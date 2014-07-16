@@ -33,6 +33,5 @@ return [
             ]
         ]
     ],
-    'defaultLocale' => 'ru-RU',
-    'dumpDestination' => '~/common/dump/demo'
+    'defaultLocale' => 'ru-RU'
 ];

@@ -302,8 +302,8 @@ class Bootstrap
             $destinationDir[1]
         );
 
-        if (!isset($projectConfig['dump'])) {
-            $projectConfig['dump'] = '~/project/dump';
+        if (!isset($projectConfig['dumpDestination'])) {
+            $projectConfig['dumpDestination'] = '~/project/dump';
         }
 
         $dumpDir = $configIO->getFilesByAlias($projectConfig['dumpDestination']);
