@@ -60,7 +60,7 @@ class BlogComment extends BlogBaseComment
      */
     const COMMENT_STATUS_PUBLISHED = 'published';
     /**
-     * Статус комментария: отклонён
+     * Статус комментария: отклонен
      */
     const COMMENT_STATUS_REJECTED = 'rejected';
     /**
@@ -125,7 +125,7 @@ class BlogComment extends BlogBaseComment
     }
 
     /**
-     * Выставляет статус комментария: отклонён.
+     * Выставляет статус комментария: отклонен.
      * @return $this
      */
     public function reject()

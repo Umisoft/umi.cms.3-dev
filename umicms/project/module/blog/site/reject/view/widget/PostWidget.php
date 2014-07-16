@@ -17,7 +17,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет вывода отклонённого поста.
+ * Виджет вывода отклоненного поста.
  */
 class PostWidget extends BaseCmsWidget
 {
@@ -26,7 +26,7 @@ class PostWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $blogPost пост или GUID отклонённого поста
+     * @var string|BlogPost $blogPost пост или GUID отклоненного поста
      */
     public $blogPost;
 

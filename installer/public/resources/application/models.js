@@ -235,7 +235,7 @@ define([], function(){
                             break;
                         case 'belongsToRelation':
                             params.async = true;
-                            //TODO: инверсия избыточна, но DS почему то без неё не может
+                            //TODO: инверсия избыточна, но DS почему то без нее не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';
                             }

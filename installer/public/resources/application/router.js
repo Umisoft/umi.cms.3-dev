@@ -458,7 +458,7 @@ define([], function(){
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
+                        'content': '<div>Объект будет удален без возможности востановления, все равно продолжить?</div>',
                         'confirm': 'Удалить',
                         'reject': 'Отмена'
                     };
@@ -532,7 +532,7 @@ define([], function(){
             },
 
             /**
-             Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
+             Метод парсит ошибку и возвпращает ее в виде объекта (ошибки с Back-end)
              @method parseError
              @return Object|null|String {status: status, title: title, content: content, stack: stack}
              */

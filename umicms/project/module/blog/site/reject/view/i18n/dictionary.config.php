@@ -15,7 +15,7 @@ return [
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр отклонённого поста'
+        'role:viewer:displayName' => 'Просмотр отклоненного поста'
     ]
 
 ];

@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
- * Контроллер отправки отклонённого поста на модерацию.
+ * Контроллер отправки отклоненного поста на модерацию.
  */
 class RejectController extends BaseCmsController
 {

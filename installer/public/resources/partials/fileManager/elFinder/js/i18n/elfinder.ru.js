@@ -249,7 +249,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'maintainer'      : 'сопровождение проекта',
 			'translator'      : 'переводчик',
 			'icons'           : 'Иконки',
-			'dontforget'      : 'и не забудьте взять своё полотенце',
+			'dontforget'      : 'и не забудьте взять свое полотенце',
 			'shortcutsof'     : 'Горячие клавиши отключены',
 			'dropFiles'       : 'Бросить файлы',
 			'or'              : 'или',
