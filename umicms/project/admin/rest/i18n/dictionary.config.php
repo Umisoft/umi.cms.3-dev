@@ -54,7 +54,8 @@ return [
         'role:statisticsExecutor:displayName' => 'Statistics',
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
-        'role:settingsExecutor:displayName' => 'Settings'
+        'role:settingsExecutor:displayName' => 'Settings',
+        'role:surveysExecutor:displayName' => 'Surveys',
     ],
 
     'ru-RU' => [
@@ -102,7 +103,8 @@ return [
         'role:statisticsExecutor:displayName' => 'Статистика',
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
-        'role:settingsExecutor:displayName' => 'Настройки'
+        'role:settingsExecutor:displayName' => 'Настройки',
+        'role:surveysExecutor:displayName' => 'Опросы',
     ]
 
 ];
