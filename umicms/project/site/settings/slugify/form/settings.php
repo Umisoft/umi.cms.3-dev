@@ -49,7 +49,7 @@ return [
                         'max' => 60
                     ]
                 ],
-                'dataSource' => 'slugLength'
+                'dataSource' => 'options.slugLength'
             ]
 
         ]
