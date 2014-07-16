@@ -364,7 +364,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
   data.buffer.push("<style> .umi-counter{ height: 100%; } .umi-counter-header, .umi-counter-period, .umi-counter-content{ float: left; padding: 20px 30px 0; width: calc(100% - 200px); box-sizing: border-box; } .umi-counter-date{ float: left; margin-right: 30px; } .umi-counter-info{ float: left; width: calc(100% - 200px); height: 100%; } </style> <div class=\"umi-counter\" style=\"background: #F5F6F7;\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "accordion", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" <div class=\"umi-counter-info\"> <div class=\"umi-counter-period\"> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Начало отчётного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-from\" /> <i class=\"icon icon-calendar\"></i> </div> </div> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Конец отчётного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-to\" /> <i class=\"icon icon-calendar\"></i> </div> </div> </div> <div class=\"umi-counter-content\"> ");
+  data.buffer.push(" <div class=\"umi-counter-info\"> <div class=\"umi-counter-period\"> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Начало отчетного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-from\" /> <i class=\"icon icon-calendar\"></i> </div> </div> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Конец отчетного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-to\" /> <i class=\"icon icon-calendar\"></i> </div> </div> </div> <div class=\"umi-counter-content\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "chartControl", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </div> <div class=\"umi-counter-content\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "table", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
@@ -2925,7 +2925,7 @@ define('application/models',[], function(){
                             break;
                         case 'belongsToRelation':
                             params.async = true;
-                            //TODO: инверсия избыточна, но DS почему то без неё не может
+                            //TODO: инверсия избыточна, но DS почему то без нее не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';
                             }
@@ -3064,7 +3064,7 @@ define('auth/main',['auth/templates', 'Handlebars', 'jquery'], function(template
              */
             validator: {
                 /**
-                 * При некорректной авторизации метод "трясёт" форму словно говоря НЕТ (не используется)
+                 * При некорректной авторизации метод "трясет" форму словно говоря НЕТ (не используется)
                  * @method shake
                  */
                 shake: function(){
@@ -3191,7 +3191,7 @@ define('auth/main',['auth/templates', 'Handlebars', 'jquery'], function(template
                 });
 
                 /**
-                 * Загружает шаблоны определёные в templates.js
+                 * Загружает шаблоны определеные в templates.js
                  * method templates
                  */
                 templates(self);
@@ -3764,7 +3764,7 @@ define('application/router',[], function(){
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
+                        'content': '<div>Объект будет удален без возможности востановления, все равно продолжить?</div>',
                         'confirm': 'Удалить',
                         'reject': 'Отмена'
                     };
@@ -3838,7 +3838,7 @@ define('application/router',[], function(){
             },
 
             /**
-             Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
+             Метод парсит ошибку и возвпращает ее в виде объекта (ошибки с Back-end)
              @method parseError
              @return Object|null|String {status: status, title: title, content: content, stack: stack}
              */
@@ -4601,8 +4601,8 @@ define(
             },
 
             /**
-             Удаление объекта-обёртки result из всех приходящих объектов
-             Удаление объекта-обёртки collection из всех объектов его содержащих
+             Удаление объекта-обертки result из всех приходящих объектов
+             Удаление объекта-обертки collection из всех объектов его содержащих
              */
             normalizePayload: function(payload){
                 payload = payload.result;
@@ -7088,8 +7088,8 @@ define('tree/views',['App', 'toolbar'], function(UMI){
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
-                                // 1) после ноды - Если позиция курсора на ноде ниже ~70% её высоты
-                                // 2) перед нодой - Если позиция курсора на ноде выше ~30% её высоты
+                                // 1) после ноды - Если позиция курсора на ноде ниже ~70% ее высоты
+                                // 2) перед нодой - Если позиция курсора на ноде выше ~30% ее высоты
                                 // 3) "внутрь" ноды - если навели на центр. При задержке пользователя на центре раскрываем ноду.
                                 if(event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);

@@ -27,7 +27,7 @@ return [
         'role:postExecutor:displayName' => 'Посты',
         'role:draftExecutor:displayName' => 'Черновики',
         'role:moderateExecutor:displayName' => 'Посты на модерации',
-        'role:rejectExecutor:displayName' => 'Отклонённые посты',
+        'role:rejectExecutor:displayName' => 'Отклоненные посты',
         'role:categoryExecutor:displayName' => 'Категории',
         'role:authorExecutor:displayName' => 'Авторы',
         'role:tagExecutor:displayName' => 'Теги',

@@ -97,7 +97,7 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
     }
 
     /**
-     * Создаёт и возвращает дерево.
+     * Создает и возвращает дерево.
      * @param array $categories
      * @param int $parentId
      * @return array|null
