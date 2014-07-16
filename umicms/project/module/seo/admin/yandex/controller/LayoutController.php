@@ -11,11 +11,10 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\hmvc\component\admin\layout\AdminComponentLayout;
-use umicms\hmvc\component\admin\layout\control\AdminControl;
+use umicms\project\module\seo\admin\yandex\layout\WebmasterComponentLayout;
 
 /**
- * Контроллер вывода настроек компонента
+ * Контроллер вывода настроек компонента.
  */
 class LayoutController extends BaseLayoutController
 {
@@ -24,11 +23,6 @@ class LayoutController extends BaseLayoutController
      */
     protected function getLayout()
     {
-        $layout = new AdminComponentLayout($this->getComponent());
-
-        $control = new AdminControl($this->getComponent());
-        $layout->addEmptyContextControl('yandexWebmasterReport', $control);
-
-        return $layout;
+        return new WebmasterComponentLayout($this->getComponent(), $this->getUrlManager());
     }
 }
