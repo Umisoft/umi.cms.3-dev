@@ -9,7 +9,6 @@ use umicms\console\PackProjectCommand;
 use umicms\console\CreateDumpCommand;
 use umicms\console\LoadDumpCommand;
 use umicms\console\SyncSchemeCommand;
-use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
 

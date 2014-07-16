@@ -76,6 +76,10 @@ class PackCoreCommand extends BaseCommand
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
+        $phar->stopBuffering();
+        unset($phar);
+        exit;
+
         $output->writeln('<process>Packing vendor files...</process>');
         $this->addVendorFiles($phar, $output);
         $output->writeln('');
@@ -129,7 +133,21 @@ EOF;
         $finder->files()
             ->ignoreVCS(true)
             ->notName('CoreCompiler.php')
-            ->in(CMS_DIR);
+            ->notName('version.php')
+            ->in(CMS_DIR)
+            ->exclude('project/admin/asset');
+
+        $progress = $this->startProgressBar($output, $finder->count());
+
+        foreach ($finder as $file) {
+            $this->packFile($phar, $file, $obfuscate, $progress);
+            $progress->advance();
+        }
+
+        $finder = new Finder();
+        $finder->files()
+            ->ignoreVCS(true)
+            ->in(CMS_ADMIN_FRONTEND . '/deploy');
 
         $progress = $this->startProgressBar($output, $finder->count());
 
@@ -139,7 +157,35 @@ EOF;
         }
         $progress->setMessage('Complete.');
 
+        $this->addVersionFile($phar);
+
+        $phar->addFromString('.htaccess', file_get_contents(dirname(CMS_DIR) . '/.htaccess'));
+        $phar->addFromString('license.md', file_get_contents(dirname(CMS_DIR) . '/license.md'));
+        $phar->addFromString('project/.htaccess', file_get_contents(dirname(CMS_DIR) . '/project/.htaccess'));
+
         $progress->finish();
+    }
+
+    /**
+     * Добавляет файл с версией сборки
+     * @param Phar $phar
+     */
+    private function addVersionFile(Phar $phar) {
+        list ($version, $versionDate) = Utils::getCurrentGitVersion();
+        $version = <<<EOF
+<?php
+/**
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+return ['{$version}', '{$versionDate}'];
+EOF;
+
     }
 
     /**
