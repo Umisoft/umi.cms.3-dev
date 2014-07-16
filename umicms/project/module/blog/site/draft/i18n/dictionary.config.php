@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Publish posts with moderated',
-        'role:publisher:displayName' => 'Publish posts without moderated',
-        'role:viewer:displayName' => 'Viewer list drafts',
-        'role:editExecutor:displayName' => 'Edit draft',
-        'role:viewExecutor:displayName' => 'Viewer draft'
+        'role:author:displayName' => 'Publish posts with moderation',
+        'role:publisher:displayName' => 'Publish posts without moderation',
+        'role:viewer:displayName' => 'View draft list',
+        'role:editExecutor:displayName' => 'Edit drafts',
+        'role:viewExecutor:displayName' => 'View draft'
     ],
 
     'ru-RU' => [

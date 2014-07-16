@@ -21,7 +21,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsItem', 'collection'
+            'collection.newsItem', 'collection', 'form'
         ]
     ],
 
@@ -120,6 +120,7 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsItem::FIELD_SUBJECTS,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_SUBJECTS
                     ]
                 ],

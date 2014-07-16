@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:editor:displayName' => 'Managing relation'
+        'role:editor:displayName' => 'Manage relation'
     ],
 
     'ru-RU' => [

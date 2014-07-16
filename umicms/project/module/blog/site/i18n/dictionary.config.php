@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer blogs',
+        'role:viewer:displayName' => 'View blog',
         'role:postExecutor:displayName' => 'Posts',
         'role:draftExecutor:displayName' => 'Drafts',
         'role:moderateExecutor:displayName' => 'Posts on moderation',
@@ -30,7 +30,7 @@ return [
         'role:rejectExecutor:displayName' => 'Отклонённые посты',
         'role:categoryExecutor:displayName' => 'Категории',
         'role:authorExecutor:displayName' => 'Авторы',
-        'role:tagExecutor:displayName' => 'Тэги',
+        'role:tagExecutor:displayName' => 'Теги',
         'role:commentExecutor:displayName' => 'Комментарии',
     ]
 

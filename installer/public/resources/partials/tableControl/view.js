@@ -8,12 +8,18 @@ define(['App', 'toolbar'], function(UMI){
              * Имя шаблона
              * @property templateName
              */
-            templateName: 'tableControl',
+            templateName: 'partials/tableControl',
             /**
              * Классы для view
              * @classNames
              */
             classNames: ['umi-table-control'],
+
+            objectsEditable: function(){
+                var objectsEditable = this.get('controller.control.params.objectsEditable');
+                objectsEditable = objectsEditable === false ? false : true;
+                return objectsEditable;
+            }.property('controller.control.params.objectsEditable'),
             /**
              * @property iScroll
              */
@@ -265,7 +271,7 @@ define(['App', 'toolbar'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'isActive::umi-inactive'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'objectsEditable:s-pointer'],
                 isActive: function(){
                     var object = this.get('object');
                     var hasActiveProperty  = false;
@@ -285,8 +291,13 @@ define(['App', 'toolbar'], function(UMI){
 
                 objectIdBinding: 'object.id',
 
+                objectsEditable: function(){
+                    return this.get('parentView.objectsEditable');
+                }.property(),
+
                 click: function(){
-                    if(this.get('object.meta.editLink')){
+                    var objectsEditable = this.get('objectsEditable');
+                    if(this.get('object.meta.editLink') && objectsEditable){
                         this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
                     }
                 }
@@ -317,14 +328,14 @@ define(['App', 'toolbar'], function(UMI){
                         case 'text':
                             $input.on('keypress.umi.tableControl.filters', function(event){
                                if(event.keyCode === 13){
-                                   self.setFilter(this.value);
+                                   self.setFilter('like(%' + this.value + '%)');
                                }
                            });
                             break;
                     }
                 },
-                setFilter: function(value){
-                    this.get('controller').setFilters(this.get('column.dataSource'), value);
+                setFilter: function(filter){
+                    this.get('controller').setFilters(this.get('column.dataSource'), filter);
                 }
             })
         });
@@ -419,35 +430,40 @@ define(['App', 'toolbar'], function(UMI){
         UMI.TableControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'table-context-toolbar'],
-            elementView: UMI.ToolbarElementView.extend({
+            elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
-                    var behaviour;
+                    var behaviour = {};
+                    var splitButtonBehaviour;
                     var i;
                     var action;
                     if(behaviourName){
-                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
-                    } else{
-                        behaviour = {};
+                        splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                        for(var key in splitButtonBehaviour){
+                            if(splitButtonBehaviour.hasOwnProperty(key)){
+                                behaviour[key] = splitButtonBehaviour[key];
+                            }
+                        }
                     }
                     var choices = this.get('context.behaviour.choices');
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
-                            var prefix = '';
-                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            action = '';
+                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
+                            if(behaviourAction){
+                                action = behaviourAction.actions[choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
                             }
                         }
                     }
+                    behaviour.classNames = ['white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

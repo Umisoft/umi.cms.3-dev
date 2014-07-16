@@ -3,5 +3,5 @@
         {{ widget('news.item.view', {'newsItem' : newsItem, 'template' : 'shortView'}) }}
     {% endfor %}
 
-    {{ include('pagination.twig', {'pagination' : pagination}) }}
+    {{ include('pagination.twig', {'paginator' : paginator}) }}
 {% endif %}

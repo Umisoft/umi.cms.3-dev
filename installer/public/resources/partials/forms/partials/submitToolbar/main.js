@@ -1,20 +1,16 @@
-define(['App', 'text!./submitToolbar.hbs', 'toolbar'], function(UMI, submitToolbarTpl){
+define(['App', 'toolbar'], function(UMI){
     "use strict";
 
     return function(){
         UMI.SubmitToolbarView = Ember.View.extend({
-            layout: Ember.Handlebars.compile(submitToolbarTpl),
+            layoutName: 'partials/form/submitToolbar',
             tagName: 'ul',
             classNames: ['button-group', 'umi-form-control-buttons'],
-            elementView: UMI.ToolbarElementView.extend({
+            elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.splitButtonBehaviour.dropUp);
-                    var behaviour = this.get('context.behaviour.name');
-                    if(behaviour){
-                        behaviour = UMI.splitButtonBehaviour.get(behaviour) || {};
-                    } else{
-                        behaviour = {};
-                    }
+                    var behaviourName = this.get('context.behaviour.name');
+                    var behaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

@@ -9,7 +9,8 @@ define(
              * @class
              * @abstract
              */
-            UMI.GlobalBehaviour = Ember.Object.extend({
+            function GlobalBehaviour(){}
+            GlobalBehaviour.prototype = {
                 save: {
                     label: function(){
                         if(this.get('controller.object.isDirty')){
@@ -49,9 +50,9 @@ define(
                     }
                 },
 
-                create: {
+                "create": {
                     actions: {
-                        create: function(params){
+                        "create": function(params){
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});
@@ -91,6 +92,16 @@ define(
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('trash', model);
+                        }
+                    }
+                },
+
+                untrash: {
+                    actions: {
+                        untrash: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
+                            this.get('controller').send('untrash', model);
                         }
                     }
                 },
@@ -135,7 +146,7 @@ define(
                         }
                         var button = this.$();
                         button.addClass('loading');
-                        var params = {
+                        params = {
                             object: model,
                             handler: button[0]
                         };
@@ -164,8 +175,18 @@ define(
                             }
                         }
                     }
+                },
+
+                importFromRss: {
+                    actions: {
+                        importFromRss: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('importFromRss', model);
+                        }
+                    }
                 }
-            });
+            };
+            UMI.globalBehaviour = new GlobalBehaviour();
         };
     }
 );

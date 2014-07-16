@@ -10,9 +10,9 @@
 
 use umi\filter\IFilterFactory;
 use umi\form\element\Checkbox;
-use umi\form\element\CheckboxGroup;
 use umi\form\element\Text;
 use umicms\project\module\users\model\collection\UserCollection;
+use umicms\validation\Range;
 
 return [
     'options' => [
@@ -36,6 +36,11 @@ return [
             'options' => [
                 'filters' => [
                     IFilterFactory::TYPE_INT => []
+                ],
+                'validators' => [
+                    Range::NAME => [
+                        'min' => 0
+                    ]
                 ],
                 'dataSource' => UserCollection::SETTING_MIN_PASSWORD_LENGTH
             ]

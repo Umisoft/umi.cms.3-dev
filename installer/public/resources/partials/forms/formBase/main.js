@@ -1,11 +1,10 @@
 define(
     [
         'App',
-        'text!./form.hbs',
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, magellan, submitToolbar){
+    function(UMI, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -183,7 +182,7 @@ define(
                  * @property layout
                  * @type String
                  */
-                layout: Ember.Handlebars.compile(formTpl),
+                layoutName: 'partials/form',
 
                 /**
                  * Классы view
@@ -217,19 +216,19 @@ define(
                 },
 
                 submitToolbarView: UMI.SubmitToolbarView.extend({
-                    elementView: UMI.ToolbarElementView.extend({
+                    elementView: Ember.View.extend(UMI.ToolbarElement, {
                         buttonView: function(){
-                            var button = UMI.ButtonView.extend();
+                            var params = {};
                             if(this.get('context.behaviour.name') === 'save'){
-                                button.reopen({
+                                params = {
                                     actions: {
                                         save: function(){
                                             this.get('parentView.parentView.parentView').send('submit', this.$());
                                         }
                                     }
-                                });
+                                };
                             }
-                            return button;
+                            return UMI.ButtonView.extend(params);
                         }.property()
                     })
                 })

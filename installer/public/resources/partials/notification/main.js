@@ -1,4 +1,4 @@
-define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
+define(['App'], function(UMI){
     'use strict';
 
     UMI.Notification = Ember.Object.extend({
@@ -10,17 +10,29 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
             'duration': 3000
         },
         create: function(params){
-            var settings = this.get('settings');
+            var defaultSettings = this.get('settings');
+            var settings = {};
+            var param;
+            for(param in defaultSettings){
+                if(defaultSettings.hasOwnProperty(param)){
+                    settings[param] = defaultSettings[param];
+                }
+            }
+
             if(params){
-                for(var param in params){
+                for(param in params){
                     if(params.hasOwnProperty(param)){
                         settings[param] = params[param];
                     }
                 }
             }
+
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
             Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});
+        },
+        removeAll: function(){
+            UMI.notificationList.set('content', []);
         }
     });
 
@@ -56,7 +68,7 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
     UMI.AlertBox = Ember.View.extend({
         classNames: ['alert-box'],
         classNameBindings: ['content.type'],
-        layout: Ember.Handlebars.compile(alertBoxTpl),
+        layoutName: 'partials/alert-box',
         didInsertElement: function(){
             var duration = this.get('content.duration');
             if(duration){

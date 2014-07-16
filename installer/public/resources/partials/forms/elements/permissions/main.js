@@ -1,9 +1,9 @@
-define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, permissionsTemplate, partialTemplate){
+define(['App'], function(UMI){
     "use strict";
 
     return function(){
         UMI.PermissionsView = Ember.View.extend({
-            template: Ember.Handlebars.compile(permissionsTemplate),
+            templateName: 'partials/permissions',
             objectProperty: function(){
                 var object = this.get('object');
                 var dataSource = this.get('meta.dataSource');
@@ -242,7 +242,7 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
         UMI.PermissionsPartialView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['no-bullet', 'umi-permissions-role-list'],
-            template: Ember.Handlebars.compile(partialTemplate)
+            templateName: 'partials/permissions/partial'
         });
     };
 });

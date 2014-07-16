@@ -21,8 +21,8 @@ return [
         'You have successfully registered on the website {site}' => 'You have successfully registered on the website {site}',
         'New user {user} has registered registered on the website {site}' => 'New user {user} has registered registered on the website {site}',
 
-        'role:viewer:displayName' => 'Registration user',
-        'role:activationExecutor:displayName' => 'Activation user'
+        'role:viewer:displayName' => 'Register',
+        'role:activationExecutor:displayName' => 'User activation'
     ],
 
     'ru-RU' => [

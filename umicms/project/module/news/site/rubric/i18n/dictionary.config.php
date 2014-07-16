@@ -11,8 +11,8 @@
 return [
 
     'en-US' => [
-        'role:rssViewer:displayName' => 'Viewer RSS-feed rubrics',
-        'role:viewer:displayName' => 'Viewer',
+        'role:rssViewer:displayName' => 'View rubric RSS-feed',
+        'role:viewer:displayName' => 'View rubric',
     ],
 
     'ru-RU' => [

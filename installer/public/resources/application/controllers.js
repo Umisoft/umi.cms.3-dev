@@ -40,6 +40,7 @@ define([], function(){
                 var contentControls = [];
                 var settings = this.get('settings');
                 try{
+
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
                     var controls = settings.contents[selectedContext];
                     var key;

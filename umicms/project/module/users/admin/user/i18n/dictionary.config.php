@@ -16,7 +16,7 @@ return [
         'action:create:registered' => 'Registered',
         'action:create:registered.supervisor' => 'Create supervisor',
 
-        'role:editor:displayName' => 'Managing users'
+        'role:editor:displayName' => 'Manage users'
     ],
 
     'ru-RU' => [

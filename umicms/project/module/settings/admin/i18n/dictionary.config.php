@@ -14,15 +14,15 @@ return [
         'component:settings:displayName' => 'Settings',
         'control:settings:toolbar:apply' => 'Apply',
 
-        'role:siteExecutor:displayName' => 'Structure site',
-        'role:formsExecutor:displayName' => 'Forms on site'
+        'role:siteExecutor:displayName' => 'Site settings',
+        'role:formsExecutor:displayName' => 'Site forms'
     ],
 
     'ru-RU' => [
         'component:settings:displayName' => 'Настройки',
         'control:settings:toolbar:apply' => 'Применить',
 
-        'role:siteExecutor:displayName' => 'Структура сайта',
+        'role:siteExecutor:displayName' => 'Настройки сайта',
         'role:formsExecutor:displayName' => 'Формы на сайте'
     ]
 

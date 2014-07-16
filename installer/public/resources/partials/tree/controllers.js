@@ -5,6 +5,8 @@ define(['App'], function(UMI){
         UMI.TreeControlController = Ember.ObjectController.extend({
             needs: ['component', 'context'],
 
+            filterTrashed: null,
+
             objectProperties: function(){
                 var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
                 var collectionName = this.get('collectionName');
@@ -16,6 +18,11 @@ define(['App'], function(UMI){
                         objectProperties.splice(i, 1);
                         --i;
                     }
+                }
+                if(modelFields.contains('trashed')){
+                    this.set('filterTrashed', true);
+                } else{
+                    this.set('filterTrashed', false);
                 }
                 return objectProperties;
             }.property('model'),
@@ -77,7 +84,11 @@ define(['App'], function(UMI){
                                 throw new Error('Collection name is not defined.');
                             }
                             objectProperties = self.get('objectProperties').join(',');
-                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': objectProperties});
+                            var requestParams = {'filters[parent]': 'null()', 'fields': objectProperties};
+                            if(self.get('filterTrashed')){
+                                requestParams['filters[trashed]'] = 'equals(0)';
+                            }
+                            var nodes = self.store.updateCollection(collectionName, requestParams);
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],

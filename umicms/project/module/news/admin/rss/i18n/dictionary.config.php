@@ -12,16 +12,20 @@ return [
 
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
+        'Import {count} news.' => 'Import {count} news.',
 
         'action:create:base' => 'Create RSS-feed',
+        'action:importFromRss' => 'Import RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [
         'component:rss:displayName' => 'Управление импортом RSS-лент',
+        'Import {count} news.' => 'Импортированно {count} новостей.',
 
         'action:create:base' => 'Добавить RSS-ленту',
+        'action:importFromRss' => 'Импортировать RSS-ленту',
 
         'role:editor:displayName' => 'Управление импортом'
     ]
