@@ -25,10 +25,10 @@ class FormWidget extends BaseCmsWidget
 
     /**
      * Формирует результат работы виджета.
+     *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> FormEntityView $form форма поиска</li>
-     * </ul>
+     * @templateParam umi\form\FormEntityView $form представление формы поиска
+     *
      * @return CmsView
      */
     public function __invoke()

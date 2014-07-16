@@ -38,11 +38,9 @@ class SearchController extends BaseSitePageController
      * Формирует результат работы контроллера.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> ICmsPage $page текущая страница </li>
-     * <li> FormEntityView $form представление формы поиска </li>
-     * <li> string $query текущий поисковый запрос </li>
-     * </ul>
+     * @templateParam umi\form\FormEntityView $form представление формы
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница поиска
+     * @templateParam string $query текущий поисковый запрос
      *
      * @return Response
      */

@@ -46,10 +46,10 @@ class CommentWidget extends BaseCmsWidget
 
     /**
      * Формирует результат работы виджета.
+     *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogComment $blogComment комментарий в блоге</li>
-     * </ul>
+     * @templateParam umicms\project\module\blog\model\object\BlogComment $blogComment комментарий в блоге
+     *
      * @throws InvalidArgumentException
      * @return CmsView
      */

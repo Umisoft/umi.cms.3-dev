@@ -48,9 +48,7 @@ class PostWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogPost $blogPost пост блога</li>
-     * </ul>
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost пост блога
      *
      * @throws InvalidArgumentException
      * @return CmsView

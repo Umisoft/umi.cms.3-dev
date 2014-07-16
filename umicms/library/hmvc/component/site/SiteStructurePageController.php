@@ -13,7 +13,7 @@ namespace umicms\hmvc\component\site;
 use umi\http\Response;
 
 /**
- * Контроллер вывода системных страниц компонентов.
+ * Контроллер вывода страниц структуры.
  */
 class SiteStructurePageController extends BaseSitePageController
 {
@@ -21,9 +21,7 @@ class SiteStructurePageController extends BaseSitePageController
      * Формирует результат работы контроллера.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> ICmsPage $page текущая страница </li>
-     * </ul>
+     * @templateParam umicms\project\module\structure\model\object\StructureElement $page текущая страница
      *
      * @return Response
      */

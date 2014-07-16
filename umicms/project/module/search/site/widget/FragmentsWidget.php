@@ -10,9 +10,8 @@
 
 namespace umicms\project\module\search\site\widget;
 
-use Exception;
-use umi\http\THttpAware;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\search\model\SearchModule;
@@ -54,7 +53,14 @@ class FragmentsWidget extends BaseCmsWidget
     }
 
     /**
-     * Вывод фрагментов. Если найденный текст не содержит точного свопадения с запросом — фрагменты не выводятся.
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam string $query поисковый запрос
+     * @templateParam umicms\project\module\search\model\highlight\Fragmenter $fragmenter фрагментатор текста по найденным в нем словам
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {
@@ -68,20 +74,15 @@ class FragmentsWidget extends BaseCmsWidget
         }
 
         $content = $this->module->getSearchIndexApi()->extractSearchableContent($this->page);
-        /*try {*/
-            $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
-                ->fragmentize($this->contextWordsLimit);
+        $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
+            ->fragmentize($this->contextWordsLimit);
 
-            return $this->createResult(
-                $this->template,
-                [
-                    'query' => $this->query,
-                    'fragmenter' => $fragmenter,
-                ]
-            );
-        /*} catch (Exception $e) {
-            return '';
-        }*/
-
+        return $this->createResult(
+            $this->template,
+            [
+                'query' => $this->query,
+                'fragmenter' => $fragmenter,
+            ]
+        );
     }
 }

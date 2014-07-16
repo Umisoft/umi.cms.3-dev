@@ -12,6 +12,7 @@ namespace project\docs\controller;
 
 use project\docs\module\structure\model\object\ControllerPage;
 use project\docs\module\structure\model\object\WidgetPage;
+use Sami\Parser\ClassTraverser;
 use Sami\Parser\Filter\TrueFilter;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
@@ -24,6 +25,7 @@ use umi\dbal\driver\IDialect;
 use umi\hmvc\controller\BaseController;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
@@ -142,10 +144,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
          */
         $layoutCollection = $this->getCollectionManager()->getCollection('layout');
 
-        $layoutCollection->add()
+        $layoutCollection->add(IObjectType::BASE, 'd6cb8b38-7e2d-4b36-8d15-9fe8947d66c7')
             ->setValue('fileName', 'layout')
-            ->setValue('displayName', 'Основной')
-            ->setGUID('d6cb8b38-7e2d-4b36-8d15-9fe8947d66c7');
+            ->setValue('displayName', 'Основной');
 
         $structurePage = $structureCollection->add('system', 'system')
             ->setValue('displayName', 'Структура')
@@ -166,11 +167,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         /**
          * @var StaticPage $main
          */
-        $main = $structureCollection->add('main', 'static')
+        $main = $structureCollection->add('main', 'static', null, 'd534fd83-0f12-4a0d-9853-583b9181a948')
             ->setValue('displayName', 'Главная')
             ->setValue('active', true)
             ->setValue('inMenu', true);
-        $main->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
 
         $main->getProperty('componentName')->setValue('structure');
         $main->getProperty('componentPath')->setValue('structure');
@@ -191,10 +191,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         /**
          * @var UserGroup $visitors
          */
-        $visitors = $groupCollection->add()
+        $visitors = $groupCollection->add(IObjectType::BASE, 'bedcbbac-7dd1-4b60-979a-f7d944ecb08a')
             ->setValue('displayName', 'Посетители');
 
-        $visitors->setGUID('bedcbbac-7dd1-4b60-979a-f7d944ecb08a');
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
@@ -223,24 +222,22 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         /**
          * @var Supervisor $sv
          */
-        $sv = $userCollection->add(Supervisor::TYPE_NAME)
+        $sv = $userCollection->add(Supervisor::TYPE_NAME, '68347a1d-c6ea-49c0-9ec3-b7406e42b01e')
             ->setValue('displayName', 'Супервайзер')
             ->setValue('login', 'sv')
             ->setValue('firstName', 'Супервайзер')
             ->setValue('email', 'sv@umisoft.ru');
 
-        $sv->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
         $sv->getProperty('locked')->setValue(true);
         $sv->setPassword('1');
 
         /**
          * @var Guest $guest
          */
-        $guest = $userCollection->add(Guest::TYPE_NAME)
+        $guest = $userCollection->add(Guest::TYPE_NAME, '552802d2-278c-46c2-9525-cd464bbed63e')
             ->setValue('displayName', 'Гость')
             ->setValue('displayName', 'Guest', 'en-US');
 
-        $guest->setGUID('552802d2-278c-46c2-9525-cd464bbed63e');
         $guest->getProperty('locked')->setValue(true);
 
         $guest->groups->attach($visitors);
@@ -359,6 +356,8 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $properties = $class->getProperties(true);
         if (isset($properties['template'])) {
             $controllerPage->templateName = $controller->template;
+        } else {
+            var_dump($className);
         }
 
     }
@@ -366,66 +365,51 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     protected function getReturnValue(ClassReflection $class)
     {
         $methods = $class->getMethods(true);
-        $className = $class->getName();
-
-        $invoke = null;
-        if (isset($methods['__invoke'])) {
-            $invoke = $methods['__invoke'];
-        }
 
         /**
          * @var MethodReflection $invoke
          */
-        if (!$invoke || $invoke->getShortDesc() == '{@inheritdoc}') {
+        $invoke = null;
+        if (isset($methods['__invoke'])) {
+            $invoke = $methods['__invoke'];
+        } elseif($traits = $class->getTraits()) {
             /**
-             * @var ClassReflection $parent
+             * @var ClassReflection $trait
              */
-            while ($parent = $class->getParent()) {
-                $parentMethods = $parent->getMethods();
-                if (isset($parentMethods['__invoke'])) {
-                    $invoke = $parentMethods['__invoke'];
-                    if ($invoke->getShortDesc() != '{@inheritdoc}') {
-                        break;
-                    }
-                }
-                $class = $parent;
-            }
-        }
-
-        if (!$invoke) {
-            if ($traits = class_uses($className)) {
-                foreach ($traits as $trait) {
-                    $traitClass = $this->samiProject->getClass($trait);
-                    $traitMethods = $traitClass->getMethods();
-
-                    if (isset($traitMethods['__invoke'])) {
-                        $invoke = $traitMethods['__invoke'];
-                        if ($invoke->getShortDesc() != '{@inheritdoc}') {
-                            break;
-                        }
-                    }
+            foreach ($traits as $trait) {
+                $traitMethods = $trait->getMethods();
+                if (isset($traitMethods['__invoke'])) {
+                   break;
                 }
             }
         }
 
-        $returnValue = '';
+        $templateParams = [];
         if (isset($invoke) && $invoke->getShortDesc() != '{@inheritdoc}') {
-            if ($longDescription = $invoke->getLongDesc()) {
-
-                $longDescription = str_replace('Для шаблонизации доступны следущие параметры:', '<h3>Параметры шаблонизации</h3>', $longDescription);
-
-                $returnValue .= $longDescription;
-            }
+            $templateParams = $invoke->getTags('templateParam');
         }
 
         if (isset($methods['buildResponseContent'])) {
-            $buildResponseContentMethod = $methods['buildResponseContent'];
-            if ($extraDescription = $buildResponseContentMethod->getLongDesc()) {
-                $returnValue .= $extraDescription;
-            }
+            /**
+             * @var MethodReflection $buildResponseContent
+             */
+            $buildResponseContent = $methods['buildResponseContent'];
+            $templateParams = array_merge($templateParams, $buildResponseContent->getTags('templateParam'));
         }
 
-        return $returnValue;
+        if ($templateParams) {
+            $templateParamsString = '';
+            foreach ($templateParams as $templateParam) {
+                $templateParamsString .= '<li>';
+                for ($i = 0; $i < count($templateParam); $i++) {
+                    $templateParamsString .= $templateParam[$i] . ' ';
+                }
+                $templateParamsString .= '</li>';
+            }
+            return '<h3>Параметры шаблонизации</h3>' . '<ul>' . $templateParamsString .'</ul>';
+        }
+
+        return '';
     }
 
     protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
@@ -545,8 +529,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $searchPage = $structureCollection->add('searching', 'system')
             ->setValue('displayName', 'Поиск')
             ->setValue('active', true);
-
-        $searchPage->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
 
         $searchPage->getProperty('locked')->setValue(true);
         $searchPage->getProperty('componentName')->setValue('search');

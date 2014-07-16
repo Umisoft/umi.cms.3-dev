@@ -106,11 +106,9 @@ class AddController extends BaseSitePageController
     /**
      * Дополняет результат параметрами для шаблонизации.
      *
-     * <ul>
-     * <li> bool $success флаг, указывающий на успешное сохранение изменений </li>
-     * <li> ICmsPage $page текущая страница добавления поста </li>
-     * <li> BlogPost $blogPost созданный пост блога. Передается только, если пост был успешно добавлен </li>
-     * </ul>
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления поста
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost созданный пост блога. Передается только, если пост был успешно добавлен
      *
      * @return array
      */

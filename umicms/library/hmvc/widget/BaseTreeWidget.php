@@ -62,9 +62,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> CmsTreeView $tree представление дерева </li>
-     * </ul>
+     * @templateParam umicms\hmvc\view\CmsTreeView $tree представление дерева
      *
      * @throws RuntimeException
      * @return CmsView

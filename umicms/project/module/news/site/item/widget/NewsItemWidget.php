@@ -48,9 +48,7 @@ class NewsItemWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> NewsItem $newsItem новость</li>
-     * </ul>
+     * @templateParam umicms\project\module\news\model\object\NewsItem $newsItem новость
      *
      * @throws InvalidArgumentException
      * @return CmsView

@@ -48,9 +48,7 @@ class RubricWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> NewsRubric $rubric новостная рубрика</li>
-     * </ul>
+     * @templateParam umicms\project\module\news\model\object\NewsRubric $rubric новостная рубрика
      *
      * @throws InvalidArgumentException
      * @return CmsView

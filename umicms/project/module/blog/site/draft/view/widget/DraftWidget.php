@@ -48,9 +48,9 @@ class DraftWidget extends BaseCmsWidget
     /**
      * Формирует результат работы виджета.
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogPost $blogDraft пост блога в черновиках</li>
-     * </ul>
+     *
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost черновик поста блога
+     *
      * @throws InvalidArgumentException
      * @throws ResourceAccessForbiddenException
      * @return CmsView

@@ -48,14 +48,13 @@ class CloudWidget extends BaseCmsWidget
     /**
      * Формирует результат работы виджета.
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> array $tags список тегов в формате
+     *
+     * @templateParam array $tags список тегов в формате
      * [
      *   'tag' => Tag $tag,
      *   'weight' => float вес тэга в облаке
      * ]
-     * </li>
-     * </ul>
+
      * @return CmsView
      */
     public function __invoke()

@@ -26,6 +26,11 @@ class IndexController extends BaseSitePageController
     protected $module;
 
     /**
+     * @var bool $success успех операции сброса пароля
+     */
+    private $success = false;
+
+    /**
      * Конструктор.
      * @param UsersModule $module модуль "Пользователи"
      */
@@ -35,7 +40,14 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница сброса пароля пользователя
+     * @templateParam bool $success флаг, указывающий на успешное отправку нового пароля
+     * @templateParam array $errors список произошедших ошибок, не передается, если ошибок не было
+     *
+     * @return Response
      */
     public function __invoke()
     {
@@ -46,10 +58,13 @@ class IndexController extends BaseSitePageController
 
             $this->sendNewPassword($user);
 
+            $this->success = true;
+
             return $this->createViewResponse(
                 'index',
                 [
-                    'page' => $this->getCurrentPage()
+                    'page' => $this->getCurrentPage(),
+                    'success' => $this->success
                 ]
             );
 
@@ -58,6 +73,7 @@ class IndexController extends BaseSitePageController
                 'index',
                 [
                     'page' => $this->getCurrentPage(),
+                    'success' => $this->success,
                     'errors' => [
                         $e->getMessage()
                     ]

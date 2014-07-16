@@ -56,9 +56,7 @@ abstract class BaseFormWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> FormEntityView $form представление формы </li>
-     * </ul>
+     * @templateParam umi\form\FormEntityView $form представление формы
      *
      * @return CmsView
      */

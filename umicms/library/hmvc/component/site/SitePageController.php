@@ -39,9 +39,8 @@ class SitePageController extends BaseSitePageController
      * Формирует результат работы контроллера.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> ICmsPage $page текущая страница </li>
-     * </ul>
+     *
+     * @templateParam umicms\orm\object\ICmsPage $page текущая страница
      *
      * @return Response
      */

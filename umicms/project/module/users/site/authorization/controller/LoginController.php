@@ -86,10 +86,8 @@ class LoginController extends BaseSitePageController
     /**
      * Дополняет результат параметрами для шаблонизации.
      *
-     * <ul>
-     * <li> bool $authenticated флаг, указывающий на то, авторизован пользователь или нет </li>
-     * <li> ICmsPage $page текущая страница авторизации </li>
-     * </ul>
+     * @templateParam bool $authenticated флаг, указывающий на то, авторизован пользователь или нет
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница авторизаци
      *
      * @return array
      */

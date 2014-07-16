@@ -46,10 +46,10 @@ class TagWidget extends BaseCmsWidget
 
     /**
      * Формирует результат работы виджета.
+     *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogTag $blogTag тэг</li>
-     * </ul>
+     * @templateParam umicms\project\module\blog\model\object\BlogTag $blogTag тэг
+     *
      * @throws InvalidArgumentException
      * @return CmsView
      */

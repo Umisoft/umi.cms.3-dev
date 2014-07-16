@@ -48,9 +48,7 @@ class SubjectWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> NewsSubject $subject новостной сюжет</li>
-     * </ul>
+     * @templateParam umicms\project\module\news\model\object\NewsSubject $subject новостной сюжет
      *
      * @throws InvalidArgumentException
      * @return CmsView

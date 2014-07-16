@@ -46,10 +46,10 @@ class AuthorWidget extends BaseCmsWidget
 
     /**
      * Формирует результат работы виджета.
+     *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogAuthor $blogAuthor автор</li>
-     * </ul>
+     * @templateParam umicms\project\module\blog\model\object\BlogAuthor $blogAuthor автор
+
      * @throws InvalidArgumentException
      * @return CmsView
      */

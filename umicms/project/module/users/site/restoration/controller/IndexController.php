@@ -90,10 +90,8 @@ class IndexController extends BaseSitePageController
     /**
      * Дополняет результат параметрами для шаблонизации.
      *
-     * <ul>
-     * <li> bool $success флаг, указывающий на успешное выполнение запроса </li>
-     * <li> ICmsPage $page текущая страница запроса смены пароля </li>
-     * </ul>
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница запроса смены пароля
      *
      * @return array
      */

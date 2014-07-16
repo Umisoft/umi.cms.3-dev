@@ -62,8 +62,7 @@ class AutoMenuWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> array $menu элементы меню в формате:
+     * @templateParam array $menu элементы меню в формате:
      * [
      *  [
      *    'page' => StructureElement $page,
@@ -73,8 +72,6 @@ class AutoMenuWidget extends BaseCmsWidget
      *  ],
      *  ...
      * ]
-     * </li>
-     * </ul>
      *
      * @throws InvalidArgumentException
      * @return CmsView

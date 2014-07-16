@@ -36,9 +36,7 @@ abstract class BaseLinkWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> string $url URL ссылки </li>
-     * </ul>
+     * @templateParam string $url URL ссылки
      *
      * @return CmsView
      */

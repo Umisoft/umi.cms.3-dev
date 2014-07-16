@@ -46,10 +46,10 @@ class CategoryWidget extends BaseCmsWidget
 
     /**
      * Формирует результат работы виджета.
+     *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BlogCategory $category категория постов блога</li>
-     * </ul>
+     * @templateParam umicms\project\module\blog\model\object\BlogCategory $category категория постов блога
+     *
      * @throws InvalidArgumentException
      * @return CmsView
      */

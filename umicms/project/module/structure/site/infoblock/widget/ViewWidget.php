@@ -47,9 +47,7 @@ class ViewWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * <ul>
-     * <li> BaseInfoBlock $infoBlock информационный блок</li>
-     * </ul>
+     * @templateParam umicms\project\module\structure\model\object\BaseInfoBlock $infoBlock информационный блок
      *
      * @throws InvalidArgumentException
      * @return CmsView
