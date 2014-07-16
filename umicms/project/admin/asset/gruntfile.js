@@ -189,7 +189,7 @@ module.exports = function(grunt){
                     'vendor/requirejs/require.js',
                     'vendor/requirejs-text/text.js',
                     'vendor/jquery/dist/jquery.js',
-                    'vendor/jquery-ui/jquery-ui.min.js',
+                    'vendor/jquery-ui/jquery-ui.js',
                     'vendor/modernizr/modernizr.js',
                     'vendor/handlebars/handlebars.js',
                     'vendor/ember/ember.js',
@@ -197,7 +197,7 @@ module.exports = function(grunt){
                     'vendorExtend/iscroll-probe-5.1.1.js',
                     'vendor/ckeditor/ckeditor.js',
                     'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
-                    'vendor/momentjs/min/moment-with-langs.min.js',
+                    'vendor/momentjs/min/moment-with-langs.js',
                     'vendorExtend/elFinder.js'
                 ],
                 dest: 'development'
@@ -308,7 +308,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('development', ['copy:vendorDevelopment', 'copy:imagesDevelopment', 'svgmin', 'grunticon', 'sass', 'autoprefixer', 'concat:development','emberTemplates', 'requirejs:development']);
-    grunt.registerTask('production', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
+    grunt.registerTask('dev', ['copy:vendorDevelopment', 'copy:imagesDevelopment', 'svgmin', 'grunticon', 'sass', 'autoprefixer', 'concat:development','emberTemplates', 'requirejs:development']);
+    grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
     grunt.registerTask('docs', ['yuidoc']);
 };
