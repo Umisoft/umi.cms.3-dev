@@ -15,7 +15,7 @@
 
 </div>
 
-<h1>{{ translate('Comments') }}:</h1>
+<h1>{{ translate('Comments') }} ({{ page.commentsCount }}):</h1>
 
 {{ widget('blog.comment.list', {'blogPost' : page, 'template' : 'list'}) }}
 
