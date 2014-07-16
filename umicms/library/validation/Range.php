@@ -38,11 +38,11 @@ class Range extends BaseValidator
             $error = true;
         }
 
-        if (!empty($this->options['min']) && $this->options['min'] > $value) {
+        if (isset($this->options['min']) && (int) $this->options['min'] > $value) {
             $error = true;
         }
 
-        if (!empty($this->options['max']) && $this->options['max'] < $value) {
+        if (isset($this->options['max']) && (int) $this->options['max'] < $value) {
             $error = true;
         }
 
@@ -50,8 +50,8 @@ class Range extends BaseValidator
             $this->message = $this->translate(
                 $this->getErrorLabel(),
                 [
-                    'min' => empty($this->options['min']) ? '': $this->options['min'],
-                    'max' => empty($this->options['max']) ? '' : $this->options['max']
+                    'min' => !isset($this->options['min']) ? '': (int) $this->options['min'],
+                    'max' => !isset($this->options['max']) ? '' : (int) $this->options['max']
                 ]
             );
             return false;
