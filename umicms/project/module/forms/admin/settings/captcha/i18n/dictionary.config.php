@@ -5,7 +5,7 @@ return [
         'component:captcha:displayName' => 'Captcha',
 
         'checkSettings' => 'Check settings',
-        'checkMode' => 'Check Captcha for...',
+        'checkMode' => 'Check Captcha for',
         'checkMode:guest' => 'Guest',
         'checkMode:all' => 'All users',
         'checkMode:never' => 'Never check',
@@ -25,15 +25,15 @@ return [
         'component:captcha:displayName' => 'Captcha',
 
         'checkSettings' => 'Проверка Captcha',
-        'checkMode' => 'Проверять Captcha для...',
+        'checkMode' => 'Проверять Captcha для',
         'checkMode:guest' => 'Гостя',
         'checkMode:all' => 'Всех пользователей',
         'checkMode:never' => 'Никогда не проверять',
-        'humanTestsCount' => 'Количество успешных проверок, после которых captcha не проверяется',
+        'humanTestsCount' => 'Количество успешных проверок, после которых Captcha не проверяется',
 
         'viewSettings' => 'Настройки отображения',
-        'width' => 'Длина, px',
-        'height' => 'Ширина, px',
+        'width' => 'Ширина, px',
+        'height' => 'Высота, px',
         'textColor' => 'Цвет текста',
         'backgroundColor' => 'Цвет фона',
 
