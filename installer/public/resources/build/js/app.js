@@ -1551,6 +1551,18 @@ function program1(depth0,data) {
   
 });
 
+Ember.TEMPLATES["UMI/partials/alert-box/close-all"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.content.content", {hash:{
+    'unescaped': ("true")
+  },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));
+  
+});
+
 Ember.TEMPLATES["UMI/partials/alert-box"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -9070,7 +9082,7 @@ define(
                             var context = self.get('context');
                             Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
-                            var params = {type: 'success', 'content': 'Сохранено.'};
+                            var params = {type: 'success', 'content': 'Сохранено.', duration: false};
                             UMI.notification.create(params);
                         });
                     }
@@ -9212,8 +9224,9 @@ define('notification/main',['App'], function(UMI){
 
     UMI.NotificationList = Ember.ArrayController.extend({
         content: [],
-        sortProperties: ['id'],
-        sortAscending: true,
+        sortContent: function(){
+            return this.get('content').sortBy('id');
+        }.property('content.length'),
         notificationId: 0,
         closeAll: false,
         itemCount: function(){
@@ -9223,6 +9236,7 @@ define('notification/main',['App'], function(UMI){
                     Ember.Object.create({
                         id: 'closeAll',
                         type: 'secondary',
+                        kind: 'closeAll',
                         content: 'Закрыть все'
                     })
                 );
@@ -9261,11 +9275,27 @@ define('notification/main',['App'], function(UMI){
         }
     });
 
+    UMI.AlertBoxCloseAll = Ember.View.extend({
+        classNames: ['alert-box text-center alert-box-close-all'],
+        classNameBindings: ['content.type'],
+        layoutName: 'partials/alert-box/close-all',
+        click: function(){
+            UMI.notification.removeAll();
+        }
+    });
+
     UMI.NotificationListView = Ember.CollectionView.extend({
         tagName: 'div',
         classNames: ['umi-alert-wrapper'],
-        itemViewClass: UMI.AlertBox,
-        contentBinding: 'controller.content',
+        createChildView: function(viewClass, attrs) {
+            if (attrs.content.kind === 'closeAll') {
+                viewClass = UMI.AlertBoxCloseAll;
+            } else {
+                viewClass = UMI.AlertBox;
+            }
+            return this._super(viewClass, attrs);
+        },
+        contentBinding: 'controller.sortContent',
         controller: UMI.notificationList
     });
 });
