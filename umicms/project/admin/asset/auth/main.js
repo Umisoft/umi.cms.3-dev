@@ -177,6 +177,7 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
              */
             init: function(){
                 var self = this;
+                var assetsUrl = window.UmiSettings && window.UmiSettings.assetsUrl;
 
                 /**
                  * Регистрация хелпера ifCond, позволяющего сравнивать значения в шаблоне
@@ -199,7 +200,7 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
                     // Проверяем есть ли шаблон и если нет то собираем его
                     if(!document.querySelector('.auth-layout')){
                         var helper = document.createElement('div');
-                        helper.innerHTML = self.TEMPLATES.app({outlet: self.TEMPLATES.index({accessError: self.accessError, form: self.forms.form})});
+                        helper.innerHTML = self.TEMPLATES.app({assetsUrl: assetsUrl ,outlet: self.TEMPLATES.index({accessError: self.accessError, form: self.forms.form})});
                         helper = document.body.appendChild(helper);
                         $(helper.firstElementChild).unwrap();
                     }
