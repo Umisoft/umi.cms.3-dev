@@ -219,7 +219,7 @@ EOF;
     private function packFile(Phar $phar, SplFileInfo $file, $obfuscate, ProgressBar $progress)
     {
         $localPath = strtr(str_replace(CMS_DIR . '/', '', $file->getRealPath()), '\\', '/');
-        $localPath = strtr(str_replace(VENDOR_DIR . '/', 'vendor', $localPath), '\\', '/');
+        $localPath = strtr(str_replace(VENDOR_DIR . '/', 'vendor/', $localPath), '\\', '/');
 
         $progress->setMessage('Packing "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {
