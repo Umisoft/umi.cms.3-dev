@@ -107,7 +107,7 @@ class PackCoreCommand extends BaseCommand
 
 Phar::mapPhar('umicms.phar');
 
-require 'phar://umicms.phar/umicms/bootstrap.php';
+require 'phar://umicms.phar/bootstrap.php';
 
 __HALT_COMPILER();
 EOF;
