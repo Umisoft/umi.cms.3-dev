@@ -107,7 +107,7 @@ class PackCoreCommand extends BaseCommand
 
 Phar::mapPhar('umicms.phar');
 
-require 'phar://umicms.phar/bootstrap.php';
+require 'phar://umicms.phar/umicms/bootstrap.php';
 
 __HALT_COMPILER();
 EOF;
@@ -180,7 +180,7 @@ EOF;
 return ['{$version}', '{$versionDate}'];
 EOF;
 
-        $phar->addFromString('version.php', $version);
+        $phar->addFromString('umicms/version.php', $version);
     }
 
     /**
@@ -218,8 +218,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, $obfuscate, ProgressBar $progress)
     {
-        $localPath = strtr(str_replace(CMS_DIR . '/', '', $file->getRealPath()), '\\', '/');
-        $localPath = strtr(str_replace(VENDOR_DIR . '/', 'vendor/', $localPath), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
 
         $progress->setMessage('Packing "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {
