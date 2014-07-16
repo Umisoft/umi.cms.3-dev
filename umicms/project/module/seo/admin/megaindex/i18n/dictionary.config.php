@@ -15,7 +15,7 @@ return [
         'action:siteAnalyze:displayName' => 'Видимость сайта',
         'action:getBacklinks:displayName' => 'Ссылки на сайт',
 
-        'Do not set auth data' => 'Не заданы авторизационные данные',
+        'Do not set auth data' => 'Не заданы авторизационные данные.',
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных'
     ]

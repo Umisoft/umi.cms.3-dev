@@ -28,11 +28,11 @@ return [
         'collection:blogComment' => 'Комментарии',
         'collection:blogPost' => 'Посты',
         'collection:blogAuthor' => 'Авторы',
-        'collection:blogTag' => 'Тэги',
+        'collection:blogTag' => 'Теги',
 
         'action:untrash' => 'Восстановить',
 
-        'No deleted pages.' => 'Нет удалённых страниц.'
+        'No deleted pages.' => 'Нет удаленных страниц.'
     ]
 ];
  
