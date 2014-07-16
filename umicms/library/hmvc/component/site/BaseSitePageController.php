@@ -33,6 +33,8 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
      */
     public $template = 'index';
 
+    public function __invoke() {}
+
     /**
      * {@inheritdoc}
      */

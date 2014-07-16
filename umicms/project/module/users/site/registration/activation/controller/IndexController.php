@@ -54,7 +54,7 @@ class IndexController extends BaseSitePageController
             $this->module->setCurrentUser($user);
 
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'authenticated' => $this->module->isAuthenticated(),
@@ -64,7 +64,7 @@ class IndexController extends BaseSitePageController
 
         } catch (\Exception $e) {
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'authenticated' => $this->module->isAuthenticated(),

@@ -61,7 +61,7 @@ class IndexController extends BaseSitePageController
             $this->success = true;
 
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'success' => $this->success
@@ -70,7 +70,7 @@ class IndexController extends BaseSitePageController
 
         } catch (\Exception $e) {
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'success' => $this->success,

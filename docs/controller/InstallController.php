@@ -356,10 +356,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $properties = $class->getProperties(true);
         if (isset($properties['template'])) {
             $controllerPage->templateName = $controller->template;
-        } else {
-            var_dump($className);
         }
-
     }
 
     protected function getReturnValue(ClassReflection $class)
