@@ -87,45 +87,6 @@ module.exports = function(grunt){
 
                     findNestedDependencies: true
                 }
-            },
-            production: {
-                options: {
-                    baseUrl: './production',
-                    stubModules: ['text'],
-                    mainConfigFile: "main.js",
-                    name: 'main',
-                    inlineText: true,
-                    optimize: 'none',
-                    out: 'development/js/app.js',
-                    findNestedDependencies: true,
-                    exclude: [
-                        'Modernizr',
-                        'jquery',
-                        'jqueryUI',
-                        'Handlebars',
-                        'Ember',
-                        'DS',
-                        'iscroll',
-                        'ckEditor',
-                        'timepicker',
-                        'moment',
-                        'elFinder'
-                    ],
-                    paths: {
-                        text:       'vendor/text',
-                        jquery:     'vendor/jquery.min',
-                        jqueryUI:   'vendor/jquery-ui.min',
-                        Modernizr:  'vendor/modernizr',
-                        Handlebars: 'vendor/handlebars.min',
-                        Ember:      'vendor/ember.min',
-                        DS:         'vendor/ember-data.min',
-                        iscroll:    'vendor/iscroll-probe-5.1.1',
-                        ckEditor:   'vendor/ckeditor',
-                        timepicker: 'vendor/jquery-ui-timepicker-addon',
-                        moment:     'vendor/moment-with-langs.min',
-                        elFinder:   'vendor/elFinder'
-                    }
-                }
             }
         },
 
@@ -183,37 +144,22 @@ module.exports = function(grunt){
         },
 
         copy: {
-            png: {
+            imagesProduction: {
                 expand: true,
-                cwd: 'development/img',
-                src: ['**'],
-                dest: 'production/img'
-            },
-
-            svg: {
-                expand: true,
-                cwd: 'development/svg',
-                src: ['animation/**', 'elements/**'],
-                dest: 'production/svg/'
-            },
-
-            styles: {
-                expand: true,
-                cwd: 'development/css',
-                src: ['styles.css'],
-                dest: 'production/css'
+                cwd: 'development/images',
+                src: ['**/*', '!dock_png/**', '!svg/**'],
+                dest: 'production/images'
             },
 
             js: {
                 expand: true,
-                cwd: 'development/js',
-                src: ['app.js'],
-                dest: 'production/js'
+                cwd: 'development',
+                src: ['main.js'],
+                dest: 'production'
             },
 
             vendorProduction: {
                 expand: true,
-                flatten: true,
                 cwd: './',
                 src: [
                     'vendor/requirejs/require.js',
@@ -230,7 +176,10 @@ module.exports = function(grunt){
                     'vendorExtend/iscroll-probe-5.1.1.js',
                     'vendorExtend/elFinder.js'
                 ],
-                dest: 'production/libs'
+                dest: 'production',
+                rename: function(dest, src) {
+                    return dest + '/' + src.replace(/\.min/g, '');
+                }
             },
 
             vendorDevelopment: {
@@ -318,13 +267,13 @@ module.exports = function(grunt){
         uglify: {
             app: {
                 files: {
-                    'production/js/app.js': ['production/js/app.js'],
-                    'production/libs/elFinder.js': ['production/libs/elFinder.js'],
-                    'production/libs/iscroll-probe-5.1.1.js': ['production/libs/iscroll-probe-5.1.1.js'],
-                    'production/libs/jquery-ui-timepicker-addon.js': ['production/libs/jquery-ui-timepicker-addon.js'],
-                    'production/libs/modernizr.js': ['production/libs/modernizr.js'],
-                    'production/libs/require.js': ['production/libs/require.js'],
-                    'production/libs/text.js': ['production/libs/text.js']
+                    'production/main.js': ['production/main.js'],
+                    'production/vendorExtend/elFinder.js': ['production/vendorExtend/elFinder.js'],
+                    'production/vendorExtend/iscroll-probe-5.1.1.js': ['production/vendorExtend/iscroll-probe-5.1.1.js'],
+                    'production/vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js': ['production/vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js'],
+                    'production/vendor/modernizr/modernizr.js': ['production/vendor/modernizr/modernizr.js'],
+                    'production/vendor/requirejs/require.js': ['production/vendor/requirejs/require.js'],
+                    'production/vendor/requirejs-text/text.js': ['production/vendor/requirejs-text/text.js']
                 }
             }
         },
@@ -360,6 +309,6 @@ module.exports = function(grunt){
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('development', ['copy:vendorDevelopment', 'copy:imagesDevelopment', 'svgmin', 'grunticon', 'sass', 'autoprefixer', 'concat:development','emberTemplates', 'requirejs:development']);
-    grunt.registerTask('production', ['clean', 'sass', 'autoprefixer', 'csso', 'copy:png', 'copy:js', 'copy:vendorProduction', 'emberTemplates', 'requirejs:production', 'uglify']);
+    grunt.registerTask('production', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
     grunt.registerTask('docs', ['yuidoc']);
 };

@@ -4,7 +4,7 @@ require.config({
 
         App:        'application/application',
         jquery:     'vendor/jquery/dist/jquery',
-        jqueryUI:   'vendor/jquery-ui/jquery-ui.min',
+        jqueryUI:   'vendor/jquery-ui/jquery-ui',
         Modernizr:  'vendor/modernizr/modernizr',
         Handlebars: 'vendor/handlebars/handlebars',
         Ember:      'vendor/ember/ember',
@@ -12,7 +12,7 @@ require.config({
         iscroll:    'vendorExtend/iscroll-probe-5.1.1',
         ckEditor:   'vendor/ckeditor/ckeditor',
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
-        moment:     'vendor/momentjs/min/moment-with-langs.min',
+        moment:     'vendor/momentjs/min/moment-with-langs',
         elFinder:   'vendorExtend/elFinder'
     },
 
