@@ -29,7 +29,7 @@ return [
         'ru-RU' => [
             BlogPost::FIELD_ANNOUNCEMENT => 'Анонс',
             BlogPost::FIELD_CATEGORY => 'Категория',
-            BlogPost::FIELD_TAGS => 'Тэги',
+            BlogPost::FIELD_TAGS => 'Теги',
             BlogPost::FIELD_AUTHOR => 'Автор',
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogPost::FIELD_SOURCE => 'Источник публикации',

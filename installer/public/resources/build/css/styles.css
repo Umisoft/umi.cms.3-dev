@@ -4920,6 +4920,12 @@ select {
   width: 340px; }
   .umi-alert-wrapper .alert-box {
     margin-bottom: 0.6rem; }
+    .umi-alert-wrapper .alert-box-close-all {
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #D6D6D6; }
 
 .button, button {
   border: 1px solid;

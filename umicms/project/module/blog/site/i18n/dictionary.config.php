@@ -30,7 +30,7 @@ return [
         'role:rejectExecutor:displayName' => 'Отклонённые посты',
         'role:categoryExecutor:displayName' => 'Категории',
         'role:authorExecutor:displayName' => 'Авторы',
-        'role:tagExecutor:displayName' => 'Тэги',
+        'role:tagExecutor:displayName' => 'Теги',
         'role:commentExecutor:displayName' => 'Комментарии',
     ]
 

@@ -2,7 +2,7 @@
 
 /**
  * @var umicms\orm\selector\CmsSelector $list
- * @var array $pagination
+ * @var umicms\pagination\CmsPaginator $paginator
  * @var umicms\project\module\search\model\object\SearchIndex $index
  * @var umicms\orm\object\ICmsPage $page
  * @var string $query
@@ -22,7 +22,7 @@
 
     <?php endforeach; ?>
 
-    <?= $this->render('pagination.phtml', ['pagination' => $pagination]); ?>
+    <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
 <?php else :?>
     <p><?=$this->translate('No results')?></p>
 <?php endif; ?>

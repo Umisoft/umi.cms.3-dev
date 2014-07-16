@@ -993,6 +993,7 @@ define([], function(){
                             }
                         );
                     }
+                    return true;
                 }
             }
         });
