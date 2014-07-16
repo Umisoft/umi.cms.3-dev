@@ -4802,7 +4802,7 @@ body {
   line-height: 1;
   position: relative;
   cursor: default;
-  min-width: 41em; }
+  min-width: 44em; }
 
 a:hover {
   cursor: pointer; }
@@ -5008,6 +5008,12 @@ select {
     background-position-y: 0; }
     .button.disabled:hover, button.disabled:hover {
       background-position-y: 0; }
+  .button .umi-button-label, button .umi-button-label {
+    font-weight: normal;
+    color: inherit; }
+
+.umi-hide-button-label .umi-button-label {
+  display: none; }
 
 @keyframes animate-stripes-bg-primary {
   20% {
@@ -6951,6 +6957,7 @@ table td {
   cursor: pointer; }
 
 .umi-toolbar {
+  width: 100%;
   position: relative;
   height: 32px;
   background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);

@@ -116,6 +116,16 @@
         }
         background-position-y: 0;
     }
+    .umi-button-label{
+        font-weight: $button-font-weight;
+        color: inherit;
+    }
+}
+
+.umi-hide-button-label{
+    .umi-button-label{
+        display: none;
+    }
 }
 
 @keyframes animate-stripes-bg-primary{

@@ -74,7 +74,33 @@ define(['App'], function(UMI){
              */
             classNames: ['s-unselectable', 'umi-toolbar'],
 
-            elementView: Ember.View.extend(UMI.ToolbarElement)
+            elementView: Ember.View.extend(UMI.ToolbarElement),
+            didInsertElement: function(){
+                var $el = this.$();
+                var $buttonGroup = $el.find('.button-group' );
+                var buttonGroupWidth = $buttonGroup.width();
+                var nextElementsWidth = 0;
+                var $nextElements = $buttonGroup.next();
+                if($nextElements.length){
+                    nextElementsWidth = $nextElements.width();
+                    buttonGroupWidth += nextElementsWidth + 60;
+                }
+                if($buttonGroup.length){
+                    if(buttonGroupWidth >= $el.width()){
+                        $buttonGroup.addClass('umi-hide-button-label');
+                    }
+                }
+                $(window).on('resize.umi.toolbar', function(){
+                    if(buttonGroupWidth >= $el.width()){
+                        $buttonGroup.addClass('umi-hide-button-label');
+                    } else{
+                        $buttonGroup.removeClass('umi-hide-button-label');
+                    }
+                });
+            },
+            willDestroyElement: function(){
+                $(window).off('resize.umi.toolbar');
+            }
         });
     };
 });

@@ -1,6 +1,7 @@
 @import "../snippets";
 
 .umi-toolbar{
+    width: 100%;
     position: relative;
     height: 32px;
     @include s-gradient-grey();
