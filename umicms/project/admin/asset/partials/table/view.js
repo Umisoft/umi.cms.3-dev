@@ -7,7 +7,7 @@ define(['App'], function(UMI){
             localDictionary: function(){
                 var table = this.get('content.control') || {};
                 return table.i18n;
-            }.property(),
+            }.property('content'),
             templateName: 'partials/table',
             classNames: ['umi-table'],
             headers: [],
@@ -171,7 +171,7 @@ define(['App'], function(UMI){
             setContent: function(){
                 var content = this.get('content');
                 var headers;
-                var data = Ember.get(content, 'control.data') || [];
+                var data = Ember.get(content, 'control.data.data') || [];
                 var index;
                 if(data.length){
                     headers = data.shift();
