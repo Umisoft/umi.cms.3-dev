@@ -1,5 +1,0 @@
-{% if (list.getTotal()) %}
-    {% for blogDraft in list %}
-        {{ widget('blog.draft.view', {'blogDraft' : blogDraft, 'template' : 'shortView'}) }}
-    {% endfor %}
-{% endif %}
