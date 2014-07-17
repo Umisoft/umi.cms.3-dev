@@ -248,7 +248,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     {
         $iterator = Finder::create()
             ->files()
-            ->name('/(.)*[Widget|Controller]\.php$/')
             ->in($dir = Environment::$directoryCms);
 
         $config = [];
@@ -395,18 +394,101 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         if ($templateParams) {
+
+            echo 'Собираю параметры для класса ' . $class->getName() . PHP_EOL;
+
             $templateParamsString = '';
+            $additionalContent = '';
+
             foreach ($templateParams as $templateParam) {
-                $templateParamsString .= '<li>';
-                for ($i = 0; $i < count($templateParam); $i++) {
+
+                if (!is_array($templateParam)) {
+                    var_dump($templateParams);
+                    return '';
+                }
+
+                $additionalContent .= $this->getAdditionalDescription($templateParam);
+
+                $templateParamsString .= '<tr>
+          <td>' . $templateParam[0] . '</td>
+          <td>' . $templateParam[1] . '</td><td>';
+
+                for ($i = 2; $i < count($templateParam); $i++) {
                     $templateParamsString .= $templateParam[$i] . ' ';
                 }
-                $templateParamsString .= '</li>';
+
+                $templateParamsString .= '</td></tr>';
             }
-            return '<h3>Параметры шаблонизации</h3>' . '<ul>' . $templateParamsString .'</ul>';
+
+            return '<h3>Переменные, доступные в шаблоне</h3>' .
+                '<table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody>'
+                . $templateParamsString .
+                '</tbody>
+              </table>' . $additionalContent;
         }
 
         return '';
+    }
+
+    protected function getAdditionalDescription(array &$templateParam)
+    {
+
+        $result = '';
+
+        $type = &$templateParam[0];
+
+        if (strpos($type, '|')) {
+            foreach(explode('|', $type) as $typePart) {
+                list($newTypePart, $description)  = $this->buildTypeDescription($typePart);
+                str_replace($typePart, $newTypePart, $type);
+                $result .= $description;
+            }
+        } else {
+            list($type, $result)  = $this->buildTypeDescription($type);
+        }
+
+        return $result;
+    }
+
+    protected function buildTypeDescription($type)
+    {
+        $description = '';
+        if (class_exists($type)) {
+
+            $class = $this->samiProject->getClass($type);
+            $table = $this->buildAnnotationPropertiesDescriptionTable($class);
+            if (!$table) {
+                return [$type, ''];
+            }
+
+            $nameParts = explode('\\', $type);
+            $name = array_pop($nameParts);
+
+            $description .= '<a name="' . $name. '"></a>';
+            $description .= '<h4>' . $name . '</h4>';
+
+            if ($shortDesc = $class->getShortDesc()) {
+                $description .= '<p>' . $shortDesc . '</p>';
+            }
+
+            if ($longDesc = $class->getLongDesc()) {
+                $description .= '<p>' . $longDesc . '</p>';
+            }
+
+            $description .= $table;
+
+            $type = '<a href="#' . $name . '">' . $type . '</a>';
+        }
+
+        return [$type, $description];
     }
 
     protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
@@ -438,7 +520,80 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         $widgetPage->description = $description;
+        $widgetPage->parameters = $this->buildPublicPropertiesDescriptionTable($class, $widget);
+        $widgetPage->returnValue = $this->getReturnValue($class);
+    }
 
+    protected function buildAnnotationPropertiesDescriptionTable(ClassReflection $class)
+    {
+        $properties = [];
+        $interfaces = $class->getInterfaces(true);
+        /**
+         * @var ClassReflection $interface
+         */
+        foreach ($interfaces as $interface) {
+            foreach ($interface->getTags('property') as $property) {
+                $properties[$property[1]] = $property;
+            }
+        }
+
+        $parents = $class->getParent(true);
+
+        /**
+         * @var ClassReflection $parent
+         */
+        foreach ($parents as $parent) {
+            foreach ($parent->getTags('property') as $property) {
+                $properties[$property[1]] = $property;
+            }
+        }
+
+        foreach ($class->getTags('property') as $property) {
+            $properties[$property[1]] = $property;
+        }
+
+        foreach ($class->getTags('property-read') as $property) {
+            $properties[$property[1]] = $property;
+        }
+
+        if ($properties) {
+
+            $result = '';
+
+            foreach ($properties as $property) {
+
+                $result .= '<tr>
+          <td>' . $property[0] . '</td>
+          <td>' . $property[1] . '</td><td>';
+
+                for ($i = 2; $i < count($property); $i++) {
+                    $result .= $property[$i] . ' ';
+                }
+
+                $result .= '</td></tr>';
+            }
+
+            return
+            '<table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody>'
+            . $result .
+            '</tbody>
+          </table>';
+        }
+
+        return '';
+    }
+
+
+    protected function buildPublicPropertiesDescriptionTable(ClassReflection $class, $instance)
+    {
         $parameters = '';
 
         /**
@@ -478,7 +633,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
             $default = '';
             if (is_array($property->getDefault())) {
-                $default = $widget->{$name};
+                $default = $instance->{$name};
                 if (is_array($default)) {
                     $default = print_r($default, true);
                 }
@@ -495,25 +650,23 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
         if ($parameters) {
             $parameters =
-            '<table class="table">
-      <thead>
-        <tr>
-          <th>Параметр</th>
-          <th>Тип</th>
-          <th>Значение</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody>'
-            . $parameters .
-      '</tbody>
-    </table>';
+                '<table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody>'
+                . $parameters .
+                '</tbody>
+              </table>';
 
         }
 
-        $widgetPage->parameters = $parameters;
-        $widgetPage->returnValue = $this->getReturnValue($class);
-
+        return $parameters;
     }
 
     protected function installSearch()
