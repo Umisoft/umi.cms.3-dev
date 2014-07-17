@@ -42,7 +42,7 @@ interface IUrlManager
      * @param string $assetsUrl
      * @return self
      */
-    public function setCommonAssetsUrl($assetsUrl);
+    public function setAdminAssetsUrl($assetsUrl);
 
     /**
      * Устанавливает базовый URL для ассетов (js/css) проекта.

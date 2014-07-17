@@ -9,14 +9,13 @@ return [
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
 
-        'directoryProjects' => __DIR__ . '/project',
+        'directoryPublic' => __DIR__
     ],
     'production' => [
         'errorReporting' => 0,
         'displayErrors' => false,
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
-
-        'directoryProjects' => __DIR__ . '/project',
+        'directoryPublic' => __DIR__
     ]
 ];

@@ -1,7 +1,8 @@
 <?php
 /**
- * This file is part of UMI.CMS.
+ * Front-controller для UMI.CMS. Обрабатывает HTTP-запросы.
  *
+ * This file is part of UMI.CMS.
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -12,17 +13,8 @@ use umi\http\Response;
 use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
-error_reporting(-1);
-ini_set('display_errors', 1);
+require __DIR__ . '/core.php';
 
-
-require __DIR__ . '/umicms/bootstrap.php';
-
-$envConfigFile = __DIR__ . '/environment.config.php';
-if (is_file($envConfigFile)) {
-    /** @noinspection PhpIncludeInspection */
-    Environment::init(require $envConfigFile);
-}
 
 try {
     (new Bootstrap())->run();

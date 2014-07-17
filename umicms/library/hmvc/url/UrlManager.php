@@ -105,7 +105,7 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setCommonAssetsUrl($assetsUrl)
+    public function setAdminAssetsUrl($assetsUrl)
     {
         $this->adminAssetsUrl = $assetsUrl;
 

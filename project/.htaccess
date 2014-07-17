@@ -1,7 +1,0 @@
-# Start UMI.CMS settings
-php_flag engine 0
-
-<Files ~ "\.(php[2-5]?|cgi|pl|fcgi|fpl|phtml|shtml|asp|jsp|twig|tpl|xslt?)$">
-    Deny from all
-</Files>
-# End UMI.CMS settings

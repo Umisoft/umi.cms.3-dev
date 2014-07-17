@@ -8,20 +8,9 @@ use umicms\console\PackProjectCommand;
 use umicms\console\CreateDumpCommand;
 use umicms\console\LoadDumpCommand;
 use umicms\console\SyncSchemeCommand;
-use umicms\project\Environment;
 
 
-require dirname(__DIR__) .'/umicms/bootstrap.php';
-
-$envConfigFile = dirname(__DIR__) . '/environment.config.php';
-if (is_file($envConfigFile)) {
-    /** @noinspection PhpIncludeInspection */
-    Environment::init(require $envConfigFile);
-}
-
-
-error_reporting(-1);
-ini_set('display_errors', 1);
+require dirname(__DIR__) .'/public/core.php';
 
 $application = new Application('UMI.CMS Console application.', CMS_VERSION);
 
