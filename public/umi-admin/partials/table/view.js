@@ -171,7 +171,7 @@ define(['App'], function(UMI){
             setContent: function(){
                 var content = this.get('content');
                 var headers;
-                var data = Ember.get(content, 'control.data') || [];
+                var data = Ember.get(content, 'control.data.data') || [];
                 var index;
                 if(data.length){
                     headers = data.shift();
@@ -194,7 +194,7 @@ define(['App'], function(UMI){
                 if(Ember.typeOf(data) === 'object' && 'error' in data){
                     this.set('error', data.error);
                 } else if(Ember.typeOf(data) === 'array'){
-                    headers = Ember.get(content, 'control.headers');
+                    headers = [Ember.get(content, 'control.labels.vs_from')];
                     for(var i = 0; i < data.length; i++){
                         rows.push([Ember.get(data[i],'vs_from')]);
                     }
