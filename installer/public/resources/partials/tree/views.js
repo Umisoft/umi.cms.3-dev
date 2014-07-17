@@ -105,8 +105,8 @@ define(['App', 'toolbar'], function(UMI){
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
-                                // 1) после ноды - Если позиция курсора на ноде ниже ~70% её высоты
-                                // 2) перед нодой - Если позиция курсора на ноде выше ~30% её высоты
+                                // 1) после ноды - Если позиция курсора на ноде ниже ~70% ее высоты
+                                // 2) перед нодой - Если позиция курсора на ноде выше ~30% ее высоты
                                 // 3) "внутрь" ноды - если навели на центр. При задержке пользователя на центре раскрываем ноду.
                                 if(event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);

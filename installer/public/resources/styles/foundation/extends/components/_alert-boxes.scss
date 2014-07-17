@@ -27,5 +27,12 @@ $umi-alert-wrapper-index: 1000;
     width: 340px;
     .alert-box{
         margin-bottom: .6rem;
+        &-close-all{
+            padding-top: rem-calc(5);
+            padding-bottom: rem-calc(5);
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #D6D6D6;
+        }
     }
 }

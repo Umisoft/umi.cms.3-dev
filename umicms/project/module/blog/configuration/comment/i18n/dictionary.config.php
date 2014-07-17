@@ -30,7 +30,7 @@ return [
             BlogComment::FIELD_PUBLISH_STATUS => 'Статус публикации',
             'type:base:displayName' => 'Комментарий поста',
             BlogComment::COMMENT_STATUS_NEED_MODERATE => 'На модерации',
-            BlogComment::COMMENT_STATUS_REJECTED => 'Отклонён',
+            BlogComment::COMMENT_STATUS_REJECTED => 'Отклонен',
             BlogComment::COMMENT_STATUS_PUBLISHED => 'Опубликован',
             BlogComment::COMMENT_STATUS_UNPUBLISHED => 'Снят с публикации'
         ]
