@@ -12,13 +12,12 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'menu'

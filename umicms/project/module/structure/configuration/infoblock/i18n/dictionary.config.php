@@ -41,7 +41,7 @@ return [
         InfoBlock::FIELD_ADDRESS => 'Адрес',
         InfoBlock::FIELD_LOGO => 'Логотип',
         InfoBlock::FIELD_COPYRIGHT => 'Копирайт',
-        InfoBlock::FIELD_COUNTER => 'Счётчик',
+        InfoBlock::FIELD_COUNTER => 'Счетчик',
         InfoBlock::FIELD_WIDGET_VK => 'Виджет Vk',
         InfoBlock::FIELD_WIDGET_FACEBOOK => 'Виджет FaceBook',
         InfoBlock::FIELD_WIDGET_TWITTER => 'Виджет Twitter',

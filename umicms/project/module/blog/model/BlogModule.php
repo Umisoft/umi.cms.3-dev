@@ -125,7 +125,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт пост от имени текущего автора.
+     * Создает пост от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @return BlogPost
      */
@@ -277,7 +277,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт комментарий от имени текущего автора.
+     * Создает комментарий от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @param BlogPost $post пост, к которому добавляется комментарий
      * @param null|BlogComment $parentComment родительский комментарий
@@ -428,7 +428,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * Если автора не существует - создаёт нового.
+     * Если автора не существует - создает нового.
      * @throws RuntimeException в случае, если текущий автор не установлен
      * @return BlogAuthor
      */
@@ -480,7 +480,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт автора на основе юзера.
+     * Создает автора на основе юзера.
      * @param BaseUser $user
      * @return BlogAuthor
      */
@@ -525,7 +525,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает список отклонённых постов текущего пользователя.
+     * Возвращает список отклоненных постов текущего пользователя.
      * @return CmsSelector|BlogPost
      */
     public function getOwnRejected()

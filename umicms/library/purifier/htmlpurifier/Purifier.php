@@ -38,7 +38,7 @@ class Purifier implements IPurifier
     }
 
     /**
-     * Создаёт и возвращает HtmlPurifier.
+     * Создает и возвращает HtmlPurifier.
      * @return HTMLPurifier
      */
     protected function buildPurifier()
