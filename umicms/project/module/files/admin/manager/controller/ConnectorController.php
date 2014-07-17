@@ -13,6 +13,7 @@ namespace umicms\project\module\files\admin\manager\controller;
 use elFinder;
 use elFinderConnector;
 use umicms\hmvc\component\BaseCmsController;
+use umicms\project\Environment;
 
 /**
  * Контроллер файлового менеджера.
@@ -28,7 +29,7 @@ class ConnectorController extends BaseCmsController
             'roots' => [
                 [
                     'driver'        => 'LocalFileSystem',
-                    'path'          => PUBLIC_DIR . '/files',
+                    'path'          => Environment::$directoryPublic . '/files',
                     'URL'           => '/files',
                     'accessControl' => [$this, 'accessControl'],
                     'uploadDeny' => ['text/x-php'],

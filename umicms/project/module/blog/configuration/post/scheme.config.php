@@ -10,11 +10,10 @@
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
     [
         'name' => 'blog_post',
         'columns' => [

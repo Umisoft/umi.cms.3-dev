@@ -1,0 +1,37 @@
+<div class="dock-wrapper">
+    <div class="dock-wrapper-bg">
+        <ul class="dock navigation">
+            {{#each module in modules}}
+                {{#view 'dockModuleButton' module=module}}
+                    {{#link-to 'module' module.name tagName="span" class="dock-module"}}
+                        <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
+                        <span>{{module.displayName}}</span>
+                    {{/link-to}}
+                    <ul class="f-dropdown center">
+                        {{#each component in module.components}}
+                            <li class="{{unbound component.name}}">
+                                {{#link-to 'component' module.name component.name}}
+                                    {{component.displayName}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/view}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="dock-components">
+    <nav class="components-nav">
+        {{#if activeModule}}
+            {{#with activeModule as module}}
+                {{#each component in module.components}}
+                    {{#link-to 'component' module.name component.name class=component.name}}
+                        {{component.displayName}}
+                    {{/link-to}}
+                {{/each}}
+            {{/with}}
+        {{/if}}
+    </nav>
+</div>
