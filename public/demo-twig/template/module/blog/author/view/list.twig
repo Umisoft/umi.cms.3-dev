@@ -1,0 +1,9 @@
+{% if (list.getTotal()) %}
+    <ul>
+        {% for blogAuthor in list %}
+            <li>
+                {{ widget('blog.author.view', {'blogAuthor' : blogAuthor, 'template' : 'shortView'}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,6 @@
+{{ render('breadcrumbs.twig') }}
+
+<h1>{{ page.displayName }}</h1>
+{{ page.contents }}
+
+{{ widget('blog.post.view.list', {'template' :'list'}) }}
