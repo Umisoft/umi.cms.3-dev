@@ -9,15 +9,12 @@ return [
         'connection' => [
             'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
             'options' => [
-                'dbname' => 'umi3',
-                'user' => 'root',
-                'password' => 'root',
+                'dbname' => 'srv09realloc3',
+                'user' => 'srv09realloc3',
+                'password' => 'srv09realloc3',
                 'host' => 'localhost',
-                'charset' => 'utf8',
-                'port' => 8889
+                'charset' => 'utf8'
             ]
         ]
     ]
 ];
-
-
