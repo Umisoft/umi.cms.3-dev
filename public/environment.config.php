@@ -2,7 +2,7 @@
 
 return [
     'currentMode' => 'development',
-
+    'corePath' => dirname(__DIR__) . '/umicms.phar',
     'development' => [
         'errorReporting' => E_ALL,
         'displayErrors' => true,
