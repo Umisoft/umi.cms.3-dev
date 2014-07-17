@@ -32,6 +32,9 @@
         "gregwar/captcha": "1.0.*",
         "ezyang/htmlpurifier": "4.6.*",
         "jbroadway/urlify": "1.0.*",
-        "sami/sami": "2.0.*@dev"
+
+        "symfony/finder": "~2.2",
+        "symfony/process": "~2.1",
+        "symfony/console": "~2.1"
     }
 }

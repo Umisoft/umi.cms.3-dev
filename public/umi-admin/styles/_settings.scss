@@ -1,0 +1,11 @@
+//settings
+@import "version";
+
+$images-path: '../images/';
+$images-version: '?version=' + $project-version;
+
+$image-to-top-shadow: $images-path + 'shadows/toTopShadow.png' + $images-version !default;
+$image-to-bottom-shadow: $images-path + 'shadows/toBottomShadow.png' + $images-version !default;
+$image-to-left-shadow: $images-path + 'shadows/toLeftShadow.png' + $images-version !default;
+$image-to-right-shadow: $images-path + 'shadows/toRightShadow.png' + $images-version !default;
+$image-spinner: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzRDNjE3RCI+DQogIDxwYXRoIG9wYWNpdHk9Ii4yNSIgZD0iTTE2IDAgQTE2IDE2IDAgMCAwIDE2IDMyIEExNiAxNiAwIDAgMCAxNiAwIE0xNiA0IEExMiAxMiAwIDAgMSAxNiAyOCBBMTIgMTIgMCAwIDEgMTYgNCIvPg0KICA8cGF0aCBkPSJNMTYgMCBBMTYgMTYgMCAwIDEgMzIgMTYgTDI4IDE2IEExMiAxMiAwIDAgMCAxNiA0eiI+DQogICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgMTYgMTYiIHRvPSIzNjAgMTYgMTYiIGR1cj0iMC44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+DQogIDwvcGF0aD4NCjwvc3ZnPg==';

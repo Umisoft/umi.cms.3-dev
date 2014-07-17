@@ -19,7 +19,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер редактирования отклонённого поста блога.
+ * Контроллер редактирования отклоненного поста блога.
  */
 class EditController extends BaseSitePageController
 {

@@ -37,7 +37,7 @@ class PageController extends SitePageController
     /**
      * Возвращает страницу для отображения.
      * @param string $uri
-     * @throws ResourceAccessForbiddenException в случае если просмотр поста запрещён
+     * @throws ResourceAccessForbiddenException в случае если просмотр поста запрещен
      * @return BlogPost
      */
     public function getPage($uri)

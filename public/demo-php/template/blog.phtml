@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?=$this->render('partial/header.phtml', $scope) ?>
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-collapse collapse">
+            <?=$this->widget('structure.menu.auto', ['depth' => 1])?>
+
+            <?php if (count($locales)) : ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php foreach ($locales as $localeId => $localeInfo) : ?>
+                        <li class="<?= $localeInfo['current'] ? 'active' : '' ?>">
+                            <a href="<?= $localeInfo['url'] ?>"><?= $this->translate($localeInfo['id']) ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <header class="blog-header">
+        <?=$this->widget('structure.infoblock.view', ['template' => 'logo', 'infoBlock' => 'commonInfoBlock'])?>
+    </header>
+
+    <main class="row">
+
+        <article class="col-sm-8 blog-main">
+
+            <?=$contents?>
+
+        </article>
+
+        <aside class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <?=$this->render('partial/sidebar-blog.phtml', $scope) ?>
+        </aside>
+
+    </main>
+
+</div>
+
+<?=$this->render('partial/footer.phtml', $scope) ?>
+
+</body>
+</html>

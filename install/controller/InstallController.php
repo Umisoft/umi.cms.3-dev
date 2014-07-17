@@ -122,9 +122,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         try {
             echo "Sync table schemes...\n";
             foreach ($this->getModules() as $module) {
-                $module->getModels()->syncAllSchemes();
+                $module->getModelCollection()->syncAllSchemes();
             }
-
+/*
             echo "Installing structure...\n";
             $this->installStructure();
             echo "Installing users...\n";
@@ -140,7 +140,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
             $this->commit();
             $this->getObjectManager()->unloadObjects();
-
+*/
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
             echo $e->getTraceAsString() . "\n";
@@ -694,21 +694,21 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $draftEdit->getProperty('componentPath')->setValue('blog.draft.edit');
 
         $rejectedPost = $structureCollection->add('rejected', 'system', $blogPage)
-            ->setValue('displayName', 'Отклонённые посты')
+            ->setValue('displayName', 'Отклоненные посты')
             ->setValue('displayName', 'Rejected posts', 'en-US');
         $rejectedPost->getProperty('locked')->setValue(true);
         $rejectedPost->getProperty('componentName')->setValue('reject');
         $rejectedPost->getProperty('componentPath')->setValue('blog.reject');
 
         $rejectedPostEdit = $structureCollection->add('edit', 'system', $rejectedPost)
-            ->setValue('displayName', 'Редактировать отклонённый пост')
+            ->setValue('displayName', 'Редактировать отклоненный пост')
             ->setValue('displayName', 'Edit rejected posts', 'en-US');
         $rejectedPostEdit->getProperty('locked')->setValue(true);
         $rejectedPostEdit->getProperty('componentName')->setValue('edit');
         $rejectedPostEdit->getProperty('componentPath')->setValue('blog.reject.edit');
 
         $rejectedPostView = $structureCollection->add('view', 'system', $rejectedPost)
-            ->setValue('displayName', 'Просмотреть отклонённый пост')
+            ->setValue('displayName', 'Просмотреть отклоненный пост')
             ->setValue('displayName', 'View rejected posts', 'en-US');
         $rejectedPostView->getProperty('locked')->setValue(true);
         $rejectedPostView->getProperty('componentName')->setValue('view');
