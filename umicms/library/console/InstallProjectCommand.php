@@ -25,8 +25,8 @@ class InstallProjectCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('project:install')
-            ->setDescription('Install project: sync database scheme, load project dump.');
+            ->setName('install:project')
+            ->setDescription('Install project: sync database scheme, load project dump');
     }
 
     /**

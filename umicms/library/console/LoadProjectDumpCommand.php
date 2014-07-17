@@ -23,7 +23,7 @@ use umicms\project\module\search\model\SearchModule;
 /**
  * Загружает данные проекта из дампа.
  */
-class LoadDumpCommand extends BaseProjectCommand
+class LoadProjectDumpCommand extends BaseProjectCommand
 {
     /**
      * {@inheritdoc}
@@ -33,8 +33,8 @@ class LoadDumpCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('project:load-dump')
-            ->setDescription('Load project data into dump.');
+            ->setName('load:project-dump')
+            ->setDescription('Load project data from dump');
     }
 
     /**
@@ -65,7 +65,6 @@ class LoadDumpCommand extends BaseProjectCommand
         $finder = new Finder();
         $finder->files()
             ->name('*.php')
-            ->ignoreVCS(true)
             ->in($dumpDirectory);
 
         $progress = $this->startProgressBar($output, count($finder));

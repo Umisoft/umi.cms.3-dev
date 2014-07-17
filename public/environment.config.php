@@ -16,6 +16,7 @@ return [
         'displayErrors' => false,
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
+
         'directoryPublic' => __DIR__
     ]
 ];

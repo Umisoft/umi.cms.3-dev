@@ -9,10 +9,10 @@ return [
         'connection' => [
             'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
             'options' => [
-                'dbname' => '',
-                'user' => '',
-                'password' => '',
-                'host' => 'localhost',
+                'dbname' => '%dbname%',
+                'user' => '%user%',
+                'password' => '%password%',
+                'host' => '%host%',
                 'charset' => 'utf8'
             ]
         ]

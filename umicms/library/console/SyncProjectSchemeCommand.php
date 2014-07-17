@@ -17,7 +17,7 @@ use umicms\module\toolbox\ModuleTools;
 /**
  * Синхронизирует и обновляет схему БД для моделей проекта.
  */
-class SyncSchemeCommand extends BaseProjectCommand
+class SyncProjectSchemeCommand extends BaseProjectCommand
 {
     /**
      * {@inheritdoc}
@@ -27,7 +27,7 @@ class SyncSchemeCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('project:sync-scheme')
+            ->setName('sync:project-scheme')
             ->setDescription('Synchronize database scheme for project.');
     }
 

@@ -19,7 +19,7 @@ use umicms\orm\object\ICmsObject;
 /**
  * Создает дамп данных проекта.
  */
-class CreateDumpCommand extends BaseProjectCommand
+class CreateProjectDumpCommand extends BaseProjectCommand
 {
     /**
      * @var array $ignoreCollections имена коллекций, которые будут проигнорированы в дампе.
@@ -32,8 +32,8 @@ class CreateDumpCommand extends BaseProjectCommand
     protected function configure()
     {
         $this
-            ->setName('project:create-dump')
-            ->setDescription('Create dump for project data.');
+            ->setName('create:project-dump')
+            ->setDescription('Create dump for project data');
 
         parent::configure();
     }

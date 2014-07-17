@@ -17,7 +17,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use umicms\project\Environment;
 use umicms\Utils;
 
 /**
@@ -31,8 +30,8 @@ class PackCoreCommand extends BaseCommand
     protected function configure()
     {
         $this
-            ->setName('core:pack')
-            ->setDescription('Pack core')
+            ->setName('pack:core')
+            ->setDescription('Pack UMI.CMS core files')
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
@@ -128,11 +127,9 @@ EOF;
 
         $finder = new Finder();
         $finder->files()
-            ->ignoreVCS(true)
             ->notName('CoreCompiler.php')
             ->notName('version.php')
-            ->in(Environment::$directoryPublic)
-            ->exclude('project/admin/asset');
+            ->in(CMS_DIR);
 
         $progress = $this->startProgressBar($output, $finder->count());
 
@@ -141,17 +138,6 @@ EOF;
             $progress->advance();
         }
 
-        $finder = new Finder();
-        $finder->files()
-            ->ignoreVCS(true)
-            ->in(CMS_ADMIN_FRONTEND . '/production');
-
-        $progress = $this->startProgressBar($output, $finder->count());
-
-        foreach ($finder as $file) {
-            $this->packFile($phar, $file, $obfuscate, $progress);
-            $progress->advance();
-        }
         $progress->setMessage('Complete.');
 
         $this->addVersionFile($phar);
