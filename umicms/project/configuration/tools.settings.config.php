@@ -16,6 +16,7 @@ use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
+use umi\pagination\toolbox\PaginationTools;
 use umi\templating\toolbox\TemplatingTools;
 use umi\validation\toolbox\ValidationTools;
 use umicms\filter\HtmlPurifier;
@@ -203,5 +204,15 @@ return [
         ]
     ],
 
+    PaginationTools::NAME => [
+        'factories' => [
+            'paginator' => [
+                'paginatorClass' => 'umicms\pagination\CmsPaginator'
+            ]
+        ]
+    ],
+
     SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
+
+
 ];

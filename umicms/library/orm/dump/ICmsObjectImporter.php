@@ -20,6 +20,6 @@ interface ICmsObjectImporter
      * @param array $dump
      * @return self
      */
-    public function loadDump(array $dump);
+    public function loadDump($dump);
 }
  

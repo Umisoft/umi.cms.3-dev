@@ -38,6 +38,20 @@ interface IUrlManager
     public function setSiteUrlPostfix($urlPostfix);
 
     /**
+     * Устанавливает базовый URL для общих ассетов (js/css) проектов.
+     * @param string $assetsUrl
+     * @return self
+     */
+    public function setAdminAssetsUrl($assetsUrl);
+
+    /**
+     * Устанавливает базовый URL для ассетов (js/css) проекта.
+     * @param string $assetsUrl
+     * @return self
+     */
+    public function setProjectAssetsUrl($assetsUrl);
+
+    /**
      * Устанавливает схему и HTTP-хост проета.
      * @param string $schemeAndHttpHost
      * @return self
@@ -64,6 +78,18 @@ interface IUrlManager
      * @return string
      */
     public function getProjectUrl($isAbsolute = false);
+
+    /**
+     * Возвращает базовый URL ассетов (js/css) проекта.
+     * @return string
+     */
+    public function getProjectAssetsUrl();
+
+    /**
+     * Возвращает базовый URL административных ассетов (js/css).
+     * @return string
+     */
+    public function getAdminAssetsUrl();
 
     /**
      * Возвращает постфикс для URL проекта.
