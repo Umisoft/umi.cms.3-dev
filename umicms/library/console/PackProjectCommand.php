@@ -30,8 +30,8 @@ class PackProjectCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('project:pack')
-            ->setDescription('Pack project into package.')
+            ->setName('pack:project')
+            ->setDescription('Pack project files into package.')
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
@@ -112,7 +112,6 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
-            ->ignoreVCS(true)
             ->notName('db.config.php')
             ->notName('project.config.php')
             ->notName('tools.settings.config.php')

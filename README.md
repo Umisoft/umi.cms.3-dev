@@ -39,12 +39,12 @@ $ php composer.phar install
 
 Для demo-* проектов
 ```sh
-$ php ./bin/umi project:install http://localhost
+$ php ./bin/umi install:project http://localhost
 ```
 
 Для других проектов
 ```sh
-$ php ./bin/umi project:install http://localhost/{PROJECT_PREFIX}
+$ php ./bin/umi install:project http://localhost/{PROJECT_PREFIX}
 ```
 
 Сейчас есть три demo с одними и теми же данными, но с разными шаблонизаторами:
@@ -63,13 +63,8 @@ $ php ./bin/umi project:install http://localhost/{PROJECT_PREFIX}
 ```sh
 $ php composer.phar update
 ```
-2) Bower:
-```sh
-cd installer/public/resources
-bower update
-```
 
-Также, необходимо переустановить данные demo-проектов, запустив в браузере:
-```
-http://localhost/install
+Также, необходимо переустановить данные demo-проектов, запустив в консольное приложение:
+```sh
+$ php ./bin/umi install:project http://localhost
 ```
