@@ -18,10 +18,10 @@ return [
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Управление отклонёнными постами',
-        'role:viewer:displayName' => 'Просмотр списка отклонённых постов',
-        'role:editExecutor:displayName' => 'Редактирование отклонённого поста',
-        'role:viewExecutor:displayName' => 'Просмотр отклонённого поста',
+        'role:author:displayName' => 'Управление отклоненными постами',
+        'role:viewer:displayName' => 'Просмотр списка отклоненных постов',
+        'role:editExecutor:displayName' => 'Редактирование отклоненного поста',
+        'role:viewExecutor:displayName' => 'Просмотр отклоненного поста',
     ]
 
 ];

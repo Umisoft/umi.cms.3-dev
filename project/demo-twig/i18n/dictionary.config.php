@@ -31,7 +31,7 @@ return [
             'Previous' => 'Назад',
             'Next' => 'Дальше',
             'Post on moderation' => 'Посты на модерации',
-            'List of rejected posts' => 'Список отклонённых постов',
+            'List of rejected posts' => 'Список отклоненных постов',
             'RSSFeed' => 'RSS ленты',
             'Blogs' => 'Блоги',
             'Categories' => 'Категории',
@@ -39,7 +39,7 @@ return [
             'Authors' => 'Авторы',
             'Authors\'s posts' => 'Посты автора',
             'Drafts' => 'Черновики',
-            'Rejected posts' => 'Отклонённые посты',
+            'Rejected posts' => 'Отклоненные посты',
             'Moderate' => 'Модерирование',
             'News' => 'Новости',
             'Rubrics' => 'Рубрики',
@@ -72,8 +72,8 @@ return [
             'Author' => 'Автор',
             'Comments' => 'Комментарии',
             'Moderation queue' => 'Очередь модерации',
-            'Post has been saved.' => 'Пост сохранён.',
-            'Profile has been saved.' => 'Профиль сохранён.',
+            'Post has been saved.' => 'Пост сохранен.',
+            'Profile has been saved.' => 'Профиль сохранен.',
             'Edit profile author' => 'Редактировать автора',
             'Post has been unpublish.' => 'Пост был снят с публикации'
         ]

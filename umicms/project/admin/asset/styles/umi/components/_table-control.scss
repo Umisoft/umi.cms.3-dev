@@ -71,7 +71,6 @@ $table-control-row-bg-hover: #C8DEEE;
     border-bottom: 1px solid #E2E3E4;
 }
 
-// В firefox position: relative, для td не работает, поэутому нужна обёртка
 .umi-table-control-cell-firefox-fix{
     position: relative;
 }

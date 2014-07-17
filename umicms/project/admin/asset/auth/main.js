@@ -63,7 +63,7 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
              */
             validator: {
                 /**
-                 * При некорректной авторизации метод "трясёт" форму словно говоря НЕТ (не используется)
+                 * При некорректной авторизации метод "трясет" форму словно говоря НЕТ (не используется)
                  * @method shake
                  */
                 shake: function(){
@@ -191,7 +191,7 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
                 });
 
                 /**
-                 * Загружает шаблоны определёные в templates.js
+                 * Загружает шаблоны определеные в templates.js
                  * method templates
                  */
                 templates(self);

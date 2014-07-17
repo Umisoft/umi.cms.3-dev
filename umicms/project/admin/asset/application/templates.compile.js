@@ -59,35 +59,6 @@ function program2(depth0,data) {
   
 });
 
-Ember.TEMPLATES["UMI/counter"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push("<style> .umi-counter{ height: 100%; } .umi-counter-header, .umi-counter-period, .umi-counter-content{ float: left; padding: 20px 30px 0; width: calc(100% - 200px); box-sizing: border-box; } .umi-counter-date{ float: left; margin-right: 30px; } .umi-counter-info{ float: left; width: calc(100% - 200px); height: 100%; } </style> <div class=\"umi-counter\" style=\"background: #F5F6F7;\"> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "accordion", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" <div class=\"umi-counter-info\"> <div class=\"umi-counter-period\"> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Начало отчётного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-from\" /> <i class=\"icon icon-calendar\"></i> </div> </div> <div class=\"umi-counter-date large-4 small-12\"> <div> <span class=\"umi-form-label\">Конец отчётного периода</span> </div> <div class=\"umi-input-wrapper-date\"> <input type=\"text\" class=\"umi-date umi-date-to\" /> <i class=\"icon icon-calendar\"></i> </div> </div> </div> <div class=\"umi-counter-content\"> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "chartControl", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </div> <div class=\"umi-counter-content\"> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "table", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </div> </div> </div>");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["UMI/counters"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "table", {hash:{
-    'contentBinding': ("this")
-  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  
-});
-
 Ember.TEMPLATES["UMI/editForm"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -134,14 +105,38 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
-Ember.TEMPLATES["UMI/megaIndex"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["UMI/getBacklinks"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "seoMegaIndex", {hash:{
-    'contentBinding': ("this")
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "backlinksTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/host"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaHostTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/indexed"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaIndexesTable", {hash:{
+    'contentBinding': ("model")
   },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
 });
@@ -156,14 +151,38 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
-Ember.TEMPLATES["UMI/yandexWebmaster"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["UMI/simpleTable"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "seoYandexWebmaster", {hash:{
-    'contentBinding': ("this")
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "tableCounters", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/siteAnalyze"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "siteAnalyzeTable", {hash:{
+    'contentBinding': ("model")
+  },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
+Ember.TEMPLATES["UMI/tops"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "yaTopsTable", {hash:{
+    'contentBinding': ("model")
   },hashTypes:{'contentBinding': "STRING"},hashContexts:{'contentBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
 });
@@ -1276,6 +1295,18 @@ function program1(depth0,data) {
   
 });
 
+Ember.TEMPLATES["UMI/partials/alert-box/close-all"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.content.content", {hash:{
+    'unescaped': ("true")
+  },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));
+  
+});
+
 Ember.TEMPLATES["UMI/partials/alert-box"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -1373,15 +1404,15 @@ function program2(depth0,data) {
 Ember.TEMPLATES["UMI/partials/table"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, self=this;
+  var stack1, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <td class=\"umi-table-ajax-header-column\"> <div class=\"umi-table-ajax-title-div\">");
-  stack1 = helpers._triageMustache.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push(" <p></p> <h3 class=\"text-center\">");
+  stack1 = helpers._triageMustache.call(depth0, "view.error", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</div> </td> ");
+  data.buffer.push("</h3> ");
   return buffer;
   }
 
@@ -1389,45 +1420,100 @@ function program3(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.view.call(depth0, "view.row", {hash:{
-    'object': ("element")
-  },hashTypes:{'object': "ID"},hashContexts:{'object': depth0},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.paginationView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" <div class=\"umi-table-header-wrap\"> <table class=\"umi-table-header\"> <tbody> <tr class=\"umi-table-tr\"> ");
+  stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> </tr> </tbody> </table> </div> <div class=\"umi-table-header-shadow\"></div> <div class=\"s-scroll-wrap\"> <table class=\"umi-table-content\"> <tbody> <tr class=\"umi-table-content-sizer\"> ");
+  stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </tr> ");
+  stack1 = helpers.each.call(depth0, "row", "in", "view.visibleRows", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(11, program11, data),fn:self.program(8, program8, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </tbody> </table> </div> ");
   return buffer;
   }
 function program4(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "view.cell", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"> <div class=\"umi-table-td-relative-wrap\"> <div class=\"umi-table-cell\">");
+  stack1 = helpers._triageMustache.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <td class=\"umi-table-ajax-empty-column\"></td> ");
+  data.buffer.push("</div> <div class=\"umi-table-header-column-resizer\"></div> </div> </td> ");
   return buffer;
   }
-function program5(depth0,data) {
+
+function program6(depth0,data) {
+  
+  
+  data.buffer.push(" <td class=\"umi-table-td\" style=\"width: 200px;\"></td> ");
+  }
+
+function program8(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <td class=\"umi-table-ajax-cell-td\"> <div class=\"umi-table-ajax-cell-div\">");
-  stack1 = helpers._triageMustache.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> ");
+  stack1 = helpers.each.call(depth0, "property", "in", "row", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <td class=\"umi-table-empty-column\"></td> </tr> ");
+  return buffer;
+  }
+function program9(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <td class=\"umi-table-td\"> <div class=\"umi-table-cell\">");
+  stack1 = helpers._triageMustache.call(depth0, "property", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</div> </td> ");
   return buffer;
   }
 
-function program7(depth0,data) {
+function program11(depth0,data) {
   
-  
-  data.buffer.push(" <tr class=\"umi-metrika-empty-row\"> <!-- TODO colspan заменить на переменную с количеством колонок --> <td class=\"umi-table-ajax-empty-result\" colspan=\"4\"> Нет записей </td> </tr> ");
+  var buffer = '', helper, options;
+  data.buffer.push(" <tr class=\"umi-table-content-tr\"> <td> ");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "No data", "table", options) : helperMissing.call(depth0, "i18n", "No data", "table", options))));
+  data.buffer.push(" </td> </tr> ");
+  return buffer;
   }
 
-  data.buffer.push("<style> .umi-table-ajax{ background: #D6E0E9;; } .umi-table-ajax tbody td{ border-left: 1px solid #E3E4E5; } .umi-table-ajax-tr:hover{ background: #BFE0F8; cursor: pointer; } </style> <div class=\"umi-table-ajax-control-content\"> <div class=\"umi-table-ajax-control-content-center\"> <table cellpadding=\"0\" class=\"umi-table-ajax-content\"> <thead> <tr class=\"umi-table-ajax-titles\"> ");
-  stack1 = helpers.each.call(depth0, "view.headers", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.error", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <td class=\"umi-table-ajax-empty-header-column\"></td> </tr> </thead> <tbody> ");
-  stack1 = helpers.each.call(depth0, "element", "in", "view.data", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(7, program7, data),fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  else { data.buffer.push(''); }
+  
+});
+
+Ember.TEMPLATES["UMI/partials/table/toolbar"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push(" <i class=\"icon black icon-left-thin\"></i> ");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push(" <i class=\"icon black icon-right-thin\"></i> ");
+  }
+
+  data.buffer.push("<div class=\"right umi-table-control-pagination\"> <div class=\"right pagination-controls\"> <span class=\"pagination-counter\"> ");
+  stack1 = helpers._triageMustache.call(depth0, "view.counter", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </tbody> </table> </div> </div>");
+  data.buffer.push(" </span> ");
+  stack1 = helpers.view.call(depth0, "view.prevButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  stack1 = helpers.view.call(depth0, "view.nextButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </div> <div class=\"right pagination-limit\"> <span class=\"pagination-label\">");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Rows on page", "table", options) : helperMissing.call(depth0, "i18n", "Rows on page", "table", options))));
+  data.buffer.push(":</span> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.limitView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </div> </div> ");
   return buffer;
   
 });

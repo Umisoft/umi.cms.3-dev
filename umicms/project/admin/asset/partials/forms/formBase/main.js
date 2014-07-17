@@ -209,7 +209,7 @@ define(
                             var context = self.get('context');
                             Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
-                            var params = {type: 'success', 'content': 'Сохранено.'};
+                            var params = {type: 'success', 'content': 'Сохранено.', duration: false};
                             UMI.notification.create(params);
                         });
                     }
