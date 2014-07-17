@@ -23,7 +23,6 @@ return  [
         ]
     ],
 
-    'destination' => '~/docs',
-    'config' => '~/project/project.config.php',
+    'destination' => '~/umi-docs',
     'defaultLocale' => 'ru-RU'
 ];
