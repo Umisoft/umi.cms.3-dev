@@ -29,8 +29,8 @@ class ConnectorController extends BaseCmsController
             'roots' => [
                 [
                     'driver'        => 'LocalFileSystem',
-                    'path'          => Environment::$directoryPublic . '/files',
-                    'URL'           => '/files',
+                    'path'          => Environment::$directoryPublic,
+                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl(),
                     'accessControl' => [$this, 'accessControl'],
                     'uploadDeny' => ['text/x-php'],
                     'uploadOverwrite' => false

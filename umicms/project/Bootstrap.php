@@ -220,7 +220,7 @@ class Bootstrap
          */
         $request = $this->toolkit->getService('umi\http\Request');
 
-        $fileName = Environment::$directoryProjects . '/projects.config.php';
+        $fileName = Environment::$directoryPublic . '/projects.config.php';
         if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
@@ -319,14 +319,15 @@ class Bootstrap
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
         if (!isset($projectConfig['assetsUrl'])) {
-            $projectConfig['assetsUrl'] = '/project/' . $this->projectName . '/asset';
+            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset';
         }
         $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         if (!isset($projectConfig['adminAssetsUrl'])) {
-            $projectConfig['adminAssetsUrl'] = '/umicms/project/admin/asset';
+            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
         }
-        $urlManager->setCommonAssetsUrl($projectConfig['adminAssetsUrl']);
+
+        $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
         return $routeResult;
     }
@@ -486,13 +487,13 @@ class Bootstrap
         $configIO->registerAlias(
             '~',
             CMS_DIR,
-            Environment::$directoryProjects
+            Environment::$directoryPublic
         );
 
         $configIO->registerAlias(
             '~/common',
             CMS_DIR,
-            Environment::$directoryProjects . '/common'
+            Environment::$directoryPublic . '/common'
         );
 
     }

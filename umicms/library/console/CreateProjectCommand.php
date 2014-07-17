@@ -25,8 +25,8 @@ class CreateProjectCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('project:create')
-            ->setDescription('Create new project.');
+            ->setName('create:project')
+            ->setDescription('Create new project');
     }
 
     /**

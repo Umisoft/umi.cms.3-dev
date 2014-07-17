@@ -50,13 +50,13 @@ class Environment
      */
     public static $directoryCoreError;
     /**
-     * @var string $directoryProjects директория для пользовательских проектов
-     */
-    public static $directoryProjects = ".";
-    /**
      * @var string $directoryProjects публичная директория
      */
     public static $directoryPublic = ".";
+    /**
+     * @var string $baseUrl базовый URL для ресурсов проектов
+     */
+    public static $baseUrl = "";
 
     /**
      * Инициализирует окружение настройками из конфигурации

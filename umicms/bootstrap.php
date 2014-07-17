@@ -47,10 +47,6 @@ define('CMS_DIR', __DIR__);
  */
 define('CMS_PROJECT_DIR', __DIR__ . '/project');
 /**
- * Директория с файлами административного приложения UMI.CMS
- */
-define('CMS_ADMIN_FRONTEND', CMS_PROJECT_DIR . '/admin/asset');
-/**
  * Директория с инструментами CMS.
  */
 define('CMS_LIBRARY_DIR', __DIR__ . '/library');
