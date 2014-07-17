@@ -170,7 +170,7 @@ module.exports = function(grunt){
                     'vendor/handlebars/handlebars.min.js',
                     'vendor/ember/ember.min.js',
                     'vendor/ember-data/ember-data.min.js',
-                    'vendor/ckeditor/ckeditor.js',
+                    'vendor/ckeditor/**',
                     'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
                     'vendor/momentjs/min/moment-with-langs.min.js',
                     'vendorExtend/iscroll-probe-5.1.1.js',
@@ -195,7 +195,7 @@ module.exports = function(grunt){
                     'vendor/ember/ember.js',
                     'vendor/ember-data/ember-data.js',
                     'vendorExtend/iscroll-probe-5.1.1.js',
-                    'vendor/ckeditor/ckeditor.js',
+                    'vendor/ckeditor/**',
                     'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
                     'vendor/momentjs/min/moment-with-langs.js',
                     'vendorExtend/elFinder.js'
