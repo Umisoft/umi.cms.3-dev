@@ -50,22 +50,22 @@ $ bower install
 Пример конфигурации разных серверов: http://umi-framework.ru/documentation/get_started/skeleton.html#d5e89
 
 ##Конфигурация БД
-Необходимо создать базу данных и создать конфиг configuration/db.config.php на основе db.config.dist.php
+Необходимо создать базу данных и создать конфиг project/common/configuration/db.config.php на основе db.config.dist.php
 
 ##Установка демо-проектов
-Для запуска инсталлятора необходиом запустить в браузере http://localhost/install
+Для установки схем таблиц и данных проектов необходиом запустить в консоли
+
+```sh
+$ php ./bin/umi project:install http://localhost
+```
 
 Сейчас есть три демо-проекта с одними и теми же данными, но с разными шаблонизаторами:
-- lite-twig twig-шаблонизатор (http://localhost/twig)
-- lite-php php-шаблонизатор (http://localhost/, http://localhost/php)
-- lite-xslt xslt-шаблонизатор (временно не рабочий)
+- demo-twig twig-шаблонизатор (http://localhost/twig)
+- demo-php php-шаблонизатор (http://localhost/, http://localhost/php)
+- demo-xslt xslt-шаблонизатор
 
-За конфигурацию проектов и роутинг отвечает конфиг configuration/projects.config.php.
+За конфигурацию проектов отвечает конфиг configuration/projects.config.php.
 Проекты доступны в двух локалях ru-RU и en-US. (http://localhost/twig/en, http://localhost/php/ru)
-
-На данный момент инсталлятор простой (install/controller/InstallController.php), он создает структуры таблиц
-и заполняет демо-проекты данными через ORM. В ближайшем будущем все это будет работать через API моделей данных.
-Все метаданные коллекций и формы для админки тоже задаются конфигами вручную, это не удобно, но временно. Модели данных будут делать все рутинные операции с конфигами, в том числе и генерить код.
 
 ##Обновление
 

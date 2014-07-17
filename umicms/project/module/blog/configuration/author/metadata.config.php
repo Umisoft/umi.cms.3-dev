@@ -9,12 +9,11 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_author'
