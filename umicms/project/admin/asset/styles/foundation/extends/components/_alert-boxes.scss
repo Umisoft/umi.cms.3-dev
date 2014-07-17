@@ -1,5 +1,21 @@
 $umi-alert-wrapper-index: 1000;
 
+.alert-box {
+    @include alert($success-color);
+
+    .close      { @include alert-close; }
+
+    &.radius    { @include radius($alert-radius); }
+    &.round     { @include radius($global-rounded); }
+
+    &.success   { @include alert-style($primary-color); }
+    &.alert     { @include alert-style($alert-color); }
+    &.secondary { @include alert-style($secondary-color); }
+    &.warning { @include alert-style($warning-color); }
+    &.info { @include alert-style($info-color); }
+    &.alert-close { opacity: 0}
+}
+
 .alert-box{
     opacity: .9;
     .subheader{

@@ -7,7 +7,7 @@ define(['App'], function(UMI){
             localDictionary: function(){
                 var table = this.get('content.control') || {};
                 return table.i18n;
-            }.property(),
+            }.property('content'),
             templateName: 'partials/table',
             classNames: ['umi-table'],
             headers: [],
