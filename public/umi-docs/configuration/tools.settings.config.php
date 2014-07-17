@@ -5,19 +5,19 @@ use umicms\model\toolbox\ModelTools;
 
 return [
     DbalTools::NAME => [
-        'servers' => require (__DIR__ . '/../../configuration/db.config.php')
+        'servers' => require (__DIR__ . '/db.config.php')
     ],
     ModelTools::NAME => [
         'factories' => [
             'modelEntity' => [
-                'tableNamePrefix' => 'demo_'
+                'tableNamePrefix' => 'docs_'
             ]
         ]
     ],
     ORMTools::NAME => [
         'factories' => [
             'metadata' => [
-                'dataSourceNamePrefix' => 'demo_'
+                'dataSourceNamePrefix' => 'docs_'
             ]
         ]
     ]
