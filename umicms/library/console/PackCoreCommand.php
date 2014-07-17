@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use umicms\project\Environment;
 use umicms\Utils;
 
 /**
@@ -130,7 +131,7 @@ EOF;
             ->ignoreVCS(true)
             ->notName('CoreCompiler.php')
             ->notName('version.php')
-            ->in(CMS_DIR)
+            ->in(Environment::$directoryPublic)
             ->exclude('project/admin/asset');
 
         $progress = $this->startProgressBar($output, $finder->count());

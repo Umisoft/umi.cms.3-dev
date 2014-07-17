@@ -1,7 +1,6 @@
 <?php
 /**
  * Подключает ядро UMI.CMS
- * This file is part of UMI.CMS.
  *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
