@@ -23,6 +23,5 @@ return  [
         ]
     ],
 
-    'destination' => '~/umi-docs',
     'defaultLocale' => 'ru-RU'
 ];

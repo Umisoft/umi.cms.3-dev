@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace project\docs\controller;
+namespace project\umi_docs\controller;
 
-use project\docs\module\structure\model\object\ControllerPage;
-use project\docs\module\structure\model\object\WidgetPage;
+use project\umi_docs\module\structure\model\object\ControllerPage;
+use project\umi_docs\module\structure\model\object\WidgetPage;
 use Sami\Parser\Filter\TrueFilter;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
@@ -97,7 +97,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         try {
             echo "Sync table schemes...\n";
             foreach ($this->getModules() as $module) {
-                $module->getModels()->syncAllSchemes();
+                $module->getModelCollection()->syncAllSchemes();
             }
 
             echo "Installing structure...\n";
@@ -247,7 +247,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     {
         $iterator = Finder::create()
             ->files()
-            ->in($dir = Environment::$directoryCms);
+            ->in($dir = CMS_DIR);
 
         $config = [];
         $config['filter'] = function () {

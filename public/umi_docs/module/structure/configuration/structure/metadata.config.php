@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-use project\docs\module\structure\model\object\ControllerPage;
-use project\docs\module\structure\model\object\WidgetPage;
+use project\umi_docs\module\structure\model\object\ControllerPage;
+use project\umi_docs\module\structure\model\object\WidgetPage;
 use umi\orm\metadata\field\IField;
 use umicms\project\module\structure\model\object\StaticPage;
 
@@ -43,7 +43,7 @@ return
                 ]
             ],
             ControllerPage::TYPE => [
-                'objectClass' => 'project\docs\module\structure\model\object\ControllerPage',
+                'objectClass' => 'project\umi_docs\module\structure\model\object\ControllerPage',
                 'fields'      => [
                     ControllerPage::FIELD_DESCRIPTION => [],
                     ControllerPage::FIELD_RETURN_VALUE => [],
@@ -51,7 +51,7 @@ return
                 ]
             ],
             WidgetPage::TYPE           => [
-                'objectClass' => 'project\docs\module\structure\model\object\WidgetPage',
+                'objectClass' => 'project\umi_docs\module\structure\model\object\WidgetPage',
                 'fields'      => [
                     WidgetPage::FIELD_PARAMETERS => [],
                     WidgetPage::FIELD_DESCRIPTION => [],

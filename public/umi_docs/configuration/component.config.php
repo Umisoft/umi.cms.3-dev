@@ -6,7 +6,7 @@ use umi\route\IRouteFactory;
 return [
 
     IComponent::OPTION_CONTROLLERS => [
-        'install' =>   'project\docs\controller\InstallController'
+        'install' =>   'project\umi_docs\controller\InstallController'
     ],
 
     IComponent::OPTION_ROUTES => [

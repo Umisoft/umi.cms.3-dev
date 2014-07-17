@@ -8,8 +8,8 @@
  * file that was distributed with this source code.
  */
 
-use project\docs\module\structure\model\object\ControllerPage;
-use project\docs\module\structure\model\object\WidgetPage;
+use project\umi_docs\module\structure\model\object\ControllerPage;
+use project\umi_docs\module\structure\model\object\WidgetPage;
 use umicms\orm\collection\ICmsCollection;
 
 return [
