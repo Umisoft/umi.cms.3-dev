@@ -24,9 +24,9 @@ interface IModule
     public function getName();
 
     /**
-     * Возвращает коллекцию моделей модуля.
+     * Возвращает коллекцию моделей данных.
      * @return ModelCollection
      */
-    public function getModels();
+    public function getModelCollection();
 }
  

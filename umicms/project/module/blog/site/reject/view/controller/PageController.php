@@ -16,7 +16,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\SitePageController;
 
 /**
- * Контроллер вывода отклонённого поста блога.
+ * Контроллер вывода отклоненного поста блога.
  */
 class PageController extends SitePageController
 {
@@ -37,7 +37,7 @@ class PageController extends SitePageController
     /**
      * Возвращает страницу для отображения.
      * @param string $uri
-     * @throws ResourceAccessForbiddenException в случае, если доступ к отклонённому посту запрещён
+     * @throws ResourceAccessForbiddenException в случае, если доступ к отклоненному посту запрещен
      * @return BlogPost
      */
     public function getPage($uri)

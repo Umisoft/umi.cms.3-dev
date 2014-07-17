@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'name' => 'search',
     'api' => [
         'umicms\project\module\search\model\SearchIndexApi' => [],
         'umicms\project\module\search\model\SearchApi' => [

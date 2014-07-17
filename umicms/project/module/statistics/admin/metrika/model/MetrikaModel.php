@@ -199,9 +199,9 @@ class MetrikaModel implements ILocalizable
     }
 
     /**
-     * Извлекает список полей из отчёта.
+     * Извлекает список полей из отчета.
      * @param array $data ответ на запрос
-     * @param string $reportName название отчёта
+     * @param string $reportName название отчета
      * @return array
      */
     public function getFieldsReport($data, $reportName)

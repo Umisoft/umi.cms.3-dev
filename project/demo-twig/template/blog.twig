@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ include('partial/header.twig') }}
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-collapse collapse">
+            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+
+            {% if (locales) %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% for localeId,localeInfo in locales %}
+                        <li class="{{ localeInfo.current ? 'active' }}">
+                            <a href="{{ localeInfo.url }}">{{ translate(localeInfo.id) }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <header class="blog-header">
+        {{ widget('structure.infoblock.view', {'template' : 'logo', 'infoBlock' : 'commonInfoBlock'}) }}
+    </header>
+
+    <main class="row">
+
+        <article class="col-sm-8 blog-main">
+
+            {{ contents|raw }}
+
+        </article>
+
+        <aside class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            {{ include('partial/sidebar-blog.twig') }}
+        </aside>
+
+    </main>
+
+</div>
+
+{{ include('partial/footer.twig') }}
+
+</body>
+</html>

@@ -85,7 +85,7 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     /**
      * Разрешено ли использование slug.
      * @param CmsHierarchicObject|ICmsObject $object объект, слаг которого необходимо проверить
-     * @throws RuntimeException в случае если пришёл неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
+     * @throws RuntimeException в случае если пришел неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
      * @return bool
      */
     public function isAllowedSlug(ICmsObject $object)

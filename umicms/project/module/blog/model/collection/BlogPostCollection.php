@@ -61,7 +61,7 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает пост по URI, с учётом статуса публикации.
+     * Возвращает пост по URI, с учетом статуса публикации.
      * @param string $uri URI
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
@@ -262,7 +262,7 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает список отклонённых постов.
+     * Возвращает список отклоненных постов.
      * @return CmsSelector|BlogPost
      */
     public function getRejectedPosts()
@@ -272,9 +272,9 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает отклонённый пост по GUID
+     * Возвращает отклоненный пост по GUID
      * @param string $guid
-     * @throws NonexistentEntityException если не удалить получить отклонённый пост
+     * @throws NonexistentEntityException если не удалить получить отклоненный пост
      * @return null|BlogPost
      */
     public function getRejectedPost($guid)
@@ -297,9 +297,9 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает отклонённый пост по Id
+     * Возвращает отклоненный пост по Id
      * @param int $id
-     * @throws NonexistentEntityException если не удалось получить отклонённый пост
+     * @throws NonexistentEntityException если не удалось получить отклоненный пост
      * @return null|BlogPost
      */
     public function getRejectedPostById($id)
@@ -322,7 +322,7 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает отклонённый пост по URI
+     * Возвращает отклоненный пост по URI
      * @param string $uri URI
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль

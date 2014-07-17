@@ -1,0 +1,63 @@
+@import "../../settings";
+
+.umi-divider-left{
+    float: left;
+    position: relative;
+    width: 250px;
+    height: 100%;
+    background: #D6E0E9;
+    border-right: 1px solid #98A2AB;
+    ~ .umi-divider-right{
+        margin-left: 251px;
+    }
+    &.hide{
+        ~ .umi-divider-right{
+            margin-left: 0!important;
+        }
+    }
+    &-content{
+        overflow: hidden;
+        height: 100%;
+        margin-right: 5px;
+    }
+    &-float{
+        border: none;
+        z-index: 5000;
+        position: absolute;
+        width: 245px!important;
+        &:after{
+            content: "";
+            position: absolute;
+            float: left;
+            display: block;
+            height: 100%;
+            width: 3px;
+            right: -3px;
+            bottom: 0;
+            background: url($image-to-right-shadow);
+        }
+        .umi-divider-left-content{
+            margin-right: 0;
+        }
+    }
+}
+
+.umi-divider-right{
+    height: 100%;
+    &.wide{
+        margin-left: 0!important;
+    }
+}
+
+.umi-divider{
+    position: absolute;
+    width: 4px;
+    height: unquote("calc(100% + 1px)");
+    top: -1px;
+    right: 0;
+    background: #E0E4E7;
+    border-left: 1px solid #ADB9C5;
+    &:hover{
+        cursor: col-resize;
+    }
+}

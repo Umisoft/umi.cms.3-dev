@@ -10,11 +10,10 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\Layout;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'layout'

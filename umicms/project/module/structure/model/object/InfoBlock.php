@@ -18,7 +18,7 @@ namespace umicms\project\module\structure\model\object;
  * @property string $address адрес
  * @property string $logo логотип
  * @property string $copyright копирайт
- * @property string $counter счётчик посещений
+ * @property string $counter счетчик посещений
  * @property string $widgetVk виджет Вконтакте
  * @property string $widgetFacebook виджет FaceBook
  * @property string $widgetTwitter виджет Twitter
@@ -50,7 +50,7 @@ class InfoBlock extends BaseInfoBlock
      */
     const FIELD_COPYRIGHT = 'copyright';
     /**
-     * Имя поля для хранения счётчика посещений
+     * Имя поля для хранения счетчика посещений
      */
     const FIELD_COUNTER = 'counter';
     /**

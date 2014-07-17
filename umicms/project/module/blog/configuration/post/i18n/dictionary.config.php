@@ -37,7 +37,7 @@ return [
             'publishStatus' => 'Статус публикации',
             BlogPost::POST_STATUS_DRAFT => 'Черновик',
             BlogPost::POST_STATUS_NEED_MODERATE => 'На модерации',
-            BlogPost::POST_STATUS_REJECTED => 'Отклонён',
+            BlogPost::POST_STATUS_REJECTED => 'Отклонен',
             BlogPost::POST_STATUS_PUBLISHED => 'Опубликован'
         ]
     ];
