@@ -1,0 +1,11 @@
+{% if (menu) %}
+    <h3 class="menu-header">Модули</h3>
+    <div class="panel panel-default">
+        <div class="list-group">
+            {% for pageInfo in menu %}
+                <a class="list-group-item {{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+

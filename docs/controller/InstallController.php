@@ -12,7 +12,6 @@ namespace project\docs\controller;
 
 use project\docs\module\structure\model\object\ControllerPage;
 use project\docs\module\structure\model\object\WidgetPage;
-use Sami\Parser\ClassTraverser;
 use Sami\Parser\Filter\TrueFilter;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
@@ -108,7 +107,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             echo "Install search...\n";
             $this->installSearch();
             echo "Install components documentation...\n";
-            $this->buildComponentsStructure();
+            $this->buildDocsStructure();
 
             $this->commit();
 
@@ -244,7 +243,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
     }
 
-    protected function buildComponentsStructure()
+    protected function buildDocsStructure()
     {
         $iterator = Finder::create()
             ->files()
@@ -260,18 +259,35 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $this->samiProject->parse();
 
         /**
+         * @var StructureElementCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $widgetsPage = $structureCollection->add('widgets', StaticPage::TYPE, null, 'd7dda227-cac7-474d-ab0d-d361d0bc16a3');
+        $widgetsPage->setValue('inMenu', true)
+            ->setValue('displayName', 'Виджеты')
+            ->setValue('metaTitle', 'Виджеты')
+            ->setValue('active', true);
+
+        $controllersPage = $structureCollection->add('controllers', StaticPage::TYPE, null, 'fda552a8-846a-431d-87bf-ed719cdd884b');
+        $controllersPage->setValue('inMenu', true)
+            ->setValue('displayName', 'Контроллеры')
+            ->setValue('metaTitle', 'Контроллеры')
+            ->setValue('active', true);
+
+        /**
          * @var SiteApplication $siteApplication
          */
         $siteApplication = $this->getComponent()->getChildComponent('site');
 
         foreach ($siteApplication->getChildComponentNames() as $componentName) {
             $childComponent = $siteApplication->getChildComponent($componentName);
-            $this->buildComponentStructure($childComponent);
+            $this->buildComponentStructure($childComponent, $widgetsPage, 'widgets');
+            $this->buildComponentStructure($childComponent, $controllersPage, 'controllers');
         }
 
     }
 
-    protected function buildComponentStructure(SiteComponent $component, StaticPage $parentPage = null) {
+    protected function buildComponentStructure(SiteComponent $component, StaticPage $parentPage, $type) {
 
         /**
          * @var StructureElementCollection $structureCollection
@@ -290,39 +306,34 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
              * @var SiteComponent $childComponent
              */
             $childComponent = $component->getChildComponent($childComponentName);
-            $this->buildComponentStructure($childComponent, $page);
+            $this->buildComponentStructure($childComponent, $page, $type);
         }
 
-        $widgetNames = $component->getWidgetNames();
-        if (count($widgetNames)) {
-            $widgetsPage = $structureCollection->add('widgets', StaticPage::TYPE, $page);
-            $widgetsPage->setValue('inMenu', true)
-                ->setValue('displayName', 'Виджеты')
-                ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
-                ->setValue('active', true);
-
+        if ($type === 'widgets') {
+            $widgetNames = $component->getWidgetNames();
             foreach ($widgetNames as $widgetName) {
-                $this->buildWidgetPage($component->getWidget($widgetName),$component, $widgetsPage);
+                $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
             }
         }
 
-        $controllerNames = $component->getControllerNames();
-        if (count($controllerNames)) {
-            $controllersPage = $structureCollection->add('controllers', StaticPage::TYPE, $page);
-            $controllersPage->setValue('inMenu', true)
-                ->setValue('displayName', 'Контроллеры')
-                ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
-                ->setValue('active', true);
-
+        if ($type === 'controllers') {
+            $controllerNames = $component->getControllerNames();
             foreach ($controllerNames as $controllerName) {
-                $this->buildControllerPage($component->getController($controllerName), $component, $controllersPage);
+                $this->buildControllerPage($component->getController($controllerName), $component, $page);
             }
+
         }
 
+        if (!$page->childCount) {
+            $structureCollection->delete($page);
+        }
     }
 
     protected function buildControllerPage(BaseCmsController $controller, SiteComponent $component, StaticPage $parentPage)
     {
+        $className = get_class($controller);
+        $class = $this->samiProject->getClass($className);
+
         /**
          * @var StructureElementCollection $structureCollection
          */
@@ -336,15 +347,11 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue('active', true);
 
         $controllerPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $controller->getName();
+        $controllerPage->h1 = rtrim($class->getShortDesc(), '.');
+        $controllerPage->metaTitle = rtrim($class->getShortDesc(), '.');
         $controllerPage->active = true;
 
-        $className = get_class($controller);
-        $class = $this->samiProject->getClass($className);
-
         $description = '';
-        if ($shortDescription = $class->getShortDesc()) {
-            $description .= '<p>' . $shortDescription . '</p>';
-        }
         if ($longDescription = $class->getLongDesc()) {
             $description .= '<p>' . $longDescription . '</p>';
         }
@@ -394,19 +401,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         if ($templateParams) {
-
-            echo 'Собираю параметры для класса ' . $class->getName() . PHP_EOL;
-
             $templateParamsString = '';
             $additionalContent = '';
 
             foreach ($templateParams as $templateParam) {
-
-                if (!is_array($templateParam)) {
-                    var_dump($templateParams);
-                    return '';
-                }
-
                 $additionalContent .= $this->getAdditionalDescription($templateParam);
 
                 $templateParamsString .= '<tr>
@@ -485,7 +483,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
             $description .= $table;
 
-            $type = '<a href="#' . $name . '">' . $type . '</a>';
+            $type = '<a href="#' . $name . '">' . $name . '</a>';
         }
 
         return [$type, $description];
@@ -493,6 +491,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
     protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
     {
+        $className = get_class($widget);
+        $class = $this->samiProject->getClass($className);
+
         /**
          * @var StructureElementCollection $structureCollection
          */
@@ -506,21 +507,17 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue('active', true);
 
         $widgetPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
+        $widgetPage->h1 = rtrim($class->getShortDesc(), '.');
+        $widgetPage->metaTitle = rtrim($class->getShortDesc(), '.');
         $widgetPage->active = true;
 
-        $className = get_class($widget);
-        $class = $this->samiProject->getClass($className);
-
         $description = '';
-        if ($shortDescription = $class->getShortDesc()) {
-            $description .= '<p>' . $shortDescription . '</p>';
-        }
         if ($longDescription = $class->getLongDesc()) {
             $description .= '<p>' . $longDescription . '</p>';
         }
 
         $widgetPage->description = $description;
-        $widgetPage->parameters = $this->buildPublicPropertiesDescriptionTable($class, $widget);
+        $widgetPage->parameters = '<h3>Параметры вызова виджета</h3>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
         $widgetPage->returnValue = $this->getReturnValue($class);
     }
 

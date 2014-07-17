@@ -1,23 +1,10 @@
+
 {{ include('breadcrumbs.twig') }}
 
-<h1>{{ page.getHeader() }}</h1>
-
-{% if (page.getTypeName() == 'static.widget') %}
-    {{ page.description | raw }}
-    {{ page.parameters | raw }}
-    {{ page.returnValue | raw }}
-{% elseif (page.getTypeName() == 'static.controller') %}
-    {{ page.description | raw }}
-
-    {% if page.templateName %}
-        <h3>Шаблон</h3>
-        {{ page.templateName | raw }}
-    {% endif %}
-
-    {{ page.returnValue | raw }}
+{% if page.getPageUrl() matches '{.*widgets.*}' %}
+    {{ include('widgets.twig', {'page' : page}) }}
+{% elseif page.getPageUrl() matches '{.*controllers.*}' %}
+    {{ include('controllers.twig', {'page' : page}) }}
 {% else %}
-    {{ widget('structure.menu.auto', {'depth': 10, 'branch' : page, 'template' : 'tree'})|raw }}
+    {{ include('simple.twig', {'page' : page}) }}
 {% endif %}
-
-{{ page.contents | raw }}
-
