@@ -33,10 +33,13 @@ define(['App'], function(UMI){
         templateName: 'partials/dialog-template',
         modelBinding: 'controller.model',
         controller: UMI.dialog,
+        hasButtons: Ember.computed.any('model.confirm', 'model.reject'),
         showDialog: function(){
             if(this.get('model')){
+                $('.umi-main-view').addClass('umi-blur');
                 this.append();
             } else if(this.isVisible){
+                $('.umi-main-view').removeClass('umi-blur');
                 this.remove();
             }
         }.observes('model'),
