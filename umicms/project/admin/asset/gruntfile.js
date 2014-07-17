@@ -102,6 +102,9 @@ module.exports = function(grunt){
 
         csso: {
             compress: {
+                options: {
+                    restructure: false
+                },
                 files: {
                     'production/css/styles.css': ['development/css/styles.css']
                 }
