@@ -85,16 +85,34 @@ define(['App'], function(UMI){
                     nextElementsWidth = $nextElements.width();
                     buttonGroupWidth += nextElementsWidth + 60;
                 }
+                var toggleLabel = function(needShow){
+                    var $button = $buttonGroup.find('.button');
+                    if(needShow){
+                        $buttonGroup.removeClass('umi-hide-button-label');
+                    } else{
+                        $buttonGroup.addClass('umi-hide-button-label');
+                    }
+                    if($button.length){
+                        $button.each(function(index){
+                            var label = '';
+                            if(!needShow){
+                                label = $($button[index]).find('.umi-button-label').text();
+                            }
+                            $($button[index]).attr('title', label);
+                        });
+                    }
+                };
+
                 if($buttonGroup.length){
                     if(buttonGroupWidth >= $el.width()){
-                        $buttonGroup.addClass('umi-hide-button-label');
+                        toggleLabel();
                     }
                 }
                 $(window).on('resize.umi.toolbar', function(){
                     if(buttonGroupWidth >= $el.width()){
-                        $buttonGroup.addClass('umi-hide-button-label');
+                        toggleLabel();
                     } else{
-                        $buttonGroup.removeClass('umi-hide-button-label');
+                        toggleLabel(true);
                     }
                 });
             },
