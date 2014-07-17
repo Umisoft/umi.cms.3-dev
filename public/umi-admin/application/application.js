@@ -117,20 +117,24 @@ define(
                     UMI.__container__.lookup('router:main').send('logout');
                     return;
                 }
-                var message;
-                if(error.hasOwnProperty('responseJSON')){
-                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
-                        message = error.responseJSON.result.error.message;
-                    }
+                if (error.status === 422){
+                    return error;
                 } else{
-                    message = error.responseText;
+                    var message;
+                    if(error.hasOwnProperty('responseJSON')){
+                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                            message = error.responseJSON.result.error.message;
+                        }
+                    } else{
+                        message = error.responseText;
+                    }
+                    var data = {
+                        'close': true,
+                        'title': error.status + '. ' + error.statusText,
+                        'content': message
+                    };
+                    UMI.dialog.open(data).then();
                 }
-                var data = {
-                    'close': true,
-                    'title': error.status + '. ' + error.statusText,
-                    'content': message
-                };
-                UMI.dialog.open(data).then();
             }
         });
 
