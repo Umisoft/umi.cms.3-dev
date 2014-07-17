@@ -94,6 +94,10 @@ class MegaindexComponentLayout extends AdminComponentLayout
     {
         $dynamicControl = new AdminControl($this->component);
         $dynamicControl->params['action'] = 'getResource';
+        $dynamicControl->labels = [
+            'Rows on page' => $this->component->translate("Rows on page"),
+            'No data' => $this->component->translate("No data")
+        ];
         $this->addSelectedContextControl('dynamic', $dynamicControl);
     }
 
