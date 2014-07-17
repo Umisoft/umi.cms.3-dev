@@ -6,17 +6,17 @@ $umi-dialog-z-index: 10000;
     opacity: 0;
     transition: all .3s;
     background: #FFF;
-    width: 400px;
-    top:50%;
+    width: 420px;
+    top:20%;
     left: 50%;
-    margin-left: -200px;
-    padding: 15px;
+    margin-left: -210px;
     z-index: $umi-dialog-z-index;
-    border: 1px solid #A8ADB1;
+    border: 1px solid #21252e;
     box-sizing: border-box;
     &.visible{
         visibility: visible;
         opacity: 1;
+        top:50%;
     }
     .close{
         color: #333;
@@ -28,12 +28,23 @@ $umi-dialog-z-index: 10000;
     .button{
         margin-bottom: 0;
     }
-    .umi-dialog-header{
-        margin: 5px 0 20px;
+    &-header{
+        font-size: 16px;
+        padding: 12px 15px;
+        background: linear-gradient(#414a59, #21252e);
+        color: #fff;
     }
-    .umi-dialog-content{
-        margin-bottom: 20px;
+    &-section{
         line-height: normal;
+        padding: 15px 15px 0;
+    }
+    &-content{
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+    &-buttons{
+        @include clearfix;
+        margin-bottom: 15px;
     }
     &.check-process{
         .umi-dialog-content{

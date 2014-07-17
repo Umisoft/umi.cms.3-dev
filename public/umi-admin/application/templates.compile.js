@@ -332,45 +332,45 @@ function program2(depth0,data) {
 Ember.TEMPLATES["UMI/partials/dialog-template"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <h5 class=\"subheader umi-dialog-header\">");
+  data.buffer.push(" <div class=\"umi-dialog-header\">");
   stack1 = helpers._triageMustache.call(depth0, "model.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</h5> ");
+  data.buffer.push("</div> ");
   return buffer;
   }
 
 function program3(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" ");
+  data.buffer.push(" <div class=\"umi-dialog-content\"> ");
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "model.content", {hash:{
     'unescaped': ("true")
   },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(" ");
+  data.buffer.push(" </div> ");
   return buffer;
   }
 
 function program5(depth0,data) {
   
-  var buffer = '', stack1, helper, options;
-  data.buffer.push(" <div class=\"umi-dialog-content\"> ");
-  stack1 = helpers._triageMustache.call(depth0, "checkbox-element", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  var buffer = '', stack1;
+  data.buffer.push(" <div class=\"umi-dialog-buttons\"> ");
+  stack1 = helpers['if'].call(depth0, "model.confirm", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Remember my choice", options) : helperMissing.call(depth0, "i18n", "Remember my choice", options))));
+  stack1 = helpers['if'].call(depth0, "model.reject", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> ");
   return buffer;
   }
-
-function program7(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <button class=\"button small secondary left\" ");
+  data.buffer.push(" <button class=\"button primary left\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "confirm", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
@@ -381,10 +381,10 @@ function program7(depth0,data) {
   return buffer;
   }
 
-function program9(depth0,data) {
+function program8(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <button class=\"button small secondary right\" ");
+  data.buffer.push(" <button class=\"button secondary right\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "close", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
@@ -397,19 +397,13 @@ function program9(depth0,data) {
 
   stack1 = helpers['if'].call(depth0, "model.title", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <div class=\"umi-dialog-content\"> ");
+  data.buffer.push(" <div class=\"umi-dialog-section\"> ");
   stack1 = helpers['if'].call(depth0, "model.content", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </div> ");
-  stack1 = helpers['if'].call(depth0, "model.proposeRemember", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "model.confirm", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.hasButtons", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "model.reject", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
+  data.buffer.push(" </div>");
   return buffer;
   
 });

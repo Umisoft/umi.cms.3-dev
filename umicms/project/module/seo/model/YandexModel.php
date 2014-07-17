@@ -19,7 +19,6 @@ use umicms\hmvc\component\admin\AdminComponent;
  */
 class YandexModel implements IModel
 {
-
     /**
      * Идентификатор хоста.
      */
@@ -30,11 +29,13 @@ class YandexModel implements IModel
     const YANDEX_OAUTH_TOKEN = 'oauthToken';
 
     /**
-     * @var  $component
+     * Админский компонент
+     * @var AdminComponent $component
      */
     private $component;
 
     /**
+     * Авторизационный токен
      * @var string $oauthToken
      */
     private $oauthToken;
