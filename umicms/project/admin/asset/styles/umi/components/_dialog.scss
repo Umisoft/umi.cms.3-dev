@@ -7,7 +7,7 @@ $umi-dialog-z-index: 10000;
     transition: all .3s;
     background: #FFF;
     width: 420px;
-    top:50%;
+    top:20%;
     left: 50%;
     margin-left: -210px;
     z-index: $umi-dialog-z-index;
@@ -16,6 +16,7 @@ $umi-dialog-z-index: 10000;
     &.visible{
         visibility: visible;
         opacity: 1;
+        top:50%;
     }
     .close{
         color: #333;
