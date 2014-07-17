@@ -37,7 +37,7 @@ class InstallProjectCommand extends BaseProjectCommand
         $syncCommand = $this->getApplication()->find('sync:project-scheme');
         $syncCommand->run($input, $output);
 
-        $loadDumpCommand = $this->getApplication()->find('load:project-load');
+        $loadDumpCommand = $this->getApplication()->find('load:project-dump');
         $loadDumpCommand->run($input, $output);
     }
 
