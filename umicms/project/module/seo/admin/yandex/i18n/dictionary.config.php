@@ -9,7 +9,7 @@ return [
         'action:links:displayName' => 'Links to site',
         'action:tops:displayName' => 'Popular searches',
 
-        'Do not set settings' => 'Do not set settings',
+        'Do not set settings' => 'The required settings are not set.',
 
         'component:yandex:hostsStatsName' => 'Site name',
         'component:yandex:hostsStatsVerification' => 'Site confirmation',
