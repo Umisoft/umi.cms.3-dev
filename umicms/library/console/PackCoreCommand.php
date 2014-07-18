@@ -189,9 +189,7 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
-            ->name('*.php')
             ->exclude('Tests')
-            ->notName('CoreCompiler.php')
             ->in(VENDOR_DIR);
 
 
