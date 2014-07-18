@@ -189,9 +189,25 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
-            ->name('*.php')
+            ->notName('.gitignore')
+            ->notName('CHANGELOG.md')
+            ->notName('UPGRADING.md')
+            ->notName('README.md')
+            ->notName('.editorconfig')
+            ->notName('.travis.yml')
+            ->notName('phpunit.xml*')
+            ->notName('composer.json')
             ->exclude('Tests')
-            ->notName('CoreCompiler.php')
+            ->exclude('tests')
+            ->exclude('Test')
+            ->exclude('test')
+            ->exclude('bin')
+            ->exclude('test-suite')
+            ->exclude('examples')
+            ->exclude('docs')
+            ->exclude('doc')
+            ->exclude('demo')
+            ->exclude('notes')
             ->in(VENDOR_DIR);
 
 
