@@ -1,7 +1,7 @@
 /.idea
 /composer.phar
 /composer.lock
-/public/db.config.php
+/db.config.php
 /vendor
 /public/umi-admin/node_modules
 /public/umi-admin/vendor
