@@ -107,7 +107,7 @@ class LoadProjectDumpCommand extends BaseProjectCommand
             $output->writeln('<error>Validation errors</error>');
 
             $table = new Table($output);
-            $table->setHeaders(array('Guid', 'Type', 'DisplayName', 'Property', 'Error'));
+            $table->setHeaders(['Guid', 'Type', 'DisplayName', 'Property', 'Error']);
 
             /**
              * @var ICmsObject $object
