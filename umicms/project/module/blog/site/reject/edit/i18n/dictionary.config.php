@@ -15,7 +15,7 @@ return [
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Редактирование отклонённого поста'
+        'role:author:displayName' => 'Редактирование отклоненного поста'
     ]
 
 ];

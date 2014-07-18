@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var umicms\pagination\CmsPaginator $paginator
+ * @var umicms\project\module\news\model\object\NewsItem $newsItem
+ */
+?>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $newsItem) : ?>
+        <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
+
+    <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
+<?php endif; ?>

@@ -100,7 +100,6 @@ class RecycleComponentLayout extends AdminComponentLayout
             $control->params['slug'] = $this->listCollection[0]['id'];
             $this->addEmptyContextControl('redirect', $control);
         } else {
-            $control->params['isStatic'] = true;
             $control->params['content'] = $this->component->translate('No deleted pages.');
             $this->addEmptyContextControl('empty', $control);
         }

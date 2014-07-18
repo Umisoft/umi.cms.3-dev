@@ -1,0 +1,121 @@
+//
+// Custom dropdown
+//
+.f-dropdown{
+    top: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s linear;
+    margin-top: 10px;
+    left: 0;
+    color: #44474d;
+    font-size: rem-calc(13);
+    white-space: nowrap;
+    width: auto;
+    min-width: 100%;
+    margin-bottom: 0;
+    border: none;
+    box-shadow: 0 0 5px 1px #AFB4BB;
+    &.right{
+        right: 0;
+        left: auto;
+    }
+    &:before{
+        display: none;
+    }
+    &:after{
+        display: none;
+    }
+    li{
+        text-align: left;
+        cursor: default;
+        a{
+            display: inline-block;
+            font-size: 13px;
+            font-weight: normal;
+            &:hover, &.hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    &.composite{
+        li{
+            padding: $f-dropdown-list-padding;
+            a{
+                padding: 0;
+            }
+            .split-default-button{
+                position: absolute;
+                right: rem-calc(10);
+                margin-top: 0;
+            }
+            &.has-default-button{
+                position: relative;
+                padding-right: rem-calc(40);
+            }
+            .umi-dropdown-item-link{
+                div{
+                    margin-left: rem-calc(5);
+                    display: inline-block;
+                }
+                &:hover{
+                    text-decoration: none;
+                    div{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dropdown{
+    &.open{
+        > .f-dropdown{
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0;
+        }
+    }
+    &-hover{
+        &:hover{
+            > .f-dropdown{
+                opacity: 1;
+                visibility: visible;
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.umi-dropup{
+    position: absolute;
+    bottom: 100%;
+}
+
+.dropdown.coupled{
+    position: relative;
+    > .button{
+        position: relative;
+    }
+    &.open{
+        > .button{
+            &:before, &:after{
+                display: block;
+            }
+            &.white{
+                background: #fff;
+            }
+        }
+    }
+    .f-dropdown{
+        width: auto;
+        min-width: 300px;
+    }
+}
+
+.dropdown.dropup{
+    .f-dropdown{
+        bottom: 100%;
+    }
+}
