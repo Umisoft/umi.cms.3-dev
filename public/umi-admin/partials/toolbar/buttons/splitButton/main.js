@@ -112,9 +112,13 @@ define(['App'],
 
                 itemView: Ember.View.extend({
                     tagName: 'li',
+                    classNames: ['has-default-button'],
                     label: function(){
                         return this.get('context.attributes.label');
                     }.property('context.attributes.label'),
+                    icon: function(){
+                        return 'icon-' + this.get('context.behaviour.name');
+                    }.property('context.behaviour.name'),
                     isDefaultBehaviour: function(){
                         var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
                         return defaultBehaviourIndex === this.get('_parentView.contentIndex');
