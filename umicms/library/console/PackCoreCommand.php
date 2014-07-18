@@ -190,6 +190,16 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->exclude('Tests')
+            ->exclude('tests')
+            ->exclude('Test')
+            ->exclude('test')
+            ->exclude('bin')
+            ->exclude('test-suite')
+            ->exclude('examples')
+            ->exclude('docs')
+            ->exclude('doc')
+            ->exclude('demo')
+            ->exclude('notes')
             ->in(VENDOR_DIR);
 
 
