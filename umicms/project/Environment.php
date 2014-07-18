@@ -54,6 +54,10 @@ class Environment
      */
     public static $directoryPublic = ".";
     /**
+     * @var string $directoryConfiguration публичная директория
+     */
+    public static $directoryConfiguration = ".";
+    /**
      * @var string $baseUrl базовый URL для ресурсов проектов
      */
     public static $baseUrl = "";

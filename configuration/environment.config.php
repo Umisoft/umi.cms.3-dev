@@ -9,7 +9,8 @@ return [
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
 
-        'directoryPublic' => dirname(__DIR__) . '/public'
+        'directoryPublic' => dirname(__DIR__) . '/public',
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
     ],
     'production' => [
         'errorReporting' => 0,
@@ -17,6 +18,7 @@ return [
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
 
-        'directoryPublic' => dirname(__DIR__) . '/public'
+        'directoryPublic' => dirname(__DIR__) . '/public',
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
     ]
 ];
