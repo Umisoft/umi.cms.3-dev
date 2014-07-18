@@ -168,6 +168,7 @@ module.exports = function(grunt){
                     'vendor/requirejs/require.js',
                     'vendor/requirejs-text/text.js',
                     'vendor/jquery/dist/jquery.min.js',
+                    'vendor/jquery/dist/jquery.min.map',
                     'vendor/jquery-ui/jquery-ui.min.js',
                     'vendor/modernizr/modernizr.js',
                     'vendor/handlebars/handlebars.min.js',
@@ -181,7 +182,10 @@ module.exports = function(grunt){
                 ],
                 dest: 'production',
                 rename: function(dest, src) {
-                    return dest + '/' + src.replace(/\.min/g, '');
+                    if(/\.js$/.test(src)){
+                        src = src.replace(/\.min/g, '');
+                    }
+                    return dest + '/' + src;
                 }
             },
 

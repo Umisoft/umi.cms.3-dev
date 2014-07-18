@@ -10,6 +10,22 @@ $umi-bg-darken-set: #404959, #181B21;
     &-list{
         @extend .no-bullet;
         @extend .s-margin-clear;
+        white-space: nowrap;
+        > li{
+            white-space: normal;
+            display: inline-block;
+        }
+    }
+    &-label{
+        font-weight: bold;
+        font-size: rem-calc(12);
+        color: #D5D6D8;
+        height: $umi-top-bar-height;
+        line-height: $umi-top-bar-height;
+        padding: 0 $button-sml;
+        .icon{
+            margin-top: rem-calc(4);
+        }
     }
     &-button.button{
         margin: 0;

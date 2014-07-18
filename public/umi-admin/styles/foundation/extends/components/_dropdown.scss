@@ -44,6 +44,27 @@
             a{
                 padding: 0;
             }
+            .split-default-button{
+                position: absolute;
+                right: rem-calc(10);
+                margin-top: 0;
+            }
+            &.has-default-button{
+                position: relative;
+                padding-right: rem-calc(40);
+            }
+            .umi-dropdown-item-link{
+                div{
+                    margin-left: rem-calc(5);
+                    display: inline-block;
+                }
+                &:hover{
+                    text-decoration: none;
+                    div{
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 }
