@@ -24,31 +24,26 @@ use umi\dbal\driver\IDialect;
 use umi\hmvc\controller\BaseController;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\component\site\SiteComponent;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
+use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\Environment;
 use umicms\project\module\search\model\SearchModule;
-use umicms\project\module\structure\model\collection\LayoutCollection;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
-use umicms\project\module\users\model\collection\UserCollection;
-use umicms\project\module\users\model\collection\UserGroupCollection;
-use umicms\project\module\users\model\object\Guest;
-use umicms\project\module\users\model\object\Supervisor;
-use umicms\project\module\users\model\object\UserGroup;
 use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\SiteApplication;
 
@@ -64,18 +59,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     use TModuleAware;
 
     /**
-     * @var IDbCluster $dbCluster
-     */
-    protected $dbCluster;
-    /**
      * @var Project $samiProject
      */
     protected $samiProject;
-
-    public function __construct(IDbCluster $dbCluster)
-    {
-        $this->dbCluster = $dbCluster;
-    }
 
     /**
      * {@inheritdoc}
@@ -83,32 +69,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     public function __invoke()
     {
         header('Content-type: text/plain');
-
-        $connection = $this->dbCluster->getConnection();
-        /**
-         * @var IDialect $dialect
-         */
-        $dialect = $connection->getDatabasePlatform();
-
-        $connection->exec($dialect->getDisableForeignKeysSQL());
-
-        $this->dropTables();
-
         try {
-            echo "Sync table schemes...\n";
-            foreach ($this->getModules() as $module) {
-                $module->getModelCollection()->syncAllSchemes();
-            }
-
-            echo "Installing structure...\n";
-            $this->installStructure();
-            echo "Installing users...\n";
-            $this->installUsers();
-            echo "Install search...\n";
-            $this->installSearch();
             echo "Install components documentation...\n";
             $this->buildDocsStructure();
-
             $this->commit();
 
         } catch (\Exception $e) {
@@ -120,127 +83,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         exit('Done');
-    }
-
-    protected function dropTables()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
-        foreach ($tables as $table) {
-            $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
-        }
-    }
-
-    protected function installStructure()
-    {
-        /**
-         * @var StructureElementCollection $structureCollection
-         */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        /**
-         * @var LayoutCollection $layoutCollection
-         */
-        $layoutCollection = $this->getCollectionManager()->getCollection('layout');
-
-        $layoutCollection->add(IObjectType::BASE, 'd6cb8b38-7e2d-4b36-8d15-9fe8947d66c7')
-            ->setValue('fileName', 'layout')
-            ->setValue('displayName', 'Основной');
-
-        $structurePage = $structureCollection->add('system', 'system')
-            ->setValue('displayName', 'Структура')
-            ->setValue('active', true);
-
-        $structurePage->getProperty('locked')->setValue(true);
-        $structurePage->getProperty('componentName')->setValue('structure');
-        $structurePage->getProperty('componentPath')->setValue('structure');
-
-        $menuPage = $structureCollection->add('menu', 'system', $structurePage)
-            ->setValue('displayName', 'Меню')
-            ->setValue('active', true);
-
-        $menuPage->getProperty('locked')->setValue(true);
-        $menuPage->getProperty('componentName')->setValue('menu');
-        $menuPage->getProperty('componentPath')->setValue('structure.menu');
-
-        /**
-         * @var StaticPage $main
-         */
-        $main = $structureCollection->add('main', 'static', null, 'd534fd83-0f12-4a0d-9853-583b9181a948')
-            ->setValue('displayName', 'Главная')
-            ->setValue('active', true)
-            ->setValue('inMenu', true);
-
-        $main->getProperty('componentName')->setValue('structure');
-        $main->getProperty('componentPath')->setValue('structure');
-
-    }
-
-    protected function installUsers()
-    {
-        /**
-         * @var UserCollection $userCollection
-         */
-        $userCollection = $this->getCollectionManager()->getCollection('user');
-        /**
-         * @var UserGroupCollection $groupCollection
-         */
-        $groupCollection = $this->getCollectionManager()->getCollection('userGroup');
-
-        /**
-         * @var UserGroup $visitors
-         */
-        $visitors = $groupCollection->add(IObjectType::BASE, 'bedcbbac-7dd1-4b60-979a-f7d944ecb08a')
-            ->setValue('displayName', 'Посетители');
-
-        $visitors->getProperty('locked')->setValue(true);
-
-        $visitors->roles = [
-            'project' => ['siteExecutor', 'adminExecutor'],
-            'project.admin' => ['viewer', 'restExecutor'],
-            'project.admin.rest' => ['viewer'],
-
-            'project.site' => [
-                'structureExecutor',
-                'searchExecutor',
-                'viewer',
-                'widgetExecutor'
-            ],
-
-            'project.site.search' => [
-                'viewer'
-            ],
-
-            'project.site.structure' => [
-                'menuExecutor',
-                'viewer'
-            ],
-            'project.site.structure.menu' => ['viewer']
-        ];
-
-        /**
-         * @var Supervisor $sv
-         */
-        $sv = $userCollection->add(Supervisor::TYPE_NAME, '68347a1d-c6ea-49c0-9ec3-b7406e42b01e')
-            ->setValue('displayName', 'Супервайзер')
-            ->setValue('login', 'sv')
-            ->setValue('firstName', 'Супервайзер')
-            ->setValue('email', 'sv@umisoft.ru');
-
-        $sv->getProperty('locked')->setValue(true);
-        $sv->setPassword('1');
-
-        /**
-         * @var Guest $guest
-         */
-        $guest = $userCollection->add(Guest::TYPE_NAME, '552802d2-278c-46c2-9525-cd464bbed63e')
-            ->setValue('displayName', 'Гость')
-            ->setValue('displayName', 'Guest', 'en-US');
-
-        $guest->getProperty('locked')->setValue(true);
-
-        $guest->groups->attach($visitors);
-
     }
 
     protected function buildDocsStructure()
@@ -262,17 +104,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
          * @var StructureElementCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        $widgetsPage = $structureCollection->add('widgets', StaticPage::TYPE, null, 'd7dda227-cac7-474d-ab0d-d361d0bc16a3');
-        $widgetsPage->setValue('inMenu', true)
-            ->setValue('displayName', 'Виджеты')
-            ->setValue('metaTitle', 'Виджеты')
-            ->setValue('active', true);
 
-        $controllersPage = $structureCollection->add('controllers', StaticPage::TYPE, null, 'fda552a8-846a-431d-87bf-ed719cdd884b');
-        $controllersPage->setValue('inMenu', true)
-            ->setValue('displayName', 'Контроллеры')
-            ->setValue('metaTitle', 'Контроллеры')
-            ->setValue('active', true);
+        $widgetsPage = $structureCollection->get('d7dda227-cac7-474d-ab0d-d361d0bc16a3');
+        $controllersPage = $structureCollection->get('fda552a8-846a-431d-87bf-ed719cdd884b');
 
         /**
          * @var SiteApplication $siteApplication
@@ -293,13 +127,19 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
          * @var StructureElementCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        $page = $structureCollection->add($component->getName(), StaticPage::TYPE, $parentPage);
 
-        $name = substr($component->getPath(), strlen('project.site') + 1);
-        $page->setValue('inMenu', true)
-            ->setValue('displayName', $name)
-            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
-            ->setValue('active', true);
+        try {
+            $page = $structureCollection->getByUri($parentPage->getURL() . '/' . $component->getName());
+        } catch (NonexistentEntityException $e) {
+
+            $page = $structureCollection->add($component->getName(), StaticPage::TYPE, $parentPage);
+
+            $name = substr($component->getPath(), strlen('project.site') + 1);
+            $page->setValue('inMenu', true)
+                ->setValue('displayName', $name)
+                ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
+                ->setValue('active', true);
+        }
 
         foreach ($component->getChildComponentNames() as $childComponentName) {
             /**
@@ -342,14 +182,20 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         /**
          * @var ControllerPage $controllerPage
          */
-        $controllerPage = $structureCollection->add($controller->getName(), ControllerPage::TYPE, $parentPage)
-            ->setValue('inMenu', true)
-            ->setValue('active', true);
+        try {
+            $controllerPage = $structureCollection->getByUri($parentPage->getURL() . '/' . $controller->getName());
+        } catch (NonexistentEntityException $e) {
+            $controllerPage = $structureCollection->add($controller->getName(), ControllerPage::TYPE, $parentPage)
+                ->setValue('inMenu', true)
+                ->setValue('active', true);
 
-        $controllerPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $controller->getName();
-        $controllerPage->h1 = rtrim($class->getShortDesc(), '.');
-        $controllerPage->metaTitle = rtrim($class->getShortDesc(), '.');
-        $controllerPage->active = true;
+            $controllerPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $controller->getName();
+            $controllerPage->h1 = rtrim($class->getShortDesc(), '.');
+            $controllerPage->metaTitle = rtrim($class->getShortDesc(), '.');
+            $controllerPage->active = true;
+        }
+
+
 
         $description = '';
         if ($longDescription = $class->getLongDesc()) {
@@ -502,14 +348,18 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         /**
          * @var WidgetPage $widgetPage
          */
-        $widgetPage = $structureCollection->add($widget->getName(), WidgetPage::TYPE, $parentPage)
-            ->setValue('inMenu', true)
-            ->setValue('active', true);
+        try {
+            $widgetPage = $structureCollection->getByUri($parentPage->getURL() . '/' . $widget->getName());
+        } catch (NonexistentEntityException $e) {
+            $widgetPage = $structureCollection->add($widget->getName(), WidgetPage::TYPE, $parentPage)
+                ->setValue('inMenu', true)
+                ->setValue('active', true);
 
-        $widgetPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
-        $widgetPage->h1 = rtrim($class->getShortDesc(), '.');
-        $widgetPage->metaTitle = rtrim($class->getShortDesc(), '.');
-        $widgetPage->active = true;
+            $widgetPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
+            $widgetPage->h1 = rtrim($class->getShortDesc(), '.');
+            $widgetPage->metaTitle = rtrim($class->getShortDesc(), '.');
+            $widgetPage->active = true;
+        }
 
         $description = '';
         if ($longDescription = $class->getLongDesc()) {
@@ -615,6 +465,9 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 while ($parent = $current->getParent()) {
                     $parentProperties = $parent->getProperties();
                     if (isset($parentProperties[$name])) {
+                        /**
+                         * @var PropertyReflection $parentProperty
+                         */
                         $parentProperty = $parentProperties[$name];
                         if (!is_null($parentProperty->getHintDesc())) {
                             $hintDesc = $parentProperty->getHintDesc();
@@ -666,22 +519,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         return $parameters;
     }
 
-    protected function installSearch()
-    {
-        /**
-         * @var StructureElementCollection $structureCollection
-         */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-
-        $searchPage = $structureCollection->add('searching', 'system')
-            ->setValue('displayName', 'Поиск')
-            ->setValue('active', true);
-
-        $searchPage->getProperty('locked')->setValue(true);
-        $searchPage->getProperty('componentName')->setValue('search');
-        $searchPage->getProperty('componentPath')->setValue('search');
-    }
-
     /**
      * Записывает изменения всех объектов в БД (бизнес транзакция),
      * запуская перед этим валидацию объектов.
@@ -704,6 +541,17 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $currentUser = $usersModule->user()->get('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
 
         $persister = $this->getObjectPersister();
+
+        foreach ($persister->getModifiedObjects() as $object) {
+            $collection = $object->getCollection();
+            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                $collection->createBackup($object);
+            }
+            if ($object instanceof ICmsPage) {
+                $searchIndexApi->buildIndexForObject($object);
+            }
+        }
+
         /**
          * @var ICmsObject|ICmsPage $object
          */
@@ -718,11 +566,15 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $object->setCreatedTime();
         }
 
+        foreach ($persister->getModifiedObjects() as $object) {
+            $object->editor = $currentUser;
+            $object->setUpdatedTime();
+        }
+
         $invalidObjects = $persister->getInvalidObjects();
 
         if (count($invalidObjects)) {
-            foreach ($invalidObjects as $object)
-            {
+            foreach ($invalidObjects as $object) {
                 var_dump([$object->getTypePath() . '#' . $object->guid => $object->getValidationErrors()]);
             }
 
@@ -730,6 +582,18 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 $this->translate('Cannot persist objects. Objects are not valid.'),
                 $invalidObjects
             );
+        }
+
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                echo 'Была добавлена страница ' . $object->displayName . '(' . $object->getTypePath() . ').' . PHP_EOL;
+            }
+        }
+
+        foreach ($persister->getModifiedObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                echo 'Страница ' . $object->displayName . '(' . $object->getTypePath() . ') была обновлена.' . PHP_EOL;
+            }
         }
 
         $this->getObjectPersister()->commit();
