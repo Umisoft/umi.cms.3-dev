@@ -61,8 +61,8 @@ class PackEnvironmentCommand extends BaseCommand
         $output->writeln('<info>Packing environment files...</info>');
 
         $rootDir = dirname(CMS_DIR);
+        $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
 
-        $this->packFile($phar, new SplFileInfo($rootDir . '/.htaccess'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/LICENCE.md'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
