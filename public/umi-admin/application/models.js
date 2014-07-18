@@ -10,7 +10,10 @@ define([], function(){
          */
         var propertyFilters = {
             stringTrim: function(value){
-                return value.replace(/^\s+|\s+$/g, '');
+                if(value){
+                    value = value.replace(/^\s+|\s+$/g, '');
+                }
+                return value;
             },
 
             htmlSafe: function(value){
@@ -54,18 +57,19 @@ define([], function(){
                         switch(validators[i].type){
                             case "required":
                                 if(!value){
-                                    errors.push({'message': validators[i].message});
+                                    errors.push(validators[i].message);
                                 }
                                 break;
                             case "regexp":
                                 var pattern = eval(validators[i].options.pattern); //TODO: Заменить eval
                                 if(!pattern.test(value)){
-                                    errors.push({'message': validators[i].message});
+                                    errors.push(validators[i].message);
                                 }
                                 break;
                         }
 
                         if(errors.length){
+                            errors = errors.join(' ');
                             activeErrors = this.get('validErrors');
                             if(activeErrors){
                                 this.set('validErrors.' + propertyName, errors);
@@ -96,9 +100,59 @@ define([], function(){
                 }
             },
 
+            validateObject: function(){
+                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
+                var filters = Ember.get(meta, 'filters');
+                var validators = Ember.get(meta, 'validators');
+                var key;
+                if(Ember.typeOf(filters) === 'object'){
+                    for(key in filters){
+                        if(filters.hasOwnProperty(key)){
+                            this.filterProperty(key);
+                        }
+                    }
+                }
+                if(Ember.typeOf(validators) === 'object'){
+                    for(key in validators){
+                        if(validators.hasOwnProperty(key)){
+                            this.validateProperty(key);
+                            if(!this.get('isValid')){
+                                break;
+                            }
+                        }
+                    }
+                }
+            },
+
+            setInvalidProperties: function(invalidProperties){
+                var i;
+                var self = this;
+                var errors;
+                var propertyName;
+                var activeErrors;
+                if(Ember.typeOf(invalidProperties) === 'array'){
+                    for(i = 0; i < invalidProperties.length; i++){
+                        errors = invalidProperties[i].errors;
+                        if(Ember.typeOf(errors) === 'array'){
+                            errors = errors.join(' ');
+                        }
+                        propertyName = invalidProperties[i].propertyName || '';
+                        propertyName = propertyName.replace(/#.*/g, '');
+                        activeErrors = self.get('validErrors');
+                        if(activeErrors){
+                            self.set('validErrors.' + propertyName, errors);
+                        } else{
+                            activeErrors = {};
+                            activeErrors[propertyName] = errors;
+                            self.set('validErrors', activeErrors);
+                        }
+                    }
+                }
+            },
+
             clearValidateForProperty: function(propertyName){
                 var activeErrors = this.get('validErrors');
-                if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
+                if(Ember.get(activeErrors, propertyName)){
                     delete activeErrors[propertyName];
                 }
                 // Объект пересобирается без свойств прототипа
@@ -110,6 +164,11 @@ define([], function(){
                 }
                 activeErrors = i ? activeErrors : null;
                 this.set('validErrors', activeErrors);
+                if(!i){
+                    if(!this.get('isValid')){
+                        this.send('becameValid');
+                    }
+                }
             },
 
             loadedRelationshipsByName: {},
