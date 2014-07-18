@@ -24,9 +24,9 @@ class TopBarWidget extends BaseCmsWidget
     {
         //TODO
         return <<<EOF
-<script></script>
+<link rel="stylesheet" type="text/css" href="/umi-admin/eip/styles/styles.css?version=1">
+<script src="/umi-admin/eip/main.js?version=1" data-baseApiURL="/admin/rest" data-authUrl="/admin/rest/action/auth"></script>
 EOF;
-
     }
 }
  
