@@ -34,10 +34,10 @@ class InstallProjectCommand extends BaseProjectCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $syncCommand = $this->getApplication()->find('project:sync-scheme');
+        $syncCommand = $this->getApplication()->find('sync:project-scheme');
         $syncCommand->run($input, $output);
 
-        $loadDumpCommand = $this->getApplication()->find('project:load-dump');
+        $loadDumpCommand = $this->getApplication()->find('load:project-dump');
         $loadDumpCommand->run($input, $output);
     }
 

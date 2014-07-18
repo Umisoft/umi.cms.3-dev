@@ -21,9 +21,9 @@ $primary-gradient: #3aadff, #0087d4;
         padding-left: rem-calc(20);
     }
 
-    li{
+   &-list-li{
         line-height: rem-calc(24);
-        a{
+        .tree-item-link{
             color: $umi-font-color;
             &.active {
                 color: $umi-font-color;
@@ -49,14 +49,14 @@ $primary-gradient: #3aadff, #0087d4;
                     display: block;
                 }
             }
-            a{
+            .tree-item-link{
                 text-decoration: none;
             }
         }
         &.active{
             background: linear-gradient($primary-gradient);
             color: #FFFFFF;
-            a{
+            .tree-item-link{
                 color: #FFFFFF;
                 border-bottom: none!important;
             }
@@ -64,7 +64,7 @@ $primary-gradient: #3aadff, #0087d4;
                 display: block;
             }
             .f-dropdown{
-                a{
+                .tree-item-link{
                     color: $umi-font-color;
                 }
             }
@@ -113,12 +113,6 @@ $primary-gradient: #3aadff, #0087d4;
         }
     }
 
-    .umi-tree-expand{
-        > div a {
-            text-decoration: underline;
-        }
-    }
-
     &.drag-inside{
         a, .icon, .move{
             cursor: default;
@@ -136,7 +130,7 @@ $primary-gradient: #3aadff, #0087d4;
         right: rem-calc(4);
         margin: 0;
         padding: 0;
-        margin-top: -23px;
+        margin-top: -25px;
         .split.button{
             display: none;
             &.open{
