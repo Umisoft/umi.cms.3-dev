@@ -8,6 +8,7 @@
         background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
         background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
         border-bottom: 1px solid #98A2AB;
+        white-space: nowrap;
         &:hover{
             background: #EEEEEE;
             color: #000000;
