@@ -24,6 +24,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
+use umi\hmvc\IMvcEntityFactory;
 use umi\orm\collection\ICollectionManager;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
@@ -65,6 +66,10 @@ class UpdateDocumentationCommand extends BaseProjectCommand
      * @var OutputInterface $output
      */
     private $output;
+    /**
+     * @var array $projectConfig
+     */
+    private $projectConfig;
 
     /**
      * {@inheritdoc}
@@ -84,13 +89,14 @@ class UpdateDocumentationCommand extends BaseProjectCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $bootstrap = $this->dispatchToProject($input, $output);
+        $this->projectConfig = $bootstrap->getProjectConfig();
         $this->toolkit = $bootstrap->getToolkit();
         $this->output = $output;
 
         /**
          * @var ICollectionManager $collectionManager
          */
-        $collectionManager =  $this->toolkit->getService('umi\orm\collection\CollectionManager');
+        $collectionManager =  $this->toolkit->getService('umi\orm\collection\ICollectionManager');
         $this->structureCollection = $collectionManager->getCollection('structure');
 
         $this->output->writeln('<process>Updating documentation...</process>');
@@ -120,11 +126,16 @@ class UpdateDocumentationCommand extends BaseProjectCommand
          * @var CmsDispatcher $dispatcher
          */
         $dispatcher =  $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+        /**
+         * @var IMvcEntityFactory $mvcEntityFactory
+         */
+        $mvcEntityFactory = $this->toolkit->getService('umi\hmvc\IMvcEntityFactory');
+        $dispatcher->setInitialComponent($mvcEntityFactory->createComponent('project', 'project', $this->projectConfig));
 
         /**
          * @var SiteApplication $siteApplication
          */
-        $siteApplication = $dispatcher->getComponentByPath('project.path');
+        $siteApplication = $dispatcher->getComponentByPath('project.site');
 
         foreach ($siteApplication->getChildComponentNames() as $componentName) {
             $childComponent = $siteApplication->getChildComponent($componentName);
@@ -136,6 +147,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
     protected function buildComponentStructure(SiteComponent $component, StaticPage $parentPage, $type)
     {
+        $this->output->write('.');
         try {
             $page = $this->structureCollection->getByUri($parentPage->getURL() . '/' . $component->getName());
         } catch (NonexistentEntityException $e) {
@@ -160,6 +172,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         if ($type === 'widgets') {
             $widgetNames = $component->getWidgetNames();
             foreach ($widgetNames as $widgetName) {
+                $this->output->write('.');
                 $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
             }
         }
@@ -167,6 +180,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         if ($type === 'controllers') {
             $controllerNames = $component->getControllerNames();
             foreach ($controllerNames as $controllerName) {
+                $this->output->write('.');
                 $this->buildControllerPage($component->getController($controllerName), $component, $page);
             }
 
