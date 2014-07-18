@@ -18,16 +18,15 @@ use umicms\hmvc\widget\BaseCmsWidget;
 class TopBarWidget extends BaseCmsWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'topBar';
-
-    /**
      * {@inheritdoc}
      */
     public function __invoke()
     {
-        return $this->createResult($this->template);
+        //TODO
+        return <<<EOF
+<script></script>
+EOF;
+
     }
 }
  
