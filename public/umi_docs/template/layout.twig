@@ -30,10 +30,20 @@
 <body>
 
 <nav class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-collapse collapse">
-            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <img src="http://summit.umi-cms.ru/templates/summit/images/umicms-logo.png" class="navbar-right" style="height: 45px"/>
+        </div>
+
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
         </div>
     </div>
 </nav>
