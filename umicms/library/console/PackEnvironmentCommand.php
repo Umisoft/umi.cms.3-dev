@@ -83,6 +83,7 @@ class PackEnvironmentCommand extends BaseCommand
 
         $finder = new Finder();
         $finder->files()
+            ->exclude('samples')
             ->in($rootDir . '/public/umi-admin/production');
 
         $progress = $this->startProgressBar($output, $finder->count());
