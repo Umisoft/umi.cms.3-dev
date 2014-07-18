@@ -142,8 +142,8 @@ define(['App'],
                             return defaultBehaviourIndex === this.get('_parentView.contentIndex');
                         }.property('parentView.defaultBehaviourIndex'),
                         icon: function(){
-                            return 'icon-' + this.get('context.name');
-                        }.property('context.name'),
+                            return 'icon-' + this.get('context.behaviour.name');
+                        }.property('context.behaviour.name'),
                         init: function(){
                             this._super();
                             var context = this.get('context');
