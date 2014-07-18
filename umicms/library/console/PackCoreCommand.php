@@ -197,6 +197,8 @@ EOF;
             ->notName('.travis.yml')
             ->notName('phpunit.xml*')
             ->notName('composer.json')
+            ->notName('*.uk_ua.bin')
+            ->notName('*.uk_ua.ini')
             ->notName('*.txt')
             ->notName('*.js')
             ->notName('*.xml')
