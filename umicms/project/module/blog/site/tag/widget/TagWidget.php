@@ -26,10 +26,9 @@ class TagWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogTag $BlogTag GUID тэга
+     * @var string|BlogTag $blogTag тэг или GUID тэга
      */
     public $blogTag;
-
     /**
      * @var BlogModule $module модуль "Блоги"
      */

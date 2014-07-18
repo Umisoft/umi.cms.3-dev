@@ -26,7 +26,7 @@ class PostWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $BlogPost GUID или поста
+     * @var string|BlogPost $blogPost GUID поста блога или пост
      */
     public $blogPost;
 

@@ -26,7 +26,7 @@ class FragmentsWidget extends BaseCmsWidget
      */
     public $template = 'fragments';
     /**
-     * @var ICmsPage $result страница, которая попала в результат поиска
+     * @var ICmsPage $page страница, которая попала в результат поиска
      */
     public $page;
     /**

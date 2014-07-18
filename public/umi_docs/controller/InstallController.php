@@ -479,7 +479,16 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 }
             }
 
-            $hintDesc = substr($hintDesc, strlen($name) + 1);
+            if (strpos($hintDesc, $name) === false) {
+                throw new RuntimeException('Cannot update public properties for class "' . $class->getName() .'". Property "' . $name . '" has wrong description.');
+            }
+
+            $hintDesc = trim(mb_substr($hintDesc, mb_strlen($name) + 1));
+            $hintDesc = rtrim($hintDesc, '.');
+
+            if (!$hintDesc) {
+                throw new RuntimeException('Cannot update public properties for class "' . $class->getName() .'". Property "' . $name . '" has no description.');
+            }
 
             $default = '';
             if (is_array($property->getDefault())) {
@@ -586,13 +595,19 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
         foreach ($persister->getNewObjects() as $object) {
             if ($object instanceof ICmsPage) {
-                echo 'Была добавлена страница ' . $object->displayName . '(' . $object->getTypePath() . ').' . PHP_EOL;
+                echo 'Была добавлена страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ').' . PHP_EOL;
             }
         }
 
         foreach ($persister->getModifiedObjects() as $object) {
             if ($object instanceof ICmsPage) {
-                echo 'Страница ' . $object->displayName . '(' . $object->getTypePath() . ') была обновлена.' . PHP_EOL;
+                echo 'Страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ') была обновлена.' . PHP_EOL;
+            }
+        }
+
+        foreach ($persister->getDeletedObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                echo 'Страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ') была удалена.' . PHP_EOL;
             }
         }
 
