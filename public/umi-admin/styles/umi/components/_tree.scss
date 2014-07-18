@@ -21,9 +21,9 @@ $primary-gradient: #3aadff, #0087d4;
         padding-left: rem-calc(20);
     }
 
-    li{
+   &-list-li{
         line-height: rem-calc(24);
-        a{
+        .tree-item-link{
             color: $umi-font-color;
             &.active {
                 color: $umi-font-color;
@@ -49,14 +49,14 @@ $primary-gradient: #3aadff, #0087d4;
                     display: block;
                 }
             }
-            a{
+            .tree-item-link{
                 text-decoration: none;
             }
         }
         &.active{
             background: linear-gradient($primary-gradient);
             color: #FFFFFF;
-            a{
+            .tree-item-link{
                 color: #FFFFFF;
                 border-bottom: none!important;
             }
@@ -64,7 +64,7 @@ $primary-gradient: #3aadff, #0087d4;
                 display: block;
             }
             .f-dropdown{
-                a{
+                .tree-item-link{
                     color: $umi-font-color;
                 }
             }
@@ -110,12 +110,6 @@ $primary-gradient: #3aadff, #0087d4;
         transition: background 0.2s linear;
         &:hover, &:focus {
             background: darken(#C4D2DD, 3%);
-        }
-    }
-
-    .umi-tree-expand{
-        > div a {
-            text-decoration: underline;
         }
     }
 

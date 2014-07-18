@@ -217,6 +217,7 @@ define(['App', 'toolbar'], function(UMI){
             treeControlView: null,
             templateName: 'partials/treeControl/treeItem',
             tagName: 'li',
+            classNames: ['umi-tree-list-li'],
             classNameBindings: ['item.isDragged:hide', 'item.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
 

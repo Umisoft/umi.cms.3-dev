@@ -133,6 +133,7 @@ define(['App'],
                 itemView: function(){
                     var baseItem = Ember.View.extend({
                         tagName: 'li',
+                        classNames: ['has-default-button'],
                         label: function(){
                             return this.get('context.attributes.label');
                         }.property('context.attributes.label'),
@@ -140,6 +141,9 @@ define(['App'],
                             var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
                             return defaultBehaviourIndex === this.get('_parentView.contentIndex');
                         }.property('parentView.defaultBehaviourIndex'),
+                        icon: function(){
+                            return 'icon-' + this.get('context.name');
+                        }.property('context.name'),
                         init: function(){
                             this._super();
                             var context = this.get('context');
