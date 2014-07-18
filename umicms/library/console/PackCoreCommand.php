@@ -33,6 +33,12 @@ class PackCoreCommand extends BaseCommand
             ->setName('pack:core')
             ->setDescription('Pack UMI.CMS core files')
             ->addArgument(
+                'without-vendors',
+                InputArgument::OPTIONAL,
+                'Pack core without vendors.',
+                false
+            )
+            ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
                 'Output directory for package.',
@@ -76,9 +82,11 @@ class PackCoreCommand extends BaseCommand
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
-        $output->writeln('<process>Packing vendor files...</process>');
-        $this->addVendorFiles($phar, $output);
-        $output->writeln('');
+        if (!$input->getArgument('without-vendors')) {
+            $output->writeln('<process>Packing vendor files...</process>');
+            $this->addVendorFiles($phar, $output);
+            $output->writeln('');
+        }
 
         $output->writeln('<process>Writing package on disc...</process>');
         $this->setStub($phar);
@@ -127,7 +135,9 @@ EOF;
 
         $finder = new Finder();
         $finder->files()
-            ->notName('CoreCompiler.php')
+            ->notName('PackCoreCommand.php')
+            ->notName('PackEnvironmentCommand.php')
+            ->notName('BuildDocumentationCommand.php')
             ->notName('version.php')
             ->in(CMS_DIR);
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Консольное приложение UMI.CMS
+ * Консольное приложение для разработчиков UMI.CMS
  *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
@@ -11,16 +11,21 @@
 
 use Symfony\Component\Console\Application;
 use umicms\console\InstallProjectCommand;
+use umicms\console\PackCoreCommand;
+use umicms\console\PackEnvironmentCommand;
 use umicms\console\PackProjectCommand;
 use umicms\console\CreateProjectDumpCommand;
 use umicms\console\LoadProjectDumpCommand;
 use umicms\console\SyncProjectSchemeCommand;
 
+$useUnpackedCore = true;
 require dirname(__DIR__) . '/configuration/core.php';
 
-$application = new Application('UMI.CMS Console application.', CMS_VERSION);
+$application = new Application('UMI.CMS Developers Team Console application.', CMS_VERSION);
 
 
+$application->add(new PackCoreCommand());
+$application->add(new PackEnvironmentCommand());
 $application->add(new PackProjectCommand());
 
 $application->add(new CreateProjectDumpCommand());
