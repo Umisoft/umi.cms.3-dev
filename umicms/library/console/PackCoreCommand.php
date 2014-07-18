@@ -189,6 +189,14 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
+            ->notName('.gitignore')
+            ->notName('CHANGELOG.md')
+            ->notName('UPGRADING.md')
+            ->notName('README.md')
+            ->notName('.editorconfig')
+            ->notName('.travis.yml')
+            ->notName('phpunit.xml*')
+            ->notName('composer.json')
             ->exclude('Tests')
             ->exclude('tests')
             ->exclude('Test')
