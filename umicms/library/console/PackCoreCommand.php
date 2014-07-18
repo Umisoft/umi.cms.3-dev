@@ -137,7 +137,7 @@ EOF;
         $finder->files()
             ->notName('PackCoreCommand.php')
             ->notName('PackEnvironmentCommand.php')
-            ->notName('BuildDocumentationCommand.php')
+            ->notName('UpdateDocumentationCommand.php')
             ->notName('version.php')
             ->in(CMS_DIR);
 

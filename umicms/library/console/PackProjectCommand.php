@@ -68,6 +68,7 @@ class PackProjectCommand extends BaseProjectCommand
         $output->writeln('<process>Packing project files...</process>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
+        $output->writeln('');
         $output->writeln('<process>Writing package...</process>');
         $this->setStub($phar, $projectName . '.phar');
         $phar->stopBuffering();
