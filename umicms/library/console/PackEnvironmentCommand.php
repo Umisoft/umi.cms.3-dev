@@ -64,6 +64,7 @@ class PackEnvironmentCommand extends BaseCommand
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/.htaccess'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/LICENCE.md'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/db.config.dist.php'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
 
@@ -73,7 +74,7 @@ class PackEnvironmentCommand extends BaseCommand
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/environment.config.php'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/favicon.ico'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/db.config.dist.php'));
+
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/project.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/tools.settings.config.dist.php'));
 
