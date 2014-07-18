@@ -74,7 +74,7 @@ define(['App'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
-                    if(event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
+                    if(event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('umi-button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
                         this.send('sendActionForBehaviour', this.get('defaultBehaviour').behaviour);
                     }
                 },

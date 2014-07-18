@@ -361,6 +361,7 @@ define(['App', 'toolbar'], function(UMI){
                         this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
                     };
                     behaviour.classNames = ['tiny white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()
