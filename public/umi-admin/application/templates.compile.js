@@ -1740,10 +1740,20 @@ function program1(depth0,data) {
   return buffer;
   }
 
+function program3(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <b class=\"umi-button-label\">");
+  stack1 = helpers._triageMustache.call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</b> ");
+  return buffer;
+  }
+
   stack1 = helpers['if'].call(depth0, "view.meta.attributes.hasIcon", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  stack1 = helpers._triageMustache.call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   return buffer;
   
@@ -1757,9 +1767,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" <span> ");
+  data.buffer.push(" <b class=\"umi-button-label\"> ");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.meta.attributes.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(" </span> ");
+  data.buffer.push(" </b> ");
   return buffer;
   }
 
@@ -1848,9 +1858,9 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" ");
+  data.buffer.push(" <b class=\"umi-button-label\"> ");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.meta.attributes.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(" ");
+  data.buffer.push(" </b> ");
   return buffer;
   }
 
@@ -1900,7 +1910,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <b class=\"button-label\">");
+  data.buffer.push(" <b class=\"umi-button-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</b> ");
@@ -1919,24 +1929,28 @@ function program5(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <i ");
+  data.buffer.push(" <a ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "sendActionForBehaviour", "behaviour", {hash:{
+    'target': ("view.parentView"),
+    'on': ("mouseUp")
+  },hashTypes:{'target': "STRING",'on': "STRING"},hashContexts:{'target': depth0,'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push(" class=\"umi-dropdown-item-link\"> <i ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon :icon-accept view.isDefaultBehaviour::white")
+    'class': (":icon view.icon")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("></i> <div>");
+  stack1 = helpers._triageMustache.call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</div> </a> <i ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":icon :icon-accept :split-default-button view.isDefaultBehaviour::white")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleDefaultBehaviour", "view._parentView.contentIndex", {hash:{
     'target': ("view.parentView"),
     'on': ("mouseUp")
   },hashTypes:{'target': "STRING",'on': "STRING"},hashContexts:{'target': depth0,'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("></i> <a ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "sendActionForBehaviour", "behaviour", {hash:{
-    'target': ("view.parentView"),
-    'on': ("mouseUp")
-  },hashTypes:{'target': "STRING",'on': "STRING"},hashContexts:{'target': depth0,'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("> ");
-  stack1 = helpers._triageMustache.call(depth0, "view.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </a> ");
+  data.buffer.push("></i> ");
   return buffer;
   }
 
@@ -1985,14 +1999,15 @@ function program1(depth0,data) {
 Ember.TEMPLATES["UMI/partials/topBar"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <a href=\"javascript:void(0)\" ");
+  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"umi-top-bar-label\"> <i class=\"icon icon-butterfly\"></i> </span> </li> <li> <span class=\"umi-top-bar-label\">");
+  stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</span> </li> <li> <a href=\"javascript:void(0)\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "viewOnSite", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> ");
-  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Open site in new tab", options) : helperMissing.call(depth0, "i18n", "Open site in new tab", options))));
-  data.buffer.push(" <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> <ul class=\"umi-top-bar-list right\"> <li> ");
+  data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> <ul class=\"umi-top-bar-list right\"> <li> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.dropdownView", {hash:{
     'tagName': ("span"),
     'class': ("button tiny flat dropdown umi-top-bar-button")

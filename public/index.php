@@ -12,7 +12,7 @@ use umi\http\Response;
 use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
-require __DIR__ . '/core.php';
+require dirname(__DIR__) . '/configuration/core.php';
 
 
 try {

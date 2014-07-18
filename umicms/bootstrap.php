@@ -54,3 +54,7 @@ define('CMS_LIBRARY_DIR', __DIR__ . '/library');
  * Директория с инструментами фреймворка.
  */
 define('FRAMEWORK_LIBRARY_DIR', VENDOR_DIR . '/umisoft/umi.framework');
+/**
+ * Директория с общими конфигурационными файлами
+ */
+define('COMMON_CONFIGURATION_DIR', dirname(__DIR__) . '/configuration');

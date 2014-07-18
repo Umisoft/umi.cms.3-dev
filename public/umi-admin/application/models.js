@@ -46,6 +46,12 @@ define([], function(){
                 }
             },
 
+            validatorsForProperty: function(propertyName){
+                Ember.assert('propertyName is required for method validatorsForProperty.', propertyName);
+                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
+                return Ember.get(meta, 'validators.' + propertyName);
+            },
+
             validateProperty: function(propertyName){
                 var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
                 var validators = Ember.get(meta, 'validators.' + propertyName);

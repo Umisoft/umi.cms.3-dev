@@ -1,8 +1,15 @@
 <nav class="umi-top-bar">
     <ul class="umi-top-bar-list left">
         <li>
+            <span class="umi-top-bar-label">
+                <i class="icon icon-butterfly"></i>
+            </span>
+        </li>
+        <li>
+            <span class="umi-top-bar-label">{{view.activeProject}}</span>
+        </li>
+        <li>
             <a href="javascript:void(0)" {{action 'viewOnSite'}} class="button tiny flat umi-top-bar-button">
-                {{i18n "Open site in new tab"}}
                 <i class="icon icon-viewOnSite"></i>
             </a>
         </li>

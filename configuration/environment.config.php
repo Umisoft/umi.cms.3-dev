@@ -2,14 +2,14 @@
 
 return [
     'currentMode' => 'development',
-
+    'corePath' => dirname(__DIR__) . '/umicms.phar',
     'development' => [
         'errorReporting' => E_ALL,
         'displayErrors' => true,
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
 
-        'directoryPublic' => __DIR__
+        'directoryPublic' => dirname(__DIR__) . '/public'
     ],
     'production' => [
         'errorReporting' => 0,
@@ -17,6 +17,6 @@ return [
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
 
-        'directoryPublic' => __DIR__
+        'directoryPublic' => dirname(__DIR__) . '/public'
     ]
 ];

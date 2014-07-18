@@ -68,14 +68,15 @@ class PackEnvironmentCommand extends BaseCommand
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/.htaccess'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/core.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/environment.config.php'));
-
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/favicon.ico'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/db.config.dist.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/project.config.dist.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/tools.settings.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
+
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/core.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/project.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/tools.settings.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/db.config.dist.php'));
+
 
         $output->writeln('<info>Done.</info>');
         $output->writeln('<info>Packing frontend files...</info>');
