@@ -10,7 +10,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-      'displayName' => 'search',
+      'displayName' => 'Поиск',
       'branch' => 
       array (
         'meta' => 
@@ -30,12 +30,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search',
+        1 => 'Поиск',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:39";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -50,6 +55,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -124,7 +163,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -338,7 +377,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-              'displayName' => 'blog.draft',
+              'displayName' => 'Черновики',
               'branch' => 
               array (
                 'meta' => 
@@ -346,7 +385,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -527,7 +566,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -651,7 +690,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -659,7 +698,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -837,7 +876,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -1048,7 +1087,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -1149,7 +1188,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-          'displayName' => 'blog.author',
+          'displayName' => 'Компонент "Авторы"',
           'branch' => 
           array (
             'meta' => 
@@ -1157,7 +1196,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -1269,7 +1308,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -1373,7 +1412,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -1381,7 +1420,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -1543,7 +1582,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-      'displayName' => 'users',
+      'displayName' => 'Пользователи',
       'branch' => 
       array (
         'meta' => 
@@ -1563,12 +1602,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users',
+        1 => 'Пользователи',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:48";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -1583,6 +1627,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -1641,7 +1719,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '767688da-a24d-4280-adda-018683c5a664',
-          'displayName' => 'users.registration',
+          'displayName' => 'Регистрация',
           'branch' => 
           array (
             'meta' => 
@@ -1649,7 +1727,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -1814,7 +1892,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -1915,7 +1993,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'users.restoration',
+          'displayName' => 'Восстановление',
           'branch' => 
           array (
             'meta' => 
@@ -1923,7 +2001,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -2096,7 +2174,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-              'displayName' => 'users.restoration',
+              'displayName' => 'Восстановление',
               'branch' => 
               array (
                 'meta' => 
@@ -2104,7 +2182,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -2277,7 +2355,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -2285,7 +2363,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -2463,6 +2541,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:38";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -2476,6 +2559,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -2547,7 +2664,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -2555,7 +2672,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -2745,7 +2862,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -2753,7 +2870,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -2915,7 +3032,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '0fc1de36-ce89-44b0-9639-22ff4fa91011',
-      'displayName' => 'structure.menu',
+      'displayName' => 'Компонент "Меню"',
       'branch' => 
       array (
         'meta' => 
@@ -2923,7 +3040,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-          'displayName' => 'structure',
+          'displayName' => 'Структура',
           'branch' => 
           array (
             'meta' => 
@@ -2946,12 +3063,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'structure.menu',
+        1 => 'Компонент "Меню"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -2966,6 +3088,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -3032,7 +3188,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -3164,7 +3320,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -3288,7 +3444,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-          'displayName' => 'blog.tag',
+          'displayName' => 'Компонент "Теги"',
           'branch' => 
           array (
             'meta' => 
@@ -3296,7 +3452,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -3488,7 +3644,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -3496,7 +3652,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -3691,7 +3847,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -3823,7 +3979,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '15f18041-439d-4935-affb-1380b938a079',
-      'displayName' => 'structure.infoblock',
+      'displayName' => 'Компонент "Информационные блоки"',
       'branch' => 
       array (
         'meta' => 
@@ -3831,7 +3987,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-          'displayName' => 'structure',
+          'displayName' => 'Структура',
           'branch' => 
           array (
             'meta' => 
@@ -3854,12 +4010,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'structure.infoblock',
+        1 => 'Компонент "Информационные блоки"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:33";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -3874,6 +4035,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -3940,7 +4135,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -4064,7 +4259,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -4165,7 +4360,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-          'displayName' => 'blog.tag',
+          'displayName' => 'Компонент "Теги"',
           'branch' => 
           array (
             'meta' => 
@@ -4173,7 +4368,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -4360,7 +4555,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -4477,7 +4672,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -4653,7 +4848,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -4856,7 +5051,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -4864,7 +5059,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -5049,7 +5244,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '767688da-a24d-4280-adda-018683c5a664',
-          'displayName' => 'users.registration',
+          'displayName' => 'Регистрация',
           'branch' => 
           array (
             'meta' => 
@@ -5057,7 +5252,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -5235,7 +5430,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -5339,7 +5534,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '995fa1d9-748b-40d0-ad6c-63f7ede8f51a',
-          'displayName' => 'search',
+          'displayName' => 'Поиск',
           'branch' => 
           array (
             'meta' => 
@@ -5553,7 +5748,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -5685,7 +5880,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -5896,7 +6091,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -6000,7 +6195,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -6008,7 +6203,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -6112,7 +6307,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-          'displayName' => 'users.authorization',
+          'displayName' => 'Авторизация',
           'branch' => 
           array (
             'meta' => 
@@ -6120,7 +6315,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -6301,7 +6496,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -6588,7 +6783,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-              'displayName' => 'users.profile',
+              'displayName' => 'Профиль',
               'branch' => 
               array (
                 'meta' => 
@@ -6596,7 +6791,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -6764,7 +6959,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c233dc83-f29a-4a51-9dab-da91e17bbc1e',
-          'displayName' => 'blog.category',
+          'displayName' => 'Компонент "Категории"',
           'branch' => 
           array (
             'meta' => 
@@ -6772,7 +6967,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -6962,7 +7157,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-          'displayName' => 'blog.draft',
+          'displayName' => 'Черновики',
           'branch' => 
           array (
             'meta' => 
@@ -6970,7 +7165,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -7140,7 +7335,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -7148,7 +7343,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -7335,7 +7530,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c233dc83-f29a-4a51-9dab-da91e17bbc1e',
-          'displayName' => 'blog.category',
+          'displayName' => 'Компонент "Категории"',
           'branch' => 
           array (
             'meta' => 
@@ -7343,7 +7538,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -7543,7 +7738,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -7647,7 +7842,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -7655,7 +7850,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -7883,7 +8078,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -8056,7 +8251,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -8264,7 +8459,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -8272,7 +8467,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -8448,7 +8643,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -8481,7 +8676,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:00:22";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -8498,12 +8712,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Крнтроллер &quot;разавторизации&quot; пользователя',
+        1 => 'Контроллер &amp;quot;разавторизации&amp;quot; пользователя',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Крнтроллер "разавторизации" пользователя',
+        1 => 'Контроллер "разавторизации" пользователя',
       ),
       'active#ru-RU' => 
       array (
@@ -8555,6 +8779,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
   53 => 
@@ -8572,7 +8801,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -8580,7 +8809,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -8758,7 +8987,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -8766,7 +8995,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -8950,7 +9179,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -9148,7 +9377,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-              'displayName' => 'blog.draft',
+              'displayName' => 'Черновики',
               'branch' => 
               array (
                 'meta' => 
@@ -9156,7 +9385,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -9395,7 +9624,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-              'displayName' => 'blog.draft',
+              'displayName' => 'Черновики',
               'branch' => 
               array (
                 'meta' => 
@@ -9403,7 +9632,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -9587,7 +9816,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -9801,7 +10030,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-              'displayName' => 'blog.post',
+              'displayName' => 'Компонент "Посты"',
               'branch' => 
               array (
                 'meta' => 
@@ -9809,7 +10038,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -10056,7 +10285,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -10199,7 +10428,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c233dc83-f29a-4a51-9dab-da91e17bbc1e',
-          'displayName' => 'blog.category',
+          'displayName' => 'Компонент "Категории"',
           'branch' => 
           array (
             'meta' => 
@@ -10207,7 +10436,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -10377,7 +10606,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -10478,7 +10707,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -10486,7 +10715,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -10722,7 +10951,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -10936,7 +11165,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -11060,7 +11289,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-          'displayName' => 'search',
+          'displayName' => 'Поиск',
           'branch' => 
           array (
             'meta' => 
@@ -11241,7 +11470,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '515a3b57-7513-456d-9756-ac320a343506',
-      'displayName' => 'news.rubric',
+      'displayName' => 'Компонент "Рубрики"',
       'branch' => 
       array (
         'meta' => 
@@ -11249,7 +11478,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -11272,12 +11501,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.rubric',
+        1 => 'Компонент "Рубрики"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -11292,6 +11526,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -11350,7 +11618,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-          'displayName' => 'blog.author',
+          'displayName' => 'Компонент "Авторы"',
           'branch' => 
           array (
             'meta' => 
@@ -11358,7 +11626,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -11520,7 +11788,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-      'displayName' => 'news',
+      'displayName' => 'Новости',
       'branch' => 
       array (
         'meta' => 
@@ -11540,12 +11808,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news',
+        1 => 'Новости',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -11560,6 +11833,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -11618,7 +11925,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -11822,7 +12129,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -11970,7 +12277,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '767688da-a24d-4280-adda-018683c5a664',
-              'displayName' => 'users.registration',
+              'displayName' => 'Регистрация',
               'branch' => 
               array (
                 'meta' => 
@@ -11978,7 +12285,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -12151,7 +12458,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'blog.post',
+          'displayName' => 'Компонент "Посты"',
           'branch' => 
           array (
             'meta' => 
@@ -12159,7 +12466,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -12255,7 +12562,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-      'displayName' => 'users.authorization',
+      'displayName' => 'Авторизация',
       'branch' => 
       array (
         'meta' => 
@@ -12263,7 +12570,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -12286,12 +12593,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.authorization',
+        1 => 'Авторизация',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -12306,6 +12618,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -12364,7 +12710,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -12372,7 +12718,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -12575,7 +12921,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-          'displayName' => 'blog.author',
+          'displayName' => 'Компонент "Авторы"',
           'branch' => 
           array (
             'meta' => 
@@ -12583,7 +12929,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -12687,7 +13033,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -12695,7 +13041,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -12906,7 +13252,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -13010,17 +13356,28 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fee13476-00be-4bd4-a519-88886b2af20e',
-          'displayName' => 'structure',
+          'displayName' => 'Структура',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
+              'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+              'displayName' => 'Пользователи',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'users',
             ),
           ),
           'slug' => 'structure',
@@ -13210,7 +13567,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-          'displayName' => 'blog.tag',
+          'displayName' => 'Компонент "Теги"',
           'branch' => 
           array (
             'meta' => 
@@ -13218,7 +13575,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -13380,7 +13737,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-      'displayName' => 'blog.post',
+      'displayName' => 'Компонент "Посты"',
       'branch' => 
       array (
         'meta' => 
@@ -13388,7 +13745,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -13411,12 +13768,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.post',
+        1 => 'Компонент "Посты"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:45:02";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -13431,6 +13793,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -13573,7 +13969,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'users.restoration',
+          'displayName' => 'Восстановление',
           'branch' => 
           array (
             'meta' => 
@@ -13581,7 +13977,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -13685,7 +14081,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -13693,7 +14089,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -13797,7 +14193,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-          'displayName' => 'blog.draft',
+          'displayName' => 'Черновики',
           'branch' => 
           array (
             'meta' => 
@@ -13805,7 +14201,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -13965,6 +14361,409 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '625916b0-f727-4689-a6fc-39bed8dffc7d',
+      'displayName' => 'Как написать свой модуль?',
+      'branch' => NULL,
+      'slug' => 'own-module',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Как написать свой модуль?',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:05:25";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:40";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Как написать свой модуль?',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Как написать свой модуль?',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<h2>Конфигурация</h2>
+
+<ul>
+	<li>Конфигурация выбранного проекта регистрируется как локальная и накладывается на мастер-конфигурацию &ldquo;из коробки&rdquo;.</li>
+	<li>Почти все можно переопределить, перенастроить и расширить в файлах локальной конфигурации проекта.</li>
+</ul>
+
+<h2>Модули&nbsp;</h2>
+
+<p>Все файлы модуля лежат в папке project/modules/имя_модуля</p>
+
+<h2>Публичное API модуля (Модели)</h2>
+
+<ul>
+	<li>Классы моделей лежат в папке&nbsp;project/modules/имя_модуля/model.&nbsp;</li>
+	<li>Конфигурация моделей лежит в папке&nbsp;project/modules/имя_модуля/configuration.</li>
+	<li>К моделям модуля относятся классы коллекций объектов и объектов, управляемых компонентами модуля, а также классы, содержащие бизнес-логику, необходимую для работы контроллеров компонентов.</li>
+	<li>В общем случае у модуля есть API-класс, названный по имени модуля, реализующий интерфейс&nbsp;umicms\\module\\IModule&nbsp;и унаследованный от&nbsp;umicms\\module\\BaseModule. &nbsp;&nbsp;Этот класс содержит общее API для управления сущностями модуля и может быть получен в конструкторе любого контроллера или виджета через внедрение зависимостей.</li>
+	<li>Конфигурации API-классов модулей должны быть обязательно зарегистрированы в общей конфигурации модулей (~/project/module/modules.config.php) по имени класса. Конфигурация API-класса содержит значения публичных свойств, которые будут внедрены ему при создании. Таким образом могут быть сконфигурированы дочерние API, указанные в опции api или даже переопределен сам API-класс через опцию class.</li>
+	<li>Через конфигурацию API-класса можно настраивать, например, &nbsp;доступы к сторонним ресурсам, которые нужны для работы модуля, как это сделано для модулей &ldquo;Статистика&rdquo; и &ldquo;Сео&rdquo;, которые интегрированы со сторонними сервисами.</li>
+	<li>Помимо публичного API модуля контроллеры компонентов модуля могут использовать локальные модели (umi\\hmvc\\model\\IModel), зарегистрированные в конфигурации компонента и не доступные извне.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2>Права</h2>
+
+<ul>
+	<li><span style="line-height:1.6">Доступ к каждому компоненту, контроллеру и виджету контролируется через <a href="http://ru.wikipedia.org/wiki/ACL">ACL</a>.</span></li>
+	<li>Каждый компонент описывает в своей конфигурации свои ресурсы (контроллеры, виджеты и дочерние компоненты), роли и правила доступа (каким ролям разрешен доступ к ресурсам и с какими ограничениями).</li>
+	<li>По умолчанию все дочерние компоненты, контроллеры и виджеты компонента автоматически попадают в список его ресурсов при настройке AclManager`а.</li>
+	<li>По умолчанию для каждого дочернего компонента автоматически создается роль с названием, состоящим из имени дочернего компонента и суффиксом Executor. Для роли назначаются права на исполнение связанного компонента.</li>
+	<li>Роли и правила для контроллеров и виджетов компонента должны быть явно прописаны в конфигурации компонента.</li>
+	<li>Некоторые реализации компонентов имеют настройки по умолчанию, которые мержатся с настройками, заданными в конфигурации. Т.о. некоторые компоненты уже имеют предопределенные роли и правила для своих контроллеров и виджетов.</li>
+</ul>
+
+<h2>Административная часть</h2>
+
+<ul>
+	<li>Административная часть представляет собой отдельный компонент.</li>
+	<li>Конфигурация &nbsp;административной части (module.config.php&nbsp;) и все дочерние компоненты лежат в папке&nbsp;project/modules/имя_модуля/admin.</li>
+	<li>Административная часть модуля должна быть обязательно зарегистрирована как часть административной панели ( как дочерний компонент компонента project.admin.rest).</li>
+	<li>Административная часть модуля и все ее дочерние компоненты представлены классом&nbsp;umicms\\hmvc\\component\\admin\\AdminComponent&nbsp;или его наследниками.</li>
+	<li>Административная часть имеет как минимум один дочерний компонент. Дочерние компоненты нужны для того, чтобы логически сгруппировать контроллеры, выполняющие некоторые действия над сущностями модуля.</li>
+	<li>Административная часть модуля не имеет собственных контроллеров, через нее идет маршрутизация до дочерних компонентов.</li>
+	<li>Каждый компонент административной части модуля должен иметь контроллер вывода настроек интерфейса компонента, ему соответствует корневой маршрут компонента.</li>
+	<li>Для компонентов административной панели модуля, которые выполняют CRUD-операции над объектами одной коллекции есть реализация по умолчанию umicms\\hmvc\\component\\admin\\collection\\CollectionComponent. Конфигурация такого компонента уже содержит маршрутизацию, права, контроллер вывода настроек интерфейса компонента и контроллеры для действий с объектом.</li>
+	<li>Например, административная часть модуля &ldquo;Пользователи&rdquo; состоит из компонентов &ldquo;Пользователи&rdquo; и &ldquo;Группы&rdquo;. Компонент &ldquo;Пользователи&rdquo; отвечает за CRUD-операции с пользователями сайта, а &ldquo;Группы&rdquo; - за CRUD-операции с группами пользователей и назначение ролей (привилегий, прав).</li>
+	<li>Модуль &ldquo;Seo&rdquo; имеет только административную часть, которая состоит из компонентов &ldquo;MegaIndex&rdquo; и &ldquo;Яндекс.Вебмастер&rdquo;, каждый из которых отвечает за получение статистики в соответствующем сервисе.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2>Настройки модуля</h2>
+
+<ul>
+	<li><span style="line-height:1.6">Каждый модуль может иметь отдельную иерархию настроечных компонентов, которая должна быть зарегистрирована как дочерний компонент модуля &ldquo;Настройки&rdquo; (project.admin.rest.settings)&nbsp;</span></li>
+	<li><span style="line-height:1.6">Все компоненты настроечной части модуля лежат в папке project/modules/имя_модуля/admin/settings.</span></li>
+	<li>Часть для редактирования настроек модуля должна представлять собой двухуровневую иерархию компонентов. Конфигурации дефолтных компонентов описывают контроллеры, маршрутизацию и права.</li>
+	<li>Первый уровень является группирующим и должен быть представлен компонентом&nbsp;umicms\\hmvc\\component\\admin\\settings\\SettingsGroupComponent.</li>
+	<li>Задачей настроечных компонентов второго уровня является вывод и сохранение формы с настройками. Компоненты второго уровня представлены классом&nbsp;umicms\\hmvc\\component\\admin\\settings\\SettingsComponent. Для работы компонента необходимо задать алиас пути редактируемого конфигурационного файла и конфигурацию формы &lsquo;settings&rsquo;, которая используется для отображения и редактирования настроек.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2>Сайтовая часть</h2>
+
+<ul>
+	<li>Сайтовая часть представляет собой отдельный компонент.&nbsp;</li>
+	<li>Конфигурация &nbsp;сайтовой части (module.config.php&nbsp;) и все дочерние компоненты лежат в папке&nbsp;project/modules/имя_модуля/site.</li>
+	<li>Сайтовая часть модуля должна быть обязательно зарегистрирована как дочерний компонент компонента project.site.</li>
+	<li>Сайтовая часть может не иметь дочерних компонентов, вложенность дочерних компонентов не ограничена.</li>
+	<li>Сайтовая часть модуля и все ее дочерние компоненты представлены классом&nbsp;umicms\\hmvc\\component\\site\\SiteComponent&nbsp;или его наследниками.</li>
+	<li>Для компонента сайтовой части, выводящего неиерархические страницы предусмотрена реализация&nbsp;umicms\\hmvc\\component\\site\\SitePageComponent&nbsp;с уже заданной конфигурацией прав, маршрутов и контроллеров вывода. Для иерархических страниц -&nbsp;umicms\\hmvc\\component\\site\\SiteHierarchicPageComponent. Для таких компонентов в конфигурации достаточно указать имя класса компонента, имя коллекции, с которой он работает и папку с шаблонами.</li>
+	<li>У каждого компонента сайтовой части должна быть связанная с ним системная страница.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Системная страница компонента</h3>
+
+<p>&nbsp;</p>
+
+<p>-&nbsp;Системная страница&nbsp;(umicms\\project\\module\\structure\\model\\object\\SystemPage) это обычная страница, управляемая в административной панели в модуле &ldquo;Структура&rdquo;, через которую осуществляется маршрутизация до компонентов сайтовой части. За отображение системной страницы на сайте отвечает заданный для нее компонент-обработчик.</p>
+
+<p>- URL системной страницы является маршрутом для вызова компонента. В конфигурации маршрутов всех компонентов-предков компонента-обработчика первым в списке обязательно должен быть указан маршрут:</p>
+
+<p>&#39;component&#39; =&gt; [</p>
+
+<p>&#39;type&#39; =&gt; &#39;SiteComponentRoute&#39;</p>
+
+<p>]</p>
+
+<p>&nbsp;</p>
+
+<p>- Системная страница имеет два обязательных свойства - &nbsp;componentName (имя компонента-обработчика) и componentPath (полный путь к компоненту-обработчику). Например, системная страница регистрации пользователя, за вывод которой отвечает компонентом &ldquo;Регистрация&rdquo; сайтовой части модуля &ldquo;Пользователи&rdquo;, &nbsp;в componentPath имеет значение users.registration (project.site. опускается для упрощения) и registration в componentName.</p>
+
+<p>- Иерархия системных страниц обязательно повторяет иерархию компонентов, к которым относятся системные страницы. Например, системная страница регистрации пользователей обязательно является дочерней к системной странице модуля &ldquo;Пользователи&rdquo;, которая в свою очередь обязательно лежит в корне сайта.</p>
+
+<p>- URL системной страницы может быть любым и никак не зависит от имени компонента-обработчика.</p>
+
+<p>&nbsp;</p>
+
+<h3>Контроллер вывода системной страницы</h3>
+
+<p>&nbsp;</p>
+
+<p>- Обращение к сайту по URL системной страницы вызывает диспетчеризацию до компонента-обработчика страницы, которому дальше передается управление. В общем случае у компонента-обработчика прописан пустой фиксированный &nbsp;маршрут для вызова контроллера, который выведет системную страницу:</p>
+
+<p>&#39;index&#39; =&gt; [</p>
+
+<p>&#39;type&#39; =&gt; IRouteFactory::ROUTE_FIXED,</p>
+
+<p>&#39;defaults&#39; =&gt; [</p>
+
+<p>&#39;controller&#39; =&gt; &#39;index&#39;</p>
+
+<p>]</p>
+
+<p>]</p>
+
+<p>&nbsp;</p>
+
+<p>- Для простых компонентов (umicms\\hmvc\\component\\site\\SitePageComponent), которые преимущественно отвечают за отображение простых страниц (например, компонет &ldquo;Новость&rdquo; модуля &ldquo;Новости&rdquo;, который отвечает за отображение новостей), уже задана часть конфигурации по умолчанию, в которой отображение системной назначается контроллеру &nbsp;umicms\\hmvc\\component\\site\\SiteStructurePageController.</p>
+
+<p>- Помимо вывода системной страницы контроллер может выполнять и другие действия. Например, контроллер системной страницы &ldquo;Регистрация&rdquo; отвечает за отображение самой страницы, формирование и обработку формы регистрации пользователей.</p>
+
+<h2>&nbsp;</h2>
+
+<h2>Объекты и коллекции</h2>
+
+<p>Коллекция, которой принадлежит объект, определяет его поведение. Объекты одной коллекции обладают одним и тем же набором способностей.</p>
+
+<h3>Стандартные объекты и коллекции</h3>
+
+<ul>
+	<li>По умолчанию для всех неирархических объектов создаются объекты класса&nbsp;umicms\\orm\\object\\CmsObject. Коллекции таких объектов по умолчанию имеют класс&nbsp;umicms\\orm\\collection\\CmsCollection.</li>
+	<li>По умолчанию для всех ирархических объектов создаются объекты класса&nbsp;umicms\\orm\\object\\CmsHierarchicObject. Коллекции таких объектов по умолчанию имеют класс&nbsp;umicms\\orm\\collection\\CmsHierarchicPageCollection.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Способность хранить состояние активности</h3>
+
+<ul>
+	<li>Неактивные объекты &nbsp;не участвуют в выборках на сайте, но отображаются в административной панели.</li>
+	<li>Если неактивен иерархический объект, то неактивны и все его потомки. Если объект активен, то активны и все его предки.</li>
+	<li>Класс объекта, способного хранить состояние активности, обязательно реализует интерфейс&nbsp;umicms\\orm\\object\\behaviour\\IActiveAccessibleObject&nbsp;и имеет свойство &ldquo;active&rdquo; с типом значения bool.</li>
+	<li>Коллекция объектов, способных хранить состояние активности, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\behaviour\\IActiveAccessibleCollection&nbsp;(например, через трейт&nbsp;umicms\\orm\\collection\\behaviour\\TActiveAccessibleCollection).</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Способность иметь резервные копии</h3>
+
+<ul>
+	<li>Для объектов с таким поведением при его редактировании каждый раз создается резервная копия, если в настройках Сервис/Резервирование указано количество хранимых для объекта резервных копий.</li>
+	<li>В форме редактирования таких объектов выводится список его резервных копий, объект можно восстановить из резервной копии.</li>
+	<li>Класс объекта, способного иметь резервные копии, обязательно реализует интерфейс&nbsp;umicms\\orm\\object\\behaviour\\IRecoverableObjectl.</li>
+	<li>Коллекция объектов, способных иметь резервные копии, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\behaviour\\IRecoverableCollection&nbsp;(например, через трейт&nbsp;umicms\\orm\\collection\\behaviour\\TRecoverableCollection).</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Способность быть удаленным в корзину</h3>
+
+<ul>
+	<li>Объекты с такой способностью при удалении попадают в корзину, не удаляясь из базы. Они могут быть восстановлены.</li>
+	<li>Удаленные в корзину объекты не участвуют в выборках ни на сайте ни в административной панели, их просмотр возможен только в административной панели в компоненте &ldquo;Корзина&rdquo; модуля &ldquo;Сервис&rdquo;.</li>
+	<li>Для иерархических объектов удаление в корзину вызывает удаление в корзину всех его потомков, а восстановление из корзины восстанавливает из корзины всех его предков, если они также лежат в корзине.</li>
+	<li>Класс объекта, который может быть удален в корзину, обязательно реализует интерфейс&nbsp;umicms\\orm\\object\\behaviour\\IRecyclableObject&nbsp;и имеет свойство &ldquo;trashed&rdquo; с типом значения bool.</li>
+	<li>Коллекция объектов, которые могут быть удалены в корзину, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\behaviour\\IRecyclableCollection&nbsp;(например, через трейт&nbsp;umicms\\orm\\collection\\behaviour\\TRecyclableCollection).</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Способность хранить состояние заблокированности</h3>
+
+<ul>
+	<li>Заблокированные объекты не могут быть удалены или перемещены в корзину, заблокированные иерархические объекты не могут быть перемещены по иерархии.</li>
+	<li>Класс объекта, который может хранить состояние заблокированности, обязательно реализует интерфейс&nbsp;umicms\\orm\\object\\behaviour\\ILockedAccessibleObject&nbsp;и имеет свойство &ldquo;locked&rdquo; с типом значения bool.</li>
+	<li>Коллекция объектов, которые могут хранить состояние заблокированности, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\behaviour\\ILockedAccessibleCollection&nbsp;(например, через трейт&nbsp;umicms\\orm\\collection\\behaviour\\TLockedAccessibleCollection).</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Способность отображаться на сайте как контентная страница</h3>
+
+<p>- Объекты, отображаемые на сайте как страницы, обязательно реализуют интерфейс&nbsp;umicms\\orm\\object\\ICmsPage&nbsp;(например, через трейт&nbsp;umicms\\orm\\object\\TCmsPage) и обязательно имеют свойства</p>
+
+<ul>
+	<li>string $metaTitle заголовок окна браузера</li>
+	<li>string $metaKeywords ключевые слова</li>
+	<li>string $metaDescription описание страницы</li>
+	<li>string $contents содержимое страницы</li>
+	<li>string $h1 заголовок страницы</li>
+	<li>string $slug последней часть ЧПУ</li>
+</ul>
+
+<p>- umicms\\project\\module\\structure\\model\\object\\Layout|null $layout шаблон для вывода</p>
+
+<p>- Объекты, отображаемые на сайте как страницы, обязательно также имеют способность хранить активность, могут быть удалены в корзину и имеют резерыные копии.</p>
+
+<p>- Коллекция объектов, отображаемых как страницы, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\ICmsPageCollection.</p>
+
+<p>- Для коллекции неиерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsPageCollection.</p>
+
+<p>- Для коллекции иерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsHierarchicPageCollection.</p>
+
+<p>&nbsp;</p>
+
+<h2>Как написать простой модуль test</h2>
+
+<p>Модуль test работает с простыми страницами из коллекции test - управляет страницами в административной панели, отображает их контент на сайте и умеет редактировать настройки, относящиеся к test-страницам.</p>
+
+<p>1. Подготовить файловую структуру. Создать папки:</p>
+
+<p>- /modules/test</p>
+
+<p>- /modules/test/model</p>
+
+<p>- /modules/test/model/object</p>
+
+<p>- /modules/test/model/collection</p>
+
+<p>- /modules/test/configuration</p>
+
+<p>- /modules/test/admin</p>
+
+<p>- /modules/test/admin/settings</p>
+
+<p>- /modules/test/site</p>
+
+<p>2. Настроить ORM для работы с коллекцией test</p>
+
+<p>2.1. Определить возможное поведение объектов коллекции и в соответствии с этим сконфигурировать метаданные коллекции (/modules/test/configuration/test/metadata.config.php).</p>
+
+<p>2.2. Для каждого типа объектов коллекции создать класс, обеспечивающий ожидаемое поведение объектов. Для коллекции с одним типом объектов base достаточно одного класса (/modules/test/model/object/TestObject.php).</p>
+
+<p>2.2.1. Все дополнительные свойства объекта должны быть описаны в аннотации класс</p>
+
+<p>2.2.2. &nbsp;Все названия свойств объекта должны быть вынесены в константы класса</p>
+
+<p>2.3. Создать класс коллекции объектов (/modules/test/model/collection/TestCollection.php)</p>
+
+<p>2.3.1. В аннотации коллекции объектов должно быть описано с каким классом объектов работают методы, выполняющие CRUD-операции.</p>
+
+<p>2.4. Сконфигурировать коллекцию (/modules/test/configuration/test/collection.config.php), указав:</p>
+
+<p>- тип коллекции (иерархическая или неиерархическая)</p>
+
+<p>- класс коллекции</p>
+
+<p>- пути компонентов-обработчиков на сайте и в административной панели</p>
+
+<p>- конфигурации форм для создания и редактирования объектов коллекции, сгруппированые по типам объектов</p>
+
+<p>- имена словарей, используемых в коллекции. Словари коллекции используются, для генерации лейблов форм редактирования и создания объектов.</p>
+
+<p>- путь до конфигурации с настройками, которые будут редактироваться в настроечной части модуля</p>
+
+<p>2.5. Зарегистрировать коллекцию в конфигурации ORMTools</p>
+
+<p>3. Создать таблицу в БД для хранения объектов коллекции</p>
+
+<p>4. Создать административную часть модуля</p>
+
+<p>4.1. Создать конфигурацию административной части модуля (/modules/test/admin/module.config.php), зарегистрировать ее как дочерний компонент в ~project/admin/rest/rest.config.php</p>
+
+<p>4.2. Создать конфигурацию компонента, управляющего объектами коллекции (/modules/test/admin/test/component.config.php), зарегистрировать его как дочерний компонент административной части модуля, определив маршрутизацию. Для компонента, который выполняет только CRUD-операции над объектами определенной коллекции в конфигурации достаточно задать класс&nbsp;umicms\\hmvc\\component\\admin\\collection\\CollectionComponent&nbsp;и указать имя коллекции, с которой он работает.</p>
+
+<p>5. Настройки компонента - делаем все по дефолту, указывая для редактирования файл с конфигурацией коллекции.</p>
+
+<p>6. Создать сайтовую часть модуля</p>
+
+<p>6.1. Создать конфигурацию сайтовой части модуля (/modules/test/site/module.config.php), зарегистрировать ее как дочерний компонент в ~project/site/site.config.php</p>
+
+<p>6.2. Создать конфигурацию компонента, выводящего объекты коллекции как страницы на сайте (/modules/test/site/test/component.config.php), зарегистрировать его как дочерний компонент сайтовой части модуля, определив маршрутизацию. Для компонента, отображающего неиерархические страницы на сайте подходит компонент&nbsp;umicms\\hmvc\\component\\site\\SitePageComponent,&nbsp;остается только указать имя класса компонента, имя коллекции, с которой он работает и папку с шаблонами</p>
+
+<p>7. Создать шаблоны</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  88 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => '62d70eab-48ef-4b19-afdc-e0ee7d82e7a8',
       'displayName' => 'users.profile.password.index',
@@ -13991,7 +14790,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -14190,14 +14989,14 @@ return array (
       ),
     ),
   ),
-  88 => 
+  89 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-      'displayName' => 'structure',
+      'displayName' => 'Структура',
       'branch' => 
       array (
         'meta' => 
@@ -14217,12 +15016,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'structure',
+        1 => 'Структура',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:10";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -14237,6 +15041,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -14280,7 +15118,7 @@ return array (
       ),
     ),
   ),
-  89 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -14295,7 +15133,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-          'displayName' => 'blog.tag',
+          'displayName' => 'Компонент "Теги"',
           'branch' => 
           array (
             'meta' => 
@@ -14303,7 +15141,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -14458,7 +15296,7 @@ return array (
       ),
     ),
   ),
-  90 => 
+  91 => 
   array (
     'meta' => 
     array (
@@ -14473,7 +15311,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -14481,7 +15319,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -14680,7 +15518,7 @@ return array (
       ),
     ),
   ),
-  91 => 
+  92 => 
   array (
     'meta' => 
     array (
@@ -14695,7 +15533,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -14880,7 +15718,7 @@ return array (
       ),
     ),
   ),
-  92 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -14895,7 +15733,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -14981,7 +15819,7 @@ return array (
       ),
     ),
   ),
-  93 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -15012,7 +15850,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -15203,7 +16041,7 @@ return array (
       ),
     ),
   ),
-  94 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -15226,7 +16064,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-              'displayName' => 'blog.post',
+              'displayName' => 'Компонент "Посты"',
               'branch' => 
               array (
                 'meta' => 
@@ -15234,7 +16072,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -15392,7 +16230,7 @@ return array (
       ),
     ),
   ),
-  95 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -15415,7 +16253,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -15504,7 +16342,7 @@ return array (
       ),
     ),
   ),
-  96 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -15527,7 +16365,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -15616,7 +16454,7 @@ return array (
       ),
     ),
   ),
-  97 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -15631,7 +16469,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '15f18041-439d-4935-affb-1380b938a079',
-          'displayName' => 'structure.infoblock',
+          'displayName' => 'Компонент "Информационные блоки"',
           'branch' => 
           array (
             'meta' => 
@@ -15639,7 +16477,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-              'displayName' => 'structure',
+              'displayName' => 'Структура',
               'branch' => 
               array (
                 'meta' => 
@@ -15816,7 +16654,140 @@ return array (
       ),
     ),
   ),
-  98 => 
+  99 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '6edce471-9726-4f83-87db-aa1ed01780b8',
+      'displayName' => 'Аналогия и различия',
+      'branch' => NULL,
+      'slug' => 'diff',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Аналогия и различия',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:57:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Аналогия и различия от UMI.CMS 2.*',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Аналогия и различия от UMI.CMS 2.*',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<ul>
+	<li>Вся бизнес-логика вынесена в модели, что позволяет повторно использовать код. В двойке практически вся логика находилась в теле метода, выполняющего роль контроллера.</li>
+	<li>Контроллеры не выполняют и не запускает логику шаблонизации (rendering), задачей контроллера является только обработка запроса (Request), запуск необходимой бизнес-логики через модели и формирования параметризованного ответа (Response). Ответ может идти или не идти на шаблонизацию или сериализацию. Ответ может включать в себя переменные, которые используются для шаблонизации и сериализации, а также имя шаблона для шаблонизации. Контроллеры должны быть &ldquo;тонкими&rdquo; и не должны содержать бизнес-логики.</li>
+	<li>Результат работы любого контроллера, написанного по правилам, можно получить в сериализованном виде в форматах json и xml. Таким образом, можно легко запостить форму ajax&rsquo;ом и получить удобный для разбора ответ об успехе или список ошибок.</li>
+	<li>Виджеты являются аналогами макросов в двойке, но виджеты не могут совершать никаких действий по изменению данных, они служат исключительно для визуализации запрашиваемой информации.</li>
+	<li>Полное разделение запросов на чтение и модификацию данных. Все запросы каким-либо образом меняющие состояние системы выполняются методом POST. Все входные данные контролируются через формы. Запрещено заполнять свойства объектов из произвольного массива POST из соображений безопасности. Для защиты от CSRF-атак в формах должно присутствовать поле csrf. Можно обойтись без формы, но необходимо жестко контролировать входные данные, не забывая про CSRF и XSS уязвимости.</li>
+	<li>Минимизированы запросы к базе, так как все настройки и конфигурации содержатся в файлах, а так же появилась возможность выборок по связанным полям, а так же возможность выбирать объект со нужными связями (см. ISelector)</li>
+	<li>Нет единой иерархии страниц, отображаемых на сайте. Каждый компонент для иерархических типов страниц имеет свою иерархию, для неиерархических типов - не имеет вообще.</li>
+	<li>Все данные разделены по отдельным коллекциям, которые связаны с &ldquo;плоскими&rdquo; таблицами, что увеличивает производительность выборок, позволяет настроить индексы и практически полностью избавляет от тяжелых JOIN в запросах.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  100 => 
   array (
     'meta' => 
     array (
@@ -15839,7 +16810,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -15928,14 +16899,14 @@ return array (
       ),
     ),
   ),
-  99 => 
+  101 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
-      'displayName' => 'news.subject',
+      'displayName' => 'Компонент "Сюжеты"',
       'branch' => 
       array (
         'meta' => 
@@ -15943,7 +16914,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -15966,12 +16937,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.subject',
+        1 => 'Компонент "Сюжеты"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:57";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -15986,6 +16962,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -16029,7 +17039,7 @@ return array (
       ),
     ),
   ),
-  100 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -16052,7 +17062,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -16060,7 +17070,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -16276,7 +17286,7 @@ return array (
       ),
     ),
   ),
-  101 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -16307,7 +17317,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -16549,14 +17559,14 @@ return array (
       ),
     ),
   ),
-  102 => 
+  104 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '767688da-a24d-4280-adda-018683c5a664',
-      'displayName' => 'users.registration',
+      'displayName' => 'Регистрация',
       'branch' => 
       array (
         'meta' => 
@@ -16564,7 +17574,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -16587,12 +17597,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.registration',
+        1 => 'Регистрация',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -16607,6 +17622,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -16650,7 +17699,7 @@ return array (
       ),
     ),
   ),
-  103 => 
+  105 => 
   array (
     'meta' => 
     array (
@@ -16665,7 +17714,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-          'displayName' => 'users.authorization',
+          'displayName' => 'Авторизация',
           'branch' => 
           array (
             'meta' => 
@@ -16673,7 +17722,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -16723,7 +17772,7 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Виджет формы &quot;разавторизации&quot;',
+        1 => 'Виджет формы &amp;quot;разавторизации&amp;quot;',
       ),
       'h1#ru-RU' => 
       array (
@@ -16823,7 +17872,7 @@ return array (
       ),
     ),
   ),
-  104 => 
+  106 => 
   array (
     'meta' => 
     array (
@@ -16838,7 +17887,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -16846,7 +17895,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -17001,7 +18050,7 @@ return array (
       ),
     ),
   ),
-  105 => 
+  107 => 
   array (
     'meta' => 
     array (
@@ -17024,7 +18073,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -17113,7 +18162,7 @@ return array (
       ),
     ),
   ),
-  106 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -17128,7 +18177,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -17214,7 +18263,7 @@ return array (
       ),
     ),
   ),
-  107 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -17245,7 +18294,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -17461,7 +18510,7 @@ return array (
       ),
     ),
   ),
-  108 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -17484,7 +18533,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -17639,7 +18688,7 @@ return array (
       ),
     ),
   ),
-  109 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -17670,7 +18719,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -17798,7 +18847,7 @@ return array (
       ),
     ),
   ),
-  110 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -17821,7 +18870,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -17910,14 +18959,14 @@ return array (
       ),
     ),
   ),
-  111 => 
+  113 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-      'displayName' => 'blog.tag',
+      'displayName' => 'Компонент "Теги"',
       'branch' => 
       array (
         'meta' => 
@@ -17925,7 +18974,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -17948,12 +18997,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.tag',
+        1 => 'Компонент "Теги"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:16";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -17968,6 +19022,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -18011,7 +19099,7 @@ return array (
       ),
     ),
   ),
-  112 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -18034,7 +19122,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -18277,7 +19365,7 @@ return array (
       ),
     ),
   ),
-  113 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -18300,7 +19388,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-              'displayName' => 'blog.post',
+              'displayName' => 'Компонент "Посты"',
               'branch' => 
               array (
                 'meta' => 
@@ -18308,7 +19396,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -18466,7 +19554,7 @@ return array (
       ),
     ),
   ),
-  114 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -18481,7 +19569,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '515a3b57-7513-456d-9756-ac320a343506',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -18489,7 +19577,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -18598,7 +19686,7 @@ return array (
       ),
     ),
   ),
-  115 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -18621,7 +19709,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -18809,7 +19897,7 @@ return array (
       ),
     ),
   ),
-  116 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -18840,7 +19928,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -19039,14 +20127,14 @@ return array (
       ),
     ),
   ),
-  117 => 
+  119 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-      'displayName' => 'users',
+      'displayName' => 'Пользователи',
       'branch' => 
       array (
         'meta' => 
@@ -19066,12 +20154,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users',
+        1 => 'Пользователи',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -19086,6 +20179,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -19129,7 +20256,7 @@ return array (
       ),
     ),
   ),
-  118 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -19144,7 +20271,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-          'displayName' => 'blog.draft',
+          'displayName' => 'Черновики',
           'branch' => 
           array (
             'meta' => 
@@ -19152,7 +20279,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -19241,7 +20368,7 @@ return array (
       ),
     ),
   ),
-  119 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -19256,7 +20383,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -19342,7 +20469,7 @@ return array (
       ),
     ),
   ),
-  120 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -19357,7 +20484,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'blog.post',
+          'displayName' => 'Компонент "Посты"',
           'branch' => 
           array (
             'meta' => 
@@ -19365,7 +20492,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -19515,7 +20642,7 @@ return array (
       ),
     ),
   ),
-  121 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -19538,7 +20665,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -19627,7 +20754,7 @@ return array (
       ),
     ),
   ),
-  122 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -19650,7 +20777,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -19759,7 +20886,7 @@ return array (
       ),
     ),
   ),
-  123 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -19782,7 +20909,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -19871,7 +20998,7 @@ return array (
       ),
     ),
   ),
-  124 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -19886,7 +21013,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -19894,7 +21021,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -20071,7 +21198,7 @@ return array (
       ),
     ),
   ),
-  125 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -20086,7 +21213,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-          'displayName' => 'users.profile',
+          'displayName' => 'Профиль',
           'branch' => 
           array (
             'meta' => 
@@ -20094,7 +21221,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -20244,7 +21371,7 @@ return array (
       ),
     ),
   ),
-  126 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -20267,7 +21394,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -20376,7 +21503,7 @@ return array (
       ),
     ),
   ),
-  127 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -20391,7 +21518,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -20399,7 +21526,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -20508,7 +21635,7 @@ return array (
       ),
     ),
   ),
-  128 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -20531,7 +21658,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -20620,7 +21747,7 @@ return array (
       ),
     ),
   ),
-  129 => 
+  131 => 
   array (
     'meta' => 
     array (
@@ -20643,7 +21770,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -20732,7 +21859,7 @@ return array (
       ),
     ),
   ),
-  130 => 
+  132 => 
   array (
     'meta' => 
     array (
@@ -20747,7 +21874,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-          'displayName' => 'search',
+          'displayName' => 'Поиск',
           'branch' => 
           array (
             'meta' => 
@@ -20906,7 +22033,7 @@ return array (
       ),
     ),
   ),
-  131 => 
+  133 => 
   array (
     'meta' => 
     array (
@@ -20921,7 +22048,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '515a3b57-7513-456d-9756-ac320a343506',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -20929,7 +22056,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -21117,7 +22244,7 @@ return array (
       ),
     ),
   ),
-  132 => 
+  134 => 
   array (
     'meta' => 
     array (
@@ -21132,7 +22259,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -21140,7 +22267,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -21290,7 +22417,7 @@ return array (
       ),
     ),
   ),
-  133 => 
+  135 => 
   array (
     'meta' => 
     array (
@@ -21321,7 +22448,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -21518,7 +22645,7 @@ return array (
       ),
     ),
   ),
-  134 => 
+  136 => 
   array (
     'meta' => 
     array (
@@ -21541,7 +22668,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -21549,7 +22676,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -21724,7 +22851,7 @@ return array (
       ),
     ),
   ),
-  135 => 
+  137 => 
   array (
     'meta' => 
     array (
@@ -21739,7 +22866,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-          'displayName' => 'search',
+          'displayName' => 'Поиск',
           'branch' => 
           array (
             'meta' => 
@@ -21890,7 +23017,7 @@ return array (
       ),
     ),
   ),
-  136 => 
+  138 => 
   array (
     'meta' => 
     array (
@@ -21921,7 +23048,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -22120,14 +23247,14 @@ return array (
       ),
     ),
   ),
-  137 => 
+  139 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '995fa1d9-748b-40d0-ad6c-63f7ede8f51a',
-      'displayName' => 'search',
+      'displayName' => 'Поиск',
       'branch' => 
       array (
         'meta' => 
@@ -22147,12 +23274,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search',
+        1 => 'Поиск',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:08";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -22167,6 +23299,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -22210,7 +23376,7 @@ return array (
       ),
     ),
   ),
-  138 => 
+  140 => 
   array (
     'meta' => 
     array (
@@ -22225,7 +23391,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '767688da-a24d-4280-adda-018683c5a664',
-          'displayName' => 'users.registration',
+          'displayName' => 'Регистрация',
           'branch' => 
           array (
             'meta' => 
@@ -22233,7 +23399,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -22322,7 +23488,7 @@ return array (
       ),
     ),
   ),
-  139 => 
+  141 => 
   array (
     'meta' => 
     array (
@@ -22337,7 +23503,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -22423,7 +23589,7 @@ return array (
       ),
     ),
   ),
-  140 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -22438,7 +23604,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -22446,7 +23612,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -22571,7 +23737,7 @@ return array (
       ),
     ),
   ),
-  141 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -22594,7 +23760,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -22790,7 +23956,7 @@ return array (
       ),
     ),
   ),
-  142 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -22805,7 +23971,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -22891,7 +24057,7 @@ return array (
       ),
     ),
   ),
-  143 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -22906,7 +24072,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'users.restoration',
+          'displayName' => 'Восстановление',
           'branch' => 
           array (
             'meta' => 
@@ -22914,7 +24080,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -23064,7 +24230,7 @@ return array (
       ),
     ),
   ),
-  144 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -23087,7 +24253,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -23196,7 +24362,7 @@ return array (
       ),
     ),
   ),
-  145 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -23227,7 +24393,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -23426,7 +24592,7 @@ return array (
       ),
     ),
   ),
-  146 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -23457,7 +24623,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -23656,7 +24822,7 @@ return array (
       ),
     ),
   ),
-  147 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -23679,7 +24845,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-              'displayName' => 'users.profile',
+              'displayName' => 'Профиль',
               'branch' => 
               array (
                 'meta' => 
@@ -23687,7 +24853,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-                  'displayName' => 'users',
+                  'displayName' => 'Пользователи',
                   'branch' => 
                   array (
                     'meta' => 
@@ -23840,14 +25006,14 @@ return array (
       ),
     ),
   ),
-  148 => 
+  150 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-      'displayName' => 'blog.author',
+      'displayName' => 'Компонент "Авторы"',
       'branch' => 
       array (
         'meta' => 
@@ -23855,7 +25021,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -23878,12 +25044,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.author',
+        1 => 'Компонент "Авторы"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:03";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -23898,6 +25069,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -23941,7 +25146,7 @@ return array (
       ),
     ),
   ),
-  149 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -23972,7 +25177,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -24100,7 +25305,7 @@ return array (
       ),
     ),
   ),
-  150 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -24131,7 +25336,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -24330,7 +25535,7 @@ return array (
       ),
     ),
   ),
-  151 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -24345,7 +25550,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c233dc83-f29a-4a51-9dab-da91e17bbc1e',
-          'displayName' => 'blog.category',
+          'displayName' => 'Компонент "Категории"',
           'branch' => 
           array (
             'meta' => 
@@ -24353,7 +25558,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -24558,7 +25763,7 @@ return array (
       ),
     ),
   ),
-  152 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -24581,7 +25786,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-              'displayName' => 'blog.comment',
+              'displayName' => 'Компонент "Комментарии"',
               'branch' => 
               array (
                 'meta' => 
@@ -24589,7 +25794,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -24752,7 +25957,7 @@ return array (
       ),
     ),
   ),
-  153 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -24775,7 +25980,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -24884,7 +26089,7 @@ return array (
       ),
     ),
   ),
-  154 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -24907,7 +26112,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-              'displayName' => 'blog.post',
+              'displayName' => 'Компонент "Посты"',
               'branch' => 
               array (
                 'meta' => 
@@ -24915,7 +26120,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -25090,7 +26295,7 @@ return array (
       ),
     ),
   ),
-  155 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -25105,7 +26310,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0fc1de36-ce89-44b0-9639-22ff4fa91011',
-          'displayName' => 'structure.menu',
+          'displayName' => 'Компонент "Меню"',
           'branch' => 
           array (
             'meta' => 
@@ -25113,7 +26318,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-              'displayName' => 'structure',
+              'displayName' => 'Структура',
               'branch' => 
               array (
                 'meta' => 
@@ -25278,7 +26483,7 @@ return array (
       ),
     ),
   ),
-  156 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -25301,7 +26506,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-              'displayName' => 'blog.author',
+              'displayName' => 'Компонент "Авторы"',
               'branch' => 
               array (
                 'meta' => 
@@ -25309,7 +26514,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -25484,7 +26689,7 @@ return array (
       ),
     ),
   ),
-  157 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -25499,7 +26704,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -25507,7 +26712,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -25632,14 +26837,14 @@ return array (
       ),
     ),
   ),
-  158 => 
+  160 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-      'displayName' => 'blog.moderate',
+      'displayName' => 'Модерация',
       'branch' => 
       array (
         'meta' => 
@@ -25647,7 +26852,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -25670,12 +26875,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.moderate',
+        1 => 'Модерация',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:37";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -25690,6 +26900,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -25733,7 +26977,7 @@ return array (
       ),
     ),
   ),
-  159 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -25748,7 +26992,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -25756,7 +27000,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -25933,7 +27177,7 @@ return array (
       ),
     ),
   ),
-  160 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -25956,7 +27200,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -26045,7 +27289,7 @@ return array (
       ),
     ),
   ),
-  161 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -26060,7 +27304,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-          'displayName' => 'users.profile',
+          'displayName' => 'Профиль',
           'branch' => 
           array (
             'meta' => 
@@ -26068,7 +27312,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -26256,7 +27500,7 @@ return array (
       ),
     ),
   ),
-  162 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -26271,7 +27515,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -26279,7 +27523,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -26444,7 +27688,7 @@ return array (
       ),
     ),
   ),
-  163 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -26459,7 +27703,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-          'displayName' => 'blog.tag',
+          'displayName' => 'Компонент "Теги"',
           'branch' => 
           array (
             'meta' => 
@@ -26467,7 +27711,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -26666,7 +27910,7 @@ return array (
       ),
     ),
   ),
-  164 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -26689,7 +27933,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -26798,7 +28042,7 @@ return array (
       ),
     ),
   ),
-  165 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -26821,7 +28065,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -27009,7 +28253,7 @@ return array (
       ),
     ),
   ),
-  166 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -27024,7 +28268,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -27110,7 +28354,7 @@ return array (
       ),
     ),
   ),
-  167 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -27133,7 +28377,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -27242,7 +28486,7 @@ return array (
       ),
     ),
   ),
-  168 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -27265,7 +28509,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-              'displayName' => 'blog.author',
+              'displayName' => 'Компонент "Авторы"',
               'branch' => 
               array (
                 'meta' => 
@@ -27273,7 +28517,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -27453,14 +28697,14 @@ return array (
       ),
     ),
   ),
-  169 => 
+  171 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-      'displayName' => 'blog.draft',
+      'displayName' => 'Черновики',
       'branch' => 
       array (
         'meta' => 
@@ -27468,7 +28712,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -27491,12 +28735,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.draft',
+        1 => 'Черновики',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:13";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -27511,6 +28760,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -27554,7 +28837,7 @@ return array (
       ),
     ),
   ),
-  170 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -27569,7 +28852,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'blog.post',
+          'displayName' => 'Компонент "Посты"',
           'branch' => 
           array (
             'meta' => 
@@ -27577,7 +28860,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -27732,7 +29015,7 @@ return array (
       ),
     ),
   ),
-  171 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -27747,7 +29030,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
-          'displayName' => 'news.item',
+          'displayName' => 'Компонент "Новости"',
           'branch' => 
           array (
             'meta' => 
@@ -27755,7 +29038,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -27958,7 +29241,7 @@ return array (
       ),
     ),
   ),
-  172 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -27981,7 +29264,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -28090,7 +29373,7 @@ return array (
       ),
     ),
   ),
-  173 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -28105,7 +29388,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'blog.post',
+          'displayName' => 'Компонент "Посты"',
           'branch' => 
           array (
             'meta' => 
@@ -28113,7 +29396,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -28202,7 +29485,7 @@ return array (
       ),
     ),
   ),
-  174 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -28217,7 +29500,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0fc1de36-ce89-44b0-9639-22ff4fa91011',
-          'displayName' => 'structure.menu',
+          'displayName' => 'Компонент "Меню"',
           'branch' => 
           array (
             'meta' => 
@@ -28225,7 +29508,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '63923a53-b7e8-448d-bd49-a743518c0335',
-              'displayName' => 'structure',
+              'displayName' => 'Структура',
               'branch' => 
               array (
                 'meta' => 
@@ -28395,14 +29678,14 @@ return array (
       ),
     ),
   ),
-  175 => 
+  177 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'c233dc83-f29a-4a51-9dab-da91e17bbc1e',
-      'displayName' => 'blog.category',
+      'displayName' => 'Компонент "Категории"',
       'branch' => 
       array (
         'meta' => 
@@ -28410,7 +29693,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -28433,12 +29716,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.category',
+        1 => 'Компонент "Категории"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:56";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -28453,6 +29741,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -28496,14 +29818,14 @@ return array (
       ),
     ),
   ),
-  176 => 
+  178 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-      'displayName' => 'blog',
+      'displayName' => 'Блог',
       'branch' => 
       array (
         'meta' => 
@@ -28523,12 +29845,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog',
+        1 => 'Блог',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:33";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -28543,6 +29870,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -28586,7 +29947,7 @@ return array (
       ),
     ),
   ),
-  177 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -28617,7 +29978,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -28745,7 +30106,7 @@ return array (
       ),
     ),
   ),
-  178 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -28768,7 +30129,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -28857,7 +30218,7 @@ return array (
       ),
     ),
   ),
-  179 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -28880,7 +30241,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -29068,7 +30429,7 @@ return array (
       ),
     ),
   ),
-  180 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -29091,7 +30452,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -29332,7 +30693,7 @@ return array (
       ),
     ),
   ),
-  181 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -29347,7 +30708,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'blog.comment',
+          'displayName' => 'Компонент "Комментарии"',
           'branch' => 
           array (
             'meta' => 
@@ -29355,7 +30716,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -29444,7 +30805,7 @@ return array (
       ),
     ),
   ),
-  182 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -29467,7 +30828,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -29576,7 +30937,7 @@ return array (
       ),
     ),
   ),
-  183 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -29599,7 +30960,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -29787,7 +31148,7 @@ return array (
       ),
     ),
   ),
-  184 => 
+  186 => 
   array (
     'meta' => 
     array (
@@ -29810,7 +31171,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -29899,14 +31260,14 @@ return array (
       ),
     ),
   ),
-  185 => 
+  187 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-      'displayName' => 'news',
+      'displayName' => 'Новости',
       'branch' => 
       array (
         'meta' => 
@@ -29926,12 +31287,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news',
+        1 => 'Новости',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:54";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -29946,6 +31312,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -29989,14 +31389,14 @@ return array (
       ),
     ),
   ),
-  186 => 
+  188 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-      'displayName' => 'news.item',
+      'displayName' => 'Компонент "Новости"',
       'branch' => 
       array (
         'meta' => 
@@ -30004,7 +31404,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -30027,12 +31427,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.item',
+        1 => 'Компонент "Новости"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:47:05";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -30047,6 +31452,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -30090,7 +31529,7 @@ return array (
       ),
     ),
   ),
-  187 => 
+  189 => 
   array (
     'meta' => 
     array (
@@ -30113,7 +31552,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -30121,7 +31560,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -30337,7 +31776,7 @@ return array (
       ),
     ),
   ),
-  188 => 
+  190 => 
   array (
     'meta' => 
     array (
@@ -30360,6 +31799,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -30373,6 +31817,77 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Документация для разработчиков',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добро пожаловать!',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
+
+<h3>Глоссарий</h3>
+
+<ul>
+	<li><a href="http://ru.wikipedia.org/wiki/Model-View-Controller" target="_blank">MVC</a>.</li>
+	<li>Компонент - MVC-триада.</li>
+	<li>Виджет - служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
+	<li>Модуль - это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
+	<li>Проект - компонент, состоящий из модулей.</li>
+</ul>
+
+<h3>UMI.CMS 3.0 - иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов</h3>
+
+<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/screenshot_2014-06-29_15_15_32.png" style="height:230px; width:605px" />&nbsp;</p>
+
+<h3>Как все работает</h3>
+
+<ul>
+	<li>запуск index.php: определение базовых директорий и настройка окружения</li>
+	<li>загрузка приложения UMI.CMS:</li>
+	<li>- базовая настройка тулкита</li>
+	<li>- разбор запроса и определение текущего проекта</li>
+	<li>- регистрация конфигурации проекта (~/project)</li>
+	<li>- регистрация и конфигурация тулбоксов, используемых в проекте</li>
+	<li>- диспетчеризация до конкретного контроллера одного из компонентов</li>
+	<li>- выполнение контроллера, формирование View для шаблонизации</li>
+	<li>- шаблонизация / сериализация</li>
+	<li>- вывод ответа</li>
+</ul>
+
+<p>&nbsp;<img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -30416,7 +31931,7 @@ return array (
       ),
     ),
   ),
-  189 => 
+  191 => 
   array (
     'meta' => 
     array (
@@ -30431,7 +31946,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -30439,7 +31954,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -30528,14 +32043,14 @@ return array (
       ),
     ),
   ),
-  190 => 
+  192 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-      'displayName' => 'users.restoration',
+      'displayName' => 'Восстановление',
       'branch' => 
       array (
         'meta' => 
@@ -30543,7 +32058,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -30566,12 +32081,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.restoration',
+        1 => 'Восстановление',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:00";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -30586,6 +32106,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -30629,7 +32183,7 @@ return array (
       ),
     ),
   ),
-  191 => 
+  193 => 
   array (
     'meta' => 
     array (
@@ -30652,7 +32206,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-              'displayName' => 'blog.moderate',
+              'displayName' => 'Модерация',
               'branch' => 
               array (
                 'meta' => 
@@ -30660,7 +32214,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -30818,7 +32372,7 @@ return array (
       ),
     ),
   ),
-  192 => 
+  194 => 
   array (
     'meta' => 
     array (
@@ -30844,7 +32398,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:26:17";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:22:51";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -30897,23 +32451,23 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Виджеты служат для вывода контентных блоков на сайте, дополняющих основное содержание страницы, например, для вывода меню или формы авторизации. Использование виджетов в шаблонах позволяет изменять данные без измений кода шаблонов.</p>
+        1 => '<p>Виджеты служат для вывода контентных блоков на сайте, дополняющих основное содержание страницы. Например, для вывода меню или формы авторизации. Использование виджетов в шаблонах позволяет изменять данные без измений кода шаблонов.</p>
 
 <p>Виджеты условно можно разделить на несколько групп:</p>
 
 <ul>
-	<li>виджеты вывода форм,</li>
-	<li>виджеты вывода ссылок,</li>
-	<li>виджеты вывода списков объектов,</li>
-	<li>виджеты вывода древовидных структур,</li>
-	<li>виджеты отображения конкретных объектов.</li>
+	<li>вывод форм;</li>
+	<li>вывод&nbsp;ссылок;</li>
+	<li>вывод&nbsp;списков объектов;</li>
+	<li>вывод&nbsp;древовидных структур;</li>
+	<li>вывод&nbsp;конкретных объектов.</li>
 </ul>
 
-<p>Виджеты вывода списков обладают разнообразными возможностями фильтрации и сортировки, кроме того они позволяют загружать только необходимые для отображения данные, экономя ресурсы и время.</p>
+<p>Виджеты вывода <strong>списков</strong> обладают разнообразными возможностями фильтрации и сортировки, кроме того они позволяют загружать только необходимые для отображения данные, экономя ресурсы и время.</p>
 
-<p>Виджеты вывода ссылок позволяют не &quot;зашивать&quot; в шаблонах ссылки на системные страницы, что позволяет безболезненно менять их адреса.</p>
+<p>Виджеты вывода <strong>ссылок</strong> позволяют не &quot;зашивать&quot; в шаблонах ссылки на системные страницы, что позволяет безболезненно менять их адреса.</p>
 
-<p>Виджеты вывода форм всегда отобразят форму исходя из ее актуальной конфигурации.</p>
+<p>Виджеты вывода <strong>форм</strong> всегда отобразят форму исходя из ее актуальной конфигурации.</p>
 
 <h3>Вызов виджета для php-шаблонизатора</h3>
 
@@ -30929,7 +32483,10 @@ return array (
 <h3>Вызов виджета для xslt-шаблонизатора</h3>
 
 <pre>
-&lt;xsl:apply-templates select=&quot;document(&#39;widget://structure.menu.auto?depth=1&#39;)/result&quot;/&gt;</pre>',
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://structure.menu.auto?depth=1&#39;)/result&quot;/&gt;</pre>
+
+<p>&nbsp;</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -30973,7 +32530,7 @@ return array (
       ),
     ),
   ),
-  193 => 
+  195 => 
   array (
     'meta' => 
     array (
@@ -30996,7 +32553,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-              'displayName' => 'blog.author',
+              'displayName' => 'Компонент "Авторы"',
               'branch' => 
               array (
                 'meta' => 
@@ -31004,7 +32561,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -31157,14 +32714,14 @@ return array (
       ),
     ),
   ),
-  194 => 
+  196 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-      'displayName' => 'users.profile',
+      'displayName' => 'Профиль',
       'branch' => 
       array (
         'meta' => 
@@ -31172,7 +32729,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -31195,12 +32752,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.profile',
+        1 => 'Профиль',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:13";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -31215,6 +32777,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -31258,7 +32854,7 @@ return array (
       ),
     ),
   ),
-  195 => 
+  197 => 
   array (
     'meta' => 
     array (
@@ -31273,7 +32869,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-          'displayName' => 'users.profile',
+          'displayName' => 'Профиль',
           'branch' => 
           array (
             'meta' => 
@@ -31281,7 +32877,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -31370,7 +32966,7 @@ return array (
       ),
     ),
   ),
-  196 => 
+  198 => 
   array (
     'meta' => 
     array (
@@ -31385,7 +32981,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'afe4e54d-6776-4a6d-86aa-f7c0f82e439c',
-          'displayName' => 'blog.moderate',
+          'displayName' => 'Модерация',
           'branch' => 
           array (
             'meta' => 
@@ -31393,7 +32989,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -31548,7 +33144,7 @@ return array (
       ),
     ),
   ),
-  197 => 
+  199 => 
   array (
     'meta' => 
     array (
@@ -31579,7 +33175,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -31778,14 +33374,14 @@ return array (
       ),
     ),
   ),
-  198 => 
+  200 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-      'displayName' => 'news.subject',
+      'displayName' => 'Компонент "Сюжеты"',
       'branch' => 
       array (
         'meta' => 
@@ -31793,7 +33389,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -31816,12 +33412,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.subject',
+        1 => 'Компонент "Сюжеты"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:50";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -31836,6 +33437,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -31879,7 +33514,7 @@ return array (
       ),
     ),
   ),
-  199 => 
+  201 => 
   array (
     'meta' => 
     array (
@@ -31894,7 +33529,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -31902,7 +33537,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -32079,7 +33714,7 @@ return array (
       ),
     ),
   ),
-  200 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -32110,7 +33745,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -32238,7 +33873,7 @@ return array (
       ),
     ),
   ),
-  201 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -32253,7 +33888,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '515a3b57-7513-456d-9756-ac320a343506',
-          'displayName' => 'news.rubric',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
@@ -32261,7 +33896,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -32386,7 +34021,7 @@ return array (
       ),
     ),
   ),
-  202 => 
+  204 => 
   array (
     'meta' => 
     array (
@@ -32401,7 +34036,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -32409,7 +34044,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -32564,7 +34199,7 @@ return array (
       ),
     ),
   ),
-  203 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -32579,7 +34214,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-          'displayName' => 'search',
+          'displayName' => 'Поиск',
           'branch' => 
           array (
             'meta' => 
@@ -32721,7 +34356,7 @@ return array (
       ),
     ),
   ),
-  204 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -32736,7 +34371,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-          'displayName' => 'users.authorization',
+          'displayName' => 'Авторизация',
           'branch' => 
           array (
             'meta' => 
@@ -32744,7 +34379,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'users',
+              'displayName' => 'Пользователи',
               'branch' => 
               array (
                 'meta' => 
@@ -32894,14 +34529,14 @@ return array (
       ),
     ),
   ),
-  205 => 
+  207 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-      'displayName' => 'news.rubric',
+      'displayName' => 'Компонент "Рубрики"',
       'branch' => 
       array (
         'meta' => 
@@ -32909,7 +34544,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -32932,12 +34567,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.rubric',
+        1 => 'Компонент "Рубрики"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:42";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -32952,6 +34592,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -32995,7 +34669,7 @@ return array (
       ),
     ),
   ),
-  206 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -33010,7 +34684,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-          'displayName' => 'blog.draft',
+          'displayName' => 'Черновики',
           'branch' => 
           array (
             'meta' => 
@@ -33018,7 +34692,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -33107,7 +34781,7 @@ return array (
       ),
     ),
   ),
-  207 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -33122,7 +34796,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -33307,7 +34981,7 @@ return array (
       ),
     ),
   ),
-  208 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -33322,7 +34996,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'blog.post',
+          'displayName' => 'Компонент "Посты"',
           'branch' => 
           array (
             'meta' => 
@@ -33330,7 +35004,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -33419,7 +35093,7 @@ return array (
       ),
     ),
   ),
-  209 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -33450,7 +35124,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -33578,14 +35252,14 @@ return array (
       ),
     ),
   ),
-  210 => 
+  212 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
-      'displayName' => 'news.item',
+      'displayName' => 'Компонент "Новости"',
       'branch' => 
       array (
         'meta' => 
@@ -33593,7 +35267,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-          'displayName' => 'news',
+          'displayName' => 'Новости',
           'branch' => 
           array (
             'meta' => 
@@ -33616,12 +35290,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.item',
+        1 => 'Компонент "Новости"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:05";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -33636,6 +35315,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -33679,7 +35392,7 @@ return array (
       ),
     ),
   ),
-  211 => 
+  213 => 
   array (
     'meta' => 
     array (
@@ -33694,7 +35407,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'users',
+          'displayName' => 'Пользователи',
           'branch' => 
           array (
             'meta' => 
@@ -33780,7 +35493,7 @@ return array (
       ),
     ),
   ),
-  212 => 
+  214 => 
   array (
     'meta' => 
     array (
@@ -33803,7 +35516,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-              'displayName' => 'blog.author',
+              'displayName' => 'Компонент "Авторы"',
               'branch' => 
               array (
                 'meta' => 
@@ -33811,7 +35524,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -34017,7 +35730,7 @@ return array (
       ),
     ),
   ),
-  213 => 
+  215 => 
   array (
     'meta' => 
     array (
@@ -34040,7 +35753,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-              'displayName' => 'blog.draft',
+              'displayName' => 'Черновики',
               'branch' => 
               array (
                 'meta' => 
@@ -34048,7 +35761,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -34223,14 +35936,14 @@ return array (
       ),
     ),
   ),
-  214 => 
+  216 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-      'displayName' => 'blog',
+      'displayName' => 'Блог',
       'branch' => 
       array (
         'meta' => 
@@ -34250,12 +35963,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog',
+        1 => 'Блог',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:02";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -34270,6 +35988,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -34313,7 +36065,7 @@ return array (
       ),
     ),
   ),
-  215 => 
+  217 => 
   array (
     'meta' => 
     array (
@@ -34336,7 +36088,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -34524,7 +36276,7 @@ return array (
       ),
     ),
   ),
-  216 => 
+  218 => 
   array (
     'meta' => 
     array (
@@ -34555,7 +36307,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -34746,7 +36498,7 @@ return array (
       ),
     ),
   ),
-  217 => 
+  219 => 
   array (
     'meta' => 
     array (
@@ -34777,7 +36529,7 @@ return array (
                   'collection' => 'structure',
                   'type' => 'static',
                   'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'blog',
+                  'displayName' => 'Блог',
                   'branch' => 
                   array (
                     'meta' => 
@@ -34968,7 +36720,7 @@ return array (
       ),
     ),
   ),
-  218 => 
+  220 => 
   array (
     'meta' => 
     array (
@@ -35052,7 +36804,7 @@ return array (
       ),
     ),
   ),
-  219 => 
+  221 => 
   array (
     'meta' => 
     array (
@@ -35067,7 +36819,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
-          'displayName' => 'news.subject',
+          'displayName' => 'Компонент "Сюжеты"',
           'branch' => 
           array (
             'meta' => 
@@ -35075,7 +36827,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'news',
+              'displayName' => 'Новости',
               'branch' => 
               array (
                 'meta' => 
@@ -35184,14 +36936,14 @@ return array (
       ),
     ),
   ),
-  220 => 
+  222 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-      'displayName' => 'blog.comment',
+      'displayName' => 'Компонент "Комментарии"',
       'branch' => 
       array (
         'meta' => 
@@ -35199,7 +36951,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'blog',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
@@ -35222,12 +36974,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.comment',
+        1 => 'Компонент "Комментарии"',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -35242,6 +36999,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -35285,7 +37076,7 @@ return array (
       ),
     ),
   ),
-  221 => 
+  223 => 
   array (
     'meta' => 
     array (
@@ -35308,7 +37099,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -35397,7 +37188,7 @@ return array (
       ),
     ),
   ),
-  222 => 
+  224 => 
   array (
     'meta' => 
     array (
@@ -35420,7 +37211,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'blog',
+              'displayName' => 'Блог',
               'branch' => 
               array (
                 'meta' => 
@@ -35608,24 +37399,35 @@ return array (
       ),
     ),
   ),
-  223 => 
+  225 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'fee13476-00be-4bd4-a519-88886b2af20e',
-      'displayName' => 'structure',
+      'displayName' => 'Структура',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-          'displayName' => 'Контроллеры',
-          'branch' => NULL,
-          'slug' => 'controllers',
+          'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+          'displayName' => 'Пользователи',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'users',
         ),
       ),
       'slug' => 'structure',
@@ -35635,12 +37437,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'structure',
+        1 => 'Структура',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:36";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
       ),
       'owner' => 
       array (
@@ -35655,6 +37462,40 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (

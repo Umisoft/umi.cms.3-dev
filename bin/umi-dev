@@ -17,6 +17,7 @@ use umicms\console\PackProjectCommand;
 use umicms\console\CreateProjectDumpCommand;
 use umicms\console\LoadProjectDumpCommand;
 use umicms\console\SyncProjectSchemeCommand;
+use umicms\console\UpdateDocumentationCommand;
 
 $useUnpackedCore = true;
 require dirname(__DIR__) . '/configuration/core.php';
@@ -33,5 +34,7 @@ $application->add(new LoadProjectDumpCommand());
 
 $application->add(new SyncProjectSchemeCommand());
 $application->add(new InstallProjectCommand());
+
+$application->add(new UpdateDocumentationCommand());
 
 $application->run();

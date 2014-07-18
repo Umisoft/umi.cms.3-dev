@@ -308,8 +308,6 @@ class Bootstrap
             $projectConfig['componentConfig'] = '~/project/configuration/component.config.php';
         }
 
-
-
         $this->registerProjectComponentConfiguration($projectConfig['componentConfig']);
         $this->registerProjectTools();
         $this->configureLocalesService($router, $routeMatches);

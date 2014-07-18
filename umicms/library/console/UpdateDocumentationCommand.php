@@ -32,6 +32,7 @@ use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\component\site\SiteComponent;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
@@ -41,9 +42,10 @@ use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\users\model\UsersModule;
+use umicms\project\site\SiteApplication;
 
 /**
- * Строит документацию
+ * Обновляет документацию
  */
 class UpdateDocumentationCommand extends BaseProjectCommand
 {
@@ -59,6 +61,10 @@ class UpdateDocumentationCommand extends BaseProjectCommand
      * @var StructureElementCollection $structureCollection
      */
     private $structureCollection;
+    /**
+     * @var OutputInterface $output
+     */
+    private $output;
 
     /**
      * {@inheritdoc}
@@ -68,8 +74,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         parent::configure();
 
         $this
-            ->setName('build:documentation')
-            ->setDescription('Build UMI.CMS documentation');
+            ->setName('update:documentation')
+            ->setDescription('Updates UMI.CMS documentation');
     }
 
     /**
@@ -79,6 +85,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
     {
         $bootstrap = $this->dispatchToProject($input, $output);
         $this->toolkit = $bootstrap->getToolkit();
+        $this->output = $output;
 
         /**
          * @var ICollectionManager $collectionManager
@@ -86,9 +93,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $collectionManager =  $this->toolkit->getService('umi\orm\collection\CollectionManager');
         $this->structureCollection = $collectionManager->getCollection('structure');
 
-        $output->writeln('<process>Updating documentation...</process>');
+        $this->output->writeln('<process>Updating documentation...</process>');
         $this->buildDocsStructure();
-        $this->commit($output);
+        $this->commit();
     }
 
     protected function buildDocsStructure()
@@ -110,9 +117,14 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $controllersPage = $this->structureCollection->get('fda552a8-846a-431d-87bf-ed719cdd884b');
 
         /**
+         * @var CmsDispatcher $dispatcher
+         */
+        $dispatcher =  $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+
+        /**
          * @var SiteApplication $siteApplication
          */
-        $siteApplication = $this->getComponent()->getChildComponent('site');
+        $siteApplication = $dispatcher->getComponentByPath('project.path');
 
         foreach ($siteApplication->getChildComponentNames() as $componentName) {
             $childComponent = $siteApplication->getChildComponent($componentName);
@@ -517,12 +529,11 @@ class UpdateDocumentationCommand extends BaseProjectCommand
      * запуская перед этим валидацию объектов.
      * Если при сохранении какого-либо объекта возникли ошибки - все изменения
      * автоматически откатываются
-     * @param OutputInterface $output
      * @throws InvalidObjectsException если объекты не прошли валидацию
      * @throws RuntimeException если транзакция не успешна
      * @return self
      */
-    protected function commit(OutputInterface $output)
+    protected function commit()
     {
         /**
          * @var IObjectPersister $objectPersister
@@ -570,9 +581,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
 
         if ($invalidObjects = $objectPersister->getInvalidObjects()) {
-            $output->writeln('<error>Validation errors</error>');
+            $this->output->writeln('<error>Validation errors</error>');
 
-            $table = new Table($output);
+            $table = new Table($this->output);
             $table->setHeaders(['Guid', 'Type', 'DisplayName', 'Property', 'Error']);
 
             /**
@@ -589,28 +600,33 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
             $table->render();
         } else {
-            $output->writeln('<info>Persisting objects...</info>');
+            $this->output->writeln('<info>Persisting objects...</info>');
+
+            $table = new Table($this->output);
+            $table->setHeaders(['Guid', 'Type', 'DisplayName', 'State']);
 
             foreach ($objectPersister->getNewObjects() as $object) {
                 if ($object instanceof ICmsPage) {
-                    echo 'Была добавлена страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ').' . PHP_EOL;
+                    $table->addRow([$object->guid, $object->getTypePath(), $object->displayName, 'added']);
                 }
             }
 
             foreach ($objectPersister->getModifiedObjects() as $object) {
                 if ($object instanceof ICmsPage) {
-                    echo 'Страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ') была обновлена.' . PHP_EOL;
+                    $table->addRow([$object->guid, $object->getTypePath(), $object->displayName, 'updated']);
                 }
             }
 
             foreach ($objectPersister->getDeletedObjects() as $object) {
                 if ($object instanceof ICmsPage) {
-                    echo 'Страница ' . $object->displayName . '(' . $object->guid . '#' . $object->getTypePath() . ') была удалена.' . PHP_EOL;
+                    $table->addRow([$object->guid, $object->getTypePath(), $object->displayName, 'deleted']);
                 }
             }
 
+            $table->render();
+
             $objectPersister->commit();
-            $output->writeln('<process>Complete</process>');
+            $this->output->writeln('<process>Complete</process>');
         }
 
     }
