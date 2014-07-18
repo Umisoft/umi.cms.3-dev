@@ -63,7 +63,7 @@ class PackEnvironmentCommand extends BaseCommand
         $rootDir = dirname(CMS_DIR);
         $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
 
-        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENCE.md'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENSE'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
 
