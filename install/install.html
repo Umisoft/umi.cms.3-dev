@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Установка UMI.CMS 3</title>
+    <link href="//install.umi-cms.ru/umicms3/css/main.css" type="text/css" rel="stylesheet"/>
+    <script src="//yandex.st/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//install.umi-cms.ru/umicms3/js/installCommand.js"></script>
+    <script src="//install.umi-cms.ru/umicms3/js/install.js"></script>
+</head>
+<body>
+
+<div class="bubbles"></div>
+<div class="bubbles-front"></div>
+
+<div class="vertical-center">
+<a href="http://umi-cms.ru" title="UMI.CMS" target="_blank"><img alt="" src="//install.umi-cms.ru/umicms3/img/logo.png" class="logo"/></a>
+
+<div class="layout-wrapper">
+    <div class="header">
+        <p class="check_user js-handler-stepName">Проверка подлинности</p>
+    </div>
+    <div class="main">
+        <div class="overlay js-handler-overlay"></div>
+
+        <div class="shadow_some js-step-checkLicense">
+            <div class="padding_big">
+                <p class="vvod_key">Введите ключ</p>
+
+                <div class="clear"></div>
+                <div class="b_input">
+                    <input class="js-handler-license-key" type="text" name="key" value="" required/>
+                </div>
+                <div class="info">
+                    <div class="img_stop">
+                        <img alt="" src="//install.umi-cms.ru/ikon_stop.png"/>
+                    </div>
+                    <div class="img_stop_text">
+                        <a href="http://www.umi-cms.ru/buy_now/licence_agreement/licence_agreement/" target="_blank">Лицензионное
+                            соглашение</a>
+                        &nbsp;&#124;&nbsp;
+                        <a href="http://www.umi-cms.ru/buy/free_license/?licence=trial" target="_blank"
+                           class="js-handler-getTrial">Получить триальный ключ бесплатно</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="next_step">
+                <input type="submit" class="back_step_submit marginr_px next js-handler-step-next" value="Далее &raquo;"
+                       disabled="disabled"/>
+            </div>
+        </div>
+
+        <div class="display_none shadow_some js-step-projectType">
+            <div class="padding_big">
+                <p class="vvod_key">Выберите тип проекта</p>
+
+                <div class="clear"></div>
+                <div class="b_input">
+                    <select class="js-handler-select-typeProject">
+                        <option value="twig">Twig</option>
+                        <option value="php">PHP</option>
+                        <option value="xslt">Xslt</option>
+                    </select>
+                </div>
+                <div class="info display_none">
+                    <div class="img_stop">
+                        <img alt="" src="http://install.umi-cms.ru/ikon_stop_red.png"/>
+                    </div>
+                    <div class="img_stop_text">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="next_step">
+                <input type="button" class="back_step_submit marginr_2px back js-handler-step-back" value="&laquo; Назад"/>
+                <input type="submit" class="next_step_submit marginr_px next js-handler-step-next" value="Далее &raquo;"/>
+            </div>
+        </div>
+
+        <div class="display_none first_block shadow_some js-step-trial" id="getTrialKey">
+            <div class="padding_big field_license_user">
+                <div class="display_block_left">
+                    <label for="lname_trial">Фамилия</label>
+                    <input id="lname_trial" name="lname_trial" class="js-handler-trial-lname">
+
+                    <div class="clear"></div>
+                </div>
+                <div class="display_block_left">
+                    <label for="fname_trial">Имя</label>
+                    <input id="fname_trial" name="fname_trial" class="js-handler-trial-fname">
+
+                    <div class="clear"></div>
+                </div>
+                <div class="display_block_left">
+                    <label for="email_trial">E-mail *</label>
+                    <input id="email_trial" name="email_trial" class="js-handler-trial-email">
+
+                    <div class="clear"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="info display_none marn">
+                <div class="img_stop">
+                    <img alt="" src="http://install.umi-cms.ru/ikon_stop.png"/>
+                </div>
+                <div class="img_stop_text"></div>
+            </div>
+
+            <div class="next_step">
+                <input type="button" class="back_step_submit marginr_2px back js-handler-step-back" value="&laquo; Назад"/>
+                <input type="submit" class="next_step_submit marginr_px next js-handler-step-next" value="Далее &raquo;"/>
+            </div>
+        </div>
+
+        <div class="display_none third_block shadow_some js-step-siteAccess">
+            <div class="padding_big">
+                <div class="display_block_left mar_left220px">
+                    <label>Логин<br/>
+                        <input name="sv_login" type="text" tabindex="1" class="js-handler-siteAccess-login"/>
+                    </label><br/>
+                    <label>Пароль<br/>
+                        <input name="sv_password" type="password" tabindex="3" class="js-handler-siteAccess-password"/>
+                    </label>
+                </div>
+                <div class="display_block_left posit_text24px">
+                    <label>E-mail<br/>
+                        <input name="sv_email" type="text" tabindex="2" class="js-handler-siteAccess-email"/></label><br/>
+                    <label>Пароль ещё раз<br/>
+                        <input name="sv_password2" type="password" tabindex="4"
+                               class="js-handler-siteAccess-password2"/></label>
+                </div>
+                <div class="clear"></div>
+                <div class="info display_none">
+                    <div class="img_stop">
+                        <img alt="" src="http://install.umi-cms.ru/ikon_stop.png"/>
+                    </div>
+                    <div class="img_stop_text"></div>
+                </div>
+            </div>
+
+            <div class="next_step">
+                <input type="button" class="back_step_submit marginr_2px back js-handler-step-back" value="&laquo; Назад"/>
+                <input type="submit" class="next_step_submit marginr_px next js-handler-step-next" value="Далее &raquo;"/>
+            </div>
+        </div>
+
+        <div class="display_none shadow_some step1 js-step-db">
+            <div class="padding_big">
+                <div class="display_block_left mar_left220px">
+                    <label>Имя хоста<br/>
+                        <input name="host" type="text" value="" tabindex="1" class="js-handler-db-host"
+                               required/></label><br/>
+                    <label>Логин<br/>
+                        <input name="user" type="text" value="" tabindex="3" class="js-handler-db-login" required/></label>
+                </div>
+                <div class="display_block_left posit_text24px">
+                    <label>Имя базы данных<br/>
+                        <input name="dbname" type="text" value="" tabindex="2" class="js-handler-db-dbname"
+                               required/></label><br/>
+                    <label>Пароль<br/>
+                        <input name="password" type="password" value="" tabindex="4" class="js-handler-db-password"
+                               required/></label>
+                </div>
+                <div class="clear"></div>
+                <div class="info display_none marn">
+                    <div class="img_stop">
+                        <img alt="" src="http://install.umi-cms.ru/ikon_stop.png"/>
+                    </div>
+                    <div class="img_stop_text"></div>
+                </div>
+                <div class="info1">
+                    <p>Предупреждение: при установке будут очищены все таблицы, используемые UMI.CMS.</p>
+                </div>
+            </div>
+
+            <div class="next_step">
+                <input type="button" class="back_step_submit marginr_2px back js-handler-step-back" value="&laquo; Назад"/>
+                <input type="submit" class="next_step_submit marginr_px next js-handler-step-next" value="Далее &raquo;"/>
+            </div>
+        </div>
+
+        <div class="display_none shadow_some js-step-core js-step-environment js-step-environmentExtract js-step-project js-step-projectExtract js-step-install js-step-loadDump js-step-createSv">
+            <div class="padding_big">
+                <div class="loading">
+                    <p class="vvod_key">Установка системы</p>
+
+                    <p class="slider">
+                        <a class="wrapper js-handler-log">Показать ход установки</a>
+                    </p>
+
+                    <div class="clear"></div>
+                    <div class="b_input">
+                        <img alt="" src="http://install.umi-cms.ru/progress_bar_img.gif" class="progressbar_img"/>
+                    </div>
+                    <div class="progressbar_wrap js-handler-install-log display_none">
+                        <div class="vnutrenniy js-handler-scroll-panel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="display_none last_block text_align2 shadow_some js-step-finish">
+            <div class="padding_big">
+                <img alt="" src="http://install.umi-cms.ru/galochka_big.png"/>
+
+                <p class="the_end_p">Установка системы завершена</p>
+
+                <div class="next_step_but"><a href="/admin"><span>Перейти на сайт</span></a></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="load_bottom">
+            <p class="step_up js-handler-stepNum">Шаг 1 из 7</p>
+            <ul>
+                <li class="list_style_noneleft js-step-nav-checkLicense">
+                    <div class="color_dif">Проверка <br/>подлинности</div>
+                </li>
+                <li class="js-step-nav-projectType">
+                    <div>Выбор<br/>проекта</div>
+                </li>
+                <li style="width /*\**/:84px\9; *width:84.34px;" class="js-step-nav-siteAccess">
+                    <div>Настройка<br/>доступа</div>
+                </li>
+                <li class="js-step-nav-db">
+                    <div>Настройка<br/>базы данных</div>
+                </li>
+                <li class="js-step-nav-core js-step-nav-environment js-step-nav-environmentExtract">
+                    <div>Установка<br/>системы</div>
+                </li>
+                <li class="js-step-nav-project js-step-nav-projectExtract js-step-nav-install js-step-nav-loadDump js-step-nav-createSv">
+                    <div>Установка<br/>сайта</div>
+                </li>
+                <li class="js-step-nav-finish">
+                    <div>Установка<br/>завершена</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
