@@ -349,16 +349,29 @@ define(['App', 'toolbar'], function(UMI){
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
                 var self = this;
+
+                var properties = self.get('controller').get('properties').join(',');
+                var parentId;
                 if(model.get('id') === 'root'){
-                    promise = model.get('children');
+                    parentId = 'null()';
                 } else{
-                    var properties = self.get('controller').get('properties').join(',');
-                    var requestParams = {'filters[parent]': model.get('id'), 'fields': properties};
-                    if(self.get('controller').get('isTrashableCollection')){
-                        requestParams['filters[trashed]'] = 'equals(0)';
-                    }
-                    promise = this.get('controller').store.updateCollection(collectionName, requestParams);
+                    parentId = model.get('id');
                 }
+                var requestParams = {'filters[parent]': parentId, 'fields': properties};
+                if(self.get('controller').get('isTrashableCollection')){
+                    requestParams['filters[trashed]'] = 'equals(0)';
+                }
+                promise = this.get('controller').store.updateCollection(collectionName, requestParams);
+                setTimeout(function(){
+                    promise.then(function(){
+                        var iScroll = self.get('treeControlView.iScroll');
+                        if(iScroll){
+                            setTimeout(function(){
+                                iScroll.refresh();
+                            }, 100);
+                        }
+                    });
+                }, 0);
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
                     sortProperties: ['order'],

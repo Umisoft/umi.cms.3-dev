@@ -4,12 +4,10 @@ $umi-dark-border-color: #CCD9E2;
 $primary-gradient: #3aadff, #0087d4;
 
 .umi-tree{
-    padding: 0;
+    padding: 10px 0 20px;
     box-sizing: border-box;
     margin-left: rem-calc(5);
-    margin-top: rem-calc(8);
     font-size: rem-calc(13);
-    margin-bottom:  rem-calc(40);
     &-wrapper{
         overflow: hidden;
     }
