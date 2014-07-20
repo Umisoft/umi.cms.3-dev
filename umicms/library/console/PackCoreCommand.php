@@ -24,6 +24,17 @@ use umicms\Utils;
  */
 class PackCoreCommand extends BaseCommand
 {
+    const CHECK_LICENSE_PLACEHOLDER = <<<EOF
+        /**
+         * Do not delete this comment.
+         * License checker will appear here.
+         */
+EOF;
+    const CHECK_LICENSE_CALLER = <<<EOF
+        \$this->checkLicense(\$request);
+EOF;
+
+
     /**
      * {@inheritdoc}
      */
@@ -78,23 +89,26 @@ class PackCoreCommand extends BaseCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Packing core files...</process>');
+        $output->writeln('<info>Packing core files...</info>');
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
         if (!$input->getArgument('without-vendors')) {
-            $output->writeln('<process>Packing vendor files...</process>');
+            $output->writeln('<info>Packing vendor files...</info>');
             $this->addVendorFiles($phar, $output);
             $output->writeln('');
         }
 
-        $output->writeln('<process>Writing package on disc...</process>');
+        $output->writeln('<info>Packing licensed file...</info>');
+        $this->setLicensedFile($phar);
+
+        $output->writeln('<info>Writing package on disc...</info>');
         $this->setStub($phar);
         $phar->stopBuffering();
 
         unset($phar);
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**
@@ -138,6 +152,7 @@ EOF;
             ->notName('PackCoreCommand.php')
             ->notName('PackEnvironmentCommand.php')
             ->notName('UpdateDocumentationCommand.php')
+            ->notName('SiteApplication.php')
             ->notName('version.php')
             ->in(CMS_DIR);
 
@@ -154,6 +169,26 @@ EOF;
 
 
         $progress->finish();
+    }
+
+    /**
+     * Устанавливает файл, закрытый лицензией
+     * @param Phar $phar
+     * @throws \RuntimeException
+     */
+    private function setLicensedFile(Phar $phar)
+    {
+        $licensedFileName = CMS_PROJECT_DIR . '/site/SiteApplication.php';
+
+
+        $contents = file_get_contents($licensedFileName);
+        if (!strpos($contents, self::CHECK_LICENSE_PLACEHOLDER)) {
+            throw new \RuntimeException('Cannot pack core. License placeholder is not found.');
+        }
+
+        $contents = str_replace(self::CHECK_LICENSE_PLACEHOLDER, self::CHECK_LICENSE_CALLER, $contents);
+        $contents = Obfuscator::obfuscate($contents);
+        $phar->addFromString('umicms/project/site/SiteApplication.php', $contents);
     }
 
 

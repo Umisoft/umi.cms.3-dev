@@ -72,7 +72,7 @@ class PackEnvironmentCommand extends BaseCommand
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/core.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/project.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/tools.settings.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/db.config.dist.php'));

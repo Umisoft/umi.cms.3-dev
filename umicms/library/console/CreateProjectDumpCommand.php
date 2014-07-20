@@ -97,7 +97,7 @@ class CreateProjectDumpCommand extends BaseProjectCommand
         $progress->finish();
 
         $output->writeln('');
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**
