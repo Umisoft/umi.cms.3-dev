@@ -35,7 +35,8 @@ class PackProjectCommand extends BaseProjectCommand
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Output directory for package.'
+                'Output directory for package.',
+                '.'
             );
     }
 
@@ -48,10 +49,7 @@ class PackProjectCommand extends BaseProjectCommand
 
         $projectName = $bootstrap->getProjectName();
 
-        $outputPharPath = $input->getArgument('output');
-        if (!$outputPharPath) {
-            $outputPharPath = './' .  $projectName . '.phar';
-        }
+        $outputPharPath = $input->getArgument('output') . '/' .  $projectName . '.phar';
 
         if (is_file($outputPharPath)) {
             unlink($outputPharPath);
@@ -65,16 +63,17 @@ class PackProjectCommand extends BaseProjectCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Packing project files...</process>');
+        $output->writeln('<info>Packing project files...</info>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
-        $output->writeln('<process>Writing package...</process>');
+        $output->writeln('');
+        $output->writeln('<info>Writing package...</info>');
         $this->setStub($phar, $projectName . '.phar');
         $phar->stopBuffering();
 
         unset($phar);
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**

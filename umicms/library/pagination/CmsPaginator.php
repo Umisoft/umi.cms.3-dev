@@ -32,10 +32,6 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      */
     const TYPE_SLIDING = 'sliding';
     /**
-     * Тип "прыгающей" постраничной навигации для вывода
-     */
-    const TYPE_JUMPING = 'jumping';
-    /**
      * Тип постраничной навигации для вывода текущей страницы и указанного количества страниц вокруг
      */
     const TYPE_ELASTIC = 'elastic';
@@ -215,6 +211,25 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
     }
 
     /**
+     * Возвращает количество страниц в ряду
+     * @throws UnexpectedValueException
+     * @return int
+     */
+    public function getPagesCountInRange()
+    {
+        if ($this->pagesCount <= 0 || !is_int($this->pagesCount)) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    '{count} is wrong pages count in range. Value should be positive integer.',
+                    ['count' => $this->pagesCount]
+                )
+            );
+        }
+
+        return $this->pagesCount;
+    }
+
+    /**
      * Возвращает список страниц для отображения в соответствии с заданным типом
      * @throws OutOfBoundsException если задан неизвестный тип
      * @return array
@@ -226,13 +241,10 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
                 return range(1, $this->getPagesCount());
             }
             case 'sliding': {
-                return $this->slidingBuildPagesRange($this->getPagesCountInRange());
+                return $this->buildSlidingPagesRange($this->getPagesCountInRange());
             }
             case 'elastic': {
-                return $this->elasticBuildPagesRange($this->getPagesCountInRange());
-            }
-            case 'jumping': {
-                return $this->jumpingBuildPagesRange($this->getPagesCountInRange());
+                return $this->buildElasticPagesRange($this->getPagesCountInRange());
             }
             default: {
                 throw new OutOfBoundsException(
@@ -249,24 +261,22 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      * @param int $pagesCountInRange количество страниц отображаемых в ряду
      * @return array
      */
-    protected function slidingBuildPagesRange($pagesCountInRange)
+    protected function buildSlidingPagesRange($pagesCountInRange)
     {
-        $currentPage = $this->getCurrentPage();
         $pagesCount = $this->getPagesCount();
-
-        $rangeStart = $currentPage - ceil($pagesCountInRange / 2);
-        $lastPossibleStart = $pagesCount - $pagesCountInRange + 1;
-        if ($rangeStart <= 0) {
-            $rangeEnd = $pagesCountInRange >= $pagesCount ? $pagesCount : $pagesCountInRange;
-
-            return range(1, $rangeEnd);
-        } elseif ($rangeStart >= $lastPossibleStart) {
-            $lastPossibleStart = $lastPossibleStart ?: 1;
-
-            return range($lastPossibleStart, $pagesCount);
-        } else {
-            return range($rangeStart + 1, $rangeStart + $pagesCountInRange);
+        if ($pagesCountInRange >= $pagesCount) {
+            return range(1, $pagesCount);
         }
+
+        $currentPage = $this->getCurrentPage();
+
+        if ($pagesCountInRange > $pagesCount) {
+            return range(1, $pagesCount);
+        } elseif ($currentPage + $pagesCountInRange <= $pagesCount) {
+            return range($currentPage, $currentPage + $pagesCountInRange - 1);
+        }
+
+        return range ($pagesCount - $pagesCountInRange + 1, $pagesCount);
     }
 
     /**
@@ -274,61 +284,28 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      * @param int $pagesCountInRange количество страниц отображаемых в ряду
      * @return array
      */
-    protected function elasticBuildPagesRange($pagesCountInRange)
+    protected function buildElasticPagesRange($pagesCountInRange)
     {
-        $currentPage = $this->getCurrentPage();
         $pagesCount = $this->getPagesCount();
-        $minPagesCountInRange = ceil($pagesCountInRange / 2);
-        if ($currentPage <= $minPagesCountInRange) {
-            $pagesCountInRange = $currentPage + $minPagesCountInRange - 1;
-        } elseif ($pagesCount - $currentPage - 1 <= $minPagesCountInRange) {
-            $pagesCountInRange = $pagesCountInRange - $minPagesCountInRange + 1;
+        if ($pagesCountInRange >= $pagesCount) {
+            return range(1, $pagesCount);
         }
 
-        return $this->slidingBuildPagesRange($pagesCountInRange);
-    }
-
-    /**
-     * Возвращает массив номеров страниц для отображения в ряду.
-     * @param int $pagesCountInRange количество страниц отображаемых в ряду
-     * @return array
-     */
-    protected function jumpingBuildPagesRange($pagesCountInRange)
-    {
         $currentPage = $this->getCurrentPage();
-        $pagesCount = $this->getPagesCount();
-        $currentRange = ceil($currentPage / $pagesCountInRange);
-        $ragesCount = ceil($pagesCount / $pagesCountInRange);
-        if ($currentRange == 1) {
-            $rangeEnd = $pagesCount < $pagesCountInRange ? $pagesCount : $pagesCountInRange;
+        $minOffset = ceil($pagesCountInRange / 2);
+        $leftOffset = $rightOffset = $minOffset - 1;
 
-            return range(1, $rangeEnd);
-        }
-        $rangeStart = ($currentRange - 1) * $pagesCountInRange + 1;
-        if ($currentRange < $ragesCount) {
-            return range($rangeStart, $rangeStart + $pagesCountInRange - 1);
-        } else {
-            return range($rangeStart, $pagesCount);
-        }
-    }
-
-    /**
-     * Возвращает количество страниц в ряду
-     * @throws UnexpectedValueException
-     * @return int
-     */
-    protected function getPagesCountInRange()
-    {
-        if ($this->pagesCount <= 0 || !is_int($this->pagesCount)) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    '{count} is wrong pages count in range. Value should be positive integer.',
-                    ['count' => $this->pagesCount]
-                )
-            );
+        if ($currentPage - $leftOffset <= 0) {
+            $leftOffset = $currentPage - 1;
+            $rightOffset = $pagesCountInRange - $currentPage;
         }
 
-        return $this->pagesCount;
+        if ($pagesCount - $currentPage < $minOffset) {
+            $leftOffset = $currentPage - $pagesCount + $pagesCountInRange - 1;
+            $rightOffset = $pagesCount - $currentPage;
+        }
+
+        return range($currentPage - $leftOffset, $currentPage + $rightOffset);
     }
 
 }

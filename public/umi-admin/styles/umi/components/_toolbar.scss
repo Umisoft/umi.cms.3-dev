@@ -1,6 +1,7 @@
 @import "../snippets";
 
 .umi-toolbar{
+    width: 100%;
     position: relative;
     height: 32px;
     @include s-gradient-grey();
@@ -27,12 +28,6 @@
                 cursor: pointer;
                 background: #C5E2F7;
             }
-        }
-    }
-    .button-group{
-        white-space: nowrap;
-        > *{
-            display: inline-block;
         }
     }
 }

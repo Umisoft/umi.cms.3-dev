@@ -83,11 +83,14 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
         if ($this->pagination) {
 
             $paginator = $this->getPaginator($selector);
-
             $result = [
-                'list' => $paginator->getPageItems(),
-                'paginator' => $paginator
+                'list' => $paginator->getPageItems()
             ];
+
+            if ($paginator->getPagesCount() > 1) {
+                $result['paginator'] = $paginator;
+            }
+
         } else {
             if ($this->limit) {
                 $selector->limit($this->limit, $this->offset);

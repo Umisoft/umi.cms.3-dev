@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'currentMode' => 'development',
-
+    'currentMode' => 'production',
+    'corePath' => dirname(__DIR__) . '/umicms.phar',
     'development' => [
         'errorReporting' => E_ALL,
         'displayErrors' => true,
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
 
-        'directoryPublic' => __DIR__
+        'directoryPublic' => dirname(__DIR__) . '/public',
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
     ],
     'production' => [
         'errorReporting' => 0,
@@ -17,6 +18,7 @@ return [
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
 
-        'directoryPublic' => __DIR__
+        'directoryPublic' => dirname(__DIR__) . '/public',
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
     ]
 ];

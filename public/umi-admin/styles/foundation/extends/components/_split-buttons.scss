@@ -2,6 +2,13 @@
     span {
         border-#{$default-float}-color: darken($primary-color, 10%);
     }
+    &.tiny{
+        span{
+            &:after{
+                top: 40%;
+            }
+        }
+    }
     &.secondary{
         span{
             border-#{$default-float}-color: darken($secondary-color, 16%);

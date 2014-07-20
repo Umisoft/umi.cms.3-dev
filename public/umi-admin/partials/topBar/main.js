@@ -5,6 +5,9 @@ define([
 
     UMI.TopBarView = Ember.View.extend({
         templateName: 'partials/topBar',
+        activeProject: function(){
+            return window.location.host;
+        }.property(),
         dropdownView: UMI.DropdownButtonView.extend({
             template: function(){
                 var userName = Ember.get(window, 'UmiSettings.user.displayName');

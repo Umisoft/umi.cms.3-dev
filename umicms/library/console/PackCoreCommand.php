@@ -24,6 +24,17 @@ use umicms\Utils;
  */
 class PackCoreCommand extends BaseCommand
 {
+    const CHECK_LICENSE_PLACEHOLDER = <<<EOF
+        /**
+         * Do not delete this comment.
+         * License checker will appear here.
+         */
+EOF;
+    const CHECK_LICENSE_CALLER = <<<EOF
+        \$this->checkLicense(\$request);
+EOF;
+
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +48,12 @@ class PackCoreCommand extends BaseCommand
                 InputArgument::OPTIONAL,
                 'Output directory for package.',
                 '.'
+            )
+            ->addArgument(
+                'without-vendors',
+                InputArgument::OPTIONAL,
+                'Pack core without vendors.',
+                false
             )
             ->addArgument(
                 'obfuscate',
@@ -72,21 +89,26 @@ class PackCoreCommand extends BaseCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Packing core files...</process>');
+        $output->writeln('<info>Packing core files...</info>');
         $this->addCoreFiles($phar, $input, $output);
         $output->writeln('');
 
-        $output->writeln('<process>Packing vendor files...</process>');
-        $this->addVendorFiles($phar, $output);
-        $output->writeln('');
+        if (!$input->getArgument('without-vendors')) {
+            $output->writeln('<info>Packing vendor files...</info>');
+            $this->addVendorFiles($phar, $output);
+            $output->writeln('');
+        }
 
-        $output->writeln('<process>Writing package on disc...</process>');
+        $output->writeln('<info>Packing licensed file...</info>');
+        $this->setLicensedFile($phar);
+
+        $output->writeln('<info>Writing package on disc...</info>');
         $this->setStub($phar);
         $phar->stopBuffering();
 
         unset($phar);
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**
@@ -127,7 +149,10 @@ EOF;
 
         $finder = new Finder();
         $finder->files()
-            ->notName('CoreCompiler.php')
+            ->notName('PackCoreCommand.php')
+            ->notName('PackEnvironmentCommand.php')
+            ->notName('UpdateDocumentationCommand.php')
+            ->notName('SiteApplication.php')
             ->notName('version.php')
             ->in(CMS_DIR);
 
@@ -144,6 +169,26 @@ EOF;
 
 
         $progress->finish();
+    }
+
+    /**
+     * Устанавливает файл, закрытый лицензией
+     * @param Phar $phar
+     * @throws \RuntimeException
+     */
+    private function setLicensedFile(Phar $phar)
+    {
+        $licensedFileName = CMS_PROJECT_DIR . '/site/SiteApplication.php';
+
+
+        $contents = file_get_contents($licensedFileName);
+        if (!strpos($contents, self::CHECK_LICENSE_PLACEHOLDER)) {
+            throw new \RuntimeException('Cannot pack core. License placeholder is not found.');
+        }
+
+        $contents = str_replace(self::CHECK_LICENSE_PLACEHOLDER, self::CHECK_LICENSE_CALLER, $contents);
+        $contents = Obfuscator::obfuscate($contents);
+        $phar->addFromString('umicms/project/site/SiteApplication.php', $contents);
     }
 
 
@@ -179,9 +224,38 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
-            ->name('*.php')
+            ->notName('.gitignore')
+            ->notName('CHANGELOG.md')
+            ->notName('UPGRADING.md')
+            ->notName('README.md')
+            ->notName('.editorconfig')
+            ->notName('.travis.yml')
+            ->notName('phpunit.xml*')
+            ->notName('composer.json')
+            ->notName('*.uk_ua.bin')
+            ->notName('*.uk_ua.ini')
+            ->notName('*.txt')
+            ->notName('*.js')
+            ->notName('*.xml')
+            ->notName('*.css')
+            ->notName('*.md')
+            ->notName('*.gif')
+            ->notName('*.png')
+            ->notName('*.jpg')
+            ->notName('*.yml')
+            ->notName('*.dist')
+            ->notName('*.properties')
             ->exclude('Tests')
-            ->notName('CoreCompiler.php')
+            ->exclude('tests')
+            ->exclude('Test')
+            ->exclude('test')
+            ->exclude('bin')
+            ->exclude('test-suite')
+            ->exclude('examples')
+            ->exclude('docs')
+            ->exclude('doc')
+            ->exclude('demo')
+            ->exclude('notes')
             ->in(VENDOR_DIR);
 
 

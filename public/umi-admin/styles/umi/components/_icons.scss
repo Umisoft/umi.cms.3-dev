@@ -41,6 +41,11 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     background: url($umi-icons-img) no-repeat;
     background-color: transparent;
 
+    &.icon-butterfly{
+        background: url($image-butterfly) no-repeat;
+        background-position: center center;
+        background-size: 95%;
+    }
     &.icon-image{
         background-position: 0px 0;
     }

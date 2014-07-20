@@ -9,7 +9,7 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "project\\" : "",
+            "project\\" : "public",
             "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
@@ -28,7 +28,7 @@
         "umisoft/umi.framework": "1.0.*",
         "umisoft/extension-twig": "1.0.*",
 
-        "guzzlehttp/guzzle": "4.*",
+        "guzzlehttp/guzzle": "4.1.*",
         "gregwar/captcha": "1.0.*",
         "ezyang/htmlpurifier": "4.6.*",
         "jbroadway/urlify": "1.0.*",

@@ -54,7 +54,9 @@ return [
         'role:statisticsExecutor:displayName' => 'Statistics',
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
-        'role:settingsExecutor:displayName' => 'Settings'
+        'role:settingsExecutor:displayName' => 'Settings',
+        
+        'Incorrect login or password.' => 'Incorrect login or password.'
     ],
 
     'ru-RU' => [
@@ -102,7 +104,9 @@ return [
         'role:statisticsExecutor:displayName' => 'Статистика',
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
-        'role:settingsExecutor:displayName' => 'Настройки'
+        'role:settingsExecutor:displayName' => 'Настройки',
+
+        'Incorrect login or password.' => 'Неправильный логин или пароль.'
     ]
 
 ];

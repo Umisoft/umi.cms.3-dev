@@ -78,7 +78,13 @@ define(
             });
 
             UMI.FieldMixin = Ember.Mixin.create({
-                layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
+                isRequired: function(){
+                    var validators = this.get('meta.validators');
+                    if(Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')){
+                        return ' *';
+                    }
+                }.property(),
+                layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}'),
                 template: function(){
                     var meta;
                     var template;

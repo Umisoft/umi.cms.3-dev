@@ -15,7 +15,7 @@ ini_set('display_errors', 1);
 
 $environment = is_file(__DIR__ . '/environment.config.php') ? require (__DIR__ . '/environment.config.php') : [];
 
-if (!isset($environment['corePath'])) {
+if (isset($useUnpackedCore) || !isset($environment['corePath']) || !is_file($environment['corePath'])) {
     $environment['corePath'] = dirname(__DIR__) . '/umicms/bootstrap.php';
 }
 

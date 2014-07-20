@@ -17,6 +17,7 @@
     border-color: #0A8EEC;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
+    padding-bottom: $button-med;
     &.secondary{
         border: 1px solid #A8ADB1;
         @include button-bg-gradient(#FDFDFD, #F5F5F5);
@@ -102,6 +103,16 @@
             background-position-y: 0;
         }
         background-position-y: 0;
+    }
+    .umi-button-label{
+        font-weight: $button-font-weight;
+        color: inherit;
+    }
+}
+
+.umi-hide-button-label{
+    .umi-button-label{
+        display: none;
     }
 }
 

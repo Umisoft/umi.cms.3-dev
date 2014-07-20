@@ -27,6 +27,13 @@ define(['App'],
             });
 
             UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
+                isRequired: function(){
+                    var dataSource = this.get('meta.dataSource');
+                    var validators = this.get('object').validatorsForProperty(dataSource);
+                    if(Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')){
+                        return ' *';
+                    }
+                }.property(),
                 classNameBindings: ['isError:error'],
 
                 isError: function(){
