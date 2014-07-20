@@ -12,7 +12,7 @@ use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
         'name' => 'robots',
         'columns' => [

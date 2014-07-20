@@ -12,12 +12,16 @@ namespace umicms\project\site\controller;
 
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\structure\model\StructureModule;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер robots.txt.
  */
-class RobotsController extends BaseCmsController
+class RobotsController extends BaseCmsController implements ISiteSettingsAware
 {
+    use TSiteSettingsAware;
+
     /**
      * * @var StructureModule $collection модуль "Структура"
      */
@@ -41,7 +45,7 @@ class RobotsController extends BaseCmsController
             'module/structure/robots/robots',
             [
                 'pages' => $this->module->robots()->select()->result(),
-                'host' => $this->getUrlManager()->getProjectUrl(true)
+                'host' => $this->getSiteSettings()->get('defaultDomain')
             ]
         )->setIsCompleted();
         $response->headers->set('Content-type', 'text/plain');
