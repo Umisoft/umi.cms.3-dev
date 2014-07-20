@@ -8,10 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umicms\Utils;
+namespace umicms\exception;
 
-try {
-    return Utils::getCurrentGitVersion();
-} catch (\Exception $e) {
-    return ['Unknown', 'Unknown'];
+/**
+ * Исключения, связанные с лицензией.
+ */
+class InvalidLicenseException extends RuntimeException implements IException
+{
 }

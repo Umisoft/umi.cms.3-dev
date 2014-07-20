@@ -65,17 +65,17 @@ class PackProjectCommand extends BaseProjectCommand
         $style = new OutputFormatterStyle('blue', null, array('bold'));
         $output->getFormatter()->setStyle('process', $style);
 
-        $output->writeln('<process>Packing project files...</process>');
+        $output->writeln('<info>Packing project files...</info>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
         $output->writeln('');
-        $output->writeln('<process>Writing package...</process>');
+        $output->writeln('<info>Writing package...</info>');
         $this->setStub($phar, $projectName . '.phar');
         $phar->stopBuffering();
 
         unset($phar);
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**
