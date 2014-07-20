@@ -35,7 +35,8 @@ class PackProjectCommand extends BaseProjectCommand
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Output directory for package.'
+                'Output directory for package.',
+                '.'
             );
     }
 
@@ -48,10 +49,7 @@ class PackProjectCommand extends BaseProjectCommand
 
         $projectName = $bootstrap->getProjectName();
 
-        $outputPharPath = $input->getArgument('output');
-        if (!$outputPharPath) {
-            $outputPharPath = './' .  $projectName . '.phar';
-        }
+        $outputPharPath = $input->getArgument('output') . '/' .  $projectName . '.phar';
 
         if (is_file($outputPharPath)) {
             unlink($outputPharPath);
