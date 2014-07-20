@@ -128,7 +128,7 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->checkLicense();
+        $this->checkLicense($request);
 
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
@@ -384,9 +384,10 @@ class SiteApplication extends SiteComponent
 
     /**
      * Проверяет лицензию.
+     * @param Request $request
      * @throws InvalidLicenseException в случае если произошла ошибка связанная с лицензией
      */
-    private function checkLicense()
+    private function checkLicense(Request $request)
     {
         $domainKey = $this->getSiteSettings()->get('domainKey');
         $defaultDomain = $this->getDefaultDomain();
@@ -401,7 +402,7 @@ class SiteApplication extends SiteComponent
                 'Do not set the default domain.'
             ));
         }
-        if ($this->getHostDomain() !== $defaultDomain) {
+        if ($this->getHostDomain($request) !== $defaultDomain) {
             throw new InvalidLicenseException($this->translate(
                 'Invalid domain key for domain.'
             ));
@@ -420,7 +421,7 @@ class SiteApplication extends SiteComponent
                 ));
             }
         }
-        if (!$this->checkDomainKey()) {
+        if (!$this->checkDomainKey($request)) {
             throw new InvalidLicenseException($this->translate(
                 'Invalid domain key.'
             ));
@@ -429,11 +430,12 @@ class SiteApplication extends SiteComponent
 
     /**
      * Формирует эталонный доменный ключ.
+     * @param Request $request
      * @param string $license тип лицензии, для которой генерировать доменный ключ
      * @return string
      */
-    private function getSourceDomainKey($license) {
-        $serverAddress = $_SERVER['SERVER_ADDR'];
+    private function getSourceDomainKey(Request $request, $license) {
+        $serverAddress = $request->server->get('SERVER_ADDR');
         $defaultDomain = $this->getDefaultDomain();
 
         $licenseKeyCode = strtoupper(substr(md5($serverAddress), 0, 11) . "-" . substr(md5($defaultDomain . $license), 0, 11));
@@ -451,31 +453,36 @@ class SiteApplication extends SiteComponent
         if (mb_strrpos($defaultDomain, 'www.') === 0) {
             $defaultDomain = mb_substr($defaultDomain, 4);
         }
+
         return $defaultDomain;
     }
 
     /**
      * Возвращает текущий домен.
+     * @param Request $request
      * @return string
      */
-    private function getHostDomain()
+    private function getHostDomain(Request $request)
     {
-        $hostDomain = $_SERVER['HTTP_HOST'];
-        if (mb_strrpos($hostDomain, 'www.') === 0) {
-            $hostDomain = mb_substr($hostDomain, 4);
+        $host = $request->getHost();
+        if (mb_strrpos($host, 'www.') === 0) {
+            $host = mb_substr($host, 4);
         }
-        return $hostDomain;
+
+        return $host;
     }
 
     /**
-     * Проверяет соответствие домеенного ключа полученному.
+     * Проверяет соответствие доменного ключа полученному.
+     * @param Request $request
      * @return bool
      */
-    private function checkDomainKey()
+    private function checkDomainKey(Request $request)
     {
         $domainKey = $this->getSiteSettings()->get('domainKey');
         $licenseType = $this->getSiteSettings()->get('licenseType');
-        $domainKeySource = $this->getSourceDomainKey($licenseType);
+        $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
+
         return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
     }
 
