@@ -132,6 +132,7 @@ class SiteApplication extends SiteComponent
          * Do not delete this comment.
          * License checker will appear here.
          */
+        $this->checkLicense($request);
 
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
