@@ -3,60 +3,51 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
+            /**
+             * Импортируемые контроллеры
+             * @property needs
+             */
             needs: ['component', 'context'],
-
-            filterTrashed: null,
-
-            objectProperties: function(){
-                var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
+            /**
+             * Имя коллекции
+             * @property collectionName
+             */
+            collectionNameBinding: 'controllers.component.dataSource.name',
+            /**
+             * Определяет 'trasheble' коллекцию
+             * @property isTrashableCollection
+             */
+            isTrashableCollection: null,
+            /**
+             * Запрашиваемые свойства объекта
+             * @property properties
+             */
+            properties: function(){
+                var properties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'];
                 var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');
                 modelFields = modelFields.keys.list;
-                for(var i = 0; i < objectProperties.length; i++){
-                    if(!modelFields.contains(objectProperties[i])){
-                        objectProperties.splice(i, 1);
+                for(var i = 0; i < properties.length; i++){
+                    if(!modelFields.contains(properties[i])){
+                        properties.splice(i, 1);
                         --i;
                     }
                 }
-                if(modelFields.contains('trashed')){
-                    this.set('filterTrashed', true);
-                } else{
-                    this.set('filterTrashed', false);
-                }
-                return objectProperties;
+                this.set('isTrashableCollection', modelFields.contains('trashed'));
+                return properties;
             }.property('model'),
-
-            expandedBranches: [],
-
-            collectionNameBinding: 'controllers.component.dataSource.name',
-
-            clearExpanded: function(){
-                this.set('expandedBranches', []);
-            }.observes('collectionName'),
-
-            setExpandedBranches: function(){
-                var expandedBranches = this.get('expandedBranches');
-                var activeContext = this.get('activeContext');
-                if(activeContext && this.get('controllers.component.sideBarControl.name') === 'tree'){
-                    var mpath = [];
-                    if(activeContext.get('id') !== 'root' && activeContext.get('mpath')){
-                        mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
-                    }
-                    mpath.push('root');
-                    this.set('expandedBranches', expandedBranches.concat(mpath).uniq());
-                }
-            },
-
-            activeContextChange: function(){
-                Ember.run.next(this, 'setExpandedBranches');
-            }.observes('activeContext').on('init'),
+            /**
+             * Контекстное меню
+             * @property contentToolbar
+             */
+            contextToolbar: function(){
+                return Ember.get(this.get('controllers.component'), 'sideBarControl.contextToolbar');
+            }.property('controllers.component.sideBarControl.contextToolbar'),
 
             /**
-             Возвращает корневой элемент
-             @property root
-             @type Object
-             @return
+             * Возвращает корневой элемент
+             * @property root
              */
             root: function(){
                 var collectionName = this.get('collectionName');
@@ -66,7 +57,7 @@ define(['App'], function(UMI){
                 }
                 var self = this;
                 var Root = Ember.Object.extend({
-                    displayName: Ember.typeOf(sideBarControl.params) === 'object' ? sideBarControl.params.rootNodeName : '',
+                    displayName: Ember.get(sideBarControl, 'params.rootNodeName') || '',
                     root: true,
                     hasChildren: true,
                     id: 'root',
@@ -74,24 +65,24 @@ define(['App'], function(UMI){
                     type: 'base',
                     typeKey: collectionName,
                     childCount: function(){
-                        return this.get('children.length');
+                        return true;
                     }.property('children.length'),
                     children: function(){
                         var children;
-                        var objectProperties;
+                        var properties;
                         try{
                             if(!collectionName){
                                 throw new Error('Collection name is not defined.');
                             }
-                            objectProperties = self.get('objectProperties').join(',');
-                            var requestParams = {'filters[parent]': 'null()', 'fields': objectProperties};
-                            if(self.get('filterTrashed')){
+                            properties = self.get('properties').join(',');
+                            var requestParams = {'filters[parent]': 'null()', 'fields': properties};
+                            if(self.get('isTrashableCollection')){
                                 requestParams['filters[trashed]'] = 'equals(0)';
                             }
                             var nodes = self.store.updateCollection(collectionName, requestParams);
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
-                                sortProperties: ['order', 'id'],
+                                sortProperties: ['order'],
                                 sortAscending: true
                             });
                         } catch(error){
@@ -106,6 +97,7 @@ define(['App'], function(UMI){
                         }
                         return children;
                     }.property(),
+
                     updateChildren: function(id, parentId){
                         var objectContext = this;
                         var collectionName = self.get('collectionName');
@@ -124,19 +116,6 @@ define(['App'], function(UMI){
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
             }.property('root.childCount', 'model'),
-
-            rootChildren: null,
-            /**
-             Активный контекст
-             */
-            activeContext: function(){
-                return this.get('controllers.context.model');
-            }.property('controllers.context.model'),
-
-            contextToolbar: function(){
-                var sideBarControl = this.get('controllers.component.sideBarControl') || {};
-                return Ember.get(sideBarControl, 'contextToolbar');
-            }.property('controllers.component.sideBarControl.contextToolbar'),
 
             actions: {
                 /**

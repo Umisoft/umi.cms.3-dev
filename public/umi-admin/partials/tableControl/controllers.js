@@ -43,7 +43,7 @@ define(['App'], function(UMI){
                 var self = this;
                 var query = this.get('query') || {};
                 var collectionName = self.get('collectionName');
-                var objects = self.store.find(collectionName, query);
+                var objects = self.store.updateCollection(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
                 var sortAscending = orderByProperty && 'direction' in orderByProperty ? orderByProperty.direction : true;

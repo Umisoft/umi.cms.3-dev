@@ -10,6 +10,9 @@ $primary-gradient: #3aadff, #0087d4;
     margin-top: rem-calc(8);
     font-size: rem-calc(13);
     margin-bottom:  rem-calc(40);
+    &-wrapper{
+        overflow: hidden;
+    }
     ul.f-dropdown {
         padding-left: 0;
     }

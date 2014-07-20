@@ -1,5 +1,5 @@
 <div {{bind-attr class=":umi-item view.item.type view.active view.inActive"}}>
-    {{#if item.childCount}}
+    {{#if view.item.childCount}}
         <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
             {{#if view.isExpanded}}
                 {{#if view.sortedChildren}}
@@ -36,11 +36,11 @@
 
 </div>
 
-{{#if item.childCount}}
+{{#if view.item.childCount}}
     {{#if view.isExpanded}}
-        <ul class="umi-tree-list" data-parent-id="{{unbound item.id}}">
-            {{#each item in view.sortedChildren}}
-                {{view "treeItem" treeControlView=view.treeControlView item=item}}
+        <ul class="umi-tree-list" data-parent-id="{{unbound view.item.id}}">
+            {{#each view.sortedChildren}}
+                {{view "treeItem" treeControlView=view.treeControlView item=this}}
             {{/each}}
         </ul>
     {{/if}}

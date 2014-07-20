@@ -78,7 +78,7 @@ define(['App', 'toolbar'], function(UMI){
                     var tableContent = tableControl.find('.s-scroll-wrap');
 
                     objects.then(function(objects){
-                        if(!objects.content.length){
+                        if(!objects.length){
                             return;
                         }
 
