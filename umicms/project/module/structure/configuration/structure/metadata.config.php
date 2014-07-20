@@ -8,14 +8,13 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'structure'
@@ -24,11 +23,13 @@ return array_replace_recursive(
             StructureElement::FIELD_COMPONENT_NAME     => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_name',
+                'defaultValue' => 'structure',
                 'readOnly'   => true
             ],
             StructureElement::FIELD_COMPONENT_PATH     => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_path',
+                'defaultValue' => 'structure',
                 'readOnly'   => true
             ],
             SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [

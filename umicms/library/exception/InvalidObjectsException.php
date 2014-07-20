@@ -11,12 +11,14 @@
 namespace umicms\exception;
 
 use Exception;
+use umi\hmvc\exception\http\HttpException;
+use umi\http\Response;
 use umicms\orm\object\ICmsObject;
 
 /**
  * Исключения, связанные с наличием невалидных объектов.
  */
-class InvalidObjectsException extends RuntimeException
+class InvalidObjectsException extends HttpException
 {
     /**
      * @var ICmsObject[] $invalidObjects объекты, не прошедшие валидацию
@@ -29,7 +31,8 @@ class InvalidObjectsException extends RuntimeException
      */
     public function __construct($message = "", array $invalidObjects = [], $code = 0, Exception $previous = null)
     {
-        parent::__construct($message, $code, $previous);
+        parent::__construct(Response::HTTP_UNPROCESSABLE_ENTITY, $message, $previous);
+
         $this->invalidObjects = $invalidObjects;
     }
 

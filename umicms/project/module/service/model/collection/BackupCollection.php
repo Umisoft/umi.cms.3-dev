@@ -115,7 +115,7 @@ class BackupCollection extends CmsCollection
     }
 
     /**
-     * Создаёт резервную копию объекта.
+     * Создает резервную копию объекта.
      * @param IRecoverableObject $object
      * @return $this
      */

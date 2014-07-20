@@ -12,12 +12,16 @@ return [
 
     'en-US' => [
         'component:manager:displayName' => 'File manager',
-        'control:fileManager:displayName' => 'Files'
+        'control:fileManager:displayName' => 'Files',
+        'Files' => 'Files',
+        'Images' => 'Images',
     ],
 
     'ru-RU' => [
         'component:manager:displayName' => 'Файловый менеджер',
-        'control:fileManager:displayName' => 'Файлы'
+        'control:fileManager:displayName' => 'Файлы',
+        'Files' => 'Файлы',
+        'Images' => 'Изображения',
     ]
 
 ];

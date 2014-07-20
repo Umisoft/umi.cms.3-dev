@@ -43,6 +43,14 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     protected $schemeAndHttpHost;
     /**
+     * @var string $projectAssetsUrl базовый URL до ассетов (js/css) проекта
+     */
+    protected $projectAssetsUrl;
+    /**
+     * @var string $projectAssetsUrl базовый URL до административных ассетов (js/css) проектов
+     */
+    protected $adminAssetsUrl;
+    /**
      * @var string $urlPrefix префикс URL проекта
      */
     protected $urlPrefix;
@@ -61,7 +69,7 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * @var array $systemPageUrls url системных страниц, по пути компонентов
      */
-    protected $systemPageUrls = [];
+    private $systemPageUrls = [];
 
     /**
      * Конструктор.
@@ -90,6 +98,26 @@ class UrlManager implements IUrlManager, ILocalizable
     public function setSiteUrlPostfix($urlPostfix)
     {
         $this->siteUrlPostfix = $urlPostfix;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAdminAssetsUrl($assetsUrl)
+    {
+        $this->adminAssetsUrl = $assetsUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setProjectAssetsUrl($assetsUrl)
+    {
+        $this->projectAssetsUrl = $assetsUrl;
 
         return $this;
     }
@@ -134,6 +162,22 @@ class UrlManager implements IUrlManager, ILocalizable
         }
 
         return $this->urlPrefix ?: '/';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProjectAssetsUrl()
+    {
+        return $this->projectAssetsUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdminAssetsUrl()
+    {
+        return $this->adminAssetsUrl;
     }
 
     /**

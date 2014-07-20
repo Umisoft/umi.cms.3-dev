@@ -1,0 +1,54 @@
+$umi-dialog-z-index: 10000;
+
+.umi-dialog{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+    background: #FFF;
+    width: 420px;
+    top:20%;
+    left: 50%;
+    margin-left: -210px;
+    z-index: $umi-dialog-z-index;
+    border: 1px solid #21252e;
+    box-sizing: border-box;
+    &.visible{
+        visibility: visible;
+        opacity: 1;
+        top:50%;
+    }
+    .close{
+        color: #333;
+        position: absolute;
+        right: 7px;
+        top: 4px;
+        font-size: rem-calc(18);
+    }
+    .button{
+        margin-bottom: 0;
+    }
+    &-header{
+        font-size: 16px;
+        padding: 12px 15px;
+        background: linear-gradient(#414a59, #21252e);
+        color: #fff;
+    }
+    &-section{
+        line-height: normal;
+        padding: 15px 15px 0;
+    }
+    &-content{
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+    &-buttons{
+        @include clearfix;
+        margin-bottom: 15px;
+    }
+    &.check-process{
+        .umi-dialog-content{
+            margin-bottom: 0;
+        }
+    }
+}

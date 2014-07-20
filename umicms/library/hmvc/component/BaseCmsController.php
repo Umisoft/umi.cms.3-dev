@@ -96,7 +96,11 @@ abstract class BaseCmsController extends BaseController
      */
     protected function getUrl($routeName, array $routeParams = [], $isAbsolute = false)
     {
-        $url = rtrim($this->getUrlManager()->getProjectUrl($isAbsolute), '/');
+        $url = '';
+        if ($isAbsolute) {
+            $url .= $this->getUrlManager()->getSchemeAndHttpHost();
+        }
+
         $url .= $this->getContext()->getBaseUrl();
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 

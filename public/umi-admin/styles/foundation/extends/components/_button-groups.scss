@@ -1,0 +1,14 @@
+.button-group {
+    left: auto;
+    white-space: nowrap;
+    letter-spacing: -0.3em;
+    > li{
+        float: none;
+        display: inline-block;
+        letter-spacing: normal;
+        > button.white,
+        .button.white{
+            border-color: transparent;
+        }
+    }
+}

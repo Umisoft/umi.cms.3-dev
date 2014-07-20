@@ -167,10 +167,10 @@ class SiteApplication extends SiteComponent
         $request = $context->getDispatcher()->getCurrentRequest();
 
         $currentPath = $request->getPathInfo();
-        $suffix = $request->getRequestFormat(null);
+        $requestFormat = $request->getRequestFormat(null);
 
-        if ($suffix) {
-            $currentPath = substr($currentPath, 0, -strlen($suffix) - 1);
+        if ($requestFormat) {
+            $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
         }
 
         $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
@@ -179,13 +179,11 @@ class SiteApplication extends SiteComponent
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($suffix)) {
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
             return $redirectResponse;
         }
 
-        $requestFormat = $request->getRequestFormat();
-
-        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if (!is_null($requestFormat) && $requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(

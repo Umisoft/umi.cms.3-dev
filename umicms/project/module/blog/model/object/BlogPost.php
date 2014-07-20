@@ -33,7 +33,7 @@ use umicms\project\module\users\model\UsersModule;
  * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
- * @property IManyToManyObjectSet $tags тэги, к которым относится пост
+ * @property IManyToManyObjectSet $tags теги, к которым относится пост
  * @property DateTime $publishTime дата публикации поста
  * @property string $publishStatus статус публикации поста
  * @property int $commentsCount количество комментариев к посту
@@ -113,7 +113,7 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const POST_STATUS_PUBLISHED = 'published';
     /**
-     * Статус поста: отклонён
+     * Статус поста: отклонен
      */
     const POST_STATUS_REJECTED = 'rejected';
     /**
@@ -219,7 +219,7 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Снимает пост с публикации и помещает его в черновики.
      * @param string $status статус снятого с публикации поста
-     * @throws RuntimeException в случае если передан запрещённый или неизвестный статус публикации
+     * @throws RuntimeException в случае если передан запрещенный или неизвестный статус публикации
      * @return $this
      */
     public function unPublish($status = self::POST_STATUS_DRAFT)
@@ -269,7 +269,7 @@ class BlogPost extends CmsObject implements ICmsPage
     }
 
     /**
-     * Выставляет статус поста отклонён.
+     * Выставляет статус поста отклонен.
      * @return $this
      */
     public function reject()

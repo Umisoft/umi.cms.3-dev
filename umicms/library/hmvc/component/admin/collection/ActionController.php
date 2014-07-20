@@ -84,8 +84,12 @@ class ActionController extends BaseController implements IFormAware
     protected function actionGetCreateForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
+        $collection = $this->getCollection();
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView();
+        return [
+            'guid' => $collection->getGUIDField()->generateGUID(),
+            'form' => $collection->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView()
+        ];
     }
 
     /**

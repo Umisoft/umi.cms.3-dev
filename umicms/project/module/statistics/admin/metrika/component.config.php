@@ -15,16 +15,23 @@ use umicms\hmvc\component\admin\AdminComponent;
 
 return [
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
-    
+
     AdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/statistics/configuration/metrika/model.settings.config.php}',
-    
+
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
     AdminComponent::OPTION_QUERY_ACTIONS => [
-        'counter' => [], 'counters' => [], 'navigation' => []
+        'counters' => [],
+        'navigation' => [
+            'counterId' => '{id}',
+            'resource' => '{resource}'
+        ],
+        'counter' => [
+            'counterId' => '{id}'
+        ],
     ],
 
     AdminComponent::OPTION_ROUTES => [

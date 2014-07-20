@@ -17,7 +17,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет для вывода ссылки на редактирование отклонённого поста.
+ * Виджет для вывода ссылки на редактирование отклоненного поста.
  */
 class EditLinkWidget extends BaseLinkWidget
 {
@@ -26,7 +26,7 @@ class EditLinkWidget extends BaseLinkWidget
      */
     public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogPost пост или GUID отклонённого поста
+     * @var string|BlogPost $blogPost пост или GUID отклоненного поста
      */
     public $blogPost;
     /**

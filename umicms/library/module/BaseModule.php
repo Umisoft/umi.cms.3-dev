@@ -74,7 +74,7 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
     /**
      * {@inheritdoc}
      */
-    public function getModels()
+    public function getModelCollection()
     {
         if (is_null($this->modelCollection)) {
             $this->modelCollection = $this->getModelEntityFactory()->createModelCollection($this->models);

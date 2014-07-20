@@ -16,7 +16,7 @@ use umicms\orm\object\CmsHierarchicObject;
 /**
  * Базовый класс меню.
  */
-abstract class BaseMenu extends CmsHierarchicObject implements IActiveAccessibleObject
+abstract class BaseMenu extends CmsHierarchicObject
 {
 }
  

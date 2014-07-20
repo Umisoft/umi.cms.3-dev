@@ -1,0 +1,17 @@
+{{#if view.meta.attributes.icon}}
+    <i class="{{unbound view.meta.attributes.icon.class}}"></i>
+{{/if}}
+
+{{#if view.meta.attributes.label}}
+    <b class="umi-button-label">
+        {{unbound view.meta.attributes.label}}
+    </b>
+{{/if}}
+
+<ul class="f-dropdown">
+    {{#each view.meta.choices}}
+        <span {{action 'sendActionForBehaviour' behaviour target="view"}}>
+            {{attributes.label}}
+        </span>
+    {{/each}}
+</ul>
