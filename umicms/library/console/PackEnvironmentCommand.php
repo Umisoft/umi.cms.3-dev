@@ -61,28 +61,29 @@ class PackEnvironmentCommand extends BaseCommand
         $output->writeln('<info>Packing environment files...</info>');
 
         $rootDir = dirname(CMS_DIR);
+        $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
 
-        $this->packFile($phar, new SplFileInfo($rootDir . '/.htaccess'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENCE.md'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/db.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENSE'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/.htaccess'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/core.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/environment.config.php'));
-
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/favicon.ico'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
 
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/project.config.dist.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/public/tools.settings.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/core.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/project.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/tools.settings.config.dist.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/db.config.dist.php'));
+
 
         $output->writeln('<info>Done.</info>');
         $output->writeln('<info>Packing frontend files...</info>');
 
         $finder = new Finder();
         $finder->files()
+            ->exclude('samples')
             ->in($rootDir . '/public/umi-admin/production');
 
         $progress = $this->startProgressBar($output, $finder->count());
