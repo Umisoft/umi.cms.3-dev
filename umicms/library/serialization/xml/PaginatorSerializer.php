@@ -31,6 +31,7 @@ class PaginatorSerializer extends BaseSerializer
         $this->paginator = $paginator;
 
         $this->getXmlWriter()->writeAttribute('pagesCount', $paginator->getPagesCount());
+        $this->getXmlWriter()->writeAttribute('pagesCountInRage', $paginator->getPagesCountInRange());
 
         if (!$paginator->getPagesCount()) {
             return;
