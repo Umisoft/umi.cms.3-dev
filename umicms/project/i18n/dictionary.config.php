@@ -211,7 +211,7 @@ return [
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
 
-            'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
+            'Default or inherited layout' => 'По умолчанию или унаследованный',
         ]
     ],
 
