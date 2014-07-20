@@ -44,16 +44,16 @@ EOF;
             ->setName('pack:core')
             ->setDescription('Pack UMI.CMS core files')
             ->addArgument(
-                'without-vendors',
-                InputArgument::OPTIONAL,
-                'Pack core without vendors.',
-                false
-            )
-            ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
                 'Output directory for package.',
                 '.'
+            )
+            ->addArgument(
+                'without-vendors',
+                InputArgument::OPTIONAL,
+                'Pack core without vendors.',
+                false
             )
             ->addArgument(
                 'obfuscate',
