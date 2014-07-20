@@ -41,30 +41,16 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocales
             return '';
         }
 
-        $foundWords = $matches[0];
+        $stemming = $this->getStemming();
+        $stringNormalized = '';
 
-        $originalSearchPart = "(" . implode(' ', $foundWords) . ")";
-        $stringNormalized = $originalSearchPart;
-        $variationGroups = [];
-        foreach ($foundWords as $match) {
-            $baseForms = $this->getStemming()
-                ->getBaseForm($match);
-            if (($pos = array_search($match, $baseForms) !== false)) {
-                unset($baseForms[$pos]);
+        foreach ($matches[0] as $match) {
+            $partOfSpeech = $stemming->getPartOfSpeech($match);
+            if (empty($partOfSpeech) || array_intersect($partOfSpeech, ['С', 'П', 'Г'])) {
+                foreach ($stemming->getBaseForm($match) as $baseForm) {
+                    $stringNormalized .= ' ' . $baseForm;
+                }
             }
-            if ($baseForms) {
-                $variationGroups[] = $baseForms;
-            }
-        }
-        $stringVariations = '';
-        foreach ($variationGroups as $group) {
-            $stringVariations .= count($group) > 1 ? '(' . implode(' ', $group) . ') ' : $group[0] . ' ';
-        }
-        $stringVariations = trim($stringVariations);
-        if ($stringVariations !== $stringOriginal) {
-            $stringNormalized .= ' (' . $stringVariations . ')';
-        } else {
-            $stringNormalized = $stringOriginal;
         }
 
         return $stringNormalized;

@@ -25,6 +25,7 @@ return array_replace_recursive(
             BlogPost::FIELD_PUBLISH_STATUS => [
                 'type' => IField::TYPE_STRING,
                 'mutator' => 'changeStatus',
+                'accessor' => 'getPublishStatus',
                 'columnName' => 'publish_status',
                 'defaultValue' => BlogPost::POST_STATUS_DRAFT
             ],
