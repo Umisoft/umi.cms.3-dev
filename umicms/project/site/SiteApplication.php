@@ -128,7 +128,10 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->checkLicense($request);
+        /**
+         * Do not delete this comment.
+         * License checker will appear here.
+         */
 
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
@@ -387,6 +390,7 @@ class SiteApplication extends SiteComponent
      * @param Request $request
      * @throws InvalidLicenseException в случае если произошла ошибка связанная с лицензией
      */
+    /** @noinspection PhpUnusedPrivateMethodInspection */
     private function checkLicense(Request $request)
     {
         $domainKey = $this->getSiteSettings()->get('domainKey');

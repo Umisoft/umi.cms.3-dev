@@ -56,7 +56,7 @@ class SyncProjectSchemeCommand extends BaseProjectCommand
         $progress->setMessage('Complete.');
         $progress->finish();
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
 }
