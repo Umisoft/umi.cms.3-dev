@@ -244,8 +244,12 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      */
     protected function buildSlidingPagesRange($pagesCountInRange)
     {
-        $currentPage = $this->getCurrentPage();
         $pagesCount = $this->getPagesCount();
+        if ($pagesCountInRange >= $pagesCount) {
+            return range(1, $pagesCount);
+        }
+
+        $currentPage = $this->getCurrentPage();
 
         if ($pagesCountInRange > $pagesCount) {
             return range(1, $pagesCount);
@@ -263,8 +267,12 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      */
     protected function buildElasticPagesRange($pagesCountInRange)
     {
-        $currentPage = $this->getCurrentPage();
         $pagesCount = $this->getPagesCount();
+        if ($pagesCountInRange >= $pagesCount) {
+            return range(1, $pagesCount);
+        }
+
+        $currentPage = $this->getCurrentPage();
         $minOffset = ceil($pagesCountInRange / 2);
         $leftOffset = $rightOffset = $minOffset - 1;
 
