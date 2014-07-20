@@ -58,6 +58,10 @@ class Environment
      */
     public static $directoryConfiguration = ".";
     /**
+     * @var string $directoryAssets директория с ассетами проекта
+     */
+    public static $directoryAssets = ".";
+    /**
      * @var string $baseUrl базовый URL для ресурсов проектов
      */
     public static $baseUrl = "";

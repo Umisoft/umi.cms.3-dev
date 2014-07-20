@@ -308,8 +308,6 @@ class Bootstrap
             $projectConfig['componentConfig'] = '~/project/configuration/component.config.php';
         }
 
-
-
         $this->registerProjectComponentConfiguration($projectConfig['componentConfig']);
         $this->registerProjectTools();
         $this->configureLocalesService($router, $routeMatches);
@@ -326,6 +324,17 @@ class Bootstrap
         if (!isset($projectConfig['adminAssetsUrl'])) {
             $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
         }
+
+        if (!isset($projectConfig['assetsDir'])) {
+            $projectConfig['assetsDir'] = '~/project/asset';
+        }
+        $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
+        if (!isset($assetsDir[1])) {
+            throw new UnexpectedValueException('Cannot resolve project dump destination.');
+        }
+        Environment::$directoryAssets = $assetsDir[1];
+
+        $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
