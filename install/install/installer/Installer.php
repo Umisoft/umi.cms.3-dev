@@ -34,6 +34,18 @@ class Installer
      * @var string $config
      */
     private $config;
+    /**
+     * @var string $updateLink сервер обновлений
+     */
+    private $updateLink = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91cGRhdGVzZXJ2ZXIzLw';
+
+    /**
+     * @return string возвращает ссылку до сервера обновлений
+     */
+    public function getUpdateLink()
+    {
+        return base64_decode($this->updateLink);
+    }
 
     /**
      * Конструктор.
@@ -191,7 +203,7 @@ class Installer
      * Возвращает текущий домен.
      * @return string
      */
-    private function getHostDomain()
+    public function getHostDomain()
     {
         $hostDomain = $_SERVER['HTTP_HOST'];
         if (mb_strrpos($hostDomain, 'www.') === 0) {

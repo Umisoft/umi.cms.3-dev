@@ -32,10 +32,6 @@ define('CMS_CORE_PHP', ROOT_DIR . '/configuration/core.php');
 define('PROJECT_CONFIG_DIR', ROOT_DIR . '/public/default/configuration');
 define('ENVIRONMENT_CONFIG_DIR', ROOT_DIR . '/configuration');
 define('ENVIRONMENT_PHAR', ROOT_DIR . '/environment.phar');
-define('ENVIRONMENT', 'environment.phar');
-define('TWIG_PROJECT', 'demo-twig.phar');
-define('PHP_PROJECT', 'demo-php.phar');
-define('XSLT_PROJECT', 'demo-xslt.phar');
 
 $vendorDirectory = dirname(__DIR__) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';

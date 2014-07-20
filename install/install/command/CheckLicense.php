@@ -58,7 +58,10 @@ class CheckLicense implements ICommandInstall
         } catch (\Exception $e) {
             $config = [];
         }
-        $config['licenseKey'] = $this->licenseKey;
+        $config['license'] = [];
+        $config['license']['licenseKey'] = $this->licenseKey;
+        $config['license']['serverAddress'] = $_SERVER['SERVER_ADDR'];
+        $config['license']['domain'] = $this->installer->getHostDomain();
         $this->installer->saveConfig($config);
 
         return true;

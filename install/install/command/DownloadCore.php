@@ -36,7 +36,16 @@ class DownloadCore implements ICommandInstall
      */
     public function execute()
     {
-        if (!$this->installer->copyRemote('http://localhost/umicms.phar', CMS_CORE_PHAR)) {
+        $config = $this->installer->getConfig();
+        if (!isset($config['license'])) {
+            throw new RuntimeException(
+                'Неудалось скачать core. Ошибка лицензии.'
+            );
+        }
+        $config['license']['type'] = 'get-core';
+        $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
+
+        if (!$this->installer->copyRemote($path, CMS_CORE_PHAR)) {
             throw new RuntimeException(
                 'Неудалось скачать core.'
             );

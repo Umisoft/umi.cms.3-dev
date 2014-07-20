@@ -38,11 +38,21 @@ class DownloadProject implements ICommandInstall
     {
         $config = $this->installer->getConfig();
 
+        if (!isset($config['license'])) {
+            throw new RuntimeException(
+                'Неудалось скачать core. Ошибка лицензии.'
+            );
+        }
+
         if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
             throw new RuntimeException('Неудалось скачать проект.');
         }
 
-        if (!$this->installer->copyRemote('http://localhost/demo-' . $config['projectName'] . '.phar', ROOT_DIR . '/demo-' . $config['projectName'] . '.phar')) {
+        $config['license']['type'] = 'get-project';
+        $config['license']['project'] = $config['projectName'];
+        $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
+
+        if (!$this->installer->copyRemote($path, ROOT_DIR . '/demo-' . $config['projectName'] . '.phar')) {
             throw new RuntimeException(
                 'Неудалось скачать project.'
             );

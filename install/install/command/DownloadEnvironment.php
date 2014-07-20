@@ -37,12 +37,19 @@ class DownloadEnvironment implements ICommandInstall
     public function execute()
     {
         $config = $this->installer->getConfig();
+        if (!isset($config['license'])) {
+            throw new RuntimeException(
+                'Неудалось скачать core. Ошибка лицензии.'
+            );
+        }
+        $config['license']['type'] = 'get-environment';
+        $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
 
         if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
             throw new RuntimeException('Неудалось скачать окружение.');
         }
 
-        if (!$this->installer->copyRemote('http://localhost/' . ENVIRONMENT, ENVIRONMENT_PHAR)) {
+        if (!$this->installer->copyRemote($path, ENVIRONMENT_PHAR)) {
             throw new RuntimeException(
                 'Неудалось скачать окружение.'
             );

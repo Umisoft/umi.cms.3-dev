@@ -81,13 +81,13 @@ class LoadDump implements ICommandInstall
          */
         foreach ($objectPersister->getNewObjects() as $object) {
             if ($object instanceof ICmsPage) {
-                //$searchModule->getSearchIndexApi()->buildIndexForObject($object);
+                $searchModule->getSearchIndexApi()->buildIndexForObject($object);
             }
         }
 
         foreach ($objectPersister->getModifiedObjects() as $object) {
             if ($object instanceof ICmsPage) {
-                //$searchModule->getSearchIndexApi()->buildIndexForObject($object);
+                $searchModule->getSearchIndexApi()->buildIndexForObject($object);
             }
         }
 
