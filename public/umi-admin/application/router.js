@@ -165,7 +165,7 @@ define([], function(){
                         } else{
                             // Обновление связей рутовой ноды в дереве.
                             // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                            self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(addObject.get('id'), 'root');
+                            self.get('container').lookup('view:treeControl').send('updateRoot', addObject);
                             return addObject;
                         }
                     } else{

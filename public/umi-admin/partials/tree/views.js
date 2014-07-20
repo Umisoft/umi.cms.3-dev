@@ -81,6 +81,17 @@ define(['App', 'toolbar'], function(UMI){
                     }
                 }
             },
+            updateRoot: function(item){
+                var childViews = this.get('childViews');
+                debugger;
+                if(childViews.length){
+                    var sortedChildren  = childViews[0].get('sortedChildren');
+                    console.log(sortedChildren);
+                    sortedChildren.push(item);
+
+                    console.log(sortedChildren);
+                }
+            },
             /**
              * Метод устанавливающий события после рендинга шаблона.
              * @method didInsertElement
@@ -341,8 +352,9 @@ define(['App', 'toolbar'], function(UMI){
             }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
 
             sortedChildren: function(){
+                console.log('sortedChildren');
                 return this.getChildren();
-            }.property('item.didUpdate'),
+            }.property('reloadChildren'),
 
             getChildren: function(){
                 var model = this.get('item');
@@ -372,11 +384,12 @@ define(['App', 'toolbar'], function(UMI){
                         }
                     });
                 }, 0);
-                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                var promiseArray =  Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
                     sortProperties: ['order'],
                     sortAscending: true
                 });
+                return promiseArray;
             },
 
             isExpanded: false,
@@ -395,6 +408,8 @@ define(['App', 'toolbar'], function(UMI){
                 }
             },
 
+            reloadChildren: 1,
+
             actions: {
                 expanded: function(){
                     this.toggleProperty('isExpanded');
@@ -403,12 +418,15 @@ define(['App', 'toolbar'], function(UMI){
 
             init: function(){
                 this._super();
+                var self = this;
                 var model = this.get('item');
                 if('needReloadHasMany' in this.get('item')){
                     this.get('item').on('needReloadHasMany', function(){
-                        model.get('children').then(function(children){
+                        //'item.didUpdate',
+                        this.incrementProperty('reloadChildren');
+                        /*model.get('children').then(function(children){
                             children.reloadLinks();
-                        });
+                        });*/
                     });
                 }
             },

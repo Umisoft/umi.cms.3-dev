@@ -67,37 +67,7 @@ define(['App'], function(UMI){
                     childCount: function(){
                         return true;
                     }.property('children.length'),
-                    children: function(){
-                        var children;
-                        var properties;
-                        try{
-                            if(!collectionName){
-                                throw new Error('Collection name is not defined.');
-                            }
-                            properties = self.get('properties').join(',');
-                            var requestParams = {'filters[parent]': 'null()', 'fields': properties};
-                            if(self.get('isTrashableCollection')){
-                                requestParams['filters[trashed]'] = 'equals(0)';
-                            }
-                            var nodes = self.store.updateCollection(collectionName, requestParams);
-                            children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                                content: nodes,
-                                sortProperties: ['order'],
-                                sortAscending: true
-                            });
-                        } catch(error){
-                            var errorObject = {
-                                'statusText': error.name,
-                                'message': error.message,
-                                'stack': error.stack
-                            };
-                            Ember.run.next(self, function(){
-                                this.send('templateLogs', errorObject, 'component');
-                            });
-                        }
-                        return children;
-                    }.property(),
-
+                    children: null,
                     updateChildren: function(id, parentId){
                         var objectContext = this;
                         var collectionName = self.get('collectionName');
