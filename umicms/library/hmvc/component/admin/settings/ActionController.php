@@ -10,8 +10,10 @@
 
 namespace umicms\hmvc\component\admin\settings;
 
+use umi\config\entity\IConfig;
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
+use umi\form\IForm;
 use umi\http\Response;
 use umicms\hmvc\component\admin\TActionController;
 
@@ -39,6 +41,8 @@ class ActionController extends BaseController implements IConfigIOAware
 
         $form->setData($this->getAllPostVars());
 
+        $this->processForm($form, $config);
+
         if ($form->isValid()) {
             $this->writeConfig($config);
         } else {
@@ -46,6 +50,17 @@ class ActionController extends BaseController implements IConfigIOAware
         }
 
         return $form->getView();
+    }
+
+    /**
+     * Производит дополнительную обработку формы настроек,
+     * вызывается перед валидацией и сохранением формы.
+     * @param IForm $form
+     * @param IConfig $config
+     */
+    protected function processForm(IForm $form, IConfig $config)
+    {
+
     }
 
 }
