@@ -1,0 +1,27 @@
+{
+    "name": "umisoft/umi.cms.3-dev",
+    "description": "UMI.CMS 3 Development Package",
+    "type": "library",
+    "license": "proprietary",
+    "homepage": "http://umi-cms.ru/",
+
+    "autoload": {
+        "psr-4": {
+            "install\\": "install"
+        }
+    },
+
+    "replace" : {
+        "umisoft/umi.cms.3": "self.version"
+    },
+
+    "require": {
+        "php": ">=5.4.0",
+        "lib-pcre": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+
+        "guzzlehttp/guzzle": "4.*",
+        "symfony/http-foundation": "2.4.*"
+    }
+}
