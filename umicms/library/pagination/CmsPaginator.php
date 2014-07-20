@@ -211,6 +211,25 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
     }
 
     /**
+     * Возвращает количество страниц в ряду
+     * @throws UnexpectedValueException
+     * @return int
+     */
+    public function getPagesCountInRange()
+    {
+        if ($this->pagesCount <= 0 || !is_int($this->pagesCount)) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    '{count} is wrong pages count in range. Value should be positive integer.',
+                    ['count' => $this->pagesCount]
+                )
+            );
+        }
+
+        return $this->pagesCount;
+    }
+
+    /**
      * Возвращает список страниц для отображения в соответствии с заданным типом
      * @throws OutOfBoundsException если задан неизвестный тип
      * @return array
@@ -287,25 +306,6 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
         }
 
         return range($currentPage - $leftOffset, $currentPage + $rightOffset);
-    }
-
-    /**
-     * Возвращает количество страниц в ряду
-     * @throws UnexpectedValueException
-     * @return int
-     */
-    protected function getPagesCountInRange()
-    {
-        if ($this->pagesCount <= 0 || !is_int($this->pagesCount)) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    '{count} is wrong pages count in range. Value should be positive integer.',
-                    ['count' => $this->pagesCount]
-                )
-            );
-        }
-
-        return $this->pagesCount;
     }
 
 }
