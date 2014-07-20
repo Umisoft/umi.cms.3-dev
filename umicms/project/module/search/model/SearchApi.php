@@ -47,7 +47,7 @@ class SearchApi extends BaseSearchApi
 
         $selector = $this->getSiteIndexCollection()
             ->select()
-            ->fields([SearchIndex::FIELD_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
+            ->fields([SearchIndex::FIELD_REF_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
 
         $this->buildQueryCondition(
             $selector,

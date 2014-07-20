@@ -22,7 +22,7 @@ return array_replace_recursive(
                 'type' => IField::TYPE_INTEGER,
                 'columnName' => 'object_id'
             ],
-            Backup::FIELD_COLLECTION_NAME => [
+            Backup::FIELD_REF_COLLECTION_NAME => [
                 'type' => IField::TYPE_STRING,
                 'columnName' => 'collection_name'
             ],
@@ -38,7 +38,7 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\service\model\object\Backup',
                 'fields' => [
                     Backup::FIELD_OBJECT_ID => [],
-                    Backup::FIELD_COLLECTION_NAME => [],
+                    Backup::FIELD_REF_COLLECTION_NAME => [],
                     Backup::FIELD_DATA => []
                 ]
             ]

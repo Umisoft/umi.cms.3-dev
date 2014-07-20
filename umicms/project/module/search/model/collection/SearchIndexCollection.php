@@ -70,7 +70,7 @@ class SearchIndexCollection extends CmsCollection
 
         $index = $this->add()
             ->setValue(SearchIndex::FIELD_REF_GUID, $object->guid)
-            ->setValue(SearchIndex::FIELD_COLLECTION_NAME, $object->getCollectionName());
+            ->setValue(SearchIndex::FIELD_REF_COLLECTION_NAME, $object->getCollectionName());
 
         $this->indexes[$object->guid] = $index;
 

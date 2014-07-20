@@ -18,9 +18,9 @@ use umicms\orm\object\ICmsObject;
 /**
  * Индексная запись поиска.
  *
- * @property string $content текст для полнотекстового поиска
+ * @property string $contents текст для полнотекстового поиска
  * @property string $refGuid GUID объекта, на который указывает индекс
- * @property string $collectionName Имя коллекции, к которой относится индексированный объект
+ * @property string $refCollectionName Имя коллекции, к которой относится индексированный объект
  */
 class SearchIndex extends CmsObject implements ICollectionManagerAware
 {
@@ -37,7 +37,7 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
     /**
      * Имя коллекции, которой принадлежит проиндексированный объект
      */
-    const FIELD_COLLECTION_NAME = 'collectionName';
+    const FIELD_REF_COLLECTION_NAME = 'refCollectionName';
     /**
      * Когда был записан индекс
      */
@@ -51,7 +51,7 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
     public function validateDisplayName($localeId = null)
     {
         if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
-            $value = 'Index for ' . $this->collectionName . '#' . $this->refGuid;
+            $value = 'Index for ' . $this->refCollectionName . '#' . $this->refGuid;
             if ($localeId) {
                 $value .= '_' . $localeId;
             }
@@ -68,7 +68,7 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
     public function getIndexedObject()
     {
         return $this->getCollectionManager()
-            ->getCollection($this->collectionName)
+            ->getCollection($this->refCollectionName)
             ->get($this->refGuid);
     }
 }
