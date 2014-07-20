@@ -26,7 +26,6 @@ return [
         // default add actions
         'action:add' => 'Add',
         'action:addAndGoBack' => 'Add and go back',
-        'action:addAndCreate' => 'Add and create',
 
         // default save actions
         'action:save' => 'Save',
@@ -50,14 +49,16 @@ return [
         'role:blogExecutor:displayName' => 'Blog',
         'role:serviceExecutor:displayName' => 'Service',
         'role:filesExecutor:displayName' => 'File manager',
-        'role:modelsExecutor:displayName' => 'Models data',
+        'role:modelsExecutor:displayName' => 'Data models',
         'role:newsExecutor:displayName' => 'News',
         'role:seoExecutor:displayName' => 'SEO',
         'role:searchExecutor:displayName' => 'Search',
         'role:statisticsExecutor:displayName' => 'Statistics',
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
-        'role:settingsExecutor:displayName' => 'Settings'
+        'role:settingsExecutor:displayName' => 'Settings',
+        
+        'Incorrect login or password.' => 'Incorrect login or password.'
     ],
 
     'ru-RU' => [
@@ -76,7 +77,6 @@ return [
         // default add actions
         'action:add' => 'Добавить',
         'action:addAndGoBack' => 'Добавить и выйти',
-        'action:addAndCreate' => 'Добавить и создать новый',
 
         // default save actions
         'action:save' => 'Сохранить',
@@ -108,7 +108,9 @@ return [
         'role:statisticsExecutor:displayName' => 'Статистика',
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
-        'role:settingsExecutor:displayName' => 'Настройки'
+        'role:settingsExecutor:displayName' => 'Настройки',
+
+        'Incorrect login or password.' => 'Неправильный логин или пароль.'
     ]
 
 ];

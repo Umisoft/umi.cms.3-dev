@@ -14,8 +14,10 @@ return [
         'component:users:displayName' => 'Users',
 
         'role:userExecutor:displayName' => 'Users',
-        'role:groupExecutor:displayName' => 'Groups users',
-        'role:usergroupExecutor:displayName' => 'Managing relation users-group'
+        'role:groupExecutor:displayName' => 'Users groups',
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation',
+
+        'Value is required.' => 'Value is required.'
     ],
 
     'ru-RU' => [
@@ -23,7 +25,9 @@ return [
 
         'role:userExecutor:displayName' => 'Пользователи',
         'role:groupExecutor:displayName' => 'Группы пользователей',
-        'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы'
+        'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы',
+
+        'Value is required.' => 'Обязательное поле.'
     ]
 
 ];

@@ -193,11 +193,13 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
-        foreach ($rssFeed->getRssItems() as $item) {
+        $items = $rssFeed->getRssItems();
+
+        foreach ($items as $item) {
             $this->importRssItem($item, $newsRssImportScenario);
         }
 
-        return $this;
+        return count($items);
     }
 
     /**
@@ -219,8 +221,8 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $newsItem->announcement = $item->getContent();
             }
             if ($item->getDate()) {
+                $newsItem->date = new \DateTime();
                 $newsItem->date->setTimestamp($item->getDate()->getTimestamp());
-                $newsItem->date->setTimezone($item->getDate()->getTimezone());
             }
             if ($item->getUrl()) {
                 $newsItem->source = $item->getUrl();

@@ -1,0 +1,27 @@
+<div class="s-full-height">
+    {{#view 'divider' modelBinding="model"}}
+
+        {{#if sideBarControl}}
+            <div class="umi-divider-left">
+                <div class="umi-divider-left-content">
+                    {{outlet 'sideBar'}}
+                </div>
+
+                <div class="umi-divider"></div>
+            </div>
+
+            <div class="umi-left-bottom-panel s-unselectable">
+                <a href="javascript:void(0)" class="button white square umi-divider-left-toggle">
+                    <i class="icon icon-left"></i>
+                </a>
+            </div>
+        {{/if}}
+
+        <div {{bind-attr class=":umi-divider-right sideBarControl::wide"}}>
+            <div class="umi-component columns small-12 s-padding-clear s-full-height">
+                {{outlet}}
+            </div>
+        </div>
+
+    {{/view}}
+</div>

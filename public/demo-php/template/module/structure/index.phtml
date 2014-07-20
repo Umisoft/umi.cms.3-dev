@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\StaticPage $page
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->getHeader() ?></h1>
+<?= $page->contents ?>

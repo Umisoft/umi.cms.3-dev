@@ -11,8 +11,8 @@
 return [
 
     'en-US' => [
-        'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer news',
+        'role:rssViewer:displayName' => 'View news RSS-feed',
+        'role:viewer:displayName' => 'View news',
     ],
 
     'ru-RU' => [

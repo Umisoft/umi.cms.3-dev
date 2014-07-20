@@ -28,7 +28,10 @@ return [
     ],
 
     AdminComponent::OPTION_QUERY_ACTIONS => [
-        'hosts' => [], 'host' => [], 'indexed' => [], 'links' => [], 'tops' => []
+        'host' => [],
+        'indexed' => [],
+        'links' => [],
+        'tops' => []
     ],
 
     AdminComponent::OPTION_ROUTES => [

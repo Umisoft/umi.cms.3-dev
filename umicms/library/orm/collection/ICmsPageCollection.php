@@ -42,5 +42,11 @@ interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRe
      * @return bool
      */
     public function isAllowedSlug(ICmsObject $object);
+
+    /**
+     * Возвращает список имен индексируемых свойств.
+     * @return array
+     */
+    public function getIndexablePropertyNames();
 }
  

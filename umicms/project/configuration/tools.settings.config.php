@@ -16,7 +16,9 @@ use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
+use umi\pagination\toolbox\PaginationTools;
 use umi\templating\toolbox\TemplatingTools;
+use umi\validation\toolbox\ValidationTools;
 use umicms\filter\HtmlPurifier;
 use umicms\filter\Slug;
 use umicms\form\element\Captcha;
@@ -31,6 +33,7 @@ use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
+use umicms\validation\Range;
 
 return [
     AuthenticationTools::NAME => [
@@ -141,9 +144,7 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
-
-            'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/metadata.config.php}',
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}'
         ],
 
         'collections' => [
@@ -175,9 +176,7 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
-
-            'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/collection.config.php}',
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}'
         ]
     ],
 
@@ -197,5 +196,25 @@ return [
         ]
     ],
 
+    ValidationTools::NAME => [
+        'factories' => [
+            'validator' => [
+                'types' => [
+                    Range::NAME => 'umicms\validation\Range',
+                ]
+            ]
+        ]
+    ],
+
+    PaginationTools::NAME => [
+        'factories' => [
+            'paginator' => [
+                'paginatorClass' => 'umicms\pagination\CmsPaginator'
+            ]
+        ]
+    ],
+
     SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
+
+
 ];

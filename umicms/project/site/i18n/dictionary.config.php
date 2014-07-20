@@ -12,7 +12,14 @@ return [
 
     'en-US' => [
         'component:site:displayName' => 'Site',
-        'role:structureExecutor:displayName' => 'Structure site',
+
+        'Invalid domain key.' => 'Invalid domain key.',
+        'Do not set the default domain.' => 'Do not set the default domain.',
+        'Wrong license type.' => 'Wrong license type.',
+        'License has expired.' => 'License has expired.',
+        'Invalid domain key for domain.' => 'Invalid domain key for domain.',
+
+        'role:structureExecutor:displayName' => 'Site structure',
         'role:newsExecutor:displayName' => 'News',
         'role:blogExecutor:displayName' => 'Blog',
         'role:searchExecutor:displayName' => 'Search',
@@ -23,6 +30,13 @@ return [
 
     'ru-RU' => [
         'component:site:displayName' => 'Сайт',
+
+        'Invalid domain key.' => 'Неверный доменный ключ.',
+        'Do not set the default domain.' => 'Незадан домен по умолчанию.',
+        'Wrong license type.' => 'Неверный тип лицензии.',
+        'License has expired.' => 'Срок лицензии истёк.',
+        'Invalid domain key for domain.' => 'Неверный лицензионный ключ для этого домена.',
+
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:newsExecutor:displayName' => 'Новости',
         'role:blogExecutor:displayName' => 'Блог',

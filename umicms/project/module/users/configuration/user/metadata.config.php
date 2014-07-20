@@ -10,16 +10,15 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\Environment;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Supervisor;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/active.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'users_user'

@@ -18,8 +18,12 @@ return [
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Template directory',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Common template directory',
         SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'Default template extension',
-        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Default templating engine type'
+        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Default templating engine type',
 
+        'role:commonExecutor:displayName' => 'Common',
+        'role:templatingExecutor:displayName' => 'Templating',
+        'role:slugifyExecutor:displayName' => 'Slug formation',
+        'role:mailExecutor:displayName' => 'Mail',
     ],
 
     'ru-RU' => [
@@ -42,7 +46,8 @@ return [
 
         'role:commonExecutor:displayName' => 'Общие',
         'role:templatingExecutor:displayName' => 'Шаблонизация',
-        'role:slugifyExecutor:displayName' => 'Формирование slug'
+        'role:slugifyExecutor:displayName' => 'Формирование slug',
+        'role:mailExecutor:displayName' => 'Почта',
     ]
 ];
  

@@ -176,8 +176,9 @@ class ListController extends BaseController
              */
             $parent = $collection->getById($data['parent']);
         }
+        $guid = isset($data['guid']) ? $data['guid'] : null;
 
-        return $collection->add($data['slug'], $typeName, $parent);
+        return $collection->add($data['slug'], $typeName, $parent, $guid);
 
     }
 
@@ -190,8 +191,9 @@ class ListController extends BaseController
     private function createObject(CmsCollection $collection, array $data)
     {
         $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
+        $guid = isset($data['guid']) ? $data['guid'] : null;
 
-        return $collection->add($typeName);
+        return $collection->add($typeName, $guid);
     }
 
 }

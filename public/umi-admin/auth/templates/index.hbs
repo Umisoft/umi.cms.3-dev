@@ -1,0 +1,40 @@
+<div class="panel pretty radius shake-it">
+    <form name="auth" novalidate="novalidate" class="custom large umi-validator" method="post" action="{{form.attributes.action}}">
+        <div class="errors-list">
+            {{#if accessError}}
+                <div class="alert-box alert visible">
+                    <a href="#" class="close">×</a>
+                    {{accessError}}
+                </div>
+            {{/if}}
+        </div>
+        {{#each form.elements}}
+            <div class="row">
+                <div class="small-12 columns">
+                    {{#ifCond type 'select'}}
+                        <select name="{{attributes.name}}" placeholder="{{label}}" class="select-language">
+                            {{#each choices}}
+                                <option value="{{attributes.value}}">{{label}}</option>
+                            {{/each}}
+                        </select>
+                    {{else}}
+                        <i class="icon icon-{{attributes.name}} input-icon"></i>
+                        <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}" required="required" autocomplete="off" value="">
+                        {{#if validators}}
+                            <span class="error">
+                                {{#each validators}}
+                                    {{message}}
+                                {{/each}}
+                            </span>
+                        {{/if}}
+                    {{/ifCond}}
+                </div>
+            </div>
+        {{/each}}
+        <div class="row">
+            <div class="small-6 small-offset-6 columns">
+                <input name="submit" class="button radius expand s-margin-clear" type="submit" value="Войти" />
+            </div>
+        </div>
+    </form>
+</div>

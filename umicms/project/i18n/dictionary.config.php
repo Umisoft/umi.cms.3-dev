@@ -47,6 +47,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
@@ -71,6 +72,7 @@ return [
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.license' => '{#lazy:~/project/site/settings/license/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.mail' => '{#lazy:~/project/site/settings/mail/i18n/dictionary.config.php}',
@@ -131,9 +133,14 @@ return [
     'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
+    'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+
     'collection' => [
 
         'en-US' => [
+            'en-US' => 'English',
+            'ru-RU' => 'Russian',
+
             ICmsObject::FIELD_CREATED => 'Creation date',
             ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
             ICmsObject::FIELD_UPDATED => 'Update date',
@@ -174,6 +181,9 @@ return [
         ],
 
         'ru-RU' => [
+            'en-US' => 'Английский',
+            'ru-RU' => 'Русский',
+
             ICmsObject::FIELD_CREATED => 'Дата создания',
             ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
@@ -201,6 +211,8 @@ return [
             IRecyclableObject::FIELD_TRASHED => 'В корзине',
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+            'Default or inherited layout' => 'По умолчанию или унаследованный',
         ]
     ],
 

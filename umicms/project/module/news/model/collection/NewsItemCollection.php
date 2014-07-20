@@ -55,7 +55,7 @@ class NewsItemCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает новость по её источнику.
+     * Возвращает новость по ее источнику.
      * @param string $source
      * @throws NonexistentEntityException если новость не существует
      * @return NewsItem

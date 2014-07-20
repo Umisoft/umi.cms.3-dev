@@ -9,19 +9,26 @@
  */
 
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/hierarchicPageCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/hierarchicPageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/locked.config.php',
     [
         'name' => 'structure',
         'columns'     =>  [
             'component_name' => [
-                'type' => Type::STRING
+                'type' => Type::STRING,
+                'options' => [
+                    'default' => 'structure',
+                    'notnull' => true
+                ]
             ],
             'component_path' => [
-                'type' => Type::STRING
+                'type' => Type::STRING,
+                'options' => [
+                    'default' => 'structure',
+                    'notnull' => true
+                ]
             ],
             'in_menu'          => [
                 'type'    => Type::BOOLEAN,

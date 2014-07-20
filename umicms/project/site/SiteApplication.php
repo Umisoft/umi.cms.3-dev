@@ -22,6 +22,7 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\exception\InvalidLicenseException;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -127,10 +128,11 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
-            return $redirectResponse;
-        }
+        /**
+         * Do not delete this comment.
+         * License checker will appear here.
+         */
+        //$this->checkLicense($request);
 
         /*if ($response = $this->postRedirectGet($request)) {
             return $response; //TODO разобраться, почему проблема в xslt
@@ -168,15 +170,24 @@ class SiteApplication extends SiteComponent
     {
         $request = $context->getDispatcher()->getCurrentRequest();
 
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
+        $currentPath = $request->getPathInfo();
+        $requestFormat = $request->getRequestFormat(null);
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
+        if ($requestFormat) {
+            $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
+        }
+
+        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
+
+        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        $requestFormat = $request->getRequestFormat();
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
+            return $redirectResponse;
+        }
 
-        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if (!is_null($requestFormat) && $requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
@@ -317,13 +328,18 @@ class SiteApplication extends SiteComponent
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
+     * @param string|null $suffix
      * @return Response|null
      */
-    protected function processDefaultPageRedirect()
+    protected function processDefaultPageRedirect($suffix = null)
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
+            $location = $this->getUrlManager()->getProjectUrl();
+            if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
+                $location .= '.' . $suffix;
+            }
+            $response->headers->set('Location', $location);
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 
@@ -368,6 +384,111 @@ class SiteApplication extends SiteComponent
                 }
             }
         );
+    }
+
+    /**
+     * Проверяет лицензию.
+     * @param Request $request
+     * @throws InvalidLicenseException в случае если произошла ошибка связанная с лицензией
+     */
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function checkLicense(Request $request)
+    {
+        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $defaultDomain = $this->getDefaultDomain();
+
+        if (empty($domainKey)) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+        if (empty($defaultDomain)) {
+            throw new InvalidLicenseException($this->translate(
+                'Do not set the default domain.'
+            ));
+        }
+        if ($this->getHostDomain($request) !== $defaultDomain) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key for domain.'
+            ));
+        }
+        $licenseType = $this->getSiteSettings()->get('licenseType');
+        if (empty($licenseType)) {
+            throw new InvalidLicenseException($this->translate(
+                'Wrong license type.'
+            ));
+        }
+        if (strstr($licenseType, base64_decode('dHJpYWw='))) {
+            $deactivation = $this->getSiteSettings()->get('deactivation');
+            if (empty($deactivation) || base64_decode($deactivation) < time()) {
+                throw new InvalidLicenseException($this->translate(
+                    'License has expired.'
+                ));
+            }
+        }
+        if (!$this->checkDomainKey($request)) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+    }
+
+    /**
+     * Формирует эталонный доменный ключ.
+     * @param Request $request
+     * @param string $license тип лицензии, для которой генерировать доменный ключ
+     * @return string
+     */
+    private function getSourceDomainKey(Request $request, $license) {
+        $serverAddress = $request->server->get('SERVER_ADDR');
+        $defaultDomain = $this->getDefaultDomain();
+
+        $licenseKeyCode = strtoupper(substr(md5($serverAddress), 0, 11) . "-" . substr(md5($defaultDomain . $license), 0, 11));
+
+        return $licenseKeyCode;
+    }
+
+    /**
+     * Возвращает домен по умолчанию.
+     * @return string
+     */
+    private function getDefaultDomain()
+    {
+        $defaultDomain = $this->getSiteSettings()->get('defaultDomain');
+        if (mb_strrpos($defaultDomain, 'www.') === 0) {
+            $defaultDomain = mb_substr($defaultDomain, 4);
+        }
+
+        return $defaultDomain;
+    }
+
+    /**
+     * Возвращает текущий домен.
+     * @param Request $request
+     * @return string
+     */
+    private function getHostDomain(Request $request)
+    {
+        $host = $request->getHost();
+        if (mb_strrpos($host, 'www.') === 0) {
+            $host = mb_substr($host, 4);
+        }
+
+        return $host;
+    }
+
+    /**
+     * Проверяет соответствие доменного ключа полученному.
+     * @param Request $request
+     * @return bool
+     */
+    private function checkDomainKey(Request $request)
+    {
+        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
+
+        return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
     }
 
 }

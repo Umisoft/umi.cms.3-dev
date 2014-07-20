@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'component:group:displayName' => 'Groups',
 
-        'role:editor:displayName' => 'Managing groups'
+        'role:editor:displayName' => 'Manage groups'
     ],
 
     'ru-RU' => [

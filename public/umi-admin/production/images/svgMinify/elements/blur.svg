@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg"><defs><filter><feGaussianBlur stdDeviation="3"/></filter><filter><feGaussianBlur in="SourceAlpha" stdDeviation="2"/><feOffset dx="5" dy="5" result="offsetblur"/><feFlood flood-color="#000"/><feComposite in2="offsetblur" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>

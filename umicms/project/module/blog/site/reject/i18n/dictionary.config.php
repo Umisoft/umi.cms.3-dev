@@ -11,19 +11,17 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Management rejected posts',
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'View list posts rejected',
-        'role:editExecutor:displayName' => 'Edit rejected post',
-        'role:viewExecutor:displayName' => 'Viewer rejected post',
+        'role:author:displayName' => 'Manage rejected posts',
+        'role:viewer:displayName' => 'View rejected post list',
+        'role:editExecutor:displayName' => 'Edit rejected posts',
+        'role:viewExecutor:displayName' => 'Viewer rejected posts',
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Управление отклонёнными постами',
-        'role:moderator:displayName' => 'Модерирование отклонённых постов',
-        'role:viewer:displayName' => 'Просмотр списка отклонённых постов',
-        'role:editExecutor:displayName' => 'Редактирование отклонённого поста',
-        'role:viewExecutor:displayName' => 'Просмотр отклонённого поста',
+        'role:author:displayName' => 'Управление отклоненными постами',
+        'role:viewer:displayName' => 'Просмотр списка отклоненных постов',
+        'role:editExecutor:displayName' => 'Редактирование отклоненного поста',
+        'role:viewExecutor:displayName' => 'Просмотр отклоненного поста',
     ]
 
 ];

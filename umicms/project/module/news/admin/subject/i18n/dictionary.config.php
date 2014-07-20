@@ -15,11 +15,11 @@ return [
 
         'action:create:base' => 'Create subject',
 
-        'role:editor:displayName' => 'Managing subject'
+        'role:editor:displayName' => 'Manage subjects'
     ],
 
     'ru-RU' => [
-        'component:subject:displayName' => 'Новостные сюжеты',
+        'component:subject:displayName' => 'Сюжеты',
 
         'action:create:base' => 'Добавить сюжет',
 

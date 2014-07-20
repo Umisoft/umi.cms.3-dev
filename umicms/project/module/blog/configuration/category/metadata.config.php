@@ -10,13 +10,12 @@
 
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
-use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_category'

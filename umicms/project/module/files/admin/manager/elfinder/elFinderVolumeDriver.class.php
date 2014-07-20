@@ -229,7 +229,7 @@ abstract class elFinderVolumeDriver {
 		'plugin'       => array(),
 		// required to fix bug on macos
 		'utf8fix'      => false,
-		 //                           й                 ё              Й               Ё              Ø         Å
+		 //                           й                 е              Й               е              Ø         Å
 		'utf8patterns' => array("\u0438\u0306", "\u0435\u0308", "\u0418\u0306", "\u0415\u0308", "\u00d8A", "\u030a"),
 		'utf8replace'  => array("\u0439",        "\u0451",       "\u0419",       "\u0401",       "\u00d8", "\u00c5")
 	);
@@ -1982,10 +1982,22 @@ abstract class elFinderVolumeDriver {
             }
 		}
 
-        $result = $result && (substr($name, -4) !== '.php') && strpos($name, '.php.') === false;
-
-		return $result;
+		return $result && $this->isAllowedExtension($name);
 	}
+
+    protected function isAllowedExtension($fileName)
+    {
+        $notAllowedExtensions = ["php", "php3", "php4", "php5", "phtml"];
+
+        $pathInfo = pathinfo($fileName);
+        if (isset($pathInfo['extension']) && in_array($pathInfo['extension'], $notAllowedExtensions)) {
+            return false;
+        } elseif (isset($pathInfo['filename']) && strpos($pathInfo['filename'], '.')!== false) {
+            return $this->isAllowedExtension($pathInfo['filename']);
+        }
+
+        return true;
+    }
 	
 	/**
 	 * Return new unique name based on file name and suffix

@@ -10,11 +10,25 @@
 
 namespace umicms\hmvc\component\admin\collection;
 
-use umi\form\IForm;
+use umi\form\element\Checkbox;
+use umi\form\element\html5\DateTime;
+use umi\form\element\Select;
+use umi\form\element\Text;
+use umi\form\element\Textarea;
+use umi\form\IFormAware;
+use umi\form\IFormEntity;
+use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umi\i18n\translator\ITranslator;
 use umi\orm\collection\ISimpleHierarchicCollection;
+use umi\orm\metadata\field\datetime\DateTimeField;
+use umi\orm\metadata\field\IField;
+use umi\orm\metadata\field\IRelationField;
+use umi\orm\metadata\field\numeric\BoolField;
+use umi\orm\metadata\field\string\TextField;
 use umicms\exception\RuntimeException;
+use umicms\form\element\Wysiwyg;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
@@ -23,6 +37,7 @@ use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
@@ -36,14 +51,25 @@ use umicms\project\module\users\model\object\RegisteredUser;
 /**
  * Контроллер действий над объектом.
  */
-class ActionController extends BaseController
+class ActionController extends BaseController implements IFormAware
 {
     use TActionController;
+    use TFormAware;
+
+    /**
+     * @var ITranslator $translator транслятор
+     */
+    protected $translator;
+
+    public function __construct(ITranslator $translator)
+    {
+        $this->translator = $translator;
+    }
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
      * @throws HttpException
-     * @return IForm
+     * @return \ArrayObject
      */
     protected function actionGetEditForm()
     {
@@ -55,13 +81,134 @@ class ActionController extends BaseController
     /**
      * Возвращает форму для создания объекта коллекции.
      * @throws HttpException
-     * @return IForm
+     * @return \ArrayObject
      */
     protected function actionGetCreateForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
+        $collection = $this->getCollection();
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView();
+        return [
+            'guid' => $collection->getGUIDField()->generateGUID(),
+            'form' => $collection->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView()
+        ];
+    }
+
+    /**
+     * Возвращает форму для фильтрации данных в коллекции.
+     * @return \ArrayObject
+     */
+    protected function actionGetFilter()
+    {
+        $elements = [];
+        $collection = $this->getCollection();
+        $ignoredFieldNames = $collection->getIgnoredTableFilterFieldNames();
+        foreach ($this->getCollection()->getMetadata()->getFields() as $field) {
+
+            if (
+                ($field instanceof IRelationField && !$field instanceof BelongsToRelationField)
+                || in_array($field->getName(), $ignoredFieldNames)
+            ) {
+                continue;
+            }
+
+            $fieldName = $field->getName();
+            $label = $this->translator->translate($collection->getDictionaryNames(), $fieldName);
+
+            $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
+
+
+            if ($field instanceof BelongsToRelationField) {
+                /**
+                 * @var ICmsCollection $targetCollection
+                 */
+                $targetCollection = $field->getTargetCollection();
+                $targetIgnoredFieldNames = $targetCollection->getIgnoredTableFilterFieldNames();
+                foreach ($targetCollection->getMetadata()->getFields() as $relatedField) {
+
+                    if (
+                        $relatedField instanceof IRelationField
+                        || in_array($relatedField->getName(), $targetIgnoredFieldNames)
+                    ) {
+                        continue;
+                    }
+
+                    $relatedFieldName = $relatedField->getName();
+                    $relatedDataSource = $relatedElementName = $fieldName . '.' . $relatedFieldName;
+                    $relatedLabel = $label . ': ' . $this->translator->translate($targetCollection->getDictionaryNames(), $relatedFieldName);
+
+                    $elements[] = $this->buildFormElement(
+                        $relatedField, $targetCollection, $relatedElementName, $relatedDataSource, $relatedLabel
+                    );
+                }
+
+            }
+        }
+
+        $form = $this->createForm([]);
+
+        foreach ($elements as $element) {
+            $form->add($element);
+        }
+
+        return ['defaultFields' => $collection->getDefaultTableFilterFieldNames(), 'form' => $form->getView()];
+    }
+
+    /**
+     * Формирует элемент формы на основе поля метаданных
+     * @param IField $field
+     * @param ICmsCollection $collection
+     * @param string $elementName имя элемента формы
+     * @param string $dataSource имя источника значения
+     * @param string $label лейбл
+     * @return IFormEntity
+     */
+    protected function buildFormElement(IField $field, ICmsCollection $collection, $elementName, $dataSource, $label)
+    {
+        $options = [
+            'dataSource' => $dataSource
+        ];
+
+        switch(true) {
+            case ($field->getName() === ICmsObject::FIELD_TYPE): {
+                $type = Select::TYPE_NAME;
+                $options['choices'] = [];
+                foreach ($collection->getMetadata()->getTypesList() as $typeName) {
+                    $options['choices'][$typeName] =
+                        $this->translator->translate($collection->getDictionaryNames(), 'type:' . $typeName . ':displayName');
+                }
+                break;
+            }
+            case $field instanceof BelongsToRelationField: {
+                $type = Select::TYPE_NAME;
+                $options['lazy'] = true;
+                break;
+            }
+            case $field instanceof BoolField: {
+                $type = Checkbox::TYPE_NAME;
+                break;
+            }
+            case ($field instanceof TextField || $field instanceof Wysiwyg): {
+                $type = Textarea::TYPE_NAME;
+                break;
+            }
+            case ($field instanceof DateTimeField): {
+                $type = DateTime::TYPE_NAME;
+                break;
+            }
+            default: {
+                $type = Text::TYPE_NAME;
+            }
+        }
+
+        return $this->createFormEntity(
+            $elementName,
+            [
+                'type' => $type,
+                'label' => $label,
+                'options' => $options
+            ]
+        );
     }
 
     /**

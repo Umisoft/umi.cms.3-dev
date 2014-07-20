@@ -25,7 +25,7 @@ class Button
      */
     public $attributes = [
         'hasIcon' => true,
-        'class' => 'umi-button-icon-32 umi-light-bg'
+        'class' => 'button white'
     ];
 
     /**

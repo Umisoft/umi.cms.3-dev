@@ -9,12 +9,11 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_author'
@@ -34,11 +33,13 @@ return array_replace_recursive(
             ],
             BlogAuthor::FIELD_COMMENTS_COUNT => [
                 'type' => IField::TYPE_COUNTER,
-                'columnName' => 'comments_count'
+                'columnName' => 'comments_count',
+                'defaultValue' => 0
             ],
             BlogAuthor::FIELD_POSTS_COUNT => [
                 'type' => IField::TYPE_COUNTER,
-                'columnName' => 'posts_count'
+                'columnName' => 'posts_count',
+                'defaultValue' => 0
             ],
             BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,

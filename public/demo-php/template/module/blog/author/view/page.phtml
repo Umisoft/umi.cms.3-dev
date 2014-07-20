@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var umicms\project\module\blog\model\object\BlogAuthor $page
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->getHeader() ?></h1>
+
+<?= $page->contents ?>
+
+<p><?= $this->translate('All comments') ?>: <?=$page->commentsCount?></p>
+<p><?= $this->translate('All posts') ?>: <?=$page->postsCount?></p>
+
+<?= $this->widget('blog.author.view.posts', ['blogAuthors' => [$page], 'template' => 'postList']); ?>

@@ -4,7 +4,7 @@ return [
     'en-US' => [
         'component:common:displayName' => 'Common',
 
-        'role:configurator:displayName' => 'Managing settings'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ */
+?>
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
+    <?=$page->contents?>
+
+    <?php if (isset($errors)) : ?>
+
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+    <?php else : ?>
+
+        <div class="alert alert-success">
+            <p><?= $this->translate("A new password was sent to your email") ?>.</p>
+        </div>
+
+    <?php endif; ?>
+
+</div>
