@@ -41,6 +41,7 @@ class SearchController extends BaseSitePageController
      * @templateParam umi\form\FormEntityView $form представление формы
      * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница поиска
      * @templateParam string $query текущий поисковый запрос
+     * @templateParam string $encodedQuery URL-закодированный текущий поисковый запрос
      *
      * @return Response
      */
@@ -52,13 +53,15 @@ class SearchController extends BaseSitePageController
          * @var IFormElement $queryInput
          */
         $queryInput = $form->get('query');
+        $query = $queryInput->getValue();
 
         return $this->createViewResponse(
             $this->template,
             [
                 'page' => $this->getCurrentPage(),
                 'form' => $form->getView(),
-                'query' => $queryInput->getValue()
+                'query' => $query,
+                'encodedQuery' => urlencode($query)
             ]
         );
     }
