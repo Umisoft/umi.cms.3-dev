@@ -58,11 +58,10 @@
     &.tiny{
         padding-bottom: rem-calc(6);
         .icon{
-            // Костыль конечно
-            margin-top: -7px;
+            margin-top: -2px;
             margin-bottom: -6px;
-            margin-left: -4px;
-            margin-right: -4px;
+            margin-left: -2px;
+            margin-right: -3px;
         }
         &.square{
             padding-left: $button-tny;

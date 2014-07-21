@@ -1,0 +1,27 @@
+
+<h1>{{ translate('Validation error') }}</h1>
+<h2>{{ error.getMessage() }}</h2>
+
+<ul>
+{% for object in error.getInvalidObjects() %}
+
+    <li>
+        <h2>{{ object.displayName }} ({{ object.getCollectionName() }})</h2>
+        <ul>
+            {% for propertyName, errorMessages in object.getValidationErrors() %}
+            <li>
+                {{ propertyName }}
+                <ul>
+                    {% for errorMessage in errorMessages %}
+                    <li>
+                        {{ errorMessage }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+
+    {% endfor %}
+</ul>

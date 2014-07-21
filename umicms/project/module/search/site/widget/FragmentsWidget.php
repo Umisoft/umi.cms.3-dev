@@ -10,8 +10,8 @@
 
 namespace umicms\project\module\search\site\widget;
 
-use umi\http\THttpAware;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\search\model\object\SearchIndex;
 use umicms\project\module\search\model\SearchModule;
@@ -53,7 +53,14 @@ class FragmentsWidget extends BaseCmsWidget
     }
 
     /**
-     * Вывод фрагментов. Если найденный текст не содержит точного свопадения с запросом — фрагменты не выводятся.
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam string $query поисковый запрос
+     * @templateParam umicms\project\module\search\model\highlight\Fragmenter $fragmenter фрагментатор текста по найденным в нем словам
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

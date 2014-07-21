@@ -10,6 +10,8 @@
 
 namespace umicms\hmvc\widget;
 
+use umicms\hmvc\view\CmsView;
+
 /**
  * Базовый класс виджета вывода ссылки
  */
@@ -31,7 +33,12 @@ abstract class BaseLinkWidget extends BaseCmsWidget
     abstract protected function getLinkUrl();
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam string $url URL ссылки
+     *
+     * @return CmsView
      */
     public function __invoke()
     {
