@@ -34,10 +34,12 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocales
      */
     public function normalizeSearchString($searchString)
     {
-        $stringOriginal = trim(mb_strtoupper($searchString, 'utf-8'));
-        $stringOriginal = $this->filterStopwords($stringOriginal);
+        $searchString = html_entity_decode(strip_tags($searchString));
+        $searchString = preg_replace('/\s+/u', ' ', $searchString);
+        $searchString = trim(mb_strtoupper($searchString, 'utf-8'));
+        $searchString = $this->filterStopWords($searchString);
 
-        if (!preg_match_all('/[0-9A-ZА-Я_]+/u', $stringOriginal, $matches)) {
+        if (!preg_match_all('/[0-9A-ZА-Я_]+/u', $searchString, $matches)) {
             return '';
         }
 
@@ -66,28 +68,11 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocales
     }
 
     /**
-     * Приводит текст к виду, пригодному для сохранения в поисковый индекс.
-     * @param string $string
-     * @return string
-     */
-    public function normalizeIndexString($string)
-    {
-        $string = html_entity_decode(strip_tags($string));
-        $string = mb_strtoupper($string, 'utf-8');
-        $string = trim($this->filterStopwords($string));
-        $string = preg_replace('/\s+/u', ' ', $string);
-        $string = preg_replace('/[^0-9A-ZА-Я_ -]/u', '', $string);
-        $string = preg_replace('/\s+/u', ' ', $string);
-
-        return $this->filterStopwords($string);
-    }
-
-    /**
      * Отбрасывает из текста слова, не представляющие ценности для поиска.
      * @param string $string
      * @return string
      */
-    protected function filterStopwords($string)
+    protected function filterStopWords($string)
     {
         return preg_replace('/\b[АОУИВСБЯК]\b/u', '', $string);
     }
