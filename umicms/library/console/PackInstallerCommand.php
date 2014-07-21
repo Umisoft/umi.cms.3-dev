@@ -202,7 +202,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, ProgressBar $progress)
     {
-        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $content = file_get_contents($file);
         $content = $this->stripWhitespace($content);
