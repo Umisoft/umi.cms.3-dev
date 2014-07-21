@@ -48,6 +48,23 @@ body{
     }
 }
 
+.umi-route-transition-loader{
+    position: absolute;
+    margin-top: 0;
+    z-index: 1;
+    left: 50%;
+    width: 160px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    margin-left: -80px;
+    top: 112px;
+    i{
+        vertical-align: middle;
+        margin-left: -10px;
+    }
+}
+
 .no-csscalc{
     body::after{
         content: "Для работы Вам необходимо установить новую версию браузера";

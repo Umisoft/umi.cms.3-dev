@@ -3,8 +3,10 @@ define([], function(){
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
             settings: null,
-            modules: null
+            modules: null,
+            routeIsTransition: null
         });
+        UMI.ModuleController = Ember.ObjectController.extend({});
 
         /**
          * @class ComponentController
