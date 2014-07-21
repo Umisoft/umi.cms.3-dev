@@ -17,7 +17,7 @@
             <h3>
                 <a href="<?= $page->getPageUrl() ?>"><?= $page->displayName ?></a>
             </h3>
-            <?= $this->widget('search.fragments', ['query' => $query, 'page' => $page]); ?>
+            <?= $this->widget('search.fragments', ['query' => $query, 'index' => $index]); ?>
         </div>
     <?php endforeach; ?>
 

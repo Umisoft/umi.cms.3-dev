@@ -57,6 +57,15 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocales
     }
 
     /**
+     * Возвращает коллекцию для сайтовой индексации.
+     * @return SearchIndexCollection
+     */
+    public function getSiteIndexCollection()
+    {
+        return $this->getCollectionManager()->getCollection('searchIndex');
+    }
+
+    /**
      * Приводит текст к виду, пригодному для сохранения в поисковый индекс.
      * @param string $string
      * @return string
@@ -71,15 +80,6 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocales
         $string = preg_replace('/\s+/u', ' ', $string);
 
         return $this->filterStopwords($string);
-    }
-
-    /**
-     * Возвращает коллекцию для сайтовой индексации.
-     * @return SearchIndexCollection
-     */
-    protected function getSiteIndexCollection()
-    {
-        return $this->getCollectionManager()->getCollection('searchIndex');
     }
 
     /**
