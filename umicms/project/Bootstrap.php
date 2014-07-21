@@ -208,6 +208,15 @@ class Bootstrap
     }
 
     /**
+     * Возвращает конфигурацию текущего проекта
+     * @return array
+     */
+    public function getProjectConfig()
+    {
+        return $this->configToArray($this->projectConfig);
+    }
+
+    /**
      * Производит предварительную маршрутизацию для определения текущего проекта.
      * @throws RuntimeException
      * @throws UnexpectedValueException

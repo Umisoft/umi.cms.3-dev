@@ -1,0 +1,10 @@
+
+{{ include('breadcrumbs.twig') }}
+
+{% if page.getPageUrl() matches '{.*widgets.*}' %}
+    {{ include('widgets.twig', {'page' : page}) }}
+{% elseif page.getPageUrl() matches '{.*controllers.*}' %}
+    {{ include('controllers.twig', {'page' : page}) }}
+{% else %}
+    {{ include('simple.twig', {'page' : page}) }}
+{% endif %}

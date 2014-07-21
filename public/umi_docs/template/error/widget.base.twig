@@ -1,0 +1,43 @@
+{% block start %}
+{% endblock %}
+{% if code == '404' %}
+
+    {% block error404 %}
+    {% endblock %}
+
+{% elseif code == '403' %}
+
+    {% block error403 %}
+    {% endblock %}
+
+{% else %}
+
+    {% block error500 %}
+    {% endblock %}
+
+{% endif %}
+
+{% if showTrace %}
+    {% block trace %}
+    {% endblock %}
+{% endif %}
+
+{% if showStack and stack %}
+
+    {% block start_stack %}
+    {% endblock %}
+
+    {% for error in stack %}
+
+        {% block stack_error %}
+        {% endblock %}
+
+    {% endfor %}
+
+    {% block end_stack %}
+    {% endblock %}
+
+{% endif %}
+
+{% block end %}
+{% endblock %}
