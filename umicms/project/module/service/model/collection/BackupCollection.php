@@ -43,7 +43,7 @@ class BackupCollection extends CmsCollection
             ->fields(
                 [
                     Backup::FIELD_OBJECT_ID,
-                    Backup::FIELD_COLLECTION_NAME,
+                    Backup::FIELD_REF_COLLECTION_NAME,
                     Backup::FIELD_CREATED,
                     Backup::FIELD_OWNER
                 ]
@@ -59,7 +59,7 @@ class BackupCollection extends CmsCollection
     {
         return $this->select()
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
-            ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName())
+            ->where(Backup::FIELD_REF_COLLECTION_NAME)->equals($object->getCollectionName())
             ->orderBy(Backup::FIELD_CREATED, CmsSelector::ORDER_DESC);
     }
 
@@ -129,7 +129,7 @@ class BackupCollection extends CmsCollection
 
         $backup = $this->add();
         $backup->objectId = $object->getId();
-        $backup->collectionName = $object->getCollectionName();
+        $backup->refCollectionName = $object->getCollectionName();
         $backup->getProperty(Backup::FIELD_DATA)->setValue(serialize($object));
 
         return $this;
