@@ -81,7 +81,7 @@ class MegaindexComponentLayout extends AdminComponentLayout
             $this->addEmptyContextControl('redirect', $control);
         } else {
             $control = new AdminControl($this->component);
-            $control->params['content'] = $this->component->translate('Do not set auth data');
+            $control->params['content'] = $this->component->translate('The required settings are not set');
 
             $this->addEmptyContextControl('empty', $control);
         }

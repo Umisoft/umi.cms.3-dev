@@ -82,19 +82,21 @@ class Utils
      */
     public static function getCurrentGitVersion()
     {
-        $process = new Process('git log --pretty="%H" -n1 HEAD');
+        $cwd = dirname(dirname(__DIR__));
+
+        $process = new Process('git log --pretty="%H" -n1 HEAD', $cwd);
         if ($process->run() != 0) {
             throw new \RuntimeException('Cannot detect last version hash. Can\'t run git log..');
         }
 
         $version = trim($process->getOutput());
 
-        $process = new Process('git describe --tags HEAD');
+        $process = new Process('git describe --tags HEAD', $cwd);
         if ($process->run() == 0) {
             $version = trim($process->getOutput());
         }
 
-        $process = new Process('git log -n1 --pretty=%ci HEAD');
+        $process = new Process('git log -n1 --pretty=%ci HEAD', $cwd);
         if ($process->run() != 0) {
             throw new \RuntimeException('Cannot detect last version date. Can\'t run git log.');
         }
