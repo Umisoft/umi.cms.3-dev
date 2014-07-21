@@ -140,7 +140,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, ProgressBar $progress = null)
     {
-        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         if ($progress) {
             $progress->setMessage('Packing "' . $localPath . '"');
