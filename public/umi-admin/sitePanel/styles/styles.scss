@@ -111,7 +111,7 @@ body.has-umi-site-panel-topbar{
             color: #D5D6D8;
             height: $umi-top-bar-height;
             line-height: $umi-top-bar-height;
-            padding: 0 8px;
+            padding: 0 5px;
             display: inline-block;
             .umi-topbar-icon-butterfly{
                 margin-top: 3px;
@@ -123,7 +123,7 @@ body.has-umi-site-panel-topbar{
             line-height: $umi-top-bar-height;
             text-decoration: none;
             display: inline-block;
-            padding: 0 8px;
+            padding: 0 5px;
             cursor: pointer;
             &:hover{
                 background: linear-gradient(#535b69 0%,#31353b 100%);
@@ -157,6 +157,7 @@ body.has-umi-site-panel-topbar{
             &.umi-open{
                 background: #fff;
                 color: #575e6c;
+                border-bottom: 0;
                 .umi-topbar-dropdown{
                     visibility: visible;
                     opacity: 1;
@@ -210,7 +211,6 @@ body.has-umi-site-panel-topbar{
                 bottom: -3px;
                 background: url($image-to-bottom-shadow);
                 background-repeat: repeat-x;
-                z-index: 9999;
             }
         }
     }

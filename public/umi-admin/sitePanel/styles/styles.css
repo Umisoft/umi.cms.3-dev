@@ -86,7 +86,7 @@ body.has-umi-site-panel-topbar {
   color: #D5D6D8;
   height: 25px;
   line-height: 25px;
-  padding: 0 8px;
+  padding: 0 5px;
   display: inline-block;
 }
 #umi-site-panel-topbar .umi-topbar-label .umi-topbar-icon-butterfly {
@@ -98,7 +98,7 @@ body.has-umi-site-panel-topbar {
   line-height: 25px;
   text-decoration: none;
   display: inline-block;
-  padding: 0 8px;
+  padding: 0 5px;
   cursor: pointer;
 }
 #umi-site-panel-topbar .umi-topbar-button:hover {
@@ -111,7 +111,7 @@ body.has-umi-site-panel-topbar {
   line-height: 25px;
   text-decoration: none;
   display: inline-block;
-  padding: 0 8px;
+  padding: 0 5px;
   cursor: pointer;
   padding-right: 30px;
   position: relative;
@@ -139,6 +139,7 @@ body.has-umi-site-panel-topbar {
 #umi-site-panel-topbar .umi-topbar-button-dropdown.umi-open {
   background: #fff;
   color: #575e6c;
+  border-bottom: 0;
 }
 #umi-site-panel-topbar .umi-topbar-button-dropdown.umi-open .umi-topbar-dropdown {
   visibility: visible;
@@ -191,5 +192,4 @@ body.has-umi-site-panel-topbar {
   bottom: -3px;
   background: url("../../production/images/shadows/toBottomShadow.png?version=2ba0681652d9280c465e30f02ec242fa677a4340");
   background-repeat: repeat-x;
-  z-index: 9999;
 }
