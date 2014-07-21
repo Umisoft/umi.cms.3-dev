@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
+use umicms\install\installer\Installer;
 use Phar;
-use install\exception\RuntimeException;
+use umicms\install\exception\RuntimeException;
 
 /**
  * Распаковывает проект.
@@ -45,8 +45,8 @@ class ExtractProject implements ICommandInstall
 
         // TODO: Распаковывается файл проекта, в зависимости от выбранного типа
 
-        $composer = new Phar(ROOT_DIR . '/demo-' . $config['projectName'] . '.phar');
-        if (!$composer->extractTo(ROOT_DIR . '/public/default', null, true)) {
+        $composer = new Phar(INSTALL_ROOT_DIR . '/demo-' . $config['projectName'] . '.phar');
+        if (!$composer->extractTo(INSTALL_ROOT_DIR . '/public/default', null, true)) {
             throw new RuntimeException(
                 'Неудалось извлечь project.'
             );

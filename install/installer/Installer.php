@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace install\installer;
+namespace umicms\install\installer;
 
 use Exception;
 use GuzzleHttp;

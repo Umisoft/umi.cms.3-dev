@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
-use install\exception\RuntimeException;
+use umicms\install\installer\Installer;
+use umicms\install\exception\RuntimeException;
 use umi\orm\collection\ICollectionManager;
 use umi\orm\persister\IObjectPersister;
 use umicms\project\Bootstrap;
@@ -113,7 +113,7 @@ EOF;
             throw new RuntimeException('Невалидный юзер.');
         }
 
-        rename(ROOT_DIR . '/.htaccess.dist', ROOT_DIR . '/.htaccess');
+        rename(INSTALL_ROOT_DIR . '/.htaccess.dist', INSTALL_ROOT_DIR . '/.htaccess');
 
         return true;
     }

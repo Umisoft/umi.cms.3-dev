@@ -9,6 +9,7 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
+            "umicms\\install\\": "install",
             "project\\" : "public",
             "tests\\" : "tests"
         },

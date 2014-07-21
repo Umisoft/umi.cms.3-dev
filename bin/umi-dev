@@ -13,6 +13,7 @@ use umicms\console\ConsoleApplication;
 use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackEnvironmentCommand;
+use umicms\console\PackInstallerCommand;
 use umicms\console\PackProjectCommand;
 use umicms\console\CreateProjectDumpCommand;
 use umicms\console\LoadProjectDumpCommand;
@@ -25,6 +26,7 @@ $application = new ConsoleApplication('UMI.CMS Developers Team Console applicati
 
 
 $application->add(new PackCoreCommand());
+$application->add(new PackInstallerCommand());
 $application->add(new PackEnvironmentCommand());
 $application->add(new PackProjectCommand());
 

@@ -60,9 +60,6 @@ class PackProjectCommand extends BaseProjectCommand
 
         $phar->startBuffering();
 
-        $style = new OutputFormatterStyle('blue', null, array('bold'));
-        $output->getFormatter()->setStyle('process', $style);
-
         $output->writeln('<info>Packing project files...</info>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
