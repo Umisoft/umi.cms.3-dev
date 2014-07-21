@@ -33,11 +33,13 @@ return array_replace_recursive(
             ],
             BlogAuthor::FIELD_COMMENTS_COUNT => [
                 'type' => IField::TYPE_COUNTER,
-                'columnName' => 'comments_count'
+                'columnName' => 'comments_count',
+                'defaultValue' => 0
             ],
             BlogAuthor::FIELD_POSTS_COUNT => [
                 'type' => IField::TYPE_COUNTER,
-                'columnName' => 'posts_count'
+                'columnName' => 'posts_count',
+                'defaultValue' => 0
             ],
             BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,

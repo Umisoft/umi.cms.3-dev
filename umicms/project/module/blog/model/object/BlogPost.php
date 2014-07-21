@@ -373,5 +373,14 @@ class BlogPost extends CmsObject implements ICmsPage
         return $this;
     }
 
+    /**
+     * Возвращает локализованное значение статуса публикации.
+     * @return string
+     */
+    public function getPublishStatus()
+    {
+        return $this->translate(
+            $this->getProperty(self::FIELD_PUBLISH_STATUS)->getValue()
+        );
+    }
 }
- 

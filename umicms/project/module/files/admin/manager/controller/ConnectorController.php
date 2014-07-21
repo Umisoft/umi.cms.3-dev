@@ -29,12 +29,22 @@ class ConnectorController extends BaseCmsController
             'roots' => [
                 [
                     'driver'        => 'LocalFileSystem',
-                    'path'          => Environment::$directoryPublic,
-                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl(),
+                    'path'          => Environment::$directoryAssets . '/images',
+                    'alias'         => $this->translate('Images'),
+                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl() . '/images',
                     'accessControl' => [$this, 'accessControl'],
                     'uploadDeny' => ['text/x-php'],
                     'uploadOverwrite' => false
-                ]
+                ],
+                [
+                    'driver'        => 'LocalFileSystem',
+                    'alias'         => $this->translate('Files'),
+                    'path'          => Environment::$directoryAssets . '/files',
+                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl() . '/files',
+                    'accessControl' => [$this, 'accessControl'],
+                    'uploadDeny' => ['text/x-php'],
+                    'uploadOverwrite' => false
+                ],
             ]
         ];
 

@@ -61,7 +61,7 @@ class SearchIndexApi extends BaseSearchApi
         }
 
         $index = $indexCollection->getIndexForObject($object);
-        $searchableContent = $inIndex ? $this->extractSearchableContent($object) : '';
+        $searchableContent = $inIndex ? $this->getIndexContent($object) : '';
 
         $index->setValue(SearchIndex::FIELD_CONTENT, $searchableContent);
     }
@@ -90,18 +90,34 @@ class SearchIndexApi extends BaseSearchApi
         return trim($content);
     }
 
+    protected function getIndexContent(ICmsPage $object)
+    {
+        $content = '';
+        /**
+         * @var ICmsPageCollection $collection
+         */
+        $collection = $object->getCollection();
+
+        foreach ($collection->getIndexablePropertyNames() as $propName) {
+            $value = $object->getValue($propName);
+            if (!is_string($value)) {
+                continue;
+            }
+            $content .= " " . $this->normalizeSearchString($this->filterSearchableText($value));
+        }
+
+        return trim($content);
+    }
+
     /**
      * Очищает текст от разметки и прочей нетекстовой информации.
-     * В отличие от {@see normalizeIndexString()}, не удаляет пунктуацию и не меняет регистр символов,
-     * полученный текст можно использовать для цитирования, например, в результатах поиска.
-     *
      * @param string $textRaw
      * @return string
      */
-    public function filterSearchableText($textRaw)
+    protected function filterSearchableText($textRaw)
     {
         $nobr = preg_replace('#<br\s*/?>#uim', ' ', $textRaw);
 
-        return html_entity_decode(strip_tags($nobr));
+        return  html_entity_decode(strip_tags($nobr));
     }
 }
