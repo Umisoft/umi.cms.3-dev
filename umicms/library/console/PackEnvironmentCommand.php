@@ -63,7 +63,7 @@ class PackEnvironmentCommand extends BaseCommand
         $rootDir = dirname(CMS_DIR);
         $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
 
-        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENCE.md'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/LICENSE'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/bin/umi'));
 
@@ -72,7 +72,7 @@ class PackEnvironmentCommand extends BaseCommand
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/core.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/project.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/tools.settings.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/db.config.dist.php'));
@@ -83,6 +83,7 @@ class PackEnvironmentCommand extends BaseCommand
 
         $finder = new Finder();
         $finder->files()
+            ->exclude('samples')
             ->in($rootDir . '/public/umi-admin/production');
 
         $progress = $this->startProgressBar($output, $finder->count());

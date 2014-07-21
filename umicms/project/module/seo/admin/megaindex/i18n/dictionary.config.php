@@ -6,7 +6,7 @@ return [
         'action:siteAnalyze:displayName' => 'Site ranking',
         'action:getBacklinks:displayName' => 'Links to site',
 
-        'Do not set auth data' => 'Do not set auth data',
+        'The required settings are not set' => 'The required settings are not set.',
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
         'component:megaindex:get_backlinksVs_from' => 'Page that contains a link',
@@ -17,7 +17,7 @@ return [
         'action:siteAnalyze:displayName' => 'Видимость сайта',
         'action:getBacklinks:displayName' => 'Ссылки на сайт',
 
-        'Do not set auth data' => 'Не заданы авторизационные данные.',
+        'The required settings are not set' => 'Не заданы авторизационные данные.',
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',
         'component:megaindex:get_backlinksVs_from' => 'Страница, на которой расположена ссылка'

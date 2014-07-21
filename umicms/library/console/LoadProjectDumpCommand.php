@@ -60,7 +60,7 @@ class LoadProjectDumpCommand extends BaseProjectCommand
 
         $dumpDirectory = $bootstrap->getProjectDumpDirectory();
 
-        $output->writeln('<process>Loading dump in memory...</process>');
+        $output->writeln('<info>Loading dump in memory...</info>');
 
         $finder = new Finder();
         $finder->files()
@@ -80,7 +80,7 @@ class LoadProjectDumpCommand extends BaseProjectCommand
         $progress->finish();
 
         $output->writeln('');
-        $output->writeln('<process>Updating search index...</process>');
+        $output->writeln('<info>Updating search index...</info>');
 
         /**
          * @var ICmsPage $object
@@ -125,7 +125,7 @@ class LoadProjectDumpCommand extends BaseProjectCommand
         } else {
             $output->writeln('<info>Persisting objects...</info>');
             $objectPersister->commit();
-            $output->writeln('<process>Complete</process>');
+            $output->writeln('<info>Complete</info>');
         }
     }
 

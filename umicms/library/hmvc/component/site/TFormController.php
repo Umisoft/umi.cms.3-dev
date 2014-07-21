@@ -106,7 +106,7 @@ trait TFormController
 
         $response = $this->buildResponse();
         if (!$formValid) {
-            $response->getStatusCode(Response::HTTP_BAD_REQUEST);
+            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
         return $response;

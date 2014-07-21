@@ -19,10 +19,12 @@
             </h3>
             <?= $this->widget('search.fragments', ['query' => $query, 'page' => $page]); ?>
         </div>
-
     <?php endforeach; ?>
 
-    <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
+    <?php if (isset($paginator)) : ?>
+        <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
+    <?php endif; ?>
+
 <?php else :?>
     <p><?=$this->translate('No results')?></p>
 <?php endif; ?>

@@ -229,7 +229,7 @@ class Bootstrap
          */
         $request = $this->toolkit->getService('umi\http\Request');
 
-        $fileName = COMMON_CONFIGURATION_DIR . '/projects.config.php';
+        $fileName = Environment::$directoryConfiguration . '/projects.config.php';
         if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
@@ -333,6 +333,17 @@ class Bootstrap
         if (!isset($projectConfig['adminAssetsUrl'])) {
             $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
         }
+
+        if (!isset($projectConfig['assetsDir'])) {
+            $projectConfig['assetsDir'] = '~/project/asset';
+        }
+        $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
+        if (!isset($assetsDir[1])) {
+            throw new UnexpectedValueException('Cannot resolve project dump destination.');
+        }
+        Environment::$directoryAssets = $assetsDir[1];
+
+        $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 

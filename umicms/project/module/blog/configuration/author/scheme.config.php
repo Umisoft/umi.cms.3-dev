@@ -35,15 +35,19 @@ return array_replace_recursive(
                 ]
             ],
             'comments_count' => [
-                'type' => Type::BIGINT,
+                'type'    => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ],
             'posts_count' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ]
         ],

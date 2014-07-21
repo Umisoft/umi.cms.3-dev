@@ -72,6 +72,7 @@ return [
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.license' => '{#lazy:~/project/site/settings/license/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.mail' => '{#lazy:~/project/site/settings/mail/i18n/dictionary.config.php}',
@@ -211,7 +212,7 @@ return [
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
 
-            'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
+            'Default or inherited layout' => 'По умолчанию или унаследованный',
         ]
     ],
 
