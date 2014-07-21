@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
-use install\exception\RuntimeException;
+use umicms\install\installer\Installer;
+use umicms\install\exception\RuntimeException;
 
 /**
  * Получение триальной лицензии.

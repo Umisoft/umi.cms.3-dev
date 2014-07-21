@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
-use install\exception\RuntimeException;
+use umicms\install\installer\Installer;
+use umicms\install\exception\RuntimeException;
 
 /**
- * Скачивает проект.
+ * Скачивает пакет с окружением.
  */
-class DownloadProject implements ICommandInstall
+class DownloadEnvironment implements ICommandInstall
 {
     /**
      * @var Installer $installer
@@ -37,24 +37,21 @@ class DownloadProject implements ICommandInstall
     public function execute()
     {
         $config = $this->installer->getConfig();
-
         if (!isset($config['license'])) {
             throw new RuntimeException(
                 'Неудалось скачать core. Ошибка лицензии.'
             );
         }
-
-        if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
-            throw new RuntimeException('Неудалось скачать проект.');
-        }
-
-        $config['license']['type'] = 'get-project';
-        $config['license']['project'] = $config['projectName'];
+        $config['license']['type'] = 'get-environment';
         $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
 
-        if (!$this->installer->copyRemote($path, ROOT_DIR . '/demo-' . $config['projectName'] . '.phar')) {
+        if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
+            throw new RuntimeException('Неудалось скачать окружение.');
+        }
+
+        if (!$this->installer->copyRemote($path, ENVIRONMENT_PHAR)) {
             throw new RuntimeException(
-                'Неудалось скачать project.'
+                'Неудалось скачать окружение.'
             );
         }
 

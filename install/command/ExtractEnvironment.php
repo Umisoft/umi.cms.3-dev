@@ -8,15 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
-use install\exception\RuntimeException;
+use umicms\install\installer\Installer;
+use Phar;
+use umicms\install\exception\RuntimeException;
 
 /**
- * Скачивание ядра системы.
+ * Распаковывает пакет окружения.
  */
-class DownloadCore implements ICommandInstall
+class ExtractEnvironment implements ICommandInstall
 {
     /**
      * @var Installer $installer
@@ -36,18 +37,14 @@ class DownloadCore implements ICommandInstall
      */
     public function execute()
     {
-        $config = $this->installer->getConfig();
-        if (!isset($config['license'])) {
-            throw new RuntimeException(
-                'Неудалось скачать core. Ошибка лицензии.'
-            );
+        if (!file_exists(ENVIRONMENT_PHAR)) {
+            throw new RuntimeException('Отсутствует пакет с окружением.');
         }
-        $config['license']['type'] = 'get-core';
-        $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
 
-        if (!$this->installer->copyRemote($path, CMS_CORE_PHAR)) {
+        $phar = new Phar(ENVIRONMENT_PHAR);
+        if (!$phar->extractTo(INSTALL_ROOT_DIR, null, true)) {
             throw new RuntimeException(
-                'Неудалось скачать core.'
+                'Неудалось распаковать окружение.'
             );
         }
 

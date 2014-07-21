@@ -150,6 +150,7 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->notName('PackCoreCommand.php')
+            ->notName('PackInstallerCommand.php')
             ->notName('PackEnvironmentCommand.php')
             ->notName('UpdateDocumentationCommand.php')
             ->notName('SiteApplication.php')

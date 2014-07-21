@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace install\exception;
+namespace umicms\install\exception;
 
 /**
  * Исключение возникшее в ходе установки системы.

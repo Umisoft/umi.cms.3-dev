@@ -1,37 +1,34 @@
 <?php
 
-namespace install;
-
-use Composer\Autoload\ClassLoader;
 use GuzzleHttp\Stream;
-use install\command\CheckDb;
-use install\command\CheckLicense;
-use install\command\CheckProjectType;
-use install\command\CreateSupervisor;
-use install\command\DbConfig;
-use install\command\DownloadCore;
-use install\command\DownloadEnvironment;
-use install\command\DownloadProject;
-use install\command\ExtractEnvironment;
-use install\command\ExtractProject;
-use install\command\InstallCommandRegistry;
-use install\command\InstallProject;
-use install\command\LoadDump;
-use install\command\SaveDbConfig;
-use install\command\SiteAccess;
-use install\command\StepsInfo;
-use install\command\TrialLicense;
-use install\exception\RuntimeException;
-use install\installer\Installer;
+use umicms\install\command\CheckDb;
+use umicms\install\command\CheckLicense;
+use umicms\install\command\CheckProjectType;
+use umicms\install\command\CreateSupervisor;
+use umicms\install\command\DbConfig;
+use umicms\install\command\DownloadCore;
+use umicms\install\command\DownloadEnvironment;
+use umicms\install\command\DownloadProject;
+use umicms\install\command\ExtractEnvironment;
+use umicms\install\command\ExtractProject;
+use umicms\install\command\InstallCommandRegistry;
+use umicms\install\command\InstallProject;
+use umicms\install\command\LoadDump;
+use umicms\install\command\SaveDbConfig;
+use umicms\install\command\SiteAccess;
+use umicms\install\command\StepsInfo;
+use umicms\install\command\TrialLicense;
+use umicms\install\exception\RuntimeException;
+use umicms\install\installer\Installer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-define('ROOT_DIR', dirname(__DIR__));
-define('CMS_CORE_PHAR', ROOT_DIR . '/umicms.phar');
-define('CMS_CORE_PHP', ROOT_DIR . '/configuration/core.php');
-define('PROJECT_CONFIG_DIR', ROOT_DIR . '/public/default/configuration');
-define('ENVIRONMENT_CONFIG_DIR', ROOT_DIR . '/configuration');
-define('ENVIRONMENT_PHAR', ROOT_DIR . '/environment.phar');
+define('INSTALL_ROOT_DIR', getcwd());
+define('CMS_CORE_PHAR', INSTALL_ROOT_DIR . '/umicms.phar');
+define('CMS_CORE_PHP', INSTALL_ROOT_DIR . '/configuration/core.php');
+define('PROJECT_CONFIG_DIR', INSTALL_ROOT_DIR . '/public/default/configuration');
+define('ENVIRONMENT_CONFIG_DIR', INSTALL_ROOT_DIR . '/configuration');
+define('ENVIRONMENT_PHAR', INSTALL_ROOT_DIR . '/environment.phar');
 
 $vendorDirectory = dirname(__DIR__) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';
@@ -41,15 +38,8 @@ ini_set('display_errors', 1);
 
 mb_internal_encoding("utf8");
 
-if (!file_exists($autoLoaderPath)) {
-    throw new RuntimeException(
-        sprintf('Cannot load application. File "%s" not found.', $autoLoaderPath)
-    );
-}
-
 /** @noinspection PhpIncludeInspection */
-/** @var $loader ClassLoader */
-$loader = require $autoLoaderPath;
+require $autoLoaderPath;
 
 session_start();
 

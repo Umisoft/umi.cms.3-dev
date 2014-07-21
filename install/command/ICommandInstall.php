@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\installer\Installer;
+use umicms\install\installer\Installer;
 
 /**
  * Интекфейс команды инсталятора.

@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace install\command;
+namespace umicms\install\command;
 
-use install\exception\RuntimeException;
+use umicms\install\exception\RuntimeException;
 
 /**
  * Регистр команд.
