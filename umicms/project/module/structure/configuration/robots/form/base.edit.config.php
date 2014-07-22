@@ -35,9 +35,9 @@ return [
             ]
         ],
 
-        'settings' => [
+        'meta' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'settings',
+            'label' => 'meta',
             'elements' => [
                 Robots::FIELD_PAGE_RELATION => [
                     'type' => Text::TYPE_NAME,
