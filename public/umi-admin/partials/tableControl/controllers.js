@@ -41,12 +41,16 @@ define(['App'], function(UMI){
              */
             getObjects: function(){
                 var self = this;
+                self.send('showLoader');
                 var query = this.get('query') || {};
                 var collectionName = self.get('collectionName');
                 var objects = self.store.find(collectionName, query);
-                var orderByProperty = this.get('orderByProperty');
+                var orderByProperty = self.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
                 var sortAscending = orderByProperty && 'direction' in orderByProperty ? orderByProperty.direction : true;
+                objects.then(function(){
+                    self.send('hideLoader');
+                });
                 var data = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: objects,
                     sortProperties: [sortProperties],

@@ -48,7 +48,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -88,7 +88,12 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница запроса смены пароля
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

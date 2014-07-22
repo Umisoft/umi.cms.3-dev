@@ -26,6 +26,13 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         height: 32px;
         line-height: 32px;
     }
+
+    &.animate-loader-blue{
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        background: url($image-spinner-blue) center center no-repeat;
+    }
 }
 
 .icon{
@@ -40,6 +47,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     line-height: 16px;
     background: url($umi-icons-img) no-repeat;
     background-color: transparent;
+    background-position: -1220px 0;
 
     &.icon-butterfly{
         background: url($image-butterfly) no-repeat;
@@ -82,7 +90,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     &.icon-list, &.icon-backToFilter{
         background-position: -220px 0;
     }
-    &.icon-delete, &.icon-trash{
+    &.icon-delete{
         background-position: -240px 0;
     }
     &.icon-pause{
@@ -220,6 +228,12 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     &.icon-viewOnSite{
         background-position: -1160px 0;
     }
+    &.icon-save, &.icon-saveAndGoBack{
+        background-position: -1180px 0;
+    }
+    &.icon-trash{
+        background-position: -1200px 0;
+    }
 
     &.white{
         &.icon-image{
@@ -258,7 +272,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-list, &.icon-backToFilter{
             background-position: -220px -20px;
         }
-        &.icon-delete, &.icon-trash{
+        &.icon-delete{
             background-position: -240px -20px;
         }
         &.icon-pause{
@@ -396,6 +410,12 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-viewOnSite{
             background-position: -1160px -20px;
         }
+        &.icon-save, &.icon-saveAndGoBack{
+            background-position: -1180px -20px;
+        }
+        &.icon-trash{
+            background-position: -1200px -20px;
+        }
     }
 
     &.black{
@@ -435,7 +455,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-list, &.icon-backToFilter{
             background-position: -220px -40px;
         }
-        &.icon-delete, &.icon-trash{
+        &.icon-delete{
             background-position: -240px -40px;
         }
         &.icon-pause{
@@ -572,6 +592,12 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         }
         &.icon-viewOnSite{
             background-position: -1160px -40px;
+        }
+        &.icon-save, &.icon-saveAndGoBack{
+            background-position: -1180px -40px;
+        }
+        &.icon-trash{
+            background-position: -1200px -40px;
         }
     }
 }
