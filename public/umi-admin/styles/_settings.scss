@@ -1,8 +1,8 @@
 //settings
 @import "version";
 
-$images-path: '../images/';
-$images-version: '?version=' + $project-version;
+$images-path: '../images/' !default;
+$images-version: '?version=' + $project-version !default;
 
 $image-to-top-shadow: $images-path + 'shadows/toTopShadow.png' + $images-version !default;
 $image-to-bottom-shadow: $images-path + 'shadows/toBottomShadow.png' + $images-version !default;

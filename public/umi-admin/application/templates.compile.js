@@ -2013,9 +2013,9 @@ function program1(depth0,data) {
   data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"umi-top-bar-label\"> <i class=\"icon icon-butterfly\"></i> </span> </li> <li> <span class=\"umi-top-bar-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</span> </li> <li> <a href=\"javascript:void(0)\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "viewOnSite", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> ");
+  data.buffer.push("</span> </li> <li> <a href=\"");
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.siteUrl", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> ");
   stack1 = helpers['if'].call(depth0, "routeIsTransition", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <ul class=\"umi-top-bar-list right\"> <li> ");
