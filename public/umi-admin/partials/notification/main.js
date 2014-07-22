@@ -7,7 +7,8 @@ define(['App'], function(UMI){
             'title': 'UMI.CMS',
             'content': '',
             'close': true,
-            'duration': 3000
+            'duration': 3000,
+            'kind': 'default'
         },
         create: function(params){
             var defaultSettings = this.get('settings');
@@ -33,6 +34,15 @@ define(['App'], function(UMI){
         },
         removeAll: function(){
             UMI.notificationList.set('content', []);
+        },
+        removeWithKind: function(kind){
+            var content = UMI.notificationList.get('content');
+            content = content.filter(function(item){
+                if(Ember.get(item, 'kind') !== kind){
+                    return true;
+                }
+            });
+            UMI.notificationList.set('content', content);
         }
     });
 
