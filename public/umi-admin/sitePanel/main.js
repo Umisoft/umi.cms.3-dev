@@ -55,7 +55,7 @@
             return '' +
             '<ul class="umi-topbar-ul-left">' +
             '   <li><span class="umi-topbar-label"><i class="umi-topbar-icon-butterfly"></i></span></li>' +
-            '   <li><a href="' + params.baseURL + '" class="umi-topbar-button">Административная панель</a></li>' +
+            '   <li><a href="' + params.baseURL + '" class="umi-topbar-button">' + toolbox.get(params, 'i18n.adminPanelLabel') + '</a></li>' +
             '</ul>' +
             '<ul class="umi-topbar-ul-right"></ul>';
         };
@@ -65,7 +65,7 @@
             '<span class="umi-topbar-button-dropdown" data-umi-handler="toggleDropdown">' + toolbox.get(params, 'user.displayName') +
             '    <ul class="umi-topbar-dropdown">' +
             '         <li>' +
-            '             <a href="javascript:void(0)" data-umi-handler="logout"><i class="umi-topbar-icon-exit"></i> Выход из системы</a>' +
+            '             <a href="javascript:void(0)" data-umi-handler="logout"><i class="umi-topbar-icon-exit"></i> ' + toolbox.get(params, 'i18n.logoutLabel') + '</a>' +
             '         </li>' +
             '    </ul>' +
             '</span></li>';
@@ -75,19 +75,15 @@
             API: null,
             loadAPI: function(){
                 var self = this;
-                var sitePanel = document.querySelector('#umi-site-panel');
-                var API = {
-                    baseURL: sitePanel.getAttribute('data-baseURL'),
-                    baseApiURL: sitePanel.getAttribute('data-baseApiURL')
-                };
+                var API = window.UmiSettings;
                 self.API = API;
                 self.init();
                 var request = new XMLHttpRequest();
-                request.open('GET', API.baseApiURL + '/action/auth', true);
+                request.open('GET', toolbox.get(API, 'baseApiURL') + '/action/auth', true);
                 request.onload = function(){
                     if (request.status >= 200 && request.status < 400){
                         var result = JSON.parse(request.responseText) || {};
-                         API.user = toolbox.get(result, 'result.auth.user');
+                        API.user = toolbox.get(result, 'result.auth.user');
                         self.API = API;
                         self.toolbar.querySelector('.umi-topbar-ul-right').innerHTML = userDropdown(self.API);
                     } else {

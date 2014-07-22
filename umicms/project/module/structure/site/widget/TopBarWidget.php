@@ -31,7 +31,17 @@ class TopBarWidget extends BaseCmsWidget
 
         return <<<EOF
 <link rel="stylesheet" type="text/css" href="/umi-admin/sitePanel/styles/styles.css?version=1">
-<script src="/umi-admin/sitePanel/main.js?version=1" data-baseURL="{$baseAdminUrl}" data-adminPanelLabel="{$adminPanelLabel}" data-baseApiURL="{$baseRestUrl}" data-logoutLabel="{$logoutLabel}" id="umi-site-panel"></script>
+<script>
+    window.UmiSettings = {
+        "baseURL": "{$baseAdminUrl}",
+        "baseApiURL": "{$baseRestUrl}",
+        "i18n": {
+            "adminPanelLabel": "{$adminPanelLabel}",
+            "logoutLabel": "{$logoutLabel}"
+        }
+    }
+</script>
+<script src="/umi-admin/sitePanel/main.js?version=1"></script>
 EOF;
     }
 }
