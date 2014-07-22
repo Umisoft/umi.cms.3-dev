@@ -132,7 +132,7 @@ EOF;
      */
     private function packFile($projectDirectory, Phar $phar, SplFileInfo $file)
     {
-        $localPath = strtr(str_replace($projectDirectory . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace($projectDirectory . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $phar->addFile($file, $localPath);
 
