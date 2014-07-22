@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'pageRelation' => 'Page link',
+        'role:editor:displayName' => 'Manage robots.txt'
     ],
 
     'ru-RU' => [
-        'pageRelation' => 'Ссылка на страницу',
+        'role:editor:displayName' => 'Управление robots.txt'
     ]
 
 ];
