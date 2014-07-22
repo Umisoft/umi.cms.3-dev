@@ -26,9 +26,12 @@ class TopBarWidget extends BaseCmsWidget
         $baseAdminUrl = $urlManager->getBaseAdminUrl();
         $baseRestUrl = $urlManager->getBaseRestUrl();
 
+        $logoutLabel = $this->translate('Logout');
+        $adminPanelLabel = $this->translate('Administrative panel');
+
         return <<<EOF
 <link rel="stylesheet" type="text/css" href="/umi-admin/sitePanel/styles/styles.css?version=1">
-<script src="/umi-admin/sitePanel/main.js?version=1" data-baseURL="{$baseAdminUrl}" data-baseApiURL="{$baseRestUrl}" id="umi-site-panel"></script>
+<script src="/umi-admin/sitePanel/main.js?version=1" data-baseURL="{$baseAdminUrl}" data-adminPanelLabel="{$adminPanelLabel}" data-baseApiURL="{$baseRestUrl}" data-logoutLabel="{$logoutLabel}" id="umi-site-panel"></script>
 EOF;
     }
 }
