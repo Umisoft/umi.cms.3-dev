@@ -23,7 +23,7 @@ use umicms\project\module\search\model\object\SearchIndex;
  * @method CmsSelector|SearchIndex[] select() Возвращает селектор для выбора индексов.
  * @method SearchIndex get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает индекс
  * @method SearchIndex getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает индекс по id
- * @method SearchIndex add($typeName = IObjectType::BASE) Создает и возвращает индекс
+ * @method SearchIndex add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает индекс
  */
 class SearchIndexCollection extends CmsCollection
 {
