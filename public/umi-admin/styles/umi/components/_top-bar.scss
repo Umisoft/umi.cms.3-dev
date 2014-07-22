@@ -57,4 +57,20 @@ $umi-bg-darken-set: #404959, #181B21;
             }
         }
     }
+
+    &-loader{
+        position: absolute;
+        margin-top: 0;
+        z-index: 3;
+        left: 50%;
+        width: 110px;
+        text-align: center;
+        margin-left: -55px;
+        top: 0;
+        background: linear-gradient(#3b94d5, #096eaa);
+    }
+
+    .umi-overlay{
+        position: fixed;
+    }
 }

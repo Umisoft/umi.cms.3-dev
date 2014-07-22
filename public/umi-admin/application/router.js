@@ -177,16 +177,24 @@ define([], function(){
             actions: {
                 willTransition: function(){
                     UMI.notification.removeAll();
-                    this.controllerFor('application').set('routeIsTransition', true);
+                    this.send('showLoader');
                 },
 
                 didTransition: function(){
-                    this.controllerFor('application').set('routeIsTransition', false);
+                    this.send('hideLoader');
                 },
 
                 error: function(error, transition) {
-                    this.controllerFor('application').set('routeIsTransition', false);
+                    this.send('hideLoader');
                     return true;
+                },
+
+                showLoader: function(){
+                    this.controllerFor('application').set('routeIsTransition', true);
+                },
+
+                hideLoader: function(){
+                    this.controllerFor('application').set('routeIsTransition', false);
                 },
 
                 logout: function(){

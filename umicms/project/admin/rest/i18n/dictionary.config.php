@@ -38,6 +38,7 @@ return [
         'Logout' => 'Logout',
         'Remember my choice' => 'Remember my choice',
         'Nothing found' => 'Nothing found',
+        'Loading' => 'Loading',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
