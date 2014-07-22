@@ -24,7 +24,7 @@ define(['App'], function(UMI){
             validateErrorsTemplate: function(){
                 var propertyName = this.get('meta.dataSource');
                 var template = '{{#if view.object.validErrors.' + propertyName + '}}' +
-                    '<small class="error">{{object.validErrors.' + propertyName + '}}</small>' +
+                    '<small class="error">{{view.object.validErrors.' + propertyName + '}}</small>' +
                     '{{/if}}';
                 return template;
             }

@@ -83,6 +83,12 @@ EOF;
             ['%dbname%', '%user%', '%password%', '%host%'],
             [$config['db']['dbname'], $config['db']['login'], $config['db']['password'], $config['db']['host']]
         );
+        $this->installer->createConfig(
+            ENVIRONMENT_CONFIG_DIR . '/environment.config.dist.php',
+            ENVIRONMENT_CONFIG_DIR . '/environment.config.php',
+            ['%timezone%'],
+            ['Europe/Moscow']
+        );
 
         copy(
             ENVIRONMENT_CONFIG_DIR . '/db.config.php',

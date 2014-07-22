@@ -14,7 +14,7 @@ use Exception;
 use GuzzleHttp;
 use PDO;
 use PDOException;
-use RuntimeException;
+use umicms\install\exception\RuntimeException;
 
 /**
  * Инсталятор.
@@ -118,7 +118,7 @@ class Installer
     /**
      * Возвращает конфиг.
      * @return mixed
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function getConfig()
     {
@@ -161,7 +161,7 @@ class Installer
      * @param string $fname
      * @param string $lname
      * @return \SimpleXMLElement
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function getTrialLicense($email, $fname = null, $lname = null)
     {
@@ -179,8 +179,13 @@ class Installer
             base64_decode($source) . implode('/', $params)
         )->xml();
 
-        if (isset($result->keycode)) {
-            return $result;
+        $licenseKey = $result->xpath('//keycode');
+        $domainKey = $result->xpath('//keycode/@domain-keycode');
+        if (isset($domainKey[0]) && isset($licenseKey[0])) {
+            return [
+                'domainKey' => (string) $domainKey[0],
+                'licenseKey' => (string) $licenseKey[0]
+            ];
         }
 
         throw new RuntimeException('Ошибка генерации лицензионного ключа.');
