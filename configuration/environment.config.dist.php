@@ -9,6 +9,8 @@ return [
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
 
+        'timezone' => '%timezone%',
+
         'directoryPublic' => dirname(__DIR__) . '/public',
         'directoryConfiguration' => dirname(__DIR__) . '/configuration'
     ],
@@ -17,6 +19,8 @@ return [
         'displayErrors' => false,
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
+
+        'timezone' => '%timezone%',
 
         'directoryPublic' => dirname(__DIR__) . '/public',
         'directoryConfiguration' => dirname(__DIR__) . '/configuration'

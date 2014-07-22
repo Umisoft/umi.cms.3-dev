@@ -177,6 +177,16 @@ define([], function(){
             actions: {
                 willTransition: function(){
                     UMI.notification.removeAll();
+                    this.controllerFor('application').set('routeIsTransition', true);
+                },
+
+                didTransition: function(){
+                    this.controllerFor('application').set('routeIsTransition', false);
+                },
+
+                error: function(error, transition) {
+                    this.controllerFor('application').set('routeIsTransition', false);
+                    return true;
                 },
 
                 logout: function(){

@@ -26,6 +26,13 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         height: 32px;
         line-height: 32px;
     }
+
+    &.animate-loader-blue{
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        background: url($image-spinner-blue) center center no-repeat;
+    }
 }
 
 .icon{
