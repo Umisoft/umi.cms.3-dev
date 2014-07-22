@@ -184,6 +184,11 @@ define([], function(){
                     this.controllerFor('application').set('routeIsTransition', false);
                 },
 
+                error: function(error, transition) {
+                    this.controllerFor('application').set('routeIsTransition', false);
+                    return true;
+                },
+
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
                     var maskLayout = document.createElement('div');

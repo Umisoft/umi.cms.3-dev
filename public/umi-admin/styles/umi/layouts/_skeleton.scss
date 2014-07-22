@@ -51,18 +51,16 @@ body{
 .umi-route-transition-loader{
     position: absolute;
     margin-top: 0;
-    z-index: 1;
+    z-index: 3;
     left: 50%;
-    width: 160px;
+    width: 110px;
     text-align: center;
-    line-height: 26px;
+    line-height: 25px;
     font-size: 14px;
-    margin-left: -80px;
-    top: 112px;
-    i{
-        vertical-align: middle;
-        margin-left: -10px;
-    }
+    margin-left: -55px;
+    top: 0;
+    color: #fff;
+    background: linear-gradient(#3b94d5, #096eaa);
 }
 
 .no-csscalc{

@@ -23,6 +23,7 @@ $umi-bg-darken-set: #404959, #181B21;
         height: $umi-top-bar-height;
         line-height: $umi-top-bar-height;
         padding: 0 $button-sml;
+        vertical-align: top;
         .icon{
             margin-top: rem-calc(4);
         }
