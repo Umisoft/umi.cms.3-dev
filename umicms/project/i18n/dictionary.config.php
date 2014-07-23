@@ -41,6 +41,7 @@ return [
     'project.admin.rest.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
     'project.admin.rest.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
     'project.admin.rest.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
+    'project.admin.rest.structure.robots' => '{#lazy:~/project/module/structure/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
     'project.admin.rest.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
@@ -255,4 +256,5 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+    'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
 ];
