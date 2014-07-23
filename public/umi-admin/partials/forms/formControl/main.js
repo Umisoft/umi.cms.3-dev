@@ -81,6 +81,10 @@ define(['App'],
                     return isValid;
                 }.property('object.validErrors.@each'),
 
+                textTemplate: function(){
+                    return '{{view "linkToObjectElement" object=view.object meta=view.meta}}';
+                }.property(),
+
                 wysiwygTemplate: function(){
                     return '{{view "htmlEditorCollection" object=view.object meta=view.meta}}';
                 }.property(),
@@ -98,7 +102,7 @@ define(['App'],
                 }.property(),
 
                 permissionsTemplate: function(){
-                    return '{{view "permissions" object=object meta=view.meta}}';
+                    return '{{view "permissions" object=view.object meta=view.meta}}';
                 }.property()
             });
         };

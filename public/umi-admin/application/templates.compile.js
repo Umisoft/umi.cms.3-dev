@@ -640,6 +640,28 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["UMI/partials/LinkToObjectElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+
+
+  data.buffer.push("<div class=\"small-2 columns umi-columns-fixed small-2-right\"> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\"> <i class=\"icon icon-delete\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("></i> </span> </li> <li> <span class=\"button flat white square\"> <i class=\"icon icon-open-folder\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "fileManager", "view.object", "view.meta", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0,depth0,depth0],types:["STRING","STRING","ID","ID"],data:data})));
+  data.buffer.push("></i> </span> </li> </span> </span> </div> <div class=\"small-10 columns\"> ");
+  data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
+    'type': ("text"),
+    'value': ("view.value")
+  },hashTypes:{'type': "STRING",'value': "ID"},hashContexts:{'type': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push(" </div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["UMI/partials/multi-select-lazy-choices"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
