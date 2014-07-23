@@ -13,7 +13,9 @@ return [
         'timezone' => 'UTC',
 
         'directoryPublic' => dirname(__DIR__) . '/public',
-        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration',
+
+        'cacheTemplateEnabled' => false
     ],
     'production' => [
         'errorReporting' => 0,
@@ -24,6 +26,8 @@ return [
         'timezone' => 'UTC',
 
         'directoryPublic' => dirname(__DIR__) . '/public',
-        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
+        'directoryConfiguration' => dirname(__DIR__) . '/configuration',
+
+        'cacheTemplateEnabled' => true
     ]
 ];
