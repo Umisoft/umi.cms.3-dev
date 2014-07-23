@@ -3,7 +3,7 @@ var UMI = UMI || {};
 (function () {
     var hashList = [];
     var stepsInfo = {};
-    var pathInstaller = '/install/install.php';
+    var pathInstaller = '';
 
     $(function () {
         $.get(pathInstaller, {'command': 'getStepsInfo'}).then(function (data) {
@@ -105,8 +105,8 @@ var UMI = UMI || {};
                     break;
                 }
                 case 'checkLicense' : {
-                    if (data.result.keycode !== undefined) {
-                        $('.js-handler-license-key').val(data.result.keycode);
+                    if (data.result.licenseKey !== undefined) {
+                        $('.js-handler-license-key').val(data.result.licenseKey);
                         $('.js-handler-step-next')
                             .removeAttr('disabled')
                             .removeClass('back_step_submit')
@@ -238,7 +238,7 @@ var UMI = UMI || {};
             }, function (error) {
                 $('<p style="color:red">' + error.responseJSON.message + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').prependTo('.js-handler-scroll-panel');
 
-                if (error.responseJSON.overlay !== undefined) {
+                if (error.responseJSON.overlay !== undefined && error.responseJSON.overlay !== null) {
                     overlay.open('<p style="color:red">' + error.responseJSON.message + '</p>' + error.responseJSON.overlay)
                 }
             }
@@ -257,7 +257,6 @@ var UMI = UMI || {};
         }
 
         this.close = function () {
-            console.log('убить окно')
             var $overlay = $('.js-handler-overlay');
             $overlay.html();
             $overlay.removeClass('open');

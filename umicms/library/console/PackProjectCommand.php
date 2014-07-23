@@ -60,9 +60,6 @@ class PackProjectCommand extends BaseProjectCommand
 
         $phar->startBuffering();
 
-        $style = new OutputFormatterStyle('blue', null, array('bold'));
-        $output->getFormatter()->setStyle('process', $style);
-
         $output->writeln('<info>Packing project files...</info>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
@@ -135,7 +132,7 @@ EOF;
      */
     private function packFile($projectDirectory, Phar $phar, SplFileInfo $file)
     {
-        $localPath = strtr(str_replace($projectDirectory . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace($projectDirectory . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $phar->addFile($file, $localPath);
 

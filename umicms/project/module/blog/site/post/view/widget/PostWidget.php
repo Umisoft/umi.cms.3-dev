@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\post\view\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -25,7 +26,7 @@ class PostWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $BlogPost GUID или поста
+     * @var string|BlogPost $blogPost GUID поста блога или пост
      */
     public $blogPost;
 
@@ -44,7 +45,13 @@ class PostWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost пост блога
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

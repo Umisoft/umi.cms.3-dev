@@ -76,7 +76,13 @@ trait TFormController
     abstract protected function createRedirectResponse($url, $code = Response::HTTP_SEE_OTHER);
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umi\form\FormEntityView $form представление формы
+     * @templateParam array $errors список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было
+     *
+     * @return Response
      */
     public function __invoke()
     {

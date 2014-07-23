@@ -26,7 +26,7 @@ use umicms\project\site\config\TSiteSettingsAware;
  * @method CmsSelector|Layout[] select() Возвращает селектор для выбора шаблонов.
  * @method Layout get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает шаблон по GUID.
  * @method Layout getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает шаблон по id.
- * @method Layout add($typeName = IObjectType::BASE) Создает и возвращает шаблон.
+ * @method Layout add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает шаблон.
  */
 class LayoutCollection extends CmsCollection implements ILockedAccessibleCollection, ISiteSettingsAware
 {

@@ -19,6 +19,9 @@ return [
         'License has expired.' => 'License has expired.',
         'Invalid domain key for domain.' => 'Invalid domain key for domain.',
 
+        'Administrative panel' => 'Administrative panel',
+        'Logout' => 'Logout',
+
         'role:structureExecutor:displayName' => 'Site structure',
         'role:newsExecutor:displayName' => 'News',
         'role:blogExecutor:displayName' => 'Blog',
@@ -44,6 +47,9 @@ return [
         'role:usersExecutor:displayName' => 'Пользователи',
         'role:viewer:displayName' => 'Просмотр',
         'role:widgetExecutor:displayName' => 'Просмотр виджетов через http',
+
+        'Administrative panel' => 'Административная панель',
+        'Logout' => 'Выход из системы',
     ]
 
 ];

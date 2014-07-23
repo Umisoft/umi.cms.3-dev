@@ -3,17 +3,17 @@
  * Collection "blogComment" dump.
  */
 return array (
-  0 => 
+  0 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
       'guid' => '76c79058-1a1d-4540-9ab4-18baa220bb45',
       'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
-      'branch' => 
+      'branch' =>
       array (
-        'meta' => 
+        'meta' =>
         array (
           'collection' => 'blogComment',
           'type' => 'branchComment',
@@ -25,29 +25,29 @@ return array (
       ),
       'slug' => 'comment1',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
       ),
-      'displayName#en-US' => 
+      'displayName#en-US' =>
       array (
         0 => 'string',
         1 => 'Re: Deviant behavior of ghosts and goblins and ways to influence him',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -56,27 +56,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',
@@ -86,12 +76,12 @@ return array (
           ),
         ),
       ),
-      'author' => 
+      'author' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
@@ -101,41 +91,41 @@ return array (
           ),
         ),
       ),
-      'contents#ru-RU' => 
+      'contents#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>',
       ),
-      'contents#en-US' => 
+      'contents#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>',
       ),
-      'contents_raw#ru-RU' => 
+      'contents_raw#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>',
       ),
-      'contents_raw#en-US' => 
+      'contents_raw#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>',
       ),
-      'publishTime' => 
+      'publishTime' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'publishStatus' => 
+      'publishStatus' =>
       array (
         0 => 'string',
         1 => 'published',
       ),
     ),
   ),
-  1 => 
+  1 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'branchComment',
@@ -144,24 +134,24 @@ return array (
       'branch' => NULL,
       'slug' => 'branch2',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -170,27 +160,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',
@@ -202,33 +182,33 @@ return array (
       ),
     ),
   ),
-  2 => 
+  2 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
       'guid' => '9228eb95-a5c1-43d9-a9bb-de69c33adcf7',
       'displayName' => 'Вложенный комментарий',
-      'branch' => 
+      'branch' =>
       array (
-        'meta' => 
+        'meta' =>
         array (
           'collection' => 'blogComment',
           'type' => 'comment',
           'guid' => '9f1b007b-625e-4746-bac8-236eab6309f0',
           'displayName' => 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него',
-          'branch' => 
+          'branch' =>
           array (
-            'meta' => 
+            'meta' =>
             array (
               'collection' => 'blogComment',
               'type' => 'comment',
               'guid' => '76c79058-1a1d-4540-9ab4-18baa220bb45',
               'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
-              'branch' => 
+              'branch' =>
               array (
-                'meta' => 
+                'meta' =>
                 array (
                   'collection' => 'blogComment',
                   'type' => 'branchComment',
@@ -246,29 +226,29 @@ return array (
       ),
       'slug' => 'comment1',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'Вложенный комментарий',
       ),
-      'displayName#en-US' => 
+      'displayName#en-US' =>
       array (
         0 => 'string',
         1 => 'nested comment',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -277,27 +257,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',
@@ -307,12 +277,12 @@ return array (
           ),
         ),
       ),
-      'author' => 
+      'author' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
@@ -322,57 +292,57 @@ return array (
           ),
         ),
       ),
-      'contents#ru-RU' => 
+      'contents#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Oh, yeah. This nested comment.</p>',
       ),
-      'contents#en-US' => 
+      'contents#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Oh, yeah. This nested comment.</p>',
       ),
-      'contents_raw#ru-RU' => 
+      'contents_raw#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>О, да. Это вложенный комментарий.</p>',
       ),
-      'contents_raw#en-US' => 
+      'contents_raw#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Oh, yeah. This nested comment.</p>',
       ),
-      'publishTime' => 
+      'publishTime' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'publishStatus' => 
+      'publishStatus' =>
       array (
         0 => 'string',
         1 => 'rejected',
       ),
     ),
   ),
-  3 => 
+  3 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
       'guid' => '9f1b007b-625e-4746-bac8-236eab6309f0',
       'displayName' => 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него',
-      'branch' => 
+      'branch' =>
       array (
-        'meta' => 
+        'meta' =>
         array (
           'collection' => 'blogComment',
           'type' => 'comment',
           'guid' => '76c79058-1a1d-4540-9ab4-18baa220bb45',
           'displayName' => 'Re: Девиантное поведение призраков и домовых и способы влияния на него',
-          'branch' => 
+          'branch' =>
           array (
-            'meta' => 
+            'meta' =>
             array (
               'collection' => 'blogComment',
               'type' => 'branchComment',
@@ -387,29 +357,29 @@ return array (
       ),
       'slug' => 'comment2',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него',
       ),
-      'displayName#en-US' => 
+      'displayName#en-US' =>
       array (
         0 => 'string',
         1 => 'Re: Re: Deviant behavior of ghosts and goblins and ways to influence him',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -418,27 +388,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',
@@ -448,12 +408,12 @@ return array (
           ),
         ),
       ),
-      'author' => 
+      'author' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
@@ -463,49 +423,49 @@ return array (
           ),
         ),
       ),
-      'contents#ru-RU' => 
+      'contents#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>',
       ),
-      'contents#en-US' => 
+      'contents#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>',
       ),
-      'contents_raw#ru-RU' => 
+      'contents_raw#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>',
       ),
-      'contents_raw#en-US' => 
+      'contents_raw#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>',
       ),
-      'publishTime' => 
+      'publishTime' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:11:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'publishStatus' => 
+      'publishStatus' =>
       array (
         0 => 'string',
         1 => 'rejected',
       ),
     ),
   ),
-  4 => 
+  4 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'comment',
       'guid' => 'c631baad-af8b-465c-a412-39a35c2a3e4e',
       'displayName' => 'важный вопрос',
-      'branch' => 
+      'branch' =>
       array (
-        'meta' => 
+        'meta' =>
         array (
           'collection' => 'blogComment',
           'type' => 'branchComment',
@@ -517,29 +477,29 @@ return array (
       ),
       'slug' => 'comment3',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'важный вопрос',
       ),
-      'displayName#en-US' => 
+      'displayName#en-US' =>
       array (
         0 => 'string',
         1 => 'important question',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -548,27 +508,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',
@@ -578,12 +528,12 @@ return array (
           ),
         ),
       ),
-      'author' => 
+      'author' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogAuthor',
             'type' => 'base',
@@ -593,41 +543,41 @@ return array (
           ),
         ),
       ),
-      'contents#ru-RU' => 
+      'contents#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>',
       ),
-      'contents#en-US' => 
+      'contents#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>',
       ),
-      'contents_raw#ru-RU' => 
+      'contents_raw#ru-RU' =>
       array (
         0 => 'string',
         1 => '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>',
       ),
-      'contents_raw#en-US' => 
+      'contents_raw#en-US' =>
       array (
         0 => 'string',
         1 => '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>',
       ),
-      'publishTime' => 
+      'publishTime' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:05:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'publishStatus' => 
+      'publishStatus' =>
       array (
         0 => 'string',
         1 => 'published',
       ),
     ),
   ),
-  5 => 
+  5 =>
   array (
-    'meta' => 
+    'meta' =>
     array (
       'collection' => 'blogComment',
       'type' => 'branchComment',
@@ -636,24 +586,24 @@ return array (
       'branch' => NULL,
       'slug' => 'branch1',
     ),
-    'data' => 
+    'data' =>
     array (
-      'displayName#ru-RU' => 
+      'displayName#ru-RU' =>
       array (
         0 => 'string',
         1 => 'Девиантное поведение призраков и домовых и способы влияния на него',
       ),
-      'created' => 
+      'created' =>
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
       ),
-      'owner' => 
+      'owner' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
@@ -662,27 +612,17 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
-        1 => 
+        1 =>
         array (
-          'meta' => 
+          'meta' =>
           array (
             'collection' => 'blogPost',
             'type' => 'base',

@@ -25,7 +25,7 @@ class PostListWidget extends BaseListWidget
      */
     public $template = 'postList';
     /**
-     * @var array|BlogCategory[]|BlogCategory|null $category категория, список категорий блога или GUID, из которых выводятся посты.
+     * @var array|BlogCategory[]|BlogCategory|null $categories категория, список категорий блога или GUID, из которых выводятся посты.
      * Если не указаны, то посты выводятся из всех категорий
      */
     public $categories;

@@ -10,18 +10,25 @@
 
 namespace umicms\hmvc\component\site;
 
+use umi\http\Response;
+
 /**
- * Контроллер вывода системных страниц компонентов.
+ * Контроллер вывода страниц структуры.
  */
 class SiteStructurePageController extends BaseSitePageController
 {
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\project\module\structure\model\object\StructureElement $page текущая страница
+     *
+     * @return Response
      */
     public function __invoke()
     {
         return $this->createViewResponse(
-            'index',
+            $this->template,
             [
                 'page' => $this->getCurrentPage()
             ]
