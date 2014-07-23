@@ -12,7 +12,42 @@ define(['App'],
                     var settings = {};
                     settings = this.get('controllers.component.settings');
                     return settings;
-                }.property()
+                }.property(),
+
+                validationErrors: function(){
+                    var elements = this.get('control.meta.elements');
+                    var validErrors = this.get('object.validErrors');
+                    var stack = [];
+                    var key;
+                    var inputElements = [];
+                    var validateErrorLabel = 'Объект не валиден.';
+                    var settings = {
+                        type: 'error',
+                        duration: false,
+                        title: validateErrorLabel,
+                        kind: 'validate',
+                        close: false
+                    };
+                    var i;
+                    for(i = 0; i < elements.length; i++){
+                        if(Ember.get(elements[i], 'type') === 'fieldset' && Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array'){
+                            inputElements = inputElements.concat(elements[i].elements);
+                        } else{
+                            inputElements.push(elements[i]);
+                        }
+                    }
+                    for(key in validErrors){
+                        if(validErrors.hasOwnProperty(key) && !inputElements.findBy('dataSource', key)){
+                            stack.push('<div>' + key + ': ' + validErrors[key] + '</div>');
+                        }
+                    }
+                    if(stack.length){
+                        settings.content = stack.join();
+                        UMI.notification.create(settings);
+                    } else{
+                        UMI.notification.removeWithKind('validateError');
+                    }
+                }.observes('object.validErrors.@each')
             });
 
             UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {
@@ -23,7 +58,11 @@ define(['App'],
                  */
                 layoutName: 'partials/formControl',
 
-                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control']
+                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
+
+                willDestroyElement: function(){
+                    this.get('controller').removeObserver('object.validErrors.@each');
+                }
             });
 
             UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
@@ -38,8 +77,9 @@ define(['App'],
 
                 isError: function(){
                     var dataSource = this.get('meta.dataSource');
-                    return !!this.get('object.validErrors.' + dataSource);
-                }.property('object.validErrors'),
+                    var isValid = !!this.get('object.validErrors.' + dataSource);
+                    return isValid;
+                }.property('object.validErrors.@each'),
 
                 wysiwygTemplate: function(){
                     return '{{view "htmlEditorCollection" object=view.object meta=view.meta}}';

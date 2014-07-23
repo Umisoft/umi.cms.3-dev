@@ -13,6 +13,7 @@ define(['App'], function(UMI){
             didInsertElement: function(){
                 var self = this;
                 var el = this.$().children('textarea');
+                el.css({'height': 306});
                 var edit = CKEDITOR.replace(el[0].id);
             }
         });
@@ -49,6 +50,7 @@ define(['App'], function(UMI){
             didInsertElement: function(){
                 var self = this;
                 var el = this.$().children('textarea');
+                el.css({'height': 306});
                 var edit = CKEDITOR.replace(el[0].id);
 
                 edit.on('blur', function(event){
