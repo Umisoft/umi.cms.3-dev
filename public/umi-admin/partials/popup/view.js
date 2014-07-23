@@ -9,7 +9,7 @@ define(['App'], function(UMI){
 
             classNames: ['umi-popup'],
             title: '',
-            width: 600,
+            width: 800,
             height: 400,
             contentOverflow: ['overflow', 'hidden'],
             blur: true,

@@ -665,7 +665,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["UMI/partials/linkToObjectLayout"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var stack1, self=this, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  var stack1, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -684,24 +684,46 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
-  var buffer = '', stack1;
-  data.buffer.push(" <div class=\"umi-divider-left\"> <div class=\"umi-divider-left-content\"> <ul class=\"side-nav\"> ");
-  stack1 = helpers.each.call(depth0, "object", "in", "objects", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </ul> </div> <div class=\"umi-divider\"></div> </div> <div class=\"umi-left-bottom-panel s-unselectable\"> <a href=\"javascript:void(0)\" class=\"button white square umi-divider-left-toggle\"> <i class=\"icon icon-left\"></i> </a> </div> ");
-  return buffer;
-  }
-function program3(depth0,data) {
-  
-  var buffer = '', stack1;
-  data.buffer.push(" <li><a href=\"javascript:void(0)\">");
-  stack1 = helpers._triageMustache.call(depth0, "object.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</a></li> ");
+  var buffer = '';
+  data.buffer.push(" <div class=\"umi-divider-left\"> <div class=\"umi-divider-left-content\"> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.parentView.sideMenu", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </div> <div class=\"umi-divider\"></div> </div> <div class=\"umi-left-bottom-panel s-unselectable\"> <a href=\"javascript:void(0)\" class=\"button white square umi-divider-left-toggle\"> <i class=\"icon icon-left\"></i> </a> </div> ");
   return buffer;
   }
 
   stack1 = helpers.view.call(depth0, "divider", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  
+});
+
+Ember.TEMPLATES["UMI/partials/linkToObjectLayout/sideMenu"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var stack1, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers.view.call(depth0, "view.itemView", {hash:{
+    'item': ("item")
+  },hashTypes:{'item': "ID"},hashContexts:{'item': depth0},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <a href=\"javascript:void(0)\">");
+  stack1 = helpers._triageMustache.call(depth0, "item.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</a> ");
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, "item", "in", "collections", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   else { data.buffer.push(''); }
   
@@ -1749,17 +1771,6 @@ function program19(depth0,data) {
 function program21(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <!-- Колонка справа от контента --> <div class=\"umi-table-control-content-fixed-right\"> ");
-  stack1 = helpers.each.call(depth0, "object", "in", "objects", {hash:{
-    'itemController': ("tableControlContextToolbarItem")
-  },hashTypes:{'itemController': "STRING"},hashContexts:{'itemController': depth0},inverse:self.noop,fn:self.program(22, program22, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </div> ");
-  return buffer;
-  }
-function program22(depth0,data) {
-  
-  var buffer = '', stack1;
   data.buffer.push(" <div ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': (":umi-table-control-column-fixed-cell object.active::umi-inactive")
@@ -1767,32 +1778,32 @@ function program22(depth0,data) {
   data.buffer.push(" data-objectId=\"");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "object.id", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push("\"> ");
-  stack1 = helpers['if'].call(depth0, "controller.parentController.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(23, program23, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "controller.parentController.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(22, program22, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> ");
+  return buffer;
+  }
+function program22(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers.view.call(depth0, "tableControlContextToolbar", {hash:{
+    'elements': ("controller.parentController.contextToolbar")
+  },hashTypes:{'elements': "ID"},hashContexts:{'elements': depth0},inverse:self.noop,fn:self.program(23, program23, data),contexts:[depth0],types:["STRING"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
   return buffer;
   }
 function program23(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.view.call(depth0, "tableControlContextToolbar", {hash:{
-    'elements': ("controller.parentController.contextToolbar")
-  },hashTypes:{'elements': "ID"},hashContexts:{'elements': depth0},inverse:self.noop,fn:self.program(24, program24, data),contexts:[depth0],types:["STRING"],data:data});
+  stack1 = helpers.each.call(depth0, "view.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(24, program24, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
 function program24(depth0,data) {
-  
-  var buffer = '', stack1;
-  data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "view.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(25, program25, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  return buffer;
-  }
-function program25(depth0,data) {
   
   var buffer = '';
   data.buffer.push(" ");
@@ -1817,10 +1828,12 @@ function program25(depth0,data) {
   data.buffer.push(" <td class=\"umi-table-control-empty-column\"></td> </tr> ");
   stack1 = helpers['if'].call(depth0, "objects.content.isFulfilled", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </tbody> </table> </div> ");
-  stack1 = helpers['if'].call(depth0, "hasContextMenu", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push(" </tbody> </table> </div> <!-- Колонка справа от контента --> <div class=\"umi-table-control-content-fixed-right\"> ");
+  stack1 = helpers.each.call(depth0, "object", "in", "objects", {hash:{
+    'itemController': ("tableControlContextToolbarItem")
+  },hashTypes:{'itemController': "STRING"},hashContexts:{'itemController': depth0},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </div>");
+  data.buffer.push(" </div> </div>");
   return buffer;
   
 });

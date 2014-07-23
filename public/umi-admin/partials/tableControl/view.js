@@ -168,7 +168,6 @@ define(['App', 'toolbar'], function(UMI){
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
                 // Удаляем Observes для контоллера
-                this.get('controller').removeObserver('content.object.id');
                 this.get('controller').removeObserver('query');
             },
 
@@ -427,11 +426,16 @@ define(['App', 'toolbar'], function(UMI){
             componentNameBinding: 'controller.controllers.component.name',
             willDestroyElement: function(){
                 this.get('controller').removeObserver('objects.@each.isDeleted');
+                this.get('controller').removeObserver('content.object.id');
             }
         });
 
         UMI.TableControlSharedView = Ember.View.extend(UMI.TableControlViewMixin, {
-            componentNameBinding: null
+            componentNameBinding: null,
+
+            willDestroyElement: function(){
+                this.get('controller').removeObserver('control.collectionName');
+            }
         });
 
         UMI.TableControlContextToolbarView = Ember.View.extend({

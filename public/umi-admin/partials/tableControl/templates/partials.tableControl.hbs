@@ -101,20 +101,19 @@
             </tbody>
         </table>
     </div>
-    {{#if hasContextMenu}}
-        <!-- Колонка справа от контента -->
-        <div class="umi-table-control-content-fixed-right">
-            {{#each object in objects itemController="tableControlContextToolbarItem"}}
-                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                    {{#if controller.parentController.contextToolbar}}
-                        {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
-                            {{#each view.elements}}
-                                {{view view.elementView}}
-                            {{/each}}
-                        {{/view}}
-                    {{/if}}
-                </div>
-            {{/each}}
-        </div>
-    {{/if}}
+
+    <!-- Колонка справа от контента -->
+    <div class="umi-table-control-content-fixed-right">
+        {{#each object in objects itemController="tableControlContextToolbarItem"}}
+            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                {{#if controller.parentController.contextToolbar}}
+                    {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                        {{#each view.elements}}
+                            {{view view.elementView}}
+                        {{/each}}
+                    {{/view}}
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
 </div>

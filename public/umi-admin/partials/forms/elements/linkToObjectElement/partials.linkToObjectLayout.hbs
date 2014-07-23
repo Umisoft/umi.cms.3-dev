@@ -2,11 +2,7 @@
     {{#if sideBarControl}}
         <div class="umi-divider-left">
             <div class="umi-divider-left-content">
-                <ul class="side-nav">
-                    {{#each object in objects}}
-                        <li><a href="javascript:void(0)">{{object.displayName}}</a></li>
-                    {{/each}}
-                </ul>
+                {{view view.parentView.sideMenu}}
             </div>
 
             <div class="umi-divider"></div>

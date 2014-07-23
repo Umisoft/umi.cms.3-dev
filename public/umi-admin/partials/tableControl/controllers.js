@@ -188,9 +188,9 @@ define(['App'], function(UMI){
             /**
              * Метод вызывается при смене контекста (компонента).
              * Сбрасывает значения фильтров,вызывает метод getObjects, вычисляет total
-             * @method contextChanged
+             * @method updateContent
              */
-            contextChanged: function(){
+            updateContent: function(){
                 var store = this.get('store');
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('collectionName');
@@ -200,7 +200,6 @@ define(['App'], function(UMI){
                 var modelForCollection = store.modelFor(collectionName);
                 var fieldsList = this.get('control.meta.form.elements') || [];
                 var defaultFields = this.get('control.meta.defaultFields') || [];
-
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
                     if(!defaultFields.contains(fieldsList[i].dataSource)){
@@ -267,7 +266,11 @@ define(['App'], function(UMI){
                         self.set('fieldsList', fieldsList);
                     });
                 });
-            }.observes('content.object.id').on('init'),
+            },
+            /**
+             * @abstract
+             */
+            contextChange: null,
 
             /**
              * Метод вызывается при изменении параметров запроса.
@@ -309,8 +312,11 @@ define(['App'], function(UMI){
 
         UMI.TableControlController = Ember.ObjectController.extend(UMI.TableControlMixin,{
             needs: ['component'],
+
             componentNameBinding: 'controllers.component.name',
+
             hasContextMenu: true,
+
             collectionName: function(){
                 var dataSource = this.get('controllers.component.dataSource.name');
                 if(!dataSource){
@@ -318,7 +324,9 @@ define(['App'], function(UMI){
                 }
                 return dataSource;
             }.property('controllers.component.dataSource.name', 'controllers.component.selectedContext'),
+
             itemController: 'tableControlContextToolbarItem',
+
             updateObjectDeleted: function(){//TODO: Реализация плохая: множественное всплытие события
                 var objects = this.get('objects');
                 objects.forEach(function(item){
@@ -327,6 +335,11 @@ define(['App'], function(UMI){
                     }
                 });
             },
+
+            contextChange: function(){
+                this.updateContent();
+            }.observes('content.object.id').on('init'),
+
             objectChange: function(){
                 Ember.run.once(this, 'updateObjectDeleted');
             }.observes('objects.@each.isDeleted')
@@ -340,7 +353,11 @@ define(['App'], function(UMI){
         UMI.TableControlSharedController = Ember.ObjectController.extend(UMI.TableControlMixin,{
             collectionName: function(){
                 return this.get('control.collectionName');
-            }.property()
+            }.property('control.collectionName'),
+
+            contextChange: function(){
+                this.updateContent();
+            }.observes('collectionName').on('init')
         });
     };
 });
