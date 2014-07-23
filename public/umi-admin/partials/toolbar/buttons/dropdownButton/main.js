@@ -57,21 +57,38 @@ define(['App', 'moment'],
                     var object = this.get('controller.object');
                     var settings = this.get('controller.settings');
                     var getBackupListAction = UMI.Utils.replacePlaceholder(object, settings.actions.getBackupList.source);
+                    var date = object.get('updated');
+                    try{
+                        date = JSON.parse(date);
+                    } catch(error){}
 
                     var currentVersion = {
                         objectId: object.get('id'),
-                        date: object.get('updated'),
-                        user: null,
+                        created: {date: Ember.get(date, 'date')},
                         id: 'current',
                         current: true,
                         isActive: true
                     };
 
-                    var results = [currentVersion];
-
                     var promiseArray = DS.PromiseArray.create({
                         promise: $.get(getBackupListAction).then(function(data){
-                            return results.concat(data.result.getBackupList.serviceBackup);
+                            var results = [];
+                            var serviceBackupList = Ember.get(data, 'result.getBackupList.serviceBackup');
+                            var users = Ember.get(data, 'result.getBackupList.user');
+                            var user;
+                            object.get('editor').then(function(currentEditor){
+                                Ember.set(currentVersion, 'user', Ember.get(currentEditor, 'displayName'));
+                            });
+                            results.push(currentVersion);
+                            if(Ember.typeOf(serviceBackupList) === 'array'){
+                                for(var i = 0; i < serviceBackupList.length; i++){
+                                    user = users.findBy('id', serviceBackupList[i].owner);
+                                    serviceBackupList[i].user = user.displayName;
+                                    Ember.set(serviceBackupList[i], 'created.date',  moment(Ember.get(serviceBackupList[i], 'created.date')).format('DD.MM.YYYY h:mm:ss'));
+                                }
+                                results = results.concat(serviceBackupList);
+                            }
+                            return results;
                         })
                     });
 

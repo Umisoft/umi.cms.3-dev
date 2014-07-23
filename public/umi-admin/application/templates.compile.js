@@ -1780,13 +1780,13 @@ function program3(depth0,data) {
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "applyBackup", "", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("> <div class=\"columns small-6 place-button\"> ");
+  data.buffer.push("> <div class=\"columns small-7 place-button\"> ");
   stack1 = helpers['if'].call(depth0, "isActive", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   stack1 = helpers._triageMustache.call(depth0, "created.date", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </div> <div class=\"columns small-6\"> ");
+  data.buffer.push(" </div> <div class=\"columns small-5\"> ");
   stack1 = helpers['if'].call(depth0, "user", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(10, program10, data),fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> </div> ");
