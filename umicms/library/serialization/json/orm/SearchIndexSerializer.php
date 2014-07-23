@@ -11,23 +11,20 @@
 namespace umicms\serialization\json\orm;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\structure\model\object\MenuItem;
+use umicms\project\module\search\model\object\SearchIndex;
 
 /**
- * Json-сериализатор пункта произвольного меню.
+ * XML-сериализатор для поискового индекса.
  */
-class MenuItemSerializer extends CmsObjectSerializer
+class SearchIndexSerializer extends CmsObjectSerializer
 {
     /**
      * {@inheritdoc}
      */
     protected function buildProperties(ICmsObject $object, array &$properties)
     {
-        if ($object instanceof MenuItem) {
-            if (isset($properties['meta'])) {
-                $properties['meta'] = [];
-            }
-            $properties['meta']['url'] = $object->getItemUrl();
+        if ($object instanceof SearchIndex) {
+            $properties['indexedObject'] = $object->getIndexedObject();
         }
     }
 }
