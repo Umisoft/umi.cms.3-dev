@@ -3,30 +3,6 @@ define(['App'], function(UMI){
 
     return function(){
 
-        UMI.TableControlColumnSelectorPopupView = Ember.View.extend({
-            templateName: 'tableControlColumnSelectorPopup',
-            classNames: ['umi-table-control-column-selector-popup'],
-
-            init: function(){
-                this.get('parentView').setProperties({
-                    'title': 'Выбор колонок в таблице',
-                    'width': 400,
-                    'height': 300,
-                    'contentOverflow': ['overflow', 'scroll']
-                });
-            },
-
-            didInsertElement: function(){
-                this.$().find('li').mousedown(function(){
-                    $(this).find('input').click();
-                });
-
-                if(window.pageYOffset || document.documentElement.scrollTop){
-
-                }
-            }
-        });
-
         UMI.PopupView = Ember.View.extend({
             //Параметры приходящие из childView
                 contentParams: {},
@@ -36,8 +12,8 @@ define(['App'], function(UMI){
             width: 600,
             height: 400,
             contentOverflow: ['overflow', 'hidden'],
-            blur: false,
-            fade: true,
+            blur: true,
+            fade: false,
             drag: true,
             resize: true,
             layoutName: 'partials/popup',
@@ -47,16 +23,7 @@ define(['App'], function(UMI){
             }.observes('contentParams'),
 
             template: function(){
-                var template;
-                var templateName = this.get('popupType');
-
-                //TODO Разнести по файлам аналогично elements?
-                switch(templateName){
-                    case 'fileManager':                         template = '{{view "fileManager" object=view.object meta=view.meta}}'; break;
-                    case 'tableControlColumnSelectorPopup':     template = '{{view "tableControlColumnSelectorPopup"}}'; break;
-                    default:                                    template = 'Шаблон не обнаружен в системе';
-                }
-                return Ember.Handlebars.compile(template);
+                return Ember.Handlebars.compile('{{render "linkToObjectLayout" view.object}}');
             }.property('popupType'),
 
             didInsertElement: function(){

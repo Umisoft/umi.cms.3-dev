@@ -2,8 +2,7 @@ define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
 
-        UMI.TableControlView = Ember.View.extend({
-            componentNameBinding: 'controller.controllers.component.name',
+        UMI.TableControlViewMixin = Ember.Mixin.create({
             /**
              * Имя шаблона
              * @property templateName
@@ -14,7 +13,6 @@ define(['App', 'toolbar'], function(UMI){
              * @classNames
              */
             classNames: ['umi-table-control'],
-
             objectsEditable: function(){
                 var objectsEditable = this.get('controller.control.params.objectsEditable');
                 objectsEditable = objectsEditable === false ? false : true;
@@ -172,7 +170,6 @@ define(['App', 'toolbar'], function(UMI){
                 // Удаляем Observes для контоллера
                 this.get('controller').removeObserver('content.object.id');
                 this.get('controller').removeObserver('query');
-                this.get('controller').removeObserver('objects.@each.isDeleted');
             },
 
             paginationView: Ember.View.extend({
@@ -426,6 +423,16 @@ define(['App', 'toolbar'], function(UMI){
             }
         });
 
+        UMI.TableControlView = Ember.View.extend(UMI.TableControlViewMixin, {
+            componentNameBinding: 'controller.controllers.component.name',
+            willDestroyElement: function(){
+                this.get('controller').removeObserver('objects.@each.isDeleted');
+            }
+        });
+
+        UMI.TableControlSharedView = Ember.View.extend(UMI.TableControlViewMixin, {
+            componentNameBinding: null
+        });
 
         UMI.TableControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',

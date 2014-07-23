@@ -252,13 +252,28 @@ define([], function(){
                     }
                 },
 
-                showPopup: function(popupType, object, meta){
+                showPopup: function(params){
+                    params  = {};
+                    this.controllerFor('popup').setProperties(params);
+                    return this.render('popup', {
+                        into: 'application',
+                        outlet: 'popup'
+                    });
+                    var container = this.get('container');
+                    debugger;
                     UMI.PopupView.create({
-                        container: this.container,
+                        container: container,
                         popupType: popupType,
                         object: object,
                         meta: meta
-                    }).append();
+                    }).append('.umi-main-view');
+                },
+
+                closePopup: function(){
+                    return this.disconnectOutlet({
+                        outlet: 'popup',
+                        parentView: 'application'
+                    });
                 },
 
                 /// global actions

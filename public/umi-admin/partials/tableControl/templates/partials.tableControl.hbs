@@ -78,42 +78,43 @@
                     {{/each}}
                     <td class="umi-table-control-empty-column"></td>
                 </tr>
-            {{#if objects.content.isFulfilled}}
-                {{#each object in objects}}
-                    {{#view view.rowView object=object}}
-                        {{#each column in fieldsList}}
-                            <td class="umi-table-control-content-cell">
-                                {{view "tableCellContent" objectBinding="object" column=column}}
-                            </td>
-                        {{/each}}
-                        <td class="umi-table-control-empty-column"></td>
-                    {{/view}}
-                    {{else}}
-                        <tr>
-                            <td>
-                                <div class="umi-table-control-content-div-empty">
-                                    <span>{{i18n "No data" "tableControl"}}</span>
-                                </div>
-                            </td>
-                        </tr>
-                {{/each}}
-            {{/if}}
+                {{#if objects.content.isFulfilled}}
+                    {{#each object in objects}}
+                        {{#view view.rowView object=object}}
+                            {{#each column in fieldsList}}
+                                <td class="umi-table-control-content-cell">
+                                    {{view "tableCellContent" objectBinding="object" column=column}}
+                                </td>
+                            {{/each}}
+                            <td class="umi-table-control-empty-column"></td>
+                        {{/view}}
+                        {{else}}
+                            <tr>
+                                <td>
+                                    <div class="umi-table-control-content-div-empty">
+                                        <span>{{i18n "No data" "tableControl"}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                    {{/each}}
+                {{/if}}
             </tbody>
         </table>
     </div>
-
-    <!-- Колонка справа от контента -->
-    <div class="umi-table-control-content-fixed-right">
-        {{#each object in objects itemController="tableControlContextToolbarItem"}}
-            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                {{#if controller.parentController.contextToolbar}}
-                    {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
-                        {{#each view.elements}}
-                            {{view view.elementView}}
-                        {{/each}}
-                    {{/view}}
-                {{/if}}
-            </div>
-        {{/each}}
-    </div>
+    {{#if hasContextMenu}}
+        <!-- Колонка справа от контента -->
+        <div class="umi-table-control-content-fixed-right">
+            {{#each object in objects itemController="tableControlContextToolbarItem"}}
+                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                    {{#if controller.parentController.contextToolbar}}
+                        {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                            {{#each view.elements}}
+                                {{view view.elementView}}
+                            {{/each}}
+                        {{/view}}
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
 </div>
