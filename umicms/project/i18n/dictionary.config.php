@@ -153,7 +153,6 @@ return [
             'Default or inherited layout' => 'Default or inherited layout',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Children',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Child count',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Hierarchy level',
             CmsHierarchicObject::FIELD_MPATH => 'Materialized path',
             CmsHierarchicObject::FIELD_ORDER => 'Hierarchy order',
@@ -190,7 +189,6 @@ return [
             ICmsObject::FIELD_VERSION => 'Версия',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Дочерние сущности',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Количество дочерних сущностей',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Уровень вложенности в иерархии',
             CmsHierarchicObject::FIELD_MPATH => 'Материализованный путь',
             CmsHierarchicObject::FIELD_ORDER => 'Порядок в иерархии',

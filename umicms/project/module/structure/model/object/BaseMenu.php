@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\structure\model\object;
 
-use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**

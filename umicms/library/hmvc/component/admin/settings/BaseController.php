@@ -12,7 +12,6 @@ namespace umicms\hmvc\component\admin\settings;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
-use umi\form\IForm;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\admin\BaseController as BaseAdminController;
 

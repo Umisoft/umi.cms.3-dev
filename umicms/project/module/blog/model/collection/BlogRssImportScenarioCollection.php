@@ -22,7 +22,7 @@ use umicms\project\module\blog\model\object\BlogRssImportScenario;
  * @method CmsSelector|BlogRssImportScenario[] select() Возвращает селектор для выбора сценариев импорта.
  * @method BlogRssImportScenario get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по GUID
  * @method BlogRssImportScenario getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по id
- * @method BlogRssImportScenario add($typeName = IObjectType::BASE) Создает и возвращает сценарий импорта
+ * @method BlogRssImportScenario add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает сценарий импорта
  *
  */
 class BlogRssImportScenarioCollection extends CmsCollection

@@ -41,14 +41,6 @@ return array_replace_recursive(
                 'options' => [
                     'unsigned' => true
                 ]
-            ],
-            'child_count' => [
-                'type'    => Type::INTEGER,
-                'options' => [
-                    'unsigned' => true,
-                    'notnull' => true,
-                    'default' => 0
-                ]
             ]
         ],
         'indexes' => [

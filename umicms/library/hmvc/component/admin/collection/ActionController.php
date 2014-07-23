@@ -476,6 +476,7 @@ class ActionController extends BaseController implements IFormAware
         $previousSibling = isset($data['sibling']) ? $this->getEditedObject($data['sibling']) : null;
 
         $collection->move($object, $branch, $previousSibling);
+        $this->commit();
 
         return '';
     }
