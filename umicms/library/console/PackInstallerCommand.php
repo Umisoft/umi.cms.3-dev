@@ -103,7 +103,25 @@ class PackInstallerCommand extends BaseCommand
  * file that was distributed with this source code.
  */
 
-Phar::mapPhar('install.phar');
+header("Content-Type: text/html; charset=utf-8");
+
+set_error_handler('errorHandler');
+function errorHandler(\$errno, \$errmsg, \$filename, \$linenum) {
+    \$date = date('Y-m-d H:i:s (T)');
+    \$f = fopen('./errors.txt', 'a');
+    if (!empty(\$f)) {
+        \$filename = str_replace(\$_SERVER['DOCUMENT_ROOT'],'',\$filename);
+        \$err = "\$errmsg = \$filename = \$linenum\r\n";
+        fwrite(\$f, \$err);
+        fclose(\$f);
+    }
+}
+
+try {
+    Phar::mapPhar('install.phar');
+} catch(\Exception \$e) {
+    echo 'Произошла ошибка при запуске инсталлятора. Убедитесь, что файл был загружен в бинарном режиме. Если ошибка не устранена, обратитесь в СЗ.';
+}
 
 if (count(\$_GET)) {
     require 'phar://install.phar/install/install.php';
