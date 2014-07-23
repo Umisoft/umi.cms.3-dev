@@ -63,7 +63,6 @@ define(['App', 'moment'],
                     } catch(error){}
                     var currentVersion = {
                         objectId: object.get('id'),
-                        created: {date: UMI.i18n.getTranslate('Current version', 'form')},
                         id: 'current',
                         current: true,
                         isActive: true
@@ -72,12 +71,14 @@ define(['App', 'moment'],
                     var promiseArray = DS.PromiseArray.create({
                         promise: $.get(getBackupListAction).then(function(data){
                             var results = [];
-                            var serviceBackupList = Ember.get(data, 'result.getBackupList.serviceBackup');
-                            var users = Ember.get(data, 'result.getBackupList.user');
+                            var serviceBackupList = Ember.get(data, 'result.getBackupList.collection.serviceBackup');
+                            var users = Ember.get(data, 'result.getBackupList.collection.user');
                             var user;
+                            UMI.i18n.setDictionary(Ember.get(data, 'result.getBackupList.i18n'), 'form.backupList');
                             object.get('editor').then(function(currentEditor){
                                 Ember.set(currentVersion, 'user', Ember.get(currentEditor, 'displayName'));
                             });
+                            Ember.set(currentVersion, 'created', {date: UMI.i18n.getTranslate('Current version', 'form.backupList')});
                             results.push(currentVersion);
                             if(Ember.typeOf(serviceBackupList) === 'array'){
                                 for(var i = 0; i < serviceBackupList.length; i++){
