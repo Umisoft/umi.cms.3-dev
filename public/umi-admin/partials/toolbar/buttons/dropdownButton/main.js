@@ -61,10 +61,9 @@ define(['App', 'moment'],
                     try{
                         date = JSON.parse(date);
                     } catch(error){}
-
                     var currentVersion = {
                         objectId: object.get('id'),
-                        created: {date: Ember.get(date, 'date')},
+                        created: {date: UMI.i18n.getTranslate('Current version', 'form')},
                         id: 'current',
                         current: true,
                         isActive: true
