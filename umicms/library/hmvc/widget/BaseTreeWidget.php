@@ -13,6 +13,7 @@ namespace umicms\hmvc\widget;
 use umi\orm\collection\ICollection;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\view\CmsView;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
@@ -58,7 +59,13 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     abstract protected function getSelector();
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\hmvc\view\CmsTreeView $tree представление дерева
+     *
+     * @throws RuntimeException
+     * @return CmsView
      */
     public function __invoke()
     {

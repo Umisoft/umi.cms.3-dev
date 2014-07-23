@@ -13,7 +13,6 @@ return [
 
         SiteApplication::SETTING_DEFAULT_PAGE_GUID => 'Index page',
         SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => 'Default layout',
-        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => 'Browser cache enabled',
 
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Template directory',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Common template directory',
@@ -23,6 +22,7 @@ return [
         'role:commonExecutor:displayName' => 'Common',
         'role:templatingExecutor:displayName' => 'Templating',
         'role:slugifyExecutor:displayName' => 'Slug formation',
+        'role:licenseExecutor:displayName' => 'License',
         'role:mailExecutor:displayName' => 'Mail',
     ],
 
@@ -37,7 +37,6 @@ return [
 
         SiteApplication::SETTING_DEFAULT_PAGE_GUID => 'Главная страница',
         SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => 'Шаблон страниц по умолчанию',
-        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => 'Разрешить кэширование браузером',
 
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Директория с шаблонами',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Директория с общими шаблонами',
@@ -46,7 +45,8 @@ return [
 
         'role:commonExecutor:displayName' => 'Общие',
         'role:templatingExecutor:displayName' => 'Шаблонизация',
-        'role:slugifyExecutor:displayName' => 'Формирование slug',
+        'role:slugifyExecutor:displayName' => 'Формирование псевдостатического адреса',
+        'role:licenseExecutor:displayName' => 'Лицензирование',
         'role:mailExecutor:displayName' => 'Почта',
     ]
 ];

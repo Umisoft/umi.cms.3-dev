@@ -17,9 +17,11 @@ define(['App'], function(UMI){
             totalBinding: 'rows.length',
             error: null,
             visibleRows: function(){
-                var rows = this.get('rows');
-                var offset = this.get('offset');
-                var limit = parseFloat(this.get('limit'));
+                var self = this;
+                var controller = self.get('controller');
+                var rows = self.get('rows');
+                var offset = self.get('offset');
+                var limit = parseFloat(self.get('limit'));
                 var begin;
                 var end;
                 if(offset){
@@ -28,6 +30,9 @@ define(['App'], function(UMI){
                     begin = 0;
                 }
                 end = begin + limit;
+                Ember.run.later(self, function(){
+                   controller.send('hideLoader');
+                }, 300);
                 return rows.slice(begin, end);
             }.property('offset', 'limit'),
 
@@ -122,8 +127,13 @@ define(['App'], function(UMI){
                     }.property('parentView.parentView.offset'),
 
                     click: function(){
-                        if(this.get('isActive')){
-                            this.get('parentView.parentView').decrementProperty('offset');
+                        var self = this;
+                        var controller = self.get('controller');
+                        if(self.get('isActive')){
+                            controller.send('showLoader');
+                            Ember.run.next(self, function(){
+                                self.get('parentView.parentView').decrementProperty('offset');
+                            });
                         }
                     }
                 }),
@@ -140,8 +150,13 @@ define(['App'], function(UMI){
                     }.property('parentView.parentView.limit', 'parentView.parentView.offset', 'parentView.parentView.total'),
 
                     click: function(){
-                        if(this.get('isActive')){
-                            this.get('parentView.parentView').incrementProperty('offset');
+                        var self = this;
+                        var controller = self.get('controller');
+                        if(self.get('isActive')){
+                            controller.send('showLoader');
+                            Ember.run.next(self, function(){
+                                self.get('parentView.parentView').incrementProperty('offset');
+                            });
                         }
                     }
                 }),
@@ -158,9 +173,14 @@ define(['App'], function(UMI){
                     type: 'text',
 
                     keyDown: function(event){
+                        var self = this;
+                        var controller = self.get('controller');
                         if(event.keyCode === 13){
+                            controller.send('showLoader');
                             // При изменении количества строк на странице сбрасывается offset
-                            this.get('parentView.parentView').setProperties({'offset': 0, 'limit': this.$()[0].value});
+                            Ember.run.next(self, function(){
+                                self.get('parentView.parentView').setProperties({'offset': 0, 'limit': self.$()[0].value});
+                            });
                         }
                     }
                 })

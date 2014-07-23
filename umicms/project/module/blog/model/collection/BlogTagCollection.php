@@ -22,7 +22,7 @@ use umicms\project\module\blog\model\object\BlogTag;
  * @method CmsSelector|BlogTag[] select() Возвращает селектор для выбора тэгов.
  * @method BlogTag get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тэг по GUID
  * @method BlogTag getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тэг по id
- * @method BlogTag add($typeName = IObjectType::BASE) Создает и возвращает тэг
+ * @method BlogTag add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает тэг
  * @method BlogTag getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тэг по его последней части ЧПУ
  */
 class BlogTagCollection extends CmsPageCollection

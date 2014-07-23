@@ -110,7 +110,10 @@
     }
     .f-dropdown{
         width: auto;
-        min-width: 300px;
+        min-width: 340px;
+        .button.flat{
+            border-color: transparent !important;
+        }
     }
 }
 

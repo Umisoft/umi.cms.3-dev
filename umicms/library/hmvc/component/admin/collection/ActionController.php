@@ -469,6 +469,9 @@ class ActionController extends BaseController implements IFormAware
     protected function actionGetBackupList()
     {
         $collection = $this->getCollection();
+        /**
+         * @var IRecoverableObject $object
+         */
         $object = $collection->getById($this->getRequiredQueryVar('id'));
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
@@ -479,11 +482,16 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
-        /**
-         * @var IRecoverableObject $object
-         */
-        return $collection->getBackupList($object)
-            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
+        $result = [
+            'i18n' => [
+                'Current version' => $this->translate('Current version'),
+            ],
+            'collection' => $collection->getBackupList($object)
+                    ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
+
+        ];
+
+        return $result;
     }
 
     /**

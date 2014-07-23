@@ -40,6 +40,8 @@ return [
         'Logout' => 'Logout',
         'Remember my choice' => 'Remember my choice',
         'Nothing found' => 'Nothing found',
+        'Loading' => 'Loading',
+        'Current version' => 'Current version',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
@@ -92,6 +94,8 @@ return [
         'Logout' => 'Выход из системы',
         'Remember my choice' => 'Запомнить мой выбор',
         'Nothing found' => 'Ничего не найдено',
+        'Loading' => 'Загрузка',
+        'Current version' => 'Текущая версия',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',

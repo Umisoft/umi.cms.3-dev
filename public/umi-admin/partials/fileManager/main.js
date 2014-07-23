@@ -10,7 +10,7 @@ define(['App'], function(UMI){
         didInsertElement: function(){
             var self = this;
             $('#elfinder').elfinder({
-                url : '/admin/rest/files/manager/action/connector',//self.get('controller.connector.source'),
+                url : window.UmiSettings.baseApiURL + '/files/manager/action/connector',//self.get('controller.connector.source'),
                 lang: 'ru',
                 getFileCallback : function(fileInfo){
                     var contentParams = {};

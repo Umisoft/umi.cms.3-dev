@@ -9,6 +9,7 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
+            "umicms\\install\\": "install",
             "project\\" : "public",
             "tests\\" : "tests"
         },
@@ -35,6 +36,7 @@
 
         "symfony/finder": "~2.2",
         "symfony/process": "~2.1",
-        "symfony/console": "~2.1"
+        "symfony/console": "~2.1",
+        "sami/sami": "2.0.*@dev"
     }
 }

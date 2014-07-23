@@ -24,7 +24,7 @@ use umicms\project\module\service\model\object\Backup;
  *
  * @method Backup get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает резервную копию по ее GUID.
  * @method Backup getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает резервную копию по ее id.
- * @method Backup add($typeName = IObjectType::BASE) Создает и возвращает резервную копию.
+ * @method Backup add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает резервную копию.
  */
 class BackupCollection extends CmsCollection
 {
@@ -43,7 +43,7 @@ class BackupCollection extends CmsCollection
             ->fields(
                 [
                     Backup::FIELD_OBJECT_ID,
-                    Backup::FIELD_COLLECTION_NAME,
+                    Backup::FIELD_REF_COLLECTION_NAME,
                     Backup::FIELD_CREATED,
                     Backup::FIELD_OWNER
                 ]
@@ -59,7 +59,7 @@ class BackupCollection extends CmsCollection
     {
         return $this->select()
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
-            ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName())
+            ->where(Backup::FIELD_REF_COLLECTION_NAME)->equals($object->getCollectionName())
             ->orderBy(Backup::FIELD_CREATED, CmsSelector::ORDER_DESC);
     }
 
@@ -129,7 +129,7 @@ class BackupCollection extends CmsCollection
 
         $backup = $this->add();
         $backup->objectId = $object->getId();
-        $backup->collectionName = $object->getCollectionName();
+        $backup->refCollectionName = $object->getCollectionName();
         $backup->getProperty(Backup::FIELD_DATA)->setValue(serialize($object));
 
         return $this;

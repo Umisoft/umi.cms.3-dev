@@ -22,26 +22,20 @@ class HighlightWidget extends BaseCmsWidget
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'highlight';
-
     /**
-     * Текст, в котором требуется выделить фрагмент
-     * @var string $text
+     * @var string $text текст, в котором требуется выделить фрагмент
      */
     public $text;
     /**
-     * Фрагмент текста, который нужно выделить
-     * @var string $query
+     * @var string $query фрагмент текста, который нужно выделить
      */
     public $query;
     /**
-     * Настройка маркера начала подсветки найденных результатов
-     * @var string $searchHighlightStart
+     * @var string $highlightStart настройка маркера начала подсветки найденных результатов
      */
     public $highlightStart = '<mark>';
-
     /**
-     * Настройка маркера конца подсветки найденных результатов
-     * @var string $searchHighlightEnd
+     * @var string $highlightEnd настройка маркера конца подсветки найденных результатов
      */
     public $highlightEnd = '</mark>';
 
@@ -60,7 +54,8 @@ class HighlightWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Возвращает размеченную строку.
+     * @return string
      */
     public function __invoke()
     {
