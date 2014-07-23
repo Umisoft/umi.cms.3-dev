@@ -184,6 +184,59 @@ define(
                             this.get('controller').send('importFromRss', model);
                         }
                     }
+                },
+
+                switchRobots: {
+                    isAllowedRobots: null,
+                    label: function(){
+                        if(this.get('isAllowedRobots')){
+                            return this.get('meta.attributes.states.disallow.label');
+                        } else{
+                            return this.get('meta.attributes.states.allow.label');
+                        }
+                    }.property('meta.attributes.label', 'isAllowedRobots'),
+                    iconClass: function(){
+                        if(this.get('isAllowedRobots')){
+                            return 'icon-allowRobots';
+                        } else{
+                            return 'icon-disallowRobots';
+                        }
+                    }.property('isAllowedRobots'),
+                    actions: {
+                        switchRobots: function(){
+                            var self = this;
+                            var defer = Ember.RSVP.defer();
+                            var promise = defer.promise;
+                            var currentState = this.get('isAllowedRobots');
+                            var model = this.get('controller.object');
+                            this.get('controller').send('switchRobots', model, currentState, defer);
+                            promise.then(function(){
+                                self.set('isAllowedRobots', !currentState);
+                            });
+                        }
+                    },
+                    checkIsAllowedRobots: function(){
+                        var self = this;
+                        var object = this.get('controller.object');
+                        var componentController = this.get('container').lookup('controller:component');
+                        var isAllowedRobotsSource;
+                        var serializeObject;
+                        if(componentController){
+                            serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                            isAllowedRobotsSource = componentController.get('settings.actions.isAllowedRobots.source');
+                            return $.get(isAllowedRobotsSource + '?id=' + object.get('id')).then(function(results){
+                                results = results || {};
+                                self.set('isAllowedRobots', Ember.get(results, 'result.isAllowedRobots'));
+                            });
+                        }
+                    },
+                    checkIsAllowedRobotsChange: function(){
+                        Ember.run.once(this, 'checkIsAllowedRobots');
+                    }.observes('controller.object').on('init'),
+
+                    willDestroyElement: function(){
+                        this.removeObserver('controller.object');
+                    }
                 }
             };
             UMI.globalBehaviour = new GlobalBehaviour();

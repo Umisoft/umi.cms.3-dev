@@ -18,6 +18,7 @@ use umicms\hmvc\component\ICollectionComponent;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\hmvc\component\admin\AdminComponent;
@@ -65,6 +66,18 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
      * Действие для деактивации объекта
      */
     const ACTION_DEACTIVATE = 'deactivate';
+    /**
+     * Действие для разрешения индексации страницы
+     */
+    const ACTION_ALLOW_ROBOTS = 'allowRobots';
+    /**
+     * Действие для запрета индексации страницы
+     */
+    const ACTION_DISALLOW_ROBOTS = 'disallowRobots';
+    /**
+     * Действие для проверки статуса разрешения индексации страницы
+     */
+    const ACTION_IS_ALLOWED_ROBOTS = 'isAllowedRobots';
     /**
      * Действие для изменения ЧПУ объекта
      */
@@ -193,6 +206,10 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
             );
         }
 
+        if ($collection instanceof IRobotsAccessibleCollection) {
+            $actions[self::ACTION_IS_ALLOWED_ROBOTS] = $this->createQueryAction(self::ACTION_IS_ALLOWED_ROBOTS);
+        }
+
         return $actions;
     }
 
@@ -208,6 +225,11 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
         if ($collection instanceof IActiveAccessibleCollection) {
             $actions[self::ACTION_ACTIVATE] = $this->createModifyAction(self::ACTION_ACTIVATE);
             $actions[self::ACTION_DEACTIVATE] = $this->createModifyAction(self::ACTION_DEACTIVATE);
+        }
+
+        if ($collection instanceof IRobotsAccessibleCollection) {
+            $actions[self::ACTION_ALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_ALLOW_ROBOTS);
+            $actions[self::ACTION_DISALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_DISALLOW_ROBOTS);
         }
         if ($collection instanceof CmsHierarchicCollection) {
             $actions[self::ACTION_MOVE] = $this->createModifyAction(self::ACTION_MOVE);

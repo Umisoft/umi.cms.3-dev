@@ -24,6 +24,7 @@ return [
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
+            'umicms\project\module\search\model\object\SearchIndex' => 'umicms\serialization\xml\orm\SearchIndexSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\xml\view\CmsTreeViewSerializer',
@@ -38,12 +39,13 @@ return [
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+            'umicms\project\module\search\model\object\SearchIndex' => 'umicms\serialization\json\orm\SearchIndexSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\json\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\json\view\CmsTreeViewSerializer',
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\json\view\CmsTreeNodeSerializer',
             'umi\form\EntityAttributesView' => 'umicms\serialization\json\view\EntityAttributesViewSerializer',
-            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\json\MenuItemSerializer',
+            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\json\orm\MenuItemSerializer',
             'umicms\pagination\CmsPaginator' => 'umicms\serialization\json\PaginatorSerializer',
         ]
     ],
@@ -63,6 +65,7 @@ return [
         SiteApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
         SiteRestWidgetController::NAME => __NAMESPACE__ . '\controller\SiteRestWidgetController',
         'captcha' => __NAMESPACE__ . '\controller\CaptchaController',
+        'robots' => __NAMESPACE__ . '\controller\RobotsController',
     ],
 
     SiteApplication::OPTION_WIDGET => [
@@ -105,6 +108,13 @@ return [
         ],
         'page' => [
             'type' => 'SiteStaticPageRoute'
+        ],
+        'robots' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/robots.txt',
+            'defaults' => [
+                'controller' => 'robots'
+            ]
         ],
         'component' => [
             'type' => 'SiteComponentRoute'
