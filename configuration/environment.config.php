@@ -9,6 +9,7 @@ return [
         'displayErrors' => true,
         'showExceptionTrace' => true,
         'showExceptionStack' => true,
+        'browserCacheEnabled' => false,
 
         'timezone' => 'UTC',
 
@@ -22,6 +23,7 @@ return [
         'displayErrors' => false,
         'showExceptionTrace' => false,
         'showExceptionStack' => false,
+        'browserCacheEnabled' => true,
 
         'timezone' => 'UTC',
 
