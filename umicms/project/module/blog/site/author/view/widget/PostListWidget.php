@@ -25,7 +25,7 @@ class PostListWidget extends BaseListWidget
      */
     public $template = 'postList';
     /**
-     * @var array|BlogAuthor[]|BlogAuthor|null $blogAuthor авторы, список авторов блога или GUID, посты которых выводятся.
+     * @var array|BlogAuthor[]|BlogAuthor|null $blogAuthors авторы, список авторов блога или GUID, посты которых выводятся.
      * Если не указаны, то посты выводятся всех авторов
      */
     public $blogAuthors;

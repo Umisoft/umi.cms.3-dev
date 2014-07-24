@@ -150,6 +150,7 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->notName('PackCoreCommand.php')
+            ->notName('PackInstallerCommand.php')
             ->notName('PackEnvironmentCommand.php')
             ->notName('UpdateDocumentationCommand.php')
             ->notName('SiteApplication.php')
@@ -279,7 +280,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, $obfuscate, ProgressBar $progress)
     {
-        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $progress->setMessage('Packing "' . $localPath . '"');
         if ($obfuscate && $file->getExtension() == 'php') {

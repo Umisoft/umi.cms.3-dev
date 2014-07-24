@@ -13,7 +13,7 @@ return [
         UsersModule::SETTING_MAIL_SENDER => 'Sender e-mail',
         UsersModule::SETTING_MAIL_NOTIFICATION_RECIPIENTS => 'Registration information recipient e-mail',
         'role:notificationsExecutor:displayName' => 'Notifications',
-        'role:registrationExecutor:displayName' => 'Registration'
+        'role:registrationExecutor:displayName' => 'Registration',
     ],
 
     'ru-RU' => [

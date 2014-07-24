@@ -27,12 +27,6 @@ class SearchApi extends BaseSearchApi
      * @var int $minimumPhraseLength
      */
     public $minimumPhraseLength;
-    /**
-     * Минимальная длина пригодного к поиску корня слова.
-     * Чем она больше, тем меньше будет найдено нерелевантных (двусмысленных) результатов
-     * @var int $minimumWordRootLength
-     */
-    public $minimumWordRootLength;
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
@@ -47,12 +41,11 @@ class SearchApi extends BaseSearchApi
 
         $selector = $this->getSiteIndexCollection()
             ->select()
-            ->fields([SearchIndex::FIELD_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
+            ->fields([SearchIndex::FIELD_REF_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
 
         $this->buildQueryCondition(
             $selector,
-            $this->normalizeSearchString($searchString),
-            $this->detectWordBases($searchString)
+            $this->normalizeSearchString($searchString)
         );
 
         return $selector;
@@ -62,10 +55,10 @@ class SearchApi extends BaseSearchApi
      * Выделяет подстроку во всех возможных формах.
      * Возвращает текст с подстроками, выделенными сконфигурированными маркерами.
      *
-     * @param string $query Исходный запрос
-     * @param string $text Текст, в котором нужно выделить найденные подстроки
-     * @param string $highlightStart Маркер начала выделения подстроки
-     * @param string $highlightEnd Маркер окончания выделения подстроки
+     * @param string $query исходный запрос
+     * @param string $text текст, в котором нужно выделить найденные подстроки
+     * @param string $highlightStart маркер начала выделения подстроки
+     * @param string $highlightEnd маркер окончания выделения подстроки
      * @return string
      */
     public function highlightResult($query, $text, $highlightStart, $highlightEnd)
@@ -188,66 +181,27 @@ class SearchApi extends BaseSearchApi
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
      * @param CmsSelector $selector
      * @param string $searchString искомые слова
-     * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
      */
-    protected function buildQueryCondition(CmsSelector $selector, $searchString, array $wordBases)
+    protected function buildQueryCondition(CmsSelector $selector, $searchString)
     {
         $searchMetadata = $selector->getCollection()->getMetadata();
 
         $selector->setSelectBuilderInitializer(
-            function(ISelectBuilder $selectBuilder) use ($searchMetadata, $searchString, $wordBases) {
+            function(ISelectBuilder $selectBuilder) use ($searchMetadata, $searchString) {
 
                 $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName($this->getCurrentDataLocale());
 
                 $connection = $searchMetadata->getCollectionDataSource()->getConnection();
 
-                $selectBuilder->where(IExpressionGroup::MODE_OR)
+                $selectBuilder->where()
                     ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
                     ->bindExpression(
                         ':searchMatchExpression',
                         'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($searchString)
-                        . '  WITH QUERY EXPANSION)'
+                        . ')'
                     )
                     ->bindInt(':minimumSearchRelevance', 0);
-
-                if (count($wordBases)) {
-                    $selectBuilder->begin(IExpressionGroup::MODE_OR)
-                        ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
-                        ->end()
-                        ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
-                }
             }
         );
-    }
-
-    /**
-     * Преобразует слова фразы к их базовым формам, например "масло" » "масл"
-     * Числа остаются без изменений, слишком короткие корни отбрасываются.
-     * @param string $phrase
-     * @return array
-     */
-    private function detectWordBases($phrase)
-    {
-        $bases = [];
-        $parts = preg_split('/[\s_-]+/u', $phrase);
-
-        foreach ($parts as &$part) {
-            $partBase = $this->getStemming()->getCommonRoot($part);
-            if (is_numeric($partBase) || (mb_strlen($partBase) > $this->minimumWordRootLength)) {
-                $bases[] = $partBase;
-            }
-        }
-
-        return $bases;
-    }
-
-    /**
-     * Собирает часть проверочного выражения LIKE
-     * @param array $wordBases
-     * @return string
-     */
-    protected function buildLikeQueryPart(array $wordBases)
-    {
-        return implode('%', $wordBases);
     }
 }

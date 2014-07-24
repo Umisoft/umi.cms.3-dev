@@ -40,20 +40,42 @@ define(['App'], function(UMI){
                 if(!scrollArea.length){
                     return;
                 }
-                scrollArea.on('scroll.umi.magellan', function(){
-                    var scrollOffset = $(this).scrollTop();
-                    var focusField;
-                    var fieldset = $(this).find('fieldset');
-                    var scrollElement;
-                    for(var i = 0; i < fieldset.length; i++){
-                        scrollElement = fieldset[i].parentNode.offsetTop;
-                        if(scrollElement - parseFloat(getComputedStyle(fieldset[i]).marginTop) <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight){
-                            focusField = fieldset[i];
+                var fieldset = scrollArea.find('fieldset');
+                Ember.run.next(self, function(){
+                    var lastFieldset = fieldset[fieldset.length - 1];
+                    var placeholderFieldset;
+                    var lastFieldsetHeight = lastFieldset.offsetHeight;
+                    var scrollAreaHeight = scrollArea[0].offsetHeight;
+                    var setPlaceholderHeight = function(placeholder){
+                        lastFieldsetHeight = lastFieldset.offsetHeight;
+                        scrollAreaHeight = scrollArea[0].offsetHeight;
+                        placeholder.style.height = scrollAreaHeight - lastFieldsetHeight - 10 - parseInt($(lastFieldset).css('marginBottom')) + 'px';
+                    };
+
+                    if(scrollAreaHeight > lastFieldsetHeight){
+                        placeholderFieldset = document.createElement('div');
+                        placeholderFieldset.className = 'umi-js-fieldset-placeholder';
+                        placeholderFieldset = scrollArea[0].appendChild(placeholderFieldset);
+                        setPlaceholderHeight(placeholderFieldset);
+                        $(window).on('resize.umi.magellan.fieldsetPlaceholder', function(){
+                            setPlaceholderHeight(placeholderFieldset);
+                        });
+                    }
+
+                    scrollArea.on('scroll.umi.magellan', function(){
+                        var scrollOffset = $(this).scrollTop();
+                        var focusField;
+                        var scrollElement;
+                        for(var i = 0; i < fieldset.length; i++){
+                            scrollElement = fieldset[i].parentNode.offsetTop;
+                            if(scrollElement - parseFloat(getComputedStyle(fieldset[i]).marginTop) <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight){
+                                focusField = fieldset[i];
+                            }
                         }
-                    }
-                    if(focusField){
-                        self.set('focusId', focusField.id.replace(/^fieldset-/g, ''));
-                    }
+                        if(focusField){
+                            self.set('focusId', focusField.id.replace(/^fieldset-/g, ''));
+                        }
+                    });
                 });
             }
         });

@@ -4,7 +4,7 @@
             <h3>
                 <a href="{{ index.getIndexedObject().getPageUrl()  }}">{{ index.getIndexedObject().displayName  }}</a>
             </h3>
-            {{ widget('search.fragments', {'query' : query, 'page' : index.getIndexedObject()}) }}
+            {{ widget('search.fragments', {'query' : query, 'index' : index}) }}
         </div>
     {% endfor %}
 

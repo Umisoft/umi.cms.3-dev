@@ -16,7 +16,7 @@
         <div>
             {{#each view.backupList}}
                 <div class="row collapse" {{action 'applyBackup' this target="view"}}>
-                    <div class="columns small-6 place-button">
+                    <div class="columns small-7 place-button">
                         {{#if isActive}}
                             <button class="button flat tiny square">
                                 <i class="icon icon-accept"></i>
@@ -28,7 +28,7 @@
                         {{/if}}
                         {{created.date}}
                     </div>
-                    <div class="columns small-6">
+                    <div class="columns small-5">
                         {{#if user}}
                             {{user}}
                         {{else}}

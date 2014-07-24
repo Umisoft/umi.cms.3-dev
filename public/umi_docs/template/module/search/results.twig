@@ -1,0 +1,14 @@
+{% if (list.getTotal()) %}
+    {% for index in list %}
+        <div>
+            <h3>
+                <a href="{{ index.getIndexedObject().getPageUrl()  }}">{{ index.getIndexedObject().displayName  }}</a>
+            </h3>
+            {{ widget('search.fragments', {'query' : query, 'page' : index.getIndexedObject()}) }}
+        </div>
+    {% endfor %}
+
+    {{ include('pagination.twig', {'pagination' : pagination}) }}
+{% else %}
+    <p>{{ translate('No results') }}</p>
+{% endif %}

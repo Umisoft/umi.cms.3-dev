@@ -1,0 +1,12 @@
+<form class="navbar-form navbar-right" {{ form.attributes | raw }} role="search">
+    {% for element in form.elements %}
+        {% if (element.tag == 'input') %}
+            <div class="form-group">
+                <input class="form-control" {{ element.attributes | raw }} placeholder="{{ element.label }}">
+            </div>
+        {% elseif (element.tag == 'button') %}
+            <button class="btn btn-success" {{ element.attributes | raw }}> {{ element.label }} </button>
+        {% endif %}
+    {% endfor %}
+</form>
+

@@ -37,9 +37,9 @@ return [
         SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => 'Пропускать в хлебных крошках',
         StaticPage::FIELD_IN_MENU => 'Отображать в меню',
         StaticPage::FIELD_SUBMENU_STATE => 'Статус отображения в меню',
-        'neverShown' => 'Подменю никогда не развернуто',
+        'neverShown' => 'Подменю не развернуто',
         'currentShown' => 'Подменю развернуто, если в нем находится текущая страница',
-        'alwaysShown' => 'Подменю всегда развернуто',
+        'alwaysShown' => 'Подменю развернуто',
 
         'type:base:displayName' => 'Страница',
         'type:system:displayName' => 'Системная страница',

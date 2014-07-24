@@ -36,7 +36,7 @@ use umicms\Utils;
  * @method CmsSelector|BaseUser[] select() Возвращает селектор для выбора пользователей.
  * @method BaseUser get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает пользователя по GUID.
  * @method BaseUser getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пользователя по id.
- * @method BaseUser add($typeName = IObjectType::BASE) Создает и возвращает пользователя.
+ * @method BaseUser add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает пользователя.
  */
 class UserCollection extends CmsCollection implements IActiveAccessibleCollection, ILockedAccessibleCollection
 {

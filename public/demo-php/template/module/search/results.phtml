@@ -17,12 +17,14 @@
             <h3>
                 <a href="<?= $page->getPageUrl() ?>"><?= $page->displayName ?></a>
             </h3>
-            <?= $this->widget('search.fragments', ['query' => $query, 'page' => $page]); ?>
+            <?= $this->widget('search.fragments', ['query' => $query, 'index' => $index]); ?>
         </div>
-
     <?php endforeach; ?>
 
-    <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
+    <?php if (isset($paginator)) : ?>
+        <?= $this->render('pagination.phtml', ['paginator' => $paginator]); ?>
+    <?php endif; ?>
+
 <?php else :?>
     <p><?=$this->translate('No results')?></p>
 <?php endif; ?>

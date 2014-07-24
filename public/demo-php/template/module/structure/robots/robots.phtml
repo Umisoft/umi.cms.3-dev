@@ -1,0 +1,17 @@
+<?php
+/** @var \umicms\project\module\structure\model\object\Robots[] $pages */
+use umicms\orm\object\ICmsPage;
+
+?>
+User-Agent: *
+
+Disallow: /?
+<?php
+foreach($pages as $page) {
+    if ($page->pageRelation instanceof ICmsPage) {
+        echo 'Disallow: ' . $page->pageRelation->getPageUrl() . "\n";
+    }
+}
+?>
+
+Host: <?= $host ?>

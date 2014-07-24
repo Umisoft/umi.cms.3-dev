@@ -43,7 +43,7 @@ class LoginController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -84,7 +84,12 @@ class LoginController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $authenticated флаг, указывающий на то, авторизован пользователь или нет
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница авторизаци
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {
