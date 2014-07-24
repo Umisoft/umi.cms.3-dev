@@ -105,8 +105,7 @@ class PackInstallerCommand extends BaseCommand
 
 header("Content-Type: text/html; charset=utf-8");
 
-set_error_handler('errorHandler');
-function errorHandler(\$errno, \$errmsg, \$filename, \$linenum) {
+set_error_handler(function(\$errno, \$errmsg, \$filename, \$linenum) {
     \$date = date('Y-m-d H:i:s (T)');
     \$f = fopen('./errors.txt', 'a');
     if (!empty(\$f)) {
@@ -115,7 +114,20 @@ function errorHandler(\$errno, \$errmsg, \$filename, \$linenum) {
         fwrite(\$f, \$err);
         fclose(\$f);
     }
-}
+});
+
+register_shutdown_function(function() {
+    \$errors = error_get_last();
+    if (is_array(\$errors) && in_array(\$errors['type'], [E_ERROR])) {
+        \$f = fopen('./errors.txt', 'a');
+        if (!empty(\$f)) {
+            foreach (\$errors as \$error) {
+                fwrite(\$f, \$error['message'] . ' ' . \$error['file'] . ':' . \$error['line'] . "\r\n");
+            }
+            fclose(\$f);
+        }
+    }
+});
 
 try {
     Phar::mapPhar('install.phar');
