@@ -12,11 +12,15 @@ use umicms\project\module\blog\model\object\BlogCategory;
 
 return [
         'en-US' => [
+            'collection:blogCategory:displayName' => 'Blog categories',
+
             BlogCategory::FIELD_POSTS => 'Posts',
             'type:base:displayName' => 'Blog category'
         ],
 
         'ru-RU' => [
+            'collection:blogCategory:displayName' => 'Категории блогов',
+
             BlogCategory::FIELD_POSTS => 'Посты',
             'type:base:displayName' => 'Категория блога'
         ]

@@ -70,7 +70,7 @@ class RecycleComponentLayout extends AdminComponentLayout
             if ($collection instanceof IRecyclableCollection && $collection->selectTrashed()->limit('1')->result()->count()) {
                 $this->listCollection[] = [
                     'id' => $collectionName,
-                    'displayName' => $this->component->translate('collection:' . $collectionName)
+                    'displayName' => $collection->translate('collection:' . $collectionName . ':displayName')
                 ];
             }
         }

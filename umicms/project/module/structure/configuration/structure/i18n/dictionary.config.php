@@ -15,6 +15,8 @@ use umicms\project\module\structure\model\object\SystemPage;
 return [
     'en-US' => [
 
+        'collection:structure:displayName' => 'Structure',
+
         StructureElement::FIELD_COMPONENT_PATH => 'Handler component path',
         StructureElement::FIELD_COMPONENT_NAME => 'Handler component name',
         SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => 'Skip page in breadcrumbs',
@@ -31,6 +33,8 @@ return [
     ],
 
     'ru-RU' => [
+
+        'collection:structure:displayName' => 'Структура',
 
         StructureElement::FIELD_COMPONENT_PATH => 'Путь компонента-обработчика',
         StructureElement::FIELD_COMPONENT_NAME => 'Имя компонента-обработчика',

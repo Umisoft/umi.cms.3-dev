@@ -12,6 +12,8 @@ use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
         'en-US' => [
+            'collection:user:displayName' => 'Users',
+
             RegisteredUser::FIELD_PASSWORD => 'Password',
             RegisteredUser::FIELD_LOGIN => 'Login',
             RegisteredUser::FIELD_EMAIL => 'E-mail',
@@ -33,6 +35,8 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:user:displayName' => 'Пользователи',
+
             RegisteredUser::FIELD_PASSWORD => 'Пароль',
             RegisteredUser::FIELD_LOGIN => 'Логин',
             RegisteredUser::FIELD_EMAIL => 'E-mail',

@@ -10,8 +10,6 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
-use umicms\project\module\blog\model\object\BlogAuthor;
-use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return [
