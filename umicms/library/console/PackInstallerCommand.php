@@ -103,7 +103,37 @@ class PackInstallerCommand extends BaseCommand
  * file that was distributed with this source code.
  */
 
-Phar::mapPhar('install.phar');
+header("Content-Type: text/html; charset=utf-8");
+
+set_error_handler(function(\$errno, \$errmsg, \$filename, \$linenum) {
+    \$date = date('Y-m-d H:i:s (T)');
+    \$f = fopen('./errors.txt', 'a');
+    if (!empty(\$f)) {
+        \$filename = str_replace(\$_SERVER['DOCUMENT_ROOT'],'',\$filename);
+        \$err = "\$errmsg = \$filename = \$linenum\r\n";
+        fwrite(\$f, \$err);
+        fclose(\$f);
+    }
+});
+
+register_shutdown_function(function() {
+    \$errors = error_get_last();
+    if (is_array(\$errors) && in_array(\$errors['type'], [E_ERROR])) {
+        \$f = fopen('./errors.txt', 'a');
+        if (!empty(\$f)) {
+            foreach (\$errors as \$error) {
+                fwrite(\$f, \$error['message'] . ' ' . \$error['file'] . ':' . \$error['line'] . "\r\n");
+            }
+            fclose(\$f);
+        }
+    }
+});
+
+try {
+    Phar::mapPhar('install.phar');
+} catch(\Exception \$e) {
+    echo 'Произошла ошибка при запуске инсталлятора. Убедитесь, что файл был загружен в бинарном режиме. Если ошибка не устранена, обратитесь в СЗ.';
+}
 
 if (count(\$_GET)) {
     require 'phar://install.phar/install/install.php';
@@ -202,7 +232,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, ProgressBar $progress)
     {
-        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $content = file_get_contents($file);
         $content = $this->stripWhitespace($content);

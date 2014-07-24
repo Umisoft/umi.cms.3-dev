@@ -10,11 +10,15 @@
 
 namespace umicms\install\command;
 
+use umi\config\io\IConfigIO;
+use umi\toolkit\IToolkit;
 use umicms\install\installer\Installer;
 use umicms\install\exception\RuntimeException;
 use umi\orm\collection\ICollectionManager;
 use umi\orm\persister\IObjectPersister;
+use umicms\module\toolbox\ModuleTools;
 use umicms\project\Bootstrap;
+use umicms\project\module\service\model\ServiceModule;
 use umicms\project\module\users\model\object\Supervisor;
 
 class CreateSupervisor implements ICommandInstall
@@ -113,9 +117,36 @@ EOF;
             throw new RuntimeException('Невалидный юзер.');
         }
 
+        $this->activateLicense($toolkit, $config);
+
+        unlink (INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . $_SESSION['configFileName']);
+        unlink (INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'install.phar.php');
+
         rename(INSTALL_ROOT_DIR . '/.htaccess.dist', INSTALL_ROOT_DIR . '/.htaccess');
 
         return true;
+    }
+
+    /**
+     * Активация лицензии
+     * @param IToolkit $toolkit Toolkit
+     * @param array $config конфиг
+     */
+    private function activateLicense(IToolkit $toolkit, array $config)
+    {
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $toolkit->getService('umi\config\io\IConfigIO');
+        $projectConfig = $configIO->read('~/project/site/site.settings.config.php');
+
+        /** @var ModuleTools $moduleTools */
+        $moduleTools = $toolkit->getToolbox(ModuleTools::NAME);
+        /** @var ServiceModule $service */
+        $service = $moduleTools->getModuleByClass(ServiceModule::className());
+        $projectConfig->set('defaultDomain', $config['license']['domain']);
+        $service->license()->activate($config['license']['licenseKey'], $config['license']['domain'], $projectConfig);
+        $configIO->write($projectConfig);
     }
 }
  

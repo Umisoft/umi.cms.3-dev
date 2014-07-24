@@ -16,7 +16,6 @@ use umicms\project\module\blog\model\object\BlogComment;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
-    require CMS_PROJECT_DIR . '/configuration/model/metadata/active.config.php',
     require CMS_PROJECT_DIR . '/configuration/model/metadata/recyclable.config.php',
     [
         'dataSource' => [

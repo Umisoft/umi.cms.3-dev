@@ -41,6 +41,7 @@ return [
     'project.admin.rest.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
     'project.admin.rest.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
     'project.admin.rest.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
+    'project.admin.rest.structure.robots' => '{#lazy:~/project/module/structure/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
     'project.admin.rest.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
@@ -53,8 +54,6 @@ return [
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
     'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
 
-    'project.admin.rest.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
-
     'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
     'project.admin.rest.blog.category' => '{#lazy:~/project/module/blog/admin/category/i18n/dictionary.config.php}',
     'project.admin.rest.blog.comment' => '{#lazy:~/project/module/blog/admin/comment/i18n/dictionary.config.php}',
@@ -64,9 +63,6 @@ return [
     'project.admin.rest.blog.tag' => '{#lazy:~/project/module/blog/admin/tag/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
-
-    'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
-
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
@@ -189,7 +185,7 @@ return [
             'ru-RU' => 'Русский',
 
             ICmsObject::FIELD_CREATED => 'Дата создания',
-            ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
+            ICmsObject::FIELD_DISPLAY_NAME => 'Название',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
             ICmsObject::FIELD_GUID => 'GUID',
             ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
@@ -265,4 +261,6 @@ return [
 	
 	'collection.dispatches' => '{#lazy:~/project/module/dispatches/configuration/dispatches/i18n/dictionary.config.php}',
 	'collection.subscribers' => '{#lazy:~/project/module/dispatches/configuration/subscribers/i18n/dictionary.config.php}',
+	
+	'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
 ];

@@ -35,6 +35,7 @@ $autoLoaderPath = $vendorDirectory . '/autoload.php';
 
 error_reporting(-1);
 ini_set('display_errors', 1);
+set_time_limit(0);
 
 mb_internal_encoding("utf8");
 
@@ -84,10 +85,10 @@ $registry->add(new StepsInfo($installer), 'getStepsInfo');
 
 try {
     $result = $registry->get($request->query->get('command'))->execute();
-} catch (RuntimeException $e) {
+} catch (\Exception $e) {
     $response->setContent(json_encode([
         'message' => $e->getMessage(),
-        'overlay' => $e->getOverlay()
+        'overlay' => $e instanceof RuntimeException ? $e->getOverlay() : null
     ]));
     $response->headers->set('Content-Type', 'application/json');
     $response->setStatusCode(400);

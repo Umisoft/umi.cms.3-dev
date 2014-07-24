@@ -1,0 +1,10 @@
+User-Agent: *
+
+Disallow: /?
+{% for page in pages %}
+{% if page.pageRelation %}
+Disallow: {{ page.pageRelation.getPageUrl() }}
+{% endif %}
+{% endfor %}
+
+Host: {{ host }}

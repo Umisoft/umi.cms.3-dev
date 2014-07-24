@@ -69,6 +69,14 @@ class Environment
      * @var string $timezone таймзона сервера по умолчанию
      */
     public static $timezone = 'UTC';
+    /**
+     * @var bool $cacheTemplate разрешение кеширования шаблонов
+     */
+    public static $cacheTemplateEnabled = false;
+    /**
+     * @var bool $cacheBrowserEnabled разрешить ли браузерам кэшировать запросы
+     */
+    public static $browserCacheEnabled = true;
 
     /**
      * Инициализирует окружение настройками из конфигурации

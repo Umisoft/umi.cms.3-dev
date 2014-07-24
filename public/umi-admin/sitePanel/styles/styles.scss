@@ -1,0 +1,215 @@
+// Функции Foundation подключаются снала, так как необходим rem-calc()
+@import "foundation/functions";
+@import "settings";
+
+// We use this to do clear floats
+@mixin clearfix {
+    &:before, &:after { content: " "; display: table; }
+    &:after { clear: both; }
+}
+
+$umi-top-bar-height: 25px;
+$umi-bg-darken-set: #404959, #181B21;
+$images-path:  '../../production/images/';
+$umi-icons-img: $images-path + 'icons.png' + $images-version;
+$image-to-bottom-shadow: $images-path + 'shadows/toBottomShadow.png' + $images-version;
+
+//rem-calc() использовать не нужно так как font-size для body неизвестен
+body.has-umi-site-panel-topbar{
+    padding-top: $umi-top-bar-height;
+}
+
+@mixin icon(){
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+    position: relative;
+    display: inline-block;
+    line-height: 16px;
+    background-color: transparent;
+}
+
+@mixin icon-sprite(){
+    background: url($umi-icons-img) no-repeat;
+    background-color: transparent;
+}
+
+@mixin unselectable(){
+    touch-callout: none !important;
+    user-drag: none !important;
+    tap-hightlight-color: rgba(0, 0, 0, 0) !important;
+    user-select: none !important;
+}
+#umi-site-panel-topbar{
+    background: linear-gradient(nth($umi-bg-darken-set, 1) 0%, nth($umi-bg-darken-set, 2) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $umi-top-bar-height;
+    @include clearfix();
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #D5D6D8;
+    z-index: 9999;
+    @include unselectable;
+    &:before{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 3px;
+        width: 100%;
+        left: 0;
+        bottom: -3px;
+        background: url($image-to-bottom-shadow);
+        background-repeat: repeat-x;
+    }
+    ul, li, div, a, span{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        color: #D5D6D8;
+        @include unselectable;
+    }
+
+    .umi-topbar{
+        &-icon{
+            &-butterfly{
+                @include icon();
+                background: url($image-butterfly) no-repeat;
+                background-position: center center;
+                background-size: 95%;
+            }
+            &-exit{
+                @include icon;
+                @include icon-sprite;
+                background-position: -940px 0;
+            }
+        }
+        @mixin umi-toolbar-ul(){
+            white-space: nowrap;
+            > li{
+                display: inline-block;
+            }
+        }
+        &-ul{
+            &-left{
+                @include umi-toolbar-ul();
+                float: left;
+            }
+
+            &-right{
+                @include umi-toolbar-ul();
+                float: right;
+            }
+        }
+
+        &-label{
+            font-weight: bold;
+            font-size: 12px;
+            color: #D5D6D8;
+            height: $umi-top-bar-height;
+            line-height: $umi-top-bar-height;
+            padding: 0 5px;
+            display: inline-block;
+            .umi-topbar-icon-butterfly{
+                margin-top: 2px;
+            }
+        }
+        @mixin button{
+            font-weight: bold;
+            height: $umi-top-bar-height;
+            line-height: $umi-top-bar-height;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0 5px;
+            cursor: pointer;
+            &:hover{
+                background: linear-gradient(#535b69 0%,#31353b 100%);
+                border-bottom-color: #31353b;
+            }
+        }
+        &-button{
+            @include button();
+        }
+
+        &-button-dropdown{
+            @include button();
+            padding-right: 30px;
+            position: relative;
+            &:after{
+                position: absolute;
+                content: "";
+                width: 0;
+                height: 0;
+                display: block;
+                border-style: solid;
+                border-color: #D5D6D8 transparent transparent transparent;
+                top: 50%;
+                border-width: 5px;
+                right: 15px;
+                margin-top: -3px;
+            }
+            &:hover{
+                background: #3F4550;
+            }
+            &.umi-open{
+                background: #fff;
+                color: #575e6c;
+                border-bottom: 0;
+                .umi-topbar-dropdown{
+                    visibility: visible;
+                    opacity: 1;
+                }
+                &:after{
+                    border-top-color: #575e6c;
+                }
+            }
+        }
+
+        &-dropdown{
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background: #fff;
+            transition: all .2s linear;
+            margin-top: 0;
+            right: 0;
+            white-space: nowrap;
+            width: auto;
+            min-width: 100%;
+            font-weight: normal;
+            color: #575e6c;
+            padding: 5px 0;
+            a{
+                min-width: 160px;
+                padding: 6px 8px;
+                display: block;
+                text-decoration: none;
+                color: #575e6c;
+                i{
+                    margin-top: 3px;
+                }
+                &:hover{
+                    text-decoration: none;
+                    background: #eeeeee;
+                }
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                float: left;
+                display: block;
+                height: 3px;
+                width: 100%;
+                left: 0;
+                bottom: -3px;
+                background: url($image-to-bottom-shadow);
+                background-repeat: repeat-x;
+            }
+        }
+    }
+}

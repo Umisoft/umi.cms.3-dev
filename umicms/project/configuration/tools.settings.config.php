@@ -31,6 +31,7 @@ use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\project\Environment;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
@@ -66,6 +67,13 @@ return [
                 'engineClasses' => [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
+                ],
+                'defaultOptions' => [
+                    TwigTemplateEngine::NAME => [
+                        TwigTemplateEngine::OPTION_ENVIRONMENT => [
+                            'cache' => Environment::$cacheTemplateEnabled ? '{#localDir:~/project/cache/templates_c/}' : false
+                        ]
+                    ]
                 ]
             ]
         ]
@@ -120,6 +128,7 @@ return [
             'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
             'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
             'menu' => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
+            'robots' => '{#lazy:~/project/module/structure/configuration/robots/metadata.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
@@ -159,6 +168,7 @@ return [
             'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
             'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
             'menu'     => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
+            'robots' => '{#lazy:~/project/module/structure/configuration/robots/collection.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
