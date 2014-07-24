@@ -2,10 +2,18 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
-        UMI.LinkToObjectElementView = Ember.View.extend({
-            templateName: 'partials/linkToObjectElement',
+        UMI.PageRelationElementView = Ember.View.extend(UMI.SerializedValue, {
+            templateName: 'partials/pageRelationElement',
 
             classNames: ['row', 'collapse'],
+            /**
+             * @extended UMI.SerializedValue
+             */
+            path: 'displayName',
+            /**
+             * @extended UMI.SerializedValue
+             */
+            objectIsObservable: true,
 
             popupParams: function(){
                 return {
@@ -13,9 +21,28 @@ define(['App'], function(UMI){
                         object: this.get('object'),
                         meta: this.get('meta')
                     },
-                    popupType: 'linkToObject'
+                    popupType: 'pageRelation'
                 };
             }.property(),
+
+            actions: {
+                clearValue: function(){
+                    var self = this;
+                    var object = self.get('object');
+                    var property = this.get('meta.dataSource');
+                    self.set('value', '');
+                    object.set(property, '');
+                    object.validateProperty(property);
+                },
+
+                showPopup: function(params){
+                    var self = this;
+                    var object = self.get('object');
+                    var property = this.get('meta.dataSource');
+                    object.clearValidateForProperty(property);
+                    this.get('controller').send('showPopup', params);
+                }
+            },
 
             inputView: Ember.View.extend(UMI.InputValidate, {
                 type: "text",
@@ -26,8 +53,7 @@ define(['App'], function(UMI){
                     var template;
                     if(Ember.typeOf(this.get('object')) === 'instance'){
                         this.set('validator', 'collection');
-                        var dataSource = this.get('meta.dataSource');
-                        var input = '{{input type=view.type value=view.object.' + dataSource + '.guid placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
+                        var input = '{{input type=view.type value=view.parentView.value placeholder=view.meta.placeholder name=view.meta.attributes.name disabled=true}}';
                         var validate = this.validateErrorsTemplate();
                         template = input + validate;
                     }
@@ -37,23 +63,27 @@ define(['App'], function(UMI){
         });
 
 
-        UMI.LinkToObjectLayoutController = Ember.ObjectController.extend({
+        UMI.PageRelationLayoutController = Ember.ObjectController.extend({
             sideBarControl: Ember.computed.gt('collections.length', 1),
-            collections: function(){
-                var self = this;
-                var meta = this.get('model.meta');
-                var collectionList = ['structure', 'newsItem'];
-                var collections = [];
-                for(var i = 0; i < collectionList.length; i++){
-                    collections.push({displayName: collectionList[i], id: collectionList[i]});
-                }
-                return collections;
-            }.property('model'),
+
+            collections: [],
+
             selectedCollection: null,
+
             tableControlSettings: function(){
                 var selectedCollectionId = this.get('selectedCollection.id');
                 var object = this.get('model.object');
                 var meta = this.get('model.meta');
+                var property = object.get(Ember.get(meta, 'dataSource'));
+                var activeObjectGuid;
+                if(property){
+                    try{
+                        property = JSON.parse(property);
+                        activeObjectGuid = Ember.get(property, 'guid');
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
+                }
 
                 return {
                     control: {
@@ -62,6 +92,7 @@ define(['App'], function(UMI){
                             defaultFields: [
                                 "displayName"
                             ],
+                            activeObjectGuid: activeObjectGuid,
                             form: {
                                 elements: [
                                     {
@@ -89,34 +120,53 @@ define(['App'], function(UMI){
                                 var dataSource = Ember.get(meta, 'dataSource');
                                 var value = {
                                     collectionName: Ember.get(selectedObject, 'conctructor.typeKey'),
-                                    guid: selectedObject.get('guid')
+                                    guid: selectedObject.get('guid'),
+                                    displayName:  selectedObject.get('displayName')
                                 };
-                                object.set(dataSource, value);
+                                object.set(dataSource, JSON.stringify(value));
                                 context.send('closePopup');
                             }
                         }
                     }
                 };
             }.property('selectedCollection'),
+
             init: function(){
                 var self = this;
-                var collections = self.get('collections');
+                var object = self.get('object');
+                var meta = self.get('meta');
+                var dataSource = Ember.get(meta, 'dataSource');
+                var computedProperty = object.get(dataSource);
+                var collections = Ember.get(meta, 'collections');
+                var collectionName;
+
                 if(Ember.typeOf(collections) !== 'array'){
                     collections = [];
                 }
-                var fistCollection = collections[0];
                 Ember.warn('Collection list is empty.', collections.length);
-                self.set('selectedCollection', collections[0]);
+                self.set('collections', collections);
+
+                if(computedProperty){
+                    try{
+                        computedProperty = JSON.parse(computedProperty);
+                        collectionName = Ember.get(computedProperty, 'meta.collectionName');
+                        self.set('selectedCollection', collections.findBy('id', collectionName));
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
+                } else{
+                    self.set('selectedCollection', collections[0]);
+                }
             }
         });
 
-        UMI.LinkToObjectLayoutView = Ember.View.extend({
+        UMI.PageRelationLayoutView = Ember.View.extend({
             classNames: ['s-full-height'],
-            templateName: 'partials/linkToObjectLayout',
+            templateName: 'partials/pageRelationLayout',
             sideMenu: Ember.View.extend({
                 tagName: 'ul',
                 classNames: ['side-nav'],
-                templateName: 'partials/linkToObjectLayout/sideMenu',
+                templateName: 'partials/pageRelationLayout/sideMenu',
                 itemView: Ember.View.extend({
                     tagName: 'li',
                     classNameBindings: ['isActive:active'],

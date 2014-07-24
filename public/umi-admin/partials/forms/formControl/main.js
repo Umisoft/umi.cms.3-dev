@@ -101,8 +101,13 @@ define(['App'],
                     return '{{view "permissions" object=view.object meta=view.meta}}';
                 }.property(),
 
-                linkToObjectElement: function(){
-                    return '{{view "linkToObjectElement" object=view.object meta=view.meta}}';
+
+                objectRelation: function(){
+                    return '{{view "pageRelationElement" object=view.object meta=view.meta}}';
+                }.property(),
+
+                pageRelation: function(){
+                    return this.get('objectRelation');
                 }.property()
             });
         };

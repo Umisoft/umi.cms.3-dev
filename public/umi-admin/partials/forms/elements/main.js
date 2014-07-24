@@ -22,7 +22,7 @@ define(
         'partials/forms/elements/checkbox-group/main',
         'partials/forms/elements/color/main',
         'partials/forms/elements/permissions/main',
-        'partials/forms/elements/linkToObjectElement/main'
+        'partials/forms/elements/pageRelationElement/main'
     ],
     function(
         UMI,
@@ -47,7 +47,7 @@ define(
         checkboxGroupElement,
         colorElement,
         permissions,
-        linkToObjectElement
+        pageRelationElement
     ){
         "use strict";
 
@@ -72,7 +72,7 @@ define(
             checkboxGroupElement();
             colorElement();
             permissions();
-            linkToObjectElement();
+            pageRelationElement();
         };
     }
 );
