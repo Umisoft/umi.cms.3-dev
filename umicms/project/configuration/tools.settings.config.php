@@ -143,7 +143,15 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}'
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+			
+			'dispatches' => '{#lazy:~/project/module/dispatches/configuration/dispatches/metadata.config.php}',
+            'reason' => '{#lazy:~/project/module/dispatches/configuration/reason/metadata.config.php}',
+            'release' => '{#lazy:~/project/module/dispatches/configuration/release/metadata.config.php}',
+            'subscribers' => '{#lazy:~/project/module/dispatches/configuration/subscribers/metadata.config.php}',
+            'templatemail' => '{#lazy:~/project/module/dispatches/configuration/templatemail/metadata.config.php}',
+			'subscribersDispatches' => '{#lazy:~/project/module/dispatches/configuration/subscribersdispatches/metadata.config.php}',
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatches/configuration/unsubscribe/metadata.config.php}'
         ],
 
         'collections' => [
@@ -174,7 +182,15 @@ return [
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}'
+            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
+
+            'dispatches' => '{#lazy:~/project/module/dispatches/configuration/dispatches/collection.config.php}',
+            'reason' => '{#lazy:~/project/module/dispatches/configuration/reason/collection.config.php}',
+            'release' => '{#lazy:~/project/module/dispatches/configuration/release/collection.config.php}',
+            'subscribers' => '{#lazy:~/project/module/dispatches/configuration/subscribers/collection.config.php}',
+            'templatemail' => '{#lazy:~/project/module/dispatches/configuration/templatemail/collection.config.php}',
+			'subscribersDispatches' => '{#lazy:~/project/module/dispatches/configuration/subscribersdispatches/collection.config.php}',
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatches/configuration/unsubscribe/collection.config.php}'
         ]
     ],
 

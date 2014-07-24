@@ -134,6 +134,10 @@ return [
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
     'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+	
+	'project.admin.rest.dispatches' => '{#lazy:~/project/module/dispatches/admin/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatches.dispatches' => '{#lazy:~/project/module/dispatches/admin/dispatches/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatches.subscribers' => '{#lazy:~/project/module/dispatches/admin/subscribers/i18n/dictionary.config.php}',
 
     'collection' => [
 
@@ -238,7 +242,7 @@ return [
             'Send request' => 'Отправить запрос',
         ]
     ],
-
+	
     'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
     'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
 
@@ -258,4 +262,7 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+	
+	'collection.dispatches' => '{#lazy:~/project/module/dispatches/configuration/dispatches/i18n/dictionary.config.php}',
+	'collection.subscribers' => '{#lazy:~/project/module/dispatches/configuration/subscribers/i18n/dictionary.config.php}',
 ];
