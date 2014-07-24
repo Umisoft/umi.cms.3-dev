@@ -14,7 +14,7 @@
 
     <!-- Если в Рубрике нет новостей -->
     <xsl:template match="result[@widget = 'news.rubric.newsList']/list/collection" mode="news.content.list">
-        Пустота
+        <xsl:value-of select="document('translate://project.site.search/No%20result')/result" />
     </xsl:template>
 
     <!-- Если в Рубрике есть новости -->

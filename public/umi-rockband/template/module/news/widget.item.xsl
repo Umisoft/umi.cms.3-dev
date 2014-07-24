@@ -73,7 +73,6 @@
                 <xsl:value-of select="@displayName" disable-output-escaping="yes" />
             </a>
             <span class="date">
-                <!-- DateTime format: May 6, 2014 at 7:53am -->
                 <xsl:call-template name="dateTime">
                     <xsl:with-param name="format">Y-m-d H:i:s</xsl:with-param>
                     <xsl:with-param name="stringTime" select="property[@name='created']/value/date"/>

@@ -7,14 +7,14 @@
                 exclude-result-prefixes="php umi">
 
     <!-- Список новостей на странице Сюжета <Начало> -->
-    <xsl:template match="result[@widget = 'news.rubric.newsList']" mode="news.content.list">
+    <xsl:template match="result[@widget = 'news.subject.newsList']" mode="news.content.list">
         <xsl:apply-templates select="list/collection" mode="news.content.list" />
         <xsl:apply-templates select="paginator"/>
     </xsl:template>
 
     <!-- Если нет новостей омеченных этим Сюжетом -->
     <xsl:template match="result[@widget = 'news.subject.newsList']/list/collection" mode="news.content.list">
-        Пустота
+        <xsl:value-of select="document('translate://project.site.search/No%20result')/result" />
     </xsl:template>
 
     <!-- Если есть новости омеченные этим Сюжетом -->
