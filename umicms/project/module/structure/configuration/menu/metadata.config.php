@@ -12,6 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
+use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
@@ -34,7 +35,7 @@ return array_replace_recursive(
                 ]
             ],
             MenuInternalItem::FIELD_PAGE_RELATION => [
-                'type'       => IField::TYPE_OBJECT_RELATION,
+                'type'       => CmsPageRelationField::TYPE,
                 'columnName' => 'page_relation',
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []

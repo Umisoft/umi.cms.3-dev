@@ -8,14 +8,12 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
-
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'handlers' => [
-        'admin' => 'blog.rsstag'
-    ],
-    'dictionaries' => [
-        'collection.rssBlogTag', 'collection'
-    ],
-];
+        'en-US' => [
+            'collection:rssBlogTag:displayName' => 'Relation "RSS import scenario-tag"',
+        ],
+
+        'ru-RU' => [
+            'collection:rssBlogTag:displayName' => 'Связь "Сценарий импорта RSS-тэг"',
+        ]
+    ];

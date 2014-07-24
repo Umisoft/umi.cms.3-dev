@@ -8,18 +8,12 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\news\model\object\NewsRubric;
-
 return [
         'en-US' => [
-            'collection:newsRubric:displayName' => 'News rubrics',
-
-            NewsRubric::FIELD_NEWS => 'News items'
+            'collection:rssScenarioSubject:displayName' => 'Relation "RSS import scenario-subject"',
         ],
 
         'ru-RU' => [
-            'collection:newsRubric:displayName' => 'Новостные рубрики',
-
-            NewsRubric::FIELD_NEWS => 'Новости'
+            'collection:rssScenarioSubject:displayName' => 'Связь "Сценарий импорта RSS-новостной сюжет"',
         ]
     ];

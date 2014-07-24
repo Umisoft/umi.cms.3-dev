@@ -24,6 +24,8 @@ use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
+use umicms\form\element\ObjectRelation;
+use umicms\form\element\PageRelation;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
@@ -80,7 +82,9 @@ return [
                     Image::TYPE_NAME => 'umicms\form\element\Image',
                     Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
                     PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
-                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions'
+                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions',
+                    ObjectRelation::TYPE_NAME => 'umicms\form\element\ObjectRelation',
+                    PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation'
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'

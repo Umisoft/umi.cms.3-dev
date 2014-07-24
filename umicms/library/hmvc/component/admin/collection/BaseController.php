@@ -12,9 +12,12 @@ namespace umicms\hmvc\component\admin\collection;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\metadata\field\datetime\DateTimeField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
+use umi\orm\metadata\field\relation\ObjectRelationField;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
 use umicms\exception\RuntimeException;
@@ -27,8 +30,10 @@ use umicms\hmvc\component\admin\BaseController as BaseAdminController;
 /**
  * Базовый контроллер компонента, управляющего коллекцией объектов.
  */
-abstract class BaseController extends BaseAdminController
+abstract class BaseController extends BaseAdminController implements ICollectionManagerAware
 {
+    use TCollectionManagerAware;
+
     /**
      * Возвращает компонент, у которого вызван контроллер.
      * @throws RuntimeException при неверном классе компонента
@@ -145,6 +150,10 @@ abstract class BaseController extends BaseAdminController
                         $this->setManyToManyObjectSetValue($object, $propertyName, $field, $value);
                         break;
                     }
+                    case $field instanceof ObjectRelationField: {
+                        $this->setObjectRelationValue($object, $propertyName, $field, $value);
+                        break;
+                    }
                     case $field instanceof DateTimeField: {
                         $this->setDateTimeValue($object, $propertyName, $value);
                         break;
@@ -159,6 +168,32 @@ abstract class BaseController extends BaseAdminController
         $this->commit();
 
         return $object;
+    }
+
+    /**
+     * Сохраняет значение объекта для ObjectRelationField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param array|null $value
+     * @throws UnexpectedValueException если значение некорректно
+     */
+    protected function setObjectRelationValue(ICmsObject $object, $propertyName, $value)
+    {
+        if (!is_null($value)) {
+            if (!is_array($value) || !isset($value['collection']) || !isset($value['guid'])) {
+                throw new UnexpectedValueException(
+                    $this->translate(
+                        'Cannot set data for ObjectRelation property "{propertyName}". Data should be null or an array and contain "guid" and "collection" options.',
+                        ['propertyName' => $propertyName]
+                    )
+                );
+            }
+            $value = $this->getCollection($value['collection'])->get($value['guid']);
+
+            $object->setValue($propertyName, $value);
+        } else {
+            $object->setValue($propertyName, null);
+        }
     }
 
     /**
