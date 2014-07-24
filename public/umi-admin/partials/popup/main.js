@@ -1,13 +1,14 @@
 define(
     [
-        './view',
         './controller',
+        './view',
         'App'
     ],
-    function(view, controller){
+    function(controller, view){
         'use strict';
 
-        view();
         controller();
+        view();
+
     }
 );

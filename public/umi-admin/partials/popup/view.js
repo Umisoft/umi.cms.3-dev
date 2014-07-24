@@ -4,27 +4,43 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.PopupView = Ember.View.extend({
-            //Параметры приходящие из childView
-                contentParams: {},
+            controller: function(){
+                return this.container.lookup('controller:popup');
+            }.property(),
+
+            popupTypeBinding: 'controller.popupType',
 
             classNames: ['umi-popup'],
+
             title: '',
+
             width: 800,
+
             height: 400,
+
             contentOverflow: ['overflow', 'hidden'],
+
             blur: true,
+
             fade: false,
+
             drag: true,
+
             resize: true,
+
             layoutName: 'partials/popup',
+
+            templateName: function(){
+                return 'partials/popup/' + this.get('popupType');
+            }.property('popupType'),
+
+
+            //Параметры приходящие из childView
+            contentParams: {},
 
             checkContentParams: function(){
                 this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);
             }.observes('contentParams'),
-
-            template: function(){
-                return Ember.Handlebars.compile('{{render "linkToObjectLayout" view.object}}');
-            }.property('popupType'),
 
             didInsertElement: function(){
                 if(this.blur){this.addBlur()}
@@ -39,8 +55,7 @@ define(['App'], function(UMI){
 
             actions: {
                 closePopup: function(){
-                    this.removeBlur();
-                    this.remove();
+                    this.get('controller').send('closePopup');
                 }
             },
 

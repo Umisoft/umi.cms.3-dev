@@ -13,11 +13,6 @@ define(['App', 'toolbar'], function(UMI){
              * @classNames
              */
             classNames: ['umi-table-control'],
-            objectsEditable: function(){
-                var objectsEditable = this.get('controller.control.params.objectsEditable');
-                objectsEditable = objectsEditable === false ? false : true;
-                return objectsEditable;
-            }.property('controller.control.params.objectsEditable'),
             /**
              * @property iScroll
              */
@@ -264,11 +259,18 @@ define(['App', 'toolbar'], function(UMI){
                 }
             }),
 
+            hasRowEvent: false,
+            /**
+             * @hook
+             * @method rowEvent
+             */
+            rowEvent: function(){},
+
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'isActive::umi-inactive', 'objectsEditable:s-pointer'],
-                isActive: function(){
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'parentView.hasRowEvent:s-pointer'],
+                isActive: function(){//TODO: оптимизировать. Нет необходимости для каждого объекта проверять метаданные.
                     var object = this.get('object');
                     var hasActiveProperty  = false;
                     object.eachAttribute(function(name){
@@ -287,14 +289,9 @@ define(['App', 'toolbar'], function(UMI){
 
                 objectIdBinding: 'object.id',
 
-                objectsEditable: function(){
-                    return this.get('parentView.objectsEditable');
-                }.property(),
-
                 click: function(){
-                    var objectsEditable = this.get('objectsEditable');
-                    if(this.get('object.meta.editLink') && objectsEditable){
-                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
+                    if(this.get('parentView.hasRowEvent')){
+                        this.get('parentView').rowEvent(this.get('object'));
                     }
                 }
             }),
@@ -338,8 +335,11 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TableCellContentView = Ember.View.extend({
             classNames: ['umi-table-control-content-cell-div'],
+
             classNameBindings: ['columnId'],
+
             promise: null,
+
             template: function(){
                 var column;
                 var object;
@@ -424,6 +424,19 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TableControlView = Ember.View.extend(UMI.TableControlViewMixin, {
             componentNameBinding: 'controller.controllers.component.name',
+
+            hasRowEvent: function(){
+                var objectsEditable = this.get('controller.control.params.objectsEditable');
+                objectsEditable = objectsEditable === false ? false : true;
+                return objectsEditable;
+            }.property('controller.control.params.objectsEditable'),
+
+            rowEvent: function(object){
+                if(object.get('meta.editLink')){
+                    this.get('controller').transitionToRoute(object.get('meta.editLink').replace(Ember.get(window, 'UmiSettings.baseURL'), ''));
+                }
+            },
+
             willDestroyElement: function(){
                 this.get('controller').removeObserver('objects.@each.isDeleted');
                 this.get('controller').removeObserver('content.object.id');
@@ -432,6 +445,12 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TableControlSharedView = Ember.View.extend(UMI.TableControlViewMixin, {
             componentNameBinding: null,
+
+            hasRowEvent: true,
+
+            rowEvent: function(object){
+                this.get('controller').send('executeBehaviour', 'rowEvent', object);
+            },
 
             willDestroyElement: function(){
                 this.get('controller').removeObserver('control.collectionName');

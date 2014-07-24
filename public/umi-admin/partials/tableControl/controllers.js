@@ -357,7 +357,19 @@ define(['App'], function(UMI){
 
             contextChange: function(){
                 this.updateContent();
-            }.observes('collectionName').on('init')
+            }.observes('collectionName').on('init'),
+
+            actions: {
+                executeBehaviour: function(behaviourName, object){
+                    var behaviour = this.get('control.behaviour.' + behaviourName);
+
+                    if(Ember.typeOf(behaviour) === 'function'){
+                        behaviour(this, object);
+                    } else{
+                        Ember.warn('Behaviour for row click did not set.');
+                    }
+                }
+            }
         });
     };
 });

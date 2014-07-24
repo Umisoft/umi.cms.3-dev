@@ -4,13 +4,36 @@ define(['App'], function(UMI){
     return function(){
         UMI.LinkToObjectElementView = Ember.View.extend({
             templateName: 'partials/linkToObjectElement',
+
             classNames: ['row', 'collapse'],
+
             popupParams: function(){
                 return {
-                    object: this.get('object'),
-                    meta: this.get('meta')
+                    templateParams: {
+                        object: this.get('object'),
+                        meta: this.get('meta')
+                    },
+                    popupType: 'linkToObject'
                 };
-            }.property()
+            }.property(),
+
+            inputView: Ember.View.extend(UMI.InputValidate, {
+                type: "text",
+
+                classNames: ['umi-element-text'],
+
+                template: function(){
+                    var template;
+                    if(Ember.typeOf(this.get('object')) === 'instance'){
+                        this.set('validator', 'collection');
+                        var dataSource = this.get('meta.dataSource');
+                        var input = '{{input type=view.type value=view.object.' + dataSource + '.guid placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
+                        var validate = this.validateErrorsTemplate();
+                        template = input + validate;
+                    }
+                    return Ember.Handlebars.compile(template);
+                }.property()
+            })
         });
 
 
@@ -29,6 +52,9 @@ define(['App'], function(UMI){
             selectedCollection: null,
             tableControlSettings: function(){
                 var selectedCollectionId = this.get('selectedCollection.id');
+                var object = this.get('model.object');
+                var meta = this.get('model.meta');
+
                 return {
                     control: {
                         collectionName: selectedCollectionId,
@@ -56,6 +82,17 @@ define(['App'], function(UMI){
                                         filters: [ ]
                                     }
                                 ]
+                            }
+                        },
+                        behaviour: {
+                            rowEvent: function(context, selectedObject){
+                                var dataSource = Ember.get(meta, 'dataSource');
+                                var value = {
+                                    collectionName: Ember.get(selectedObject, 'conctructor.typeKey'),
+                                    guid: selectedObject.get('guid')
+                                };
+                                object.set(dataSource, value);
+                                context.send('closePopup');
                             }
                         }
                     }

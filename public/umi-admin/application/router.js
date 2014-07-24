@@ -253,23 +253,20 @@ define([], function(){
                 },
 
                 showPopup: function(params){
-                    params  = {};
-                    this.controllerFor('popup').setProperties(params);
+                    Ember.warn('Param "popupType" is required for create popup.', Ember.get(params, 'popupType'));
+                    var controller = this.controllerFor('popup');
+                    if(Ember.typeOf(params) === 'object'){
+                        controller.setProperties(params);
+                    }
                     return this.render('popup', {
                         into: 'application',
-                        outlet: 'popup'
+                        outlet: 'popup',
+                        controller: controller
                     });
-                    var container = this.get('container');
-                    debugger;
-                    UMI.PopupView.create({
-                        container: container,
-                        popupType: popupType,
-                        object: object,
-                        meta: meta
-                    }).append('.umi-main-view');
                 },
 
                 closePopup: function(){
+                    this.container.lookup('view:popup').removeBlur();//TODO: incapsulate call method in view
                     return this.disconnectOutlet({
                         outlet: 'popup',
                         parentView: 'application'

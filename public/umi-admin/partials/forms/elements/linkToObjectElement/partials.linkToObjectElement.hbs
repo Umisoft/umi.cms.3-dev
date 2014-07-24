@@ -2,13 +2,13 @@
     <span class="postfix">
         <span class="button-group">
             <li>
-                <span class="button flat white square">
-                    <i class="icon icon-delete" {{action "clearValue" target="view"}}></i>
+                <span class="button flat white square" {{action "clearValue" target="view"}}>
+                    <i class="icon icon-delete"></i>
                 </span>
             </li>
             <li>
-                <span class="button flat white square">
-                    <i class="icon icon-open-folder" {{action "showPopup" "linkToObject" view.popupParams}}></i>
+                <span class="button flat white square" {{action "showPopup" view.popupParams}}>
+                    <i class="icon icon-open-folder"></i>
                 </span>
             </li>
         </span>
@@ -16,5 +16,5 @@
 </div>
 
 <div class="small-10 columns">
-    {{input type="text" value=view.value}}
+    {{view view.inputView object=view.object meta=view.meta}}
 </div>

@@ -3,8 +3,13 @@ define(['App'], function(UMI){
 
     return function(){
 
-        UMI.PopupController = Ember.ObjectController.extend({
-            params: null
+        UMI.PopupController = Ember.Controller.extend({
+            templateParams: null,
+            /**
+             * @abstract
+             * @property
+             */
+            popupType: null
         });
     };
 });
