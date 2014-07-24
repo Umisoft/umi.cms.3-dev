@@ -11,36 +11,61 @@
 namespace umicms\project\module\service\model;
 
 use umi\config\entity\IConfig;
+use umi\config\io\IConfigIOAware;
+use umi\config\io\TConfigIOAware;
+use umi\http\Request;
+use umicms\exception\InvalidLicenseException;
 
 /**
  * API для работы с лицензией.
  */
-class LicenseApi
+class LicenseApi implements IConfigIOAware
 {
+    use TConfigIOAware;
+
     /**
-     * Активация лиуцензии.
+     * @var Request $request
+     */
+    protected $request;
+
+    /**
+     * Конструктор.
+     * @param Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * Активация лицензии.
      * @param string $licenseKey лицензионный ключ
      * @param string $domain домен
-     * @param IConfig $config конфиг
-     * @return bool
+     * @param IConfig $config
+     * @throws InvalidLicenseException
      */
-    public function activate($licenseKey, $domain, IConfig $config)
+    public final function activate($licenseKey, $domain, IConfig $config = null)
     {
-        if ($this->checkLicenseKey($licenseKey, $domain)) {
-            $license = $this->activateLicense($licenseKey, $domain);
-            $config->set('domainKey', $license['domain-keycode']);
-            $config->set('licenseType', $license['codename']);
-
-            if (strstr($license['codename'], base64_decode('dHJpYWw='))) {
-                $deactivation = new \DateTime();
-                $deactivation->add(new \DateInterval('P30D'));
-                $config->set('deactivation', base64_encode($deactivation->getTimestamp()));
-            }
-
-            return true;
+        if (!$config) {
+            $config = $this->readConfig('~/project/site/site.settings.config.php');
         }
 
-        return false;
+        if (!$this->checkLicenseKey($licenseKey, $domain)) {
+            throw new InvalidLicenseException('Cannot activate license. Invalid license key.');
+        }
+
+        $license = $this->activateLicense($licenseKey, $domain);
+        $config->set('defaultDomain', $domain);
+        $config->set('domainKey', $license['domain-keycode']);
+        $config->set('licenseType', $license['codename']);
+
+        if (strstr($license['codename'], base64_decode('dHJpYWw='))) {
+            $deactivation = new \DateTime();
+            $deactivation->add(new \DateInterval('P30D'));
+            $config->set('deactivation', base64_encode($deactivation->getTimestamp()));
+        }
+
+        $this->writeConfig($config);
     }
 
     /**
@@ -54,13 +79,13 @@ class LicenseApi
         $source = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91ZGF0YTovL2N1c3RvbS9wcmltYXJ5Q2hlY2tDb2RlLw==';
 
         $params = array(
-            'ip' => $_SERVER['SERVER_ADDR'],
+            'ip' => $this->request->server->get('SERVER_ADDR'),
             'domain' => $domain,
             'keycode' => $licenseKey
         );
 
         $result = \GuzzleHttp\get(
-            base64_decode($source) . base64_encode(serialize($params)).'/'
+            base64_decode($source) . base64_encode(serialize($params)) . '/'
         )->xml();
 
         if (isset($result->result)) {
@@ -81,7 +106,7 @@ class LicenseApi
         $source = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91cGRhdGVzcnYvYWN0aXZhdGVVbWlDbXNMaWNlbnNlLw==';
 
         $params = array(
-            'ip' => $_SERVER['SERVER_ADDR'],
+            'ip' => $this->request->server->get('SERVER_ADDR'),
             'domain' => $domain,
             'keycode' => $licenseKey
         );

@@ -10,10 +10,10 @@
 
 namespace umicms\project\site\settings\license\controller;
 
-use umi\config\entity\IConfig;
 use umi\form\element\Text;
-use umi\form\IForm;
+use umi\http\Response;
 use umicms\hmvc\component\admin\settings\ActionController as BaseActionController;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\project\module\service\model\ServiceModule;
 
 /**
@@ -21,31 +21,43 @@ use umicms\project\module\service\model\ServiceModule;
  */
 class ActionController extends BaseActionController
 {
+
     /**
-     * {@inheritdoc}
+     * Сохраняет форму редактирования конфигурации.
+     * @return Response
      */
-    protected function processForm(IForm $form, IConfig $config)
+    protected function actionSave()
     {
-        $licenseKey = $form->get('licenseKey');
-        if ($licenseKey instanceof Text) {
-            $licenseKey = $licenseKey->getValue();
-        }
+        /**
+         * @var SettingsComponent $component
+         */
+        $component = $this->getComponent();
 
-        $domain = $form->get('defaultDomain');
-        if ($domain instanceof Text) {
-            $domain = $domain->getValue();
-        }
+        $config = $this->readConfig($component->getSettingsConfigAlias());
+        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
+        $form->setAction($this->getUrl('action', ['action' => 'save']));
 
-        if (
-            (!empty($licenseKey) && is_string($licenseKey)) &&
-            (!empty($domain) && is_string($domain))
-        ) {
+        $form->setData($this->getAllPostVars());
+
+        if ($form->isValid()) {
+            $licenseKey = $form->get('licenseKey');
+            if ($licenseKey instanceof Text) {
+                $licenseKey = $licenseKey->getValue();
+            }
+
+            $domain = $form->get('defaultDomain');
+            if ($domain instanceof Text) {
+                $domain = $domain->getValue();
+            }
+
             /** @var ServiceModule $serviceModule */
             $serviceModule = $this->getModuleByClass(ServiceModule::className());
-            $serviceModule->license()->activate($licenseKey, $domain, $config);
+            $serviceModule->license()->activate($licenseKey, $domain);
+        } else {
+            $this->setResponseStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
-        $config->set('licenseKey', '');
+        return $form->getView();
     }
 }
  

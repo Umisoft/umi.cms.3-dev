@@ -7,5 +7,7 @@ return array (
   'defaultTemplateExtension' => 'phtml',
   'defaultDomain' => 'umicms3',
   'licenseKey' => '',
-  'domainKey' => '',
+  'domainKey' => 'BF826D552D8-837EC5754F5-09852738FE4',
+  'licenseType' => 'lite3trial',
+  'deactivation' => 'MTQwODgwMTc0Mg==',
 );
