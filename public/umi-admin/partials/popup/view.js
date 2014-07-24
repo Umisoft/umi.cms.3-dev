@@ -10,7 +10,7 @@ define(['App'], function(UMI){
 
             classNames: ['umi-popup'],
 
-            popupTypeBinding: 'controller.popupType',
+            popupType: null,
 
             title: '',
 
@@ -171,6 +171,14 @@ define(['App'], function(UMI){
                         });
                     }
                 });
+            },
+
+            init: function(){
+                this._super();
+                var viewParams = this.get('controller.viewParams');
+                if(Ember.typeOf(viewParams) === 'object'){
+                    this.setProperties(viewParams);
+                }
             }
         });
     };

@@ -123,7 +123,7 @@ define(['App'], function(UMI){
                 try{
                     if(Ember.typeOf(self.get('object')) === 'instance'){
                         computedValue = self.get('object.' + self.get('meta.dataSource'))  || '{}';
-                        //computedValue = JSON.parse(computedValue);
+                        computedValue = JSON.parse(computedValue);
 
                         self.set('value', Ember.get(computedValue, path) || '');
 

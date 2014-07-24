@@ -298,6 +298,9 @@ define([], function(){
                         case 'serialized':
                             fieldValue = DS.attr('serialized', params);
                             break;
+                        case 'cmsPageRelation':
+                            fieldValue = DS.attr('objectRelation', params);
+                            break;
                         case 'belongsToRelation':
                             params.async = true;
                             //TODO: инверсия избыточна, но DS почему то без нее не может

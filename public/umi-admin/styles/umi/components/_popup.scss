@@ -27,19 +27,23 @@
         height: 34px;
         background: linear-gradient(#414a59, #21252e);
         color: #fff;
+        padding: 0 15px;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
     }
 
     &-title{
-        display: inline-block;
+        display: block;
         line-height: 34px;
-        font-weight: bold;
-        padding-left: 8px;
-        color: #575E6C;
-        font-size: 13px;
+        color: #fff;
+        font-size: 14px;
     }
 
     &-close-button{
-        float: right;
+        position: absolute;
+        right: 0;
+        top: 0;
         i{
             margin: 8px;
         }

@@ -21,7 +21,11 @@ define(['App'], function(UMI){
                         object: this.get('object'),
                         meta: this.get('meta')
                     },
-                    popupType: 'pageRelation'
+
+                    viewParams: {
+                        title: 'Выбор страницы',
+                        popupType: 'pageRelation'
+                    }
                 };
             }.property(),
 
@@ -71,9 +75,10 @@ define(['App'], function(UMI){
             selectedCollection: null,
 
             tableControlSettings: function(){
-                var selectedCollectionId = this.get('selectedCollection.id');
-                var object = this.get('model.object');
-                var meta = this.get('model.meta');
+                var self = this;
+                var selectedCollectionId = self.get('selectedCollection.id');
+                var object = self.get('model.object');
+                var meta = self.get('model.meta');
                 var property = object.get(Ember.get(meta, 'dataSource'));
                 var activeObjectGuid;
                 if(property){
@@ -81,7 +86,7 @@ define(['App'], function(UMI){
                         property = JSON.parse(property);
                         activeObjectGuid = Ember.get(property, 'guid');
                     } catch(error){
-                        this.send('backgroundError', error);
+                        self.send('backgroundError', error);
                     }
                 }
 
@@ -118,13 +123,15 @@ define(['App'], function(UMI){
                         behaviour: {
                             rowEvent: function(context, selectedObject){
                                 var dataSource = Ember.get(meta, 'dataSource');
+                                var collectionName = Ember.get(selectedObject, 'conctructor.typeKey');
                                 var value = {
-                                    collectionName: Ember.get(selectedObject, 'conctructor.typeKey'),
+                                    collectionName: collectionName,
                                     guid: selectedObject.get('guid'),
                                     displayName:  selectedObject.get('displayName')
                                 };
                                 object.set(dataSource, JSON.stringify(value));
                                 context.send('closePopup');
+                                self.set('selectedCollection', self.get('collection').findBy('id', collectionName));
                             }
                         }
                     }

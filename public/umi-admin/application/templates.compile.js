@@ -807,14 +807,14 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push("<div class=\"small-2 columns umi-columns-fixed small-2-right\"> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> <li> <span class=\"button flat white square\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> </span> </span> </div> <div class=\"small-10 columns\"> ");
+  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> </span> </span> </div> <div class=\"small-10 columns\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.inputView", {hash:{
     'object': ("view.object"),
     'meta': ("view.meta")

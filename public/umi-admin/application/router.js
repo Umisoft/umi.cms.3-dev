@@ -234,6 +234,7 @@ define([], function(){
                     if(settings !== 'silence'){
                         settings.type = 'error';
                         settings.duration = false;
+                        console.log(settings);
                         UMI.notification.create(settings);
                     }
                 },
@@ -253,7 +254,7 @@ define([], function(){
                 },
 
                 showPopup: function(params){
-                    Ember.warn('Param "popupType" is required for create popup.', Ember.get(params, 'popupType'));
+                    Ember.warn('Param "popupType" is required for create popup.', Ember.get(params, 'viewParams.popupType'));
                     var controller = this.controllerFor('popup');
                     if(Ember.typeOf(params) === 'object'){
                         controller.setProperties(params);
