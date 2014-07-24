@@ -553,6 +553,26 @@ define([], function(){
                     } catch(error){
                         this.send('backgroundError', error);
                     }
+                },
+
+                /**
+                 *
+                 */
+                switchRobots: function(object, currentState, defer){
+                    try{
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        var switchRobotsSource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
+                        $.ajax({
+                            url: switchRobotsSource + '?id=' + object.get('id'),
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            defer.resolve();
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
                 }
             },
 

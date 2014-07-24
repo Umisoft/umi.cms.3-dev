@@ -56,17 +56,7 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
@@ -170,17 +160,7 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
@@ -277,22 +257,12 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'post' => 
+      'post' =>
       array (
         0 => 'relation',
         1 => 
@@ -418,17 +388,7 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
@@ -548,17 +508,7 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,
@@ -662,17 +612,7 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
+      'trashed' =>
       array (
         0 => 'boolean',
         1 => false,

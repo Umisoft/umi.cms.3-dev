@@ -14,6 +14,7 @@ use umicms\module\BaseModule;
 use umicms\project\module\structure\model\collection\InfoBlockCollection;
 use umicms\project\module\structure\model\collection\LayoutCollection;
 use umicms\project\module\structure\model\collection\MenuCollection;
+use umicms\project\module\structure\model\collection\RobotsCollection;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\structure\model\object\Layout;
 use umicms\project\module\structure\model\object\StructureElement;
@@ -67,6 +68,15 @@ class StructureModule extends BaseModule
     public function autoMenu()
     {
         return $this->getApi('umicms\project\module\structure\model\AutoMenu');
+    }
+
+    /**
+     * Возвращает коллекцию для работы с robots.
+     * @return RobotsCollection
+     */
+    public function robots()
+    {
+        return $this->getCollection('robots');
     }
 
     /**

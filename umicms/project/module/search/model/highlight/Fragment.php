@@ -16,30 +16,25 @@ namespace umicms\project\module\search\model\highlight;
 class Fragment
 {
     /**
-     * Массив слов с левой стороны от ключевой фразы
-     * @var array $edgeLeft
+     * @var array $edgeLeft массив слов с левой стороны от ключевой фразы
      */
-    private $edgeLeft;
+    public $edgeLeft;
     /**
-     * Массив слов с правой стороны от ключевой фразы
-     * @var array $edgeRight
+     * @var array $edgeRight массив слов с правой стороны от ключевой фразы
      */
-    private $edgeRight;
+    public $edgeRight;
     /**
-     * Ключевая фраза, является центром фрагмента
-     * @var string $center
+     * @var string $center ключевая фраза, является центром фрагмента
      */
-    private $center;
+    public $center;
     /**
-     * Начальная позиция всего фрагмента в тексте
-     * @var int $startPos
+     * @var int $startPos начальная позиция всего фрагмента в тексте
      */
-    private $startPos;
+    public $startPos;
     /**
-     * Конечная позиция всего фрагмента в тексте
-     * @var int $endPos
+     * @var int $endPos конечная позиция всего фрагмента в тексте
      */
-    private $endPos;
+    public $endPos;
 
     /**
      * Конструктор фрагмента.
@@ -77,7 +72,7 @@ class Fragment
     }
 
     /**
-     * Возвращает {@see startPos}
+     * Возвращает начальную позицию всего фрагмента в тексте
      * @return int
      */
     public function getStartPos()
@@ -86,7 +81,7 @@ class Fragment
     }
 
     /**
-     * Возвращает {@see endPos}
+     * Возвращает конечную позицию всего фрагмента в тексте
      * @return int
      */
     public function getEndPos()
@@ -95,7 +90,7 @@ class Fragment
     }
 
     /**
-     * Возвращает {@see edgeLeft}
+     * Возвращает массив слов с левой стороны от ключевой фразы
      * @return array
      */
     public function getEdgeLeft()
@@ -104,7 +99,8 @@ class Fragment
     }
 
     /**
-     * @return mixed
+     * Возвращает массив слов с правой стороны от ключевой фразы
+     * @return array
      */
     public function getEdgeRight()
     {
@@ -112,7 +108,7 @@ class Fragment
     }
 
     /**
-     * Возвращает {@see center}
+     * Возвращает ключевую фразу, которая является центром фрагмента
      * @return string
      */
     public function getCenter()

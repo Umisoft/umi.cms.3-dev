@@ -11,7 +11,6 @@ return [
         IActiveAccessibleObject::FIELD_ACTIVE        => [
             'type'          => IField::TYPE_BOOL,
             'columnName'    => 'active',
-            'defaultValue' => 0,
             'localizations' => [
                 'ru-RU' => [
                     'columnName' => 'active',

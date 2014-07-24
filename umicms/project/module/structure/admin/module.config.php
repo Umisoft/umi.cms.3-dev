@@ -22,6 +22,7 @@ return [
         'layout' => '{#lazy:~/project/module/structure/admin/layout/component.config.php}',
         'infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/component.config.php}',
         'menu' => '{#lazy:~/project/module/structure/admin/menu/component.config.php}',
+        'robots' => '{#lazy:~/project/module/structure/admin/robots/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
