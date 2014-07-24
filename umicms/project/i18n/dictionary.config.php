@@ -184,7 +184,7 @@ return [
             'ru-RU' => 'Русский',
 
             ICmsObject::FIELD_CREATED => 'Дата создания',
-            ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
+            ICmsObject::FIELD_DISPLAY_NAME => 'Название',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
             ICmsObject::FIELD_GUID => 'GUID',
             ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
