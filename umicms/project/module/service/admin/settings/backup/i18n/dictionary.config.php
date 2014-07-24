@@ -12,7 +12,7 @@ return [
 
     'ru-RU' => [
         'component:backup:displayName' => 'Резервные копии',
-        BackupCollection::SETTING_OBJECT_HISTORY_SIZE => 'Максимальное количество хранимых для объекта резервных копий',
+        BackupCollection::SETTING_OBJECT_HISTORY_SIZE => 'Количество резервных копий объекта',
 
         'role:configurator:displayName' => 'Управление настройками'
     ]

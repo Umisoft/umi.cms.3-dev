@@ -30,10 +30,10 @@ return [
 
         'component:site:displayName' => 'Настройки сайта',
 
-        SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'Значение для атрибута description метатега <meta> по умолчанию',
-        SiteApplication::SETTING_DEFAULT_KEYWORDS => 'Значение для атрибута keywords метатега <meta> по умолчанию',
-        SiteApplication::SETTING_DEFAULT_TITLE => 'Значение для тега <title> по умолчанию',
-        SiteApplication::SETTING_TITLE_PREFIX => 'Префикс для значения тега <title>',
+        SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'Метатег description по умолчанию',
+        SiteApplication::SETTING_DEFAULT_KEYWORDS => 'Метатег keywords по умолчанию',
+        SiteApplication::SETTING_DEFAULT_TITLE => 'Метатег title по умолчанию',
+        SiteApplication::SETTING_TITLE_PREFIX => 'Префикс для метатега title',
 
         SiteApplication::SETTING_DEFAULT_PAGE_GUID => 'Главная страница',
         SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => 'Шаблон страниц по умолчанию',
