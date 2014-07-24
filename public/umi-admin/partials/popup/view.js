@@ -8,9 +8,9 @@ define(['App'], function(UMI){
                 return this.container.lookup('controller:popup');
             }.property(),
 
-            popupTypeBinding: 'controller.popupType',
-
             classNames: ['umi-popup'],
+
+            popupTypeBinding: 'controller.popupType',
 
             title: '',
 
@@ -34,23 +34,30 @@ define(['App'], function(UMI){
                 return 'partials/popup/' + this.get('popupType');
             }.property('popupType'),
 
-
-            //Параметры приходящие из childView
-            contentParams: {},
-
-            checkContentParams: function(){
-                this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);
-            }.observes('contentParams'),
-
             didInsertElement: function(){
-                if(this.blur){this.addBlur()}
-                if(this.fade){this.fadeIn()}
-                if(this.drag){this.allowDrag()}
-                if(this.resize){this.allowResize()}
-                if(this.contentOverflow !== 'hidden'){
-                    $('.umi-popup-content').css(this.contentOverflow[0], this.contentOverflow[1]);
+                var self = this;
+                if(self.get('blur')){
+                    self.addBlur();
                 }
+
+                if(self.get('fade')){
+                    self.fadeIn();
+                }
+
+                if(this.get('drag')){
+                    this.allowDrag();
+                }
+
+                if(this.get('resize')){
+                    this.allowResize();
+                }
+
+                if(this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array'){// TODO: WTF?
+                    $('.umi-popup-content').css(this.get('contentOverflow')[0], this.get('contentOverflow')[1]);
+                }
+
                 this.setSize();
+                this.setPosition();
             },
 
             actions: {
@@ -60,8 +67,19 @@ define(['App'], function(UMI){
             },
 
             setSize: function(){
-                this.$().width(this.width);
-                this.$().height(this.height);
+                var $el = this.$();
+                $el.width(this.get('width'));
+                $el.height(this.get('height'));
+            },
+
+            setPosition: function(){
+                var $el = this.$();
+                var styles = {};
+                var elHeight = $el.height() / 2;
+                var elWidth = $el.width() / 2;
+                styles.marginTop =  -( $(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
+                styles.marginLeft = -( $(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                $el.css(styles);
             },
 
             fadeIn: function(){
@@ -91,7 +109,7 @@ define(['App'], function(UMI){
                 $('.umi-popup-resizer').show();
                 $('body').on('mousedown', '.umi-popup-resizer', function(event){
                     if(event.button === 0){
-                        $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+                        //$('body').append('<div class="umi-popup-invisible-overlay"></div>');
                         var posX = $('.umi-popup').offset().left;
                         var posY = $('.umi-popup').offset().top;
 
@@ -108,7 +126,7 @@ define(['App'], function(UMI){
                             $('html').on('mouseup', function(){
                                 $('html').off('mousemove');
                                 $('html').removeClass('s-unselectable');
-                                $('.umi-popup-invisible-overlay').remove();
+                                //$('.umi-popup-invisible-overlay').remove();
                             });
                         });
                     }
@@ -124,7 +142,7 @@ define(['App'], function(UMI){
 
                     var $that = $(this);
                     if(event.button === 0){
-                        $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+                        //$('body').append('<div class="umi-popup-invisible-overlay"></div>');
                         var clickX = event.pageX - $(this).offset().left;
                         var clickY = event.pageY - $(this).offset().top;
 
@@ -148,7 +166,7 @@ define(['App'], function(UMI){
                             $('body').on('mouseup', function(){
                                 $('body').off('mousemove');
                                 $('html').removeClass('s-unselectable');
-                                $('.umi-popup-invisible-overlay').remove();
+                                //$('.umi-popup-invisible-overlay').remove();
                             });
                         });
                     }
