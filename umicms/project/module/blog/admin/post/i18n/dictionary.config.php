@@ -11,12 +11,16 @@
 return [
 
     'en-US' => [
+        'component:post:displayName' => 'Posts',
+
         'action:create:base' => 'Create post',
 
         'role:editor:displayName' => 'Manage posts'
     ],
 
     'ru-RU' => [
+        'component:post:displayName' => 'Посты',
+
         'action:create:base' => 'Создать пост',
 
         'role:editor:displayName' => 'Управление постами'
