@@ -151,7 +151,7 @@ abstract class BaseController extends BaseAdminController implements ICollection
                         break;
                     }
                     case $field instanceof ObjectRelationField: {
-                        $this->setObjectRelationValue($object, $propertyName, $field, $value);
+                        $this->setObjectRelationValue($object, $propertyName, $value);
                         break;
                     }
                     case $field instanceof DateTimeField: {
@@ -188,7 +188,7 @@ abstract class BaseController extends BaseAdminController implements ICollection
                     )
                 );
             }
-            $value = $this->getCollection($value['collection'])->get($value['guid']);
+            $value = $this->getCollectionManager()->getCollection($value['collection'])->get($value['guid']);
 
             $object->setValue($propertyName, $value);
         } else {
