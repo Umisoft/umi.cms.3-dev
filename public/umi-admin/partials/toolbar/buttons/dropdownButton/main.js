@@ -74,10 +74,25 @@ define(['App', 'moment'],
                             var serviceBackupList = Ember.get(data, 'result.getBackupList.collection.serviceBackup');
                             var users = Ember.get(data, 'result.getBackupList.collection.user');
                             var user;
+                            var currentEditor;
+
+                            var setCurrentEditor = function(currentEditor){
+                                currentEditor.then(function(currentEditor){
+                                    Ember.set(currentVersion, 'user', Ember.get(currentEditor, 'displayName'));
+                                });
+                            };
+
                             UMI.i18n.setDictionary(Ember.get(data, 'result.getBackupList.i18n'), 'form.backupList');
-                            object.get('editor').then(function(currentEditor){
-                                Ember.set(currentVersion, 'user', Ember.get(currentEditor, 'displayName'));
-                            });
+                            currentEditor = object.get('editor');
+                            if(Ember.typeOf(currentEditor) === 'instance'){
+                                setCurrentEditor(currentEditor);
+                            } else{
+                                currentEditor = object.get('owner');
+                                if(Ember.typeOf(currentEditor) === 'instance'){
+                                    setCurrentEditor(currentEditor);
+                                }
+                            }
+
                             Ember.set(currentVersion, 'created', {date: UMI.i18n.getTranslate('Current version', 'form.backupList')});
                             results.push(currentVersion);
                             if(Ember.typeOf(serviceBackupList) === 'array'){
