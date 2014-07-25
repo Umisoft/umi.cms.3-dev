@@ -64,8 +64,6 @@ return [
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
 
-    'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
-
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',

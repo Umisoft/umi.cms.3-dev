@@ -66,6 +66,7 @@ class AddController extends BaseSitePageController
             $parentComment
         );
 
+        $comment->publishTime = new \DateTime();
 
         if ($this->isAllowed($comment, 'publish')) {
             $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;

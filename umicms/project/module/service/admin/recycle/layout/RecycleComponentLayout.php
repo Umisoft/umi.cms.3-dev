@@ -118,6 +118,10 @@ class RecycleComponentLayout extends AdminComponentLayout
                 'trashed' => 'equals(1)'
             ];
             $dynamicControl->params['objectsEditable'] = false;
+            $dynamicControl->labels = [
+                'Rows on page' => $this->component->translate('Rows on page'),
+                'No data' => $this->component->translate('No data')
+            ];
 
             $this->addSelectedContextControl('filter', $dynamicControl);
 
