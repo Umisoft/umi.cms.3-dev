@@ -10,6 +10,7 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
@@ -60,6 +61,17 @@ trait TActiveAccessibleCollection
              * @var CmsHierarchicObject $parent
              */
             foreach($ancestry as $parent) {
+
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+
                 $parent->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(true);
             }
         }
@@ -79,8 +91,30 @@ trait TActiveAccessibleCollection
         }
 
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
+            if ($parent = $object->getParent()) {
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+
             $descendants = $this->selectDescendants($object);
+            /**
+             * @var CmsHierarchicObject $descendant
+             */
             foreach($descendants as $descendant) {
+
+                $siteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+
                 $descendant->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(false);
             }
         }

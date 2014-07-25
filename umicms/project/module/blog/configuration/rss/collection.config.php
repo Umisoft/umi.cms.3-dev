@@ -10,7 +10,6 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogRssImportScenarioCollection;
-use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
