@@ -29,12 +29,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:30:08";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:30:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 20:37:59";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -115,7 +115,9 @@ return array (
       'contents#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>News rubric about our concerts</p>
+        1 => '<p>Do you want to be the first to know about UMI. Rock Band&rsquo;s concert in your town?! If yes &ndash; please check our website. In the &ldquo;News&rdquo; segment you will find the information about the time and venue of our concerts. Moreover, you can always learn about the ticket prices of our events on our website, and you can order the tickets online.</p>
+
+<p>Do not forget to share our concert announcements with your friends in the social networks. After our performance please also share your impressions, discuss the concerts right now on our website. By the way, it is very convenient to leave the comments by logging with Facebook or VKontakte.</p>
 ',
       ),
       'active#ru-RU' => 
@@ -126,7 +128,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -161,12 +163,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:42:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:42:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 20:34:37";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -249,7 +251,11 @@ return array (
       'contents#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>About our hobbies</p>
+        1 => '<p>Why is it so important to have a hobby? In the first place, it is because the hobby brings us to an excellent mood and helps to draw energy for creation.</p>
+
+<p>We want to share with you our brightest feelings and that is why we are starting our new segment, where we will tell you about our achievements and interests, which have no direct connections with our music activities.</p>
+
+<p>Do you know how to find your very own hobby? It is a fact, that some people aim to follow the trends and, as a result, they are being left with something not really exciting and interesting. We guess that in this case we should talk not about hobbies but about interests. As for us, we can proudly say that every single member of the UMI. Rock Band has its own interests, and that helps all of us to get involved in different activities besides music. One more important thing &ndash; our hobbies not only bring us a joy but also help to fight a stress that is so common among creative minds.</p>
 ',
       ),
       'active#ru-RU' => 
@@ -260,7 +266,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -295,12 +301,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:17:24";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:17:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:17:48";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:17:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (

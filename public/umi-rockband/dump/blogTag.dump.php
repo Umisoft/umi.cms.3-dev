@@ -28,12 +28,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:41:58";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:41:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -145,12 +145,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:44:40";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:44:40";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:12";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -262,12 +262,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:42:53";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:42:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -379,12 +379,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:46:23";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:46:23";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:46:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:46:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -496,12 +496,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:42:56";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:42:56";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:53";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -613,12 +613,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:42:27";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:42:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:32";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:43:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -730,12 +730,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:46:51";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:46:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:46:20";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:46:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -847,12 +847,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:48:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:48:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:47:30";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:47:30";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -964,12 +964,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:43:15";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:43:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:17";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:17";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1081,12 +1081,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:43:41";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:43:41";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:44";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1198,12 +1198,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:44:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:44:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:58";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:44:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1315,12 +1315,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:45:13";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:45:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:35";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1432,12 +1432,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:45:57";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:45:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:45:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (

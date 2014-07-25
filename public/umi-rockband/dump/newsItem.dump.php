@@ -28,12 +28,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:26:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:26:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:29:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -129,7 +129,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -167,7 +167,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:26:28";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:26:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -196,12 +196,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:12:48";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:12:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:21:57";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -295,7 +295,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -333,7 +333,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:12:44";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:12:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -362,12 +362,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:48:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:48:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:32:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -410,12 +410,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &laquo;Рок-Футбол&raquo;',
+        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;laquo;Рок-Футбол&amp;raquo;',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'So ended the second football-music festival &quot;Rock-Football&quot;.',
+        1 => 'So ended the second football-music festival &amp;quot;Rock-Football&amp;quot;.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -461,7 +461,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -499,7 +499,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:48:20";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:48:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -528,12 +528,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:20:59";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:20:59";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:27:41";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -576,12 +576,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&#039;easter',
+        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;#039;easter',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor&#039;easter',
+        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor&amp;#039;easter',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -627,7 +627,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -665,7 +665,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:19:43";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:19:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -694,12 +694,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:04:28";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:04:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:20:04";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -737,7 +737,7 @@ return array (
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;ldquo;Summer Tour&amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
       ),
       'metaDescription#ru-RU' => 
       array (
@@ -747,7 +747,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;ldquo;Summer Tour&amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -767,7 +767,7 @@ return array (
       'h1#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;ldquo;Summer Tour&amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
       ),
       'contents#ru-RU' => 
       array (
@@ -793,7 +793,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -831,7 +831,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:04:25";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:04:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -860,12 +860,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:42:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:42:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:30:24";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -898,22 +898,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;ldquo;Открой свое сердце&amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo;',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &quot;Open Your Heart&quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;quot;Open Your Heart&amp;quot;',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;ldquo;Открой свое сердце&amp;rdquo; - любовь во всей нашей музыке',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo; - любовь во всей нашей музыке',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &quot;Open Your Heart&quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;quot;Open Your Heart&amp;quot;',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -928,7 +928,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;ldquo;Открой свое сердце&amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo;',
       ),
       'h1#en-US' => 
       array (
@@ -961,7 +961,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -999,7 +999,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:40:00";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:40:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -1028,12 +1028,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:50:01";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:50:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:34:16";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1066,7 +1066,7 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;ndash; Аляска 2014',
       ),
       'metaTitle#en-US' => 
       array (
@@ -1076,7 +1076,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Заплыв &quot;Чукотка - Аляска&quot;',
+        1 => 'Заплыв &amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;quot;',
       ),
       'metaDescription#en-US' => 
       array (
@@ -1096,7 +1096,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;amp;ndash; Аляска 2014',
       ),
       'h1#en-US' => 
       array (
@@ -1129,7 +1129,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -1167,7 +1167,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:49:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 10:53:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),
@@ -1196,12 +1196,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:52:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 20:52:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:36:29";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1295,7 +1295,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -1333,7 +1333,7 @@ return array (
       'date' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:51:17";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:51:17";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
     ),
   ),

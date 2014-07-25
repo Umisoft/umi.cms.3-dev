@@ -10,7 +10,7 @@ return array (
       'collection' => 'blogAuthor',
       'type' => 'base',
       'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
-      'displayName' => 'Настя',
+      'displayName' => 'Александр',
       'slug' => 'nastya',
     ),
     'data' => 
@@ -18,22 +18,22 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Настя',
+        1 => 'Александр',
       ),
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Anastasia',
+        1 => 'Alexander',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:42:16";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 14:53:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -66,12 +66,12 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Настя',
+        1 => 'Александр',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Anastasia',
+        1 => 'Alexander',
       ),
       'metaDescription#ru-RU' => 
       array (
@@ -96,12 +96,12 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Настя',
+        1 => 'Александр',
       ),
       'h1#en-US' => 
       array (
         0 => 'string',
-        1 => 'Anastasia',
+        1 => 'Alexander',
       ),
       'active#ru-RU' => 
       array (

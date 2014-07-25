@@ -28,12 +28,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:53:59";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:53:59";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:08:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 13:45:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -81,7 +81,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'In my videoblog i&#039;m going to talk about rock',
+        1 => 'In my videoblog i&amp;#039;m going to talk about rock',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -185,7 +185,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:53:03";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:53:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
@@ -202,7 +202,7 @@ return array (
             'collection' => 'blogAuthor',
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
-            'displayName' => 'Настя',
+            'displayName' => 'Александр',
             'slug' => 'nastya',
           ),
         ),
@@ -229,12 +229,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:09:39";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:09:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:20";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -324,7 +324,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 12:00:00";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 12:00:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
@@ -358,12 +358,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 19:06:23";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 19:06:23";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:17:04";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:17:04";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -495,7 +495,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:57:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:57:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
@@ -512,7 +512,7 @@ return array (
             'collection' => 'blogAuthor',
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
-            'displayName' => 'Настя',
+            'displayName' => 'Александр',
             'slug' => 'nastya',
           ),
         ),
@@ -544,12 +544,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 20:59:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 20:59:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 21:41:22";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 22:49:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -597,7 +597,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Russian Rock. Yes, it&#039;s true.',
+        1 => 'Russian Rock. Yes, it&amp;#039;s true.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -663,7 +663,7 @@ return array (
         0 => 'string',
         1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
 
-<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть Spotify, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!</p>
+<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть Spotify, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!&nbsp;</p>
 ',
       ),
       'announcement#en-US' => 
@@ -699,7 +699,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 08:59:41";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 08:59:41";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
@@ -716,7 +716,7 @@ return array (
             'collection' => 'blogAuthor',
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
-            'displayName' => 'Настя',
+            'displayName' => 'Александр',
             'slug' => 'nastya',
           ),
         ),
@@ -743,12 +743,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:12:54";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:12:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -838,7 +838,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:12:18";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:12:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
@@ -867,12 +867,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:14:20";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:14:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:24";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -962,7 +962,7 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:14:16";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:14:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'publishStatus' => 
       array (
