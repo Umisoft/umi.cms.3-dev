@@ -59,15 +59,15 @@ define(['App'], function(UMI){
 
                 if(Ember.typeOf(this.get('object')) === 'instance'){
                     viewParams.template = function(){
-                        var propertyName = this.get('meta.dataSource');
-                        var textarea = '{{textarea placeholder=view.attributes.placeholder name=view.meta.attributes.name value=view.object.' + propertyName + '}}';
+                        var propertyName = this.get('parentView.meta.dataSource');
+                        var textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.object.' + propertyName + '}}';
                         var validate = this.validateErrorsTemplate();
                         return Ember.Handlebars.compile(textarea + validate);
                     }.property();
                     return Ember.View.extend(UMI.InputValidate, viewParams);
                 } else{
                     viewParams.template = function(){
-                        var textarea = '{{textarea placeholder=view.attributes.placeholder name=view.meta.attributes.name value=view.attributes.value}}';
+                        var textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.attributes.value}}';
                         return Ember.Handlebars.compile(textarea);
                     }.property();
                     return Ember.View.extend(viewParams);

@@ -22,6 +22,7 @@ $primary-gradient: #3aadff, #0087d4;
     }
 
    &-list-li{
+        list-style: none;
         line-height: rem-calc(24);
         .tree-item-link{
             color: $umi-font-color;
@@ -34,11 +35,12 @@ $primary-gradient: #3aadff, #0087d4;
     .umi-item{
         overflow: hidden;
         text-overflow: ellipsis;
-        padding: 0 20px;
+        padding: 0 10px 0 28px;
         white-space: nowrap;
+        position: relative;
         &:hover, &.active{
             margin-left: -10000px;
-            padding-left: 10020px;
+            padding-left: 10028px;
             margin-right: -1px;
             padding-right: 10px;
         }
@@ -89,12 +91,11 @@ $primary-gradient: #3aadff, #0087d4;
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(-27);
-        //        margin-top: rem-calc(2);
+        margin-left: rem-calc(-26);
         padding: rem-calc(2);
+        top: 0;
         &:hover{
             background: #FFFFFF;
-            //            box-shadow: 0 0px 2px 0px #7C99AC;
         }
 
         &:not(:hover) {
