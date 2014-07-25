@@ -74,6 +74,11 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     {
         try {
             $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
+
+            if (!$element->active || $element->trashed) {
+                return false;
+            }
+
             $this->setRouteParams($element);
 
             return 1;
