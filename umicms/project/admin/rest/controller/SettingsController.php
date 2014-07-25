@@ -115,7 +115,7 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'Logout' => $this->translate('Logout'),
             'Remember my choice' => $this->translate('Remember my choice'),
             'Nothing found' => $this->translate('Nothing found'),
-            'Loading' => $this->translate('Загрузка')
+            'Loading' => $this->translate('Loading')
         ];
     }
 

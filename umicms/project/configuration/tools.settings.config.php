@@ -31,6 +31,7 @@ use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\project\Environment;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
@@ -66,6 +67,13 @@ return [
                 'engineClasses' => [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
+                ],
+                'defaultOptions' => [
+                    TwigTemplateEngine::NAME => [
+                        TwigTemplateEngine::OPTION_ENVIRONMENT => [
+                            'cache' => Environment::$cacheTemplateEnabled ? '{#localDir:~/project/cache/templates_c/}' : false
+                        ]
+                    ]
                 ]
             ]
         ]

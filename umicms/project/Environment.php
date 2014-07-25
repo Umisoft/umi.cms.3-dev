@@ -70,6 +70,10 @@ class Environment
      */
     public static $timezone = 'UTC';
     /**
+     * @var bool $cacheTemplate разрешение кеширования шаблонов
+     */
+    public static $cacheTemplateEnabled = false;
+    /**
      * @var bool $cacheBrowserEnabled разрешить ли браузерам кэшировать запросы
      */
     public static $browserCacheEnabled = true;

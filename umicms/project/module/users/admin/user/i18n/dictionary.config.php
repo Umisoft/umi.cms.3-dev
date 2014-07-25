@@ -22,7 +22,7 @@ return [
     'ru-RU' => [
         'component:user:displayName' => 'Пользователи',
         'button:create' => 'Создать пользователя',
-        'action:create:registered' => 'Зарегистрированного',
+        'action:create:registered' => 'Пользователя',
         'action:create:registered.supervisor' => 'Супервайзера',
 
         'role:editor:displayName' => 'Управление пользователями'
