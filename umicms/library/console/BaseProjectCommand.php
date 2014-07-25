@@ -29,8 +29,9 @@ class BaseProjectCommand extends BaseCommand
     {
         $this->addArgument(
             'uri',
-            InputArgument::REQUIRED,
-            'Project URI (Ex: http://localhost)'
+            InputArgument::OPTIONAL,
+            'Project URI (Ex: http://localhost)',
+            'http://localhost'
         );
     }
 
