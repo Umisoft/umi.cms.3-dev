@@ -9,6 +9,19 @@ define(['App'], function(UMI){
 
             tumb: null,//TODO: Нужно превью? Если да, то предстоит генерить его на фронте
 
+            popupParams: function(){
+                return {
+                    templateParams: {
+                        object: this.get('object'),
+                        meta: this.get('meta')
+                    },
+
+                    viewParams: {
+                        popupType: 'fileManager'
+                    }
+                };
+            }.property(),
+
             actions: {
                 clearValue: function(){
                     var self = this;
@@ -19,6 +32,14 @@ define(['App'], function(UMI){
                     } else{
                         el.find('input').val('');
                     }
+                },
+
+                showPopup: function(params){
+                    var self = this;
+                    var object = self.get('object');
+                    var property = this.get('meta.dataSource');
+                    object.clearValidateForProperty(property);
+                    this.get('controller').send('showPopup', params);
                 }
             }
         });

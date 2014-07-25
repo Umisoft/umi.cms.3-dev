@@ -612,7 +612,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("></i> <i class=\"icon icon-open-folder\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "fileManager", "view.object", "view.meta", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0,depth0,depth0],types:["STRING","STRING","ID","ID"],data:data})));
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
   data.buffer.push("></i> </span> </div>");
   return buffer;
   
@@ -634,7 +636,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("></i> <i class=\"icon icon-image\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "fileManager", "view.object", "view.meta", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0,depth0,depth0],types:["STRING","STRING","ID","ID"],data:data})));
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
   data.buffer.push("></i> </span> </div>");
   return buffer;
   
@@ -1438,9 +1442,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "fileManager", {hash:{
-    'object': ("view.object"),
-    'meta': ("view.meta")
-  },hashTypes:{'object': "ID",'meta': "ID"},hashContexts:{'object': depth0,'meta': depth0},contexts:[depth0],types:["STRING"],data:data})));
+    'templateParams': ("templateParams")
+  },hashTypes:{'templateParams': "ID"},hashContexts:{'templateParams': depth0},contexts:[depth0],types:["STRING"],data:data})));
   
 });
 
