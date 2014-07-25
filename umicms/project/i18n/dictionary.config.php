@@ -131,9 +131,9 @@ return [
 
     'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
 	
-	'project.admin.rest.dispatches' => '{#lazy:~/project/module/dispatches/admin/i18n/dictionary.config.php}',
-	'project.admin.rest.dispatches.dispatches' => '{#lazy:~/project/module/dispatches/admin/dispatches/i18n/dictionary.config.php}',
-	'project.admin.rest.dispatches.subscribers' => '{#lazy:~/project/module/dispatches/admin/subscribers/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatch' => '{#lazy:~/project/module/dispatch/admin/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatch.dispatch' => '{#lazy:~/project/module/dispatch/admin/dispatch/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatch.subscriber' => '{#lazy:~/project/module/dispatch/admin/subscriber/i18n/dictionary.config.php}',
 
     'collection' => [
 
@@ -259,8 +259,8 @@ return [
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
 	
-	'collection.dispatches' => '{#lazy:~/project/module/dispatches/configuration/dispatches/i18n/dictionary.config.php}',
-	'collection.subscribers' => '{#lazy:~/project/module/dispatches/configuration/subscribers/i18n/dictionary.config.php}',
+	'collection.dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/i18n/dictionary.config.php}',
+	'collection.subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/i18n/dictionary.config.php}',
 	
 	'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
 ];
