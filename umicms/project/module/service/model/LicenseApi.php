@@ -27,6 +27,10 @@ class LicenseApi implements IConfigIOAware
      * @var Request $request
      */
     protected $request;
+    /**
+     * @var IConfig $config
+     */
+    private $config;
 
     /**
      * Конструктор.
@@ -35,6 +39,15 @@ class LicenseApi implements IConfigIOAware
     public function __construct(Request $request)
     {
         $this->request = $request;
+    }
+
+    /**
+     * Возвращает доменный ключ.
+     * @return string
+     */
+    public final function getDomainKey()
+    {
+        return $this->getConfig()->get('domainKey');
     }
 
     /**
@@ -47,7 +60,7 @@ class LicenseApi implements IConfigIOAware
     public final function activate($licenseKey, $domain, IConfig $config = null)
     {
         if (!$config) {
-            $config = $this->readConfig('~/project/site/site.settings.config.php');
+            $config = $this->getConfig();
         }
 
         if (!$this->checkLicenseKey($licenseKey, $domain)) {
@@ -66,6 +79,18 @@ class LicenseApi implements IConfigIOAware
         }
 
         $this->writeConfig($config);
+    }
+
+    /**
+     * Возвращает конфигурацию
+     * @return IConfig
+     */
+    private function getConfig()
+    {
+        if (!$this->config) {
+            $this->config = $this->readConfig('~/project/site/site.settings.config.php');
+        }
+        return $this->config;
     }
 
     /**

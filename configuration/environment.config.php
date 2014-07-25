@@ -14,7 +14,7 @@ return [
         'timezone' => 'UTC',
 
         'directoryPublic' => dirname(__DIR__) . '/public',
-        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
+        'directoryRoot' => dirname(__DIR__)
     ],
     'production' => [
         'errorReporting' => 0,
@@ -26,6 +26,6 @@ return [
         'timezone' => 'UTC',
 
         'directoryPublic' => dirname(__DIR__) . '/public',
-        'directoryConfiguration' => dirname(__DIR__) . '/configuration'
+        'directoryRoot' => dirname(__DIR__)
     ]
 ];

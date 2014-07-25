@@ -10,12 +10,39 @@
 
 namespace umicms\project\module\service\admin\update\controller;
 
-use umicms\hmvc\component\admin\settings\ActionController as BaseActionController;
+use umicms\exception\RuntimeException;
+use umicms\hmvc\component\admin\BaseController;
+use umicms\hmvc\component\admin\TActionController;
+use umicms\project\module\service\model\ServiceModule;
 
 /**
  * Контроллер операций компонента Update.
  */
-class ActionController extends BaseActionController
+class ActionController extends BaseController
 {
+    use TActionController;
 
+    /**
+     * @var ServiceModule $service
+     */
+    protected $service;
+
+    /**
+     * Конструктор.
+     * @param ServiceModule $service
+     */
+    public function __construct(ServiceModule $service)
+    {
+        $this->service = $service;
+    }
+
+    /**
+     * Скачивает и запускает обновление.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionUpdate()
+    {
+        return $this->service->update()->downloadUpdate();
+    }
 }

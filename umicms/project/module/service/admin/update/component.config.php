@@ -21,6 +21,10 @@ return [
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
+    AdminComponent::OPTION_QUERY_ACTIONS => [
+        'update' => []
+    ],
+
     AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

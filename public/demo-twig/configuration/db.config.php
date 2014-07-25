@@ -1,3 +1,3 @@
 <?php
 
-return require(\umicms\project\Environment::$directoryConfiguration . '/db.config.php');
+return require(\umicms\project\Environment::$directoryRoot . '/configuration/db.config.php');

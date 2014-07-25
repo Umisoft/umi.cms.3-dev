@@ -39,20 +39,17 @@ class ActionController extends BaseActionController
 
         $form->setData($this->getAllPostVars());
 
+        $licenseKeyField = $form->get('licenseKey');
+        $domainField = $form->get('defaultDomain');
+
         if ($form->isValid()) {
-            $licenseKey = $form->get('licenseKey');
-            if ($licenseKey instanceof Text) {
-                $licenseKey = $licenseKey->getValue();
-            }
 
-            $domain = $form->get('defaultDomain');
-            if ($domain instanceof Text) {
-                $domain = $domain->getValue();
+            if ($licenseKeyField instanceof Text && $domainField instanceof Text) {
+                /** @var ServiceModule $serviceModule */
+                $serviceModule = $this->getModuleByClass(ServiceModule::className());
+                $serviceModule->license()->activate($licenseKeyField->getValue(), $domainField->getValue(), $config);
             }
-
-            /** @var ServiceModule $serviceModule */
-            $serviceModule = $this->getModuleByClass(ServiceModule::className());
-            $serviceModule->license()->activate($licenseKey, $domain);
+            $licenseKeyField->setValue('');
         } else {
             $this->setResponseStatusCode(Response::HTTP_BAD_REQUEST);
         }
