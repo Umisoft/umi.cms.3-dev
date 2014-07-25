@@ -11,6 +11,10 @@
 namespace umicms\orm\collection;
 
 use umi\orm\collection\SimpleHierarchicCollection;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\IHierarchicObject;
+use umi\orm\object\IObject;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
@@ -21,6 +25,49 @@ use umicms\orm\object\ICmsObject;
 class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICmsCollection
 {
     use TCmsCollection;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
+    {
+        if ($branch) {
+            /**
+             * @var ICalculableProperty $siteChildCount
+             * @var ICalculableProperty $adminChildCount
+             */
+            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+            $siteChildCount->recalculate();
+            $adminChildCount->recalculate();
+        }
+
+        return parent::add($slug, $typeName, $branch, $guid);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(IObject $object)
+    {
+        /**
+         * @var CmsHierarchicObject $object
+         */
+        if ($parent = $object->getParent()) {
+            /**
+             * @var ICalculableProperty $siteChildCount
+             * @var ICalculableProperty $adminChildCount
+             */
+            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+            $siteChildCount->recalculate();
+            $adminChildCount->recalculate();
+        }
+
+        return parent::delete($object);
+    }
 
     /**
      * Разрешено ли использование slug.

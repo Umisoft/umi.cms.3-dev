@@ -64,6 +64,32 @@ return array_replace_recursive(
                 'accessor'   => 'getLevel',
                 'readOnly'   => true
             ],
+            CmsHierarchicObject::FIELD_SITE_CHILD_COUNT           => [
+                'type'         => IField::TYPE_FORMULA,
+                'columnName'   => 'site_child_count',
+                'dataType'     => 'integer',
+                'formula'      => 'calculateSiteChildCount',
+                'readOnly'     => true,
+                'defaultValue' => 0,
+                'localizations' => [
+                    'ru-RU' => [
+                        'columnName' => 'site_child_count',
+                        'defaultValue' => 0
+                    ],
+                    'en-US' => [
+                        'columnName' => 'site_child_count_en',
+                        'defaultValue' => 0
+                    ]
+                ]
+            ],
+            CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT           => [
+                'type'         => IField::TYPE_FORMULA,
+                'columnName'   => 'admin_child_count',
+                'dataType'     => 'integer',
+                'formula'      => 'calculateAdminChildCount',
+                'readOnly'     => true,
+                'defaultValue' => 0
+            ],
         ],
         'types'      => [
             'base' => [
@@ -74,7 +100,9 @@ return array_replace_recursive(
                     IHierarchicObject::FIELD_SLUG => [],
                     IHierarchicObject::FIELD_URI => [],
                     IHierarchicObject::FIELD_ORDER => [],
-                    IHierarchicObject::FIELD_HIERARCHY_LEVEL => []
+                    IHierarchicObject::FIELD_HIERARCHY_LEVEL => [],
+                    CmsHierarchicObject::FIELD_SITE_CHILD_COUNT => [],
+                    CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT => []
                 ]
             ]
         ]
