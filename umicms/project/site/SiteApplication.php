@@ -96,10 +96,6 @@ class SiteApplication extends SiteComponent
      */
     const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
     /**
-     * Имя настройки для включения/выключения кэширования страниц браузером
-     */
-    const SETTING_BROWSER_CACHE_ENABLED = 'browserCacheEnabled';
-    /**
      * Опция для задания сериализаторов приложения
      */
     const OPTION_SERIALIZERS = 'serializers';
@@ -207,8 +203,6 @@ class SiteApplication extends SiteComponent
             );
             $response->setContent($result);
 
-        } elseif ($this->getSiteBrowserCacheEnabled()) {
-            $this->setBrowserCacheHeaders($request, $response);
         }
 
         return $response;
@@ -255,16 +249,6 @@ class SiteApplication extends SiteComponent
      */
     protected function getSiteSettings() {
         return $this->getSettings();
-    }
-    /**
-     * Устанавливает ETag для браузерного кэширования страниц.
-     * @param Request $request
-     * @param Response $response
-     */
-    protected function setBrowserCacheHeaders(Request $request, Response $response) {
-        $response->setETag(md5($response->getContent()));
-        $response->setPublic();
-        $response->isNotModified($request);
     }
 
     /**

@@ -14,7 +14,7 @@ use umicms\orm\object\ICmsObject;
 use umicms\project\module\structure\model\object\MenuItem;
 
 /**
- * XML-пункта произвольного меню.
+ * Json-сериализатор пункта произвольного меню.
  */
 class MenuItemSerializer extends CmsObjectSerializer
 {

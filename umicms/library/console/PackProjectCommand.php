@@ -107,6 +107,7 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
+            ->ignoreDotFiles(false)
             ->notName('db.config.php')
             ->notName('project.config.php')
             ->notName('tools.settings.config.php')

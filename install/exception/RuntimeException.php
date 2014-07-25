@@ -13,7 +13,7 @@ namespace umicms\install\exception;
 /**
  * Исключение возникшее в ходе установки системы.
  */
-class RuntimeException extends \Exception
+class RuntimeException extends \RuntimeException
 {
     /**
      * @var string $overlay

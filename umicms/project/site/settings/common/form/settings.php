@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
 use umi\form\element\Text;
 use umicms\project\site\SiteApplication;
 
@@ -32,13 +31,6 @@ return [
             'label' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID,
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID
-            ]
-        ],
-        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => [
-            'type' => Checkbox::TYPE_NAME,
-            'label' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED,
-            'options' => [
-                'dataSource' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED
             ]
         ]
     ]

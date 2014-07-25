@@ -1,0 +1,10 @@
+{% if tree %}
+    <ul>
+        {% for node in tree %}
+            <li>
+                {{ widget('news.rubric.view', {'rubric' : node.item, 'template' : 'treeView'}) }}
+                {{ include('tree.twig', {'tree' : node.children}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
