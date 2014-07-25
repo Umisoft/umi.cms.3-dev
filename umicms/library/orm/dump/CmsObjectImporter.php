@@ -45,6 +45,7 @@ class CmsObjectImporter implements ICmsObjectImporter, ILocalizable, ICollection
         IField::TYPE_HAS_ONE => [],
         IField::TYPE_MANY_TO_MANY => [],
         IField::TYPE_COUNTER => [],
+        IField::TYPE_FORMULA => [],
         IField::TYPE_SLUG => [],
 
         IField::TYPE_IDENTIFY => [],
