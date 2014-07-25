@@ -57,6 +57,7 @@ class FragmentsWidget extends BaseCmsWidget
      *
      * Для шаблонизации доступны следущие параметры:
      * @templateParam string $query поисковый запрос
+     * @templateParam string $encodedQuery URL-закодированный поисковый запрос
      * @templateParam umicms\project\module\search\model\highlight\Fragmenter $fragmenter фрагментатор текста по найденным в нем словам
      *
      * @throws InvalidArgumentException
@@ -91,6 +92,7 @@ class FragmentsWidget extends BaseCmsWidget
             $this->template,
             [
                 'query' => $this->query,
+                'encodedQuery' => urlencode($this->query),
                 'fragmenter' => $fragmenter,
             ]
         );

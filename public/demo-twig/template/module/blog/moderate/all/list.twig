@@ -1,0 +1,5 @@
+{% if (list.getTotal()) %}
+    {% for blogPost in list %}
+        {{ widget('blog.moderate.all.post', {'blogPost' : blogPost, 'template' : 'shortView'})  }}
+    {% endfor %}
+{% endif %}

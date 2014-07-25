@@ -266,6 +266,25 @@ class AdminControl
     }
 
     /**
+     * Создает кнопку для управления индексацией поисковыми машинами.
+     * @param bool $isChoice если true, создает вариант выбора Choice
+     * @return Button|Choice
+     */
+    public function createRobotsAccessibleButton($isChoice = false) {
+        $button = $isChoice ? $this->createActionChoice('switchRobots') : $this->createActionButton('switchRobots');
+
+        $button
+            ->addState('allow', [
+                'label' => $this->component->translate('action:switchRobots:allow')
+              ])
+            ->addState('disallow', [
+                'label' => $this->component->translate('action:switchRobots:disallow')
+        ]);
+
+        return $button;
+    }
+
+    /**
      * Создает выпадающую кнопку для вызова действия.
      * @param string $actionName
      * @param array $params параметры обработчика

@@ -273,7 +273,7 @@ trait TCmsCollection
      */
     public function getAclResourceName()
     {
-        return "model:{$this->getName()}";
+        return 'model:' . $this->getName();
     }
 
     /**

@@ -26,7 +26,7 @@ use umicms\project\module\blog\model\object\BlogPost;
  * @method CmsSelector|BlogPost[] select() Возвращает селектор для выбора постов.
  * @method BlogPost get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по GUID
  * @method BlogPost getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по id
- * @method BlogPost add($typeName = IObjectType::BASE) Создает и возвращает пост
+ * @method BlogPost add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает пост
  */
 class BlogPostCollection extends CmsPageCollection
 {

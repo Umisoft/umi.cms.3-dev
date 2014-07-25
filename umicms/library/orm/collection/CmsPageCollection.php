@@ -18,6 +18,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecoverableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
+use umicms\orm\collection\behaviour\TRobotsAccessibleCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 
@@ -29,6 +30,7 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     use TRecoverableCollection;
     use TRecyclableCollection;
     use TActiveAccessibleCollection;
+    use TRobotsAccessibleCollection;
 
     /**
      * {@inheritdoc}

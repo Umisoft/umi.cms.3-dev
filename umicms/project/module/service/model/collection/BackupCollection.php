@@ -24,7 +24,7 @@ use umicms\project\module\service\model\object\Backup;
  *
  * @method Backup get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает резервную копию по ее GUID.
  * @method Backup getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает резервную копию по ее id.
- * @method Backup add($typeName = IObjectType::BASE) Создает и возвращает резервную копию.
+ * @method Backup add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает резервную копию.
  */
 class BackupCollection extends CmsCollection
 {

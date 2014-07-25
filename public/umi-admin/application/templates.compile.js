@@ -1851,9 +1851,11 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" <i class=\"icon icon-");
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.meta.behaviour.name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push("\"></i> ");
+  data.buffer.push(" <i ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":icon view.iconClass")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("></i> ");
   return buffer;
   }
 
@@ -1893,7 +1895,11 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <div class=\"row collapse\" ");
+  data.buffer.push(" <div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":row :collapse isActive::s-pointer")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "applyBackup", "", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
@@ -1940,6 +1946,16 @@ function program10(depth0,data) {
   return buffer;
   }
 
+function program12(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <div class=\"row collapse\"> <div class=\"columns small-12\"> ");
+  stack1 = helpers._triageMustache.call(depth0, "view.noBackupsLabel", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </div> </div> ");
+  return buffer;
+  }
+
   data.buffer.push("<a href=\"javascript:void(0)\" class=\"button white dropdown\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "open", {hash:{
     'target': ("view")
@@ -1951,7 +1967,7 @@ function program10(depth0,data) {
   stack1 = helpers._triageMustache.call(depth0, "view.button.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</strong> </div> </div> <div class=\"s-scroll-wrap\"> <div> ");
-  stack1 = helpers.each.call(depth0, "view.backupList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers.each.call(depth0, "view.backupList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(12, program12, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> </div> </div>");
   return buffer;

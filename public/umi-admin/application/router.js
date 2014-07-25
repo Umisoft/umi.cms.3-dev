@@ -495,7 +495,7 @@ define([], function(){
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': '<div>Объект будет удален без возможности востановления, все равно продолжить?</div>',
+                        'content': '<div>Объект будет удален без возможности восстановления, все равно продолжить?</div>',
                         'confirm': 'Удалить',
                         'reject': 'Отмена'
                     };
@@ -561,6 +561,26 @@ define([], function(){
                         }).then(function(results){
                             var model = UMI.dialog.get('model');
                             model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
+                },
+
+                /**
+                 *
+                 */
+                switchRobots: function(object, currentState, defer){
+                    try{
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        var switchRobotsSource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
+                        $.ajax({
+                            url: switchRobotsSource + '?id=' + object.get('id'),
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            defer.resolve();
                         });
                     } catch(error){
                         this.send('backgroundError', error);

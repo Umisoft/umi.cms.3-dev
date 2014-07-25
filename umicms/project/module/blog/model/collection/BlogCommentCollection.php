@@ -28,7 +28,7 @@ use umicms\project\module\blog\model\object\BlogPost;
  * @method CmsSelector|BlogComment[] select() Возвращает селектор для выбора комментария блога.
  * @method BlogComment get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его GUID.
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
- * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
+ * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает комментарий блога
  */
 class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {

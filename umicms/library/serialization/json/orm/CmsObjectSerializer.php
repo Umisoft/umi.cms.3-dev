@@ -61,12 +61,14 @@ class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
                 $properties['meta']['isDefault'] = true;
             }
         }
+        $this->buildProperties($object, $properties);
+
         $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];
         $this->delegate($properties, $options);
     }
 
     /**
-     * Позволяет достроить массив с информацией об объектк для сериализации.
+     * Позволяет достроить массив с информацией об объекте для сериализации.
      * @param ICmsObject $object
      * @param array $properties
      */
