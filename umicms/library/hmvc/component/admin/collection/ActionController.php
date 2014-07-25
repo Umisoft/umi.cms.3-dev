@@ -27,6 +27,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\numeric\BoolField;
 use umi\orm\metadata\field\string\TextField;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\form\element\Wysiwyg;
 use umicms\hmvc\component\admin\TActionController;
@@ -485,6 +486,7 @@ class ActionController extends BaseController implements IFormAware
         $result = [
             'i18n' => [
                 'Current version' => $this->translate('Current version'),
+                'No backups' => $this->translate('No backups'),
             ],
             'collection' => $collection->getBackupList($object)
                     ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
@@ -561,6 +563,32 @@ class ActionController extends BaseController implements IFormAware
         $previousSibling = isset($data['sibling']) ? $this->getEditedObject($data['sibling']) : null;
 
         $collection->move($object, $branch, $previousSibling);
+
+        $parent = $object->getParent();
+
+        if ($parent !== $branch) {
+            if ($parent) {
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+
+            if ($branch) {
+                $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+        }
+
+        $this->commit();
 
         return '';
     }

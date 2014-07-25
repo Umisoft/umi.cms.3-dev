@@ -48,6 +48,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.update' => '{#lazy:~/project/module/service/admin/update/i18n/dictionary.config.php}',
     'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
@@ -156,7 +157,6 @@ return [
             'Default or inherited layout' => 'Default or inherited layout',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Children',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Child count',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Hierarchy level',
             CmsHierarchicObject::FIELD_MPATH => 'Materialized path',
             CmsHierarchicObject::FIELD_ORDER => 'Hierarchy order',
@@ -169,15 +169,7 @@ return [
             ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
             ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Slug',
-
-            ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
-            ICmsPage::FIELD_PAGE_H1 => 'H1',
-            ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
-            ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
-            ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
-            ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес'
+            ICmsPage::FIELD_PAGE_SLUG => 'Slug'
         ],
 
         'ru-RU' => [
@@ -193,7 +185,6 @@ return [
             ICmsObject::FIELD_VERSION => 'Версия',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Дочерние сущности',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Количество дочерних сущностей',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Уровень вложенности в иерархии',
             CmsHierarchicObject::FIELD_MPATH => 'Материализованный путь',
             CmsHierarchicObject::FIELD_ORDER => 'Порядок в иерархии',

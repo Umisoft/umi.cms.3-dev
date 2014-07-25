@@ -54,9 +54,9 @@ class Environment
      */
     public static $directoryPublic = ".";
     /**
-     * @var string $directoryConfiguration публичная директория
+     * @var string $directoryRoot корневая директория
      */
-    public static $directoryConfiguration = ".";
+    public static $directoryRoot = ".";
     /**
      * @var string $directoryAssets директория с ассетами проекта
      */

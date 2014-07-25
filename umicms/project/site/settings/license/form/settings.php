@@ -34,6 +34,9 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => 'licenseKey',
             'options' => [
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
                 'dataSource' => 'licenseKey'
             ]
         ],

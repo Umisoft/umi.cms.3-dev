@@ -36,7 +36,6 @@
 
         "symfony/finder": "~2.2",
         "symfony/process": "~2.1",
-        "symfony/console": "~2.1",
-        "sami/sami": "2.0.*@dev"
+        "symfony/console": "~2.1"
     }
 }

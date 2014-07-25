@@ -230,7 +230,7 @@ class Bootstrap
          */
         $request = $this->toolkit->getService('umi\http\Request');
 
-        $fileName = Environment::$directoryConfiguration . '/projects.config.php';
+        $fileName = Environment::$directoryRoot . '/configuration/projects.config.php';
         if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
