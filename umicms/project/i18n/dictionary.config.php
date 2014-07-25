@@ -165,15 +165,7 @@ return [
             ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
             ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Slug',
-
-            ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
-            ICmsPage::FIELD_PAGE_H1 => 'H1',
-            ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
-            ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
-            ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
-            ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес'
+            ICmsPage::FIELD_PAGE_SLUG => 'Slug'
         ],
 
         'ru-RU' => [
