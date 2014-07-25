@@ -8,10 +8,11 @@
 </div>
 <div class="sidebar-module">
     <h4>{{ translate('Rubrics') }}</h4>
-    {{ widget('news.rubric.list', {'template' : 'listShort'}) }}
+    {{ widget('news.rubric.tree') }}
 </div>
 <div class="sidebar-module">
     <h4>{{ translate('Subjects') }}</h4>
     {{ widget('news.subject.list', {'template' : 'listShort'}) }}
 </div>
+
 {{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}

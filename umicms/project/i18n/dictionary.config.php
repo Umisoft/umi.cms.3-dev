@@ -48,6 +48,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.update' => '{#lazy:~/project/module/service/admin/update/i18n/dictionary.config.php}',
     'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
