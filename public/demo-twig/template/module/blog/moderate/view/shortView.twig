@@ -1,0 +1,24 @@
+<div class="blog-post">
+    <h1>{{ blogPost.displayName }}</h1>
+    <p class="blog-post-meta">
+        {% if blogPost.publishTime %}
+        <time datetime="{{ blogPost.publishTime.format('c') }}">
+            {{ blogPost.publishTime.format('d.m.Y | H:i') }}
+        </time>
+        {% endif %}
+        {% if (blogPost.author) %}
+            {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {% endif %}
+        {{ widget('blog.moderate.edit.editLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
+    </p>
+
+    {{ blogPost.announcement | raw }}
+
+    <a href="{{ blogPost.getPageUrl() }}">{{ translate('ReadMore') }}</a>
+
+    <div class="btn-toolbar">
+        {{ widget('blog.moderate.publishForm', {'blogPost' : blogPost, 'template' : 'publishForm'}) }}
+        {{ widget('blog.moderate.rejectForm', {'blogPost' : blogPost, 'template' : 'rejectForm'}) }}
+        {{ widget('blog.moderate.toDraftForm', {'blogPost' : blogPost, 'template' : 'draftForm'}) }}
+    </div>
+</div>
