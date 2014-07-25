@@ -2,8 +2,8 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
-        UMI.PageRelationElementView = Ember.View.extend(UMI.SerializedValue, {
-            templateName: 'partials/pageRelationElement',
+        UMI.ObjectRelationElementView = Ember.View.extend(UMI.SerializedValue, {
+            templateName: 'partials/objectRelationElement',
 
             classNames: ['row', 'collapse'],
             /**
@@ -24,7 +24,7 @@ define(['App'], function(UMI){
 
                     viewParams: {
                         title: 'Выбор страницы',
-                        popupType: 'pageRelation'
+                        popupType: 'objectRelation'
                     }
                 };
             }.property(),
@@ -67,7 +67,7 @@ define(['App'], function(UMI){
         });
 
 
-        UMI.PageRelationLayoutController = Ember.ObjectController.extend({
+        UMI.ObjectRelationLayoutController = Ember.ObjectController.extend({
             sideBarControl: Ember.computed.gt('collections.length', 1),
 
             collections: [],
@@ -167,13 +167,13 @@ define(['App'], function(UMI){
             }
         });
 
-        UMI.PageRelationLayoutView = Ember.View.extend({
+        UMI.ObjectRelationLayoutView = Ember.View.extend({
             classNames: ['s-full-height'],
-            templateName: 'partials/pageRelationLayout',
+            templateName: 'partials/objectRelationLayout',
             sideMenu: Ember.View.extend({
                 tagName: 'ul',
                 classNames: ['side-nav'],
-                templateName: 'partials/pageRelationLayout/sideMenu',
+                templateName: 'partials/objectRelationLayout/sideMenu',
                 itemView: Ember.View.extend({
                     tagName: 'li',
                     classNameBindings: ['isActive:active'],

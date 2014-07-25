@@ -125,7 +125,7 @@ define(['App'],
                 }.property(),
 
                 objectRelationTemplate: function(){
-                    return '{{view "pageRelationElement" object=view.object meta=view.meta}}';
+                    return '{{view "objectRelationElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 pageRelationTemplate: function(){
