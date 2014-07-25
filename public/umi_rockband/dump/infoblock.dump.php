@@ -76,7 +76,7 @@ return array (
       'logo#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<img src="/resources/umi-rockband/images/logo.png" />',
+        1 => '<img src="/resources/umi_rockband/images/logo.png" />',
       ),
       'logo#en-US' => 
       array (
