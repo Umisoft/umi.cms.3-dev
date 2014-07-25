@@ -62,6 +62,7 @@ class PackEnvironmentCommand extends BaseCommand
 
         $rootDir = dirname(CMS_DIR);
         $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
+        $this->packFile($phar, new SplFileInfo($rootDir . '/umi.nginx.conf'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/LICENSE'));
 
