@@ -92,8 +92,8 @@
                         <xsl:value-of select="property[@name='category']/value/@displayName" />
                         <xsl:text> | </xsl:text>
                         <xsl:apply-templates select="property[@name='commentsCount']/value" mode="number"/>
-                        <!--TODO Label please-->
-                        <xsl:text> комментариев</xsl:text>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="document('translate://project.site/Comments')" />
                     </li>
                 </ul>
             </div>

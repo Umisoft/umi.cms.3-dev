@@ -35,8 +35,7 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <!--TODO Label please-->
-                        <div class="title-top">Теги</div>
+                        <div class="title-top"><xsl:value-of select="document('translate://project.site/Tags')" /></div>
                         <div class="tags">
                             <xsl:apply-templates select="//property[@name='tags']/value/item" mode="blog.tags.list"/>
                         </div>

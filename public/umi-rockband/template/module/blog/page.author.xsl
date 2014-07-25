@@ -19,8 +19,7 @@
                     </div>
                     <div class="separating-line"></div>
                     <div class="caption">
-                        <!-- TODO label please -->
-                        Посты автора
+                        <xsl:value-of select="document('translate://project.site/Authors%20posts')" />
                     </div>
                 </div>
 

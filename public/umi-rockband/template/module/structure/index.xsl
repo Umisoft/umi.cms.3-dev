@@ -33,6 +33,7 @@
                         <xsl:value-of select="document('translate://project.site.news/AboutUs')/result" />
                     </span></h2>
                     <p class="desc-block">
+                        <!--TODO label please-->
                         Мы самая известная рок группа в мире
                     </p>
                 </div>
@@ -78,6 +79,7 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
+                <!--TODO Slider please-->
                 <div class="item active">
                     <img src="{$template}/images/slider-img.jpg" alt="" />
                     <div class="carousel-caption">

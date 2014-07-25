@@ -32,15 +32,14 @@
     </xsl:template>
 
     <xsl:template name="blog.sidebar">
-        <!--TODO Labels please-->
         <div class="sidebar">
-            <h3><a href="#">Категории</a></h3>
+            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Categories')/result" /></a></h3>
             <xsl:apply-templates select="document('widget://blog.category.list')" mode="blog.sidebar.list" />
 
-            <h3><a href="#">Авторы</a></h3>
+            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Authors')/result" /></a></h3>
             <xsl:apply-templates select="document('widget://blog.author.view.list')" mode="blog.sidebar.list" />
 
-            <h3><a href="#">Теги</a></h3>
+            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Tags')/result" /></a></h3>
             <xsl:apply-templates select="document('widget://blog.tag.list')" mode="blog.sidebar.list" />
 
         </div>
