@@ -216,7 +216,8 @@ var UMI = UMI || {};
                     showCurrentStep();
                 }
             }, function (error) {
-                $('<p style="color:red">' + error.responseJSON.message + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').prependTo('.js-handler-scroll-panel');
+                $('<p style="color:red">' + error.responseJSON.message + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').appendTo('.js-handler-scroll-panel');
+                $('.scroll-window').scrollTop($('.js-handler-scroll-panel').height());
 
                 if (error.responseJSON.overlay !== undefined && error.responseJSON.overlay !== null) {
                     overlay.open('<p style="color:red">' + error.responseJSON.message + '</p>' + error.responseJSON.overlay)
@@ -226,7 +227,8 @@ var UMI = UMI || {};
     }
 
     var showProcessLog = function (step) {
-        $('<p>' + stepsInfo.result[step].title + '</p>').prependTo('.js-handler-scroll-panel');
+        $('<p>' + stepsInfo.result[step].title + '</p>').appendTo('.js-handler-scroll-panel');
+        $('.scroll-window').scrollTop($('.js-handler-scroll-panel').height());
     }
 
     var Overlay = function (){
