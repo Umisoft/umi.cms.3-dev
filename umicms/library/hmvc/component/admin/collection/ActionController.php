@@ -485,6 +485,7 @@ class ActionController extends BaseController implements IFormAware
         $result = [
             'i18n' => [
                 'Current version' => $this->translate('Current version'),
+                'No backups' => $this->translate('No backups'),
             ],
             'collection' => $collection->getBackupList($object)
                     ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
