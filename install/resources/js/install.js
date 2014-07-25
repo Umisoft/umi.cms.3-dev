@@ -27,6 +27,11 @@ var UMI = UMI || {};
                         .removeAttr('disabled')
                         .removeClass('back_step_submit')
                         .addClass('next_step_submit');
+                } else {
+                    $('.js-handler-step-next')
+                        .attr('disabled','disabled')
+                        .addClass('back_step_submit')
+                        .removeClass('next_step_submit');
                 }
             });
 
@@ -62,35 +67,7 @@ var UMI = UMI || {};
                 stepRequest(pathInstaller, params);
                 overlay.close();
             });
-
-            var bubbles = document.querySelector('.bubbles');
-            var bubblesFront = document.querySelector('.bubbles-front');
-            var parallax = function(event){
-                var bodyWidth = document.body.offsetWidth;
-                var bodyHeight = document.body.offsetHeight;
-                var deltaX = 0.04;
-                var deltaY = 0.04;
-                var left = (bodyWidth / 2 - event.clientX) * deltaX;
-                var top = (bodyHeight / 2 - event.clientY) * deltaY;
-                bubbles.style.marginLeft = left + 'px';
-                bubbles.style.marginTop = top + 'px';
-                bubblesFront.style.marginLeft = left * 0.2 + 'px';
-                bubblesFront.style.marginTop = top * 0.2 + 'px';
-            };
-
-            var bubblesHidden = true;
-            document.onmousemove = function(event){
-                if(bubblesHidden){
-                    bubbles.className = 'bubbles visible';
-                    bubblesFront.className = 'bubbles-front visible';
-                    bubblesHidden = false;
-                }
-                parallax(event);
-            };
-
         });
-
-
     });
 
     var nextStep = function () {
@@ -111,6 +88,8 @@ var UMI = UMI || {};
                             .removeAttr('disabled')
                             .removeClass('back_step_submit')
                             .addClass('next_step_submit');
+                        $('.img_stop').empty();
+                        $('.img_stop_text').empty();
                     }
                 }
                 default :
@@ -123,7 +102,8 @@ var UMI = UMI || {};
             }
         }, function (error) {
             $('.js-step-' + step +' .info').removeClass('display_none');
-            $('.js-step-' + step + ' .img_stop img').attr("src", "http://install.umi-cms.ru/icon_stop_red.png");
+            $('.js-step-' + step + ' .img_stop img').remove();
+            $('.js-step-' + step + ' .img_stop').html('<img src="http://install.umi-cms.ru/icon_stop_red.png">');
             $('.js-step-' + step + ' .img_stop_text').html(error.responseJSON.message);
         });
     };
