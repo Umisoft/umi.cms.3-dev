@@ -33,7 +33,6 @@ $primary-gradient: #3aadff, #0087d4;
     }
 
     .umi-item{
-        overflow: hidden;
         text-overflow: ellipsis;
         padding: 0 10px 0 28px;
         white-space: nowrap;
@@ -41,7 +40,6 @@ $primary-gradient: #3aadff, #0087d4;
         &:hover, &.active{
             margin-left: -10000px;
             padding-left: 10028px;
-            margin-right: -1px;
             padding-right: 10px;
         }
         &:hover{
