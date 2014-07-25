@@ -19,7 +19,7 @@ use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
 
 /**
- * Коллекция для работы с подписчиками.
+ * РљРѕР»Р»РµРєС†РёСЏ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕРґРїРёСЃС‡РёРєР°РјРё.
  *
  */
 class SubscriberCollection extends CmsCollection

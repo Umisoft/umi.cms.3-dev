@@ -14,13 +14,13 @@ use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsObject;
 
 /**
- * Шаблоны писем.
+ * РЁР°Р±Р»РѕРЅС‹ РїРёСЃРµРј
  *
  */
 class TemplateMail extends CmsObject
 {
     /**
-     *  Имя поля для хранения рассылок
+     *  РРјСЏ РїРѕР»СЏ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СЂР°СЃСЃС‹Р»РѕРє
      */
     const FIELD_DISPATCHES = 'dispatch';
 
