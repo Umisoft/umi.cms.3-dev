@@ -56,19 +56,28 @@ define(['App'],
                     }
                 }.observes('object.validErrors.@each'),
 
+                actionWithCustomValidate: function(actionName, params){
+                    var elements = this.inputElements();
+                    elements = elements.mapBy('dataSource');
+                    params.fields = elements;
+                    this.get('controllers.component').send(actionName, params);
+                },
+
                 actions: {
                     save: function(params){
-                        var elements = this.inputElements();
-                        elements = elements.mapBy('dataSource');
-                        params.fields = elements;
-                        this.get('controllers.component').send('save', params);
+                        this.actionWithCustomValidate('save', params);
                     },
 
                     saveAndGoBack: function(params){
-                        var elements = this.inputElements();
-                        elements = elements.mapBy('dataSource');
-                        params.fields = elements;
-                        this.get('controllers.component').send('saveAndGoBack', params);
+                        this.actionWithCustomValidate('saveAndGoBack', params);
+                    },
+
+                    add: function(params){
+                        this.actionWithCustomValidate('add', params);
+                    },
+
+                    addAndGoBack: function(params){
+                        this.actionWithCustomValidate('addAndGoBack', params);
                     }
                 }
             });
