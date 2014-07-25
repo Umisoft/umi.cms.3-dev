@@ -131,9 +131,11 @@ define(
                     var data = {
                         'close': true,
                         'title': error.status + '. ' + error.statusText,
-                        'content': message
+                        'content': message,
+                        'duration': false,
+                        'type': 'error'
                     };
-                    UMI.dialog.open(data).then();
+                    UMI.notification.create(data);
                 }
             }
         });

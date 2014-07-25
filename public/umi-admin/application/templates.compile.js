@@ -1775,7 +1775,7 @@ function program21(depth0,data) {
   var buffer = '', stack1;
   data.buffer.push(" <div ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":umi-table-control-column-fixed-cell object.active::umi-inactive")
+    'class': (":umi-table-control-column-fixed-cell object.active::umi-inactive isSelected:selected")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(" data-objectId=\"");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "object.id", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));

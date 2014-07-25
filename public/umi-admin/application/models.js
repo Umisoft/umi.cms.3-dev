@@ -105,12 +105,23 @@ define([], function(){
                     }
                 }
             },
-
-            validateObject: function(){
+            /**
+             * Валидация объекта
+             * @method validateObject
+             * @param {Array|undefined} fields Список полей для валидации.
+             */
+            validateObject: function(fields){
                 var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
                 var filters = Ember.get(meta, 'filters');
                 var validators = Ember.get(meta, 'validators');
                 var key;
+                var fieldsLength;
+
+                if(Ember.typeOf(fields) !== 'array'){
+                    fields = [];
+                }
+                fieldsLength = fields.length;
+
                 if(Ember.typeOf(filters) === 'object'){
                     for(key in filters){
                         if(filters.hasOwnProperty(key)){
@@ -121,9 +132,11 @@ define([], function(){
                 if(Ember.typeOf(validators) === 'object'){
                     for(key in validators){
                         if(validators.hasOwnProperty(key)){
-                            this.validateProperty(key);
-                            if(!this.get('isValid')){
-                                break;
+                            if((fieldsLength && fields.contains(key)) || !fieldsLength){
+                                this.validateProperty(key);
+                                if(!this.get('isValid')){
+                                    break;
+                                }
                             }
                         }
                     }

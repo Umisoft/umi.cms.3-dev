@@ -347,7 +347,12 @@ define(['App'], function(UMI){
 
         UMI.TableControlContextToolbarItemController = Ember.ObjectController.extend({
             objectBinding: 'content',
-            componentNameBinding: 'parentController.componentName'
+            componentNameBinding: 'parentController.componentName',
+
+            isSelected: function(){
+                var objectGuid = this.get('object.guid');
+                return objectGuid === this.get('parentController.control.meta.activeObjectGuid');
+            }.property('parentController.control.meta.activeObjectGuid')
         });
 
         UMI.TableControlSharedController = Ember.ObjectController.extend(UMI.TableControlMixin,{

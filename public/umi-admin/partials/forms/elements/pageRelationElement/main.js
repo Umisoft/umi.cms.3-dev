@@ -123,15 +123,15 @@ define(['App'], function(UMI){
                         behaviour: {
                             rowEvent: function(context, selectedObject){
                                 var dataSource = Ember.get(meta, 'dataSource');
-                                var collectionName = Ember.get(selectedObject, 'conctructor.typeKey');
+                                var collectionName = Ember.get(selectedObject, 'constructor.typeKey');
                                 var value = {
-                                    collectionName: collectionName,
+                                    collection: collectionName,
                                     guid: selectedObject.get('guid'),
                                     displayName:  selectedObject.get('displayName')
                                 };
                                 object.set(dataSource, JSON.stringify(value));
                                 context.send('closePopup');
-                                self.set('selectedCollection', self.get('collection').findBy('id', collectionName));
+                                //self.set('selectedCollection', self.get('collections').findBy('id', collectionName));
                             }
                         }
                     }
@@ -156,7 +156,7 @@ define(['App'], function(UMI){
                 if(computedProperty){
                     try{
                         computedProperty = JSON.parse(computedProperty);
-                        collectionName = Ember.get(computedProperty, 'meta.collectionName');
+                        collectionName = Ember.get(computedProperty, 'meta.collectionName') ||  Ember.get(computedProperty, 'collection');
                         self.set('selectedCollection', collections.findBy('id', collectionName));
                     } catch(error){
                         this.send('backgroundError', error);

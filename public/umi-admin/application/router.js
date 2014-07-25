@@ -91,7 +91,7 @@ define([], function(){
                 var self = this;
                 var deferred = Ember.RSVP.defer();
                 try{
-                    params.object.validateObject();
+                    params.object.validateObject(Ember.get(params, 'fields'));
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -234,7 +234,6 @@ define([], function(){
                     if(settings !== 'silence'){
                         settings.type = 'error';
                         settings.duration = false;
-                        console.log(settings);
                         UMI.notification.create(settings);
                     }
                 },

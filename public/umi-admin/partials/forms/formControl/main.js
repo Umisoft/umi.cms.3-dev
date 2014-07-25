@@ -14,20 +14,9 @@ define(['App'],
                     return settings;
                 }.property(),
 
-                validationErrors: function(){
+                inputElements: function(){
                     var elements = this.get('control.meta.elements');
-                    var validErrors = this.get('object.validErrors');
-                    var stack = [];
-                    var key;
                     var inputElements = [];
-                    var validateErrorLabel = 'Объект не валиден.';
-                    var settings = {
-                        type: 'error',
-                        duration: false,
-                        title: validateErrorLabel,
-                        kind: 'validate',
-                        close: false
-                    };
                     var i;
                     for(i = 0; i < elements.length; i++){
                         if(Ember.get(elements[i], 'type') === 'fieldset' && Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array'){
@@ -36,18 +25,52 @@ define(['App'],
                             inputElements.push(elements[i]);
                         }
                     }
+                    return inputElements;
+                },
+
+                validationErrors: function(){
+                    var validErrors = this.get('object.validErrors');
+                    var stack = [];
+                    var key;
+                    var inputElements = this.inputElements();
+                    var validateErrorLabel = 'Объект не валиден.';
+                    var settings = {
+                        type: 'error',
+                        duration: false,
+                        title: validateErrorLabel,
+                        kind: 'validate',
+                        close: false
+                    };
+
                     for(key in validErrors){
                         if(validErrors.hasOwnProperty(key) && !inputElements.findBy('dataSource', key)){
                             stack.push('<div>' + key + ': ' + validErrors[key] + '</div>');
                         }
                     }
+
                     if(stack.length){
                         settings.content = stack.join();
                         UMI.notification.create(settings);
                     } else{
                         UMI.notification.removeWithKind('validateError');
                     }
-                }.observes('object.validErrors.@each')
+                }.observes('object.validErrors.@each'),
+
+                actions: {
+                    save: function(params){
+                        var elements = this.inputElements();
+                        elements = elements.mapBy('dataSource');
+                        params.fields = elements;
+                        this.get('controllers.component').send('save', params);
+                    },
+
+                    saveAndGoBack: function(params){
+                        var elements = this.inputElements();
+                        elements = elements.mapBy('dataSource');
+                        params.fields = elements;
+                        this.get('controllers.component').send('saveAndGoBack', params);
+                    }
+                }
             });
 
             UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {

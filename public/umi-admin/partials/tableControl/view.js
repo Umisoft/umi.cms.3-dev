@@ -269,7 +269,7 @@ define(['App', 'toolbar'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'isActive::umi-inactive', 'parentView.hasRowEvent:s-pointer', 'isSelected:active'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'parentView.hasRowEvent:s-pointer', 'isSelected:selected'],
                 isActive: function(){//TODO: оптимизировать. Нет необходимости для каждого объекта проверять метаданные.
                     var object = this.get('object');
                     var hasActiveProperty  = false;
@@ -287,7 +287,7 @@ define(['App', 'toolbar'], function(UMI){
 
                 isSelected: function(){
                     var objectGuid = this.get('object.guid');
-                    return objectGuid === this.get('controller.control.activeObjectGuid');
+                    return objectGuid === this.get('controller.control.meta.activeObjectGuid');
                 }.property('controller.control.activeObjectGuid'),
 
                 attributeBindings: ['objectId'],
@@ -295,7 +295,7 @@ define(['App', 'toolbar'], function(UMI){
                 objectIdBinding: 'object.id',
 
                 click: function(){
-                    if(this.get('parentView.hasRowEvent')){
+                    if(this.get('parentView.hasRowEvent') && !this.get('isSelected')){
                         this.get('parentView').rowEvent(this.get('object'));
                     }
                 }
