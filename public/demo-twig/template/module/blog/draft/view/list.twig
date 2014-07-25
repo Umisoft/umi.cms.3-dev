@@ -1,0 +1,5 @@
+{% if (list.getTotal()) %}
+    {% for blogDraft in list %}
+        {{ widget('blog.draft.view.draft', {'blogDraft' : blogDraft, 'template' : 'shortView'}) }}
+    {% endfor %}
+{% endif %}

@@ -96,6 +96,7 @@ return [
         'Nothing found' => 'Ничего не найдено',
         'Loading' => 'Загрузка',
         'Current version' => 'Текущая версия',
+        'No backups' => 'Нет резервных копий',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',

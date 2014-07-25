@@ -15,7 +15,7 @@
     <div class="s-scroll-wrap">
         <div>
             {{#each view.backupList}}
-                <div class="row collapse" {{action 'applyBackup' this target="view"}}>
+                <div {{bind-attr class=":row :collapse isActive::s-pointer"}} {{action 'applyBackup' this target="view"}}>
                     <div class="columns small-7 place-button">
                         {{#if isActive}}
                             <button class="button flat tiny square">
@@ -34,6 +34,12 @@
                         {{else}}
                             {{i18n "User name" "toolbar:dropdownButton"}}
                         {{/if}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="row collapse">
+                    <div class="columns small-12">
+                        {{view.noBackupsLabel}}
                     </div>
                 </div>
             {{/each}}
