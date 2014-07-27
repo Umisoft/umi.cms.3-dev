@@ -30,7 +30,7 @@ define(['App'], function(UMI){
                 var objects = this.get('objects');
                 objects.forEach(function(item){
                     if(item && item.get('isDeleted')){
-                        objects.get('content.content.content').removeObject(item);
+                        objects.removeObject(item);
                     }
                 });
             },

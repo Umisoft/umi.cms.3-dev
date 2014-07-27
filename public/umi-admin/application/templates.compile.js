@@ -2058,23 +2058,11 @@ function program1(depth0,data) {
 Ember.TEMPLATES["UMI/partials/treeControl"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = '';
-  data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "treeItem", {hash:{
-    'treeControlView': ("view"),
-    'item': ("")
-  },hashTypes:{'treeControlView': "ID",'item': "ID"},hashContexts:{'treeControlView': depth0,'item': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" ");
-  return buffer;
-  }
 
   data.buffer.push("<div class=\"columns small-12\"> <div class=\"row s-full-height umi-tree-wrapper\"> <ul class=\"umi-tree-list umi-tree\"> ");
-  stack1 = helpers.each.call(depth0, "root", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "treeControlItem", "root", options) : helperMissing.call(depth0, "render", "treeControlItem", "root", options))));
   data.buffer.push(" </ul> </div> </div>");
   return buffer;
   
@@ -2100,18 +2088,14 @@ function program1(depth0,data) {
   data.buffer.push("> ");
   stack1 = helpers['if'].call(depth0, "view.isExpanded", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </span> <i ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon :umi-tree-type-icon :icon-document view.item.root::move")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push("></i> ");
+  data.buffer.push(" </span> ");
   return buffer;
   }
 function program2(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "view.sortedChildren", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "childrenList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
@@ -2135,31 +2119,32 @@ function program5(depth0,data) {
 
 function program7(depth0,data) {
   
-  var buffer = '';
-  data.buffer.push(" <i ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon :umi-tree-type-icon :icon-document view.item.root::move")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push("></i> ");
+  var buffer = '', stack1, helper, options;
+  data.buffer.push(" ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
+    'class': ("tree-item-link")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","STRING"],data:data},helper ? helper.call(depth0, "action", "item.id", "editForm", options) : helperMissing.call(depth0, "link-to", "action", "item.id", "editForm", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  return buffer;
+  }
+function program8(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers._triageMustache.call(depth0, "savedDisplayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
   return buffer;
   }
 
-function program9(depth0,data) {
+function program10(depth0,data) {
   
   var buffer = '', stack1, helper, options;
   data.buffer.push(" ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'class': ("tree-item-link")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","STRING"],data:data},helper ? helper.call(depth0, "action", "view.item.id", "editForm", options) : helperMissing.call(depth0, "link-to", "action", "view.item.id", "editForm", options));
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  return buffer;
-  }
-function program10(depth0,data) {
-  
-  var buffer = '', stack1;
-  data.buffer.push(" ");
-  stack1 = helpers._triageMustache.call(depth0, "view.savedDisplayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "context", "view.item.id", options) : helperMissing.call(depth0, "link-to", "context", "view.item.id", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
@@ -2169,33 +2154,21 @@ function program12(depth0,data) {
   
   var buffer = '', stack1, helper, options;
   data.buffer.push(" ");
-  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
-    'class': ("tree-item-link")
-  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "context", "view.item.id", options) : helperMissing.call(depth0, "link-to", "context", "view.item.id", options));
+  stack1 = (helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "treeControlContextToolbar", "item", options) : helperMissing.call(depth0, "render", "treeControlContextToolbar", "item", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-
-function program14(depth0,data) {
-  
-  var buffer = '', stack1, helper, options;
-  data.buffer.push(" ");
-  stack1 = (helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(15, program15, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "treeControlContextToolbar", "view.item", options) : helperMissing.call(depth0, "render", "treeControlContextToolbar", "view.item", options));
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  return buffer;
-  }
-function program15(depth0,data) {
+function program13(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "parentController.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(16, program16, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers.each.call(depth0, "parentController.params.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-function program16(depth0,data) {
+function program14(depth0,data) {
   
   var buffer = '';
   data.buffer.push(" ");
@@ -2204,53 +2177,54 @@ function program16(depth0,data) {
   return buffer;
   }
 
-function program18(depth0,data) {
+function program16(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "view.isExpanded", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(19, program19, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.isExpanded", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(17, program17, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-function program19(depth0,data) {
+function program17(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" <ul class=\"umi-tree-list\" data-parent-id=\"");
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.item.id", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "item.id", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push("\"> ");
-  stack1 = helpers.each.call(depth0, "view.sortedChildren", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(20, program20, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers.each.call(depth0, "item", "in", "childrenList", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(18, program18, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </ul> ");
   return buffer;
   }
-function program20(depth0,data) {
+function program18(depth0,data) {
   
-  var buffer = '';
+  var buffer = '', helper, options;
   data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "treeItem", {hash:{
-    'treeControlView': ("view.treeControlView"),
-    'item': ("")
-  },hashTypes:{'treeControlView': "ID",'item': "ID"},hashContexts:{'treeControlView': depth0,'item': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "treeControlItem", "item", options) : helperMissing.call(depth0, "render", "treeControlItem", "item", options))));
   data.buffer.push(" ");
   return buffer;
   }
 
   data.buffer.push("<div ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":umi-item view.item.type view.active view.inActive")
+    'class': (":umi-item item.type isActiveContext:active view.inActive")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push("> ");
-  stack1 = helpers['if'].call(depth0, "view.item.childCount", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(7, program7, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "hasChildren", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <i ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":icon :umi-tree-type-icon :icon-document view.allowMove:move")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("></i> ");
+  stack1 = helpers['if'].call(depth0, "editLink", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(10, program10, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "view.editLink", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(12, program12, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "controller.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "params.contextToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> ");
-  stack1 = helpers['if'].call(depth0, "view.item.childCount", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(18, program18, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "hasChildren", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(16, program16, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   return buffer;
   

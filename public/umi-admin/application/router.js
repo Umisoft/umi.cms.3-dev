@@ -158,14 +158,12 @@ define([], function(){
                         if(parent && 'isFulfilled' in parent){
                             return parent.then(function(parent){
                                 parent.reload().then(function(parent){
-                                    parent.trigger('needReloadHasMany');
+                                    parent.trigger('needReloadHasMany', 'add', addObject);
                                 });
                                 return addObject;
                             });
                         } else{
-                            // Обновление связей рутовой ноды в дереве.
-                            // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                            self.get('container').lookup('view:treeControl').send('updateRoot', addObject);
+                            self.controllerFor('component').trigger('needReloadRootElements', 'add', addObject);
                             return addObject;
                         }
                     } else{

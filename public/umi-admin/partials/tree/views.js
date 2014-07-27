@@ -16,32 +16,21 @@ define(['App', 'toolbar'], function(UMI){
              * @property iScroll
              */
             iScroll: null,
-            /**
-             * Активный контекст
-             * @property activeContext
-             */
-            activeContext: function(){
-                return this.get('controller.controllers.context.model');
-            }.property('controller.controllers.context.model'),
+
             /**
              * Observer для активного контекста
              * @observer activeContext
              */
             activeContextChange: function(){
-                Ember.run.next(this, 'expandBranch');
-            }.observes('activeContext').on('didInsertElement'),
-            /**
-             * Ветви дерева, которые требуется открыть при сменене контекста
-             * @property needsExpandedItems
-             */
-            needsExpandedItems: null,
+                Ember.run.once(this, 'expandBranch');
+            }.observes('controller.activeContext').on('didInsertElement'),
             /**
              * Раскрывает загруженную ветвь дерева и выставляет значение expandBranch
              * @method expandBranch
              */
             expandBranch: function(){
                 var $el = this.$();
-                var activeContext = this.get('activeContext');
+                var activeContext = this.get('controller.activeContext');
                 var checkExpandItem = function(id){
                     if($el.length){
                         var itemView = $el.find('[data-id='+ id +']');
@@ -64,7 +53,8 @@ define(['App', 'toolbar'], function(UMI){
                             needsExpandedItems.push(contextMpath[i]);
                         }
                     }
-                    this.set('needsExpandedItems', needsExpandedItems);
+                    this.get('controller').set('needsExpandedItems', needsExpandedItems);
+
                 }
             },
 
@@ -79,17 +69,6 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
-                }
-            },
-            updateRoot: function(item){
-                var childViews = this.get('childViews');
-                debugger;
-                if(childViews.length){
-                    var sortedChildren  = childViews[0].get('sortedChildren');
-                    console.log(sortedChildren);
-                    sortedChildren.push(item);
-
-                    console.log(sortedChildren);
                 }
             },
             /**
@@ -277,18 +256,15 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             willDestroyElement: function(){
-                this.removeObserver('activeContext');
+                this.get('controller').removeObserver('activeContext');
                 this.removeObserver('context');
                 this.removeObserver('expandedBranches');
             }
         });
 
-        UMI.TreeItemView = Ember.View.extend({
-            /**
-             * Ссылка на treeControlView
-             * @property treeControlView
-             */
-            treeControlView: null,
+        UMI.TreeControlItemView = Ember.View.extend({
+            item: Ember.computed.alias('context'),
+
             /**
              * Имя шаблона
              * @property templateName
@@ -317,21 +293,7 @@ define(['App', 'toolbar'], function(UMI){
             dataId: function(){
                 return this.get('item.id');
             }.property('item.id'),
-            /**
-             * Ссылка на редактирование елемента
-             * @property editLInk
-             */
-            editLink: function(){
-                var link = this.get('item.meta.editLink');
-                return link;
-            }.property('item'),
-            /**
-             * Для активного объекта добавляется класс active
-             * @property active
-             */
-            active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
-                return this.get('treeControlView.activeContext.id') === this.get('item.id');
-            }.property('treeControlView.activeContext.id'),
+
             /**
              * Для неактивных элементов добавляется класс inActive
              * @property inActive
@@ -339,95 +301,25 @@ define(['App', 'toolbar'], function(UMI){
             inActive: function(){
                 return this.get('item.active') === false ? true : false;
             }.property('item.active'),
-            /**
-             * Сохранённое имя отображения объекта
-             * @property savedDisplayName
-             */
-            savedDisplayName: function(){
-                if(this.get('item.id') === 'root'){
-                    return this.get('item.displayName');
-                } else{
-                    return this.get('item._data.displayName');
-                }
-            }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
-
-            sortedChildren: function(){
-                console.log('sortedChildren');
-                return this.getChildren();
-            }.property('reloadChildren'),
-
-            getChildren: function(){
-                var model = this.get('item');
-                var collectionName = model.get('typeKey') || model.constructor.typeKey;
-                var promise;
-                var self = this;
-
-                var properties = self.get('controller').get('properties').join(',');
-                var parentId;
-                if(model.get('id') === 'root'){
-                    parentId = 'null()';
-                } else{
-                    parentId = model.get('id');
-                }
-                var requestParams = {'filters[parent]': parentId, 'fields': properties};
-                if(self.get('controller').get('isTrashableCollection')){
-                    requestParams['filters[trashed]'] = 'equals(0)';
-                }
-                promise = this.get('controller').store.updateCollection(collectionName, requestParams);
-                setTimeout(function(){
-                    promise.then(function(){
-                        var iScroll = self.get('treeControlView.iScroll');
-                        if(iScroll){
-                            setTimeout(function(){
-                                iScroll.refresh();
-                            }, 100);
-                        }
-                    });
-                }, 0);
-                var promiseArray =  Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: promise,
-                    sortProperties: ['order'],
-                    sortAscending: true
-                });
-                return promiseArray;
-            },
 
             isExpanded: false,
 
             expandActiveContext: function(){
                 if(!this.get('isExpanded')){
                     var id = this.get('item.id');
-                    var treeControlView = this.get('treeControlView');
-                    var needsExpandedItems = treeControlView.get('needsExpandedItems');
+                    console.log(this.get('controller.needsExpandedItems'));
                     if(id === 'root'){
                         this.set('isExpanded', true);
                     } else if(needsExpandedItems && needsExpandedItems.contains(parseFloat(id))){
-                        treeControlView.set('needsExpandedItems', needsExpandedItems.without(parseFloat(id)));
+                        Ember.set(this.get('controller.params'), 'needsExpandedItems', needsExpandedItems.without(parseFloat(id)));
                         this.set('isExpanded', true);
                     }
                 }
             },
 
-            reloadChildren: 1,
-
             actions: {
                 expanded: function(){
                     this.toggleProperty('isExpanded');
-                }
-            },
-
-            init: function(){
-                this._super();
-                var self = this;
-                var model = this.get('item');
-                if('needReloadHasMany' in this.get('item')){
-                    this.get('item').on('needReloadHasMany', function(){
-                        //'item.didUpdate',
-                        this.incrementProperty('reloadChildren');
-                        /*model.get('children').then(function(children){
-                            children.reloadLinks();
-                        });*/
-                    });
                 }
             },
 

@@ -23,7 +23,7 @@ define(['App'], function(UMI){
              * @property properties
              */
             properties: function(){
-                var properties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'];
+                var properties = ['displayName', 'order', 'active', 'childCount'];
                 var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');
@@ -44,7 +44,6 @@ define(['App'], function(UMI){
             contextToolbar: function(){
                 return Ember.get(this.get('controllers.component'), 'sideBarControl.contextToolbar');
             }.property('controllers.component.sideBarControl.contextToolbar'),
-
             /**
              * Возвращает корневой элемент
              * @property root
@@ -59,33 +58,37 @@ define(['App'], function(UMI){
                 var Root = Ember.Object.extend({
                     displayName: Ember.get(sideBarControl, 'params.rootNodeName') || '',
                     root: true,
-                    hasChildren: true,
                     id: 'root',
                     active: true,
                     type: 'base',
                     typeKey: collectionName,
-                    childCount: function(){
-                        return true;
-                    }.property('children.length'),
-                    children: null,
-                    updateChildren: function(id, parentId){
-                        var objectContext = this;
-                        var collectionName = self.get('collectionName');
-                        var object = self.store.find(collectionName, id);
-                        object.then(function(object){
-                            objectContext.get('children.content').then(function(children){
-                                if(parentId === 'root'){
-                                    children.pushObject(object);
-                                } else{
-                                    children.removeObject(object);
-                                }
-                            });
-                        });
-                    }
+                    childCount: 1
                 });
                 var root = Root.create({});
-                return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
-            }.property('root.childCount', 'model'),
+                return root;
+            }.property('model'),
+
+            params: function(){
+                return {
+                    properties: this.get('properties'),
+                    isTrashableCollection: this.get('isTrashableCollection'),
+                    contextToolbar: this.get('contextToolbar')
+                };
+            }.property('properties', 'isTrashableCollection', 'contextToolbar'),
+
+            /**
+             * Активный контекст
+             * @property activeContext
+             */
+            activeContext: function(){
+                return this.get('controllers.context.model');
+            }.property('controllers.context.model'),
+
+            /**
+             * Ветви дерева, которые требуется открыть при сменене контекста
+             * @property needsExpandedItems
+             */
+            needsExpandedItems: '',
 
             actions: {
                 /**
@@ -166,6 +169,116 @@ define(['App'], function(UMI){
                             self.send('backgroundError', error);
                         }
                     );
+                }
+            }
+        });
+
+        UMI.TreeControlItemController = Ember.ObjectController.extend({
+            needs: ['treeControl'],
+
+            item: Ember.computed.alias('model'),
+            /**
+             * Ссылка на редактирование елемента
+             * @property editLInk
+             */
+            editLink: function(){
+                var link = this.get('item.meta.editLink');
+                return link;
+            }.property('item'),
+
+            /**
+             * Сохранённое имя отображения объекта
+             * @property savedDisplayName
+             */
+            savedDisplayName: function(){
+                if(this.get('item.id') === 'root'){
+                    return this.get('item.displayName');
+                } else{
+                    return this.get('item._data.displayName');
+                }
+            }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
+
+            needsExpandedItemsBinding: 'controllers.treeControl.needsExpandedItems',
+
+            /**
+             * Для активного объекта добавляется класс active
+             * @property active
+             */
+            isActiveContext: function(){
+                return this.get('controllers.treeControl.activeContext.id') === this.get('item.id');
+            }.property('controllers.treeControl.activeContext.id'),
+
+            childrenList: function(){
+                return this.getChildren();
+            }.property(),
+
+            hasChildren: Ember.computed.bool('item.childCount'),
+
+            params: Ember.computed.alias('controllers.treeControl.params'),
+            /**
+             *
+             * @returns {*}
+             */
+            getChildren: function(){
+                var model = this.get('item');
+                var collectionName = model.get('typeKey') || model.constructor.typeKey;
+                var promise;
+                var self = this;
+
+                var properties = self.get('params.properties').join(',');
+                var parentId;
+                if(model.get('id') === 'root'){
+                    parentId = 'null()';
+                } else{
+                    parentId = model.get('id');
+                }
+                var requestParams = {'filters[parent]': parentId, 'fields': properties};
+                if(self.get('params.isTrashableCollection')){
+                    requestParams['filters[trashed]'] = 'equals(0)';
+                }
+                promise = this.get('store').updateCollection(collectionName, requestParams);
+                /*setTimeout(function(){
+                    promise.then(function(){
+                        var iScroll = self.get('treeControlView.iScroll');
+                        if(iScroll){
+                            setTimeout(function(){
+                                iScroll.refresh();
+                            }, 100);
+                        }
+                    });
+                }, 0);*/
+                var promiseArray =  Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                    content: promise,
+                    sortProperties: ['order'],
+                    sortAscending: true
+                });
+                return promiseArray;
+            },
+
+            init: function(){
+                this._super();
+                var self = this;
+                var model = this.get('item');
+
+                if(model.get('id') === 'root'){
+                    self.get('controllers.treeControl.controllers.component').on('needReloadRootElements', function(event, object){
+                        if(event === 'add'){
+                            self.get('childrenList').pushObject(object);
+                        } else if(event === 'remove'){
+                            self.get('childrenList').removeObject(object);
+                        }
+                    });
+                } else{
+                    this.get('item').on('needReloadHasMany', function(event, object){
+                        if(event === 'add'){
+                            self.get('childrenList').pushObject(object);
+                        }
+                        //'item.didUpdate',
+                        //this.incrementProperty('reloadChildren');
+                        /*model.get('children').then(function(children){
+                         children.reloadLinks();
+                         });*/
+                    });
                 }
             }
         });

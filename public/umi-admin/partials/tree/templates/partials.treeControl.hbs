@@ -1,9 +1,7 @@
 <div class="columns small-12">
     <div class="row s-full-height umi-tree-wrapper">
         <ul class="umi-tree-list umi-tree">
-            {{#each root}}
-                {{view "treeItem" treeControlView=view item=this}}
-            {{/each}}
+            {{render "treeControlItem" root}}
         </ul>
     </div>
 </div>

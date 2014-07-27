@@ -1,8 +1,8 @@
-<div {{bind-attr class=":umi-item view.item.type view.active view.inActive"}}>
-    {{#if view.item.childCount}}
+<div {{bind-attr class=":umi-item item.type isActiveContext:active view.inActive"}}>
+    {{#if hasChildren}}
         <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
             {{#if view.isExpanded}}
-                {{#if view.sortedChildren}}
+                {{#if childrenList}}
                     <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
                 {{else}}
                     <i class="animate animate-loader-20"></i>
@@ -11,24 +11,22 @@
                 <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
             {{/if}}
         </span>
-        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document view.item.root::move"}}></i>
-    {{else}}
-        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document view.item.root::move"}}></i>
     {{/if}}
+    <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document view.allowMove:move"}}></i>
 
-    {{#if view.editLink}}
-        {{#link-to "action" view.item.id "editForm" class="tree-item-link"}}
-            {{view.savedDisplayName}}
+    {{#if editLink}}
+        {{#link-to "action" item.id "editForm" class="tree-item-link"}}
+            {{savedDisplayName}}
         {{/link-to}}
     {{else}}
         {{#link-to "context" view.item.id class="tree-item-link"}}
-            {{view.savedDisplayName}}
+            {{savedDisplayName}}
         {{/link-to}}
     {{/if}}
 
-    {{#if controller.contextToolbar}}
-        {{#render "treeControlContextToolbar" view.item}}
-            {{#each parentController.contextToolbar}}
+    {{#if params.contextToolbar}}
+        {{#render "treeControlContextToolbar" item}}
+            {{#each parentController.params.contextToolbar}}
                 {{view view.elementView}}
             {{/each}}
         {{/render}}
@@ -36,11 +34,11 @@
 
 </div>
 
-{{#if view.item.childCount}}
+{{#if hasChildren}}
     {{#if view.isExpanded}}
-        <ul class="umi-tree-list" data-parent-id="{{unbound view.item.id}}">
-            {{#each view.sortedChildren}}
-                {{view "treeItem" treeControlView=view.treeControlView item=this}}
+        <ul class="umi-tree-list" data-parent-id="{{unbound item.id}}">
+            {{#each item in childrenList}}
+                {{render "treeControlItem" item}}
             {{/each}}
         </ul>
     {{/if}}
