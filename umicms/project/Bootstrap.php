@@ -12,6 +12,7 @@ namespace umicms\project;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
+use umi\event\IEvent;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
@@ -208,6 +209,15 @@ class Bootstrap
     }
 
     /**
+     * Возвращает конфигурацию текущего проекта
+     * @return array
+     */
+    public function getProjectConfig()
+    {
+        return $this->configToArray($this->projectConfig);
+    }
+
+    /**
      * Производит предварительную маршрутизацию для определения текущего проекта.
      * @throws RuntimeException
      * @throws UnexpectedValueException
@@ -220,7 +230,7 @@ class Bootstrap
          */
         $request = $this->toolkit->getService('umi\http\Request');
 
-        $fileName = Environment::$directoryConfiguration . '/projects.config.php';
+        $fileName = Environment::$directoryRoot . '/configuration/projects.config.php';
         if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
@@ -308,11 +318,10 @@ class Bootstrap
             $projectConfig['componentConfig'] = '~/project/configuration/component.config.php';
         }
 
-
-
         $this->registerProjectComponentConfiguration($projectConfig['componentConfig']);
         $this->registerProjectTools();
         $this->configureLocalesService($router, $routeMatches);
+        $this->registerProjectEventHandlers();
 
         /**
          * @var IUrlManager $urlManager
@@ -326,6 +335,17 @@ class Bootstrap
         if (!isset($projectConfig['adminAssetsUrl'])) {
             $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
         }
+
+        if (!isset($projectConfig['assetsDir'])) {
+            $projectConfig['assetsDir'] = '~/project/asset';
+        }
+        $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
+        if (!isset($assetsDir[1])) {
+            throw new UnexpectedValueException('Cannot resolve project dump destination.');
+        }
+        Environment::$directoryAssets = $assetsDir[1];
+
+        $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
@@ -345,8 +365,25 @@ class Bootstrap
             $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
         }
 
+        if (Environment::$browserCacheEnabled) {
+            $this->setBrowserCacheHeaders($request, $response);
+        }
+
         $response->prepare($request)
             ->send();
+
+
+    }
+
+    /**
+     * Устанавливает ETag для браузерного кэширования страниц.
+     * @param Request $request
+     * @param Response $response
+     */
+    protected function setBrowserCacheHeaders(Request $request, Response $response) {
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
     }
 
     /**
@@ -683,6 +720,40 @@ class Bootstrap
 
         if (isset($localesConfig['defaultAdminLocale'])) {
             $localesService->setDefaultAdminLocaleId($localesConfig['defaultAdminLocale']);
+        }
+    }
+
+    /**
+     * Регистрирует обработчики событий для проекта
+     * @throws UnexpectedValueException
+     */
+    protected function registerProjectEventHandlers()
+    {
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
+        $eventHandlers = $this->configToArray($configIO->read('~/project/configuration/eventHandlers.config.php'), true);
+
+        foreach ($eventHandlers as $handlerClass => $eventInfo) {
+            if (!isset($eventInfo['type'])) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure events for project "%s". Handler "%s" configuration should contain "type" option.',
+                    $this->projectName,
+                    $handlerClass
+                ));
+            }
+
+            $tags = (isset($eventInfo['tags']) && is_array($eventInfo['tags'])) ? $eventInfo['tags'] : null;
+
+            $this->toolkit->bindEvent($eventInfo['type'], function(IEvent $event) use ($handlerClass) {
+                if (!isset($handlerInstances[$handlerClass])) {
+                    $handler = $this->toolkit->getPrototype($handlerClass)->createSingleInstance();
+                    if (is_callable($handler)) {
+                        $handler($event);
+                    }
+                }
+            }, $tags);
         }
     }
 

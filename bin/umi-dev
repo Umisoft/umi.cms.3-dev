@@ -9,22 +9,25 @@
  * file that was distributed with this source code.
  */
 
-use Symfony\Component\Console\Application;
+use umicms\console\ConsoleApplication;
 use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackEnvironmentCommand;
+use umicms\console\PackInstallerCommand;
 use umicms\console\PackProjectCommand;
 use umicms\console\CreateProjectDumpCommand;
 use umicms\console\LoadProjectDumpCommand;
 use umicms\console\SyncProjectSchemeCommand;
+use umicms\console\UpdateDocumentationCommand;
 
 $useUnpackedCore = true;
 require dirname(__DIR__) . '/configuration/core.php';
 
-$application = new Application('UMI.CMS Developers Team Console application.', CMS_VERSION);
+$application = new ConsoleApplication('UMI.CMS Developers Team Console application.', CMS_VERSION . ' ' . CMS_VERSION_DATE);
 
 
 $application->add(new PackCoreCommand());
+$application->add(new PackInstallerCommand());
 $application->add(new PackEnvironmentCommand());
 $application->add(new PackProjectCommand());
 
@@ -33,5 +36,7 @@ $application->add(new LoadProjectDumpCommand());
 
 $application->add(new SyncProjectSchemeCommand());
 $application->add(new InstallProjectCommand());
+
+$application->add(new UpdateDocumentationCommand());
 
 $application->run();

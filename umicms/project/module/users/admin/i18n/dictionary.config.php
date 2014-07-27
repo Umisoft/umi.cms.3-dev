@@ -15,7 +15,9 @@ return [
 
         'role:userExecutor:displayName' => 'Users',
         'role:groupExecutor:displayName' => 'Users groups',
-        'role:usergroupExecutor:displayName' => 'Manage users-groups relation'
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation',
+
+        'Value is required.' => 'Value is required.'
     ],
 
     'ru-RU' => [
@@ -23,7 +25,9 @@ return [
 
         'role:userExecutor:displayName' => 'Пользователи',
         'role:groupExecutor:displayName' => 'Группы пользователей',
-        'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы'
+        'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы',
+
+        'Value is required.' => 'Обязательное поле.'
     ]
 
 ];

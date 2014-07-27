@@ -2,9 +2,9 @@
 <ul>
     {% for node in tree %}
         <li>
-        {{ widget('blog.comment.view', {'blogComment' : node.item , 'template' : 'view'}) }}
-        {{ widget('blog.comment.add', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addSubComment'}) }}
-        {{ include('list.twig', {'tree' : node.children}) }}
+            {{ widget('blog.comment.view', {'blogComment' : node.item, 'template' : 'view'}) }}
+            {{ widget('blog.comment.add.addForm', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addSubComment'}) }}
+            {{ include('list.twig', {'tree' : node.children}) }}
         </li>
     {% endfor %}
 </ul>

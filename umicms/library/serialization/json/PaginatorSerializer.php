@@ -32,7 +32,9 @@ class PaginatorSerializer extends BaseSerializer
 
         $pagesCount = $paginator->getPagesCount();
         $result = [
-            'pagesCount' => $pagesCount
+            'pagesCount' => $pagesCount,
+            'pagesCountInRage' => $paginator->getPagesCountInRange(),
+            'itemsCount' => $paginator->getItemsCount()
         ];
 
         if ($pagesCount) {

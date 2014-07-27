@@ -7,15 +7,20 @@ $umi-bg-darken-set: #404959, #181B21;
     background: linear-gradient(nth($umi-bg-darken-set, 1) 0%, nth($umi-bg-darken-set, 2) 100%);
     position: relative;
     @include clearfix();
+
     &-list{
         @extend .no-bullet;
         @extend .s-margin-clear;
         white-space: nowrap;
+        line-height: $umi-top-bar-height;
+
         > li{
             white-space: normal;
             display: inline-block;
+            line-height: $umi-top-bar-height;
         }
     }
+
     &-label{
         font-weight: bold;
         font-size: rem-calc(12);
@@ -23,10 +28,13 @@ $umi-bg-darken-set: #404959, #181B21;
         height: $umi-top-bar-height;
         line-height: $umi-top-bar-height;
         padding: 0 $button-sml;
+        vertical-align: top;
+
         .icon{
-            margin-top: rem-calc(4);
+            margin-top: rem-calc(2);
         }
     }
+
     &-button.button{
         margin: 0;
         height: $umi-top-bar-height;
@@ -36,6 +44,7 @@ $umi-bg-darken-set: #404959, #181B21;
         font-size: rem-calc(12);
         padding-top: 0;
         padding-bottom: 0;
+
         .icon{
             margin: -3px 0 0 3px;
         }
@@ -44,16 +53,76 @@ $umi-bg-darken-set: #404959, #181B21;
             border-bottom-color: #31353b;
         }
     }
-    .dropdown.button.tiny{
-        &:before{
-            margin-top: -1px;
-        }
-    }
-    .f-dropdown{
-        li{
-            a{
-                display: block;
+
+    .dropdown{
+        .button.tiny{
+            &:before{
+                margin-top: -1px;
             }
         }
+
+        &.open{
+            background: #fff;
+            color: #575e6c;
+            border-bottom-color: transparent;
+
+            &:after{
+                border-top-color: #575e6c;
+            }
+
+             > .f-dropdown{
+                 margin-top: -1px;
+             }
+        }
+    }
+
+    .f-dropdown{
+        margin-right: -1px;
+        margin-top: -1px;
+        padding: 5px 0;
+        box-shadow: none;
+
+        li{
+            a{
+                min-width: rem-calc(160);
+                display: block;
+                &:hover{
+                    text-decoration: none;
+                    background: #eeeeee;
+                }
+            }
+        }
+
+        &:after{
+            content: "";
+            position: absolute;
+            float: left;
+            display: block;
+            height: 3px;
+            width: 100%;
+            left: 0;
+            bottom: -3px;
+            background: url($image-to-bottom-shadow);
+            background-repeat: repeat-x;
+            right: 0;
+            border: 0;
+            top: auto;
+        }
+    }
+
+    &-loader{
+        position: absolute;
+        margin-top: 0;
+        z-index: 3;
+        left: 50%;
+        width: 110px;
+        text-align: center;
+        margin-left: -55px;
+        top: 0;
+        background: linear-gradient(#3b94d5, #096eaa);
+    }
+
+    .umi-overlay{
+        position: fixed;
     }
 }

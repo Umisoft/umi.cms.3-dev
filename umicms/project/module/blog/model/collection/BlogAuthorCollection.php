@@ -22,7 +22,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
  * @method CmsSelector|BlogAuthor[] select() Возвращает селектор для выбора авторов.
  * @method BlogAuthor get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по GUID
  * @method BlogAuthor getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по id
- * @method BlogAuthor add($typeName = IObjectType::BASE) Создает и возвращает автора
+ * @method BlogAuthor add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает автора
  * @method BlogAuthor getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по его последней части ЧПУ
  */
 class BlogAuthorCollection extends CmsPageCollection

@@ -27,11 +27,15 @@ class AddController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'addPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
     /**
-     * @var bool $added флаг указывающий на статус добавление поста
+     * @var bool $added флаг, указывающий на статус добавление поста
      */
     private $added = false;
     /**
@@ -53,7 +57,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'addPost';
+        return $this->template;
     }
 
     /**
@@ -100,7 +104,13 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления поста
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost созданный пост блога. Передается только, если пост был успешно добавлен
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

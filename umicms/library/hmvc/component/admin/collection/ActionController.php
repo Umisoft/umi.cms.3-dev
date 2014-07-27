@@ -27,12 +27,14 @@ use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\numeric\BoolField;
 use umi\orm\metadata\field\string\TextField;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\form\element\Wysiwyg;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
@@ -40,6 +42,7 @@ use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\behaviour\IRobotsAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -318,6 +321,89 @@ class ActionController extends BaseController implements IFormAware
     }
 
     /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionAllowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->allow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionDisallowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->disallow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Проверяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionIsAllowedRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot check object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        return $collection->isAllowedRobots($object);
+    }
+
+    /**
      * Удаляет объект в корзину.
      * @throws RuntimeException если невозможно выполнить действие
      * @return string
@@ -384,6 +470,9 @@ class ActionController extends BaseController implements IFormAware
     protected function actionGetBackupList()
     {
         $collection = $this->getCollection();
+        /**
+         * @var IRecoverableObject $object
+         */
         $object = $collection->getById($this->getRequiredQueryVar('id'));
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
@@ -394,11 +483,17 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
-        /**
-         * @var IRecoverableObject $object
-         */
-        return $collection->getBackupList($object)
-            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
+        $result = [
+            'i18n' => [
+                'Current version' => $this->translate('Current version'),
+                'No backups' => $this->translate('No backups'),
+            ],
+            'collection' => $collection->getBackupList($object)
+                    ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
+
+        ];
+
+        return $result;
     }
 
     /**
@@ -468,6 +563,32 @@ class ActionController extends BaseController implements IFormAware
         $previousSibling = isset($data['sibling']) ? $this->getEditedObject($data['sibling']) : null;
 
         $collection->move($object, $branch, $previousSibling);
+
+        $parent = $object->getParent();
+
+        if ($parent !== $branch) {
+            if ($parent) {
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+
+            if ($branch) {
+                $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+        }
+
+        $this->commit();
 
         return '';
     }

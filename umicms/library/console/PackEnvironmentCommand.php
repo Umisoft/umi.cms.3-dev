@@ -62,6 +62,7 @@ class PackEnvironmentCommand extends BaseCommand
 
         $rootDir = dirname(CMS_DIR);
         $phar->addFile($rootDir . '/.htaccess', '.htaccess.dist');
+        $this->packFile($phar, new SplFileInfo($rootDir . '/umi.nginx.conf'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/LICENSE'));
 
@@ -72,7 +73,7 @@ class PackEnvironmentCommand extends BaseCommand
         $this->packFile($phar, new SplFileInfo($rootDir . '/public/index.php'));
 
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/core.php'));
-        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.php'));
+        $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/environment.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/project.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/tools.settings.config.dist.php'));
         $this->packFile($phar, new SplFileInfo($rootDir . '/configuration/db.config.dist.php'));
@@ -140,7 +141,7 @@ EOF;
      */
     private function packFile(Phar $phar, SplFileInfo $file, ProgressBar $progress = null)
     {
-        $localPath = strtr(str_replace(dirname(CMS_DIR) . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         if ($progress) {
             $progress->setMessage('Packing "' . $localPath . '"');

@@ -41,19 +41,19 @@ return [
     'project.admin.rest.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
     'project.admin.rest.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
     'project.admin.rest.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
+    'project.admin.rest.structure.robots' => '{#lazy:~/project/module/structure/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
     'project.admin.rest.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.update' => '{#lazy:~/project/module/service/admin/update/i18n/dictionary.config.php}',
     'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
     'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
-
-    'project.admin.rest.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
 
     'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
     'project.admin.rest.blog.category' => '{#lazy:~/project/module/blog/admin/category/i18n/dictionary.config.php}',
@@ -65,13 +65,11 @@ return [
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
 
-    'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
-
-
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.license' => '{#lazy:~/project/site/settings/license/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.mail' => '{#lazy:~/project/site/settings/mail/i18n/dictionary.config.php}',
@@ -155,7 +153,6 @@ return [
             'Default or inherited layout' => 'Default or inherited layout',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Children',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Child count',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Hierarchy level',
             CmsHierarchicObject::FIELD_MPATH => 'Materialized path',
             CmsHierarchicObject::FIELD_ORDER => 'Hierarchy order',
@@ -168,15 +165,7 @@ return [
             ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
             ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Slug',
-
-            ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
-            ICmsPage::FIELD_PAGE_H1 => 'H1',
-            ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
-            ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
-            ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
-            ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес'
+            ICmsPage::FIELD_PAGE_SLUG => 'Slug'
         ],
 
         'ru-RU' => [
@@ -184,7 +173,7 @@ return [
             'ru-RU' => 'Русский',
 
             ICmsObject::FIELD_CREATED => 'Дата создания',
-            ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
+            ICmsObject::FIELD_DISPLAY_NAME => 'Название',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
             ICmsObject::FIELD_GUID => 'GUID',
             ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
@@ -192,7 +181,6 @@ return [
             ICmsObject::FIELD_VERSION => 'Версия',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Дочерние сущности',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Количество дочерних сущностей',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Уровень вложенности в иерархии',
             CmsHierarchicObject::FIELD_MPATH => 'Материализованный путь',
             CmsHierarchicObject::FIELD_ORDER => 'Порядок в иерархии',
@@ -211,7 +199,7 @@ return [
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
 
-            'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
+            'Default or inherited layout' => 'По умолчанию или унаследованный',
         ]
     ],
 
@@ -257,4 +245,5 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+    'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
 ];

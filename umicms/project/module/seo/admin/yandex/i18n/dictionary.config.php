@@ -9,7 +9,7 @@ return [
         'action:links:displayName' => 'Links to site',
         'action:tops:displayName' => 'Popular searches',
 
-        'Do not set settings' => 'The required settings are not set.',
+        'The required settings are not set.' => 'The required settings are not set.',
 
         'component:yandex:hostsStatsName' => 'Site name',
         'component:yandex:hostsStatsVerification' => 'Site confirmation',
@@ -51,7 +51,7 @@ return [
         'action:links:displayName' => 'Ссылки на сайт',
         'action:tops:displayName' => 'Популярные запросы',
 
-        'Do not set settings' => 'Не заданы необходимые настройки.',
+        'The required settings are not set.' => 'Не заданы необходимые настройки.',
 
         'component:yandex:hostsStatsName' => 'Имя сайта',
         'component:yandex:hostsStatsVerification' => 'Подтверждение сайта',

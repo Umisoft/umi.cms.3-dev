@@ -74,9 +74,9 @@ class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
         foreach ($properties as $name => $property) {
             $this->getXmlWriter()->startElement('property');
 
-           $this->getXmlWriter()->writeAttribute('name', $property->getName());
+            $this->getXmlWriter()->writeAttribute('name', $property->getName());
 
-           $this->delegate($property->getField());
+            $this->delegate($property->getField());
 
             $this->getXmlWriter()->startElement('value');
             $value = $object->getValue($name);

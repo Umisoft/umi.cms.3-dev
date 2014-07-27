@@ -12,6 +12,16 @@ return [
 
     'en-US' => [
         'component:site:displayName' => 'Site',
+
+        'Invalid domain key.' => 'Invalid domain key.',
+        'Do not set the default domain.' => 'Do not set the default domain.',
+        'Wrong license type.' => 'Wrong license type.',
+        'License has expired.' => 'License has expired.',
+        'Invalid domain key for domain.' => 'Invalid domain key for domain.',
+
+        'Administrative panel' => 'Administrative panel',
+        'Logout' => 'Logout',
+
         'role:structureExecutor:displayName' => 'Site structure',
         'role:newsExecutor:displayName' => 'News',
         'role:blogExecutor:displayName' => 'Blog',
@@ -23,6 +33,13 @@ return [
 
     'ru-RU' => [
         'component:site:displayName' => 'Сайт',
+
+        'Invalid domain key.' => 'Неверный доменный ключ.',
+        'Do not set the default domain.' => 'Незадан домен по умолчанию.',
+        'Wrong license type.' => 'Неверный тип лицензии.',
+        'License has expired.' => 'Срок лицензии истёк.',
+        'Invalid domain key for domain.' => 'Неверный лицензионный ключ для этого домена.',
+
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:newsExecutor:displayName' => 'Новости',
         'role:blogExecutor:displayName' => 'Блог',
@@ -30,6 +47,9 @@ return [
         'role:usersExecutor:displayName' => 'Пользователи',
         'role:viewer:displayName' => 'Просмотр',
         'role:widgetExecutor:displayName' => 'Просмотр виджетов через http',
+
+        'Administrative panel' => 'Административная панель',
+        'Logout' => 'Выход из системы',
     ]
 
 ];

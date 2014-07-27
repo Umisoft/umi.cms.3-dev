@@ -114,7 +114,8 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'Open site in new tab' => $this->translate('Open site in new tab'),
             'Logout' => $this->translate('Logout'),
             'Remember my choice' => $this->translate('Remember my choice'),
-            'Nothing found' => $this->translate('Nothing found')
+            'Nothing found' => $this->translate('Nothing found'),
+            'Loading' => $this->translate('Loading')
         ];
     }
 

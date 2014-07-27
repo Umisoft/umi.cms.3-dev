@@ -23,23 +23,20 @@ namespace umicms\project\module\search\model\highlight;
 class Fragmenter implements \Iterator
 {
     /**
-     * Текущая коллекция фрагментов
-     * @var Fragment[] $fragments
+     * @var Fragment[] $fragments текущая коллекция фрагментов
      */
     protected $fragments = [];
     /**
-     * Указатель на текущий фрагмент в итерации
-     * @var int $currentFragment
+     * @var int $currentFragment указатель на текущий фрагмент в итерации
      */
     protected $currentFragment = 0;
     /**
-     * Подстроки, найденные в тексте по регулярнму выражению
-     * @var array $foundMatches
+     * @var array $foundMatches подстроки, найденные в тексте по регулярнму выражению
      */
     protected $foundMatches = [];
+
     /**
-     * Текст, разбиваемый на фрагменты
-     * @var string $text
+     * @var string $text текст, разбиваемый на фрагменты
      */
     private $text;
 

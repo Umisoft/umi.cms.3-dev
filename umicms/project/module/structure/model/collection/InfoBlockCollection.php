@@ -22,7 +22,7 @@ use umicms\project\module\structure\model\object\BaseInfoBlock;
  * @method CmsSelector|BaseInfoBlock[] select() Возвращает селектор для выбора информационных блоков.
  * @method BaseInfoBlock get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает информационный блок по GUID.
  * @method BaseInfoBlock getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает информационный блок по id.
- * @method BaseInfoBlock add($typeName = IObjectType::BASE) Создает и возвращает информационный блок.
+ * @method BaseInfoBlock add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает информационный блок.
  */
 class InfoBlockCollection extends CmsCollection
 {

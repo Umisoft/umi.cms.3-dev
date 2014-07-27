@@ -9,7 +9,6 @@
 
 namespace umicms\console;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use umicms\module\toolbox\ModuleTools;
@@ -56,7 +55,7 @@ class SyncProjectSchemeCommand extends BaseProjectCommand
         $progress->setMessage('Complete.');
         $progress->finish();
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
 }

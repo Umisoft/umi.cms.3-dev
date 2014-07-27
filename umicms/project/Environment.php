@@ -54,13 +54,29 @@ class Environment
      */
     public static $directoryPublic = ".";
     /**
-     * @var string $directoryConfiguration публичная директория
+     * @var string $directoryRoot корневая директория
      */
-    public static $directoryConfiguration = ".";
+    public static $directoryRoot = ".";
+    /**
+     * @var string $directoryAssets директория с ассетами проекта
+     */
+    public static $directoryAssets = ".";
     /**
      * @var string $baseUrl базовый URL для ресурсов проектов
      */
     public static $baseUrl = "";
+    /**
+     * @var string $timezone таймзона сервера по умолчанию
+     */
+    public static $timezone = 'UTC';
+    /**
+     * @var bool $cacheTemplate разрешение кеширования шаблонов
+     */
+    public static $cacheTemplateEnabled = false;
+    /**
+     * @var bool $cacheBrowserEnabled разрешить ли браузерам кэшировать запросы
+     */
+    public static $browserCacheEnabled = true;
 
     /**
      * Инициализирует окружение настройками из конфигурации
@@ -74,9 +90,10 @@ class Environment
                 sprintf('Environment configuration should be an array.')
             );
         }
+
         if (!isset($config['currentMode']) || !isset($config[$config['currentMode']])) {
             throw new \RuntimeException(
-                sprintf('Environment configuration is corrupted.')
+                sprintf('Environment configuration is corrupted. Option "%s" required.', 'currentMode')
             );
         }
 
@@ -86,6 +103,8 @@ class Environment
         foreach ($modeConfig as $name => $value) {
             self::${$name} = $value;
         }
+
+        date_default_timezone_set(self::$timezone);
 
         error_reporting(self::$errorReporting);
         ini_set('display_errors', (bool) self::$displayErrors);
@@ -108,7 +127,6 @@ class Environment
     {
         $scope['showTrace'] = self::$showExceptionTrace;
         $scope['showStack'] = self::$showExceptionStack;
-
 
         $templatePath = (self::$directoryCoreError ?: CMS_DIR . '/error') . '/' . $templateName;
         if (file_exists($templatePath)) {

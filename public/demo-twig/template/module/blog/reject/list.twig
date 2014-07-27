@@ -1,5 +1,0 @@
-{% if (list.getTotal()) %}
-    {% for blogPost in list %}
-        {{ widget('blog.reject.view', {'blogPost' : blogPost, 'template' : 'shortView'}) }}
-    {% endfor %}
-{% endif %}

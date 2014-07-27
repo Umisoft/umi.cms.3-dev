@@ -15,6 +15,8 @@ return [
         'action:switchActivity' => 'Switch activity',
         'action:switchActivity:activate' => 'Activate',
         'action:switchActivity:deactivate' => 'Deactivate',
+        'action:switchRobots:allow' => 'Allow index',
+        'action:switchRobots:disallow' => 'Disallow index',
         'action:viewOnSite' => 'View on site',
         'action:trash' => 'To trash',
         'action:delete' => 'Delete',
@@ -38,6 +40,8 @@ return [
         'Logout' => 'Logout',
         'Remember my choice' => 'Remember my choice',
         'Nothing found' => 'Nothing found',
+        'Loading' => 'Loading',
+        'Current version' => 'Current version',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
@@ -54,7 +58,9 @@ return [
         'role:statisticsExecutor:displayName' => 'Statistics',
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
-        'role:settingsExecutor:displayName' => 'Settings'
+        'role:settingsExecutor:displayName' => 'Settings',
+        
+        'Incorrect login or password.' => 'Incorrect login or password.'
     ],
 
     'ru-RU' => [
@@ -62,6 +68,8 @@ return [
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
         'action:switchActivity:deactivate' => 'Снять активность',
+        'action:switchRobots:allow' => 'Разрешить индексацию',
+        'action:switchRobots:disallow' => 'Запретить индексацию',
         'action:viewOnSite' => 'Посмотреть на сайте',
         'action:trash' => 'Удалить в корзину',
         'action:delete' => 'Удалить',
@@ -86,6 +94,9 @@ return [
         'Logout' => 'Выход из системы',
         'Remember my choice' => 'Запомнить мой выбор',
         'Nothing found' => 'Ничего не найдено',
+        'Loading' => 'Загрузка',
+        'Current version' => 'Текущая версия',
+        'No backups' => 'Нет резервных копий',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',
@@ -102,7 +113,9 @@ return [
         'role:statisticsExecutor:displayName' => 'Статистика',
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
-        'role:settingsExecutor:displayName' => 'Настройки'
+        'role:settingsExecutor:displayName' => 'Настройки',
+
+        'Incorrect login or password.' => 'Неправильный логин или пароль.'
     ]
 
 ];

@@ -52,26 +52,66 @@ define(['App', 'moment'],
                 tagName: 'div',
                 templateName: 'partials/dropdownButton/backupList',
 
+                noBackupsLabel: null,
+
                 getBackupList: function(){
                     var backupList;
-                    var object = this.get('controller.object');
-                    var settings = this.get('controller.settings');
+                    var self = this;
+                    var object = self.get('controller.object');
+                    var settings = self.get('controller.settings');
                     var getBackupListAction = UMI.Utils.replacePlaceholder(object, settings.actions.getBackupList.source);
-
+                    var date = object.get('updated');
+                    try{
+                        date = JSON.parse(date);
+                    } catch(error){}
                     var currentVersion = {
                         objectId: object.get('id'),
-                        date: object.get('updated'),
-                        user: null,
                         id: 'current',
                         current: true,
                         isActive: true
                     };
 
-                    var results = [currentVersion];
-
                     var promiseArray = DS.PromiseArray.create({
                         promise: $.get(getBackupListAction).then(function(data){
-                            return results.concat(data.result.getBackupList.serviceBackup);
+                            var results = [];
+                            var serviceBackupList = Ember.get(data, 'result.getBackupList.collection.serviceBackup');
+                            var users = Ember.get(data, 'result.getBackupList.collection.user');
+                            var user;
+                            var currentEditor;
+
+                            UMI.i18n.setDictionary(Ember.get(data, 'result.getBackupList.i18n'), 'form.backupList');
+                            self.set('noBackupsLabel', UMI.i18n.getTranslate('No backups', 'form.backupList'));
+                            if(!serviceBackupList || !serviceBackupList.length){
+                                return [];
+                            }
+
+                            var setCurrentEditor = function(currentEditor){
+                                currentEditor.then(function(currentEditor){
+                                    Ember.set(currentVersion, 'user', Ember.get(currentEditor, 'displayName'));
+                                });
+                            };
+
+                            currentEditor = object.get('editor');
+                            if(Ember.typeOf(currentEditor) === 'instance'){
+                                setCurrentEditor(currentEditor);
+                            } else{
+                                currentEditor = object.get('owner');
+                                if(Ember.typeOf(currentEditor) === 'instance'){
+                                    setCurrentEditor(currentEditor);
+                                }
+                            }
+
+                            Ember.set(currentVersion, 'created', {date: UMI.i18n.getTranslate('Current version', 'form.backupList')});
+                            results.push(currentVersion);
+                            if(Ember.typeOf(serviceBackupList) === 'array'){
+                                for(var i = 0; i < serviceBackupList.length; i++){
+                                    user = users.findBy('id', serviceBackupList[i].owner);
+                                    serviceBackupList[i].user = user.displayName;
+                                    Ember.set(serviceBackupList[i], 'created.date',  moment(Ember.get(serviceBackupList[i], 'created.date')).format('DD.MM.YYYY h:mm:ss'));
+                                }
+                                results = results.concat(serviceBackupList);
+                            }
+                            return results;
                         })
                     });
 

@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\search\site\widget;
 
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 
 /**
@@ -23,7 +24,12 @@ class FormWidget extends BaseCmsWidget
     public $template = 'form';
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umi\form\FormEntityView $form представление формы поиска
+     *
+     * @return CmsView
      */
     public function __invoke()
     {

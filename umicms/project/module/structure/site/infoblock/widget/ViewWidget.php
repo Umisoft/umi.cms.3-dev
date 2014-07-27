@@ -11,6 +11,7 @@
 namespace umicms\project\module\structure\site\infoblock\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\structure\model\object\BaseInfoBlock;
 use umicms\project\module\structure\model\StructureModule;
@@ -43,7 +44,13 @@ class ViewWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\project\module\structure\model\object\BaseInfoBlock $infoBlock информационный блок
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

@@ -10,11 +10,10 @@
 
 namespace umicms\project\module\search\site\widget;
 
-use Exception;
-use umi\http\THttpAware;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\object\SearchIndex;
 use umicms\project\module\search\model\SearchModule;
 
 /**
@@ -27,9 +26,9 @@ class FragmentsWidget extends BaseCmsWidget
      */
     public $template = 'fragments';
     /**
-     * @var ICmsPage $result страница, которая попала в результат поиска
+     * @var string|SearchIndex $index поисковый индекс или его GUID
      */
-    public $page;
+    public $index;
     /**
      * @var string $query запрос, по которому найден результат
      */
@@ -54,34 +53,49 @@ class FragmentsWidget extends BaseCmsWidget
     }
 
     /**
-     * Вывод фрагментов. Если найденный текст не содержит точного свопадения с запросом — фрагменты не выводятся.
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam string $query поисковый запрос
+     * @templateParam string $encodedQuery URL-закодированный поисковый запрос
+     * @templateParam umicms\project\module\search\model\highlight\Fragmenter $fragmenter фрагментатор текста по найденным в нем словам
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {
-        if (!$this->page instanceof ICmsPage) {
+        $searchIndexApi = $this->module->getSearchIndexApi();
+
+        if (is_string($this->index)) {
+            $this->index = $searchIndexApi->getSiteIndexCollection()->get($this->index);
+        }
+
+        if (!$this->index instanceof SearchIndex) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Option "{option}" should be instance of class "{class}".',
-                    ['option' => 'page', 'class' => 'umicms\orm\object\ICmsPage']
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'index',
+                        'class' => SearchIndex::className()
+                    ]
                 )
             );
         }
 
-        $content = $this->module->getSearchIndexApi()->extractSearchableContent($this->page);
-        /*try {*/
-            $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
-                ->fragmentize($this->contextWordsLimit);
+        $content = $this->module->getSearchIndexApi()->extractSearchableContent($this->index->getIndexedObject());
 
-            return $this->createResult(
-                $this->template,
-                [
-                    'query' => $this->query,
-                    'fragmenter' => $fragmenter,
-                ]
-            );
-        /*} catch (Exception $e) {
-            return '';
-        }*/
+        $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
+            ->fragmentize($this->contextWordsLimit);
+
+        return $this->createResult(
+            $this->template,
+            [
+                'query' => $this->query,
+                'encodedQuery' => urlencode($this->query),
+                'fragmenter' => $fragmenter,
+            ]
+        );
 
     }
 }

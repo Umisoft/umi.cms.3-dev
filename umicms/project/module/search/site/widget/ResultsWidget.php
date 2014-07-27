@@ -55,6 +55,7 @@ class ResultsWidget extends BaseListWidget
     protected function createResult($templateName, array $variables = [])
     {
         $variables['query'] = $this->query;
+        $variables['encodedQuery'] = urlencode($this->query);
 
         return parent::createResult($templateName, $variables);
     }

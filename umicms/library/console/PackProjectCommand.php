@@ -10,7 +10,6 @@
 namespace umicms\console;
 
 use Phar;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,7 +34,8 @@ class PackProjectCommand extends BaseProjectCommand
             ->addArgument(
                 'output',
                 InputArgument::OPTIONAL,
-                'Output directory for package.'
+                'Output directory for package.',
+                '.'
             );
     }
 
@@ -48,10 +48,7 @@ class PackProjectCommand extends BaseProjectCommand
 
         $projectName = $bootstrap->getProjectName();
 
-        $outputPharPath = $input->getArgument('output');
-        if (!$outputPharPath) {
-            $outputPharPath = './' .  $projectName . '.phar';
-        }
+        $outputPharPath = $input->getArgument('output') . '/' .  $projectName . '.phar';
 
         if (is_file($outputPharPath)) {
             unlink($outputPharPath);
@@ -62,20 +59,17 @@ class PackProjectCommand extends BaseProjectCommand
 
         $phar->startBuffering();
 
-        $style = new OutputFormatterStyle('blue', null, array('bold'));
-        $output->getFormatter()->setStyle('process', $style);
-
-        $output->writeln('<process>Packing project files...</process>');
+        $output->writeln('<info>Packing project files...</info>');
         $this->addProjectFiles($bootstrap->getProjectDirectory(), $phar, $output);
 
         $output->writeln('');
-        $output->writeln('<process>Writing package...</process>');
+        $output->writeln('<info>Writing package...</info>');
         $this->setStub($phar, $projectName . '.phar');
         $phar->stopBuffering();
 
         unset($phar);
 
-        $output->writeln('<process>Complete.</process>');
+        $output->writeln('<info>Complete.</info>');
     }
 
     /**
@@ -113,6 +107,7 @@ EOF;
     {
         $finder = new Finder();
         $finder->files()
+            ->ignoreDotFiles(false)
             ->notName('db.config.php')
             ->notName('project.config.php')
             ->notName('tools.settings.config.php')
@@ -137,7 +132,7 @@ EOF;
      */
     private function packFile($projectDirectory, Phar $phar, SplFileInfo $file)
     {
-        $localPath = strtr(str_replace($projectDirectory . '/', '', $file->getRealPath()), '\\', '/');
+        $localPath = strtr(str_replace($projectDirectory . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $phar->addFile($file, $localPath);
 

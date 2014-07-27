@@ -1,0 +1,15 @@
+<div>
+    <h2>{{ page.getHeader() }} </h2>
+    {{ page.contents | raw }}
+
+    {{ widget('search.results', {
+        'query' : query,
+        'limit' : 3,
+        'pagination' : {
+        'pageParam' : 'p',
+        'type' : 'sliding',
+        'pagesCount' : 5
+        }
+    }) }}
+
+</div>

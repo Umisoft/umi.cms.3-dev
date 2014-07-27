@@ -10,6 +10,7 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
@@ -62,8 +63,31 @@ trait TRecyclableCollection
         }
 
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
+
+            if ($parent = $object->getParent()) {
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+            }
+
             $descendants = $this->selectDescendants($object);
+            /**
+             * @var CmsHierarchicObject $descendant
+             */
             foreach($descendants as $descendant) {
+
+                $siteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+
                 $descendant->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
             }
         }
@@ -88,6 +112,17 @@ trait TRecyclableCollection
              * @var CmsHierarchicObject $parent
              */
             foreach($ancestry as $parent) {
+
+                /**
+                 * @var ICalculableProperty $siteChildCount
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+                $siteChildCount->recalculate();
+                $adminChildCount->recalculate();
+
                 $parent->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(false);
             }
         }

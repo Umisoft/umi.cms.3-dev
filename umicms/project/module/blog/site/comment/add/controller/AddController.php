@@ -29,7 +29,7 @@ class AddController extends BaseSitePageController
     protected $module;
 
     /**
-     * @var string|null $added флаг указывающий на публикацию комментария
+     * @var string|null $added флаг, указывающий на публикацию комментария
      */
     private $added;
 
@@ -47,7 +47,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -66,6 +66,7 @@ class AddController extends BaseSitePageController
             $parentComment
         );
 
+        $comment->publishTime = new \DateTime();
 
         if ($this->isAllowed($comment, 'publish')) {
             $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;
@@ -93,7 +94,13 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam string|bool $added флаг, указывающий на статус добавленного комментария:
+     * published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления комментария
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

@@ -35,7 +35,15 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam bool $authenticated флаг, указывающий на то, авторизован пользователь или нет
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница активации
+     * @templateParam umicms\project\module\users\model\object\RegisteredUser $user активированный пользователь в случае успеха
+     * @templateParam array $errors список произошедших ошибок в случае неуспеха
+     *
+     * @return Response
      */
     public function __invoke()
     {
@@ -46,7 +54,7 @@ class IndexController extends BaseSitePageController
             $this->module->setCurrentUser($user);
 
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'authenticated' => $this->module->isAuthenticated(),
@@ -56,7 +64,7 @@ class IndexController extends BaseSitePageController
 
         } catch (\Exception $e) {
             return $this->createViewResponse(
-                'index',
+                $this->template,
                 [
                     'page' => $this->getCurrentPage(),
                     'authenticated' => $this->module->isAuthenticated(),

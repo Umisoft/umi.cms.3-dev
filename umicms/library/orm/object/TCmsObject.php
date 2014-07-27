@@ -214,5 +214,15 @@ trait TCmsObject
         return true;
     }
 
+    /**
+     * @see TLocalizable::getI18nDictionaryNames()
+     */
+    protected function getI18nDictionaryNames()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return array_merge(parent::getI18nDictionaryNames(), $this->getCollection()->getDictionaryNames());
+    }
+
 }
  

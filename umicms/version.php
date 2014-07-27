@@ -13,5 +13,5 @@ use umicms\Utils;
 try {
     return Utils::getCurrentGitVersion();
 } catch (\Exception $e) {
-    return ['Unknown', date('Y-m-d H:i')];
+    return ['Unknown', 'Unknown'];
 }
