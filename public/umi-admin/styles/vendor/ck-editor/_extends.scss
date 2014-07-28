@@ -19,3 +19,36 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
+
+.cke_dialog .cke_dialog_body{
+    .ImagePreviewBox{
+        border: 1px ridge #C5C5C5;
+    }
+
+    a.cke_dialog_ui_button_ok{
+        text-shadow: none;
+        border-color: #0A8EEC;
+        background: #0A8EEC;
+        background-image: linear-gradient(#3aadff, #0087d4);
+        &:hover{
+            border-color: #0A8EEC;
+            background: #0A8EEC;
+            background-image: linear-gradient(darken(#3aadff, 3%),darken( #0087d4, 3%));
+        }
+    }
+
+    .cke_dialog_title{
+        background: linear-gradient(#EEEEEE, #E0E4E7);
+        border-bottom: 1px solid #98A2AB;
+        padding: 8px 10px;
+    }
+
+    .cke_dialog_close_button{
+        top: 8px;
+    }
+
+    .cke_dialog_footer{
+        background: #EEEEEE;
+        background-image: linear-gradient(#EEEEEE, #E0E4E7);
+    }
+}
