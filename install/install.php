@@ -22,6 +22,7 @@ use umicms\install\exception\RuntimeException;
 use umicms\install\installer\Installer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use umicms\install\installer\Rule;
 
 define('INSTALL_ROOT_DIR', getcwd());
 define('CMS_CORE_PHAR', INSTALL_ROOT_DIR . '/umicms.phar');
@@ -37,10 +38,26 @@ error_reporting(-1);
 ini_set('display_errors', 1);
 set_time_limit(0);
 
-mb_internal_encoding("utf8");
-
 /** @noinspection PhpIncludeInspection */
 require $autoLoaderPath;
+
+$request = new Request($_GET);
+$response = new Response();
+
+try {
+    $rules = new Rule(['pdo', 'mbstring', 'curl']);
+    $rules->check();
+} catch (\Exception $e) {
+    $response->setContent(json_encode([
+        'message' => $e->getMessage(),
+    ]));
+    $response->headers->set('Content-Type', 'application/json');
+    $response->setStatusCode(400);
+    $response->send();
+    exit;
+}
+
+mb_internal_encoding("utf8");
 
 session_start();
 
@@ -49,9 +66,6 @@ if (!isset($_SESSION['configFileName'])) {
 }
 
 $installer = new Installer($_SESSION['configFileName']);
-
-$request = new Request($_GET);
-$response = new Response();
 
 $registry = new InstallCommandRegistry();
 $registry->add(new CheckLicense($installer, $request->query->get('licenseKey')), 'checkLicense');

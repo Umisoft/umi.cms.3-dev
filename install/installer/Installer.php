@@ -80,7 +80,6 @@ class Installer
             file_put_contents($toFile, $response);
             return true;
         } catch (Exception $e) {
-            // Log the error or something
             return false;
         }
     }

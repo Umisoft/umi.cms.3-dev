@@ -13,6 +13,7 @@ namespace umicms\orm\collection;
 use umi\form\TFormAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IMetadata;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
@@ -46,6 +47,14 @@ trait TCmsCollection
      * @return IMetadata
      */
     abstract public function getMetadata();
+
+    /**
+     * Возвращает обязательное поле коллекции.
+     * @param $fieldName
+     * @throws NonexistentEntityException если поле не существует
+     * @return IField
+     */
+    abstract protected function getRequiredField($fieldName);
 
     /**
      * Возаращает имя класса коллекции.
@@ -160,14 +169,6 @@ trait TCmsCollection
     }
 
     /**
-     * @see ICmsCollection::getHandlerList()
-     */
-    public function getHandlerList()
-    {
-        return (isset($this->traitGetConfig()['handlers'])) ? $this->traitGetConfig()['handlers'] : [];
-    }
-
-    /**
      * @see ICmsCollection::hasHandler()
      */
     public function hasHandler($applicationName)
@@ -223,19 +224,24 @@ trait TCmsCollection
      */
     public function getDefaultTableFilterFieldNames()
     {
-        $defaultFieldNames = [
+        $fieldNames = [
             ICmsObject::FIELD_DISPLAY_NAME
         ];
+
         if ($this instanceof ICmsPageCollection) {
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_H1;
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_H1;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
         }
 
-        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]) ?
-            $this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS] : [];
+        if (isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]))
+            );
+        }
 
-        return array_merge($defaultFieldNames, array_keys($fieldNames));
+        return $fieldNames;
     }
 
     /**
@@ -243,7 +249,7 @@ trait TCmsCollection
      */
     public function getIgnoredTableFilterFieldNames()
     {
-        $defaultIgnoredFieldNames = [
+        $fieldNames = [
             ICmsObject::FIELD_VERSION,
             CmsHierarchicObject::FIELD_MPATH,
             CmsHierarchicObject::FIELD_URI,
@@ -252,10 +258,14 @@ trait TCmsCollection
             ICmsPage::FIELD_PAGE_CONTENTS
         ];
 
-        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]) ?
-            $this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS] : [];
+        if (isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]))
+            );
+        }
 
-        return array_merge($defaultIgnoredFieldNames, array_keys($fieldNames));
+        return $fieldNames;
     }
 
     /**
@@ -299,6 +309,19 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::getForcedFieldsToLoad()
+     */
+    public function getForcedFieldsToLoad()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsObject::FIELD_DISPLAY_NAME] = $this->getRequiredField(ICmsObject::FIELD_DISPLAY_NAME);
+
+        return $fields;
+    }
+
+    /**
      * Возвращает конфигурацию коллекции.
      * @return array
      */
@@ -307,4 +330,3 @@ trait TCmsCollection
        return isset($this->config) ? $this->config : [];
     }
 }
- 
