@@ -309,6 +309,11 @@ define(['App', 'toolbar'], function(UMI){
                 return link;
             }.property('item'),
 
+            allowMove: function(){
+                var item = this.get('item');
+                return item.get('id') !== 'root';
+            }.property('item.id'),
+
             /**
              * Сохранённое имя отображения объекта
              * @property savedDisplayName
