@@ -22,15 +22,22 @@ return array_replace_recursive(
             'sourceName' => 'blog_comment'
         ],
         'fields' => [
+            BlogBaseComment::FIELD_PUBLISH_TIME => [
+                'type' => IField::TYPE_DATE_TIME,
+                'columnName' => 'publish_time',
+            ],
+            BlogBaseComment::FIELD_POST => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'post_id',
+                'target' => 'blogPost',
+                'mutator' => 'setPost'
+            ],
+
             BlogComment::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
-                'target' => 'blogAuthor'
-            ],
-            BlogComment::FIELD_POST => [
-                'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'post_id',
-                'target' => 'blogPost'
+                'target' => 'blogAuthor',
+                'mutator' => 'setAuthor'
             ],
             BlogComment::FIELD_CONTENTS => [
                 'type' => IField::TYPE_TEXT,
@@ -50,13 +57,10 @@ return array_replace_recursive(
                     'en-US' => ['columnName' => 'contents_raw_en']
                 ]
             ],
-            BlogComment::FIELD_PUBLISH_TIME => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'publish_time'
-            ],
             BlogComment::FIELD_PUBLISH_STATUS => [
                 'type' => IField::TYPE_STRING,
-                'columnName' => 'publish_status'
+                'columnName' => 'publish_status',
+                'mutator' => 'setStatus'
             ]
         ],
         'types' => [
