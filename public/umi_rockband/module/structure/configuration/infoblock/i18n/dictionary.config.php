@@ -11,10 +11,28 @@
 return [
     'en-US' => [
         'type:infoblock:displayName' => 'Information block',
+        'slide1' => 'Slide 1',
+        'slideName1' => 'Title',
+        'slideContent1' => 'Content',
+        'slide2' => 'Slide 2',
+        'slideName2' => 'Title',
+        'slideContent2' => 'Content',
+        'slide3' => 'Slide 3',
+        'slideName3' => 'Title',
+        'slideContent3' => 'Content',
     ],
 
     'ru-RU' => [
         'type:infoblock:displayName' => 'Информационный блок',
+        'slide1' => 'Слайд 1',
+        'slideName1' => 'Название',
+        'slideContent1' => 'Контент',
+        'slide2' => 'Слайд 2',
+        'slideName2' => 'Название',
+        'slideContent2' => 'Контент',
+        'slide3' => 'Слайд 3',
+        'slideName3' => 'Название',
+        'slideContent3' => 'Контент',
     ],
 ];
  
