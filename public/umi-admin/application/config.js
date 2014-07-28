@@ -83,6 +83,8 @@ define([], function(){
 
             config.language = locale.split('-')[0];
 
+            config.height = '450px';
+
             return config;
         };
     };

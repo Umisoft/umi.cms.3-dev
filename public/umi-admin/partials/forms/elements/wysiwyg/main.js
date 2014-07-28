@@ -11,10 +11,11 @@ define(['App'], function(UMI){
             }.property(),
 
             didInsertElement: function(){
+                var config = UMI.config.CkEditor();
                 var self = this;
                 var el = this.$().children('textarea');
-                el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id, UMI.config.CkEditor());
+                el.css({'height': config.height});
+                var edit = CKEDITOR.replace(el[0].id, config);
             }
         });
 
@@ -49,9 +50,10 @@ define(['App'], function(UMI){
 
             didInsertElement: function(){
                 var self = this;
+                var config = UMI.config.CkEditor();
                 var el = this.$().children('textarea');
-                el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id, UMI.config.CkEditor());
+                el.css({'height': config.height});
+                var edit = CKEDITOR.replace(el[0].id, config);
 
                 edit.on('blur', function(event){
                     Ember.run.once(self, 'updateContent', event, edit);
