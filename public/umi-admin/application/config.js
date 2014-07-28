@@ -19,23 +19,7 @@ define([], function(){
                 url : '/admin/api/files/manager/action/connector',
                 lang: 'ru',
 
-                //                getFileCallback : function(file) {
-                //                    window.opener.CKEDITOR.tools.callFunction(funcNum, file);
-                //                    window.close();
-                //                },
-
                 closeOnGetFileCallback : true,
-//                editorCallback : function(url) {
-//                    console.log('elFinder', url);
-//                    document.querySelector('.umi-input-wrapper-file .umi-file').value = url;
-//                },
-                getFileCallback : function(fileInfo){
-                    console.log('getFileCallback', fileInfo);
-//                    window.opener.CKEDITOR.tools.callFunction(funcNum, url);
-                    document.querySelector('.umi-input-wrapper .umi-file').value = fileInfo.path;
-                    document.querySelector('.umi-input-wrapper img').src = fileInfo.tmb;
-//                    window.close();
-                },
 
                 uiOptions: {
                     toolbar : [
@@ -52,17 +36,42 @@ define([], function(){
         };
 
         CKEDITOR.on('dialogDefinition', function(event){
+            var editor = event.editor;
             var dialogDefinition = event.data.definition;
-
             var tabCount = dialogDefinition.contents.length;
+            var dialogName = event.data.name;
+
+            var popupParams = {
+                viewParams: {
+                    popupType: 'fileManager'
+                },
+                templateParams: {
+                    fileSelect: function(fileInfo){
+                        var self = this;
+                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, Ember.get(fileInfo, 'url'));
+                        self.get('controller').send('closePopup');
+                    }
+                }
+            };
+
             for(var i = 0; i < tabCount; i++) {
                 var browseButton = dialogDefinition.contents[i].get('browse');
 
                 if (browseButton !== null) {
                     browseButton.hidden = false;
-                    browseButton.onClick = function(dialog, i) {
-                        var appController = UMI.lookup('controller:application');
-                        //appController.send('showPopup', 'htmlEditor');
+                    browseButton.onClick = function(dialog, i){
+                        editor._.filebrowserSe = this;
+                        var $dialog = $('.cke_dialog');
+                        $dialog.addClass('umi-blur');
+                        var $dialogCover = $('.cke_dialog_background_cover');
+                        $dialogCover.addClass('hide');
+
+                        var showDialogCK = function(){
+                            $dialog.removeClass('umi-blur');
+                            $dialogCover.removeClass('hide');
+                        };
+                        popupParams.viewParams.beforeClose = showDialogCK;
+                        UMI.__container__.lookup('route:application').send('showPopup', popupParams);
                     };
                 }
             }
@@ -71,14 +80,6 @@ define([], function(){
         UMI.config.CkEditor = function(){
             var config = {};
             // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
-            //var fileManagerURl = Ember.get(window, 'UmiSettings.baseURL') + '/files/manager/root/fileManager';
-            //config.filebrowserBrowseUrl =  fileManagerURl;
-            //config.filebrowserImageBrowseUrl = fileManagerURl;
-
-            //CKEDITOR.ui.dialog.button.eventProcessors = CKEDITOR.tools.extend({}, CKEDITOR.ui.dialog.uiElement.prototype.eventProcessors,
-            //    { onClick : function( dialog, func ) { this.on( 'click', function(){console.log('asd');} ); } }, true);
-
 
             config.toolbarGroups = [
                 { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -108,6 +109,10 @@ define([], function(){
             config.language = locale.split('-')[0];
 
             config.height = '450px';
+
+            config.baseFloatZIndex = 200;
+
+            config.image_previewText = ' ';
 
             return config;
         };

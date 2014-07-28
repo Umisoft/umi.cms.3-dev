@@ -266,7 +266,10 @@ define([], function(){
                 },
 
                 closePopup: function(){
-                    this.container.lookup('view:popup').removeBlur();//TODO: incapsulate call method in view
+                    this.get('container').lookup('view:popup').send('closePopup');
+                },
+
+                removePopupLayout: function(){
                     return this.disconnectOutlet({
                         outlet: 'popup',
                         parentView: 'application'

@@ -20,7 +20,12 @@
     border-bottom-right-radius: 3px;
 }
 
+.cke_dialog_background_cover{
+
+}
+
 .cke_dialog .cke_dialog_body{
+    border-color: #21252e;
     .ImagePreviewBox{
         border: 1px ridge #C5C5C5;
     }
@@ -38,17 +43,31 @@
     }
 
     .cke_dialog_title{
-        background: linear-gradient(#EEEEEE, #E0E4E7);
-        border-bottom: 1px solid #98A2AB;
+        background: linear-gradient(#414a59, #21252e);
+        border-bottom: none;
         padding: 8px 10px;
+        color: #fff;
+        text-shadow: none;
     }
 
-    .cke_dialog_close_button{
+    .cke_dialog_close_button, a.cke_dialog_close_button{
         top: 8px;
+        right: 10px;
+        background: url($umi-icons-img) no-repeat;
+        background-position: -240px -20px;
+        border-color: #727272;
+        border-radius: 0;
+        span{
+            text-shadow: none;
+        }
     }
 
     .cke_dialog_footer{
-        background: #EEEEEE;
-        background-image: linear-gradient(#EEEEEE, #E0E4E7);
+        background: #21252e;
+        background-image: linear-gradient(#414a59, #21252e);
+        outline: none;
+    }
+    .cke_resizer{
+        border-right-color: #fff;
     }
 }
