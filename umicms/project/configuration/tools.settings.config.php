@@ -139,8 +139,10 @@ return [
 
             'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
             'blogPost' => '{#lazy:~/project/module/blog/configuration/post/metadata.config.php}',
+            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/metadata.config.php}',
             'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/metadata.config.php}',
             'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
+            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/metadata.config.php}',
             'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
             'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
@@ -171,8 +173,10 @@ return [
 
             'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
             'blogPost' => '{#lazy:~/project/module/blog/configuration/post/collection.config.php}',
+            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/collection.config.php}',
             'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/collection.config.php}',
             'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
+            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/collection.config.php}',
             'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
             'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
