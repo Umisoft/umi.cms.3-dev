@@ -1,8 +1,8 @@
-<div {{bind-attr class=":umi-item item.type isActiveContext:active view.inActive"}}>
-    {{#if hasChildren}}
+<div {{bind-attr class=":umi-item view.item.type view.isActiveContext:active view.inActive"}}>
+    {{#if view.hasChildren}}
         <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
             {{#if view.isExpanded}}
-                {{#if childrenList}}
+                {{#if view.childrenList}}
                     <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
                 {{else}}
                     <i class="animate animate-loader-20"></i>
@@ -15,18 +15,18 @@
     <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document view.allowMove:move"}}></i>
 
     {{#if editLink}}
-        {{#link-to "action" item.id "editForm" class="tree-item-link"}}
-            {{savedDisplayName}}
+        {{#link-to "action" view.item.id "editForm" class="tree-item-link"}}
+            {{view.savedDisplayName}}
         {{/link-to}}
     {{else}}
         {{#link-to "context" view.item.id class="tree-item-link"}}
-            {{savedDisplayName}}
+            {{view.savedDisplayName}}
         {{/link-to}}
     {{/if}}
 
-    {{#if params.contextToolbar}}
-        {{#render "treeControlContextToolbar" item}}
-            {{#each parentController.params.contextToolbar}}
+    {{#if controller.contextToolbar}}
+        {{#render "treeControlContextToolbar" view.item}}
+            {{#each parentController.contextToolbar}}
                 {{view view.elementView}}
             {{/each}}
         {{/render}}
@@ -34,11 +34,11 @@
 
 </div>
 
-{{#if hasChildren}}
+{{#if view.hasChildren}}
     {{#if view.isExpanded}}
-        <ul class="umi-tree-list" data-parent-id="{{unbound item.id}}">
-            {{#each item in childrenList}}
-                {{render "treeControlItem" item}}
+        <ul class="umi-tree-list" data-parent-id="{{unbound view.item.id}}">
+            {{#each item in view.childrenList}}
+                {{view "treeControlItem" item=item treeControlView=view.treeControlView}}
             {{/each}}
         </ul>
     {{/if}}
