@@ -42,7 +42,23 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'child_count' => [
+            'site_child_count' => [
+                'type'    => Type::INTEGER,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
+            ],
+            'site_child_count_en' => [
+                'type'    => Type::INTEGER,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
+            ],
+            'admin_child_count' => [
                 'type'    => Type::INTEGER,
                 'options' => [
                     'unsigned' => true,
