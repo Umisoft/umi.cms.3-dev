@@ -13,6 +13,7 @@ namespace umicms\orm\collection;
 use umi\form\TFormAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IMetadata;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
@@ -46,6 +47,14 @@ trait TCmsCollection
      * @return IMetadata
      */
     abstract public function getMetadata();
+
+    /**
+     * Возвращает обязательное поле коллекции.
+     * @param $fieldName
+     * @throws NonexistentEntityException если поле не существует
+     * @return IField
+     */
+    abstract protected function getRequiredField($fieldName);
 
     /**
      * Возаращает имя класса коллекции.
@@ -296,6 +305,19 @@ trait TCmsCollection
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
         return parent::select();
+    }
+
+    /**
+     * @see ICmsCollection::getForcedFieldsToLoad()
+     */
+    public function getForcedFieldsToLoad()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsObject::FIELD_DISPLAY_NAME] = $this->getRequiredField(ICmsObject::FIELD_DISPLAY_NAME);
+
+        return $fields;
     }
 
     /**
