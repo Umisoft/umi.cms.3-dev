@@ -97,12 +97,12 @@ return [
                         'lazy' => true
                     ]
                 ],
-				SubscriberUser::FIELD_PROFILE => [
+				BaseSubscriber::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
-                    'label' => SubscriberUser::FIELD_PROFILE,
+                    'label' => BaseSubscriber::FIELD_PROFILE,
                     'options' => [
                         'lazy' => true,
-                        'dataSource' => SubscriberUser::FIELD_PROFILE
+                        'dataSource' => BaseSubscriber::FIELD_PROFILE
                     ],
                 ],
             ],

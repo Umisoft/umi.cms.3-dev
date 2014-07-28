@@ -22,6 +22,12 @@ return array_replace_recursive(
             'token' => [
                 'type' => Type::STRING
             ],
+			'profile_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
             'first_name' => [
                 'type' => Type::STRING
             ],
@@ -34,20 +40,8 @@ return array_replace_recursive(
             'sex_id'        => [
 				'type'    => Type::BIGINT
 			],
-			'profile_id' => [
-                'type' => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true
-                ]
-            ],
         ],
         'indexes' => [
-            'email' => [
-                'type' => 'unique',
-                'columns' => [
-                    'email' => []
-                ]
-            ],
 			'profile' => [
                 'columns' => [
                     'profile_id' => []

@@ -51,6 +51,10 @@ class BaseSubscriber extends CmsObject
      * Имя поля для хранения отписанных рассылок
      */
     const FIELD_UNSUBSCRIBE_DISPATCHES = 'unsubscribe_dispatch';
-	
+
+	/**
+     * Имя поля для хранения профиля подписчика
+     */
+	const FIELD_PROFILE = 'profile';
 
 }

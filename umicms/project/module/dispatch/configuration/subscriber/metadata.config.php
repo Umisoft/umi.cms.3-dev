@@ -55,7 +55,7 @@ return array_replace_recursive(
                 'relatedField' => 'subscriber',
                 'targetField' => 'dispatch'
             ],
-			SubscriberUser::FIELD_PROFILE => [
+			BaseSubscriber::FIELD_PROFILE => [
 				'type' => IField::TYPE_BELONGS_TO,
 				'columnName' => 'profile_id',
 				'target' => 'user'
@@ -78,7 +78,7 @@ return array_replace_recursive(
 			SubscriberUser::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\SubscriberUser',
                 'fields'      => [
-					SubscriberUser::FIELD_PROFILE => [],
+					BaseSubscriber::FIELD_PROFILE => [],
 				]
             ],
         ],

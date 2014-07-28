@@ -18,14 +18,13 @@ return [
     'class' => 'umicms\project\module\dispatch\model\collection\TemplateMailCollection',
     'handlers' => [
         'admin' => 'dispatch.templatemail',
-        //'site' => 'dispatch.dispatch'
     ],
-	/* 'forms' => [
+	'forms' => [
         'base' => [
-            DispatchesCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.edit.config.php}',
-            DispatchesCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.create.config.php}'
+            TemplateMailCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/templatemail/form/base.edit.config.php}',
+            TemplateMailCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/templatemail/form/base.create.config.php}'
         ]
-    ], */
+    ],
     'dictionaries' => [
         'collection.templatemail', 'collection'
     ]

@@ -16,10 +16,18 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatch_templatemail'
         ],
+		'fields'	=> [
+            TemplateMail::FIELD_PATHTEMPLATE	=> [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'path_to_template'
+            ],
+        ],
         'types'  => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\TemplateMail',
-                'fields'      => []
+                'fields'      => [
+				    TemplateMail::FIELD_PATHTEMPLATE => []
+				]
             ]
         ],
     ]

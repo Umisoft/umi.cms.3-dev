@@ -19,10 +19,10 @@ use umicms\orm\object\CmsObject;
  */
 class TemplateMail extends CmsObject
 {
-    /**
-     *  Имя поля для хранения рассылок
-     */
-    const FIELD_DISPATCHES = 'dispatch';
+	/**
+	* Имя поля для хранения E-mail'a
+	*/
+	const FIELD_PATHTEMPLATE = 'pathTemplate';
 
 
 }

@@ -20,12 +20,8 @@ use umicms\orm\object\CmsObject;
 class SubscriberUser extends CmsObject
 {
     /**
-     * Имя поля для хранения E-mail'a
+     * Тип класса
     */
     const TYPE_NAME = 'SubscriberUser';
 	
-	/**
-     * Имя поля для хранения профиля подписчика
-     */
-	const FIELD_PROFILE = 'profile';
 }

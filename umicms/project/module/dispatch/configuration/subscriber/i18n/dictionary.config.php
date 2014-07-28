@@ -21,7 +21,7 @@ return [
 			BaseSubscriber::FIELD_SEX => 'Sex',
 			BaseSubscriber::FIELD_DISPATCH => 'Dispatches',
 			BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => 'Unsubscribe mailing',
-			SubscriberUser::FIELD_PROFILE => 'Profile user',
+			BaseSubscriber::FIELD_PROFILE => 'Profile user',
 			'additional' => 'Additional',
 		],
 
@@ -33,7 +33,7 @@ return [
 			BaseSubscriber::FIELD_SEX => 'Пол',
 			BaseSubscriber::FIELD_DISPATCH => 'Рассылки',
 			BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => 'Отписанные рассылки',
-			SubscriberUser::FIELD_PROFILE => 'Профиль пользователя',
+			BaseSubscriber::FIELD_PROFILE => 'Профиль пользователя',
 			'additional' => 'Дополнительно',
 		]
 ];

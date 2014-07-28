@@ -33,5 +33,9 @@ return [
     ],
     'dictionaries' => [
         'collection.subscriber', 'collection'
-    ]
+    ],
+	SubscriberCollection::IGNORED_TABLE_FILTER_FIELDS => [
+        BaseSubscriber::FIELD_DISPATCH => [],
+        BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => []
+    ],
 ];

@@ -8,10 +8,17 @@
  * file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Types\Type;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'dispatch_templatemail'
+        'name' => 'dispatch_templatemail',
+		'columns'     =>  [
+            'path_to_template' => [
+                'type' => Type::STRING
+            ]
+		]
     ]
 );
