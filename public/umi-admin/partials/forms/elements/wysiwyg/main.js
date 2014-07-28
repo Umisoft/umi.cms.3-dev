@@ -14,7 +14,7 @@ define(['App'], function(UMI){
                 var self = this;
                 var el = this.$().children('textarea');
                 el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id);
+                var edit = CKEDITOR.replace(el[0].id, UMI.config.CkEditor());
             }
         });
 
@@ -51,7 +51,7 @@ define(['App'], function(UMI){
                 var self = this;
                 var el = this.$().children('textarea');
                 el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id);
+                var edit = CKEDITOR.replace(el[0].id, UMI.config.CkEditor());
 
                 edit.on('blur', function(event){
                     Ember.run.once(self, 'updateContent', event, edit);
