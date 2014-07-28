@@ -311,7 +311,7 @@ define([], function(){
                         case 'serialized':
                             fieldValue = DS.attr('serialized', params);
                             break;
-                        case 'cmsPageRelation':
+                        case 'cmsPageRelation':  case 'objectRelation':
                             fieldValue = DS.attr('objectRelation', params);
                             break;
                         case 'belongsToRelation':
