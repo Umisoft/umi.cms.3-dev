@@ -263,8 +263,6 @@ define(['App', 'toolbar'], function(UMI){
 
             willDestroyElement: function(){
                 this.get('controller').removeObserver('activeContext');
-                this.removeObserver('context');
-                this.removeObserver('expandedBranches');
             }
         });
 
@@ -359,16 +357,7 @@ define(['App', 'toolbar'], function(UMI){
                     requestParams['filters[trashed]'] = 'equals(0)';
                 }
                 promise = this.get('controller.store').updateCollection(collectionName, requestParams);
-                /*setTimeout(function(){
-                 promise.then(function(){
-                 var iScroll = self.get('treeControlView.iScroll');
-                 if(iScroll){
-                 setTimeout(function(){
-                 iScroll.refresh();
-                 }, 100);
-                 }
-                 });
-                 }, 0);*/
+
                 var promiseArray =  Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
                     sortProperties: ['order'],
@@ -376,6 +365,22 @@ define(['App', 'toolbar'], function(UMI){
                 });
                 return promiseArray;
             },
+
+            scrollUpdate: function(){
+                var self = this;
+                setTimeout(function(){
+                    var iScroll = self.get('treeControlView.iScroll');
+                    if(iScroll){
+                        setTimeout(function(){
+                            iScroll.refresh();
+                        }, 100);
+                    }
+                }, 0);
+            },
+
+            scrollNeedUpdate: function(){
+                this.scrollUpdate();
+            }.observes('childrenList.length'),
 
             /**
              * Для неактивных элементов добавляется класс inActive
@@ -403,7 +408,8 @@ define(['App', 'toolbar'], function(UMI){
 
             actions: {
                 expanded: function(){
-                    this.toggleProperty('isExpanded');
+                    var isExpanded = this.toggleProperty('isExpanded');
+                    this.scrollUpdate();
                 }
             },
 
@@ -436,6 +442,10 @@ define(['App', 'toolbar'], function(UMI){
                          });*/
                     });
                 }
+            },
+
+            willDestroyElement: function(){
+                this.removeObserver('childrenList.length');
             }
         });
 
