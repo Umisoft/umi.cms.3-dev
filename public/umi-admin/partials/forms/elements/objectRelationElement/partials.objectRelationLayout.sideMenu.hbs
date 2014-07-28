@@ -1,0 +1,5 @@
+{{#each item in collections}}
+    {{#view view.itemView item=item}}
+        <a href="javascript:void(0)">{{item.displayName}}</a>
+    {{/view}}
+{{/each}}

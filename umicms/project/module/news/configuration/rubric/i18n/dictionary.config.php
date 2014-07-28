@@ -12,10 +12,14 @@ use umicms\project\module\news\model\object\NewsRubric;
 
 return [
         'en-US' => [
+            'collection:newsRubric:displayName' => 'News rubrics',
+
             NewsRubric::FIELD_NEWS => 'News items'
         ],
 
         'ru-RU' => [
+            'collection:newsRubric:displayName' => 'Новостные рубрики',
+
             NewsRubric::FIELD_NEWS => 'Новости'
         ]
     ];

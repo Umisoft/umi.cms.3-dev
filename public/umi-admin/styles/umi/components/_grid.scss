@@ -10,4 +10,19 @@
     margin: 0 -0.1em;
     padding-left: 22px;
     padding-right: 0;
+
+    &-fixed{
+        &.small-2-right{
+            width: rem-calc(72);
+            float: right;
+            ~ .columns{
+                margin-right: rem-calc(72);
+                float: none;
+            }
+        }
+        ~ .columns{
+            width: auto;
+            float: none;
+        }
+    }
 }

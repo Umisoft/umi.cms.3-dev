@@ -10,6 +10,7 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\PageRelation;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
@@ -41,7 +42,7 @@ return [
             'label' => 'settings',
             'elements' => [
                 MenuInternalItem::FIELD_PAGE_RELATION => [
-                    'type' => Text::TYPE_NAME,
+                    'type' => PageRelation::TYPE_NAME,
                     'label' => MenuInternalItem::FIELD_PAGE_RELATION,
                     'options' => [
                         'dataSource' => MenuInternalItem::FIELD_PAGE_RELATION

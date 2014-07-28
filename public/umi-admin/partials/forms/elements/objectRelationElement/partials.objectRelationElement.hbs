@@ -1,0 +1,20 @@
+<div class="small-2 columns umi-columns-fixed small-2-right">
+    <span class="postfix">
+        <span class="button-group">
+            <li>
+                <span class="button flat white square" {{action "showPopup" view.popupParams target="view"}}>
+                <i class="icon icon-open-folder"></i>
+                </span>
+            </li>
+            <li>
+                <span class="button flat white square" {{action "clearValue" target="view"}}>
+                    <i class="icon icon-delete"></i>
+                </span>
+            </li>
+        </span>
+    </span>
+</div>
+
+<div class="small-10 columns">
+    {{view view.inputView object=view.object meta=view.meta}}
+</div>

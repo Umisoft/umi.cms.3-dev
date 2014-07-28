@@ -11,12 +11,16 @@
 return [
 
     'en-US' => [
+        'component:comment:displayName' => 'Comments',
+
         'action:create:comment' => 'Create comment',
 
         'role:editor:displayName' => 'Manage comments'
     ],
 
     'ru-RU' => [
+        'component:comment:displayName' => 'Комментарии',
+
         'action:create:comment' => 'Создать комментарий',
 
         'role:editor:displayName' => 'Управление комментариями'
