@@ -108,6 +108,18 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getForcedFieldsToLoad()
+    {
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsPage::FIELD_PAGE_SLUG] = $this->getSlugField();
+        $fields[ICmsPage::FIELD_PAGE_H1] = $this->getRequiredField(ICmsPage::FIELD_PAGE_H1);
+
+        return $fields;
+    }
+
+    /**
      * Изменяет последнюю часть ЧПУ у объекта.
      * @param ICmsPage $object изменяемый объект
      * @param string $slug последняя часть ЧПУ

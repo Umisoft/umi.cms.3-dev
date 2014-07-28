@@ -16,28 +16,41 @@
 </div>
 <div class="sidebar-module">
     <h4>{{ translate('Authors') }}</h4>
-    {{ widget('blog.author.list', {'template' : 'listShort'}) }}
+    {{ widget('blog.author.view.list', {'template' : 'listShort'}) }}
 </div>
+
 {% if (
-    isAllowedResource('blog.draft', 'widget:ownListLink') and
-    isAllowedResource('blog.moderate', 'widget:ownListLink') and
-    isAllowedResource('blog.reject', 'widget:listLink')
+    isAllowedResource('blog.draft.view', 'widget:link') and
+    isAllowedResource('blog.moderate.own', 'widget:link') and
+    isAllowedResource('blog.reject.view', 'widget:link')
 ) %}
 <div class="sidebar-module">
     <h4>{{ translate('Authors\'s posts') }}</h4>
     <ol class="list-unstyled">
-        <li>{{ translate('Drafts') }}: {{ widget('blog.draft.ownListLink', {'template' : 'draftLinkAuthor'}) }}</li>
-        <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.ownListLink', {'template' : 'moderateLink'}) }}</li>
-        <li>{{ translate('Rejected posts') }}: {{ widget('blog.reject.listLink', {'template' : 'listLink'}) }}</li>
+        <li>{{ translate('Drafts') }}:
+            {{ widget('blog.draft.view.link', {'template' : 'draftLinkAuthor'}) }}
+        </li>
+        <li>
+            {{ translate('Post on moderation') }}:
+            {{ widget('blog.moderate.own.link', {'template' : 'moderateLink'}) }}
+        </li>
+        <li>
+            {{ translate('Rejected posts') }}:
+            {{ widget('blog.reject.view.link', {'template' : 'link'}) }}
+        </li>
     </ol>
 </div>
 {% endif %}
-{% if (isAllowedResource('blog.moderate', 'widget:allListLink')) %}
+{% if (isAllowedResource('blog.moderate.all', 'widget:link')) %}
 <div class="sidebar-module">
     <h4>{{ translate('Moderate') }}</h4>
     <ol class="list-unstyled">
-        <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
+        <li>
+            {{ translate('Post on moderation') }}:
+            {{ widget('blog.moderate.all.link', {'template' : 'moderateLink'}) }}
+        </li>
     </ol>
 </div>
 {% endif %}
+
 {{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}

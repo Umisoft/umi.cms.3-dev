@@ -1,0 +1,11 @@
+{{ include('breadcrumbs.twig') }}
+
+<h1>page.displayName</h1>
+
+{% if success %}
+    <div class="alert alert-success">
+        <p class="bg-success text-success">{{ translate('Draft saved successfully!') }}</p>
+    </div>
+{% endif %}
+
+{{ include('form/form.twig', {'form' : form}) }}

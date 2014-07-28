@@ -134,19 +134,12 @@ EOF;
      */
     private function activateLicense(IToolkit $toolkit, array $config)
     {
-        /**
-         * @var IConfigIO $configIO
-         */
-        $configIO = $toolkit->getService('umi\config\io\IConfigIO');
-        $projectConfig = $configIO->read('~/project/site/site.settings.config.php');
-
         /** @var ModuleTools $moduleTools */
         $moduleTools = $toolkit->getToolbox(ModuleTools::NAME);
         /** @var ServiceModule $service */
         $service = $moduleTools->getModuleByClass(ServiceModule::className());
-        $projectConfig->set('defaultDomain', $config['license']['domain']);
-        $service->license()->activate($config['license']['licenseKey'], $config['license']['domain'], $projectConfig);
-        $configIO->write($projectConfig);
+
+        $service->license()->activate($config['license']['licenseKey'], $config['license']['domain']);
     }
 }
  

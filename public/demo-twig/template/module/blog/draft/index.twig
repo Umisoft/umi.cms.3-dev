@@ -1,4 +1,4 @@
-{{ include('breadcrumbs.twig') }}
+{{ include('breadcrumbs.phtml') }}
 
 <h1>{{ translate('Drafts author') }}</h1>
-{{ widget('blog.draft.ownList', {'template' : 'list'}) }}
+{{ widget('blog.draft.view.list', {'template' : 'list'}) }}

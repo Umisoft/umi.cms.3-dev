@@ -23,10 +23,11 @@ Options +FollowSymLinks
     # Block access to .svn / .git
     RewriteRule "(^|/)\.(git|svn)" - [F]
 
+    # Ignore static
+    RewriteCond %{REQUEST_URI} !\.(html?|te?xt|jpe?g|gif|png|bmp|swf|flv|ico|css|js|svg|mpe?g|mov|avi|wav|mp3|eot|ttf|woff)$
     # Pass all requests
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !=/favicon.ico
     RewriteRule ^ index.php [L]
 
 </IfModule>
@@ -41,7 +42,7 @@ Options +FollowSymLinks
     Deny from all
 </FilesMatch>
 
-<Files index.php>
+<Files "index.php">
     php_flag engine 1
     Allow from all
 </Files>

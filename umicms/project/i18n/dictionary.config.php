@@ -48,6 +48,7 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.update' => '{#lazy:~/project/module/service/admin/update/i18n/dictionary.config.php}',
     'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
@@ -164,15 +165,7 @@ return [
             ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
             ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Slug',
-
-            ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
-            ICmsPage::FIELD_PAGE_H1 => 'H1',
-            ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
-            ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
-            ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
-            ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес'
+            ICmsPage::FIELD_PAGE_SLUG => 'Slug'
         ],
 
         'ru-RU' => [
