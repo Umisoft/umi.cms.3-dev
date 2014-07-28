@@ -8,9 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use project\umi_rockband\module\structure\model\object\Slider;
 use umi\form\element\Text;
-use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\Wysiwyg;
 use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
@@ -44,102 +45,68 @@ return [
             ]
         ],
 
-        'contact' => [
+        'slide1' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'contact',
+            'label' => 'slide1',
             'elements' => [
-                InfoBlock::FIELD_PHONE_NUMBER => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_PHONE_NUMBER,
-                    'options' => [
-                        'dataSource' => InfoBlock::FIELD_PHONE_NUMBER
-                    ],
-                ],
-                InfoBlock::FIELD_EMAIL => [
+                Slider::FIELD_SLIDE_NAME_1 => [
                     'type' => Text::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_EMAIL,
+                    'label' => Slider::FIELD_SLIDE_NAME_1,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_EMAIL
+                        'dataSource' => Slider::FIELD_SLIDE_NAME_1
                     ],
                 ],
-                InfoBlock::FIELD_ADDRESS => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_ADDRESS,
+                Slider::FIELD_SLIDE_CONTENT_1 => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => Slider::FIELD_SLIDE_CONTENT_1,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_ADDRESS
+                        'dataSource' => Slider::FIELD_SLIDE_CONTENT_1
                     ],
-                ]
+                ],
             ]
         ],
 
-        'about' => [
+        'slide2' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'about',
+            'label' => 'slide2',
             'elements' => [
-                InfoBlock::FIELD_LOGO => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_LOGO,
+                Slider::FIELD_SLIDE_NAME_2 => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => Slider::FIELD_SLIDE_NAME_2,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_LOGO
+                        'dataSource' => Slider::FIELD_SLIDE_NAME_2
                     ],
                 ],
-                InfoBlock::FIELD_COPYRIGHT => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_COPYRIGHT,
+                Slider::FIELD_SLIDE_CONTENT_2 => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => Slider::FIELD_SLIDE_CONTENT_2,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_COPYRIGHT
+                        'dataSource' => Slider::FIELD_SLIDE_CONTENT_2
                     ],
-                ]
+                ],
             ]
         ],
 
-        'social' => [
+        'slide3' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'social',
+            'label' => 'slide3',
             'elements' => [
-                InfoBlock::FIELD_COUNTER => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_COUNTER,
+                Slider::FIELD_SLIDE_NAME_3 => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => Slider::FIELD_SLIDE_NAME_3,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_COUNTER
+                        'dataSource' => Slider::FIELD_SLIDE_NAME_3
                     ],
                 ],
-                InfoBlock::FIELD_WIDGET_VK => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_WIDGET_VK,
+                Slider::FIELD_SLIDE_CONTENT_3 => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => Slider::FIELD_SLIDE_CONTENT_3,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_WIDGET_VK
-                    ],
-                ],
-                InfoBlock::FIELD_WIDGET_FACEBOOK => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_WIDGET_FACEBOOK,
-                    'options' => [
-                        'dataSource' => InfoBlock::FIELD_WIDGET_FACEBOOK
-                    ],
-                ],
-                InfoBlock::FIELD_WIDGET_TWITTER => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_WIDGET_TWITTER,
-                    'options' => [
-                        'dataSource' => InfoBlock::FIELD_WIDGET_TWITTER
-                    ],
-                ],
-                InfoBlock::FIELD_SHARE => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_SHARE,
-                    'options' => [
-                        'dataSource' => InfoBlock::FIELD_SHARE
-                    ],
-                ],
-                InfoBlock::FIELD_SOCIAL_GROUP_LINK => [
-                    'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_SOCIAL_GROUP_LINK,
-                    'options' => [
-                        'dataSource' => InfoBlock::FIELD_SOCIAL_GROUP_LINK
+                        'dataSource' => Slider::FIELD_SLIDE_CONTENT_3
                     ],
                 ],
             ]
-        ]
+        ],
+
     ]
 ];

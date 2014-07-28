@@ -92,7 +92,7 @@ return array_replace_recursive(
         ],
         'types'      => [
             Slider::TYPE   => [
-                'objectClass' => 'project\module\structure\model\object\Slider',
+                'objectClass' => 'project\umi_rockband\module\structure\model\object\Slider',
                 'fields'      => [
                     Slider::FIELD_SLIDE_NAME_1 => [],
                     Slider::FIELD_SLIDE_NAME_2 => [],
