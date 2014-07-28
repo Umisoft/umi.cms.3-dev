@@ -50,9 +50,7 @@ class UnpublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->model->comment()->getById(
-            $this->getRouteVar('id')
-        )->unPublish();
+        $this->model->comment()->getById($this->getRouteVar('id'))->publishStatus = BlogComment::COMMENT_STATUS_UNPUBLISHED;
 
         $this->commit();
     }

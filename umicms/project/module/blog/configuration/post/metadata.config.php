@@ -9,6 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umicms\project\module\blog\model\object\BlogBaseComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
@@ -24,7 +25,7 @@ return array_replace_recursive(
             ],
             BlogPost::FIELD_PUBLISH_STATUS => [
                 'type' => IField::TYPE_STRING,
-                'mutator' => 'changeStatus',
+                'mutator' => 'setPublishStatus',
                 'accessor' => 'getPublishStatus',
                 'columnName' => 'publish_status',
                 'defaultValue' => BlogPost::POST_STATUS_DRAFT
@@ -58,7 +59,8 @@ return array_replace_recursive(
             BlogPost::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
-                'target' => 'blogAuthor'
+                'target' => 'blogAuthor',
+                'mutator' => 'setAuthor'
             ],
             BlogPost::FIELD_TAGS => [
                 'type' => IField::TYPE_MANY_TO_MANY,
@@ -68,9 +70,19 @@ return array_replace_recursive(
                 'targetField' => 'tag'
             ],
             BlogPost::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
-                'columnName' => 'comments_count'
-            ]
+                'type' => IField::TYPE_FORMULA,
+                'columnName' => 'comments_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateCommentsCount',
+                'readOnly'     => true
+            ],
+            BlogPost::FIELD_COMMENTS => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'blogComment',
+                'targetField' => BlogBaseComment::FIELD_POST,
+                'readOnly' => true
+            ],
         ],
         'types' => [
             'base' => [
@@ -84,6 +96,7 @@ return array_replace_recursive(
                     BlogPost::FIELD_PUBLISH_TIME => [],
                     BlogPost::FIELD_PUBLISH_STATUS => [],
                     BlogPost::FIELD_COMMENTS_COUNT => [],
+                    BlogPost::FIELD_COMMENTS => [],
                     BlogPost::FIELD_AUTHOR => []
                 ]
             ]
