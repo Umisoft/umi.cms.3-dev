@@ -51,10 +51,34 @@ define([], function(){
             }
         };
 
+        CKEDITOR.on('dialogDefinition', function(event){
+            var dialogDefinition = event.data.definition;
+
+            var tabCount = dialogDefinition.contents.length;
+            for(var i = 0; i < tabCount; i++) {
+                var browseButton = dialogDefinition.contents[i].get('browse');
+
+                if (browseButton !== null) {
+                    browseButton.hidden = false;
+                    browseButton.onClick = function(dialog, i) {
+                        var appController = UMI.lookup('controller:application');
+                        //appController.send('showPopup', 'htmlEditor');
+                    };
+                }
+            }
+        });
+
         UMI.config.CkEditor = function(){
             var config = {};
             // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-            config.filebrowserBrowseUrl = '/admin/api/files/manager/action/connector';
+
+            //var fileManagerURl = Ember.get(window, 'UmiSettings.baseURL') + '/files/manager/root/fileManager';
+            //config.filebrowserBrowseUrl =  fileManagerURl;
+            //config.filebrowserImageBrowseUrl = fileManagerURl;
+
+            //CKEDITOR.ui.dialog.button.eventProcessors = CKEDITOR.tools.extend({}, CKEDITOR.ui.dialog.uiElement.prototype.eventProcessors,
+            //    { onClick : function( dialog, func ) { this.on( 'click', function(){console.log('asd');} ); } }, true);
+
 
             config.toolbarGroups = [
                 { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
