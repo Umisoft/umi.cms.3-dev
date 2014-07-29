@@ -10,31 +10,25 @@
 
 namespace umicms\project\module\structure\model\object;
 
-use umi\orm\collection\ICollectionManagerAware;
-use umi\orm\collection\TCollectionManagerAware;
 use umicms\orm\object\ICmsPage;
-use umicms\orm\object\TCmsObject;
 
 /**
  * Класс описывающий пункт меню на внутренний ресурс.
  *
- * @property string $pageRelation ссылка на страницу
+ * @property ICmsPage $pageRelation связанная страница
  */
-class MenuInternalItem extends MenuItem implements ICollectionManagerAware
+class MenuInternalItem extends MenuItem
 {
-    use TCollectionManagerAware;
-
     /**
      * Тип объекта
      */
     const TYPE = 'internalItem';
     /**
-     * Тип объекта
-     * @var string $itemType
+     * @var string $itemType тип элемента меню
      */
     protected $itemType = 'internalItem';
     /**
-     *  Имя поля для хранения ссылки на страницу сайта
+     *  Имя поля для хранения связанной страницы
      */
     const FIELD_PAGE_RELATION = 'pageRelation';
 

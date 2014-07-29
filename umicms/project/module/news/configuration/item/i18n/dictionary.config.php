@@ -12,6 +12,9 @@ use umicms\project\module\news\model\object\NewsItem;
 
 return [
         'en-US' => [
+
+            'collection:newsItem:displayName' => 'News items',
+
             NewsItem::FIELD_SUBJECTS => 'Subjects',
             NewsItem::FIELD_ANNOUNCEMENT => 'Announcement',
             NewsItem::FIELD_DATE => 'Date',
@@ -22,6 +25,8 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:newsItem:displayName' => 'Новости',
+
             NewsItem::FIELD_SUBJECTS => 'Сюжеты',
             NewsItem::FIELD_ANNOUNCEMENT => 'Анонс',
             NewsItem::FIELD_DATE => 'Дата',

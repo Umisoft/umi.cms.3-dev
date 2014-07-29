@@ -12,6 +12,8 @@ use umicms\project\module\news\model\object\NewsRssImportScenario;
 
 return [
         'en-US' => [
+            'collection:newsRssImportScenario:displayName' => 'News RSS import scenarios',
+
             NewsRssImportScenario::FIELD_RSS_URL => 'RSS feed URL',
             NewsRssImportScenario::FIELD_SUBJECTS => 'Subjects',
             NewsRssImportScenario::FIELD_RUBRIC => 'Rubric',
@@ -20,6 +22,8 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:newsRssImportScenario:displayName' => 'Сценарии импорта новостей из RSS',
+
             NewsRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
             NewsRssImportScenario::FIELD_SUBJECTS => 'Сюжеты',
             NewsRssImportScenario::FIELD_RUBRIC => 'Рубрика',

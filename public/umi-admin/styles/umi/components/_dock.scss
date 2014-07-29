@@ -11,6 +11,7 @@ $umi-dock-wrapper-height: rem-calc(48);
 .umi-dock{
     border-top: 1px solid #5c6472;
     padding: 0;
+
     .dock-wrapper{
         background-image: linear-gradient(#404959, #181b21);
         position: absolute;
@@ -18,9 +19,11 @@ $umi-dock-wrapper-height: rem-calc(48);
         z-index: 10;
         height: $umi-dock-wrapper-height;
     }
+
     .dock-wrapper-bg{
         background-image: linear-gradient(#404959, #181b21);
     }
+
     .dock{
         display: inline-block;
         vertical-align: top;
@@ -33,11 +36,13 @@ $umi-dock-wrapper-height: rem-calc(48);
         font-size: 0;
         z-index: 2;
         box-sizing: border-box;
+
         &.active{
             .umi-dock-button{
                 opacity: 1
             }
         }
+
         &:hover, &.full{
             .dock-module{
                 span{
@@ -46,19 +51,24 @@ $umi-dock-wrapper-height: rem-calc(48);
                 }
             }
         }
+
         &.full{
             + .dock-buffer{
                 display: block;
             }
         }
+
         .f-dropdown{
             padding-top: 5px;
             padding-bottom: 5px;
+
             li:nth-child(even){
                 background: #E8EDEF;
             }
+
             li:hover{
                 background: #24B3F8;
+
                 a{
                     color: #fff;
                     text-decoration: none;
@@ -76,12 +86,14 @@ $umi-dock-wrapper-height: rem-calc(48);
         opacity: 0;
         transition: opacity 0.3s linear;
         position: relative;
+
         .dock-module{
             display: block;
             font-size: 0;
             text-decoration: none;
             position: relative;
             overflow: hidden;
+
             .umi-dock-module-icon{
                 min-width: 30px;
                 height: 30px;
@@ -89,6 +101,7 @@ $umi-dock-wrapper-height: rem-calc(48);
                 background-size: 100%;
                 background-position: center center;
             }
+
             span{
                 position: absolute;
                 display: block;
@@ -101,16 +114,19 @@ $umi-dock-wrapper-height: rem-calc(48);
                 font-size: 13px;
             }
         }
+
         &:hover{
             margin-top: -1px;
             border-top: 1px solid #6d7480;
             border-left: 1px solid transparent;
             border-right: 1px solid transparent;
             background-image: linear-gradient(#535c6a, #2b2d34);
+
             span{
                 color: #FFF;
             }
         }
+
         .dock-module.active{
             position: relative;
             margin-top: -1px;
@@ -126,15 +142,18 @@ $umi-dock-wrapper-height: rem-calc(48);
         padding: 0;
         box-shadow: 0 0 4px 1px #535353;
         border: none;
+
         li{
             > span{
                 color: $body-font-color;
                 white-space: normal;
             }
+
             .active{
                 color: #fff;
                 background: $primary-color;
             }
+
             a{
                 display: block;
                 padding: 10px 20px;
@@ -153,6 +172,7 @@ $umi-dock-wrapper-height: rem-calc(48);
     bottom: -40px;
     left: 0;
     z-index: 1;
+
     &.active{
         display: block;
     }
@@ -167,8 +187,10 @@ $umi-dock-wrapper-height: rem-calc(48);
     text-align: center;
     height: $dock-components-height;
     margin-top: $umi-dock-wrapper-height;
+
     .components-nav{
         display: inline-block;
+
         a{
             height: $dock-components-height;
             line-height: $dock-components-height;
@@ -185,13 +207,16 @@ $umi-dock-wrapper-height: rem-calc(48);
             font-size: 0.9em;
             border-left: 1px solid transparent;
             border-right: 1px solid transparent;
+
             &:hover{
                 color: #575e6c;
             }
+
             &.active{
                 background: #FFFDFD;
                 color: #575e6c;
                 cursor: default;
+
                 &:before, &:after{
                     content: "";
                     position: absolute;
@@ -202,6 +227,7 @@ $umi-dock-wrapper-height: rem-calc(48);
                     left: -1px;
                     background: url($image-to-right-shadow);
                 }
+
                 &:after{
                     left: auto;
                     right: -3px;
