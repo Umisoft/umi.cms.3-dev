@@ -10,6 +10,7 @@
 
 use umi\orm\metadata\field\IField;
 use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
@@ -32,14 +33,36 @@ return array_replace_recursive(
                 'readOnly' => true
             ],
             BlogAuthor::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
+                'type' => IField::TYPE_FORMULA,
                 'columnName' => 'comments_count',
-                'defaultValue' => 0
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateCommentsCount',
+                'readOnly'     => true
+            ],
+            BlogAuthor::FIELD_COMMENTS => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'blogComment',
+                'targetField' => BlogComment::FIELD_AUTHOR,
+                'readOnly' => true
             ],
             BlogAuthor::FIELD_POSTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
+                'type' => IField::TYPE_FORMULA,
                 'columnName' => 'posts_count',
-                'defaultValue' => 0
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculatePostsCount',
+                'readOnly'     => true,
+                'localizations' => [
+                    'ru-RU' => [
+                        'columnName' => 'posts_count',
+                        'defaultValue' => 0
+                    ],
+                    'en-US' => [
+                        'columnName' => 'posts_count_en',
+                        'defaultValue' => 0
+                    ]
+                ]
             ],
             BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
@@ -58,6 +81,7 @@ return array_replace_recursive(
                     BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [],
                     BlogAuthor::FIELD_PROFILE => [],
                     BlogAuthor::FIELD_POSTS => [],
+                    BlogAuthor::FIELD_COMMENTS => [],
                     BlogAuthor::FIELD_COMMENTS_COUNT => [],
                     BlogAuthor::FIELD_POSTS_COUNT => []
                 ]
