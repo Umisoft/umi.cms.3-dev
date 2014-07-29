@@ -12,10 +12,14 @@ use umicms\project\module\service\model\object\Backup;
 
 return [
     'en-US' => [
+        'collection:serviceBackup:displayName' => 'Backups',
+
         Backup::FIELD_DATA => 'Backup'
     ],
 
     'ru-RU' => [
+        'collection:serviceBackup:displayName' => 'Резервные копии',
+
         Backup::FIELD_DATA => 'Резервная копия'
     ]
 ];

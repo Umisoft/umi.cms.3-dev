@@ -17,7 +17,7 @@ return [
         'admin' => 'service.backup',
     ],
     'dictionaries' => [
-        'collection.backup', 'collection'
+        'collection.serviceBackup', 'collection'
     ],
     'settings' => '{#partial:~/project/module/service/configuration/backup/collection.settings.config.php}'
 ];

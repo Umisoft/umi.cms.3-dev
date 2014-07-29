@@ -20,7 +20,6 @@ use umi\form\IFormEntity;
 use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umi\i18n\translator\ITranslator;
 use umi\orm\collection\ISimpleHierarchicCollection;
 use umi\orm\metadata\field\datetime\DateTimeField;
 use umi\orm\metadata\field\IField;
@@ -56,16 +55,6 @@ class ActionController extends BaseController implements IFormAware
 {
     use TActionController;
     use TFormAware;
-
-    /**
-     * @var ITranslator $translator транслятор
-     */
-    protected $translator;
-
-    public function __construct(ITranslator $translator)
-    {
-        $this->translator = $translator;
-    }
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -114,7 +103,7 @@ class ActionController extends BaseController implements IFormAware
             }
 
             $fieldName = $field->getName();
-            $label = $this->translator->translate($collection->getDictionaryNames(), $fieldName);
+            $label = $collection->translate($fieldName);
 
             $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
 
@@ -136,7 +125,7 @@ class ActionController extends BaseController implements IFormAware
 
                     $relatedFieldName = $relatedField->getName();
                     $relatedDataSource = $relatedElementName = $fieldName . '.' . $relatedFieldName;
-                    $relatedLabel = $label . ': ' . $this->translator->translate($targetCollection->getDictionaryNames(), $relatedFieldName);
+                    $relatedLabel = $label . ': ' . $targetCollection->translate($relatedFieldName);
 
                     $elements[] = $this->buildFormElement(
                         $relatedField, $targetCollection, $relatedElementName, $relatedDataSource, $relatedLabel
@@ -175,8 +164,7 @@ class ActionController extends BaseController implements IFormAware
                 $type = Select::TYPE_NAME;
                 $options['choices'] = [];
                 foreach ($collection->getMetadata()->getTypesList() as $typeName) {
-                    $options['choices'][$typeName] =
-                        $this->translator->translate($collection->getDictionaryNames(), 'type:' . $typeName . ':displayName');
+                    $options['choices'][$typeName] = $collection->translate('type:' . $typeName . ':displayName');
                 }
                 break;
             }

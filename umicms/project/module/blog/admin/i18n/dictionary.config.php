@@ -12,12 +12,6 @@ return [
 
     'en-US' => [
         'component:blog:displayName' => 'Blog',
-        'component:category:displayName' => 'Category',
-        'component:post:displayName' => 'Posts',
-        'component:author:displayName' => 'Authors',
-        'component:comment:displayName' => 'Comments',
-        'component:tag:displayName' => 'Tags',
-        'component:rss:displayName' => 'Import RSS feed',
 
         'role:categoryExecutor:displayName' => 'Categories',
         'role:postExecutor:displayName' => 'Posts',
@@ -33,12 +27,6 @@ return [
 
     'ru-RU' => [
         'component:blog:displayName' => 'Блог',
-        'component:category:displayName' => 'Категории',
-        'component:post:displayName' => 'Посты',
-        'component:author:displayName' => 'Авторы',
-        'component:comment:displayName' => 'Комментарии',
-        'component:tag:displayName' => 'Теги',
-        'component:rss:displayName' => 'Управление импортом RSS-лент',
 
         'role:categoryExecutor:displayName' => 'Категории',
         'role:postExecutor:displayName' => 'Посты',

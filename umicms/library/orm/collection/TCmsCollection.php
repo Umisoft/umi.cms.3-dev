@@ -86,6 +86,16 @@ trait TCmsCollection
     }
 
     /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
+     * @return CmsSelector|ICmsObject[]
+     */
+    public function getInternalSelector() {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::select();
+    }
+
+    /**
      * @see ICmsCollection::delete()
      */
     public function delete(IObject $object)
@@ -299,13 +309,11 @@ trait TCmsCollection
     }
 
     /**
-     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector|ICmsObject[]
+     * {@inheritdoc}
      */
-    public function getInternalSelector() {
-        /** @noinspection PhpUndefinedMethodInspection */
-        /** @noinspection PhpUndefinedClassInspection */
-        return parent::select();
+    protected function getI18nDictionaryNames()
+    {
+        return $this->getDictionaryNames();
     }
 
     /**

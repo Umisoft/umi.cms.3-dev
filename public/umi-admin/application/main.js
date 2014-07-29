@@ -15,7 +15,8 @@ define(
         'popup',
         'DS',
         'table',
-        'sideMenu'
+        'sideMenu',
+        'updateLayout'
     ],
     function(UMI){
         'use strict';

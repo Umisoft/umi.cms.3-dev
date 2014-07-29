@@ -12,6 +12,8 @@ use umicms\project\module\blog\model\object\BlogComment;
 
 return [
         'en-US' => [
+            'collection:blogComment:displayName' => 'Blog comments',
+
             BlogComment::FIELD_AUTHOR => 'Author',
             BlogComment::FIELD_POST => 'Post',
             BlogComment::FIELD_PUBLISH_TIME => 'Publish time',
@@ -20,6 +22,8 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:blogComment:displayName' => 'Комментарии блога',
+
             BlogComment::FIELD_AUTHOR => 'Автор',
             BlogComment::FIELD_POST => 'Пост',
             BlogComment::FIELD_PUBLISH_TIME => 'Дата публикации',
