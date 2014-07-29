@@ -93,7 +93,7 @@
                         <xsl:text> | </xsl:text>
                         <xsl:apply-templates select="property[@name='commentsCount']/value" mode="number"/>
                         <xsl:text> </xsl:text>
-                        <xsl:value-of select="document('translate://project.site/Comments')" />
+                        <xsl:value-of select="document('translate://project.site.blog/Comments')" />
                     </li>
                 </ul>
             </div>

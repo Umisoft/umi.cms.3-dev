@@ -28,6 +28,8 @@ return [
             'AboutUs' => 'About us',
             'Blog' => 'Blog',
             'Error' => 'Error',
+            'Share' => 'Share with friends',
+            'Most famous' => 'We are the most famous rock-group in the world',
         ],
         'ru-RU' => [
             'ru-RU' => 'РУС',
@@ -55,6 +57,8 @@ return [
             'AboutUs' => 'О нас',
             'Blog' => 'Блог',
             'Error' => 'Ошибка',
+            'Share' => 'Поделитесь с друзьями',
+            'Most famous' => 'Мы самая известная рок группа в мире',
         ]
     ],
 

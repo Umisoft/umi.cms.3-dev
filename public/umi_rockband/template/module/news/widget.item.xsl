@@ -34,8 +34,8 @@
                 </div>
             </div>
             <div class="article-content">
-                <a href="#">
-                    <img src="images/article-img.png" alt=""/>
+                <a href="{@url}">
+                    <img src="{property[@name='image']/value}" alt="{@displayName}"/>
                 </a>
                 <div class="content">
                     <xsl:value-of select="property[@name='announcement']/value" disable-output-escaping="yes"/>
@@ -67,7 +67,8 @@
     <xsl:template match="newsItem" mode="news.main.row">
         <li class="col-md-3 col-sm-6">
             <a href="{@url}">
-                <img src="{$template}/images/list-dev/1.jpg" class="img" alt=""/>
+                <img width="221" height="170" src="{property[@name='image']/value}" class="img" alt="{@displayName}"/>
+                <!--<img src="{$template}/images/list-dev/1.jpg"  alt=""/>-->
             </a>
             <a href="{@url}" class="title">
                 <xsl:value-of select="@displayName" disable-output-escaping="yes" />
