@@ -9,6 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -27,7 +28,10 @@ return array_replace_recursive(
                 'type' => IField::TYPE_BELONGS_TO,
                 'mutator' => 'setStatus',
                 'columnName' => 'status_id',
-                'target' => 'blogPostStatus'
+                'target' => 'blogPostStatus',
+                'validators'    => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             BlogPost::FIELD_ANNOUNCEMENT => [
                 'type' => IField::TYPE_TEXT,

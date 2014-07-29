@@ -8,11 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
-
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'handlers' => [
-        'admin' => 'blog.poststatus'
+
+    'en-US' => [
+        'role:editor:displayName' => 'Manage post statuses'
+    ],
+
+    'ru-RU' => [
+        'role:editor:displayName' => 'Управление статусами постов'
     ]
+
 ];

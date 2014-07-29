@@ -20,19 +20,19 @@ class PostStatus extends CmsObject
     /**
      * GUID для статуса "Черновик"
      */
-    const GUID_DRAFT = 'draft';
+    const GUID_DRAFT = 'f13d7eaa-54bc-4b5a-8a68-721221fa4191';
     /**
      * GUID для статуса "Опубликован"
      */
-    const GUID_PUBLISHED = 'published';
+    const GUID_PUBLISHED = '26b45376-edca-4e0a-982c-e4d956d9212d';
     /**
      * GUID для статуса "Отклонен"
      */
-    const GUID_REJECTED = 'rejected';
+    const GUID_REJECTED = '74d25bd8-c025-4438-bb42-86aa4f47ac1c';
     /**
      * GUID для статуса "Требует модерации"
      */
-    const GUID_NEED_MODERATION = 'moderation';
+    const GUID_NEED_MODERATION = '25ad8b79-bceb-4330-92c5-f3a65667c3c3';
 
 }
  

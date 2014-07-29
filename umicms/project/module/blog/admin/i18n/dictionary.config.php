@@ -24,9 +24,11 @@ return [
         'role:authorExecutor:displayName' => 'Authors',
         'role:commentExecutor:displayName' => 'Comments',
         'role:tagExecutor:displayName' => 'Tags',
-        'role:posttagExecutor:displayName' => 'Manage posts-tags relation',
-        'role:rsstagExecutor:displayName' => 'Manage RSS-tags relation',
+        'role:posttagExecutor:displayName' => 'Posts-tags relation',
+        'role:rsstagExecutor:displayName' => 'RSS imports-tags relation',
         'role:rssExecutor:displayName' => 'Import RSS',
+        'role:poststatusExecutor:displayName' => 'Post statuses',
+        'role:commentstatusExecutor:displayName' => 'Comment statuses',
     ],
 
     'ru-RU' => [
@@ -43,9 +45,11 @@ return [
         'role:authorExecutor:displayName' => 'Авторы',
         'role:commentExecutor:displayName' => 'Комментарии',
         'role:tagExecutor:displayName' => 'Теги',
-        'role:posttagExecutor:displayName' => 'Управление связью посты-теги',
-        'role:rsstagExecutor:displayName' => 'Управление связью RSS-теги',
-        'role:rssExecutor:displayName' => 'Управление импортом RSS-лент',
+        'role:posttagExecutor:displayName' => 'Cвязь посты-теги',
+        'role:rsstagExecutor:displayName' => 'Cвязь сценарии импорта RSS-теги',
+        'role:rssExecutor:displayName' => 'Импорт RSS-лент',
+        'role:poststatusExecutor:displayName' => 'Статусы постов',
+        'role:commentstatusExecutor:displayName' => 'Статусы комментариев',
     ]
 
 ];

@@ -15,7 +15,9 @@ return array_replace_recursive(
             'sourceName' => 'blog_post_status'
         ],
         'types' => [
-            'objectClass' => 'umicms\project\module\blog\model\object\PostStatus'
+            'base' => [
+                'objectClass' => 'umicms\project\module\blog\model\object\PostStatus'
+            ]
         ]
     ]
 );

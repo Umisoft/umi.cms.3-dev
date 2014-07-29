@@ -19,6 +19,7 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IPropertyFactory;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -166,10 +167,20 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Возвращает URL поста.
      * @param bool $isAbsolute абсолютный ли URL
+     * @throws RuntimeException если невозможно определить сайтовый компонент-обработчик
      * @return string
      */
     public function getPageUrl($isAbsolute = false)
     {
+        if (!$this->status instanceof PostStatus) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot detect handler for blog post with guid "{guid}". Status is unknown.',
+                    ['guid' => $this->guid]
+                )
+            );
+        }
+
         switch ($this->status->guid) {
             case PostStatus::GUID_DRAFT : {
                 $handler = BlogPostCollection::HANDLER_DRAFT;
@@ -238,7 +249,7 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     public function isInIndex()
     {
-        return ($this->status->guid === PostStatus::GUID_PUBLISHED) && $this->active && !$this->trashed;
+        return $this->status && ($this->status->guid === PostStatus::GUID_PUBLISHED) && $this->active && !$this->trashed;
     }
 
     /**
