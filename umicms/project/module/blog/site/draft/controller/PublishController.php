@@ -65,7 +65,7 @@ class PublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->publishStatus = BlogPost::POST_STATUS_PUBLISHED;
+        $this->blogDraft->status = BlogPost::POST_STATUS_PUBLISHED;
         $this->commit();
     }
 }

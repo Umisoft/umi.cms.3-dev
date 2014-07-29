@@ -131,9 +131,11 @@ define(
                     var data = {
                         'close': true,
                         'title': error.status + '. ' + error.statusText,
-                        'content': message
+                        'content': message,
+                        'duration': false,
+                        'type': 'error'
                     };
-                    UMI.dialog.open(data).then();
+                    UMI.notification.create(data);
                 }
             }
         });
@@ -429,6 +431,8 @@ define(
                 return serialized;
             }
         });
+
+        UMI.ObjectRelationTransform = UMI.SerializedTransform.extend({});
 
         /**
          * Позволяет незарегестрированным типам полей объектов отрабатывать в системе без ошибок (просто возвращает это поле)

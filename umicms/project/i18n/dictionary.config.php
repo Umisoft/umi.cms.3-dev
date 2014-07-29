@@ -64,6 +64,8 @@ return [
     'project.admin.rest.blog.tag' => '{#lazy:~/project/module/blog/admin/tag/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
+    'project.admin.rest.blog.poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/i18n/dictionary.config.php}',
+    'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
@@ -228,11 +230,14 @@ return [
 
     'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
     'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
+    'collection.userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/i18n/dictionary.config.php}',
 
     'collection.newsItem' => '{#lazy:~/project/module/news/configuration/item/i18n/dictionary.config.php}',
     'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
     'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
     'collection.newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
+    'collection.rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/i18n/dictionary.config.php}',
+    'collection.newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/i18n/dictionary.config.php}',
 
     'collection.blogCategory' => '{#lazy:~/project/module/blog/configuration/category/i18n/dictionary.config.php}',
     'collection.blogPost' => '{#lazy:~/project/module/blog/configuration/post/i18n/dictionary.config.php}',
@@ -240,10 +245,18 @@ return [
     'collection.blogComment' => '{#lazy:~/project/module/blog/configuration/comment/i18n/dictionary.config.php}',
     'collection.blogTag' => '{#lazy:~/project/module/blog/configuration/tag/i18n/dictionary.config.php}',
     'collection.blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/i18n/dictionary.config.php}',
+    'collection.blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/i18n/dictionary.config.php}',
+    'collection.rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/i18n/dictionary.config.php}',
+    'collection.blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/i18n/dictionary.config.php}',
+    'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
     'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
+
+    'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
+
+    'collection.serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/i18n/dictionary.config.php}',
 ];

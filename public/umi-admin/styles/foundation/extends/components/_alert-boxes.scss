@@ -41,6 +41,8 @@ $umi-alert-wrapper-index: 1000;
     right: rem-calc(10);
     top: rem-calc(35);
     width: 340px;
+    white-space: normal;
+
     .alert-box{
         margin-bottom: .6rem;
         &-close-all{

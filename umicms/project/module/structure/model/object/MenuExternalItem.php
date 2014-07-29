@@ -28,8 +28,7 @@ class MenuExternalItem extends MenuItem
      */
     const FIELD_RESOURCE_URL = 'resourceUrl';
     /**
-     * Тип объекта
-     * @var string $itemType
+     * @var string $itemType тип элемента меню
      */
     protected $itemType = 'externalItem';
 

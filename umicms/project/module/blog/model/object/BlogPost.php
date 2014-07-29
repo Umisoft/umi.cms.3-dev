@@ -19,6 +19,7 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IPropertyFactory;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -30,17 +31,16 @@ use umicms\project\module\users\model\UsersModule;
 
 /**
  * Пост блога.
- *
+
  * @property string $contentsRaw необработанный контент поста
  * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
  * @property IManyToManyObjectSet $tags теги, к которым относится пост
  * @property DateTime $publishTime дата публикации поста
- * @property string $publishStatus статус публикации поста
+ * @property PostStatus $status статус публикации поста
  * @property IObjectSet $comments комментарии
  * @property int $commentsCount количество комментариев к посту
- * @property string $oldUrl старый URL поста
  * @property string $source источник поста
  */
 class BlogPost extends CmsObject implements ICmsPage
@@ -74,7 +74,7 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Имя поля для хранения статуса публикации поста
      */
-    const FIELD_PUBLISH_STATUS = 'publishStatus';
+    const FIELD_STATUS = 'status';
     /**
      * Имя поля для хранения количества комментариев к посту
      */
@@ -167,20 +167,30 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Возвращает URL поста.
      * @param bool $isAbsolute абсолютный ли URL
+     * @throws RuntimeException если невозможно определить сайтовый компонент-обработчик
      * @return string
      */
     public function getPageUrl($isAbsolute = false)
     {
-        switch ($this->publishStatus) {
-            case self::POST_STATUS_DRAFT : {
+        if (!$this->status instanceof PostStatus) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot detect handler for blog post with guid "{guid}". Status is unknown.',
+                    ['guid' => $this->guid]
+                )
+            );
+        }
+
+        switch ($this->status->guid) {
+            case PostStatus::GUID_DRAFT : {
                 $handler = BlogPostCollection::HANDLER_DRAFT;
                 break;
             }
-            case self::POST_STATUS_REJECTED : {
+            case PostStatus::GUID_REJECTED: {
                 $handler = BlogPostCollection::HANDLER_REJECT;
                 break;
             }
-            case self::POST_STATUS_NEED_MODERATE : {
+            case PostStatus::GUID_NEED_MODERATION : {
                 if ($this->usersModule->getCurrentUser() === $this->author->profile) {
                     $handler = BlogPostCollection::HANDLER_MODERATE_OWN;
                 } else {
@@ -239,7 +249,7 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     public function isInIndex()
     {
-        return ($this->publishStatus === self::POST_STATUS_PUBLISHED) && $this->active && !$this->trashed;
+        return $this->status && ($this->status->guid === PostStatus::GUID_PUBLISHED) && $this->active && !$this->trashed;
     }
 
     /**
@@ -247,9 +257,9 @@ class BlogPost extends CmsObject implements ICmsPage
      * @param string|null $value статус публикации
      * @return $this
      */
-    public function setPublishStatus($value)
+    public function setStatus($value)
     {
-        $publishStatusProperty = $this->getProperty(self::FIELD_PUBLISH_STATUS);
+        $publishStatusProperty = $this->getProperty(self::FIELD_STATUS);
         $publishStatusProperty->setValue($value);
 
         if ($publishStatusProperty->getIsModified()) {
@@ -259,17 +269,6 @@ class BlogPost extends CmsObject implements ICmsPage
         }
 
         return $this;
-    }
-
-    /**
-     * Возвращает локализованное значение статуса публикации.
-     * @return string
-     */
-    public function getPublishStatus()
-    {
-        return $this->translate(
-            $this->getProperty(self::FIELD_PUBLISH_STATUS)->getValue()
-        );
     }
 
     /**
@@ -326,7 +325,8 @@ class BlogPost extends CmsObject implements ICmsPage
             ->fields([BlogComment::FIELD_IDENTIFY])
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($this)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(BlogComment::COMMENT_STATUS_PUBLISHED)
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
+                ->equals(CommentStatus::GUID_PUBLISHED)
             ->where(BlogComment::FIELD_TRASHED)->equals(false)
             ->getTotal();
     }

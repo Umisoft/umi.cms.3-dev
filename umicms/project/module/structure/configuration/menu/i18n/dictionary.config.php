@@ -14,6 +14,8 @@ use umicms\project\module\structure\model\object\MenuInternalItem;
 return [
     'en-US' => [
 
+        'collection:menu:displayName' => 'Menu',
+
         MenuInternalItem::FIELD_PAGE_RELATION => 'Page link',
 
         'type:menu:displayName' => 'Menu',
@@ -25,6 +27,8 @@ return [
     ],
 
     'ru-RU' => [
+
+        'collection:menu:displayName' => 'Меню',
 
         MenuInternalItem::FIELD_PAGE_RELATION => 'Ссылка на страницу',
 

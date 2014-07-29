@@ -65,7 +65,7 @@ class SendToModerationController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogPost->publishStatus = BlogPost::POST_STATUS_NEED_MODERATE;
+        $this->blogPost->status = BlogPost::POST_STATUS_NEED_MODERATE;
         $this->commit();
     }
 }
