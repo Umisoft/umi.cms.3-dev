@@ -17,6 +17,7 @@ use umi\orm\object\IObject;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -32,7 +33,10 @@ use umicms\project\module\blog\model\object\BlogPost;
  */
 class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {
-    use TRecyclableCollection;
+    use TRecyclableCollection {
+        TRecyclableCollection::trash as protected trashInternal;
+        TRecyclableCollection::untrash as protected untrashInternal;
+    }
 
     /**
      * {@inheritdoc}
@@ -47,14 +51,50 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
      */
     public function delete(IObject $object)
     {
-        if ($object instanceof BlogComment && $object->publishStatus === BlogComment::COMMENT_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
-            $object->author->decrementCommentCount();
+        if ($object instanceof BlogComment) {
+            if ($object->author instanceof BlogAuthor) {
+                $object->author->recalculateCommentsCount();
+            }
             if ($object->post instanceof BlogPost) {
-                $object->post->decrementCommentCount();
+                $object->post->recalculateCommentsCount();
             }
         }
 
-        parent::delete($object);
+        return parent::delete($object);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function trash(IRecyclableObject $object)
+    {
+        if ($object instanceof BlogComment) {
+            if ($object->author instanceof BlogAuthor) {
+                $object->author->recalculateCommentsCount();
+            }
+            if ($object->post instanceof BlogPost) {
+                $object->post->recalculateCommentsCount();
+            }
+        }
+
+        return $this->trashInternal($object);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function untrash(IRecyclableObject $object)
+    {
+        if ($object instanceof BlogComment) {
+            if ($object->author instanceof BlogAuthor) {
+                $object->author->recalculateCommentsCount();
+            }
+            if ($object->post instanceof BlogPost) {
+                $object->post->recalculateCommentsCount();
+            }
+        }
+
+        return $this->untrashInternal($object);
     }
 }
  

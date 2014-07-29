@@ -70,10 +70,10 @@ class AddController extends BaseSitePageController
 
         if ($this->isAllowed($comment, 'publish')) {
             $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;
-            $comment->publish();
+            $comment->publishStatus = BlogComment::COMMENT_STATUS_PUBLISHED;
         } else {
             $this->added = BlogComment::COMMENT_STATUS_NEED_MODERATE;
-            $comment->needModerate();
+            $comment->publishStatus = BlogComment::COMMENT_STATUS_NEED_MODERATE;
         }
 
         return $this->module->comment()->getForm(

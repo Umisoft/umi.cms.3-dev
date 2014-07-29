@@ -39,7 +39,7 @@ class Rule
     {
         foreach ($this->rules as $rule) {
             if (!extension_loaded($rule)) {
-                throw new RuntimeException($rule . ' обязателено для системы.');
+                throw new RuntimeException('Расширение "' . $rule . '" обязателено для системы.');
             }
         }
     }
