@@ -108,6 +108,20 @@ return array (
         0 => 'string',
         1 => 'We need to go deeper!',
       ),
+      'status' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
+      ),
     ),
   ),
   1 => 
@@ -301,6 +315,20 @@ return array (
         0 => 'string',
         1 => 'Subcomment for comment with content',
       ),
+      'status' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
+      ),
     ),
   ),
   3 => 
@@ -385,6 +413,20 @@ return array (
       array (
         0 => 'string',
         1 => 'Comment content number two',
+      ),
+      'status' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),

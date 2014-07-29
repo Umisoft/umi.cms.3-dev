@@ -420,12 +420,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;amp;amp;laquo;Рок-Футбол&amp;amp;amp;raquo;',
+        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;amp;amp;amp;laquo;Рок-Футбол&amp;amp;amp;amp;raquo;',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'So ended the second football-music festival &amp;quot;Rock-Football&amp;quot;.',
+        1 => 'So ended the second football-music festival &amp;amp;quot;Rock-Football&amp;amp;quot;.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -591,12 +591,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;amp;amp;#039;easter',
+        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;amp;amp;amp;#039;easter',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor&amp;#039;easter',
+        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor&amp;amp;#039;easter',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -757,7 +757,7 @@ return array (
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
       ),
       'metaDescription#ru-RU' => 
       array (
@@ -767,7 +767,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -787,7 +787,7 @@ return array (
       'h1#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;ldquo;Summer Tour&amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
       ),
       'contents#ru-RU' => 
       array (
@@ -923,22 +923,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;amp;rdquo;',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;quot;Open Your Heart&amp;amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;amp;quot;Open Your Heart&amp;amp;amp;quot;',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;rdquo; - любовь во всей нашей музыке',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;amp;rdquo; - любовь во всей нашей музыке',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;quot;Open Your Heart&amp;amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;amp;quot;Open Your Heart&amp;amp;amp;quot;',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -953,7 +953,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;rdquo;',
       ),
       'h1#en-US' => 
       array (
@@ -1096,7 +1096,7 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;amp;amp;amp;ndash; Аляска 2014',
       ),
       'metaTitle#en-US' => 
       array (
@@ -1106,7 +1106,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Заплыв &amp;amp;amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;amp;amp;quot;',
+        1 => 'Заплыв &amp;amp;amp;amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;amp;amp;amp;quot;',
       ),
       'metaDescription#en-US' => 
       array (
@@ -1126,7 +1126,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;amp;amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;amp;amp;amp;amp;ndash; Аляска 2014',
       ),
       'h1#en-US' => 
       array (

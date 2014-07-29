@@ -81,7 +81,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'In my videoblog i&amp;#039;m going to talk about rock',
+        1 => 'In my videoblog i&amp;amp;#039;m going to talk about rock',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -516,7 +516,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Russian Rock. Yes, it&amp;#039;s true.',
+        1 => 'Russian Rock. Yes, it&amp;amp;#039;s true.',
       ),
       'metaKeywords#ru-RU' => 
       array (
