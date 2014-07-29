@@ -432,7 +432,25 @@ define(
             }
         });
 
-        UMI.ObjectRelationTransform = UMI.SerializedTransform.extend({});
+        UMI.ObjectRelationTransform = UMI.SerializedTransform.extend({
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                        serialized = {
+                            collection: serialized.collection ? serialized.collection : Ember.get(serialized, 'meta.collectionName'),
+                            guid: serialized.guid
+                        };
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
+                    }
+                } else{
+                    serialized = [];
+                }
+                return serialized;
+            }
+        });
 
         /**
          * Позволяет незарегестрированным типам полей объектов отрабатывать в системе без ошибок (просто возвращает это поле)
