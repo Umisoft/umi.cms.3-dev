@@ -11,5 +11,7 @@ return [
         'rss' => '~/project/module/blog/configuration/rss',
         'rsstag' => '~/project/module/blog/configuration/rsstag',
         'tag' => '~/project/module/blog/configuration/tag',
+        'poststatus' => '~/project/module/blog/configuration/poststatus',
+        'commentstatus' => '~/project/module/blog/configuration/commentstatus',
     ]
 ];

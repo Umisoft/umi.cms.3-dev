@@ -2,9 +2,11 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogComment $blogComment
  */
+use umicms\project\module\blog\model\object\CommentStatus;
+
 ?>
 <div class="media-body">
-    <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_UNPUBLISHED) : ?>
+    <?php if ($blogComment->status->guid == CommentStatus::GUID_UNPUBLISHED) : ?>
         <?= $this->translate('Comment has been unpublish.') ?>
     <?php else : ?>
         <h1><?= $blogComment->displayName ?></h1>
@@ -15,14 +17,14 @@
         <?php endif; ?>
         <?= $blogComment->contents ?>
 
-        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
+        <?php if ($blogComment->status->guid == CommentStatus::GUID_NEED_MODERATION) : ?>
             <div class="btn-toolbar">
                 <?= $this->widget('blog.comment.publishForm', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
                 <?= $this->widget('blog.comment.rejectForm', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_PUBLISHED) : ?>
+        <?php if ($blogComment->status->guid == CommentStatus::GUID_PUBLISHED) : ?>
             <div class="btn-toolbar">
                 <?= $this->widget('blog.comment.unpublishForm', ['blogComment' => $blogComment, 'template' => 'unpublishForm']); ?>
             </div>

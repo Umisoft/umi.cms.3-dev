@@ -11,10 +11,12 @@
 return [
 
     'en-US' => [
+        'collection:robots:displayName' => 'Pages forbidden for indexing',
         'pageRelation' => 'Page link',
     ],
 
     'ru-RU' => [
+        'collection:robots:displayName' => 'Запрещенные к индексации страницы',
         'pageRelation' => 'Ссылка на страницу',
     ]
 

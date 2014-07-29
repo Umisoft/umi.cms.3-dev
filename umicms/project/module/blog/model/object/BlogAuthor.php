@@ -118,9 +118,12 @@ class BlogAuthor extends CmsObject implements ICmsPage
         return $commentCollection->getInternalSelector()
             ->fields([BlogComment::FIELD_IDENTIFY])
             ->types([BlogComment::TYPE . '*'])
-            ->where(BlogComment::FIELD_AUTHOR)->equals($this)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(BlogComment::COMMENT_STATUS_PUBLISHED)
-            ->where(BlogComment::FIELD_TRASHED)->equals(false)
+            ->where(BlogComment::FIELD_AUTHOR)
+                ->equals($this)
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
+                ->equals(CommentStatus::GUID_PUBLISHED)
+            ->where(BlogComment::FIELD_TRASHED)
+                ->equals(false)
             ->getTotal();
     }
 
@@ -157,10 +160,14 @@ class BlogAuthor extends CmsObject implements ICmsPage
 
         return $postCollection->getInternalSelector()
             ->fields([BlogPost::FIELD_IDENTIFY])
-            ->where(BlogPost::FIELD_AUTHOR)->equals($this)
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED)
-            ->where(BlogPost::FIELD_ACTIVE, $localeId)->equals(true)
-            ->where(BlogPost::FIELD_TRASHED)->equals(false)
+            ->where(BlogPost::FIELD_AUTHOR)
+                ->equals($this)
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED)
+            ->where(BlogPost::FIELD_ACTIVE, $localeId)
+                ->equals(true)
+            ->where(BlogPost::FIELD_TRASHED)
+                ->equals(false)
             ->getTotal();
     }
 }

@@ -91,7 +91,7 @@ define([], function(){
                 var self = this;
                 var deferred = Ember.RSVP.defer();
                 try{
-                    params.object.validateObject();
+                    params.object.validateObject(Ember.get(params, 'fields'));
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -252,13 +252,25 @@ define([], function(){
                     }
                 },
 
-                showPopup: function(popupType, object, meta){
-                    UMI.PopupView.create({
-                        container: this.container,
-                        popupType: popupType,
-                        object: object,
-                        meta: meta
-                    }).append();
+                showPopup: function(params){
+                    Ember.warn('Param "popupType" is required for create popup.', Ember.get(params, 'viewParams.popupType'));
+                    var controller = this.controllerFor('popup');
+                    if(Ember.typeOf(params) === 'object'){
+                        controller.setProperties(params);
+                    }
+                    return this.render('popup', {
+                        into: 'application',
+                        outlet: 'popup',
+                        controller: controller
+                    });
+                },
+
+                closePopup: function(){
+                    this.container.lookup('view:popup').removeBlur();//TODO: incapsulate call method in view
+                    return this.disconnectOutlet({
+                        outlet: 'popup',
+                        parentView: 'application'
+                    });
                 },
 
                 /// global actions

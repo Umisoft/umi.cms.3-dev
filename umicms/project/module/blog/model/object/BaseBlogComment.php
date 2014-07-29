@@ -20,7 +20,7 @@ use umicms\orm\object\CmsHierarchicObject;
  * @property BlogPost $post пост, к которому относится комментарий
  * @property DateTime $publishTime дата и время публикации комментария
  */
-abstract class BlogBaseComment extends CmsHierarchicObject implements IRecyclableObject
+abstract class BaseBlogComment extends CmsHierarchicObject implements IRecyclableObject
 {
     /**
      * Имя поля для хранения поста, к которому относится комментарий

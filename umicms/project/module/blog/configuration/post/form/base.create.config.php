@@ -134,6 +134,14 @@ return [
                         'dataSource' => BlogPost::FIELD_PUBLISH_TIME
                     ]
                 ],
+                BlogPost::FIELD_STATUS => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogPost::FIELD_STATUS,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogPost::FIELD_STATUS
+                    ]
+                ],
                 BlogPost::FIELD_ANNOUNCEMENT => [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogPost::FIELD_ANNOUNCEMENT,

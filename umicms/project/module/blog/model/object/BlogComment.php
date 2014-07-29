@@ -15,9 +15,9 @@ namespace umicms\project\module\blog\model\object;
  *
  * @property BlogAuthor $author автор поста
  * @property string $contents комментарий
- * @property string $publishStatus статус публикации комментария
+ * @property CommentStatus $status статус публикации комментария
  */
-class BlogComment extends BlogBaseComment
+class BlogComment extends BaseBlogComment
 {
     /**
      * Тип объекта
@@ -38,7 +38,7 @@ class BlogComment extends BlogBaseComment
     /**
      * Имя поля для хранения статуса публикации комментария
      */
-    const FIELD_PUBLISH_STATUS = 'publishStatus';
+    const FIELD_STATUS = 'status';
     /**
      * Форма добавления комментария
      */
@@ -55,22 +55,6 @@ class BlogComment extends BlogBaseComment
      * Форма снятия с публикации
      */
     const FORM_UNPUBLISH_COMMENT = 'unpublish';
-    /**
-     * Статус комментария: опубликован
-     */
-    const COMMENT_STATUS_PUBLISHED = 'published';
-    /**
-     * Статус комментария: отклонен
-     */
-    const COMMENT_STATUS_REJECTED = 'rejected';
-    /**
-     * Статус комментария: снят с публикации
-     */
-    const COMMENT_STATUS_UNPUBLISHED = 'unpublished';
-    /**
-     * Статус комментария: требует модерации
-     */
-    const COMMENT_STATUS_NEED_MODERATE = 'moderate';
 
     /**
      * Мутатор для контентного поля.
@@ -104,7 +88,7 @@ class BlogComment extends BlogBaseComment
      */
     public function setStatus($value)
     {
-        $publishStatusProperty = $this->getProperty(self::FIELD_PUBLISH_STATUS);
+        $publishStatusProperty = $this->getProperty(self::FIELD_STATUS);
         $publishStatusProperty->setValue($value);
 
         if ($publishStatusProperty->getIsModified()) {

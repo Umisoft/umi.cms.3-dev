@@ -14,5 +14,8 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'news.rsssubject'
-    ]
+    ],
+    'dictionaries' => [
+        'collection.rssScenarioSubject', 'collection'
+    ],
 ];
