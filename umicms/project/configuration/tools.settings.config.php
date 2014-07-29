@@ -228,5 +228,4 @@ return [
 
     SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
 
-
 ];

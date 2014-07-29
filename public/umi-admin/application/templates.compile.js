@@ -187,6 +187,18 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["UMI/update"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "updateLayout", {hash:{
+    'data': ("model")
+  },hashTypes:{'data': "ID"},hashContexts:{'data': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  
+});
+
 Ember.TEMPLATES["UMI/errors"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -2491,6 +2503,52 @@ function program1(depth0,data) {
   stack1 = helpers.each.call(depth0, "view.collection", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </ul> </div> </div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["UMI/partials/updateLayout"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, helper, options;
+  data.buffer.push(" <h5>");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Latest version", "updateLayout", options) : helperMissing.call(depth0, "i18n", "Latest version", "updateLayout", options))));
+  data.buffer.push(" ");
+  stack1 = helpers._triageMustache.call(depth0, "view.data.control.params.latestVersion.version", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</h5> <br /> <span class=\"button large\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "update", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">");
+  stack1 = helpers._triageMustache.call(depth0, "view.buttonLabel", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</span> ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push(" <br /> <span class=\"button large disabled\">");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Nothing update", "updateLayout", options) : helperMissing.call(depth0, "i18n", "Nothing update", "updateLayout", options))));
+  data.buffer.push("</span> ");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"columns small-12\"> <div class=\"umi-update-layout\"> <span class=\"icon icon-butterfly umi-update-layout-logo\"></span> <span class=\"umi-update-layout-content\"> <h2>UMI.CMS Lite</h2> <h5>");
+  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Current version", "updateLayout", options) : helperMissing.call(depth0, "i18n", "Current version", "updateLayout", options))));
+  data.buffer.push(" ");
+  stack1 = helpers._triageMustache.call(depth0, "view.data.control.params.currentVersion.version", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</h5> ");
+  stack1 = helpers['if'].call(depth0, "view.data.control.params.latestVersion", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </span> </div> </div>");
   return buffer;
   
 });

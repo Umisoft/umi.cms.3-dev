@@ -1,0 +1,16 @@
+.umi-update-layout{
+    padding: 20px 0;
+    text-align: center;
+
+    &-logo{
+        margin-top: 5px;
+        width: 139px;
+        height: 140px;
+    }
+
+    &-content{
+        display: inline-block;
+        text-align: left;
+        margin-left: rem-calc(20);
+    }
+}

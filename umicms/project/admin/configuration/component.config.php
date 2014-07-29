@@ -29,7 +29,7 @@ return [
     AdminApplication::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php'
+        'directories' => dirname(__DIR__) . '/template/php'
     ],
 
     AdminApplication::OPTION_ACL => [
