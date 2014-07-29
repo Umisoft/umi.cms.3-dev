@@ -25,6 +25,8 @@ return [
         'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}',
         'posttag' => '{#lazy:~/project/module/blog/admin/posttag/component.config.php}',
         'rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/component.config.php}',
+        'poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/component.config.php}',
+        'commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
