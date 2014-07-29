@@ -319,7 +319,7 @@ function program2(depth0,data) {
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "close", "model", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push(" class=\"close\">&times;</a> ");
+  data.buffer.push(" class=\"close\"><i class=\"icon white icon-close\"></i></a> ");
   return buffer;
   }
 
@@ -807,18 +807,31 @@ function program7(depth0,data) {
 Ember.TEMPLATES["UMI/partials/objectRelationElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
-
-  data.buffer.push("<div class=\"small-2 columns umi-columns-fixed small-2-right\"> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> <li> <span class=\"button flat white square\" ");
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" <li> <span class=\"button flat white square\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> </span> </span> </div> <div class=\"small-10 columns\"> ");
+  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> ");
+  return buffer;
+  }
+
+  data.buffer.push("<div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":small-2 :columns :umi-columns-fixed view.value:small-2-right:small-1-right")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> ");
+  stack1 = helpers['if'].call(depth0, "view.value", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </span> </span> </div> <div class=\"small-10 columns\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.inputView", {hash:{
     'object': ("view.object"),
     'meta': ("view.meta")
@@ -1460,7 +1473,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "closePopup", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("> <i class=\"icon white icon-delete\"></i> </a> </div> <div class=\"umi-popup-content\"> ");
+  data.buffer.push("> <i class=\"icon white icon-close\"></i> </a> </div> <div class=\"umi-popup-content\"> ");
   stack1 = helpers._triageMustache.call(depth0, "yield", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> <div class=\"umi-popup-resizer\"></div>");

@@ -1,4 +1,4 @@
-<div class="small-2 columns umi-columns-fixed small-2-right">
+<div {{bind-attr class=":small-2 :columns :umi-columns-fixed view.value:small-2-right:small-1-right"}}>
     <span class="postfix">
         <span class="button-group">
             <li>
@@ -6,11 +6,13 @@
                 <i class="icon icon-open-folder"></i>
                 </span>
             </li>
-            <li>
-                <span class="button flat white square" {{action "clearValue" target="view"}}>
-                    <i class="icon icon-delete"></i>
-                </span>
-            </li>
+            {{#if view.value}}
+                <li>
+                    <span class="button flat white square" {{action "clearValue" target="view"}}>
+                        <i class="icon icon-delete"></i>
+                    </span>
+                </li>
+            {{/if}}
         </span>
     </span>
 </div>
