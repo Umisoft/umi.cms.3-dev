@@ -86,12 +86,6 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
     public function getHandlerPath($applicationName);
 
     /**
-     * Возвращает список компонентов-обработчиков.
-     * @return array
-     */
-    public function getHandlerList();
-
-    /**
      * Проверяет, есть ли обработчик у коллекции для указанного приложения.
      * @param string $applicationName имя приложения
      * @return bool

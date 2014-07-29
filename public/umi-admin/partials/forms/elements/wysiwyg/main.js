@@ -5,21 +5,31 @@ define(['App'], function(UMI){
         UMI.HtmlEditorView = Ember.View.extend({
             classNames: ['ckeditor-row'],
 
+            ckeditor: null,
+
             template: function(){
                 var textarea = '{{textarea value=view.meta.attributes.value placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
                 return Ember.Handlebars.compile(textarea);
             }.property(),
 
             didInsertElement: function(){
+                var config = UMI.config.CkEditor();
                 var self = this;
                 var el = this.$().children('textarea');
-                el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id);
+                el.css({'height': config.height});
+                var editor = CKEDITOR.replace(el[0].id, config);
+                self.set('ckeditor', editor);
+            },
+
+            willDestroyElement: function(){
+                this.get('ckeditor').destroy();
             }
         });
 
         UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.InputValidate, {
             classNames: ['ckeditor-row'],
+
+            ckeditor: null,
 
             textareaId: function(){
                 return 'textarea-' + this.get('elementId');
@@ -32,6 +42,9 @@ define(['App'], function(UMI){
             }.property(),
 
             setTextareaValue: function(edit){
+                if(this.get('isDestroying') || this.get('isDestroyed')){
+                    return;
+                }
                 if(this.$() && this.$().children('textarea').length){
                     var value = this.get('object.' + this.get('meta.dataSource'));
                     if(edit && edit.getData() !== value){
@@ -48,27 +61,32 @@ define(['App'], function(UMI){
             },
 
             didInsertElement: function(){
-                var self = this;
-                var el = this.$().children('textarea');
-                el.css({'height': 306});
-                var edit = CKEDITOR.replace(el[0].id);
+                Ember.run.next(this, function(){
+                    var self = this;
+                    var config = UMI.config.CkEditor();
+                    var el = this.$().children('textarea');
+                    el.css({'height': config.height});
+                    var editor = CKEDITOR.replace(el[0].id, config);
+                    self.set('ckeditor', editor);
 
-                edit.on('blur', function(event){
-                    Ember.run.once(self, 'updateContent', event, edit);
-                });
+                    editor.on('blur', function(event){
+                        Ember.run.once(self, 'updateContent', event, editor);
+                    });
 
-                edit.on('key', function(event){// TODO: Это событие было добавлено только из-за того, что событие save срабатывает быстрее blur. Кажется можно сделать лучше.
-                    Ember.run.once(self, 'updateContent', event, edit);
-                });
+                    editor.on('key', function(event){// TODO: Это событие было добавлено только из-за того, что событие save срабатывает быстрее blur. Кажется можно сделать лучше.
+                        Ember.run.once(self, 'updateContent', event, editor);
+                    });
 
-                self.addObserver('object.' + self.get('meta.dataSource'), function(){
-                    Ember.run.once(self, 'setTextareaValue', edit);
+                    self.addObserver('object.' + self.get('meta.dataSource'), function(){
+                        Ember.run.next(self, 'setTextareaValue', editor);
+                    });
                 });
             },
 
             willDestroyElement: function(){
                 var self = this;
                 self.removeObserver('object.' + self.get('meta.dataSource'));
+                self.get('ckeditor').destroy();
             }
         });
     };

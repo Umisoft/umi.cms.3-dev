@@ -11,12 +11,13 @@
 namespace umicms\orm\collection;
 
 use umi\orm\collection\SimpleHierarchicCollection;
-use umi\orm\metadata\field\special\MaterializedPathField;
-use umicms\exception\InvalidArgumentException;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\IHierarchicObject;
+use umi\orm\object\IObject;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\selector\CmsSelector;
 
 /**
  * {@inheritdoc}
@@ -26,60 +27,46 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     use TCmsCollection;
 
     /**
-     * Возвращает селектор для выбора дочерних объектов для указанного.
-     * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
-     * @return CmsSelector
+     * {@inheritdoc}
      */
-    public function selectChildren(CmsHierarchicObject $object = null)
+    public function add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
     {
-        return $this->select()
-            ->where(CmsHierarchicObject::FIELD_PARENT)->equals($object)
-            ->orderBy(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
-            ->orderBy(CmsHierarchicObject::FIELD_ORDER);
+        if ($branch) {
+            /**
+             * @var ICalculableProperty $siteChildCount
+             * @var ICalculableProperty $adminChildCount
+             */
+            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+            $siteChildCount->recalculate();
+            $adminChildCount->recalculate();
+        }
+
+        return parent::add($slug, $typeName, $branch, $guid);
     }
 
     /**
-     * Возвращает селектор для выбора потомков указанного объекта, либо от корня.
-     * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
-     * @param int|null $depth глубина выбора потомков, по умолчанию выбираются на всю глубину
-     * @throws InvalidArgumentException если глубина указана не верно
-     * @return CmsSelector|CmsHierarchicObject[]
+     * {@inheritdoc}
      */
-    public function selectDescendants(CmsHierarchicObject $object = null, $depth = null)
+    public function delete(IObject $object)
     {
-        if (!is_null($depth) && !is_int($depth) && $depth < 0) {
-            throw new InvalidArgumentException($this->translate(
-                'Cannot select descendants. Invalid argument "depth" value.'
-            ));
+        /**
+         * @var CmsHierarchicObject $object
+         */
+        if ($parent = $object->getParent()) {
+            /**
+             * @var ICalculableProperty $siteChildCount
+             * @var ICalculableProperty $adminChildCount
+             */
+            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+
+            $siteChildCount->recalculate();
+            $adminChildCount->recalculate();
         }
 
-        if (!is_null($object) && $depth === 1) {
-            return $this->selectChildren($object);
-        }
-
-        $selector = $this->select();
-
-        if ($object) {
-            $selector
-                ->where(CmsHierarchicObject::FIELD_MPATH)
-                ->like($object->getMaterializedPath() . MaterializedPathField::MPATH_SEPARATOR . '%');
-        }
-
-        if ($depth) {
-            if ($object) {
-                $selector
-                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                    ->equalsOrLess($object->getLevel() + $depth);
-            } else {
-                $selector
-                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                    ->equalsOrLess($depth);
-            }
-        }
-
-        $selector->orderBy(CmsHierarchicObject::FIELD_ORDER);
-
-        return $selector;
+        return parent::delete($object);
     }
 
     /**
