@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'currentMode' => 'development',
+    'currentMode' => 'production',
     'corePath' => dirname(__DIR__) . '/umicms.phar',
 
     'development' => [

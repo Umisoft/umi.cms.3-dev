@@ -132,7 +132,7 @@ module.exports = function(grunt){
             dockIcons: {
                 files: [{
                     expand: true,
-                    cwd: 'images/svgMinify/dock/',
+                    cwd: 'images/svg/dock/',
                     src: ['*.svg'],
                     dest: "development/css"
                 }],
@@ -315,7 +315,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['copy:vendorDevelopment', 'copy:imagesDevelopment', 'svgmin', 'grunticon', 'sass', 'autoprefixer', 'concat:development','emberTemplates', 'requirejs:development']);
+    grunt.registerTask('dev', ['copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass', 'autoprefixer', 'concat:development','emberTemplates', 'requirejs:development']);
     grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
     grunt.registerTask('docs', ['yuidoc']);
+    grunt.registerTask('svg', ['svgmin', 'grunticon']);
 };

@@ -81,7 +81,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
         $synchronizer = new SingleDatabaseSynchronizer($connection);
 
         $tables = [];
-        foreach ($this->getModels() as $model) {
+        foreach ($this->getList() as $model) {
             $tables[] = $model->getTableScheme();
         }
 
@@ -105,7 +105,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
 
         $connection->exec($dialect->getDisableForeignKeysSQL());
 
-        foreach ($this->getModels() as $model) {
+        foreach ($this->getList() as $model) {
             $table = $model->getTableScheme();
             $queries = $connection->getSchemaManager()->getDatabasePlatform()->getCreateTableSQL(
                 $table,
@@ -123,7 +123,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      * Возвращает список имен моделей данных.
      * @return array
      */
-    public function getModelNames()
+    public function getNames()
     {
         return array_keys($this->modelsConfig);
     }
@@ -133,7 +133,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      * @param string $modelName имя модели
      * @return bool
      */
-    public function hasModel($modelName)
+    public function has($modelName)
     {
         return isset($this->modelsConfig[$modelName]);
     }
@@ -144,7 +144,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      * @throws NonexistentEntityException если модели с заданным именем не существует
      * @return Model
      */
-    public function getModel($modelName)
+    public function get($modelName)
     {
         if (isset($this->models[$modelName])) {
             return $this->models[$modelName];
@@ -167,11 +167,11 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      * Возвращает список всех моделей коллекции.
      * @return Model[]
      */
-    public function getModels()
+    public function getList()
     {
         $result = [];
-        foreach ($this->getModelNames() as $modelName) {
-            $result[] = $this->getModel($modelName);
+        foreach ($this->getNames() as $modelName) {
+            $result[] = $this->get($modelName);
         }
         return $result;
     }
@@ -185,7 +185,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      */
     protected function getModelResources($modelName)
     {
-        if (!$this->hasModel($modelName)) {
+        if (!$this->has($modelName)) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Model "{modelName}" does not exist.',

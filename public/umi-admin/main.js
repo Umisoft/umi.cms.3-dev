@@ -46,7 +46,8 @@ require.config({
         {name: 'toolbar',           location: "partials/toolbar"},
         {name: 'topBar',            location: "partials/topBar"},
         {name: 'tree',              location: "partials/tree"},
-        {name: 'treeSimple',        location: "partials/treeSimple"}
+        {name: 'treeSimple',        location: "partials/treeSimple"},
+        {name: 'updateLayout',        location: "partials/updateLayout"}
     ]
 });
 
