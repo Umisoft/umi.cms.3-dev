@@ -14,5 +14,8 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'blog.poststatus'
-    ]
+    ],
+    'dictionaries' => [
+        'collection.blogPostStatus', 'collection'
+    ],
 ];

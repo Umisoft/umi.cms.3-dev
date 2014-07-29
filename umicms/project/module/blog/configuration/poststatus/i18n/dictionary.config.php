@@ -8,14 +8,12 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
-
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'handlers' => [
-        'admin' => 'blog.commentstatus'
-    ],
-    'dictionaries' => [
-        'collection.blogCommentStatus', 'collection'
-    ],
-];
+        'en-US' => [
+            'collection:blogPostStatus:displayName' => 'Post statuses',
+        ],
+
+        'ru-RU' => [
+            'collection:blogPostStatus:displayName' => 'Статусы постов',
+        ]
+    ];
