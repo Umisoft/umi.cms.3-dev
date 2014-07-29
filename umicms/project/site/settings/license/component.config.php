@@ -20,7 +20,7 @@ return [
         SettingsComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/site/site.settings.config.php',
+    SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/site/configuration/settings.config.php',
 
     SettingsComponent::OPTION_FORMS => [
         'settings' => '{#lazy:~/project/site/settings/license/form/settings.php}'

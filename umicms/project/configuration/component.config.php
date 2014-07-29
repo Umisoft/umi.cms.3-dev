@@ -21,8 +21,8 @@ return [
     Bootstrap::OPTION_TOOLS_SETTINGS => '{#partial:~/project/configuration/tools.settings.config.php}',
 
     IComponent::OPTION_COMPONENTS  => [
-        'site'       => '{#lazy:~/project/site/site.config.php}',
-        'admin'      => '{#lazy:~/project/admin/admin.config.php}'
+        'site'       => '{#lazy:~/project/site/configuration/component.config.php}',
+        'admin'      => '{#lazy:~/project/admin/configuration/component.config.php}'
     ],
 
     IComponent::OPTION_ACL => [

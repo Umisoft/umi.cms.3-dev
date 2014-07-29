@@ -50,7 +50,7 @@ return [
         ]
     ],
 
-    SiteApplication::OPTION_SETTINGS => '{#lazy:~/project/site/site.settings.config.php}',
+    SiteApplication::OPTION_SETTINGS => '{#lazy:~/project/site/configuration/settings.config.php}',
 
     SiteApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',
@@ -83,7 +83,8 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:captcha' => []
+                'controller:captcha' => [],
+                'controller:robots' => []
             ],
             'widgetExecutor' => [
                 'controller:widget' => []
@@ -92,6 +93,9 @@ return [
     ],
 
     SiteApplication::OPTION_ROUTES => [
+        'page' => [
+            'type' => 'SiteStaticPageRoute'
+        ],
         'captcha' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/captcha/{key:string}',
@@ -105,9 +109,6 @@ return [
             'defaults' => [
                 'controller' => SiteRestWidgetController::NAME
             ]
-        ],
-        'page' => [
-            'type' => 'SiteStaticPageRoute'
         ],
         'robots' => [
             'type' => IRouteFactory::ROUTE_FIXED,
