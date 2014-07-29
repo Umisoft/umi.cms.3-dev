@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:01:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -169,6 +169,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:26:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/spb.jpg',
+      ),
     ),
   ),
   1 => 
@@ -201,7 +206,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:03:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -335,6 +340,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:12:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/london.jpg',
+      ),
     ),
   ),
   2 => 
@@ -367,7 +377,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -410,7 +420,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;laquo;Рок-Футбол&amp;raquo;',
+        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;amp;amp;laquo;Рок-Футбол&amp;amp;amp;raquo;',
       ),
       'metaDescription#en-US' => 
       array (
@@ -501,6 +511,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:48:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/football.jpg',
+      ),
     ),
   ),
   3 => 
@@ -533,7 +548,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:01:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -576,7 +591,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;#039;easter',
+        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;amp;amp;#039;easter',
       ),
       'metaDescription#en-US' => 
       array (
@@ -667,6 +682,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:19:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/newyork.jpg',
+      ),
     ),
   ),
   4 => 
@@ -699,7 +719,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:04:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -833,6 +853,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:04:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/paris.jpg',
+      ),
     ),
   ),
   5 => 
@@ -865,7 +890,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -898,22 +923,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;rdquo;',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;quot;Open Your Heart&amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;quot;Open Your Heart&amp;amp;quot;',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;ldquo;Открой свое сердце&amp;amp;rdquo; - любовь во всей нашей музыке',
+        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;rdquo; - любовь во всей нашей музыке',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;quot;Open Your Heart&amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;quot;Open Your Heart&amp;amp;quot;',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -994,12 +1019,17 @@ return array (
       array (
         0 => 'string',
         1 => '<p>On July 15, another rock festival &quot;Open Your Heart&quot; will take place in Moscow, which will be headlined by the group UMI.Rock Band.</p>
-',
+ ',
       ),
       'date' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:40:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/moscow.jpg',
       ),
     ),
   ),
@@ -1033,7 +1063,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1066,7 +1096,7 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;amp;amp;ndash; Аляска 2014',
       ),
       'metaTitle#en-US' => 
       array (
@@ -1076,7 +1106,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Заплыв &amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;quot;',
+        1 => 'Заплыв &amp;amp;amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;amp;amp;quot;',
       ),
       'metaDescription#en-US' => 
       array (
@@ -1096,7 +1126,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка &amp;amp;amp;amp;amp;ndash; Аляска 2014',
       ),
       'h1#en-US' => 
       array (
@@ -1169,6 +1199,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 10:53:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/swimming.jpg',
+      ),
     ),
   ),
   7 => 
@@ -1201,7 +1236,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1334,6 +1369,11 @@ return array (
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 08:51:17";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'image' => 
+      array (
+        0 => 'string',
+        1 => '/umi_rockband/asset/images/news/programmer.jpg',
       ),
     ),
   ),

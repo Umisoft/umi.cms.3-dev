@@ -11,7 +11,7 @@ return array (
       'type' => 'base',
       'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
       'displayName' => 'Александр',
-      'slug' => 'nastya',
+      'slug' => 'alexander',
     ),
     'data' => 
     array (
@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 14:53:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:59:23";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -111,7 +111,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
