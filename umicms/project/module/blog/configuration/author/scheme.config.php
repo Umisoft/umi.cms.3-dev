@@ -49,6 +49,14 @@ return array_replace_recursive(
                     'notnull' => true,
                     'default' => 0
                 ]
+            ],
+            'posts_count_en' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
             ]
         ],
         'indexes' => [

@@ -90,75 +90,6 @@ class BlogComment extends BlogBaseComment
     }
 
     /**
-     * Публикует комментарий.
-     * @return $this
-     */
-    public function publish()
-    {
-        if ($this->publishStatus !== self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->incrementCommentCount();
-            }
-            $this->post->incrementCommentCount();
-
-            $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_PUBLISHED);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Выставляет статус комментария: требует модерации.
-     * @return $this
-     */
-    public function needModerate()
-    {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_NEED_MODERATE);
-        return $this;
-    }
-
-    /**
-     * Выставляет статус комментария: отклонен.
-     * @return $this
-     */
-    public function reject()
-    {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_REJECTED);
-        return $this;
-    }
-
-    /**
-     * Выставляет статус комментария: снят с публикации.
-     * @return $this
-     */
-    public function unPublish()
-    {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_UNPUBLISHED);
-        return $this;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getAclResourceName()
@@ -167,29 +98,42 @@ class BlogComment extends BlogBaseComment
     }
 
     /**
-     * Мутатор для поля статус публикации.
-     * @param string $value статус публикации
+     * Изменяет статус публикации.
+     * @param string|null $value статус публикации
      * @return $this
      */
-    public function changeStatus($value)
+    public function setStatus($value)
     {
-        switch($value) {
-            case self::COMMENT_STATUS_PUBLISHED : {
-                $this->publish();
-                break;
+        $publishStatusProperty = $this->getProperty(self::FIELD_PUBLISH_STATUS);
+        $publishStatusProperty->setValue($value);
+
+        if ($publishStatusProperty->getIsModified()) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->recalculateCommentsCount();
             }
-            case self::COMMENT_STATUS_NEED_MODERATE : {
-                $this->needModerate();
-                break;
+            if ($this->post instanceof BlogPost) {
+                $this->post->recalculateCommentsCount();
             }
-            case self::COMMENT_STATUS_REJECTED : {
-                $this->reject();
-                break;
-            }
-            case self::COMMENT_STATUS_UNPUBLISHED : {
-                $this->unPublish();
-                break;
-            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Изменяет автора комментария.
+     * @param BlogAuthor|null $value автор
+     * @return $this
+     */
+    public function setAuthor($value)
+    {
+        if ($this->author instanceof BlogAuthor) {
+            $this->author->recalculateCommentsCount();
+        }
+
+        $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
+
+        if ($value instanceof BlogAuthor) {
+            $value->recalculateCommentsCount();
         }
 
         return $this;
