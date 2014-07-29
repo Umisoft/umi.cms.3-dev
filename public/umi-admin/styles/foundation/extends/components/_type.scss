@@ -1,0 +1,10 @@
+@import "../../settings/components/type";
+
+$headers-class-list: $h1-font-size, $h2-font-size, $h3-font-size, $h4-font-size, $h5-font-size, $h6-font-size;
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        line-height: nth($headers-class-list, $i);
+    }
+}
+
