@@ -9,7 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\blog\model\object\BlogBaseComment;
+use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
@@ -23,12 +23,11 @@ return array_replace_recursive(
                 'type' => IField::TYPE_DATE_TIME,
                 'columnName' => 'publish_time'
             ],
-            BlogPost::FIELD_PUBLISH_STATUS => [
-                'type' => IField::TYPE_STRING,
-                'mutator' => 'setPublishStatus',
-                'accessor' => 'getPublishStatus',
-                'columnName' => 'publish_status',
-                'defaultValue' => BlogPost::POST_STATUS_DRAFT
+            BlogPost::FIELD_STATUS => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'mutator' => 'setStatus',
+                'columnName' => 'status_id',
+                'target' => 'blogPostStatus'
             ],
             BlogPost::FIELD_ANNOUNCEMENT => [
                 'type' => IField::TYPE_TEXT,
@@ -80,7 +79,7 @@ return array_replace_recursive(
             BlogPost::FIELD_COMMENTS => [
                 'type' => IField::TYPE_HAS_MANY,
                 'target' => 'blogComment',
-                'targetField' => BlogBaseComment::FIELD_POST,
+                'targetField' => BaseBlogComment::FIELD_POST,
                 'readOnly' => true
             ],
         ],
@@ -94,7 +93,7 @@ return array_replace_recursive(
                     BlogPost::FIELD_CATEGORY => [],
                     BlogPost::FIELD_TAGS => [],
                     BlogPost::FIELD_PUBLISH_TIME => [],
-                    BlogPost::FIELD_PUBLISH_STATUS => [],
+                    BlogPost::FIELD_STATUS => [],
                     BlogPost::FIELD_COMMENTS_COUNT => [],
                     BlogPost::FIELD_COMMENTS => [],
                     BlogPost::FIELD_AUTHOR => []

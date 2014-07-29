@@ -15,6 +15,7 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\component\site\TFormSimpleController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Контроллер снятия комментария с публикации.
@@ -24,9 +25,9 @@ class UnpublishController extends BaseCmsController
     use TFormSimpleController;
 
     /**
-     * @var BlogModule $api модуль "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $model;
+    protected $module;
 
     /**
      * Конструктор.
@@ -34,7 +35,7 @@ class UnpublishController extends BaseCmsController
      */
     public function __construct(BlogModule $blogModule)
     {
-        $this->model = $blogModule;
+        $this->module = $blogModule;
     }
 
     /**
@@ -42,7 +43,7 @@ class UnpublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->model->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
     }
 
     /**
@@ -50,7 +51,8 @@ class UnpublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->model->comment()->getById($this->getRouteVar('id'))->publishStatus = BlogComment::COMMENT_STATUS_UNPUBLISHED;
+        $this->module->comment()->getById($this->getRouteVar('id'))
+            ->status = $this->module->commentStatus()->get(CommentStatus::GUID_UNPUBLISHED);
 
         $this->commit();
     }

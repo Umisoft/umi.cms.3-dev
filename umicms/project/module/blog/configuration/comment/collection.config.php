@@ -39,6 +39,6 @@ return [
     BlogCommentCollection::DEFAULT_TABLE_FILTER_FIELDS => [
         BlogComment::FIELD_AUTHOR => [],
         BlogComment::FIELD_PUBLISH_TIME => [],
-        BlogComment::FIELD_PUBLISH_STATUS => []
+        BlogComment::FIELD_STATUS => []
     ]
 ];

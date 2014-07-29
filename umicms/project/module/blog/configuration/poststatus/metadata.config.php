@@ -8,26 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\metadata\field\IField;
-
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_post_status'
         ],
-        'fields' => [
-            'name' => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'name'
-            ],
-        ],
         'types' => [
-            'base' => [
-                'fields' => [
-                    'name'  => []
-                ]
-            ]
+            'objectClass' => 'umicms\project\module\blog\model\object\PostStatus'
         ]
     ]
 );

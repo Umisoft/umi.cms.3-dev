@@ -8,16 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\Types\Type;
-
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'blog_comment_status',
-        'columns' => [
-            'name' => [
-                'type' => Type::STRING
-            ]
-        ]
+        'name' => 'blog_comment_status'
     ]
 );
