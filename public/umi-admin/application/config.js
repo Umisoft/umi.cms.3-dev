@@ -41,7 +41,7 @@ define([], function(){
 
             config.toolbarGroups = [
                 { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-                { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+                { name: 'editing',     groups: [ 'find', 'selection'] },
                 { name: 'links' },
                 { name: 'insert' },
                 { name: 'forms' },
@@ -52,8 +52,7 @@ define([], function(){
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
                 { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
                 { name: 'styles' },
-                { name: 'colors' },
-                { name: 'about' }
+                { name: 'colors' }
             ];
 
             config.removeButtons = 'Underline,Subscript,Superscript';
