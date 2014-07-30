@@ -71,6 +71,14 @@ return [
                         'dataSource' => BlogComment::FIELD_PUBLISH_TIME
                     ]
                 ],
+                BlogComment::FIELD_STATUS => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogComment::FIELD_STATUS,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogComment::FIELD_STATUS
+                    ],
+                ],
                 BlogComment::FIELD_CONTENTS => [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogComment::FIELD_CONTENTS,

@@ -20,7 +20,7 @@ use umicms\orm\object\CmsHierarchicObject;
  * @property BlogPost $post пост, к которому относится комментарий
  * @property DateTime $publishTime дата и время публикации комментария
  */
-abstract class BlogBaseComment extends CmsHierarchicObject implements IRecyclableObject
+abstract class BaseBlogComment extends CmsHierarchicObject implements IRecyclableObject
 {
     /**
      * Имя поля для хранения поста, к которому относится комментарий
@@ -30,5 +30,25 @@ abstract class BlogBaseComment extends CmsHierarchicObject implements IRecyclabl
      * Имя поля для хранения даты и времени публикации комментария
      */
     const FIELD_PUBLISH_TIME = 'publishTime';
+
+    /**
+     * Изменяет пост комментария.
+     * @param BlogPost|null $value пост
+     * @return $this
+     */
+    public function setPost($value)
+    {
+        if ($this->post instanceof BlogPost) {
+            $this->post->recalculateCommentsCount();
+        }
+
+        $this->getProperty(self::FIELD_POST)->setValue($value);
+
+        if ($value instanceof BlogPost) {
+            $value->recalculateCommentsCount();
+        }
+
+        return $this;
+    }
 }
  

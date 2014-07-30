@@ -108,10 +108,19 @@ return array (
         0 => 'string',
         1 => 'We need to go deeper!',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),
@@ -306,10 +315,19 @@ return array (
         0 => 'string',
         1 => 'Subcomment for comment with content',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),
@@ -396,10 +414,19 @@ return array (
         0 => 'string',
         1 => 'Comment content number two',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),
@@ -440,7 +467,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 13:22:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 15:00:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -510,10 +537,19 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 09:08:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),

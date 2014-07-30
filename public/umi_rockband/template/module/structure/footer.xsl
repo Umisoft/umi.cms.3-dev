@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- Меню в футере <Начало>-->
-                    <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')" mode="footer.content.root"/>
+                    <xsl:apply-templates select="document('widget://structure.menu.custom?menuName=footer&amp;depth=2')" mode="footer.content.root"/>
 
                     <div class="col-md-12 text-center">
                         <!-- Значки социальных сетей -->

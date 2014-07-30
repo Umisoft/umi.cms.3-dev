@@ -37,6 +37,12 @@
     </xsl:template>
     <!-- Форма добавления комментария <Конец> -->
 
+    <!-- Кнопка "ответить" на комментарий <Начало> -->
+    <xsl:template match="result[@widget = 'blog.comment.add.addForm']" mode="blog.comments.replyTo">
+        <button name="re:{blogComment/@displayName}" value="{form/attributes/@action}" class="btn btn-custom btn-default-font btn-noshadow btn-primary">Ответить</button>
+     </xsl:template>
+    <!-- Кнопка "ответить" на комментарий <Конец> -->
+
     <!-- Список комментариев <Начало> -->
     <xsl:template match="result[@widget = 'blog.comment.list']/tree" mode="blog.comments.list">
         <xsl:param name="postGuid"/>
@@ -79,10 +85,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <hr />
                             <xsl:apply-templates
                                     select="document(concat('widget://blog.comment.add.addForm?blogPost=', $postGuid, '&amp;blogComment=', @guid))"
-                                    mode="blog.comments.form"/>
+                                    mode="blog.comments.replyTo"/>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
     <xsl:template match="contents[@controller = 'structure.index']" >
         <div class="site-name">
             <div class="container-fluid">
-                <h1><xsl:value-of select="page/property[@name='h1']/value" disable-output-escaping="yes" /></h1>
+                <h1><xsl:value-of select="page/@h1" disable-output-escaping="yes" /></h1>
                 <span class="sm"><xsl:apply-templates select="breadcrumbs" /></span>
             </div>
         </div>

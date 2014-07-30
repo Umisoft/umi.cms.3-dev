@@ -43,4 +43,12 @@ $(document).ready(function() {
     $('div.settings a.account').click(function() {
         $(this).next('.submenu').fadeToggle();
     });
+
+	$('button[name^="re:"]').on('click', function() {
+		var form = $(this).closest('.comment').find('form');
+		form.attr('action', this.value);
+		$('input[name="displayName"]', form).val(this.name);
+		$('textarea', form).focus();
+	});
+
 });

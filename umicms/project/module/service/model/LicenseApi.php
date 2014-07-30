@@ -88,7 +88,7 @@ class LicenseApi implements IConfigIOAware
     private function getConfig()
     {
         if (!$this->config) {
-            $this->config = $this->readConfig('~/project/site/site.settings.config.php');
+            $this->config = $this->readConfig('~/project/site/configuration/settings.config.php');
         }
         return $this->config;
     }

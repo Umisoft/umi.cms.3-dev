@@ -8,7 +8,7 @@
 
     <!-- Объявляем переменные -->
     <xsl:variable name="template" select="/layout/assetsUrl" />
-    <xsl:variable name="root" select="/layout/projectUrl" />
+    <xsl:variable name="root" select="/layout/projectUrl/locale[@current = 1]/@url" />
     <xsl:variable name="pagesCount" select="'5'" />
 
     <!-- Подключаем шаблоны модулей <Начало> -->

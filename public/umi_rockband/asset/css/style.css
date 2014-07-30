@@ -17,6 +17,11 @@
 @include box-sizing;
 @include border-radius(15px);
 */
+html {
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 203px;
+}
 body, html {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
@@ -226,6 +231,9 @@ header {
           float: right; }
 
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background: url(../images/footer-bg.jpg) bottom center no-repeat #0d0e15;
   padding: 30px 0 20px; }
   footer h5 {
@@ -695,6 +703,9 @@ footer {
           color: #4381f3; }
 
 @media screen and (min-width: 1200px) {
+  .carousel .carousel-caption h1 {
+	  font-size: 95px;
+  }
   .list-dev li {
     width: 20%; } }
 @media screen and (max-width: 1300px) {
@@ -849,7 +860,9 @@ footer {
 .t1 {
   clear: both;
   width: 100%; }
-
+.comment {
+	margin: 10px 0;
+}
 .comment .com {
   margin-bottom: 10px;
   padding: 20px 0; }
@@ -1064,3 +1077,8 @@ div.settings a.account {
 
 .btn-custom {
   transition: .3s; }
+[align='left'].image {
+	margin-right: 10px;
+	max-width: 250px;
+	max-height: 150px;
+}

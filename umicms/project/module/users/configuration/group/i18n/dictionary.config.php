@@ -12,6 +12,8 @@ use umicms\project\module\users\model\object\UserGroup;
 
 return [
         'en-US' => [
+            'collection:userGroup:displayName' => 'User groups',
+
             UserGroup::FIELD_USERS => 'Users',
             UserGroup::FIELD_ROLES => 'Roles',
 
@@ -21,6 +23,8 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:userGroup:displayName' => 'Группа пользователей',
+
             UserGroup::FIELD_USERS => 'Пользователи',
             UserGroup::FIELD_ROLES => 'Роли',
 

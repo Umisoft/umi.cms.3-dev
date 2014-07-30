@@ -86,6 +86,16 @@ trait TCmsCollection
     }
 
     /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
+     * @return CmsSelector|ICmsObject[]
+     */
+    public function getInternalSelector() {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::select();
+    }
+
+    /**
      * @see ICmsCollection::delete()
      */
     public function delete(IObject $object)
@@ -169,14 +179,6 @@ trait TCmsCollection
     }
 
     /**
-     * @see ICmsCollection::getHandlerList()
-     */
-    public function getHandlerList()
-    {
-        return (isset($this->traitGetConfig()['handlers'])) ? $this->traitGetConfig()['handlers'] : [];
-    }
-
-    /**
      * @see ICmsCollection::hasHandler()
      */
     public function hasHandler($applicationName)
@@ -232,19 +234,24 @@ trait TCmsCollection
      */
     public function getDefaultTableFilterFieldNames()
     {
-        $defaultFieldNames = [
+        $fieldNames = [
             ICmsObject::FIELD_DISPLAY_NAME
         ];
+
         if ($this instanceof ICmsPageCollection) {
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_H1;
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_H1;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
         }
 
-        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]) ?
-            $this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS] : [];
+        if (isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]))
+            );
+        }
 
-        return array_merge($defaultFieldNames, array_keys($fieldNames));
+        return $fieldNames;
     }
 
     /**
@@ -252,7 +259,7 @@ trait TCmsCollection
      */
     public function getIgnoredTableFilterFieldNames()
     {
-        $defaultIgnoredFieldNames = [
+        $fieldNames = [
             ICmsObject::FIELD_VERSION,
             CmsHierarchicObject::FIELD_MPATH,
             CmsHierarchicObject::FIELD_URI,
@@ -261,10 +268,14 @@ trait TCmsCollection
             ICmsPage::FIELD_PAGE_CONTENTS
         ];
 
-        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]) ?
-            $this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS] : [];
+        if (isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]))
+            );
+        }
 
-        return array_merge($defaultIgnoredFieldNames, array_keys($fieldNames));
+        return $fieldNames;
     }
 
     /**
@@ -298,13 +309,11 @@ trait TCmsCollection
     }
 
     /**
-     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector|ICmsObject[]
+     * {@inheritdoc}
      */
-    public function getInternalSelector() {
-        /** @noinspection PhpUndefinedMethodInspection */
-        /** @noinspection PhpUndefinedClassInspection */
-        return parent::select();
+    protected function getI18nDictionaryNames()
+    {
+        return $this->getDictionaryNames();
     }
 
     /**
@@ -329,4 +338,3 @@ trait TCmsCollection
        return isset($this->config) ? $this->config : [];
     }
 }
- 

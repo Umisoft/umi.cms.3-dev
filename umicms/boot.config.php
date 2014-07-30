@@ -10,9 +10,11 @@
 
 namespace umicms\configuration;
 
+use umi\config\toolbox\ConfigTools;
 use umi\route\toolbox\RouteTools;
 use umi\session\toolbox\SessionTools;
 use umicms\project\Bootstrap;
+use umicms\project\Environment;
 
 return [
     /**
@@ -46,6 +48,13 @@ return [
         SessionTools::NAME => [
             'storage' => [
                 'name' => Bootstrap::SESSION_COOKIE_NAME
+            ]
+        ],
+
+        ConfigTools::NAME => [
+            'useCache' => false, // TODO
+            'cache' => [
+                'directory' => Environment::$directoryRoot . '/cache'
             ]
         ]
     ]

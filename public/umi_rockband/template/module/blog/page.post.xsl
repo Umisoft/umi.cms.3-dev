@@ -6,7 +6,7 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <!-- Список новостей <Начало> -->
+    <!-- Список постов <Начало> -->
     <xsl:template match="contents[@controller='blog.post.view.page']">
         <xsl:call-template name="blog.head"/>
         <div class="content-inner">
@@ -14,7 +14,7 @@
                 <!-- Заголовок -->
                 <div class="page-title">
                     <div class="title">
-                        <xsl:value-of select="//property[@name='h1']/value" disable-output-escaping="yes"/>
+                        <xsl:value-of select="page/@h1" disable-output-escaping="yes"/>
                     </div>
                     <div class="separating-line"></div>
                     <div class="caption">
@@ -41,8 +41,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 share">
-                        <!--TODO Label please-->
-                        <div class="title-top">Поделитесь с друзьями</div>
+                        <div class="title-top"><xsl:value-of select="document('translate://project.site.blog/Share')" /></div>
                         <a href="#" class="vk">
                             <i></i>
                         </a>
@@ -73,6 +72,6 @@
             </div>
         </div>
     </xsl:template>
-    <!-- Список новостей <Конец> -->
+    <!-- Список постов <Конец> -->
 
 </xsl:stylesheet>

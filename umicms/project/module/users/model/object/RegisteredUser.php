@@ -71,11 +71,11 @@ class RegisteredUser extends BaseUser
     /**
      * Форма авторизации пользователя на сайте
      */
-    const FORM_LOGIN_SITE = 'login.site';
+    const FORM_LOGIN_SITE = 'loginSite';
     /**
      * Форма разавторизации пользователя на сайте
      */
-    const FORM_LOGOUT_SITE = 'logout.site';
+    const FORM_LOGOUT_SITE = 'logoutSite';
     /**
      * Форма редактирования профиля пользователя
      */
@@ -95,7 +95,7 @@ class RegisteredUser extends BaseUser
     /**
      * Форма авторизации пользователя в административной панели
      */
-    const FORM_LOGIN_ADMIN = 'login.admin';
+    const FORM_LOGIN_ADMIN = 'loginAdmin';
 
     /**
      * @var string $passwordSalt маска соли для хэширования паролей

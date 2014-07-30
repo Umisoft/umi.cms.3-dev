@@ -43,6 +43,6 @@ return [
         BlogPost::FIELD_CATEGORY => [],
         BlogPost::FIELD_AUTHOR => [],
         BlogPost::FIELD_PUBLISH_TIME => [],
-        BlogPost::FIELD_PUBLISH_STATUS => []
+        BlogPost::FIELD_STATUS => []
     ]
 ];

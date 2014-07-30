@@ -20,7 +20,7 @@ use umicms\orm\object\CmsObject;
  * @property BlogCategory|null $category имя поля для хранения категории, к которой относятся импортируемые посты
  * @property ManyToManyObjectSet|BlogTag[] $tags список тэгов, к которым относятся импортируемые посты
  * @property BlogCategory|null $author автор импортируемых постов
- * @property string $publishStatus статус публикации импортируемых постов
+ * @property PostStatus $postStatus статус публикации импортируемых постов
  */
 class BlogRssImportScenario extends CmsObject
 {
@@ -43,5 +43,5 @@ class BlogRssImportScenario extends CmsObject
     /**
      * Имя поля для хранения статуса публикации импортируемых постов.
      */
-    const FIELD_PUBLISH_STATUS = 'publishStatus';
+    const FIELD_POST_STATUS = 'postStatus';
 }

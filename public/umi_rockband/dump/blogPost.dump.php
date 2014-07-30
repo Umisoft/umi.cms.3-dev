@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 13:45:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 15:00:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -81,7 +81,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'In my videoblog i&amp;#039;m going to talk about rock',
+        1 => 'In my videoblog i&amp;amp;#039;m going to talk about rock',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -112,7 +112,7 @@ return array (
 
 <p>Первый выпуск, естественно, получился не совсем таким, как я его задумывал. С качеством не всё в порядке и... Короче говоря, первый блин комом :)</p>
 
-<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только!</p>
+<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только!&nbsp;</p>
 ',
       ),
       'contents#en-US' => 
@@ -135,7 +135,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -158,6 +158,11 @@ return array (
 <p>I want to introduce to all of you my new music videoblog.</p>
 ',
       ),
+      'source' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'contentsRaw#ru-RU' => 
       array (
         0 => 'string',
@@ -167,7 +172,7 @@ return array (
 
 <p>Первый выпуск, естественно, получился не совсем таким, как я его задумывал. С качеством не всё в порядке и... Короче говоря, первый блин комом :)</p>
 
-<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только!</p>
+<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только!&nbsp;</p>
 ',
       ),
       'contentsRaw#en-US' => 
@@ -187,10 +192,19 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:53:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogPostStatus',
+            'type' => 'base',
+            'guid' => '26b45376-edca-4e0a-982c-e4d956d9212d',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
       'author' => 
       array (
@@ -203,137 +217,23 @@ return array (
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
             'displayName' => 'Александр',
-            'slug' => 'nastya',
+            'slug' => 'alexander',
           ),
         ),
+      ),
+      'imageMain' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'imageInternal' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
   1 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'blogPost',
-      'type' => 'base',
-      'guid' => '0c123589-7acb-4562-af28-7d07acd02245',
-      'displayName' => 'Значение новых предложений',
-      'slug' => 'new-proposals',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:09:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет</p>
-',
-      ),
-      'category' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'blogCategory',
-            'type' => 'base',
-            'guid' => '985aff50-8d8d-4f4b-92bd-e2f91af0a34e',
-            'displayName' => 'Блог',
-            'branch' => NULL,
-            'slug' => 'blog',
-          ),
-        ),
-      ),
-      'publishTime' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 12:00:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'publishStatus' => 
-      array (
-        0 => 'string',
-        1 => 'published',
-      ),
-    ),
-  ),
-  2 => 
   array (
     'meta' => 
     array (
@@ -363,7 +263,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:17:04";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:58:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -438,7 +338,7 @@ return array (
         0 => 'string',
         1 => '<p>Рок-музыка &nbsp;начала свое существование еще в далеких &nbsp;50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals. Музыка этих замечательных исполнителей стала олицетворением противоречивого диссонанса в настроении молодёжи, их постоянного конфликта с общепринятыми нормами морали и этики. Рок - это музыка протеста и любви. Рок многогранен и сложен. Вся глубина поэзии рока, в большинстве своем, остается непонятной толпе неформалов.</p>
 
-<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и &laquo;прошлого&raquo; века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время? &nbsp;Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему?</p>
+<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и &laquo;прошлого&raquo; века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время? &nbsp;Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему?&nbsp;</p>
 ',
       ),
       'contents#en-US' => 
@@ -457,7 +357,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -481,7 +381,7 @@ return array (
         0 => 'string',
         1 => '<p>Рок-музыка &nbsp;начала свое существование еще в далеких &nbsp;50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals. Музыка этих замечательных исполнителей стала олицетворением противоречивого диссонанса в настроении молодёжи, их постоянного конфликта с общепринятыми нормами морали и этики. Рок - это музыка протеста и любви. Рок многогранен и сложен. Вся глубина поэзии рока, в большинстве своем, остается непонятной толпе неформалов.</p>
 
-<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и &laquo;прошлого&raquo; века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время? &nbsp;Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему?</p>
+<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и &laquo;прошлого&raquo; века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время? &nbsp;Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему?&nbsp;</p>
 ',
       ),
       'contentsRaw#en-US' => 
@@ -497,10 +397,19 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 06:57:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'rejected',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogPostStatus',
+            'type' => 'base',
+            'guid' => '26b45376-edca-4e0a-982c-e4d956d9212d',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
       'author' => 
       array (
@@ -513,13 +422,23 @@ return array (
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
             'displayName' => 'Александр',
-            'slug' => 'nastya',
+            'slug' => 'alexander',
           ),
         ),
       ),
+      'imageMain' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'imageInternal' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
-  3 => 
+  2 => 
   array (
     'meta' => 
     array (
@@ -549,7 +468,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 22:49:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:59:23";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -597,7 +516,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Russian Rock. Yes, it&amp;#039;s true.',
+        1 => 'Russian Rock. Yes, it&amp;amp;#039;s true.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -622,13 +541,9 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Russian rock is my favorite music genre. Even I do not know why. Simply, it is closest to my heart. You find the best selection of Russian rock on my blog.</p>
+        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
 
-<p>At the same time, foreign rock is also not deprived of my attention. You can also listen to favorite works of foreign rock bands that are dear to me.</p>
-
-<p>Russian rock has received broad support in the media. &quot;Radio Maximum&quot; and &quot;Nashe Radio&quot;, channel &quot;O2TV&rdquo;. I am very pleased that at &quot;Nashe Radio&quot;, rock remains the smain genre.</p>
-
-<p>With the advent of the Internet in our lives, it became even easier to listen and to download music. There are many Internet radio stations in the global network, there is the service Яндекс.Музыка, many communities in social networks, in addition, there are specialized social networks, for example Last fm. Annually, there are many festivals - &quot;Invasion&quot;, &quot;Cubana&quot;, &quot;Baker&rsquo;s dozen&quot;, etc. Rock will live forever, and Russian rock too!</p>
+<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть MySpace, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!</p>
 ',
       ),
       'contents#en-US' => 
@@ -651,7 +566,7 @@ return array (
       'active#en-US' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'trashed' => 
       array (
@@ -662,8 +577,6 @@ return array (
       array (
         0 => 'string',
         1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
-
-<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть Spotify, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!&nbsp;</p>
 ',
       ),
       'announcement#en-US' => 
@@ -675,13 +588,9 @@ return array (
       'contentsRaw#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Russian rock is my favorite music genre. Even I do not know why. Simply, it is closest to my heart. You find the best selection of Russian rock on my blog.</p>
+        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
 
-<p>At the same time, foreign rock is also not deprived of my attention. You can also listen to favorite works of foreign rock bands that are dear to me.</p>
-
-<p>Russian rock has received broad support in the media. &quot;Radio Maximum&quot; and &quot;Nashe Radio&quot;, channel &quot;O2TV&rdquo;. I am very pleased that at &quot;Nashe Radio&quot;, rock remains the smain genre.</p>
-
-<p>With the advent of the Internet in our lives, it became even easier to listen and to download music. There are many Internet radio stations in the global network, there is the service Яндекс.Музыка, many communities in social networks, in addition, there are specialized social networks, for example Last fm. Annually, there are many festivals - &quot;Invasion&quot;, &quot;Cubana&quot;, &quot;Baker&rsquo;s dozen&quot;, etc. Rock will live forever, and Russian rock too!</p>
+<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть MySpace, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!</p>
 ',
       ),
       'contentsRaw#en-US' => 
@@ -701,10 +610,19 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-19 08:59:41";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'draft',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogPostStatus',
+            'type' => 'base',
+            'guid' => '26b45376-edca-4e0a-982c-e4d956d9212d',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
       'author' => 
       array (
@@ -717,257 +635,19 @@ return array (
             'type' => 'base',
             'guid' => 'ac56a973-d8ab-44e4-8b7a-95f424b2f112',
             'displayName' => 'Александр',
-            'slug' => 'nastya',
+            'slug' => 'alexander',
           ),
         ),
       ),
-    ),
-  ),
-  4 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'blogPost',
-      'type' => 'base',
-      'guid' => 'bd801364-b30a-4d8e-92a5-1b25c1bc0ea1',
-      'displayName' => 'Значение новых предложений',
-      'slug' => 'new-new-proposals',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:12:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'metaDescription#ru-RU' => 
+      'imageMain' => 
       array (
         0 => 'string',
         1 => '',
       ),
-      'metaKeywords#ru-RU' => 
+      'imageInternal' => 
       array (
         0 => 'string',
         1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет</p>
-',
-      ),
-      'category' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'blogCategory',
-            'type' => 'base',
-            'guid' => '985aff50-8d8d-4f4b-92bd-e2f91af0a34e',
-            'displayName' => 'Блог',
-            'branch' => NULL,
-            'slug' => 'blog',
-          ),
-        ),
-      ),
-      'publishTime' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:12:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'publishStatus' => 
-      array (
-        0 => 'string',
-        1 => 'published',
-      ),
-    ),
-  ),
-  5 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'blogPost',
-      'type' => 'base',
-      'guid' => 'f575e214-39cb-414e-b85b-f0ce81911ce6',
-      'displayName' => 'Значение новых предложений',
-      'slug' => 'new-new-new-proposals',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 19:14:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:51:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Значение новых предложений',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'announcement#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет</p>
-',
-      ),
-      'category' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'blogCategory',
-            'type' => 'base',
-            'guid' => '985aff50-8d8d-4f4b-92bd-e2f91af0a34e',
-            'displayName' => 'Блог',
-            'branch' => NULL,
-            'slug' => 'blog',
-          ),
-        ),
-      ),
-      'publishTime' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 07:14:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'publishStatus' => 
-      array (
-        0 => 'string',
-        1 => 'published',
       ),
     ),
   ),

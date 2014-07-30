@@ -14,5 +14,8 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'blog.rsstag'
-    ]
+    ],
+    'dictionaries' => [
+        'collection.rssBlogTag', 'collection'
+    ],
 ];

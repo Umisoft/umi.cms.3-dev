@@ -3,83 +3,83 @@ define(['App'], function(UMI){
 
     return function(){
 
-        UMI.TableControlColumnSelectorPopupView = Ember.View.extend({
-            templateName: 'tableControlColumnSelectorPopup',
-            classNames: ['umi-table-control-column-selector-popup'],
-
-            init: function(){
-                this.get('parentView').setProperties({
-                    'title': 'Выбор колонок в таблице',
-                    'width': 400,
-                    'height': 300,
-                    'contentOverflow': ['overflow', 'scroll']
-                });
-            },
-
-            didInsertElement: function(){
-                this.$().find('li').mousedown(function(){
-                    $(this).find('input').click();
-                });
-
-                if(window.pageYOffset || document.documentElement.scrollTop){
-
-                }
-            }
-        });
-
         UMI.PopupView = Ember.View.extend({
-            //Параметры приходящие из childView
-                contentParams: {},
+            controller: function(){
+                return this.container.lookup('controller:popup');
+            }.property(),
 
             classNames: ['umi-popup'],
+
+            popupType: null,
+
             title: '',
-            width: 600,
+
+            width: 800,
+
             height: 400,
+
             contentOverflow: ['overflow', 'hidden'],
-            blur: false,
-            fade: true,
+
+            blur: true,
+
+            fade: false,
+
             drag: true,
+
             resize: true,
+
             layoutName: 'partials/popup',
 
-            checkContentParams: function(){
-                this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);
-            }.observes('contentParams'),
-
-            template: function(){
-                var template;
-                var templateName = this.get('popupType');
-
-                //TODO Разнести по файлам аналогично elements?
-                switch(templateName){
-                    case 'fileManager':                         template = '{{view "fileManager" object=view.object meta=view.meta}}'; break;
-                    case 'tableControlColumnSelectorPopup':     template = '{{view "tableControlColumnSelectorPopup"}}'; break;
-                    default:                                    template = 'Шаблон не обнаружен в системе';
-                }
-                return Ember.Handlebars.compile(template);
+            templateName: function(){
+                return 'partials/popup/' + this.get('popupType');
             }.property('popupType'),
 
             didInsertElement: function(){
-                if(this.blur){this.addBlur()}
-                if(this.fade){this.fadeIn()}
-                if(this.drag){this.allowDrag()}
-                if(this.resize){this.allowResize()}
-                if(this.contentOverflow !== 'hidden'){
-                    $('.umi-popup-content').css(this.contentOverflow[0], this.contentOverflow[1]);
+                var self = this;
+                if(self.get('blur')){
+                    self.addBlur();
                 }
+
+                if(self.get('fade')){
+                    self.fadeIn();
+                }
+
+                if(this.get('drag')){
+                    this.allowDrag();
+                }
+
+                if(this.get('resize')){
+                    this.allowResize();
+                }
+
+                if(this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array'){// TODO: WTF?
+                    $('.umi-popup-content').css(this.get('contentOverflow')[0], this.get('contentOverflow')[1]);
+                }
+
                 this.setSize();
+                this.setPosition();
             },
 
             actions: {
                 closePopup: function(){
-                    this.removeBlur();
-                    this.remove();
+                    this.get('controller').send('closePopup');
                 }
             },
 
             setSize: function(){
-                this.$().width(this.width);
-                this.$().height(this.height);
+                var $el = this.$();
+                $el.width(this.get('width'));
+                $el.height(this.get('height'));
+            },
+
+            setPosition: function(){
+                var $el = this.$();
+                var styles = {};
+                var elHeight = $el.height() / 2;
+                var elWidth = $el.width() / 2;
+                styles.marginTop =  -( $(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
+                styles.marginLeft = -( $(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                $el.css(styles);
             },
 
             fadeIn: function(){
@@ -109,7 +109,7 @@ define(['App'], function(UMI){
                 $('.umi-popup-resizer').show();
                 $('body').on('mousedown', '.umi-popup-resizer', function(event){
                     if(event.button === 0){
-                        $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+                        //$('body').append('<div class="umi-popup-invisible-overlay"></div>');
                         var posX = $('.umi-popup').offset().left;
                         var posY = $('.umi-popup').offset().top;
 
@@ -126,7 +126,7 @@ define(['App'], function(UMI){
                             $('html').on('mouseup', function(){
                                 $('html').off('mousemove');
                                 $('html').removeClass('s-unselectable');
-                                $('.umi-popup-invisible-overlay').remove();
+                                //$('.umi-popup-invisible-overlay').remove();
                             });
                         });
                     }
@@ -142,7 +142,7 @@ define(['App'], function(UMI){
 
                     var $that = $(this);
                     if(event.button === 0){
-                        $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+                        //$('body').append('<div class="umi-popup-invisible-overlay"></div>');
                         var clickX = event.pageX - $(this).offset().left;
                         var clickY = event.pageY - $(this).offset().top;
 
@@ -166,11 +166,19 @@ define(['App'], function(UMI){
                             $('body').on('mouseup', function(){
                                 $('body').off('mousemove');
                                 $('html').removeClass('s-unselectable');
-                                $('.umi-popup-invisible-overlay').remove();
+                                //$('.umi-popup-invisible-overlay').remove();
                             });
                         });
                     }
                 });
+            },
+
+            init: function(){
+                this._super();
+                var viewParams = this.get('controller.viewParams');
+                if(Ember.typeOf(viewParams) === 'object'){
+                    this.setProperties(viewParams);
+                }
             }
         });
     };
