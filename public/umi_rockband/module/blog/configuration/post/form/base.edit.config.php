@@ -14,11 +14,18 @@ return [
     'elements' => [
         'contents' => [
             'elements' => [
-                'image' => [
+                'imageMain' => [
                     'type' => Text::TYPE_NAME,
-                    'label' => 'image',
+                    'label' => 'imageMain',
                     'options' => [
-                        'dataSource' => 'image'
+                        'dataSource' => 'imageMain'
+                    ]
+                ],
+                'imageInternal' => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => 'imageInternal',
+                    'options' => [
+                        'dataSource' => 'imageInternal'
                     ]
                 ]
             ]
