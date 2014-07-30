@@ -21,7 +21,7 @@ use umicms\project\module\structure\model\object\Robots;
  *
  * @method Robots get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает запись о странице по ее GUID
  * @method Robots getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает запись о странице по ее id
- * @method Robots add($typeName = IObjectType::BASE) Добавляет запись о странице и возвращает её
+ * @method Robots add($typeName = IObjectType::BASE, $guid = null) Добавляет запись о странице и возвращает её
  */
 class RobotsCollection extends CmsCollection
 {

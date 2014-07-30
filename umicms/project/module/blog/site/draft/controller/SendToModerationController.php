@@ -17,6 +17,7 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер отправки поста на модерацию.
@@ -65,7 +66,7 @@ class SendToModerationController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->status = BlogPost::POST_STATUS_NEED_MODERATE;
+        $this->blogDraft->status = $this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION);
         $this->commit();
     }
 }
