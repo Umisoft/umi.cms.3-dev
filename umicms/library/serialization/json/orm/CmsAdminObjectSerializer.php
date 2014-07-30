@@ -112,7 +112,9 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManage
             $properties['links'] = $links;
         }
 
-        $meta = [];
+        $meta = [
+            'collectionName' => $object->getCollectionName()
+        ];
 
         try {
             $meta['editLink'] = $object->getEditLink();
@@ -122,9 +124,7 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManage
             $meta['pageUrl'] = $object->getPageUrl();
         }
 
-        if ($meta) {
-            $properties['meta'] = $meta;
-        }
+        $properties['meta'] = $meta;
 
         $this->delegate($properties, $options);
     }

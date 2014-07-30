@@ -70,5 +70,16 @@ class CmsHierarchicPageCollection extends CmsHierarchicCollection implements ICm
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getForcedFieldsToLoad()
+    {
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsPage::FIELD_PAGE_H1] = $this->getRequiredField(ICmsPage::FIELD_PAGE_H1);
+
+        return $fields;
+    }
+
 }
  

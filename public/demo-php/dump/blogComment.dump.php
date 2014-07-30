@@ -40,7 +40,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -56,7 +56,7 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,
@@ -114,12 +114,21 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),
@@ -144,7 +153,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -160,7 +169,7 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,
@@ -241,7 +250,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -257,12 +266,12 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,
       ),
-      'post' =>
+      'post' => 
       array (
         0 => 'relation',
         1 => 
@@ -315,12 +324,21 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'rejected',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => 'dd1f6a73-84cd-4d45-a5ff-17b6bf9bef31',
+            'displayName' => 'Отклонен',
+          ),
+        ),
       ),
     ),
   ),
@@ -372,7 +390,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -388,7 +406,7 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,
@@ -446,12 +464,21 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:11:21";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:11:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'rejected',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => 'dd1f6a73-84cd-4d45-a5ff-17b6bf9bef31',
+            'displayName' => 'Отклонен',
+          ),
+        ),
       ),
     ),
   ),
@@ -492,7 +519,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -508,7 +535,7 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,
@@ -566,12 +593,21 @@ return array (
       'publishTime' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:05:34";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2012-11-15 15:05:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'publishStatus' => 
+      'status' => 
       array (
-        0 => 'string',
-        1 => 'published',
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCommentStatus',
+            'type' => 'base',
+            'guid' => '36b939b6-8144-4869-8b4e-2d9302c48f09',
+            'displayName' => 'Опубликован',
+          ),
+        ),
       ),
     ),
   ),
@@ -596,7 +632,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -612,7 +648,7 @@ return array (
           ),
         ),
       ),
-      'trashed' =>
+      'trashed' => 
       array (
         0 => 'boolean',
         1 => false,

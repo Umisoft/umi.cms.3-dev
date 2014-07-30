@@ -19,23 +19,7 @@ define([], function(){
                 url : '/admin/api/files/manager/action/connector',
                 lang: 'ru',
 
-                //                getFileCallback : function(file) {
-                //                    window.opener.CKEDITOR.tools.callFunction(funcNum, file);
-                //                    window.close();
-                //                },
-
                 closeOnGetFileCallback : true,
-//                editorCallback : function(url) {
-//                    console.log('elFinder', url);
-//                    document.querySelector('.umi-input-wrapper-file .umi-file').value = url;
-//                },
-                getFileCallback : function(fileInfo){
-                    console.log('getFileCallback', fileInfo);
-//                    window.opener.CKEDITOR.tools.callFunction(funcNum, url);
-                    document.querySelector('.umi-input-wrapper .umi-file').value = fileInfo.path;
-                    document.querySelector('.umi-input-wrapper img').src = fileInfo.tmb;
-//                    window.close();
-                },
 
                 uiOptions: {
                     toolbar : [
@@ -51,39 +35,43 @@ define([], function(){
             }
         };
 
-        CKEDITOR.editorConfig = function( config ) {
-            // Define changes to default configuration here.
-            // For the complete reference:
+        UMI.config.CkEditor = function(){
+            var config = {};
             // http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-            config.filebrowserBrowseUrl = '/admin/api/files/manager/action/connector';
-            // The toolbar groups arrangement, optimized for two toolbar rows.
             config.toolbarGroups = [
                 { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-                { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+                { name: 'editing',     groups: [ 'find', 'selection'] },
                 { name: 'links' },
                 { name: 'insert' },
                 { name: 'forms' },
                 { name: 'tools' },
-                { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'document',   groups: [ 'mode', 'document', 'doctools' ] },
                 { name: 'others' },
                 '/',
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
                 { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
                 { name: 'styles' },
-                { name: 'colors' },
-                { name: 'about' }
+                { name: 'colors' }
             ];
 
-            // Remove some buttons, provided by the standard plugins, which we don't
-            // need to have in the Standard(s) toolbar.
             config.removeButtons = 'Underline,Subscript,Superscript';
 
-            // Se the most common block elements.
             config.format_tags = 'p;h1;h2;h3;pre';
 
-            // Make dialogs simpler.
             config.removeDialogTabs = 'image:advanced;link:advanced';
+
+            var locale = Ember.get(window, 'UmiSettings.locale') || '';
+
+            config.language = locale.split('-')[0];
+
+            config.height = '450px';
+
+            config.baseFloatZIndex = 200;
+
+            config.image_previewText = ' ';
+
+            return config;
         };
     };
 });

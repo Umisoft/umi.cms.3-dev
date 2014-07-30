@@ -131,9 +131,11 @@ define(
                     var data = {
                         'close': true,
                         'title': error.status + '. ' + error.statusText,
-                        'content': message
+                        'content': message,
+                        'duration': false,
+                        'type': 'error'
                     };
-                    UMI.dialog.open(data).then();
+                    UMI.notification.create(data);
                 }
             }
         });
@@ -419,6 +421,26 @@ define(
                 if(serialized){
                     try{
                         serialized = JSON.parse(serialized);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
+                    }
+                } else{
+                    serialized = [];
+                }
+                return serialized;
+            }
+        });
+
+        UMI.ObjectRelationTransform = UMI.SerializedTransform.extend({
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                        serialized = {
+                            collection: serialized.collection ? serialized.collection : Ember.get(serialized, 'meta.collectionName'),
+                            guid: serialized.guid
+                        };
                     } catch(error){
                         error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
                         this.get('container').lookup('route:application').send('backgroundError', error);

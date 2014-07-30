@@ -19,3 +19,86 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
+
+.cke_dialog_background_cover{
+
+}
+
+.cke_dialog .cke_dialog_body{
+    border-color: #21252e;
+    .ImagePreviewBox{
+        border: 1px ridge #C5C5C5;
+    }
+
+    select.cke_dialog_ui_input_select{
+        height: 33px;
+    }
+
+    input.cke_dialog_ui_input_text,
+    input.cke_dialog_ui_input_password,
+    textarea.cke_dialog_ui_input_textarea,
+    select.cke_dialog_ui_input_select{
+        &:focus{
+            border: 1px solid #c6c6c6;
+            border-top-color: #c6c6c6;
+        }
+    }
+
+    a.cke_dialog_ui_button_ok, a.cke_dialog_ui_button{
+        text-shadow: none;
+        border-color: #A8ADB1;
+        background: darken(#F5F5F5, 1%);
+        background-image: linear-gradient(#FDFDFD, #F5F5F5);
+        padding: 8px 12px;
+        &:hover{
+            border-color: #A8ADB1;
+            background: darken(#F5F5F5, 2%);
+            background-image: linear-gradient(darken(#FDFDFD, 3%),darken( #F5F5F5, 3%));
+        }
+        span{
+            line-height: normal;
+        }
+    }
+
+    a.cke_dialog_ui_button_ok{
+        border-color: #0A8EEC;
+        background: #0A8EEC;
+        background-image: linear-gradient(#3aadff, #0087d4);
+        &:hover{
+            border-color: #0A8EEC;
+            background: #0A8EEC;
+            background-image: linear-gradient(darken(#3aadff, 3%),darken( #0087d4, 3%));
+        }
+    }
+
+    .cke_dialog_title{
+        background: linear-gradient(#414a59, #21252e);
+        border-bottom: none;
+        padding: 8px 10px;
+        color: #fff;
+        text-shadow: none;
+    }
+
+    .cke_dialog_close_button, a.cke_dialog_close_button{
+        top: 8px;
+        right: 10px;
+        background: url($umi-icons-img) no-repeat;
+        background-position: -1020px -20px;
+        border-color: #727272;
+        border-radius: 0;
+        span{
+            text-shadow: none;
+        }
+    }
+
+    .cke_dialog_footer{
+        background: #21252e;
+        background-image: linear-gradient(#414a59, #21252e);
+        outline: none;
+    }
+    .cke_resizer{
+        border-right-color: #fff;
+        margin-top: 28px;
+        margin-right: 3px;
+    }
+}

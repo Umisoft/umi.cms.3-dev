@@ -67,6 +67,12 @@ var UMI = UMI || {};
                 stepRequest(pathInstaller, params);
                 overlay.close();
             });
+        }, function (error) {
+            var step = hashList.command || 'checkLicense';
+            $('.js-step-' + step +' .info').removeClass('display_none');
+            $('.js-step-' + step + ' .img_stop img').remove();
+            $('.js-step-' + step + ' .img_stop').html('<img src="http://install.umi-cms.ru/icon_stop_red.png">');
+            $('.js-step-' + step + ' .img_stop_text').html(error.responseJSON.message);
         });
     });
 

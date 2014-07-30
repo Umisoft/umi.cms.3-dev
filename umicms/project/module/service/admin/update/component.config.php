@@ -21,7 +21,7 @@ return [
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    AdminComponent::OPTION_QUERY_ACTIONS => [
+    AdminComponent::OPTION_MODIFY_ACTIONS => [
         'update' => []
     ],
 

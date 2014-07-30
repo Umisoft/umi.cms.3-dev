@@ -10,12 +10,16 @@
 
 return [
     'en-US' => [
+        'collection:layout:displayName' => 'Layouts',
+
         'type:base:displayName' => 'Layout',
         'type:base:createLabel' => 'layout',
         'fileName' => 'File name'
     ],
 
     'ru-RU' => [
+        'collection:layout:displayName' => 'Шаблоны',
+
         'type:base:displayName' => 'Шаблон',
         'type:base:createLabel' => 'Добавить шаблон',
         'fileName' => 'Имя файла'

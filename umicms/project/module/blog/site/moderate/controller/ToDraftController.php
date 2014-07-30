@@ -17,6 +17,7 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
@@ -65,7 +66,7 @@ class ToDraftController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogPost->draft();
+        $this->blogPost->status = $this->module->postStatus()->get(PostStatus::GUID_DRAFT);
         $this->commit();
     }
 }

@@ -9,6 +9,7 @@ use umicms\install\command\DbConfig;
 use umicms\install\command\DownloadCore;
 use umicms\install\command\DownloadEnvironment;
 use umicms\install\command\DownloadProject;
+use umicms\install\command\ExtractCore;
 use umicms\install\command\ExtractEnvironment;
 use umicms\install\command\ExtractProject;
 use umicms\install\command\InstallCommandRegistry;
@@ -22,6 +23,7 @@ use umicms\install\exception\RuntimeException;
 use umicms\install\installer\Installer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use umicms\install\installer\Rule;
 
 define('INSTALL_ROOT_DIR', getcwd());
 define('CMS_CORE_PHAR', INSTALL_ROOT_DIR . '/umicms.phar');
@@ -36,11 +38,28 @@ $autoLoaderPath = $vendorDirectory . '/autoload.php';
 error_reporting(-1);
 ini_set('display_errors', 1);
 set_time_limit(0);
-
-mb_internal_encoding("utf8");
+ini_set('max_execution_time', 0);
 
 /** @noinspection PhpIncludeInspection */
 require $autoLoaderPath;
+
+$request = new Request($_GET);
+$response = new Response();
+
+try {
+    $rules = new Rule(['pdo', 'mbstring', 'curl']);
+    $rules->check();
+} catch (\Exception $e) {
+    $response->setContent(json_encode([
+        'message' => $e->getMessage(),
+    ]));
+    $response->headers->set('Content-Type', 'application/json');
+    $response->setStatusCode(400);
+    $response->send();
+    exit;
+}
+
+mb_internal_encoding("utf8");
 
 session_start();
 
@@ -49,9 +68,6 @@ if (!isset($_SESSION['configFileName'])) {
 }
 
 $installer = new Installer($_SESSION['configFileName']);
-
-$request = new Request($_GET);
-$response = new Response();
 
 $registry = new InstallCommandRegistry();
 $registry->add(new CheckLicense($installer, $request->query->get('licenseKey')), 'checkLicense');
@@ -72,6 +88,7 @@ $registry->add(
 );
 $registry->add(new CheckDb($installer), 'checkDb');
 $registry->add(new DownloadCore($installer), 'core');
+$registry->add(new ExtractCore($installer), 'coreExtract');
 $registry->add(new DownloadEnvironment($installer), 'environment');
 $registry->add(new ExtractEnvironment($installer), 'environmentExtract');
 $registry->add(new DownloadProject($installer), 'project');

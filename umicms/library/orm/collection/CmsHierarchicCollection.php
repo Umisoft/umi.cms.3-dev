@@ -32,14 +32,18 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     public function add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
     {
         if ($branch) {
+            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                /**
+                 * @var ICalculableProperty $localizedSiteChildCount
+                 */
+                $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                $localizedSiteChildCount->recalculate();
+            }
             /**
-             * @var ICalculableProperty $siteChildCount
              * @var ICalculableProperty $adminChildCount
              */
-            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
             $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-            $siteChildCount->recalculate();
             $adminChildCount->recalculate();
         }
 
@@ -55,14 +59,18 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
          * @var CmsHierarchicObject $object
          */
         if ($parent = $object->getParent()) {
+            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                /**
+                 * @var ICalculableProperty $localizedSiteChildCount
+                 */
+                $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                $localizedSiteChildCount->recalculate();
+            }
             /**
-             * @var ICalculableProperty $siteChildCount
              * @var ICalculableProperty $adminChildCount
              */
-            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
             $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-            $siteChildCount->recalculate();
             $adminChildCount->recalculate();
         }
 

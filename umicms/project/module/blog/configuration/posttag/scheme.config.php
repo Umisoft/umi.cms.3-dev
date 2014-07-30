@@ -11,7 +11,7 @@
 use Doctrine\DBAL\Types\Type;
 
 return array_replace_recursive(
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
         'name' => 'blog_blog_post_tags',
         'columns' => [

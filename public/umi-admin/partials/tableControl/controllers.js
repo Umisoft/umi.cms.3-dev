@@ -2,26 +2,30 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
-        UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
-            componentNameBinding: 'controllers.component.name',
-            collectionName: function(){
-                var dataSource = this.get('controllers.component.dataSource.name');
-                if(!dataSource){
-                    dataSource = this.get('controllers.component.selectedContext');
-                }
-                return dataSource;
-            }.property('controllers.component.dataSource.name', 'controllers.component.selectedContext'),
+        UMI.TableControlMixin = Ember.Mixin.create(UMI.i18nInterface,{
+            /**
+             * @abstract
+             * @property collectionName
+             */
+            collectionName: null,
+            
             dictionaryNamespace: 'tableControl',
+            
+            hasContextMenu: false,
+            
             localDictionary: function(){
                 var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
+            
             /**
              * Данные
              * @property objects
              */
             objects: null,
+            
             fieldsList: null,
+            
             objectChange: function(){
                 Ember.run.once(this, 'updateObjectDeleted');
             }.observes('objects.@each.isDeleted'),
@@ -58,21 +62,25 @@ define(['App'], function(UMI){
                 });
                 this.set('objects', data);
             },
+            
             /**
              * Количество объектов на странице
              * @property limit
              */
             limit: 25,
+            
             /**
              * Индекс первого объекта на странице
              * @property offset
              */
             offset: 0,
+            
             /**
              * Количество объектов во всей коллекции
              * @property total
              */
             total: 0,
+            
             /**
              * Свойство по которому необходимо выполнить фильтрацию
              * @property orderByProperty
@@ -92,10 +100,12 @@ define(['App'], function(UMI){
                     return order;
                 }
             }.property('orderByProperty'),
+            
             /**
              * Список отображаемых полей принадлежащих объекту
              */
             nativeFieldsList: null,
+            
             /**
              * Вычисляемое свойство списка полей принадлежащих объекту
              * @property fields
@@ -107,10 +117,12 @@ define(['App'], function(UMI){
                     return nativeFieldsList;
                 }
             }.property('nativeFieldsList'),
+            
             /**
              * Список полей имеющих связь belongsTo
              */
             relatedFieldsList: null,
+            
             /**
              * Вычисляемое свойство возвращающее поля belongsTo
              * @property fields
@@ -127,11 +139,13 @@ define(['App'], function(UMI){
              * @collectionFilterParams
              */
             collectionFilterParams: null,
+            
             /**
              * Свойства фильтрации
              * @property filters
              */
             filterParams: null,
+            
             /**
              * Вычисляемое свойство фильтрации
              * @property filters
@@ -207,9 +221,9 @@ define(['App'], function(UMI){
             /**
              * Метод вызывается при смене контекста (компонента).
              * Сбрасывает значения фильтров,вызывает метод getObjects, вычисляет total
-             * @method contextChanged
+             * @method updateContent
              */
-            contextChanged: function(){
+            updateContent: function(){
                 var store = this.get('store');
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('collectionName');
@@ -286,7 +300,12 @@ define(['App'], function(UMI){
                         self.set('fieldsList', fieldsList);
                     });
                 });
-            }.observes('content.object.id').on('init'),
+            },
+            
+            /**
+             * @abstract
+             */
+            contextChange: null,
 
             /**
              * Метод вызывается при изменении параметров запроса.
@@ -323,17 +342,74 @@ define(['App'], function(UMI){
                 orderByProperty: function(propertyName, sortAscending){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
                 }
-            },
+            }
+        });
 
+        UMI.TableControlController = Ember.ObjectController.extend(UMI.TableControlMixin,{
             needs: ['component'],
 
-            itemController: 'tableControlContextToolbarItem'
+            componentNameBinding: 'controllers.component.name',
+
+            hasContextMenu: true,
+
+            collectionName: function(){
+                var dataSource = this.get('controllers.component.dataSource.name');
+                if(!dataSource){
+                    dataSource = this.get('controllers.component.selectedContext');
+                }
+                return dataSource;
+            }.property('controllers.component.dataSource.name', 'controllers.component.selectedContext'),
+
+            itemController: 'tableControlContextToolbarItem',
+
+            updateObjectDeleted: function(){//TODO: Реализация плохая: множественное всплытие события
+                var objects = this.get('objects');
+                objects.forEach(function(item){
+                    if(item && item.get('isDeleted')){
+                        objects.get('content.content.content').removeObject(item);
+                    }
+                });
+            },
+
+            contextChange: function(){
+                this.updateContent();
+            }.observes('content.object.id').on('init'),
+
+            objectChange: function(){
+                Ember.run.once(this, 'updateObjectDeleted');
+            }.observes('objects.@each.isDeleted')
         });
 
         UMI.TableControlContextToolbarItemController = Ember.ObjectController.extend({
             objectBinding: 'content',
-            componentNameBinding: 'parentController.componentName'
+            componentNameBinding: 'parentController.componentName',
+
+            isSelected: function(){
+                var objectGuid = this.get('object.guid');
+                return objectGuid === this.get('parentController.control.meta.activeObjectGuid');
+            }.property('parentController.control.meta.activeObjectGuid')
         });
 
+        UMI.TableControlSharedController = Ember.ObjectController.extend(UMI.TableControlMixin,{
+            collectionName: function(){
+                return this.get('control.collectionName');
+            }.property('control.collectionName'),
+
+            contextChange: function(){
+                this.updateContent();
+            }.observes('collectionName').on('init'),
+
+            actions: {
+                executeBehaviour: function(behaviourName, object){
+                    var behaviour = this.get('control.behaviour.' + behaviourName);
+
+                    if(Ember.typeOf(behaviour) === 'function'){
+                        behaviour(this, object);
+                    } else{
+                        Ember.warn('Behaviour for row click did not set.');
+                    }
+                }
+            }
+        });
     };
 });

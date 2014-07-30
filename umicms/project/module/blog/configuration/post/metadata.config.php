@@ -9,6 +9,8 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
+use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
@@ -22,12 +24,14 @@ return array_replace_recursive(
                 'type' => IField::TYPE_DATE_TIME,
                 'columnName' => 'publish_time'
             ],
-            BlogPost::FIELD_PUBLISH_STATUS => [
-                'type' => IField::TYPE_STRING,
-                'mutator' => 'changeStatus',
-                'accessor' => 'getPublishStatus',
-                'columnName' => 'publish_status',
-                'defaultValue' => BlogPost::POST_STATUS_DRAFT
+            BlogPost::FIELD_STATUS => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'mutator' => 'setStatus',
+                'columnName' => 'status_id',
+                'target' => 'blogPostStatus',
+                'validators'    => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             BlogPost::FIELD_ANNOUNCEMENT => [
                 'type' => IField::TYPE_TEXT,
@@ -58,7 +62,8 @@ return array_replace_recursive(
             BlogPost::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
-                'target' => 'blogAuthor'
+                'target' => 'blogAuthor',
+                'mutator' => 'setAuthor'
             ],
             BlogPost::FIELD_TAGS => [
                 'type' => IField::TYPE_MANY_TO_MANY,
@@ -68,9 +73,19 @@ return array_replace_recursive(
                 'targetField' => 'tag'
             ],
             BlogPost::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
-                'columnName' => 'comments_count'
-            ]
+                'type' => IField::TYPE_FORMULA,
+                'columnName' => 'comments_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateCommentsCount',
+                'readOnly'     => true
+            ],
+            BlogPost::FIELD_COMMENTS => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'blogComment',
+                'targetField' => BaseBlogComment::FIELD_POST,
+                'readOnly' => true
+            ],
         ],
         'types' => [
             'base' => [
@@ -82,8 +97,9 @@ return array_replace_recursive(
                     BlogPost::FIELD_CATEGORY => [],
                     BlogPost::FIELD_TAGS => [],
                     BlogPost::FIELD_PUBLISH_TIME => [],
-                    BlogPost::FIELD_PUBLISH_STATUS => [],
+                    BlogPost::FIELD_STATUS => [],
                     BlogPost::FIELD_COMMENTS_COUNT => [],
+                    BlogPost::FIELD_COMMENTS => [],
                     BlogPost::FIELD_AUTHOR => []
                 ]
             ]

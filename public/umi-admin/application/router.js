@@ -91,7 +91,7 @@ define([], function(){
                 var self = this;
                 var deferred = Ember.RSVP.defer();
                 try{
-                    params.object.validateObject();
+                    params.object.validateObject(Ember.get(params, 'fields'));
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -250,13 +250,28 @@ define([], function(){
                     }
                 },
 
-                showPopup: function(popupType, object, meta){
-                    UMI.PopupView.create({
-                        container: this.container,
-                        popupType: popupType,
-                        object: object,
-                        meta: meta
-                    }).append();
+                showPopup: function(params){
+                    Ember.warn('Param "popupType" is required for create popup.', Ember.get(params, 'viewParams.popupType'));
+                    var controller = this.controllerFor('popup');
+                    if(Ember.typeOf(params) === 'object'){
+                        controller.setProperties(params);
+                    }
+                    return this.render('popup', {
+                        into: 'application',
+                        outlet: 'popup',
+                        controller: controller
+                    });
+                },
+
+                closePopup: function(){
+                    this.get('container').lookup('view:popup').send('closePopup');
+                },
+
+                removePopupLayout: function(){
+                    return this.disconnectOutlet({
+                        outlet: 'popup',
+                        parentView: 'application'
+                    });
                 },
 
                 /// global actions
@@ -710,34 +725,39 @@ define([], function(){
                         /**
                          * Ресурс компонента
                          */
-                        Ember.$.get(Ember.get(model, 'resource')).then(function(results){
-                            var componentController = self.controllerFor('component');
-                            if(Ember.typeOf(results) === 'object' && Ember.get(results, 'result.layout')){
-                                var settings = results.result.layout;
-                                var dataSource = Ember.get(settings, 'dataSource') || '';
-                                componentController.set('settings', settings);
-                                componentController.set('selectedContext', Ember.get(transition,'params.context') ? Ember.get(transition, 'params.context.context') : 'root');
-                                if(Ember.get(dataSource, 'type') === 'lazy'){
-                                    $.get(Ember.get(settings, 'actions.' + Ember.get(dataSource, 'action') + '.source')).then(
-                                        function(results){
-                                            var data = Ember.get(results, 'result.' + Ember.get(dataSource, 'action') + '.objects');
-                                            Ember.set(dataSource, 'objects', data);
-                                            deferred.resolve(model);
-                                        }, function(error){
-                                            deferred.reject(transition.send('backgroundError', error));
-                                        }
-                                    );
+                        $.ajax({
+                            type: "GET",
+                            url: Ember.get(model, 'resource'),
+                            global: false,
+                            success: function(results){
+                                var componentController = self.controllerFor('component');
+                                if(Ember.typeOf(results) === 'object' && Ember.get(results, 'result.layout')){
+                                    var settings = results.result.layout;
+                                    var dataSource = Ember.get(settings, 'dataSource') || '';
+                                    componentController.set('settings', settings);
+                                    componentController.set('selectedContext', Ember.get(transition,'params.context') ? Ember.get(transition, 'params.context.context') : 'root');
+                                    if(Ember.get(dataSource, 'type') === 'lazy'){
+                                        $.get(Ember.get(settings, 'actions.' + Ember.get(dataSource, 'action') + '.source')).then(
+                                            function(results){
+                                                var data = Ember.get(results, 'result.' + Ember.get(dataSource, 'action') + '.objects');
+                                                Ember.set(dataSource, 'objects', data);
+                                                deferred.resolve(model);
+                                            }, function(error){
+                                                deferred.reject(transition.send('backgroundError', error));
+                                            }
+                                        );
+                                    } else{
+                                        deferred.resolve(model);
+                                    }
                                 } else{
-                                    deferred.resolve(model);
+                                    var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
+                                    transition.send('backgroundError', error);
+                                    deferred.reject();
                                 }
-
-                            } else{
-                                var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
-                                transition.send('backgroundError', error);
-                                deferred.reject();
+                            },
+                            error: function(error){
+                                deferred.reject(Ember.run.next(this, function(){transition.send('templateLogs', error);}));
                             }
-                        }, function(error){
-                            deferred.reject(Ember.run.next(this, function(){transition.send('templateLogs', error);}));
                         });
                     } else{
                         throw new URIError('The component "' + componentName + '" was not found.');
