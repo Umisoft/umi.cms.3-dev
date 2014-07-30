@@ -44,11 +44,30 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
     const FIELD_DATE_INDEXED = 'dateIndexed';
 
     /**
+     * Возвращает проиндексированный объект
+     * @return ICmsObject
+     */
+    public function getIndexedObject()
+    {
+        return $this->getCollectionManager()
+            ->getCollection($this->refCollectionName)
+            ->get($this->refGuid);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
      * Генерирует отображаемое имя, если оно не было установлено.
      * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName($localeId = null)
+    protected function generateDisplayName($localeId = null)
     {
         if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
             $value = 'Index for ' . $this->refCollectionName . '#' . $this->refGuid;
@@ -59,16 +78,5 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
         }
 
         return true;
-    }
-
-    /**
-     * Возвращает проиндексированный объект
-     * @return ICmsObject
-     */
-    public function getIndexedObject()
-    {
-        return $this->getCollectionManager()
-            ->getCollection($this->refCollectionName)
-            ->get($this->refGuid);
     }
 }
