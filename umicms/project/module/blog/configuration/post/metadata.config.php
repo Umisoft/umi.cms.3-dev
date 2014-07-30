@@ -104,7 +104,8 @@ return array_replace_recursive(
                     BlogPost::FIELD_STATUS => [],
                     BlogPost::FIELD_COMMENTS_COUNT => [],
                     BlogPost::FIELD_COMMENTS => [],
-                    BlogPost::FIELD_AUTHOR => []
+                    BlogPost::FIELD_AUTHOR => [],
+                    BlogPost::FIELD_IMAGE => [],
                 ]
             ]
         ]
