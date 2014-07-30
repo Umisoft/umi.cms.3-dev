@@ -133,11 +133,14 @@ class BlogAuthor extends CmsObject implements ICmsPage
      */
     public function recalculatePostsCount()
     {
-        /**
-         * @var ICalculableProperty $postsCountProperty
-         */
         $postsCountProperty = $this->getProperty(self::FIELD_POSTS_COUNT);
-        $postsCountProperty->recalculate();
+        foreach ($postsCountProperty->getField()->getLocalizations() as $localeId => $localeInfo) {
+            /**
+             * @var ICalculableProperty $localizedPostsCountProperty
+             */
+            $localizedPostsCountProperty = $this->getProperty(self::FIELD_POSTS_COUNT, $localeId);
+            $localizedPostsCountProperty->recalculate();
+        }
 
         return $this;
     }
