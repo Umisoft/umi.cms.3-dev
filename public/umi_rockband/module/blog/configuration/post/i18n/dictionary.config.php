@@ -11,13 +11,13 @@
 return [
 
     'en-US' => [
-        'imageMain' => 'Image on list',
-        'imageInternal' => 'Image internal page'
+        'imageMain' => 'Image on main page',
+        'imageList' => 'Image on list'
     ],
 
     'ru-RU' => [
-        'imageMain' => 'Изображение в списке',
-        'imageInternal' => 'Изображение на внутренней странице'
+        'imageMain' => 'Изображение на главной',
+        'imageList' => 'Изображение в списке'
     ]
 
 ];

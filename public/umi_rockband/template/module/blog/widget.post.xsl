@@ -8,9 +8,9 @@
 
 
     <!-- Список постов <Начало> -->
-    <xsl:template match="result[@widget = 'blog.post.view.list']"  mode="blog.content.list">
-        <xsl:apply-templates select="list/collection/item" mode="blog.content.list" />
-        <xsl:apply-templates select="paginator" />
+    <xsl:template match="result[@widget = 'blog.post.view.list']" mode="blog.content.list">
+        <xsl:apply-templates select="list/collection/item" mode="blog.content.list"/>
+        <xsl:apply-templates select="paginator"/>
     </xsl:template>
 
     <!-- Вызов кажого поста <Начало> -->
@@ -25,12 +25,12 @@
         <div class="article">
             <h3 class="article-title">
                 <a href="{@url}">
-                    <xsl:value-of select="@displayName" disable-output-escaping="yes" />
+                    <xsl:value-of select="@displayName" disable-output-escaping="yes"/>
                 </a>
             </h3>
             <div class="more">
                 <div class="name">
-                    <xsl:value-of select="property[@name = 'author']/value/@displayName" />
+                    <xsl:value-of select="property[@name = 'author']/value/@displayName"/>
                 </div>
                 <div class="date">
                     <xsl:call-template name="dateTime">
@@ -39,16 +39,16 @@
                     </xsl:call-template>
                 </div>
                 <div class="comments">
-                    <xsl:apply-templates select="property[@name = 'commentsCount']/value" mode="number" />
+                    <xsl:apply-templates select="property[@name = 'commentsCount']/value" mode="number"/>
                 </div>
             </div>
             <div class="article-content wide">
-                <img src="{$template}/blog/images/article2-img.png" alt="{@displayName}" />
+                <img src="{$template}/blog/images/article2-img.png" alt="{@displayName}"/>
                 <div class="content">
-                    <xsl:value-of select="property[@name = 'announcement']/value" disable-output-escaping="yes" />
+                    <xsl:value-of select="property[@name = 'announcement']/value" disable-output-escaping="yes"/>
                 </div>
                 <a class="moar" href="{@url}">
-                    <xsl:value-of select="document('translate://project.site.blog/ReadMore')/result" />
+                    <xsl:value-of select="document('translate://project.site.blog/ReadMore')/result"/>
                 </a>
             </div>
         </div>
@@ -59,7 +59,7 @@
 
 
     <!-- Список последних постов блога на главной <Начало> -->
-    <xsl:template match="result[@widget = 'blog.post.view.list']" mode="blog.main.row" >
+    <xsl:template match="result[@widget = 'blog.post.view.list']" mode="blog.main.row">
         <div class="list-blog row">
             <xsl:apply-templates select="list/collection/item" mode="blog.main.row"/>
         </div>
@@ -73,14 +73,19 @@
     <!-- Отдельный пост на главной -->
     <xsl:template match="blogPost" mode="blog.main.row">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
-            <a href="{@url}"><img src="{$template}/images/list-blog/1.jpg" class="img" alt="" /></a>
+            <a href="{@url}">
+                <img src="{property[@name='imageMain']/value}" class="img" alt=""/>
+            </a>
             <div class="bottom">
                 <h4>
-                    <a href="{@url}" class="title"><xsl:value-of select="property[@name='h1']/value"/></a>
+                    <a href="{@url}" class="title">
+                        <xsl:value-of select="@h1"/>
+                    </a>
                 </h4>
                 <div class="desc">
                     <xsl:value-of select="property[@name='announcement']/value" disable-output-escaping="yes"/>
                 </div>
+
                 <ul class="info">
                     <li class="date">
                         <xsl:call-template name="dateTime">
@@ -89,11 +94,11 @@
                         </xsl:call-template>
                     </li>
                     <li class="cat">
-                        <xsl:value-of select="property[@name='category']/value/@displayName" />
+                        <xsl:value-of select="property[@name='category']/value/@displayName"/>
                         <xsl:text> | </xsl:text>
-                        <xsl:apply-templates select="property[@name='commentsCount']/value" mode="number"/>
+                        <xsl:value-of select="document('translate://project.site.blog/Comments')"/>
                         <xsl:text> </xsl:text>
-                        <xsl:value-of select="document('translate://project.site.blog/Comments')" />
+                        <xsl:apply-templates select="property[@name='commentsCount']/value" mode="number"/>
                     </li>
                 </ul>
             </div>

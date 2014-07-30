@@ -15,7 +15,7 @@ return [
         'image_main' => [
             'type' => Type::STRING
         ],
-        'image_internal' => [
+        'image_list' => [
             'type' => Type::STRING
         ]
     ]

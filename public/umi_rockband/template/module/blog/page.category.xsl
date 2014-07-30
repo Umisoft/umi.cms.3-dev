@@ -21,9 +21,9 @@
 
                 <!-- Вывод постов-->
                 <div class="col-xs-12 col-sm-6 col-md-8">
-                    <xsl:apply-templates select="document(concat('widget://blog.category.postList?category=', page/@guid,
-                    '&amp;pagination%5BpageParam%5D=p&amp;pagination%5Btype%5D=elastic&amp;pagination%5BpagesCount%',
-                    $pagesCount, 'D=5&amp;limit=5'))" mode="blog.content.list" />
+                    <xsl:apply-templates select="document(concat('widget://blog.category.postList?categories=', page/@guid,
+                    '&amp;pagination%5BpageParam%5D=p&amp;pagination%5Btype%5D=elastic&amp;pagination%5BpagesCount%5D=',
+                    $pagesCount, '&amp;limit=5'))" mode="blog.content.list" />
                 </div>
 
                 <!-- Сайдбар -->

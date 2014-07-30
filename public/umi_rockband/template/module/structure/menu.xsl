@@ -27,7 +27,7 @@
     </xsl:template>
 
     <xsl:template match="item" mode="footer.content.list">
-        <div class="col-md-3">
+        <div class="col-md-3 text-center">
             <h5><a href="{@url}"><xsl:value-of select="@displayName"/></a></h5>
             <xsl:if test="item">
                 <ul class="menu">

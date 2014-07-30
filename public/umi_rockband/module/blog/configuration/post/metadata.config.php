@@ -16,9 +16,9 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'image_main'
         ],
-        'imageInternal' => [
+        'imageList' => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'image_internal'
+            'columnName' => 'image_list'
         ]
     ],
     'types' => [
@@ -26,7 +26,7 @@ return [
             'objectClass' => 'umicms\project\module\blog\model\object\BlogPost',
             'fields' => [
                 'imageMain' => [],
-                'imageInternal' => [],
+                'imageList' => [],
             ]
         ]
     ]

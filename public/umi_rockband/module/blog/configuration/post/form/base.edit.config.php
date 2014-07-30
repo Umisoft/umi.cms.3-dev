@@ -21,11 +21,11 @@ return [
                         'dataSource' => 'imageMain'
                     ]
                 ],
-                'imageInternal' => [
+                'imageList' => [
                     'type' => Text::TYPE_NAME,
-                    'label' => 'imageInternal',
+                    'label' => 'imageList',
                     'options' => [
-                        'dataSource' => 'imageInternal'
+                        'dataSource' => 'imageList'
                     ]
                 ]
             ]

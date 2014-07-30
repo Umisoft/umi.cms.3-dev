@@ -14,7 +14,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label><xsl:value-of select="form/elements/item[id='displayName']/label" />:</label>
+                        <label>
+                            <xsl:value-of select="document('translate://project.site.blog/Title')/result" />:
+                        </label>
                         <xsl:apply-templates select="form/elements/item[id='displayName']" mode="form">
                             <xsl:with-param name="class">form-control</xsl:with-param>
                         </xsl:apply-templates>
@@ -39,7 +41,9 @@
 
     <!-- Кнопка "ответить" на комментарий <Начало> -->
     <xsl:template match="result[@widget = 'blog.comment.add.addForm']" mode="blog.comments.replyTo">
-        <button name="re:{blogComment/@displayName}" value="{form/attributes/@action}" class="btn btn-custom btn-default-font btn-noshadow btn-primary">Ответить</button>
+        <button name="re:{blogComment/@displayName}" value="{form/attributes/@action}" class="btn btn-custom btn-default-font btn-noshadow btn-primary">
+            <xsl:value-of select="document('translate://project.site.blog/Reply')/result" />
+        </button>
      </xsl:template>
     <!-- Кнопка "ответить" на комментарий <Конец> -->
 

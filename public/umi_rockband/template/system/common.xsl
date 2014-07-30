@@ -96,12 +96,12 @@
     <!-- Шаблон для вывода сообщений об ошибках <Конец> -->
 
     <!-- Шаблон для вывода числовых значений полей <Начало> -->
-    <xsl:template match="value[*]" mode="number">
-        <xsl:value-of select="."/>
-    </xsl:template>
-
     <xsl:template match="value" mode="number">
         <xsl:text>0</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="value[node()]" mode="number">
+        <xsl:value-of select="."/>
     </xsl:template>
     <!-- Шаблон для вывода числовых значений полей <Конец> -->
 
