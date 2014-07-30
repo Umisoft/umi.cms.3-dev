@@ -16,6 +16,7 @@ use umicms\console\CreateProjectDumpCommand;
 use umicms\console\LoadProjectDumpCommand;
 use umicms\console\SyncProjectSchemeCommand;
 
+$environmentMode = 'console';
 require dirname(__DIR__) . '/configuration/core.php';
 
 $application = new ConsoleApplication('UMI.CMS Console application.', CMS_VERSION . ' ' . CMS_VERSION_DATE);

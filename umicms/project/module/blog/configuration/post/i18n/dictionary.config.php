@@ -20,12 +20,10 @@ return [
             BlogPost::FIELD_AUTHOR => 'Author',
             BlogPost::FIELD_PUBLISH_TIME => 'Publish time',
             BlogPost::FIELD_SOURCE => 'Source',
+            BlogPost::FIELD_STATUS => 'Status',
+
             'type:base:displayName' => 'Blog post',
-            'publishStatus' => 'Publish status',
-            BlogPost::POST_STATUS_DRAFT => 'Draft',
-            BlogPost::POST_STATUS_NEED_MODERATE => 'Moderate',
-            BlogPost::POST_STATUS_REJECTED => 'Rejected',
-            BlogPost::POST_STATUS_PUBLISHED => 'Published'
+
         ],
 
         'ru-RU' => [
@@ -37,11 +35,8 @@ return [
             BlogPost::FIELD_AUTHOR => 'Автор',
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogPost::FIELD_SOURCE => 'Источник публикации',
+            BlogPost::FIELD_STATUS => 'Статус публикации',
+
             'type:base:displayName' => 'Пост блога',
-            'publishStatus' => 'Статус публикации',
-            BlogPost::POST_STATUS_DRAFT => 'Черновик',
-            BlogPost::POST_STATUS_NEED_MODERATE => 'На модерации',
-            BlogPost::POST_STATUS_REJECTED => 'Отклонен',
-            BlogPost::POST_STATUS_PUBLISHED => 'Опубликован'
         ]
     ];

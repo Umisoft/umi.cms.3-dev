@@ -16,6 +16,7 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер публикации поста, требующего модерации.
@@ -52,7 +53,7 @@ class PublishController extends BaseCmsController
     protected function processForm(IForm $form)
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->publishStatus = BlogPost::POST_STATUS_PUBLISHED;
+        $blogPost->status = $this->module->postStatus()->get(PostStatus::GUID_PUBLISHED);
 
         $this->commit();
     }

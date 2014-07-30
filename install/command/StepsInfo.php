@@ -65,6 +65,11 @@ class StepsInfo implements ICommandInstall
             ],
             'core' => [
                 'title' => 'Скачивание ядра системы',
+                'nextStep' => 'coreExtract',
+                'stepNum' => 5
+            ],
+            'coreExtract' => [
+                'title' => 'Распаковка ядра системы',
                 'nextStep' => 'environment',
                 'stepNum' => 5
             ],

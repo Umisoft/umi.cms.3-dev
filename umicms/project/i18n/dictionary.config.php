@@ -64,6 +64,8 @@ return [
     'project.admin.rest.blog.tag' => '{#lazy:~/project/module/blog/admin/tag/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
+    'project.admin.rest.blog.poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/i18n/dictionary.config.php}',
+    'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
@@ -245,6 +247,8 @@ return [
     'collection.blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/i18n/dictionary.config.php}',
     'collection.blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/i18n/dictionary.config.php}',
     'collection.rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/i18n/dictionary.config.php}',
+    'collection.blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/i18n/dictionary.config.php}',
+    'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',

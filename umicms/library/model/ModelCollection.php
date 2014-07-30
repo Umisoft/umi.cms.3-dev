@@ -80,12 +80,22 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
 
         $synchronizer = new SingleDatabaseSynchronizer($connection);
 
+
+
         $tables = [];
         foreach ($this->getList() as $model) {
-            $tables[] = $model->getTableScheme();
+            $tableScheme = $model->getTableScheme();
+            $tables[$tableScheme->getName()] = $tableScheme;
         }
 
-        $scheme = new Schema($tables);
+        $currentScheme = $connection->getSchemaManager()->createSchema();
+        foreach ($currentScheme->getTables() as $table) {
+            if (!isset($tables[$table->getName()])) {
+                $tables[] = $table;
+            }
+        }
+
+        $scheme = new Schema($tables, [], $connection->getSchemaManager()->createSchemaConfig());
 
         $synchronizer->updateSchema($scheme, true);
 

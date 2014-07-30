@@ -10,6 +10,7 @@
 
 namespace umicms\orm\object;
 
+use umi\orm\metadata\field\special\FormulaField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
@@ -145,6 +146,9 @@ trait TCmsObject
 
         if ($currentLocaleId !== $defaultLocaleId) {
             foreach ($this->getModifiedProperties() as $property) {
+                if ($property->getField() instanceof FormulaField) {
+                    continue;
+                }
                 if ($property->getLocaleId()) {
                     $name = $property->getName();
                     if ($name === IActiveAccessibleObject::FIELD_ACTIVE) {

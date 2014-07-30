@@ -20,6 +20,7 @@ use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Коллекция постов блога.
@@ -74,7 +75,8 @@ class BlogPostCollection extends CmsPageCollection
         $selector = $this->select()
             ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)->equals($uri)
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED);
 
         $page = $selector->getResult()->fetch();
 
@@ -95,7 +97,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getDrafts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_DRAFT);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_DRAFT);
     }
 
     /**
@@ -182,7 +185,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getNeedModeratePosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_NEED_MODERATE);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_NEED_MODERATION);
     }
 
     /**
@@ -269,7 +273,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getRejectedPosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_REJECTED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+            ->equals(PostStatus::GUID_REJECTED);
     }
 
     /**

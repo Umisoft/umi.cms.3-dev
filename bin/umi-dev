@@ -20,7 +20,7 @@ use umicms\console\LoadProjectDumpCommand;
 use umicms\console\SyncProjectSchemeCommand;
 use umicms\console\UpdateDocumentationCommand;
 
-$useUnpackedCore = true;
+$environmentMode = 'console';
 require dirname(__DIR__) . '/configuration/core.php';
 
 $application = new ConsoleApplication('UMI.CMS Developers Team Console application.', CMS_VERSION . ' ' . CMS_VERSION_DATE);
