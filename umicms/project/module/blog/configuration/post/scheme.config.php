@@ -74,6 +74,9 @@ return array_replace_recursive(
                     'unsigned' => true,
                     'default' => 0
                 ]
+            ],
+            'image' => [
+                'type' => Type::STRING
             ]
         ],
         'indexes' => [

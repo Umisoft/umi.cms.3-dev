@@ -86,6 +86,10 @@ return array_replace_recursive(
                 'targetField' => BaseBlogComment::FIELD_POST,
                 'readOnly' => true
             ],
+            BlogPost::FIELD_IMAGE => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'image'
+            ],
         ],
         'types' => [
             'base' => [
