@@ -611,47 +611,36 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["UMI/partials/fileElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
-
-  data.buffer.push("<div class=\"small-10 columns\"> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "textElement", {hash:{
-    'object': ("view.object"),
-    'meta': ("view.meta")
-  },hashTypes:{'object': "ID",'meta': "ID"},hashContexts:{'object': depth0,'meta': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </div> <div class=\"small-2 columns\"> <span class=\"postfix\"> <i class=\"icon icon-delete\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("></i> <i class=\"icon icon-open-folder\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("></i> </span> </div>");
-  return buffer;
+function program1(depth0,data) {
   
-});
+  var buffer = '';
+  data.buffer.push(" <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> ");
+  return buffer;
+  }
 
-Ember.TEMPLATES["UMI/partials/imageElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push("<div class=\"small-10 columns\"> ");
+  data.buffer.push("<div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":small-2 :columns :umi-columns-fixed view.value:small-2-right:small-1-right")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> ");
+  stack1 = helpers['if'].call(depth0, "view.value", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </span> </span> </div> <div class=\"small-10 columns\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "textElement", {hash:{
     'object': ("view.object"),
     'meta': ("view.meta")
   },hashTypes:{'object': "ID",'meta': "ID"},hashContexts:{'object': depth0,'meta': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </div> <div class=\"small-2 columns\"> <span class=\"postfix\"> <i class=\"icon icon-delete\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("></i> <i class=\"icon icon-image\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push("></i> </span> </div>");
+  data.buffer.push(" </div>");
   return buffer;
   
 });
