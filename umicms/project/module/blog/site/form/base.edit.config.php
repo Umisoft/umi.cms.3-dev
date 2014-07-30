@@ -54,7 +54,8 @@ return [
             'options' => [
                 'dataSource' => BlogPost::FIELD_PAGE_H1,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []

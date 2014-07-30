@@ -18,9 +18,9 @@ use umi\http\Response;
 class Environment
 {
     /**
-     * @var string $currentMode имя окружения
+     * @var bool $corePath файл для подключения ядра системы
      */
-    public static $currentMode = 'development';
+    public static $corePath;
     /**
      * @var bool $displayErrors отображать ли ошибки по месту их возникновения
      */
@@ -80,7 +80,7 @@ class Environment
 
     /**
      * Инициализирует окружение настройками из конфигурации
-     * @param array $config
+     * @param array $config конфигурация окружения
      * @throws \RuntimeException
      */
     public static function init($config)
@@ -91,16 +91,7 @@ class Environment
             );
         }
 
-        if (!isset($config['currentMode']) || !isset($config[$config['currentMode']])) {
-            throw new \RuntimeException(
-                sprintf('Environment configuration is corrupted. Option "%s" required.', 'currentMode')
-            );
-        }
-
-        self::$currentMode = $config['currentMode'];
-        $modeConfig = $config[self::$currentMode];
-
-        foreach ($modeConfig as $name => $value) {
+        foreach ($config as $name => $value) {
             self::${$name} = $value;
         }
 

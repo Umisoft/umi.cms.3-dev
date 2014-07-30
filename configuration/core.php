@@ -1,6 +1,6 @@
 <?php
 /**
- * Подключает ядро UMI.CMS
+ * Подключает ядро UMI.CMS с конфигурацией необходимого окружения
  *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
@@ -13,13 +13,28 @@ use umicms\project\Environment;
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-$environment = is_file(__DIR__ . '/environment.config.php') ? require (__DIR__ . '/environment.config.php') : [];
+$environments = is_file(__DIR__ . '/environment.config.php') ? require (__DIR__ . '/environment.config.php') : [];
 
-if (isset($useUnpackedCore) || !isset($environment['corePath']) || !is_file($environment['corePath'])) {
-    $environment['corePath'] = dirname(__DIR__) . '/umicms/bootstrap.php';
+global $environmentMode;
+
+$corePath = dirname(__DIR__) . '/umicms/bootstrap.php';
+
+if (!is_string($environmentMode) && isset($environments['defaultMode'])) {
+    $environmentMode = $environments['defaultMode'];
+
+}
+
+if (!isset($environments[$environmentMode])) {
+    throw new \RuntimeException(
+        sprintf('Environment configuration is corrupted. Configuration for mode "%s" undefined.', $environmentMode)
+    );
+}
+
+if (isset($environments[$environmentMode]['corePath'])) {
+    $corePath = $environments[$environmentMode]['corePath'];
 }
 
 /** @noinspection PhpIncludeInspection */
-require $environment['corePath'];
+require $corePath;
 
-Environment::init($environment);
+Environment::init($environments[$environmentMode]);

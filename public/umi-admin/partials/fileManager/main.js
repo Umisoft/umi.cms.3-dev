@@ -12,9 +12,15 @@ define(['App'], function(UMI){
          * @param fileInfo
          */
         fileSelect: function(fileInfo){
-            var fileSelect = this.get('templateParams.fileSelect');
-            if(Ember.typeOf(fileSelect) === 'function'){
-                fileSelect(fileInfo);
+            return fileInfo;
+        },
+
+        init: function(){
+            this._super();
+
+            var templateParams = this.get('templateParams');
+            if(Ember.typeOf(templateParams) === 'object'){
+                this.setProperties(templateParams);
             }
         },
 
