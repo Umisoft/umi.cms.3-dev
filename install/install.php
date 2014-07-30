@@ -9,6 +9,7 @@ use umicms\install\command\DbConfig;
 use umicms\install\command\DownloadCore;
 use umicms\install\command\DownloadEnvironment;
 use umicms\install\command\DownloadProject;
+use umicms\install\command\ExtractCore;
 use umicms\install\command\ExtractEnvironment;
 use umicms\install\command\ExtractProject;
 use umicms\install\command\InstallCommandRegistry;
@@ -37,6 +38,7 @@ $autoLoaderPath = $vendorDirectory . '/autoload.php';
 error_reporting(-1);
 ini_set('display_errors', 1);
 set_time_limit(0);
+ini_set('max_execution_time', 0);
 
 /** @noinspection PhpIncludeInspection */
 require $autoLoaderPath;
@@ -86,6 +88,7 @@ $registry->add(
 );
 $registry->add(new CheckDb($installer), 'checkDb');
 $registry->add(new DownloadCore($installer), 'core');
+$registry->add(new ExtractCore($installer), 'coreExtract');
 $registry->add(new DownloadEnvironment($installer), 'environment');
 $registry->add(new ExtractEnvironment($installer), 'environmentExtract');
 $registry->add(new DownloadProject($installer), 'project');
