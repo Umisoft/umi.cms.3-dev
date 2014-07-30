@@ -12,7 +12,6 @@ namespace umicms\model;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Schema\SchemaConfig;
 use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
 use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;

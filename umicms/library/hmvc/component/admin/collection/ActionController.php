@@ -556,22 +556,28 @@ class ActionController extends BaseController implements IFormAware
 
         if ($parent !== $branch) {
             if ($parent) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 /**
-                 * @var ICalculableProperty $siteChildCount
                  * @var ICalculableProperty $adminChildCount
                  */
-                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
                 $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
             }
 
             if ($branch) {
                 $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
             }
         }
