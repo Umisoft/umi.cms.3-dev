@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Text;
+use umicms\form\element\SingleCollectionObjectRelation;
 use umicms\project\site\SiteApplication;
 
 return [
@@ -20,16 +20,18 @@ return [
 
     'elements' => [
         SiteApplication::SETTING_DEFAULT_PAGE_GUID => [
-            'type' => Text::TYPE_NAME,
+            'type' => SingleCollectionObjectRelation::TYPE_NAME,
             'label' => SiteApplication::SETTING_DEFAULT_PAGE_GUID,
             'options' => [
+                'collection' => 'structure',
                 'dataSource' => SiteApplication::SETTING_DEFAULT_PAGE_GUID
             ]
         ],
         SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => [
-            'type' => Text::TYPE_NAME,
+            'type' => SingleCollectionObjectRelation::TYPE_NAME,
             'label' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID,
             'options' => [
+                'collection' => 'layout',
                 'dataSource' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID
             ]
         ]
