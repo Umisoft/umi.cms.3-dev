@@ -26,6 +26,11 @@ define(['App'], function(UMI){
                 var browseButton = dialogDefinition.contents[i].get('browse');
 
                 if (browseButton !== null) {
+                    browseButton.label = UMI.i18n.getTranslate('File manager');
+
+                    if(i === 0){
+                        browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                    }
                     browseButton.hidden = false;
                     browseButton.onClick = function(dialog, i){
                         editor._.filebrowserSe = this;

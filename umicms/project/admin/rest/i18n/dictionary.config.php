@@ -43,6 +43,7 @@ return [
         'Loading' => 'Loading',
         'Current version' => 'Current version',
         'Select file' => 'Select file',
+        'File manager' => 'File manager',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
@@ -99,6 +100,7 @@ return [
         'Current version' => 'Текущая версия',
         'No backups' => 'Нет резервных копий',
         'Select file' => 'Выберите файл',
+        'File manager' => 'Файловый менеджер',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',
