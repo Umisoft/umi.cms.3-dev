@@ -19,23 +19,7 @@ define([], function(){
                 url : '/admin/api/files/manager/action/connector',
                 lang: 'ru',
 
-                //                getFileCallback : function(file) {
-                //                    window.opener.CKEDITOR.tools.callFunction(funcNum, file);
-                //                    window.close();
-                //                },
-
                 closeOnGetFileCallback : true,
-//                editorCallback : function(url) {
-//                    console.log('elFinder', url);
-//                    document.querySelector('.umi-input-wrapper-file .umi-file').value = url;
-//                },
-                getFileCallback : function(fileInfo){
-                    console.log('getFileCallback', fileInfo);
-//                    window.opener.CKEDITOR.tools.callFunction(funcNum, url);
-                    document.querySelector('.umi-input-wrapper .umi-file').value = fileInfo.path;
-                    document.querySelector('.umi-input-wrapper img').src = fileInfo.tmb;
-//                    window.close();
-                },
 
                 uiOptions: {
                     toolbar : [
@@ -54,7 +38,6 @@ define([], function(){
         UMI.config.CkEditor = function(){
             var config = {};
             // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-            config.filebrowserBrowseUrl = '/admin/api/files/manager/action/connector';
 
             config.toolbarGroups = [
                 { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -84,6 +67,10 @@ define([], function(){
             config.language = locale.split('-')[0];
 
             config.height = '450px';
+
+            config.baseFloatZIndex = 200;
+
+            config.image_previewText = ' ';
 
             return config;
         };

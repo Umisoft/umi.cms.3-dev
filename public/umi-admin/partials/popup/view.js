@@ -60,9 +60,22 @@ define(['App'], function(UMI){
                 this.setPosition();
             },
 
+            /**
+             * @hook
+             */
+            beforeClose: function(){},
+
+            /**
+             * @hook
+             */
+            afterClose: function(){},
+
             actions: {
                 closePopup: function(){
-                    this.get('controller').send('closePopup');
+                    this.beforeClose();
+                    this.removeBlur();
+                    this.get('controller').send('removePopupLayout');
+                    this.afterClose();
                 }
             },
 

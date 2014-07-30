@@ -2,6 +2,54 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
+        CKEDITOR.on('dialogDefinition', function(event){
+            var editor = event.editor;
+            var dialogDefinition = event.data.definition;
+            var tabCount = dialogDefinition.contents.length;
+            var dialogName = event.data.name;
+
+            var popupParams = {
+                viewParams: {
+                    popupType: 'fileManager',
+                    title: UMI.i18n.getTranslate('Select file')
+                },
+                templateParams: {
+                    fileSelect: function(fileInfo){
+                        var self = this;
+                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, Ember.get(fileInfo, 'url'));
+                        self.get('controller').send('closePopup');
+                    }
+                }
+            };
+
+            for(var i = 0; i < tabCount; i++) {
+                var browseButton = dialogDefinition.contents[i].get('browse');
+
+                if (browseButton !== null) {
+                    browseButton.label = UMI.i18n.getTranslate('File manager');
+
+                    if(i === 0){
+                        browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                    }
+                    browseButton.hidden = false;
+                    browseButton.onClick = function(dialog, i){
+                        editor._.filebrowserSe = this;
+                        var $dialog = $('.cke_dialog');
+                        $dialog.addClass('umi-blur');
+                        var $dialogCover = $('.cke_dialog_background_cover');
+                        $dialogCover.addClass('hide');
+
+                        var showDialogCK = function(){
+                            $dialog.removeClass('umi-blur');
+                            $dialogCover.removeClass('hide');
+                        };
+                        popupParams.viewParams.beforeClose = showDialogCK;
+                        UMI.__container__.lookup('route:application').send('showPopup', popupParams);
+                    };
+                }
+            }
+        });
+
         UMI.HtmlEditorView = Ember.View.extend({
             classNames: ['ckeditor-row'],
 
