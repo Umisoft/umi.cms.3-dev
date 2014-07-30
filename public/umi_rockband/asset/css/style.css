@@ -860,7 +860,9 @@ footer {
 .t1 {
   clear: both;
   width: 100%; }
-
+.comment {
+	margin: 10px 0;
+}
 .comment .com {
   margin-bottom: 10px;
   padding: 20px 0; }

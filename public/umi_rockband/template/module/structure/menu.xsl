@@ -22,23 +22,25 @@
     <!-- Меню в хедере <Конец> -->
 
     <!-- Меню в футере <Начало> -->
-    <xsl:template match="result[@widget = 'structure.menu.auto']" mode="footer.content.root">
-        <xsl:apply-templates select="menu/item" mode="footer.content.list"/>
+    <xsl:template match="result[@widget = 'structure.menu.custom']" mode="footer.content.root">
+        <xsl:apply-templates select="tree/item" mode="footer.content.list"/>
     </xsl:template>
 
     <xsl:template match="item" mode="footer.content.list">
         <div class="col-md-3">
-            <h5><a href="{page/@url}"><xsl:value-of select="page/@displayName"/></a></h5>
-            <ul class="menu">
-                <xsl:apply-templates select="children/item" mode="footer.content.pages"/>
-            </ul>
+            <h5><a href="{@url}"><xsl:value-of select="@displayName"/></a></h5>
+            <xsl:if test="item">
+                <ul class="menu">
+                    <xsl:apply-templates select="item" mode="footer.content.pages"/>
+                </ul>
+            </xsl:if>
         </div>
     </xsl:template>
 
     <xsl:template match="item" mode="footer.content.pages">
         <li>
-            <a href="{page/@url}">
-                <xsl:value-of select="page/@displayName" />
+            <a href="{@url}">
+                <xsl:value-of select="@displayName" />
             </a>
         </li>
     </xsl:template>

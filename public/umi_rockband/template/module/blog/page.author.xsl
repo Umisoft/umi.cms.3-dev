@@ -15,7 +15,7 @@
                 <!-- Заголовок -->
                 <div class="page-title">
                     <div class="title">
-                        <xsl:value-of select="page/@header" />
+                        <xsl:value-of select="page/@h1" />
                     </div>
                     <div class="separating-line"></div>
                     <div class="caption">

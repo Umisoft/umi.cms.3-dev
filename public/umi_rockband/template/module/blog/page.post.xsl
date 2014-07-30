@@ -14,7 +14,7 @@
                 <!-- Заголовок -->
                 <div class="page-title">
                     <div class="title">
-                        <xsl:value-of select="//property[@name='h1']/value" disable-output-escaping="yes"/>
+                        <xsl:value-of select="page/@h1" disable-output-escaping="yes"/>
                     </div>
                     <div class="separating-line"></div>
                     <div class="caption">
