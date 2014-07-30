@@ -39,6 +39,7 @@ use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\behaviour\IRobotsAccessibleObject;
@@ -538,9 +539,19 @@ class ActionController extends BaseController implements IFormAware
         }
 
         /**
-         * @var CmsHierarchicObject $object
+         * @var CmsHierarchicObject|ILockedAccessibleObject $object
          */
         $object = $this->getEditedObject($data['object']);
+
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot move locked object with guid "{guid}" from collection "{collection}".',
+                    ['guid' => $object->getGUID(), 'collection' => $collection->getName()]
+                )
+            );
+        }
+
         /**
          * @var CmsHierarchicObject $branch
          */
