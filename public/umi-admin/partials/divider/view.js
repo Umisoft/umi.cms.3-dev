@@ -22,6 +22,7 @@ define(['App'], function(UMI){
                 var $divider = $el.find('.umi-divider');
                 var $sidebar = $el.find('.umi-divider-left');
                 var $content = $el.find('.umi-divider-right');
+                var $gridElements = $el.find('.magellan-content').find('.umi-columns.large-4');
 
                 $el.off('mousedown.umi.divider.toggle');
                 $divider.off('mousedown.umi.divider.proccess');
@@ -31,6 +32,8 @@ define(['App'], function(UMI){
                         $sidebar.toggleClass('hide');
                         $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
                     });
+
+
 
                     $divider.on('mousedown.umi.divider.proccess', function(event){
                         if(event.button === 0){
@@ -43,9 +46,9 @@ define(['App'], function(UMI){
                                 sidebarWidth = sidebarWidth > 500 ? 500 : sidebarWidth;
 
                                 if(sidebarWidth > $el.width() - 720){
-                                    $el.find('.magellan-content').find('.umi-columns').removeClass('large-4').addClass('large-12');
+                                    $gridElements.removeClass('large-4').addClass('large-12');
                                 }else{
-                                    $el.find('.magellan-content').find('.umi-columns').removeClass('large-12').addClass('large-4');
+                                    $gridElements.removeClass('large-12').addClass('large-4');
                                 }
 
                                 $content.css({marginLeft: sidebarWidth + 1});

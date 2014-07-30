@@ -23,11 +23,7 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_DISPLAY_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
             ]
         ],
 
@@ -35,11 +31,7 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_EMAIL,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_EMAIL,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_EMAIL
             ]
         ],
 
@@ -47,33 +39,21 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_FIRST_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_FIRST_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_FIRST_NAME
             ]
         ],
         RegisteredUser::FIELD_MIDDLE_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_MIDDLE_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_MIDDLE_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_MIDDLE_NAME
             ]
         ],
         RegisteredUser::FIELD_LAST_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_LAST_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_LAST_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_LAST_NAME
             ]
         ],
 
