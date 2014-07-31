@@ -12,14 +12,12 @@ return [
 
     'en-US' => [
         'role:viewer:displayName' => 'View structure',
-        'role:topBarViewer:displayName' => 'View top bar',
         'role:menuExecutor:displayName' => 'Menu',
         'role:infoblockExecutor:displayName' => 'Information blocks',
     ],
 
     'ru-RU' => [
         'role:viewer:displayName' => 'Просмотр структуры сайта',
-        'role:topBarViewer:displayName' => 'Просмотр верхней панели управления',
         'role:menuExecutor:displayName' => 'Меню',
         'role:infoblockExecutor:displayName' => 'Информационные блоки'
     ]

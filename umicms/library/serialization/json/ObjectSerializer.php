@@ -11,6 +11,7 @@
 namespace umicms\serialization\json;
 
 use umicms\serialization\exception\UnexpectedValueException;
+use umicms\serialization\ISerializerConfigurator;
 
 /**
  * JSON-сериализатор для произвольных объектов "по умолчанию".
@@ -38,6 +39,19 @@ class ObjectSerializer extends BaseSerializer
             $variables = get_object_vars($object);
         }
 
-        $this->delegate($variables, $options);
+        if ($object instanceof ISerializerConfigurator) {
+            $this->configure($object);
+        }
+
+        $result = [];
+
+        foreach ($variables as $name => $value) {
+            if (in_array($name, $this->currentExcludes)) {
+                continue;
+            }
+            $result[$name] = $value;
+        }
+
+        $this->delegate($result, $options);
     }
 }

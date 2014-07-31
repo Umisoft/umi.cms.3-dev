@@ -26,7 +26,6 @@ return [
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umicms\project\module\search\model\object\SearchIndex' => 'umicms\serialization\xml\orm\SearchIndexSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
-            'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\xml\view\CmsTreeViewSerializer',
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\xml\view\CmsTreeNodeSerializer',
             'umicms\hmvc\view\LocalesView' => 'umicms\serialization\xml\view\LocalesViewSerializer',
@@ -41,7 +40,6 @@ return [
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\project\module\search\model\object\SearchIndex' => 'umicms\serialization\json\orm\SearchIndexSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
-            'umicms\hmvc\view\CmsView' => 'umicms\serialization\json\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\json\view\CmsTreeViewSerializer',
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\json\view\CmsTreeNodeSerializer',
             'umi\form\EntityAttributesView' => 'umicms\serialization\json\view\EntityAttributesViewSerializer',
@@ -69,7 +67,8 @@ return [
     ],
 
     SiteApplication::OPTION_WIDGET => [
-        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget'
+        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget',
+        'topBar' =>  __NAMESPACE__ . '\widget\TopBarWidget'
     ],
 
     SiteApplication::OPTION_VIEW        => [
@@ -79,7 +78,8 @@ return [
     SiteApplication::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
-            'widgetExecutor' => []
+            'widgetExecutor' => [],
+            'topBarViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -88,6 +88,9 @@ return [
             ],
             'widgetExecutor' => [
                 'controller:widget' => []
+            ],
+            'topBarViewer' => [
+                'widget:topBar' => []
             ]
         ]
     ],
