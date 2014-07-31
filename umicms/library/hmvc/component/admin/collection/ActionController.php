@@ -58,6 +58,19 @@ class ActionController extends BaseController implements IFormAware
     use TFormAware;
 
     /**
+     * Возвращает форму.
+     * @throws HttpException
+     * @return \ArrayObject
+     */
+    protected function actionGetForm()
+    {
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->getCollection()->getForm($formName, $typeName)->getView();
+    }
+
+    /**
      * Возвращает форму для редактирования объекта коллекции.
      * @throws HttpException
      * @return \ArrayObject
