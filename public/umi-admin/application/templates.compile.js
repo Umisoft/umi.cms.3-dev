@@ -2193,7 +2193,12 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"umi-top-bar-label\"> <i class=\"icon icon-butterfly\"></i> </span> </li> <li> <span class=\"umi-top-bar-label\">");
+  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.moduleDropdownView", {hash:{
+    'tagName': ("span"),
+    'class': ("button tiny flat dropdown without-arrow umi-top-bar-button")
+  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </li> <li> <span class=\"umi-top-bar-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</span> </li> <li> <a href=\"");

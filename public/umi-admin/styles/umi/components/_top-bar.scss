@@ -46,7 +46,7 @@ $umi-bg-darken-set: #404959, #181B21;
         padding-bottom: 0;
 
         .icon{
-            margin: -3px 0 0 3px;
+            margin: -3px 0 0 0;
         }
         &:hover{
             background: linear-gradient(#535b69 0%, #31353b 100%);
@@ -77,10 +77,14 @@ $umi-bg-darken-set: #404959, #181B21;
     }
 
     .f-dropdown{
-        margin-right: -1px;
+        margin-left: -1px;
         margin-top: -1px;
         padding: 5px 0;
         box-shadow: none;
+
+        &.right{
+            margin-right: -1px;
+        }
 
         li{
             a{
@@ -124,5 +128,27 @@ $umi-bg-darken-set: #404959, #181B21;
 
     .umi-overlay{
         position: fixed;
+    }
+
+    &-module-icon{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-size: 100%;
+        vertical-align: top;
+    }
+
+    &-dropdown-modules-item{
+        line-height: 40px;
+
+        span{
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        &.active{
+            background: #259cec !important;
+            color: #fff;
+        }
     }
 }
