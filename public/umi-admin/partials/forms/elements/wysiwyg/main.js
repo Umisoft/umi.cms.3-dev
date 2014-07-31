@@ -16,7 +16,11 @@ define(['App'], function(UMI){
                 templateParams: {
                     fileSelect: function(fileInfo){
                         var self = this;
-                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, Ember.get(fileInfo, 'url'));
+                        var image = Ember.get(fileInfo, 'url') || '';
+                        var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
+                        var pattern = new RegExp('^' + baseUrl, 'g');
+
+                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, image.replace(pattern, ''));
                         self.get('controller').send('closePopup');
                     }
                 }
