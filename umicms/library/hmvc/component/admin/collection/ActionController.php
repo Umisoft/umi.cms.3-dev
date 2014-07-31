@@ -229,7 +229,7 @@ class ActionController extends BaseController implements IFormAware
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
 
-        if (isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
+        if (!isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot change object slug. Slug is required.')
@@ -264,6 +264,8 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
+
+        $this->commit();
 
         return $object;
     }
