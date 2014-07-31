@@ -330,16 +330,16 @@ class Bootstrap
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
         if (!isset($projectConfig['assetsUrl'])) {
-            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset';
+            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset/';
         }
         $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         if (!isset($projectConfig['adminAssetsUrl'])) {
-            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
+            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin/';
         }
 
         if (!isset($projectConfig['assetsDir'])) {
-            $projectConfig['assetsDir'] = '~/project/asset';
+            $projectConfig['assetsDir'] = '~/project/asset/';
         }
         $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
         if (!isset($assetsDir[1])) {

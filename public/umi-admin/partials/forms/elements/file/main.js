@@ -23,7 +23,10 @@ define(['App'], function(UMI){
                         fileSelect: function(fileInfo){
                             var self = this;
                             var object = self.get('object');
-                            object.set(self.get('meta.dataSource'), Ember.get(fileInfo, 'path'));
+                            var image = Ember.get(fileInfo, 'url') || '';
+                            var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
+                            var pattern = new RegExp('^' + baseUrl, 'g');
+                            object.set(self.get('meta.dataSource'), image.replace(pattern, ''));
                             self.get('controller').send('closePopup');
                         }
                     }

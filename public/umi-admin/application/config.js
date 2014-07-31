@@ -73,6 +73,8 @@ define([], function(){
 
             config.image_previewText = ' ';
 
+            config.baseHref = Ember.get(window, 'UmiSettings.projectAssetsUrl');
+
             return config;
         };
     };
