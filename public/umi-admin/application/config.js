@@ -12,7 +12,9 @@ define([], function(){
                 click: true,
                 freeScroll: false,
                 keyBindings: true,
-                interactiveScrollbars: true
+                interactiveScrollbars: true,
+                fadeScrollbars: true,
+                disableMouse: true
             },
 
             elFinder: {

@@ -12,16 +12,17 @@ define(['App'],
                     return 'layout.defaultBehaviour.' + meta.type + '.' + meta.behaviour.name;
                 }.property(),
 
-                defaultBehaviourIndex: 0,
+                defaultBehaviourIndex: null,
 
                 defaultBehaviour: function(){
                     var index = this.get('defaultBehaviourIndex');
-                    var meta = this.get('meta') || {behaviour : {choices: []}};
-                    if(meta.behaviour.choices[index]){
-                        return meta.behaviour.choices[index];
-                    } else{
+                    var choices = this.get('meta.behaviour.choices') || [];
+                    if(choices[index]){
+                        return choices[index];
+                    } else if(index > 0){
                         this.set('defaultBehaviourIndex', 0);
                     }
+                    return choices[0];
                 }.property('defaultBehaviourIndex'),
 
                 defaultBehaviourIcon: function(){

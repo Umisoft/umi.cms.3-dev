@@ -73,7 +73,7 @@ return array_replace_recursive(
                 'targetField' => 'tag'
             ],
             BlogPost::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_FORMULA,
+                'type' => IField::TYPE_DELAYED,
                 'columnName' => 'comments_count',
                 'defaultValue' => 0,
                 'dataType'     => 'integer',
