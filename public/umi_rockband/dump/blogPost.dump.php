@@ -240,12 +240,17 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/set.jpg',
+        1 => '/images/posts/set.jpg',
       ),
       'imageList' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/inner.jpg',
+        1 => '/images/posts/inner.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -461,12 +466,17 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/set2.jpg',
+        1 => '/images/posts/set2.jpg',
       ),
       'imageList' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/inner2.jpg',
+        1 => '/images/posts/inner2.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -690,12 +700,17 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/set3.jpg',
+        1 => '/images/posts/set3.jpg',
       ),
       'imageList' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/posts/inner3.jpg',
+        1 => '/images/posts/inner3.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),

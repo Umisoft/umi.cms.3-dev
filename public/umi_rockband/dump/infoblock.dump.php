@@ -32,7 +32,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 13:35:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 21:45:37";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -100,12 +100,12 @@ return array (
       'logo#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<img src="/umi_rockband/asset/images/logo.png" />',
+        1 => 'images/logo.png',
       ),
       'logo#en-US' => 
       array (
         0 => 'string',
-        1 => '<img src="/umi_rockband/asset/images/logo.png" />',
+        1 => 'images/logo.png',
       ),
       'copyright#ru-RU' => 
       array (
@@ -116,6 +116,16 @@ return array (
       array (
         0 => 'string',
         1 => 'UMI.CMS 2014 All rights reserved',
+      ),
+      'counter#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'counter#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'widgetVk#ru-RU' => 
       array (
@@ -137,6 +147,16 @@ return array (
         0 => 'string',
         1 => '<div class="fb-like-box fb_iframe_widget" data-href="http://www.facebook.com/UMI.CMS" data-width="312" data-height="290" data-show-faces="true" data-stream="false" data-show-border="false" data-header="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312"><span style="vertical-align: bottom; width: 312px; height: 290px;"><iframe name="f3df2c96ec" width="312px" height="290px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like_box Facebook Social Plugin" src="http://www.facebook.com/plugins/like_box.php?app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FdgdTycPTSRj.js%3Fversion%3D41%23cb%3Df3acd61564%26domain%3Dwww.umi-cms.ru%26origin%3Dhttp%253A%252F%252Fwww.umi-cms.ru%252Ff891a948%26relation%3Dparent.parent&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312" class="" style="border: none; visibility: visible; width: 312px; height: 290px;"></iframe></span></div>',
       ),
+      'widgetTwitter#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'widgetTwitter#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'share#ru-RU' => 
       array (
         0 => 'string',
@@ -146,6 +166,46 @@ return array (
       array (
         0 => 'string',
         1 => '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script> <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>',
+      ),
+      'socialGroupLink#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'socialGroupLink#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
