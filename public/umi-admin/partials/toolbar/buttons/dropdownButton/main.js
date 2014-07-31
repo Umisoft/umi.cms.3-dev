@@ -274,6 +274,8 @@ define(['App', 'moment'],
                         submit: function(handler){
                             var self = this;
                             var object = self.get('object');
+                            var store = self.get('controller.store');
+                            var collectionName = Ember.get(self.get('controller.object'), 'constructor.typeKey');
                             if(handler){
                                 handler.addClass('loading');
                             }
@@ -292,7 +294,17 @@ define(['App', 'moment'],
                                 data: serializeObject,
                                 contentType: 'application/json; charset=UTF-8'
                             }).then(function(results){
-                                console.log(results);
+                                var result = Ember.get(results, 'result');
+                                var actionName;
+                                for(var key in result){
+                                    if(result.hasOwnProperty(key)){
+                                        actionName = key;
+                                        break;
+                                    }
+                                }
+
+                                store.update(collectionName, Ember.get(result, actionName));
+                                self.get('parentView').set('isOpen', false);
                             });
                         }
                     }

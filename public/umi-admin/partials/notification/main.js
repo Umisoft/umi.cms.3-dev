@@ -30,6 +30,7 @@ define(['App'], function(UMI){
 
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
+            console.log(settings);
             Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});
         },
         removeAll: function(){
