@@ -158,5 +158,11 @@ define(['App'], function(UMI){
                 }
             }
         });
+
+        UMI.TreeControlContextToolbarController = Ember.ObjectController.extend({
+            needs: ['component'],
+
+            componentNameBinding: 'controllers.component.name'
+        });
     };
 });

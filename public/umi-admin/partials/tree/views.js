@@ -454,8 +454,6 @@ define(['App', 'toolbar'], function(UMI){
             }
         });
 
-        UMI.TreeControlContextToolbarController = Ember.ObjectController.extend({});
-
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
