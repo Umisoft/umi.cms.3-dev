@@ -174,6 +174,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/spb.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   1 => 
@@ -344,6 +349,11 @@ return array (
       array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/london.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -516,6 +526,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/football.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   3 => 
@@ -687,6 +702,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/newyork.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   4 => 
@@ -857,6 +877,11 @@ return array (
       array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/paris.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -1031,6 +1056,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/moscow.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   6 => 
@@ -1204,6 +1234,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/swimming.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   7 => 
@@ -1374,6 +1409,11 @@ return array (
       array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/news/programmer.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),

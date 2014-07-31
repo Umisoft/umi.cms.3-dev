@@ -247,6 +247,11 @@ return array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/posts/inner.jpg',
       ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
     ),
   ),
   1 => 
@@ -467,6 +472,11 @@ return array (
       array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/posts/inner2.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -696,6 +706,11 @@ return array (
       array (
         0 => 'string',
         1 => '/umi_rockband/asset/images/posts/inner3.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
