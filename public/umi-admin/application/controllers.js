@@ -12,7 +12,7 @@ define([], function(){
          * @class ComponentController
          * @extends Ember.ObjectController
          */
-        UMI.ComponentController = Ember.ObjectController.extend({
+        UMI.ComponentController = Ember.ObjectController.extend(Ember.Evented, {
             /**
              * Уникальное имя компонента
              * @property name
@@ -32,6 +32,11 @@ define([], function(){
              @default null
              */
             selectedContext: null,
+            /**
+             * Метод-тригер позволяющий обновить объекты не имеющих родителя
+             * @method needReloadRootElements
+             */
+            needReloadRootElements: Ember.K,
             /**
              Вычисляемое свойсво возвращающее массив контролов для текущего контекста
              @method contentControls
