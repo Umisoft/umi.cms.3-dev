@@ -10,7 +10,7 @@
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\PageRelation;
-use umicms\project\module\structure\model\object\Robots;
+use umicms\project\module\seo\model\object\Robots;
 
 return [
 

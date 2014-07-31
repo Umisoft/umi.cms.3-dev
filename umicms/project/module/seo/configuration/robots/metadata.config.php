@@ -8,7 +8,7 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\structure\model\object\Robots;
+use umicms\project\module\seo\model\object\Robots;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
@@ -24,7 +24,7 @@ return array_replace_recursive(
         ],
         'types' => [
             'base' => [
-                'objectClass' => 'umicms\project\module\structure\model\object\Robots',
+                'objectClass' => 'umicms\project\module\seo\model\object\Robots',
                 'fields' => [
                     Robots::FIELD_PAGE_RELATION => []
                 ]
