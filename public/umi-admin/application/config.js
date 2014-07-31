@@ -9,7 +9,7 @@ define([], function(){
                 mouseWheel: true,
                 scrollbars: true,
                 bounce: false,
-                click: true,
+                click: false,
                 freeScroll: false,
                 keyBindings: true,
                 interactiveScrollbars: true,

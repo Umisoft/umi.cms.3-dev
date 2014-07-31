@@ -25,7 +25,7 @@ define(['App', 'toolbar'], function(UMI){
              * @observer activeContext
              */
             activeContextChange: function(){
-                Ember.run.once(this, 'expandBranch');
+                Ember.run.next(this, 'expandBranch');
             }.observes('controller.activeContext').on('didInsertElement'),
 
             /**
@@ -33,6 +33,9 @@ define(['App', 'toolbar'], function(UMI){
              * @method expandBranch
              */
             expandBranch: function(){
+                if(this.get('isDestroying') || this.get('isDestroyed')){//TODO: fixed
+                    return;
+                }
                 var $el = this.$();
                 var activeContext = this.get('controller.activeContext');
                 var checkExpandItem = function(id){
@@ -273,7 +276,7 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             willDestroyElement: function(){
-                this.get('controller').removeObserver('activeContext');
+                this.removeObserver('controller.activeContext');
             }
         });
 
@@ -373,6 +376,9 @@ define(['App', 'toolbar'], function(UMI){
             }.property('controller.activeContext.id'),
 
             childrenList: function(){
+                if(!this.get('item')){//TODO: fixed
+                    return;
+                }
                 return this.getChildren();
             }.property('item'),
 
