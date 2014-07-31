@@ -26,7 +26,7 @@ class Installer
      * @var array $typeProject
      */
     protected $typeProject = [
-        'twig', 'php', 'xslt'
+        'demo-twig', 'demo-php', 'umi_rockband'
     ];
 
     /**

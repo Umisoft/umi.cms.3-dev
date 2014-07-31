@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use Composer\Autoload\ClassLoader;
 use umicms\project\Environment;
 
 error_reporting(-1);
@@ -20,9 +21,12 @@ mb_internal_encoding("utf8");
  */
 defined('VENDOR_DIR') or define('VENDOR_DIR', dirname(__DIR__) . '/vendor');
 
-require VENDOR_DIR . '/autoload.php';
+/**
+ * @var ClassLoader
+ */
+$classLoader = require VENDOR_DIR . '/autoload.php';
 
-
+Environment::$classLoader = $classLoader;
 Environment::$startTime = microtime(true);
 
 $versionInfo = require __DIR__ . '/version.php';

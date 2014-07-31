@@ -52,7 +52,7 @@ class DownloadProject implements ICommandInstall
         $config['license']['project'] = $config['projectName'];
         $path = $this->installer->getUpdateLink() . '?' . http_build_query($config['license']);
 
-        if (!$this->installer->copyRemote($path, INSTALL_ROOT_DIR . '/demo-' . $config['projectName'] . '.phar')) {
+        if (!$this->installer->copyRemote($path, INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar')) {
             throw new RuntimeException(
                 'Неудалось скачать project.'
             );
