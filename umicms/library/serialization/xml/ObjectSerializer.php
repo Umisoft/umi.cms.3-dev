@@ -51,7 +51,7 @@ class ObjectSerializer extends BaseSerializer
                 continue;
             }
 
-            if (in_array($name, $this->currentAttributes)) {
+            if (in_array($name, $this->currentAttributes, true)) {
                 $attributes[$name] = $value;
             } else {
                 $properties[$name] = $value;
