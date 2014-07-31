@@ -20,6 +20,14 @@ return [
         'slide3' => 'Slide 3',
         'slideName3' => 'Title',
         'slideContent3' => 'Content',
+
+        'additional' => 'Additional',
+
+        'firstImage' => 'First image',
+        'secondImage' => 'Second image',
+        'file' => 'File',
+        'secondContents' => 'Second contents',
+        'simpleText' => 'Simple text',
     ],
 
     'ru-RU' => [
@@ -33,6 +41,14 @@ return [
         'slide3' => 'Слайд 3',
         'slideName3' => 'Название',
         'slideContent3' => 'Контент',
+
+        'additional' => 'Дополнительно',
+
+        'firstImage' => 'Первое изображение',
+        'secondImage' => 'Второе изображение',
+        'file' => 'Файл',
+        'secondContents' => 'Второй контент',
+        'simpleText' => 'Простой текс',
     ],
 ];
  

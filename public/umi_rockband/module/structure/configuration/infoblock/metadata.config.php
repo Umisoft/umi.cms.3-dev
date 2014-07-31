@@ -9,6 +9,7 @@
 
 use project\module\structure\model\object\Slider;
 use umi\orm\metadata\field\IField;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
@@ -88,9 +89,42 @@ return array_replace_recursive(
                         'columnName' => 'content_3_en'
                     ]
                 ]
-            ]
+            ],
+            'firstImage' => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'first_image'
+            ],
+            'secondImage' => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'second_image'
+            ],
+            'file' => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'file'
+            ],
+            'secondContents' => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'second_contents',
+                'localizations' => [
+                    'ru-RU' => ['columnName' => 'second_contents'],
+                    'en-US' => ['columnName' => 'second_contents_en']
+                ]
+            ],
+            'simpleText' => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'simple_text'
+            ],
         ],
         'types'      => [
+            InfoBlock::TYPE   => [
+                'fields' => [
+                    'firstImage' => [],
+                    'secondImage' => [],
+                    'file' => [],
+                    'secondContents' => [],
+                    'simpleText' => [],
+                ]
+            ],
             Slider::TYPE   => [
                 'objectClass' => 'project\module\structure\model\object\Slider',
                 'fields'      => [
