@@ -21,6 +21,7 @@ return [
             BlogPost::FIELD_PUBLISH_TIME => 'Publish time',
             BlogPost::FIELD_SOURCE => 'Source',
             BlogPost::FIELD_STATUS => 'Status',
+            BlogPost::FIELD_IMAGE => 'Image',
 
             'type:base:displayName' => 'Blog post',
 
@@ -36,6 +37,7 @@ return [
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogPost::FIELD_SOURCE => 'Источник публикации',
             BlogPost::FIELD_STATUS => 'Статус публикации',
+            BlogPost::FIELD_IMAGE => 'Картинка',
 
             'type:base:displayName' => 'Пост блога',
         ]

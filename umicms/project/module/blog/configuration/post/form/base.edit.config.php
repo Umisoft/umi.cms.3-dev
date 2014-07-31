@@ -13,6 +13,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -142,6 +143,13 @@ return [
                     'label' => BlogPost::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => BlogPost::FIELD_PAGE_CONTENTS_RAW
+                    ]
+                ],
+                BlogPost::FIELD_IMAGE . '_1' => [
+                    'type' => Image::TYPE_NAME,
+                    'label' => BlogPost::FIELD_IMAGE,
+                    'options' => [
+                        'dataSource' => BlogPost::FIELD_IMAGE
                     ]
                 ],
                 BlogPost::FIELD_SOURCE => [
