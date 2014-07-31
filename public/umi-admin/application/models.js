@@ -263,6 +263,10 @@ define([], function(){
         });
 
         var extendedTypes = {
+            mpath: function(params){
+                return DS.attr('raw', params);
+            },
+
             date: function(params){
                 return DS.attr('CustomDate', params);
             },
