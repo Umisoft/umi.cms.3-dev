@@ -65,7 +65,41 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         "i18n": {
             "adminPanelLabel": "{$adminPanelLabel}",
             "logoutLabel": "{$logoutLabel}"
-        }
+        },
+        "modules": [
+            {
+                name: "structure",
+                displayName: "Структура сайта"
+            },
+            {
+                name: "users",
+                displayName: "Пользователи"
+            },
+            {
+                name: "news",
+                displayName: "Новости"
+            },
+            {
+                name: "blog",
+                displayName: "Блог"
+            },
+            {
+                name: "seo",
+                displayName: "SEO"
+            },
+            {
+                name: "files",
+                displayName: "Файловая система"
+            },
+            {
+                name: "service",
+                displayName: "Сервис"
+            },
+            {
+                name: "settings",
+                displayName: "Настройки"
+            }
+        ]
     }
 </script>
 <script src="{$baseResourceUrl}/umi-admin/sitePanel/main.js?version={$version}"></script>
