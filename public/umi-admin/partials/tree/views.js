@@ -276,29 +276,54 @@ define(['App', 'toolbar'], function(UMI){
              * @property templateName
              */
             templateName: 'partials/treeControl/treeItem',
+
             /**
              * Имя тега элемента
              * @property tagName
              */
             tagName: 'li',
+
             /**
              * @property classNames
              */
             classNames: ['umi-tree-list-li'],
+
             /**
              * @property classNameBindings
              */
             classNameBindings: ['item.isDragged:hide', 'item.isDeleted:hide'],
+
             /**
              * @property attributeBindings
              */
             attributeBindings: ['dataId:data-id'],
+
             /**
              * @property dataId
              */
             dataId: function(){
                 return this.get('item.id');
             }.property('item.id'),
+
+            iconTypeClass: function(){
+                var iconTypeClass;
+                var item = this.get('item');
+
+                if(item.get('id') === 'root'){
+                    iconTypeClass = 'icon-open-folder';
+                } else{
+                    switch(item.get('type')){
+                        case 'system':
+                            iconTypeClass = 'icon-settings';
+                            break;
+                        default:
+                            iconTypeClass = 'icon-document';
+                            break;
+                    }
+                }
+
+                return iconTypeClass;
+            }.property('item.type'),
 
             /**
              * Ссылка на редактирование елемента

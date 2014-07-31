@@ -12,7 +12,7 @@
             {{/if}}
         </span>
     {{/if}}
-    <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document view.allowMove:move"}}></i>
+    <i {{bind-attr class=":icon :umi-tree-type-icon view.iconTypeClass view.allowMove:move"}}></i>
 
     {{#if editLink}}
         {{#link-to "action" view.item.id "editForm" class="tree-item-link"}}

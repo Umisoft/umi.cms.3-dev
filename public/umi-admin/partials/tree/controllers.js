@@ -23,7 +23,7 @@ define(['App'], function(UMI){
              * @property properties
              */
             properties: function(){
-                var properties = ['displayName', 'order', 'active', 'childCount'];
+                var properties = ['displayName', 'order', 'active', 'childCount', 'type'];
                 var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');

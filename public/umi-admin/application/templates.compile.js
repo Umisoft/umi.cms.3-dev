@@ -2393,7 +2393,7 @@ function program18(depth0,data) {
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <i ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon :umi-tree-type-icon :icon-document view.allowMove:move")
+    'class': (":icon :umi-tree-type-icon view.iconTypeClass view.allowMove:move")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push("></i> ");
   stack1 = helpers['if'].call(depth0, "editLink", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(10, program10, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
