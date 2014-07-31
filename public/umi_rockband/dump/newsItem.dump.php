@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:01:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 14:31:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -206,7 +206,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:03:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 14:31:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -377,7 +377,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:40:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -420,12 +420,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Вот и завершился второй футбольно-музыкальный фестивать &amp;amp;amp;amp;laquo;Рок-Футбол&amp;amp;amp;amp;raquo;',
+        1 => 'Вот и завершился второй футбольно-музыкальный фестиваль «Рок-Футбол»',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'So ended the second football-music festival &amp;amp;quot;Rock-Football&amp;amp;quot;.',
+        1 => 'So ended the second football-music festival "Rock-Football".',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -450,7 +450,7 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Вот и завершился футбольно-музыкальный фестивать &ldquo;Рок-Футбол&rdquo;, в рамках которого прошел третий чемпионат России по мини-футболу среди рок-групп. &nbsp;Четыре дня в Северной столице кипели нешуточные страсти, четыре дня шла борьба не на жизнь, а на победу. С первого матча фаворитами болельщиков стали петербуржцы UMI.Rock Band.</p>
+        1 => '<p>Вот и завершился футбольно-музыкальный фестиваль &ldquo;Рок-Футбол&rdquo;, в рамках которого прошел третий чемпионат России по мини-футболу среди рок-групп. &nbsp;Четыре дня в Северной столице кипели нешуточные страсти, четыре дня шла борьба не на жизнь, а на победу. С первого матча фаворитами болельщиков стали петербуржцы UMI.Rock Band.</p>
 
 <p>Симпатии к этой команде выражались не только в количестве зрителей, собиравшихся на матчи с их участием, но и в оглушительной поддержке во время игр. Команда UMI.Rock Band, ко всеобщему ликованию, одерживала победу за победой, и в конечном итоге заняла первое место, оставив позади такие знаменитые группы, как &nbsp;Пилот, Tequilajazzz, Кукрыниксы, Markscheider Kunst.</p>
 ',
@@ -497,7 +497,7 @@ return array (
       'announcement#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Вот и завершился второй футбольно-музыкальный фестивать &laquo;Рок-Футбол&raquo;, в рамках которого прошел третий чемпионат страны по мини-футболу среди рок-групп.</p>
+        1 => '<p>Вот и завершился второй футбольно-музыкальный фестиваль &laquo;Рок-Футбол&raquo;, в рамках которого прошел третий чемпионат страны по мини-футболу среди рок-групп.</p>
 ',
       ),
       'announcement#en-US' => 
@@ -548,7 +548,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:01:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:41:56";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -591,12 +591,12 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor&amp;amp;amp;amp;#039;easter',
+        1 => 'UMI.Rock Band приняла участие в благотворительном концерте, посвященном жертвам урагана Nor’easter',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor&amp;amp;#039;easter',
+        1 => 'New York: UMI.Rock Band Took Part in a Charity Concert, Devoted to the Victims of the Hurricane Nor’easter',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -719,7 +719,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:04:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:45:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -757,7 +757,7 @@ return array (
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson “Summer Tour”',
       ),
       'metaDescription#ru-RU' => 
       array (
@@ -767,7 +767,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson “Summer Tour”',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -787,7 +787,7 @@ return array (
       'h1#en-US' => 
       array (
         0 => 'string',
-        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson &amp;amp;amp;ldquo;Summer Tour&amp;amp;amp;rdquo;',
+        1 => 'Paris: UMI.Rock Band on Stage with the Stars of French Chanson “Summer Tour”',
       ),
       'contents#ru-RU' => 
       array (
@@ -890,7 +890,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:46:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -923,22 +923,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале “Открой свое сердце”',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;amp;quot;Open Your Heart&amp;amp;amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival "Open Your Heart"',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;amp;amp;amp;rdquo; - любовь во всей нашей музыке',
+        1 => 'UMI.Rock Band на фестивале “Открой свое сердце” - любовь во всей нашей музыке',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Moscow: UMI.Rock Band Will Headline the Festival &amp;amp;amp;quot;Open Your Heart&amp;amp;amp;quot;',
+        1 => 'Moscow: UMI.Rock Band Will Headline the Festival "Open Your Heart"',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -953,7 +953,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'UMI.Rock Band на фестивале &amp;amp;amp;ldquo;Открой свое сердце&amp;amp;amp;rdquo;',
+        1 => 'UMI.Rock Band на фестивале “Открой свое сердце”',
       ),
       'h1#en-US' => 
       array (
@@ -1012,7 +1012,7 @@ return array (
       'announcement#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>15 июля в Москве пройдет очередной фестиваль рок-музыки &ldquo;Открой свое сердце&rdquo;, хедлайнером которого станет группа UMI.Rock Band.</p>
+        1 => '<p>15 июля в Москве пройдет очередной фестиваль рок-музыки &ldquo;Открой свое сердце&rdquo;, хедлайнером которого станет группа UMI.Rock Band.&nbsp;</p>
 ',
       ),
       'announcement#en-US' => 
@@ -1053,7 +1053,7 @@ return array (
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Chukotka-Alaska 2014',
+        1 => 'Chukotka – Alaska 2014',
       ),
       'created' => 
       array (
@@ -1063,7 +1063,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:48:07";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1096,22 +1096,22 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;amp;amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка – Аляска 2014',
       ),
       'metaTitle#en-US' => 
       array (
         0 => 'string',
-        1 => 'Chukotka-Alaska 2014',
+        1 => 'Chukotka – Alaska 2014',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Заплыв &amp;amp;amp;amp;amp;amp;quot;Чукотка - Аляска&amp;amp;amp;amp;amp;amp;quot;',
+        1 => 'Заплыв «Чукотка – Аляска»',
       ),
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'Project Chukotka-Alaska 2014 and UMI.Rock Band',
+        1 => 'Project “Chukotka – Alaska 2014” and UMI.Rock Band',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -1126,12 +1126,12 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Чукотка &amp;amp;amp;amp;amp;amp;ndash; Аляска 2014',
+        1 => 'Чукотка – Аляска 2014',
       ),
       'h1#en-US' => 
       array (
         0 => 'string',
-        1 => 'Chukotka-Alaska 2014',
+        1 => 'Chukotka – Alaska 2014',
       ),
       'contents#ru-RU' => 
       array (
@@ -1191,7 +1191,7 @@ return array (
       'announcement#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>On June 5, as part of the joint Russian-American project &ldquo;Chukotka-Alaska 2014&rdquo;, the first intercontinental international swimming relay begun across the Bering Strait.</p>
+        1 => '<p>&nbsp;On June 5, as part of the joint Russian-American project &ldquo;Chukotka – Alaska 2014&rdquo;, the first intercontinental international swimming relay begun across the Bering Strait.</p>
 ',
       ),
       'date' => 
@@ -1236,7 +1236,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:00:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 14:33:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (

@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 15:00:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:13:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -81,7 +81,7 @@ return array (
       'metaDescription#en-US' => 
       array (
         0 => 'string',
-        1 => 'In my videoblog i&amp;amp;#039;m going to talk about rock',
+        1 => 'In my videoblog i&amp;amp;amp;#039;m going to talk about rock',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -187,6 +187,22 @@ return array (
 <p>I hope that later it will be more interesting, subscribe! I will try to talk about interesting news and more!</p>
 ',
       ),
+      'category' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCategory',
+            'type' => 'base',
+            'guid' => '20059c3e-f6ed-4352-9f37-b89e75a554d1',
+            'displayName' => 'О музыке',
+            'branch' => NULL,
+            'slug' => 'about-music',
+          ),
+        ),
+      ),
       'publishTime' => 
       array (
         0 => 'object',
@@ -224,12 +240,12 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/set.jpg',
       ),
-      'imageInternal' => 
+      'imageList' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/inner.jpg',
       ),
     ),
   ),
@@ -263,7 +279,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:58:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:14:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -392,6 +408,22 @@ return array (
 <p>One can study the history of rock music for a long time, while all the time listening to records of Beatles, Pink Floyd, etc., comparing modern texts with those of the &quot;past&quot; century, but it is unlikely that it will help him achieve the understanding of what it modern rock. What exactly has changed in all that time? Is there more energy, drive, poetic power? Or maybe all this has remained at the same level?</p>
 ',
       ),
+      'category' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCategory',
+            'type' => 'base',
+            'guid' => '20059c3e-f6ed-4352-9f37-b89e75a554d1',
+            'displayName' => 'О музыке',
+            'branch' => NULL,
+            'slug' => 'about-music',
+          ),
+        ),
+      ),
       'publishTime' => 
       array (
         0 => 'object',
@@ -429,12 +461,12 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/set2.jpg',
       ),
-      'imageInternal' => 
+      'imageList' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/inner2.jpg',
       ),
     ),
   ),
@@ -468,7 +500,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:59:23";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:14:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -605,6 +637,22 @@ return array (
 <p>With the advent of the Internet in our lives, it became even easier to listen and to download music. There are many Internet radio stations in the global network, there is the service Яндекс.Музыка, many communities in social networks, in addition, there are specialized social networks, for example Last fm. Annually, there are many festivals - &quot;Invasion&quot;, &quot;Cubana&quot;, &quot;Baker&rsquo;s dozen&quot;, etc. Rock will live forever, and Russian rock too!</p>
 ',
       ),
+      'category' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'blogCategory',
+            'type' => 'base',
+            'guid' => '20059c3e-f6ed-4352-9f37-b89e75a554d1',
+            'displayName' => 'О музыке',
+            'branch' => NULL,
+            'slug' => 'about-music',
+          ),
+        ),
+      ),
       'publishTime' => 
       array (
         0 => 'object',
@@ -642,12 +690,12 @@ return array (
       'imageMain' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/set3.jpg',
       ),
-      'imageInternal' => 
+      'imageList' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '/umi_rockband/asset/images/posts/inner3.jpg',
       ),
     ),
   ),
