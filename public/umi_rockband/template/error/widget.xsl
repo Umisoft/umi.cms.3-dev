@@ -6,7 +6,19 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:template match="/" />
+    <!-- Этот шаблон обрабатывает ошибки в виджетах.
+        Сообщение об ошибке будет видно в исходном коде страницы, в комментарии -->
+
+    <xsl:template match="result[@widget='error']">
+        <xsl:comment><xsl:value-of select="error/@message" /></xsl:comment>
+
+        <!-- Раскомментировать для подробного отображения ошибки -->
+        <!--div>
+            <h3>Произошла ошибка при вызове виджета</h3>
+            <p><xsl:value-of select="error/@message" /></p>
+            <textarea><xsl:copy-of select="error/trace" /></textarea>
+        </div-->
+    </xsl:template>
 
 
 </xsl:stylesheet>
