@@ -12,6 +12,7 @@ namespace umicms\hmvc\component\admin\collection;
 use umi\acl\IAclFactory;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\IObjectType;
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\ICollectionComponent;
@@ -46,6 +47,10 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
      * Действие для получения формы создания
      */
     const ACTION_GET_CREATE_FORM = 'getCreateForm';
+    /**
+     * Действие для получения формы на смену slug
+     */
+    const ACTION_GET_CHANGE_SLUG_FORM = 'getChangeSlugForm';
     /**
      * Действие для получения настроек полей для фильтрации
      */
@@ -203,6 +208,12 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
             $actions[self::ACTION_GET_BACKUP] = $this->createQueryAction(
                 self::ACTION_GET_BACKUP,
                 ['id' => '{objectId}', 'backupId' => '{id}']
+            );
+        }
+
+        if ($collection instanceof ICmsPageCollection) {
+            $actions[self::ACTION_GET_CHANGE_SLUG_FORM] = $this->createQueryAction(
+                self::ACTION_GET_CHANGE_SLUG_FORM
             );
         }
 
