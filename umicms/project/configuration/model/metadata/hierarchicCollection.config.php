@@ -65,7 +65,7 @@ return array_replace_recursive(
                 'readOnly'   => true
             ],
             CmsHierarchicObject::FIELD_SITE_CHILD_COUNT           => [
-                'type'         => IField::TYPE_FORMULA,
+                'type'         => IField::TYPE_DELAYED,
                 'columnName'   => 'site_child_count',
                 'dataType'     => 'integer',
                 'formula'      => 'calculateSiteChildCount',
@@ -83,7 +83,7 @@ return array_replace_recursive(
                 ]
             ],
             CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT           => [
-                'type'         => IField::TYPE_FORMULA,
+                'type'         => IField::TYPE_DELAYED,
                 'columnName'   => 'admin_child_count',
                 'dataType'     => 'integer',
                 'formula'      => 'calculateAdminChildCount',
