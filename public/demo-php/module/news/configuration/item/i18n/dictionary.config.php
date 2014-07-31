@@ -11,11 +11,29 @@
 return [
 
     'en-US' => [
-        'image' => 'Image'
+        'image' => 'Image',
+        'announcementImage' => 'Announcement image',
+        'additional' => 'Additional',
+
+        'firstImage' => 'First image',
+        'secondImage' => 'Second image',
+        'file' => 'File',
+        'secondContents' => 'Second contents',
+        'simpleText' => 'Simple text',
+        'popular'   => 'Popular'
     ],
 
     'ru-RU' => [
-        'image' => 'Изображение'
+        'image' => 'Изображение',
+        'announcementImage' => 'Изображение для анонса',
+        'additional' => 'Дополнительно',
+
+        'firstImage' => 'Первое изображение',
+        'secondImage' => 'Второе изображение',
+        'file' => 'Файл',
+        'secondContents' => 'Второй контент',
+        'simpleText' => 'Простой текс',
+        'popular'   => 'Популярное'
     ]
 
 ];

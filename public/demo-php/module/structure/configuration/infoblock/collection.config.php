@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use project\umi_rockband\module\structure\model\object\Slider;
+use project\module\structure\model\object\Slider;
 use umicms\project\module\structure\model\collection\InfoBlockCollection;
 
 return [

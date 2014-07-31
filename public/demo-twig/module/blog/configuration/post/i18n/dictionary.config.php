@@ -12,12 +12,28 @@ return [
 
     'en-US' => [
         'imageMain' => 'Image on main page',
-        'imageList' => 'Image on list'
+        'imageList' => 'Image on list',
+        'additional' => 'Additional',
+
+        'firstImage' => 'First image',
+        'secondImage' => 'Second image',
+        'file' => 'File',
+        'secondContents' => 'Second contents',
+        'simpleText' => 'Simple text',
+        'popular'   => 'Popular'
     ],
 
     'ru-RU' => [
         'imageMain' => 'Изображение на главной',
-        'imageList' => 'Изображение в списке'
+        'imageList' => 'Изображение в списке',
+        'additional' => 'Дополнительно',
+
+        'firstImage' => 'Первое изображение',
+        'secondImage' => 'Второе изображение',
+        'file' => 'Файл',
+        'secondContents' => 'Второй контент',
+        'simpleText' => 'Простой текс',
+        'popular'   => 'Популярное'
     ]
 
 ];

@@ -68,7 +68,7 @@ return array_replace_recursive(
                 ]
             ],
             InfoBlock::FIELD_LOGO               => [
-                'type'          => IField::TYPE_TEXT,
+                'type'          => IField::TYPE_STRING,
                 'columnName'    => 'logo',
                 'localizations' => [
                     'ru-RU' => [

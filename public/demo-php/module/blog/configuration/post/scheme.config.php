@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 
 return [
@@ -17,6 +18,40 @@ return [
         ],
         'image_list' => [
             'type' => Type::STRING
+        ],
+        'second_contents'         => [
+            'type' => Type::TEXT,
+            'options' => [
+                'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+            ]
+        ],
+        'second_contents_en'         => [
+            'type' => Type::TEXT,
+            'options' => [
+                'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+            ]
+        ],
+        'simple_text'         => [
+            'type' => Type::TEXT,
+            'options' => [
+                'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+            ]
+        ],
+        'first_image' => [
+            'type'    => Type::STRING
+        ],
+        'second_image' => [
+            'type'    => Type::STRING
+        ],
+        'file' => [
+            'type'    => Type::STRING
+        ],
+        'popular'          => [
+            'type'    => Type::BOOLEAN,
+            'options' => [
+                'default' => 0,
+                'notnull' => true
+            ]
         ]
     ]
 ];
