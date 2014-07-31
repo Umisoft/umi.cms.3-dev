@@ -14,7 +14,7 @@
                 <div class="input-group input-group-sm">
                     <span class="input-group-btn">
                         <button class="btn" type="button">
-                            <img src="{$template}/images/search-icon.png" width="12" height="12"/>
+                            <img src="{$template}images/search-icon.png" width="12" height="12"/>
                         </button>
                     </span>
                     <xsl:apply-templates select="form/elements/item[id='query']" mode="form">

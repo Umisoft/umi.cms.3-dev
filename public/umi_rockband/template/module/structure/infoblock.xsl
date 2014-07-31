@@ -33,17 +33,17 @@
         <ul class="social">
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/facebook.png" alt=""/>
+                    <img src="{$template}images/social/facebook.png" alt=""/>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/twitter.png" alt=""/>
+                    <img src="{$template}images/social/twitter.png" alt=""/>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/google.png" alt=""/>
+                    <img src="{$template}images/social/google.png" alt=""/>
                 </a>
             </li>
         </ul>
