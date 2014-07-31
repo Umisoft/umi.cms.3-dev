@@ -10,6 +10,7 @@
 
 namespace umicms\project;
 
+use Composer\Autoload\ClassLoader;
 use umi\http\Response;
 
 /**
@@ -77,6 +78,10 @@ class Environment
      * @var bool $cacheBrowserEnabled разрешить ли браузерам кэшировать запросы
      */
     public static $browserCacheEnabled = true;
+    /**
+     * @var ClassLoader $classLoader загрузчик классов
+     */
+    public static $classLoader;
 
     /**
      * Инициализирует окружение настройками из конфигурации

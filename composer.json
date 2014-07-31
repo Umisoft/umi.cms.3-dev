@@ -10,7 +10,6 @@
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
             "umicms\\install\\": "install",
-            "project\\" : "public",
             "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]

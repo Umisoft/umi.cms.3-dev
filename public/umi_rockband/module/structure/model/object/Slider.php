@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace project\umi_rockband\module\structure\model\object;
+namespace project\module\structure\model\object;
 
 use umicms\project\module\structure\model\object\BaseInfoBlock;
 

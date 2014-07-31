@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-use project\umi_rockband\module\structure\model\object\Slider;
+use project\module\structure\model\object\Slider;
 use umi\orm\metadata\field\IField;
 
 return array_replace_recursive(
@@ -92,7 +92,7 @@ return array_replace_recursive(
         ],
         'types'      => [
             Slider::TYPE   => [
-                'objectClass' => 'project\umi_rockband\module\structure\model\object\Slider',
+                'objectClass' => 'project\module\structure\model\object\Slider',
                 'fields'      => [
                     Slider::FIELD_SLIDE_NAME_1 => [],
                     Slider::FIELD_SLIDE_NAME_2 => [],
