@@ -8,14 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\structure\site\widget;
+namespace umicms\project\site\widget;
 
 use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalesService;
 use umicms\exception\RequiredDependencyException;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
+use umicms\project\admin\rest\RestApplication;
 use umicms\project\Environment;
 
 /**
@@ -56,6 +58,8 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         $baseResourceUrl = Environment::$baseUrl;
         $version = CMS_VERSION;
 
+        $modulesInfo = json_encode($this->getModulesInfo());
+
         $result = <<<EOF
 <link rel="stylesheet" type="text/css" href="{$baseResourceUrl}/umi-admin/sitePanel/styles/styles.css?version={$version}">
 <script>
@@ -66,40 +70,7 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
             "adminPanelLabel": "{$adminPanelLabel}",
             "logoutLabel": "{$logoutLabel}"
         },
-        "modules": [
-            {
-                name: "structure",
-                displayName: "Структура сайта"
-            },
-            {
-                name: "users",
-                displayName: "Пользователи"
-            },
-            {
-                name: "news",
-                displayName: "Новости"
-            },
-            {
-                name: "blog",
-                displayName: "Блог"
-            },
-            {
-                name: "seo",
-                displayName: "SEO"
-            },
-            {
-                name: "files",
-                displayName: "Файловая система"
-            },
-            {
-                name: "service",
-                displayName: "Сервис"
-            },
-            {
-                name: "settings",
-                displayName: "Настройки"
-            }
-        ]
+        "modules": {$modulesInfo}
     }
 </script>
 <script src="{$baseResourceUrl}/umi-admin/sitePanel/main.js?version={$version}"></script>
@@ -108,11 +79,43 @@ EOF;
     }
 
     /**
+     * Возвращает информацию о доступных модулях
+     * @return array
+     */
+    private function getModulesInfo()
+    {
+        $dispatcher = $this->getContext()->getDispatcher();
+
+        /**
+         * @var RestApplication $restApplication
+         */
+        $restApplication = $dispatcher->getComponentByPath('project.admin.rest');
+        $modules = [];
+
+        foreach ($restApplication->getChildComponentNames() as $componentName) {
+            /**
+             * @var AdminComponent $component
+             */
+            $component = $restApplication->getChildComponent($componentName);
+
+            if (!$component->isSkippedInDock() && $dispatcher->checkPermissions($restApplication, $component)) {
+
+                $modules[] = [
+                    'name' => $componentName,
+                    'displayName' => $component->translate('component:' . $componentName . ':displayName')
+                ];
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
      * Возвращает сервис для работы с локалями
      * @throws RequiredDependencyException если сервис не был внедрен
      * @return CmsLocalesService
      */
-    protected function getLocalesService()
+    private function getLocalesService()
     {
         if (!$this->localesService) {
             throw new RequiredDependencyException(sprintf(
