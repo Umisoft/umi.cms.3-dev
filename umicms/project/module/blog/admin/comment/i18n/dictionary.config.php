@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'component:comment:displayName' => 'Комментарии',
 
-        'action:create:comment' => 'Создать комментарий',
+        'action:create:comment' => 'Добавить комментарий',
 
         'role:editor:displayName' => 'Управление комментариями'
     ]

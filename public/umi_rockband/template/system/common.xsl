@@ -7,7 +7,7 @@
                 exclude-result-prefixes="php umi">
 
     <!-- Объявляем переменные -->
-    <xsl:variable name="template" select="/layout/assetsUrl" />
+    <xsl:variable name="assets" select="/layout/assetsUrl" />
     <xsl:variable name="root" select="/layout/projectUrl/locale[@current = 1]/@url" />
     <xsl:variable name="pagesCount" select="'5'" />
 

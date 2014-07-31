@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'component:author:displayName' => 'Авторы',
 
-        'action:create:base' => 'Создать автора',
+        'action:create:base' => 'Добавить автора',
 
         'role:editor:displayName' => 'Управление авторами'
     ]

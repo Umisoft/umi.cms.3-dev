@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'component:post:displayName' => 'Посты',
 
-        'action:create:base' => 'Создать пост',
+        'action:create:base' => 'Добавить пост',
 
         'role:editor:displayName' => 'Управление постами'
     ]

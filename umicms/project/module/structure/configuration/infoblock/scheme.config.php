@@ -40,10 +40,10 @@ return array_replace_recursive(
                 'type' => Type::TEXT
             ],
             'logo' => [
-                'type' => Type::TEXT
+                'type' => Type::STRING
             ],
             'logo_en' => [
-                'type' => Type::TEXT
+                'type' => Type::STRING
             ],
             'copyright' => [
                 'type' => Type::TEXT

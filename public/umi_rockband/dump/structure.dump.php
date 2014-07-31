@@ -218,6 +218,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:54:04";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -231,6 +236,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование черновика',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit draft',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование черновика',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit draft',
       ),
       'active#ru-RU' => 
       array (
@@ -319,12 +378,36 @@ return array (
         0 => 'string',
         1 => 'Смена пароля',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Change password',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:41:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -343,10 +426,40 @@ return array (
         0 => 'string',
         1 => 'Смена пароля',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Change password',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Смена пароля',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Change password',
       ),
       'active#ru-RU' => 
       array (
@@ -366,7 +479,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -434,6 +547,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:54:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -447,6 +565,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Посты на модерацию',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Posts to moderate',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Посты на модерацию',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Posts to moderate',
       ),
       'active#ru-RU' => 
       array (
@@ -466,7 +638,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -534,6 +706,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:55:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -547,6 +724,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Комментарий блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Comment',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Комментарий блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Comment',
       ),
       'active#ru-RU' => 
       array (
@@ -637,7 +868,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 15:52:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 19:02:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -666,6 +897,46 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Информационные блоки',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Information block',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Информационные блоки',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Information block',
       ),
       'active#ru-RU' => 
       array (
@@ -756,7 +1027,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:30:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:55:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -789,9 +1060,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Пост блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Post',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -801,10 +1082,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'h1#ru-RU' => 
+      'metaKeywords#en-US' => 
       array (
         0 => 'string',
         1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Пост блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Post',
       ),
       'active#ru-RU' => 
       array (
@@ -892,6 +1183,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:56:41";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -905,6 +1201,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Категория блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Category',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Категория блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Category',
       ),
       'active#ru-RU' => 
       array (
@@ -992,6 +1342,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:56:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -1005,6 +1360,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторы блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Authors',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторы блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Authors',
       ),
       'active#ru-RU' => 
       array (
@@ -1092,6 +1501,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:57:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -1105,6 +1519,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Тэг блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Tag',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Тэг блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Tag',
       ),
       'active#ru-RU' => 
       array (
@@ -1203,6 +1671,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:58:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -1216,6 +1689,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотреть отклонённый пост',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View rejected posts',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотреть отклонённый пост',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View rejected posts',
       ),
       'active#ru-RU' => 
       array (
@@ -1293,12 +1820,36 @@ return array (
         0 => 'string',
         1 => 'Запрос смены пароля',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration request',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:43:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -1317,10 +1868,40 @@ return array (
         0 => 'string',
         1 => 'Запрос смены пароля',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration request',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Запрос смены пароля',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration request',
       ),
       'active#ru-RU' => 
       array (
@@ -1340,7 +1921,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -1411,7 +1992,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 15:52:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 19:03:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1440,6 +2021,46 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Меню',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Меню',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Menu',
       ),
       'active#ru-RU' => 
       array (
@@ -1519,7 +2140,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 15:52:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 19:01:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1548,6 +2169,46 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Structure',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Structure',
       ),
       'active#ru-RU' => 
       array (
@@ -1646,6 +2307,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:54:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -1659,6 +2325,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр черновика',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View draft',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр черновика',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View draft',
       ),
       'active#ru-RU' => 
       array (
@@ -1736,12 +2456,36 @@ return array (
         0 => 'string',
         1 => 'Авторизация',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Authorization',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:44:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -1760,10 +2504,40 @@ return array (
         0 => 'string',
         1 => 'Авторизация',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Authorization',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Авторизация',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Authorization',
       ),
       'active#ru-RU' => 
       array (
@@ -1783,7 +2557,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -2014,6 +2788,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:53:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -2027,6 +2806,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Черновики блога',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Drafts',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Черновики блога',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Drafts',
       ),
       'active#ru-RU' => 
       array (
@@ -2096,12 +2929,17 @@ return array (
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'News',
+        1 => 'Search',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-14 16:04:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:39:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2116,6 +2954,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Поиск',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Search',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Поиск',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Search',
       ),
       'active#ru-RU' => 
       array (
@@ -2196,7 +3088,7 @@ return array (
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'Second rubrics',
+        1 => 'News rubric',
       ),
       'created' => 
       array (
@@ -2206,7 +3098,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-25 14:46:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:37:41";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2239,9 +3131,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'ferferfer',
+        1 => 'Новостная рубрика',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News rubric',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -2251,10 +3153,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'ferferfer',
+        1 => 'Новостная рубрика',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News rubric',
       ),
       'active#ru-RU' => 
       array (
@@ -2345,7 +3257,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:12:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:38:14";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2378,9 +3290,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Новостной сюжет',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News subject',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -2390,10 +3312,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'h1#ru-RU' => 
+      'metaKeywords#en-US' => 
       array (
         0 => 'string',
         1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новостной сюжет',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News subject',
       ),
       'active#ru-RU' => 
       array (
@@ -2474,7 +3406,7 @@ return array (
       'displayName#en-US' => 
       array (
         0 => 'string',
-        1 => 'News',
+        1 => 'News item',
       ),
       'created' => 
       array (
@@ -2484,7 +3416,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:12:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:38:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2517,9 +3449,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Новость',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News item',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -2529,10 +3471,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'h1#ru-RU' => 
+      'metaKeywords#en-US' => 
       array (
         0 => 'string',
         1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новость',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News item',
       ),
       'active#ru-RU' => 
       array (
@@ -2612,7 +3564,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:43:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:59:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2645,9 +3597,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Новости',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -2657,10 +3619,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'h1#ru-RU' => 
+      'metaKeywords#en-US' => 
       array (
         0 => 'string',
         1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новости',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'News',
       ),
       'active#ru-RU' => 
       array (
@@ -2759,6 +3731,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:56:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -2772,6 +3749,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавить пост',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add post',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавить пост',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add post',
       ),
       'active#ru-RU' => 
       array (
@@ -2870,6 +3901,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:57:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -2883,6 +3919,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр профиля автора',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View author profile',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр профиля автора',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View author profile',
       ),
       'active#ru-RU' => 
       array (
@@ -2981,6 +4071,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:57:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -2994,6 +4089,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование профиля автора',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit author profile',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование профиля автора',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit author profile',
       ),
       'active#ru-RU' => 
       array (
@@ -3092,6 +4241,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:54:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -3105,6 +4259,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактировать посты на модерации',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit posts to moderate',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактировать посты на модерации',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit posts to moderate',
       ),
       'active#ru-RU' => 
       array (
@@ -3124,7 +4332,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -3192,6 +4400,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:58:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -3205,6 +4418,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отклонённые посты',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Rejected posts',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отклонённые посты',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Rejected posts',
       ),
       'active#ru-RU' => 
       array (
@@ -3293,12 +4560,36 @@ return array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration confirmation',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3317,10 +4608,40 @@ return array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration confirmation',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Подтверждение смены пароля',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Password restoration confirmation',
       ),
       'active#ru-RU' => 
       array (
@@ -3340,7 +4661,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -3419,6 +4740,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:58:46";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -3432,6 +4758,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактировать отклонённый пост',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit rejected posts',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактировать отклонённый пост',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit rejected posts',
       ),
       'active#ru-RU' => 
       array (
@@ -3520,12 +4900,36 @@ return array (
         0 => 'string',
         1 => 'Активация',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Activation',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:44:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3544,10 +4948,40 @@ return array (
         0 => 'string',
         1 => 'Активация',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Activation',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Активация',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Activation',
       ),
       'active#ru-RU' => 
       array (
@@ -3567,7 +5001,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -3649,7 +5083,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:31:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:56:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3682,9 +5116,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Просмотр поста',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View post',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -3694,10 +5138,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'h1#ru-RU' => 
+      'metaKeywords#en-US' => 
       array (
         0 => 'string',
         1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотр поста',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View post',
       ),
       'active#ru-RU' => 
       array (
@@ -3775,12 +5229,36 @@ return array (
         0 => 'string',
         1 => 'Регистрация',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Registration',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:44:34";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3799,10 +5277,40 @@ return array (
         0 => 'string',
         1 => 'Регистрация',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Registration',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Регистрация',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Registration',
       ),
       'active#ru-RU' => 
       array (
@@ -3822,7 +5330,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -3882,7 +5390,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:30:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:46:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3915,9 +5423,19 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Блог',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Blog',
       ),
       'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Блог',
+      ),
+      'metaDescription#en-US' => 
       array (
         0 => 'string',
         1 => '',
@@ -3927,10 +5445,20 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Блог',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Blog',
       ),
       'active#ru-RU' => 
       array (
@@ -3997,12 +5525,36 @@ return array (
         0 => 'string',
         1 => 'Пользователи',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Users',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:41:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4021,10 +5573,40 @@ return array (
         0 => 'string',
         1 => 'Пользователи',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Users',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Пользователи',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Users',
       ),
       'active#ru-RU' => 
       array (
@@ -4044,7 +5626,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -4123,6 +5705,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:54:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -4136,6 +5723,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотреть пост на модерации',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View posts to moderate',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Просмотреть пост на модерации',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'View posts to moderate',
       ),
       'active#ru-RU' => 
       array (
@@ -4155,7 +5796,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -4234,6 +5875,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:55:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -4247,6 +5893,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Очередь на модерацию',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Turn on moderation',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Очередь на модерацию',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Turn on moderation',
       ),
       'active#ru-RU' => 
       array (
@@ -4266,7 +5966,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -4345,6 +6045,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:56:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -4358,6 +6063,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование поста',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit post',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Редактирование поста',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Edit post',
       ),
       'active#ru-RU' => 
       array (
@@ -4456,6 +6215,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-09 18:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:55:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -4469,6 +6233,60 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавить комментарий',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add comment',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавить комментарий',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Add comment',
       ),
       'active#ru-RU' => 
       array (
@@ -4546,12 +6364,36 @@ return array (
         0 => 'string',
         1 => 'Профиль',
       ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Profile',
+      ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:41:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4570,10 +6412,40 @@ return array (
         0 => 'string',
         1 => 'Профиль',
       ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Profile',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Профиль',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Profile',
       ),
       'active#ru-RU' => 
       array (
@@ -4593,7 +6465,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
