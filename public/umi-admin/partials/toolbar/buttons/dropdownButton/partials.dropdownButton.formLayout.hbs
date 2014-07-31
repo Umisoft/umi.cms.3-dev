@@ -1,0 +1,17 @@
+<br/>
+{{#each formElement in view.form.elements}}
+    <div class="row">
+        <div class="large-12 columns">
+            {{view "fieldBase" metaBinding="formElement" objectBinding="view.object"}}
+        </div>
+    </div>
+{{/each}}
+
+{{#if view.form}}
+    <div class="row">
+        <div class="large-12 columns">
+            <span {{action "submit" target="view"}} class="button right" type="submit">Изменить</span>
+        </div>
+    </div>
+{{/if}}
+<br/>
