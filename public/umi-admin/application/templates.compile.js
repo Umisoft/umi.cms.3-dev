@@ -2084,22 +2084,8 @@ function program1(depth0,data) {
   return buffer;
   }
 
-function program3(depth0,data) {
-  
-  var buffer = '';
-  data.buffer.push(" <div class=\"row\"> <div class=\"large-12 columns\"> <span ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "submit", {hash:{
-    'target': ("view")
-  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"button right\" type=\"submit\">Изменить</span> </div> </div> ");
-  return buffer;
-  }
-
   data.buffer.push("<br/> ");
   stack1 = helpers.each.call(depth0, "formElement", "in", "view.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "view.form", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <br/>");
   return buffer;

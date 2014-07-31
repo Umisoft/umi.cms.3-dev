@@ -273,11 +273,25 @@ define(['App', 'moment'],
                     actions: {
                         submit: function(handler){
                             var self = this;
+                            var object = self.get('object');
                             if(handler){
                                 handler.addClass('loading');
                             }
-                            var data = this.$().serialize();
-                            $.post(self.get('action'), data).then(function(results){
+                            var data = this.$().serializeArray();
+                            var name;
+                            for(var i = 0; i < data.length; i++){
+                                name = data[i].name;
+                                if(name){
+                                    object[name] = data[i].value;
+                                }
+                            }
+                            var serializeObject = JSON.stringify(object);
+                            $.ajax({
+                                url: self.get('action'),
+                                type: "POST",
+                                data: serializeObject,
+                                contentType: 'application/json; charset=UTF-8'
+                            }).then(function(results){
                                 console.log(results);
                             });
                         }

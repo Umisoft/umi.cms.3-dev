@@ -180,6 +180,10 @@ define(
 
                 radioTemplate: function(){
                     return '{{view "radioElement" object=view.object meta=view.meta}}';
+                }.property(),
+
+                submitTemplate: function(){
+                    return '<span class="button right" {{action "submit" target="view.parentView"}}>{{view.meta.label}}</span>';
                 }.property()
             });
 
@@ -260,6 +264,10 @@ define(
                     switch(type){
                         case 'checkbox':
                             layout = '{{yield}}{{view.isRequired}}';
+                            break;
+                        case 'submit':
+                            layout = '{{yield}}';
+                            break;
                     }
 
                     return Ember.Handlebars.compile(layout);
