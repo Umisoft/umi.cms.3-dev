@@ -59,19 +59,15 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
     public function executeWidgetByPath($widgetPath, array $params = [])
     {
         $widgetPathParts = explode(IComponent::PATH_SEPARATOR, $widgetPath);
-        if (count($widgetPathParts) < 2) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Cannot resolve widget path "{path}".',
-                    ['path' => $widgetPath]
-                )
-            );
+        if (count($widgetPathParts) > 1) {
+            $widgetName = array_pop($widgetPathParts);
+            $componentPageUrl = $this->getUrlManager()->getRawSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
+            $widgetUri = '/' . $componentPageUrl . '/' . $widgetName;
+        } else {
+            $widgetUri = '/' . $widgetPath;
         }
 
-        $widgetName = array_pop($widgetPathParts);
-        $componentPageUrl = $this->getUrlManager()->getRawSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
-
-        return $this->executeWidget('/' . $componentPageUrl . '/' . $widgetName, $params);
+        return $this->executeWidget($widgetUri, $params);
     }
 
     /**

@@ -27,6 +27,7 @@ use umicms\form\element\Image;
 use umicms\form\element\ObjectRelation;
 use umicms\form\element\PageRelation;
 use umicms\form\element\PasswordWithConfirmation;
+use umicms\form\element\SingleCollectionObjectRelation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
@@ -92,7 +93,8 @@ return [
                     PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
                     Permissions::TYPE_NAME => 'umicms\form\element\Permissions',
                     ObjectRelation::TYPE_NAME => 'umicms\form\element\ObjectRelation',
-                    PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation'
+                    PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation',
+                    SingleCollectionObjectRelation::TYPE_NAME => 'umicms\form\element\SingleCollectionObjectRelation'
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'

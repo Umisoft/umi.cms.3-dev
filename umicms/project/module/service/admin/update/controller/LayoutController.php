@@ -54,12 +54,8 @@ class LayoutController extends BaseLayoutController
             'Update available' => $component->translate('Update available')
         ];
 
-        $control->params = [
-            'currentVersion' => $currentVersionInfo,
-            'latestVersion' => $latestVersionInfo
-        ];
-
         if ($currentVersionInfo['version'] != $latestVersionInfo['version']) {
+            $control->params['currentVersion'] = $latestVersionInfo;
             $control->addSubmitButton('update', $control->createActionButton('update'));
         }
 

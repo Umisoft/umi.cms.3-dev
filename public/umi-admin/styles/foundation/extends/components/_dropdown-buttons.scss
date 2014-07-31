@@ -2,6 +2,22 @@
     &.white:after{
         border-color: $dropdown-button-pip-color-alt transparent transparent transparent;
     }
+
+    &.without-arrow{
+        padding-right: $button-med * 2;
+
+        &:after{
+            display: none;
+        }
+
+        &.tiny{
+            padding-right: $button-tny * 2;
+
+            &:after{
+                display: none;
+            }
+        }
+    }
 }
 
 

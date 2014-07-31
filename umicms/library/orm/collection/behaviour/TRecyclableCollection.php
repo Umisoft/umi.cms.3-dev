@@ -65,14 +65,18 @@ trait TRecyclableCollection
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
 
             if ($parent = $object->getParent()) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 /**
-                 * @var ICalculableProperty $siteChildCount
                  * @var ICalculableProperty $adminChildCount
                  */
-                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
                 $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
             }
 
@@ -83,9 +87,12 @@ trait TRecyclableCollection
             foreach($descendants as $descendant) {
 
                 $siteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
-                $adminChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
 
-                $siteChildCount->recalculate();
+                $adminChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
                 $adminChildCount->recalculate();
 
                 $descendant->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
@@ -113,14 +120,18 @@ trait TRecyclableCollection
              */
             foreach($ancestry as $parent) {
 
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 /**
-                 * @var ICalculableProperty $siteChildCount
                  * @var ICalculableProperty $adminChildCount
                  */
-                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
                 $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
 
                 $parent->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(false);

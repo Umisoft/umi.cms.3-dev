@@ -262,104 +262,138 @@ define([], function(){
             }
         });
 
+        var extendedTypes = {
+            mpath: function(params){
+                return DS.attr('raw', params);
+            },
+
+            date: function(params){
+                return DS.attr('CustomDate', params);
+            },
+
+            dateTime: function(params){
+                return DS.attr('CustomDateTime', params);
+            },
+
+            serialized: function(params){
+                return DS.attr('serialized', params);
+            },
+
+            cmsPageRelation: function(params){
+                return DS.attr('objectRelation', params);
+            },
+
+            objectRelation: function(params){
+                return DS.attr('objectRelation', params);
+            },
+
+            belongsToRelation: function(params, field, collection){
+                params.async = true;
+                //TODO: инверсия избыточна, но DS почему то без нее не может
+                if(field.targetCollection === collection.name){
+                    params.inverse = 'children';
+                }
+                params.readOnly = false;
+                return DS.belongsTo(field.targetCollection, params);
+            },
+
+            hasManyRelation: function(params, field){
+                params.async = true;
+                params.inverse = field.targetField;
+                params.readOnly = false;
+                return DS.hasMany(field.targetCollection, params);
+            },
+
+            manyToManyRelation: function(params, field){
+                params.async = true;
+                return DS.hasMany(field.targetCollection, params);
+            }
+        };
+
+        var getBaseTypes = function(typeName){
+            var baseType = typeName;
+
+            switch(typeName){
+                case 'integer':
+                    baseType = 'number';
+                    break;
+            }
+            return baseType;
+        };
+
+        var getExtendedTypes = function(typeName){
+            return Ember.get(extendedTypes, typeName);
+        };
+
         /**
          * Создает экземпляры DS.Model
          * @method modelsFactory
          * @param array Массив обьектов
          */
         UMI.modelsFactory = function(collections){
-
             var collection;
+            var collectionName;
+            var fields;
+            var field;
             var fieldValue;
+            var filters;
+            var validators;
+            var params;
+            var type;
 
             for(var j = 0; j < collections.length; j++){
-                var fields = {};
-                var filters = {};
-                var validators = {};
                 collection = collections[j];
+                collectionName = collection.name;
+                fields = {};
+                filters = {};
+                validators = {};
 
                 for(var i = 0; i < collection.fields.length; i++){
-                    var params = {};
-                    if(collection.fields[i].displayName){
-                        params.displayName = collection.fields[i].displayName;
-                    }
-                    if(Ember.typeOf(collection.fields[i]['default']) !== 'undefined'){
-                        params.defaultValue = collection.fields[i]['default'];
+                    field = collection.fields[i];
+                    params = {};
+                    type = null;
+
+                    if(field.displayName){
+                        params.displayName = field.displayName;
                     }
 
-                    switch(collection.fields[i].type){
-                        case 'string':
-                            fieldValue = DS.attr('string', params);
-                            break;
-                        case 'number':
-                        case 'integer':
-                        case 'counter':
-                            fieldValue = DS.attr('number', params);
-                            break;
-                        case 'bool':
-                            fieldValue = DS.attr('boolean', params);
-                            break;
-                        case 'date':
-                            fieldValue = DS.attr('CustomDate', params);
-                            break;
-                        case 'dateTime':
-                            fieldValue = DS.attr('CustomDateTime', params);
-                            break;
-                        case 'time':
-                            fieldValue = DS.attr('string', params);
-                            break;
-                        case 'serialized':
-                            fieldValue = DS.attr('serialized', params);
-                            break;
-                        case 'cmsPageRelation':  case 'objectRelation':
-                            fieldValue = DS.attr('objectRelation', params);
-                            break;
-                        case 'belongsToRelation':
-                            params.async = true;
-                            //TODO: инверсия избыточна, но DS почему то без нее не может
-                            if(collection.fields[i].targetCollection === collection.name){
-                                params.inverse = 'children';
-                            }
-                            fieldValue = DS.belongsTo(collection.fields[i].targetCollection, params);
-                            break;
-                        case 'hasManyRelation':
-                            params.async = true;
-                            params.inverse = collection.fields[i].targetField;
-                            fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
-                            break;
-                        case 'manyToManyRelation':
-                            params.async = true;
-                            fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
-                            break;
-                        default:
-                            fieldValue = DS.attr('raw', params);
-                            break;
+                    if(Ember.typeOf(field['default']) !== 'undefined'){
+                        params.defaultValue = field['default'];
                     }
 
-                    if(collection.fields[i].filters){
-                        filters[collection.fields[i].name] = collection.fields[i].filters;
-                    }
-                    if(collection.fields[i].validators){
-                        validators[collection.fields[i].name] = collection.fields[i].validators;
+                    type = getExtendedTypes(field.type);
+
+                    if(Ember.typeOf(type) === 'function'){
+                        fieldValue = type(params, field, collection);
+                    } else{
+                        fieldValue = DS.attr(getBaseTypes(field.dataType), params);
                     }
 
-                    if(collection.fields[i].type !== 'identify'){
-                        fields[collection.fields[i].name] = fieldValue;
+                    if(field.filters){
+                        filters[field.name] = field.filters;
+                    }
+
+                    if(field.validators){
+                        validators[field.name] = field.validators;
+                    }
+
+                    if(field.type !== 'identify'){
+                        fields[field.name] = fieldValue;
                     }
                 }
 
                 fields.meta = DS.attr('raw');
 
-                UMI[collection.name.capitalize()] = DS.Model.extend(fields);
+                UMI[collectionName.capitalize()] = DS.Model.extend(fields);
 
-                UMI.__container__.lookup('store:main').metaForType(collection.name, {
+                UMI.__container__.lookup('store:main').metaForType(collectionName, {
                     "collectionType": collection.type,
                     "filters": filters,
                     "validators": validators
                 });// TODO: Найти рекоммендации на что заменить __container__
 
                 if(collection.source){
-                    UMI[collection.name.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
+                    UMI[collectionName.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
                         namespace: collection.source.replace(/^\//g, '')
                     });
                 }

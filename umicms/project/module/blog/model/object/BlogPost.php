@@ -117,23 +117,6 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const FORM_DRAFT_POST = 'draft';
     /**
-     * Статус поста: черновик
-     */
-    const POST_STATUS_DRAFT = 'draft';
-    /**
-     * Статус поста: опубликован
-     */
-    const POST_STATUS_PUBLISHED = 'published';
-    /**
-     * Статус поста: отклонен
-     */
-    const POST_STATUS_REJECTED = 'rejected';
-    /**
-     * Статус поста: требует модерации
-     */
-    const POST_STATUS_NEED_MODERATE = 'moderate';
-
-    /**
      * @var UsersModule $usersModule модуль "Пользователи"
      */
     private $usersModule;
