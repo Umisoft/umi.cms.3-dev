@@ -46,7 +46,7 @@ class ExtractCore implements ICommandInstall
 
         if (!$phar->extractTo(INSTALL_ROOT_DIR, null, true)) {
             throw new RuntimeException(
-                'Неудалось распаковать ядро.'
+                'Не удалось распаковать ядро.'
             );
         }
 
