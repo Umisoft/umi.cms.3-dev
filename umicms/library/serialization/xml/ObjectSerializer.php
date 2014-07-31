@@ -11,6 +11,7 @@
 namespace umicms\serialization\xml;
 
 use umicms\serialization\exception\UnexpectedValueException;
+use umicms\serialization\ISerializerConfigurator;
 
 /**
  * XML-сериализатор для произвольных объектов "по умолчанию".
@@ -38,6 +39,30 @@ class ObjectSerializer extends BaseSerializer
             $variables = get_object_vars($object);
         }
 
-        $this->delegate($variables, $options);
+        if ($object instanceof ISerializerConfigurator) {
+            $this->configure($object);
+        }
+
+        $attributes = [];
+        $properties = [];
+
+        foreach ($variables as $name => $value) {
+            if (in_array($name, $this->currentExcludes)) {
+                continue;
+            }
+
+            if (in_array($name, $this->currentAttributes, true)) {
+                $attributes[$name] = $value;
+            } else {
+                $properties[$name] = $value;
+            }
+        }
+
+        foreach ($attributes as $name => $attribute) {
+            $this->writeAttribute($name, $attribute);
+        }
+
+        $this->delegate($properties, $options);
+
     }
 }

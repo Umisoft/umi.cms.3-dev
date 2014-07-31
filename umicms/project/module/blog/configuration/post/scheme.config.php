@@ -10,7 +10,6 @@
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
-use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
@@ -20,11 +19,10 @@ return array_replace_recursive(
             'publish_time' => [
                 'type' => Type::DATETIME
             ],
-            'publish_status' => [
-                'type' => Type::STRING,
+            'status_id' => [
+                'type' => Type::BIGINT,
                 'options' => [
-                    'length' => 50,
-                    'default' => BlogPost::POST_STATUS_DRAFT
+                    'unsigned' => true
                 ]
             ],
             'announcement' => [
@@ -83,9 +81,9 @@ return array_replace_recursive(
                     'author_id' => []
                 ]
             ],
-            'publish_status' => [
+            'status' => [
                 'columns' => [
-                    'publish_status' => []
+                    'status_id' => []
                 ]
             ]
         ],
@@ -94,6 +92,16 @@ return array_replace_recursive(
                 'foreignTable' => 'blog_author',
                 'columns' => [
                     'author_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'post_to_status' => [
+                'foreignTable' => 'blog_post_status',
+                'columns' => [
+                    'status_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

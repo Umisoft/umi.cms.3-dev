@@ -20,7 +20,6 @@ use umi\form\IFormEntity;
 use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umi\i18n\translator\ITranslator;
 use umi\orm\collection\ISimpleHierarchicCollection;
 use umi\orm\metadata\field\datetime\DateTimeField;
 use umi\orm\metadata\field\IField;
@@ -40,6 +39,7 @@ use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\behaviour\IRobotsAccessibleObject;
@@ -56,16 +56,6 @@ class ActionController extends BaseController implements IFormAware
 {
     use TActionController;
     use TFormAware;
-
-    /**
-     * @var ITranslator $translator транслятор
-     */
-    protected $translator;
-
-    public function __construct(ITranslator $translator)
-    {
-        $this->translator = $translator;
-    }
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -114,7 +104,7 @@ class ActionController extends BaseController implements IFormAware
             }
 
             $fieldName = $field->getName();
-            $label = $this->translator->translate($collection->getDictionaryNames(), $fieldName);
+            $label = $collection->translate($fieldName);
 
             $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
 
@@ -136,7 +126,7 @@ class ActionController extends BaseController implements IFormAware
 
                     $relatedFieldName = $relatedField->getName();
                     $relatedDataSource = $relatedElementName = $fieldName . '.' . $relatedFieldName;
-                    $relatedLabel = $label . ': ' . $this->translator->translate($targetCollection->getDictionaryNames(), $relatedFieldName);
+                    $relatedLabel = $label . ': ' . $targetCollection->translate($relatedFieldName);
 
                     $elements[] = $this->buildFormElement(
                         $relatedField, $targetCollection, $relatedElementName, $relatedDataSource, $relatedLabel
@@ -175,8 +165,7 @@ class ActionController extends BaseController implements IFormAware
                 $type = Select::TYPE_NAME;
                 $options['choices'] = [];
                 foreach ($collection->getMetadata()->getTypesList() as $typeName) {
-                    $options['choices'][$typeName] =
-                        $this->translator->translate($collection->getDictionaryNames(), 'type:' . $typeName . ':displayName');
+                    $options['choices'][$typeName] = $collection->translate('type:' . $typeName . ':displayName');
                 }
                 break;
             }
@@ -550,9 +539,19 @@ class ActionController extends BaseController implements IFormAware
         }
 
         /**
-         * @var CmsHierarchicObject $object
+         * @var CmsHierarchicObject|ILockedAccessibleObject $object
          */
         $object = $this->getEditedObject($data['object']);
+
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot move locked object with guid "{guid}" from collection "{collection}".',
+                    ['guid' => $object->getGUID(), 'collection' => $collection->getName()]
+                )
+            );
+        }
+
         /**
          * @var CmsHierarchicObject $branch
          */
@@ -568,22 +567,28 @@ class ActionController extends BaseController implements IFormAware
 
         if ($parent !== $branch) {
             if ($parent) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 /**
-                 * @var ICalculableProperty $siteChildCount
                  * @var ICalculableProperty $adminChildCount
                  */
-                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
                 $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
             }
 
             if ($branch) {
                 $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
                 $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-
-                $siteChildCount->recalculate();
                 $adminChildCount->recalculate();
             }
         }

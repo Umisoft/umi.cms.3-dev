@@ -204,7 +204,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     &.icon-ok-thin{
         background-position: -1000px 0;
     }
-    &.icon-decline-thin{
+    &.icon-close{
         background-position: -1020px 0;
     }
     &.icon-bottom-thin{
@@ -386,7 +386,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-ok-thin{
             background-position: -1000px -20px;
         }
-        &.icon-decline-thin{
+        &.icon-close{
             background-position: -1020px -20px;
         }
         &.icon-bottom-thin{
@@ -569,7 +569,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-ok-thin{
             background-position: -1000px -40px;
         }
-        &.icon-decline-thin{
+        &.icon-close{
             background-position: -1020px -40px;
         }
         &.icon-bottom-thin{

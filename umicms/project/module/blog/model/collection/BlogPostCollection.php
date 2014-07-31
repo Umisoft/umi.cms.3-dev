@@ -12,6 +12,7 @@ namespace umicms\project\module\blog\model\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umi\orm\object\IObject;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -19,6 +20,7 @@ use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Коллекция постов блога.
@@ -73,7 +75,8 @@ class BlogPostCollection extends CmsPageCollection
         $selector = $this->select()
             ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)->equals($uri)
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED);
 
         $page = $selector->getResult()->fetch();
 
@@ -94,7 +97,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getDrafts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_DRAFT);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_DRAFT);
     }
 
     /**
@@ -181,7 +185,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getNeedModeratePosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_NEED_MODERATE);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_NEED_MODERATION);
     }
 
     /**
@@ -268,7 +273,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getRejectedPosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_REJECTED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+            ->equals(PostStatus::GUID_REJECTED);
     }
 
     /**
@@ -353,21 +359,11 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function activate(IActiveAccessibleObject $object)
     {
-        if ($object->active) {
-            return $this;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
-        parent::activate($object);
-
-        if (
-            $object instanceof BlogPost &&
-            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $object->author instanceof BlogAuthor
-        ) {
-            $object->author->incrementPostCount();
-        }
-
-        return $this;
+        return parent::activate($object);
     }
 
     /**
@@ -375,21 +371,11 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function deactivate(IActiveAccessibleObject $object)
     {
-        if (!$object->active) {
-            return $this;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
-        parent::deactivate($object);
-
-        if (
-            $object instanceof BlogPost &&
-            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $object->author instanceof BlogAuthor
-        ) {
-            $object->author->decrementPostCount();
-        }
-
-        return $this;
+        return parent::deactivate($object);
     }
 
     /**
@@ -397,9 +383,8 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function trash(IRecyclableObject $object)
     {
-        if ($this->isActivePublishedPost($object)) {
-            /** @var $object BlogPost */
-            $object->author->decrementPostCount();
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
         return parent::trash($object);
@@ -410,24 +395,22 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function untrash(IRecyclableObject $object)
     {
-        if ($this->isActivePublishedPost($object)) {
-            /** @var $object BlogPost */
-            $object->author->incrementPostCount();
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
         return parent::untrash($object);
     }
 
     /**
-     * Проверяет является ли пост активным, опубликованным и принадлежащим автору.
-     * @param IRecyclableObject|BlogPost $post проверяемый пост
-     * @return bool
+     * {@inheritdoc}
      */
-    private function isActivePublishedPost(IRecyclableObject $post)
+    public function delete(IObject $object)
     {
-        return $post instanceof BlogPost &&
-            $post->active &&
-            $post->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $post->author instanceof BlogAuthor;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
+        }
+
+        return parent::delete($object);
     }
 }

@@ -11,6 +11,7 @@
 return [
 
     'en-US' => [
+
         'component:rss:displayName' => 'Import RSS-feed',
         'Import {count} posts.' => 'Import {count} posts.',
         'action:importFromRss' => 'Import RSS-feed',

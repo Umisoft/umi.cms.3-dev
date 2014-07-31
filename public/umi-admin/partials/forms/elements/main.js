@@ -21,7 +21,9 @@ define(
         'partials/forms/elements/textarea/main',
         'partials/forms/elements/checkbox-group/main',
         'partials/forms/elements/color/main',
-        'partials/forms/elements/permissions/main'
+        'partials/forms/elements/permissions/main',
+        'partials/forms/elements/objectRelationElement/main',
+        'partials/forms/elements/singleCollectionObjectRelation/main'
     ],
     function(
         UMI,
@@ -45,8 +47,10 @@ define(
         textareaElement,
         checkboxGroupElement,
         colorElement,
-        permissions
-    ){
+        permissions,
+        objectRelationElement,
+        singleCollectionObjectRelation
+        ){
         "use strict";
 
         return function(){
@@ -70,6 +74,8 @@ define(
             checkboxGroupElement();
             colorElement();
             permissions();
+            objectRelationElement();
+            singleCollectionObjectRelation();
         };
     }
 );

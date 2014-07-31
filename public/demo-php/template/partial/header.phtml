@@ -1,12 +1,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="<?=$description?>" />
-<meta name="keywords" content="<?=$keywords?>" />
+<meta name="description" content="<?=$this->escape($this->purifyHtml($description))?>" />
+<meta name="keywords" content="<?=$this->escape($this->purifyHtml($keywords))?>" />
 <meta name="author" content="">
 <link rel="shortcut icon" href="/favicon.ico">
 
-<title><?=$title?></title>
+<title><?=$this->escape($this->purifyHtml($title))?></title>
 
 <!-- Bootstrap core CSS -->
 <link href="<?=$assetsUrl?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">

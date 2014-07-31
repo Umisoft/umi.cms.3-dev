@@ -216,6 +216,9 @@ define(
                         }
                     },
                     checkIsAllowedRobots: function(){
+                        if(this.get('isDestroying') || this.get('isDestroyed')){
+                            return;
+                        }
                         var self = this;
                         var object = this.get('controller.object');
                         var componentController = this.get('container').lookup('controller:component');
@@ -230,11 +233,16 @@ define(
                             });
                         }
                     },
+
                     checkIsAllowedRobotsChange: function(){
                         Ember.run.once(this, 'checkIsAllowedRobots');
-                    }.observes('controller.object').on('init'),
+                    }.observes('controller.object').on('didInsertElement'),
 
                     willDestroyElement: function(){
+                        this.removeObserver('controller.object');
+                    },
+
+                    willClearRender: function(){
                         this.removeObserver('controller.object');
                     }
                 }

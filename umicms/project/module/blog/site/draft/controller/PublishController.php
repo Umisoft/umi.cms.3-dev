@@ -17,6 +17,7 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер публикации черновика.
@@ -65,7 +66,7 @@ class PublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->publish();
+        $this->blogDraft->status = $this->module->postStatus()->get(PostStatus::GUID_PUBLISHED);
         $this->commit();
     }
 }

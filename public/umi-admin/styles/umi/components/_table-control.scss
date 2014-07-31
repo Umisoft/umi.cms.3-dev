@@ -299,13 +299,12 @@ $table-control-row-bg-hover: #C8DEEE;
         background: #E9F1F7;
     }
     &.hover{
-        background: $table-control-row-bg-hover!important;
+        background: $table-control-row-bg-hover;
     }
-    .edit-link{
-        color: $body-font-color;
-        &:hover{
-            text-decoration: underline;
-        }
+    &.selected{
+        background: #259cec;
+        color: #fff;
+        cursor: default !important;
     }
 }
 
@@ -374,7 +373,11 @@ $table-control-row-bg-hover: #C8DEEE;
         }
     }
     &.hover{
-        background: $table-control-row-bg-hover!important;
+        background: $table-control-row-bg-hover !important;
+    }
+    &.selected{
+        background: #259cec !important;
+        color: #fff;
     }
 }
 

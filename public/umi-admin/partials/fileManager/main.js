@@ -7,16 +7,30 @@ define(['App'], function(UMI){
 
         layout: Ember.Handlebars.compile('<div id="elfinder"></div>'),
 
+        /**
+         * @hook
+         * @param fileInfo
+         */
+        fileSelect: function(fileInfo){
+            return fileInfo;
+        },
+
+        init: function(){
+            this._super();
+
+            var templateParams = this.get('templateParams');
+            if(Ember.typeOf(templateParams) === 'object'){
+                this.setProperties(templateParams);
+            }
+        },
+
         didInsertElement: function(){
             var self = this;
             $('#elfinder').elfinder({
                 url : window.UmiSettings.baseApiURL + '/files/manager/action/connector',//self.get('controller.connector.source'),
                 lang: 'ru',
-                getFileCallback : function(fileInfo){
-                    var contentParams = {};
-                    contentParams.fileInfo = fileInfo;
-                    self.set('parentView.contentParams', contentParams);
-                    $('.umi-popup').remove(); //TODO отправлять событие на закрытие Popup
+                getFileCallback: function(fileInfo){
+                    self.fileSelect(fileInfo);
                 },
 
                 uiOptions: {

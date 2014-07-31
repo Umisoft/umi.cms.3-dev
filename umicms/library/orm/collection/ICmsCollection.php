@@ -129,4 +129,15 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * @return CmsSelector|ICmsObject[]
      */
     public function getInternalSelector();
+
+    /**
+     * Возвращает сообщение коллекции, переведенное для текущей или указанной локали.
+     * Текст сообщения может содержать плейсхолдеры. Ex: File "{path}" not found
+     * Если идентификатор локали не указан, будет использована текущая локаль.
+     * @param string $message текст сообщения на языке разработки
+     * @param array $placeholders значения плейсхолдеров для сообщения. Ex: array('{path}' => '/path/to/file')
+     * @param string $localeId идентификатор локали в которую осуществляется перевод (ru, en_us)
+     * @return string
+     */
+    public function translate($message, array $placeholders = [], $localeId = null);
 }

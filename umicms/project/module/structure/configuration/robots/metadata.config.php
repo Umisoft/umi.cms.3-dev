@@ -8,7 +8,6 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\Robots;
 
 return array_replace_recursive(

@@ -428,14 +428,18 @@ class Bootstrap
 
         if (
             ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
-            (substr($requestedUri, -1, 1) == '?') && !$queryString)
+            ((substr($requestedUri, -1, 1) == '?') && !$queryString) ||
+            substr($request->getSchemeAndHttpHost(), -1, 1) == '.'
+            )
         {
 
             $url = rtrim($pathInfo, '/');
             if ($queryString) {
                 $url .= '?' . $queryString;
             }
-            $redirectLocation = $request->getSchemeAndHttpHost() . $url;
+            $host = rtrim($request->getSchemeAndHttpHost() , '.');
+
+            $redirectLocation = $host . $url;
 
             $this->send301($redirectLocation);
         }

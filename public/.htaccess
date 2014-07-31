@@ -8,10 +8,6 @@
 # RewriteRule ^ http://%1%{REQUEST_URI} [L,R=301]
 
 
-# Start UMI.CMS settings
-php_flag engine 0
-
-
 Options -Indexes
 Options +FollowSymLinks
 
@@ -24,7 +20,7 @@ Options +FollowSymLinks
     RewriteRule "(^|/)\.(git|svn)" - [F]
 
     # Ignore static
-    RewriteCond %{REQUEST_URI} !\.(html?|te?xt|jpe?g|gif|png|bmp|swf|flv|ico|css|js|svg|mpe?g|mov|avi|wav|mp3|eot|ttf|woff)$
+    RewriteCond %{REQUEST_URI} !\.(html?|jpe?g|gif|png|bmp|swf|flv|ico|css|js|svg|mpe?g|mov|avi|wav|mp3|eot|ttf|woff)$
     # Pass all requests
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -32,18 +28,20 @@ Options +FollowSymLinks
 
 </IfModule>
 
+# Start UMI.CMS settings
+<IfModule mod_php5.c>
+    php_flag engine off
+</IfModule>
 
-<Files />
-    php_flag engine 0
-    Order Deny,Allow
-</Files>
-
-<FilesMatch "\.(php[2-5]?|cgi|pl|fcgi|fpl|phtml|shtml|asp|jsp|twig|tpl|xslt?)$">
+<FilesMatch "\.(php[2-5]?|cgi|pl|fcgi|fpl|phtm|phtml|shtml|asp|jsp|twig|tpl|xslt?)$">
     Deny from all
 </FilesMatch>
 
 <Files "index.php">
-    php_flag engine 1
+    <IfModule mod_php5.c>
+        php_flag engine on
+    </IfModule>
+
     Allow from all
 </Files>
 
