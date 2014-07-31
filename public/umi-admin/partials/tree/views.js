@@ -336,7 +336,7 @@ define(['App', 'toolbar'], function(UMI){
 
             childrenList: function(){
                 return this.getChildren();
-            }.property(),
+            }.property('item'),
 
             hasChildren: Ember.computed.bool('item.childCount'),
 
