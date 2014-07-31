@@ -44,7 +44,7 @@ class CheckDb implements ICommandInstall
             !isset($config['db']['password'])
         ) {
             throw new RuntimeException(
-                'Неудалось установить соединение с БД.'
+                'Не удалось установить соединение с БД.'
             );
         }
 
@@ -55,7 +55,7 @@ class CheckDb implements ICommandInstall
             $config['db']['password']
         )) {
             throw new RuntimeException(
-                'Неудалось установить соединение с БД.'
+                'Не удалось установить соединение с БД.'
             );
         }
 
