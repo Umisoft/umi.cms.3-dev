@@ -42,6 +42,7 @@ use umicms\project\module\users\model\UsersModule;
  * @property IObjectSet $comments комментарии
  * @property int $commentsCount количество комментариев к посту
  * @property string $source источник поста
+ * @property string $image ссылка на картинку
  */
 class BlogPost extends CmsObject implements ICmsPage
 {
@@ -87,6 +88,10 @@ class BlogPost extends CmsObject implements ICmsPage
      * Имя поля для хранения источника поста
      */
     const FIELD_SOURCE = 'source';
+    /**
+     * Имя поля для хранения картинки
+     */
+    const FIELD_IMAGE = 'image';
     /**
      * Форма добавления поста
      */
