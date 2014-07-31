@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umicms\orm\object\ICmsPage;
 
@@ -26,5 +27,9 @@ return [
                 'dataSource' => ICmsPage::FIELD_PAGE_SLUG
             ],
         ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Change'
+        ]
     ]
 ];

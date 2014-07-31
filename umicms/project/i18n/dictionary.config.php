@@ -214,6 +214,7 @@ return [
 
             'Save' => 'Save',
             'Add' => 'Add',
+            'Change' => 'Change',
             'Send request' => 'Send request',
         ],
         'ru-RU' => [
@@ -224,6 +225,7 @@ return [
 
             'Save' => 'Сохранить',
             'Add' => 'Добавить',
+            'Change' => 'Изменить',
             'Send request' => 'Отправить запрос',
         ]
     ],

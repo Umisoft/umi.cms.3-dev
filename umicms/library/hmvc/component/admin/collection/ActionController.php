@@ -224,7 +224,7 @@ class ActionController extends BaseController implements IFormAware
      * @throws HttpException если пришли неверные данные
      * @return ICmsPage
      */
-    protected function changeSlug()
+    protected function actionChangeSlug()
     {
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
