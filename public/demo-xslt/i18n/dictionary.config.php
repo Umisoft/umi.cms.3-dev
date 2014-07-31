@@ -64,7 +64,7 @@ return [
             'Edit profile author' => 'Edit profile author'
         ],
         'ru-RU' => [
-            'Create post' => 'Создать пост',
+            'Create post' => 'Добавить пост',
             'Go' => 'Перейти',
             'Edit' => 'Редактировать',
             'Drafts author' => 'Черновики автора',
