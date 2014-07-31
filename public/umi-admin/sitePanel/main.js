@@ -52,18 +52,41 @@
 
     UMI.SITE.toolbar = (function(){
         var toolbarTemplate = function(params){
+
+            var modulesList = function(modules){
+                var html = '';
+                var module;
+                var moduleName;
+                var i;
+
+                if(modules){
+                    for(i = 0; i < modules.length; i++){
+                        module = modules[i];
+                        moduleName = toolbox.get(module, 'name');
+
+                        html+= '<li><a href="' + toolbox.get(params, 'baseURL') + '/' + moduleName + '"><i class="umi-topbar-icon-module-' + moduleName + '"></i> ' + toolbox.get(module, 'displayName') + '</a></li>';
+                    }
+                }
+
+                return html;
+            };
+
             return '' +
             '<ul class="umi-topbar-ul-left">' +
-            '   <li><span class="umi-topbar-label"><i class="umi-topbar-icon-butterfly"></i></span></li>' +
-            '   <li><a href="' + params.baseURL + '" class="umi-topbar-button">' + toolbox.get(params, 'i18n.adminPanelLabel') + '</a></li>' +
+            '   <li><span class="umi-topbar-button-dropdown" data-umi-handler="toggleDropdown">' +
+            '        <i class="umi-topbar-icon-butterfly"></i>' +
+            '        <ul class="umi-topbar-dropdown double-columns">' + modulesList(toolbox.get(params, 'modules')) + '</ul>' +
+            '    </span>' +
+            '    </li>' +
+            '    <li><a href="' + params.baseURL + '" class="umi-topbar-button">' + toolbox.get(params, 'i18n.adminPanelLabel') + '</a></li>' +
             '</ul>' +
             '<ul class="umi-topbar-ul-right"></ul>';
         };
 
         var userDropdown = function(params){
             return '<li>' +
-            '<span class="umi-topbar-button-dropdown" data-umi-handler="toggleDropdown">' + toolbox.get(params, 'user.displayName') +
-            '    <ul class="umi-topbar-dropdown">' +
+            '<span class="umi-topbar-button-dropdown triangle" data-umi-handler="toggleDropdown">' + toolbox.get(params, 'user.displayName') +
+            '    <ul class="umi-topbar-dropdown right">' +
             '         <li>' +
             '             <a href="javascript:void(0)" data-umi-handler="logout"><i class="umi-topbar-icon-exit"></i> ' + toolbox.get(params, 'i18n.logoutLabel') + '</a>' +
             '         </li>' +
@@ -125,6 +148,7 @@
                             toolbox.removeClass(button, 'umi-open');
                             document.body.removeEventListener('click', commands.closeDropdown, false);
                         } else{
+                            commands.closeDropdown();
                             toolbox.addClass(button, 'umi-open');
                             setTimeout(function(){
                                 document.body.addEventListener('click', commands.closeDropdown, false);
@@ -132,7 +156,7 @@
                         }
                     },
 
-                    closeDropdown: function(el){
+                    closeDropdown: function(){
                         var dropDownButtons = toolbar.querySelectorAll('.umi-topbar-button-dropdown');
                         for(var i = 0; i < dropDownButtons.length; i++){
                             if(toolbox.hasClass(dropDownButtons[i], 'umi-open')){
