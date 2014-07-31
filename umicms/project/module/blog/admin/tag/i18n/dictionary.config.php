@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'component:tag:displayName' => 'Теги',
 
-        'action:create:base' => 'Создать тег',
+        'action:create:base' => 'Добавить тег',
 
         'role:editor:displayName' => 'Управление тегами'
     ]
