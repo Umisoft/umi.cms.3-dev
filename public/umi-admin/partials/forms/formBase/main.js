@@ -240,7 +240,11 @@ define(
                 })
             });
 
-            UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {});
+            UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {
+                singleCollectionObjectRelationTemplate: function(){
+                    return '{{view "singleCollectionObjectRelationElement" object=view.object meta=view.meta}}';
+                }.property()
+            });
         };
     }
 );
