@@ -39,7 +39,7 @@ class DownloadCore implements ICommandInstall
         $config = $this->installer->getConfig();
         if (!isset($config['license'])) {
             throw new RuntimeException(
-                'Неудалось скачать core. Ошибка лицензии.'
+                'Не удалось скачать core. Ошибка лицензии.'
             );
         }
         $config['license']['type'] = 'get-core';
@@ -47,7 +47,7 @@ class DownloadCore implements ICommandInstall
 
         if (!$this->installer->copyRemote($path, CMS_CORE_PHAR)) {
             throw new RuntimeException(
-                'Неудалось скачать core.'
+                'Не удалось скачать core.'
             );
         }
 
