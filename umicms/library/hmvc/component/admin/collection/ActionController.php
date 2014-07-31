@@ -26,6 +26,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\numeric\BoolField;
 use umi\orm\metadata\field\string\TextField;
+use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\form\element\Wysiwyg;
@@ -37,6 +38,7 @@ use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
@@ -58,16 +60,18 @@ class ActionController extends BaseController implements IFormAware
     use TFormAware;
 
     /**
-     * Возвращает форму.
+     * Возвращает форму смены slug.
      * @throws HttpException
      * @return \ArrayObject
      */
-    protected function actionGetForm()
+    protected function actionGetChangeSlugForm()
     {
-        $typeName = $this->getRequiredQueryVar('type');
-        $formName = $this->getRequiredQueryVar('form');
+        $form = $this->getCollection()->getForm(ICmsPageCollection::FORM_CHANGE_SLUG, IObjectType::BASE);
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl(
+            $this->getComponent(), CollectionComponent::ACTION_CHANGE_SLUG)
+        );
 
-        return $this->getCollection()->getForm($formName, $typeName)->getView();
+        return $form->getView();
     }
 
     /**

@@ -48,10 +48,6 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
      */
     const ACTION_GET_CREATE_FORM = 'getCreateForm';
     /**
-     * Действие для получения формы
-     */
-    const ACTION_GET_FORM = 'getForm';
-    /**
      * Действие для получения формы на смену slug
      */
     const ACTION_GET_CHANGE_SLUG_FORM = 'getChangeSlugForm';
@@ -192,11 +188,6 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
     {
         $actions = parent::getQueryActions();
 
-        $actions[self::ACTION_GET_FORM] = $this->createQueryAction(
-            self::ACTION_GET_FORM,
-            ['type' => '{type}', 'form' => '{form}']
-        );
-
         $actions[self::ACTION_GET_EDIT_FORM] = $this->createQueryAction(
             self::ACTION_GET_EDIT_FORM,
             ['type' => '{type}']
@@ -222,8 +213,7 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
 
         if ($collection instanceof ICmsPageCollection) {
             $actions[self::ACTION_GET_CHANGE_SLUG_FORM] = $this->createQueryAction(
-                self::ACTION_GET_FORM,
-                ['form' => ICmsPageCollection::FORM_CHANGE_SLUG, 'type' => IObjectType::BASE]
+                self::ACTION_GET_CHANGE_SLUG_FORM
             );
         }
 
