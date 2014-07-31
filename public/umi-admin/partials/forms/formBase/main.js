@@ -84,7 +84,9 @@ define(
                         return ' *';
                     }
                 }.property(),
+
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}'),
+
                 template: function(){
                     var meta;
                     var template;
@@ -101,6 +103,7 @@ define(
                         return Ember.Handlebars.compile(template);
                     }
                 }.property(),
+
                 /**
                  * Метод используется декораторами для расширения базового шаблона.
                  * @method extendTemplate
@@ -241,6 +244,17 @@ define(
             });
 
             UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {
+                layout: function(){
+                    var type = this.get('meta.type');
+                    var layout = '<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}';
+
+                    switch(type){
+                        case 'checkbox':
+                            layout = '{{yield}}{{view.isRequired}}';
+                    }
+
+                    return Ember.Handlebars.compile(layout);
+                }.property(),
                 singleCollectionObjectRelationTemplate: function(){
                     return '{{view "singleCollectionObjectRelationElement" object=view.object meta=view.meta}}';
                 }.property()
