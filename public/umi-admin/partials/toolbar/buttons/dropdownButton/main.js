@@ -23,7 +23,7 @@ define(['App', 'moment'],
                                         var $buttonDropdown = $(bodyEvent.target).closest('.dropdown');
                                         if(!$buttonDropdown.length || $buttonDropdown[0].getAttribute('id') !== $button[0].getAttribute('id')){
                                             $('body').off('click.umi.dropdown.close');
-                                            $button.toggleClass('open');
+                                            $button.removeClass('open');
                                         }
                                     });
                                 }
