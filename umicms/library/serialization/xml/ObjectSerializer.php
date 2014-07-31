@@ -33,16 +33,36 @@ class ObjectSerializer extends BaseSerializer
             ));
         }
 
-        if ($object instanceof ISerializerConfigurator) {
-            $this->configure($object);
-        }
-
         if ($object instanceof \Traversable) {
             $variables = iterator_to_array($object, true);
         } else {
             $variables = get_object_vars($object);
         }
 
-        $this->delegate($variables, $options);
+        if ($object instanceof ISerializerConfigurator) {
+            $this->configure($object);
+        }
+
+        $attributes = [];
+        $properties = [];
+
+        foreach ($variables as $name => $value) {
+            if (in_array($name, $this->currentExcludes)) {
+                continue;
+            }
+
+            if (in_array($name, $this->currentAttributes)) {
+                $attributes[$name] = $value;
+            } else {
+                $properties[$name] = $value;
+            }
+        }
+
+        foreach ($attributes as $name => $attribute) {
+            $this->writeAttribute($name, $attribute);
+        }
+
+        $this->delegate($properties, $options);
+
     }
 }

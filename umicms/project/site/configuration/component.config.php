@@ -69,7 +69,8 @@ return [
     ],
 
     SiteApplication::OPTION_WIDGET => [
-        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget'
+        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget',
+        'topBar' =>  __NAMESPACE__ . '\widget\TopBarWidget'
     ],
 
     SiteApplication::OPTION_VIEW        => [
@@ -79,7 +80,8 @@ return [
     SiteApplication::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
-            'widgetExecutor' => []
+            'widgetExecutor' => [],
+            'topBarViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -88,6 +90,9 @@ return [
             ],
             'widgetExecutor' => [
                 'controller:widget' => []
+            ],
+            'topBarViewer' => [
+                'widget:topBar' => []
             ]
         ]
     ],

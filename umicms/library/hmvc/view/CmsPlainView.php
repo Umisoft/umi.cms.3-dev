@@ -35,6 +35,8 @@ class CmsPlainView extends \ArrayIterator implements IView, ISerializerConfigura
     public function __construct($plainContent)
     {
         parent::__construct();
+
+        $this->plainContent = $plainContent;
     }
 
     /**
