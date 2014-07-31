@@ -22,6 +22,7 @@
     <xsl:include href="template://system/breadcrumbs" />
     <xsl:include href="template://system/dateTime" />
     <xsl:include href="template://system/paginator" />
+    <xsl:include href="template://system/topBar" />
     <xsl:include href="template://system/form" />
     <!-- Подключаем дополнительные шаблоны <Конец> -->
 
@@ -55,14 +56,6 @@
     </xsl:template>
     <xsl:template match="locale[position() = last()]" mode="locale.separator"/>
     <!-- Переключение языковой версии <Конец> -->
-
-    <!-- Шаблон по умолчанию для виджетов <Начало> -->
-    <xsl:template match="result">
-        <textarea id="debug">
-            <xsl:copy-of select="."/>
-        </textarea>
-    </xsl:template>
-    <!-- Шаблон по умолчанию для виджетов <Конец> -->
 
     <!-- Шаблон для вывода сообщений об ошибках <Начало> -->
     <xsl:template match="contents[error]">

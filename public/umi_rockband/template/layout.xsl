@@ -50,7 +50,7 @@
                 <xsl:call-template name="footer"/>
 
                 <!-- Админ тулбар -->
-                <xsl:value-of select="document('widget://structure.topBar')/result/node()" disable-output-escaping="yes" />
+                <xsl:apply-templates select="document('widget://topBar')" />
             </body>
         </html>
 

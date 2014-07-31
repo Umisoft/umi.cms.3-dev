@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="article-content wide">
-                <img src="{$template}/blog/images/article2-img.png" alt="{@displayName}"/>
+                <img src="{property[@name='imageList']/value}" />
                 <div class="content">
                     <xsl:value-of select="property[@name = 'announcement']/value" disable-output-escaping="yes"/>
                 </div>

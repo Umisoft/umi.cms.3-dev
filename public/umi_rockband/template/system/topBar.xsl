@@ -6,7 +6,12 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <xsl:template match="/" />
+    <!-- Виджет админ тулбара -->
+    <xsl:template match="result[@widget='topBar']">
+        <xsl:value-of select="." disable-output-escaping="yes" />
+    </xsl:template>
 
+    <!-- Обработка ошибки -->
+    <xsl:template match="result[@widget='topBar'][error]" />
 
 </xsl:stylesheet>
