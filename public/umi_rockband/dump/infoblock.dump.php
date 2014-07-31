@@ -32,7 +32,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 21:13:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 21:45:37";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -100,7 +100,7 @@ return array (
       'logo#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<img src="/images/logo.png" />',
+        1 => 'images/logo.png',
       ),
       'logo#en-US' => 
       array (

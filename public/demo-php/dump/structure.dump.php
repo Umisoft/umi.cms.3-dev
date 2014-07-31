@@ -5390,7 +5390,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 18:46:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 21:39:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5460,6 +5460,25 @@ return array (
         0 => 'string',
         1 => 'Blog',
       ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'layout' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'layout',
+            'type' => 'base',
+            'guid' => 'd344cfa5-9bc6-461f-8b8d-00a678460547',
+            'displayName' => 'Блог',
+          ),
+        ),
+      ),
       'active#ru-RU' => 
       array (
         0 => 'boolean',
@@ -5499,6 +5518,31 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'skipInBreadcrumbs' => 
       array (
