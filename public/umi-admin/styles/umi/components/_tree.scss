@@ -106,7 +106,7 @@ $primary-gradient: #3aadff, #0087d4;
         height: rem-calc(24);
         background: #C4D2DD;
         border-radius: rem-calc(12);
-        margin-left: 15px;
+        margin-left: 28px;
         transition: background 0.2s linear;
         &:hover, &:focus {
             background: darken(#C4D2DD, 3%);
@@ -121,6 +121,21 @@ $primary-gradient: #3aadff, #0087d4;
             &:hover{
                 background: transparent;
             }
+        }
+    }
+
+    &-loader{
+        position: absolute;
+        background: rgba(236, 236, 236, 0.44);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+
+        .animate{
+            top: 50%;
+            margin-top: -30px;
         }
     }
 

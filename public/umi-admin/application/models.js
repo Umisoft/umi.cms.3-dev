@@ -293,12 +293,14 @@ define([], function(){
                 if(field.targetCollection === collection.name){
                     params.inverse = 'children';
                 }
+                params.readOnly = false;
                 return DS.belongsTo(field.targetCollection, params);
             },
 
             hasManyRelation: function(params, field){
                 params.async = true;
                 params.inverse = field.targetField;
+                params.readOnly = false;
                 return DS.hasMany(field.targetCollection, params);
             },
 

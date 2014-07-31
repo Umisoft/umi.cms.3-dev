@@ -8,22 +8,25 @@ define(['App'], function(UMI){
              * @property needs
              */
             needs: ['component', 'context'],
+
             /**
              * Имя коллекции
              * @property collectionName
              */
             collectionNameBinding: 'controllers.component.dataSource.name',
+
             /**
              * Определяет 'trasheble' коллекцию
              * @property isTrashableCollection
              */
             isTrashableCollection: null,
+
             /**
              * Запрашиваемые свойства объекта
              * @property properties
              */
             properties: function(){
-                var properties = ['displayName', 'order', 'active', 'childCount', 'type'];
+                var properties = ['displayName', 'order', 'active', 'childCount', 'type', 'locked'];
                 var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');
@@ -37,6 +40,7 @@ define(['App'], function(UMI){
                 this.set('isTrashableCollection', modelFields.contains('trashed'));
                 return properties;
             }.property('model'),
+
             /**
              * Контекстное меню
              * @property contentToolbar
@@ -44,6 +48,7 @@ define(['App'], function(UMI){
             contextToolbar: function(){
                 return Ember.get(this.get('controllers.component'), 'sideBarControl.contextToolbar');
             }.property('controllers.component.sideBarControl.contextToolbar'),
+
             /**
              * Возвращает корневой элемент
              * @property root
@@ -76,6 +81,12 @@ define(['App'], function(UMI){
                 return this.get('controllers.context.model');
             }.property('controllers.context.model'),
 
+            /**
+             * Индикатор процесса загрузки при частичной перезагрузке элементов дерева
+             * @property isLoading
+             */
+            isLoading: false,
+
             actions: {
                 /**
                  Сохранение результата drag and drop
@@ -87,7 +98,7 @@ define(['App'], function(UMI){
                  */
                 updateSortOrder: function(id, parentId, prevSiblingId, nextSibling){
                     var self = this;
-                    var type = this.get('collectionName');
+                    var collectionName = this.get('collectionName');
                     var ids = nextSibling || [];
                     var moveParams = {};
                     var resource;
@@ -95,7 +106,11 @@ define(['App'], function(UMI){
                     var node;
                     var parent;
                     var oldParentId;
-                    var models = this.store.all(type);
+                    var store = self.get('store');
+                    var models = store.all(collectionName);
+                    var properties = self.get('properties');
+
+                    self.send('showLoader');
 
                     node = models.findBy('id', id);
                     moveParams.object = {
@@ -104,7 +119,6 @@ define(['App'], function(UMI){
                     };
                     oldParentId = node.get('parent.id') || 'root';
 
-
                     if(parentId && parentId !== 'root'){
                         parent = models.findBy('id', parentId);
                         moveParams.branch = {
@@ -112,6 +126,7 @@ define(['App'], function(UMI){
                             'version': parent.get('version')
                         };
                     }
+
                     if(prevSiblingId){
                         sibling = models.findBy('id', prevSiblingId);
                         moveParams.sibling = {
@@ -120,41 +135,78 @@ define(['App'], function(UMI){
                         };
                     }
 
-                    resource = this.get('controllers.component.settings.actions.move.source');
-                    $.ajax({'type': 'POST', 'url': resource, 'data': JSON.stringify(moveParams), 'dataType': 'json', 'contentType': 'application/json'}).then(
-                        function(){
+                    resource = self.get('controllers.component.settings.actions.move.source');
+                    return $.ajax({
+                        'type': 'POST',
+                        'url': resource,
+                        'data': JSON.stringify(moveParams),
+                        'dataType': 'json',
+                        'contentType': 'application/json',
+                        global: false,
+                        success:function(){
                             ids.push(id);
-                            var parentsUpdateRelation = [];
+                            var parentsUpdateRelation = {};
+
                             if(parentId !== oldParentId){
                                 if(parentId && parentId !== 'root'){
                                     ids.push(parentId);
-                                    parentsUpdateRelation.push(parentId);
+                                    parentsUpdateRelation.currentParent = parentId;
                                 }
                                 if(oldParentId && oldParentId !== 'root'){
                                     ids.push(oldParentId);
-                                    parentsUpdateRelation.push(oldParentId);
+                                    parentsUpdateRelation.oldParent = oldParentId;
                                 }
                             }
-                            self.store.findByIds(type, ids).then(function(nodes){
-                                nodes.invoke('reload');
-                                var parent;
-                                var promises = [];
-                                for(var i = 0; i < parentsUpdateRelation.length; i++){
-                                    parent = models.findBy('id', parentsUpdateRelation[i]);
-                                    parent.get('children').then(function(children){
-                                        promises.push(children.reloadLinks());
-                                    });
-                                }
 
-                                if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
-                                    self.get('root')[0].updateChildren(id, parentId);
+                            var promise;
+                            var requestParams = {};
+                            requestParams.fields = properties.join(',');
+                            requestParams['filters[id]'] = 'equals(' + ids.join(',') + ')';
+
+                            promise = store.updateCollection(collectionName, requestParams);
+
+
+                            return promise.then(
+                                function(updatedObjects){
+                                    var parent;
+
+                                    if(parentId !== 'root'){
+                                        node = updatedObjects.findBy('id', id);
+                                        store.find(collectionName, parentId).then(function(parent){
+                                            node.set('parent', parent);
+                                        });
+                                    }
+
+                                    if(parentId !== oldParentId){
+                                        for(var key in parentsUpdateRelation){
+                                            if(parentsUpdateRelation.hasOwnProperty(key)){
+                                                parent = models.findBy('id', parentsUpdateRelation[key]);
+                                                parent.trigger('needReloadHasMany', (key === 'currentParent' ? 'add' : 'remove'), node);
+                                            }
+                                        }
+                                        if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
+                                            self.get('controllers.component').trigger('needReloadRootElements', (parentId === 'root' ? 'add' : 'remove'), node);
+                                        }
+                                    }
+
+                                    self.send('hideLoader');
                                 }
-                            });
+                            );
+
                         },
-                        function(error){
+                        error:  function(error){
                             self.send('backgroundError', error);
+                            self.send('hideLoader');
                         }
-                    );
+                    });
+                },
+
+                showLoader: function(){
+                    this.set('isLoading', true);
+                },
+
+                hideLoader: function(){
+                    this.set('isLoading', false);
                 }
             }
         });

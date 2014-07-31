@@ -2230,15 +2230,23 @@ function program1(depth0,data) {
 Ember.TEMPLATES["UMI/partials/treeControl"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push(" <div class=\"umi-tree-loader\"><i class=\"animate animate-loader-60\"></i></div> ");
+  }
 
   data.buffer.push("<div class=\"columns small-12\"> <div class=\"row s-full-height umi-tree-wrapper\"> <ul class=\"umi-tree-list umi-tree\"> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "treeControlItem", {hash:{
     'item': ("root"),
     'treeControlView': ("view")
   },hashTypes:{'item': "ID",'treeControlView': "ID"},hashContexts:{'item': depth0,'treeControlView': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </ul> </div> </div>");
+  data.buffer.push(" </ul> ");
+  stack1 = helpers['if'].call(depth0, "isLoading", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </div> </div>");
   return buffer;
   
 });

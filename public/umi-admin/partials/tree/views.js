@@ -2,16 +2,19 @@ define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
         UMI.TreeControlView = Ember.View.extend({
+
             /**
              * Имя шаблона
              * @property templateName
              */
             templateName: 'partials/treeControl',
+
             /**
              * Имена классов
              * @property classNames
              */
-            classNames: ['row', 's-full-height'],
+            classNames: ['row', 's-full-height', 's-unselectable'],
+
             /**
              * @property iScroll
              */
@@ -24,6 +27,7 @@ define(['App', 'toolbar'], function(UMI){
             activeContextChange: function(){
                 Ember.run.once(this, 'expandBranch');
             }.observes('controller.activeContext').on('didInsertElement'),
+
             /**
              * Раскрывает загруженную ветвь дерева и выставляет значение expandBranch
              * @method expandBranch
@@ -77,6 +81,7 @@ define(['App', 'toolbar'], function(UMI){
                     }
                 }
             },
+
             /**
              * Метод устанавливающий события после рендинга шаблона.
              * @method didInsertElement
@@ -84,16 +89,51 @@ define(['App', 'toolbar'], function(UMI){
             didInsertElement: function(){
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
                 var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
+
                 this.set('iScroll', contentScroll);
                 var self = this;
+
+                // Раскрытие ноды имеющую потомков
+                var setExpanded = function(node){
+                    var itemView = Ember.View.views[node.id];
+
+                    if(itemView.get('hasChildren')){
+                        itemView.set('isExpanded', true);
+                    }
+                };
+
+                /**
+                 * Устанавливает позицию призрака
+                 * */
+                var ghostPosition = function(event, ghost, ghostPositionOffset){
+                    ghost.style.top = event.pageY + ghostPositionOffset + 'px';
+                    ghost.style.left = event.pageX + ghostPositionOffset + 'px';
+                };
+
+                /**
+                 * Возвращает соседний элемент определеного типа
+                 *
+                 * @param {Object} Элемент для которого нужно найти следующих соседей
+                 * @param {string} Тип элемента который требуется найти
+                 * @returns {Object|Null} Возвращаем найденный элемент
+                 * */
+                function findNextSibling(element, type){
+                    type = type.toUpperCase();
+                    var nextElement = element.nextElementSibling;
+                    while(nextElement && nextElement.tagName !== type){
+                        nextElement = nextElement.nextElementSibling;
+                    }
+                    return nextElement;
+                }
 
                 var dragAndDrop = function(event, el){
                     var draggableNode = el.parentNode.parentNode;
                     var placeholder = document.createElement('li');
                     var ghost = document.createElement('span');
+                    var delayBeforeExpand;
+
                     // Смещение призрака относительно курсора
                     var ghostPositionOffset = 2;
-
                     $('html').addClass('s-unselectable');
                     // Для компонента tree класс выставлюющий потомкам cursor=default
                     self.$().addClass('drag-inside');
@@ -101,44 +141,22 @@ define(['App', 'toolbar'], function(UMI){
                     placeholder.className = 'umi-tree-placeholder';
                     placeholder.setAttribute('data-id', el.parentNode.parentNode.getAttribute('data-id'));
                     $(draggableNode).addClass('hide');
-                    placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
 
+                    placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
                     // Добавим призрак
                     ghost.className = 'umi-tree-ghost';
                     ghost.innerHTML = '<i class="' + el.className + '"></i>' + $(el.parentNode).children('a').text();
+
                     ghost = document.body.appendChild(ghost);
 
-                    /**
-                     * Устанавливает позицию призрака
-                     * */
-                    var ghostPosition = function(event){
-                        ghost.style.top = event.pageY + ghostPositionOffset + 'px';
-                        ghost.style.left = event.pageX + ghostPositionOffset + 'px';
-                    };
-                    ghostPosition(event);
+                    ghostPosition(event, ghost, ghostPositionOffset);
 
-                    /**
-                     * Возвращает соседний элемент определеного типа
-                     *
-                     * @param {Object} Элемент для которого нужно найти следующих соседей
-                     * @param {string} Тип элемента который требуется найти
-                     * @returns {Object|Null} Возвращаем найденный элемент
-                     * */
-                    function findNextSibling(element, type){
-                        type = type.toUpperCase();
-                        var nextElement = element.nextElementSibling;
-                        while(nextElement && nextElement.tagName !== type){
-                            nextElement = nextElement.nextElementSibling;
-                        }
-                        return nextElement;
-                    }
-
-                    var delayBeforeExpand;
                     $(document).on('mousemove', 'body, .umi-tree-ghost', function(event){
                         if(delayBeforeExpand){
                             clearTimeout(delayBeforeExpand);
                         }
-                        ghostPosition(event);
+                        ghostPosition(event, ghost, ghostPositionOffset);
+
                         var nextElement;
                         var hoverElement;
                         var elemHeight;
@@ -146,13 +164,6 @@ define(['App', 'toolbar'], function(UMI){
                         // Вычисляем элемент под курсором мыши
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
 
-                        // Раскрытие ноды имеющую потомков
-                        var setExpanded = function(node){
-                            var itemView = Ember.View.views[node.id];
-                            if(itemView.get('controller.model.childCount')){
-                                itemView.set('isExpanded', true);
-                            }
-                        };
                         // Проверим находимся мы над деревом или нет
                         if($(elem).closest('.umi-tree').length){
                             hoverElement = $(elem).closest('li')[0];
@@ -336,7 +347,9 @@ define(['App', 'toolbar'], function(UMI){
 
             allowMove: function(){
                 var item = this.get('item');
-                return item.get('id') !== 'root';
+                if(item.get('id') !== 'root' && !item.get('locked')){
+                    return true;
+                }
             }.property('item.id'),
 
             /**
@@ -388,7 +401,15 @@ define(['App', 'toolbar'], function(UMI){
                 }
                 promise = this.get('controller.store').updateCollection(collectionName, requestParams);
 
-                var promiseArray =  Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                if(model.get('id') !== 'root'){
+                    promise.then(function(children){
+                        for(var i = 0; i < children.length; i++){
+                            children[i].set('parent', model);
+                        }
+                    });
+                }
+
+                var promiseArray = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,
                     sortProperties: ['order'],
                     sortAscending: true
@@ -464,12 +485,9 @@ define(['App', 'toolbar'], function(UMI){
                     this.get('item').on('needReloadHasMany', function(event, object){
                         if(event === 'add'){
                             self.get('childrenList').pushObject(object);
+                        } else{
+                            self.get('childrenList').removeObject(object);
                         }
-                        //'item.didUpdate',
-                        //this.incrementProperty('reloadChildren');
-                        /*model.get('children').then(function(children){
-                         children.reloadLinks();
-                         });*/
                     });
                 }
             },
