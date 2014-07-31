@@ -17,7 +17,26 @@ use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 
 /**
- * {@inheritdoc}
+ * Класс постраничной навигации.
+ *
+ * @property int $firstPage первая страница
+ * @property string $firstPageUrl URL первой страницы
+ * @property int $lastPage последняя страница
+ * @property string $lastPageUrl URL последней страницы
+ * @property int $currentPage текущая страница
+ * @property string $currentPageUrl URL текущей страницы
+ * @property int|null $previousPage предыдущая страница
+ * @property string|null $previousPageUrl URL предыдущей страницы
+ * @property int|null $nextPage следущая страница
+ * @property string|null $nextPageUrl URL следующей страницы
+ * @property array $pagesRange список страниц для отображения в соответствии с заданным типом
+ * @property array $rangeUrls список ссылок на страницы в ряду, ключами массива являются номера страниц
+ * @property int $pagesCountInRange количество страниц в ряду
+ * @property int $pagesCount общее количество страниц
+ * @property int $itemsCount общее количество элементов
+ * @property int $itemsPerPage количество элементов, выводимых на странице
+ * @property array|\Traversable $pageItems набор элементов на странице
+ *
  */
 class CmsPaginator extends Paginator implements IUrlManagerAware
 {
@@ -48,6 +67,22 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
      * @var string $pageParam имя GET-параметра, хранящего номер страницы
      */
     private $pageParam = 'p';
+
+    /**
+     * Магический getter для свойст постраничной навигации
+     * @internal
+     * @param string $propName имя свойства
+     * @return mixed
+     */
+    public function __get($propName)
+    {
+        $methodName = 'get' . ucfirst($propName);
+        if (method_exists($this, $methodName)) {
+            return $this->$methodName();
+        }
+
+        return null;
+    }
 
     /**
      * Возвращает ссылку на прсмотр страницы в постраничной навигации.
