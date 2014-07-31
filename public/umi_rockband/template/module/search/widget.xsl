@@ -14,7 +14,7 @@
                 <div class="input-group input-group-sm">
                     <span class="input-group-btn">
                         <button class="btn" type="button">
-                            <img src="{$template}/images/search-icon.png" width="12" height="12"/>
+                            <img src="{$assets}images/search-icon.png" width="12" height="12"/>
                         </button>
                     </span>
                     <xsl:apply-templates select="form/elements/item[id='query']" mode="form">
@@ -33,7 +33,12 @@
             <xsl:text> "</xsl:text>
             <xsl:value-of select="query"/>
             <xsl:text>" </xsl:text>
-            <xsl:value-of select="document('translate://project.site.search/Found%20partTwo')/result"/>
+            <xsl:choose>
+                <xsl:when test="list/collection/item">
+                    <xsl:value-of select="document('translate://project.site.search/Found%20partTwo')/result"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="document('translate://project.site.search/No%20result')/result"/></xsl:otherwise>
+            </xsl:choose>
         </h5>
         <ul>
             <xsl:apply-templates select="list/collection/item" mode="search.content.result">

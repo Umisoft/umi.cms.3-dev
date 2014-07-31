@@ -2,5 +2,6 @@
 use umicms\project\module\structure\model\object\InfoBlock;
 
 /** @var InfoBlock $infoBlock */
+/** @var string $assetsUrl */
 ?>
-<?= $infoBlock->logo ?>
+<img src="<?=$assetsUrl ?><?= $infoBlock->logo ?>" alt=""/>

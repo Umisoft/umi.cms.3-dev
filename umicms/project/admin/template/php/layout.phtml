@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UMI.CMS</title>
-        <link rel="stylesheet" type="text/css" href="<?= $assetsUrl ?>/css/styles.css?version=<?= $version ?>">
+        <link rel="stylesheet" type="text/css" href="<?= $assetsUrl ?>css/styles.css?version=<?= $version ?>">
         <script>
             // Ember settings
             ENV = {
@@ -15,14 +15,15 @@
                 "baseApiURL": '<?= $baseApiUrl ?>',
                 "baseSiteURL": '<?= $baseSiteUrl ?>',
                 "authUrl": '<?= $authUrl ?>',
-                "assetsUrl" : '<?= $assetsUrl ?>'
+                "assetsUrl" : '<?= $assetsUrl ?>',
+                "projectAssetsUrl" : '<?= $projectAssetsUrl ?>'
             }
         </script>
     </head>
     <body id="body" class="loading">
         <script
-            data-main="<?= $assetsUrl ?>/main.js?version=<?= $version ?>"
-            src="<?= $assetsUrl ?>/vendor/requirejs/require.js?version=<?= $version ?>">
+            data-main="<?= $assetsUrl ?>main.js?version=<?= $version ?>"
+            src="<?= $assetsUrl ?>vendor/requirejs/require.js?version=<?= $version ?>">
         </script>
 
         <noscript>
@@ -32,7 +33,7 @@
                 <div class="row vertical-center">
                     <div class="large-centered columns large-3">
                         <p class="text-center">
-                            <img src="<?= $assetsUrl ?>/img/auth-logo.png?version=<?= $version ?>"/>
+                            <img src="<?= $assetsUrl ?>img/auth-logo.png?version=<?= $version ?>"/>
                         </p>
                         <div>
                             <div class="panel pretty radius shake-it">

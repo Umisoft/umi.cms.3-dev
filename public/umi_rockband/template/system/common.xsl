@@ -7,7 +7,7 @@
                 exclude-result-prefixes="php umi">
 
     <!-- Объявляем переменные -->
-    <xsl:variable name="template" select="/layout/assetsUrl" />
+    <xsl:variable name="assets" select="/layout/assetsUrl" />
     <xsl:variable name="root" select="/layout/projectUrl/locale[@current = 1]/@url" />
     <xsl:variable name="pagesCount" select="'5'" />
 
@@ -19,6 +19,7 @@
     <!-- Подключаем шаблоны модулей <Конец> -->
 
     <!-- Подключаем дополнительные шаблоны <Начало> -->
+    <xsl:include href="template://error/widget" />
     <xsl:include href="template://system/breadcrumbs" />
     <xsl:include href="template://system/dateTime" />
     <xsl:include href="template://system/paginator" />
@@ -57,7 +58,7 @@
     <xsl:template match="locale[position() = last()]" mode="locale.separator"/>
     <!-- Переключение языковой версии <Конец> -->
 
-    <!-- Шаблон для вывода сообщений об ошибках <Начало> -->
+    <!-- Шаблон для вывода сообщений об ошибках на странице <Начало> -->
     <xsl:template match="contents[error]">
         <div class="content-main">
             <div class="container-fluid">
@@ -71,22 +72,12 @@
                             <xsl:value-of select="error/@message"/>
                         </span>
                     </h3>
-                    <textarea><xsl:value-of select="." disable-output-escaping="yes" /></textarea>
-                    <ul>
-                        <xsl:apply-templates select="stack/item" mode="errorStackItem"/>
-                    </ul>
+                    <textarea><xsl:value-of select="//trace" disable-output-escaping="yes" /></textarea>
                 </div>
             </div>
         </div>
     </xsl:template>
-
-    <xsl:template match="item" mode="errorStackItem">
-        <li>
-            <xsl:value-of select="concat(position(), '.: ')"/>
-            <xsl:value-of select="@message"/>
-        </li>
-    </xsl:template>
-    <!-- Шаблон для вывода сообщений об ошибках <Конец> -->
+    <!-- Шаблон для вывода сообщений об ошибках на странице <Конец> -->
 
     <!-- Шаблон для вывода числовых значений полей <Начало> -->
     <xsl:template match="value" mode="number">

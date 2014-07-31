@@ -11,6 +11,7 @@
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\Image;
 use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
@@ -77,7 +78,7 @@ return [
             'label' => 'about',
             'elements' => [
                 InfoBlock::FIELD_LOGO => [
-                    'type' => Textarea::TYPE_NAME,
+                    'type' => Image::TYPE_NAME,
                     'label' => InfoBlock::FIELD_LOGO,
                     'options' => [
                         'dataSource' => InfoBlock::FIELD_LOGO

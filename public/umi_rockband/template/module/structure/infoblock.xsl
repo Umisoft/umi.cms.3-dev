@@ -23,7 +23,7 @@
     <!-- Шаблон для логотипа <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
         <a href="{$root}" class="logo">
-            <xsl:value-of select="infoBlock/property[@name = 'logo']/value" disable-output-escaping="yes"/>
+            <img src="{$assets}{infoBlock/property[@name = 'logo']/value}" alt=""/>
         </a>
     </xsl:template>
     <!-- Шаблон для логотипа <Конец> -->
@@ -33,17 +33,17 @@
         <ul class="social">
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/facebook.png" alt=""/>
+                    <img src="{$assets}images/social/facebook.png" alt=""/>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/twitter.png" alt=""/>
+                    <img src="{$assets}images/social/twitter.png" alt=""/>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="{$template}/images/social/google.png" alt=""/>
+                    <img src="{$assets}images/social/google.png" alt=""/>
                 </a>
             </li>
         </ul>

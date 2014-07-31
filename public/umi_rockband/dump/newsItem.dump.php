@@ -172,7 +172,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/spb.jpg',
+        1 => '/images/news/spb.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -343,7 +348,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/london.jpg',
+        1 => '/images/news/london.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -514,7 +524,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/football.jpg',
+        1 => '/images/news/football.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -685,7 +700,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/newyork.jpg',
+        1 => '/images/news/newyork.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -856,7 +876,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/paris.jpg',
+        1 => '/images/news/paris.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -1029,7 +1054,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/moscow.jpg',
+        1 => '/images/news/moscow.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -1202,7 +1232,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/swimming.jpg',
+        1 => '/images/news/swimming.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
@@ -1373,7 +1408,12 @@ return array (
       'image' => 
       array (
         0 => 'string',
-        1 => '/umi_rockband/asset/images/news/programmer.jpg',
+        1 => '/images/news/programmer.jpg',
+      ),
+      'popular' => 
+      array (
+        0 => 'boolean',
+        1 => false,
       ),
     ),
   ),
