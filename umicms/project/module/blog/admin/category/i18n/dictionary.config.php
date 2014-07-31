@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'component:category:displayName' => 'Категории',
 
-        'action:create:base' => 'Создать подкатегорию',
+        'action:create:base' => 'Добавить подкатегорию',
 
         'role:editor:displayName' => 'Управление категориями'
     ]
