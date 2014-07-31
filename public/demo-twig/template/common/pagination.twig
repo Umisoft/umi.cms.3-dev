@@ -1,17 +1,17 @@
 {% if (paginator.pagesCount) %}
     <ul class="pagination">
-        {% if (paginator.getPreviousPage()) %}
-            <li><a href="{{ paginator.getPreviousPageUrl() }}">{{ translate('Previous') }}</a></li>
+        {% if (paginator.previousPage) %}
+            <li><a href="{{ paginator.previousPageUrl }}">{{ translate('Previous') }}</a></li>
         {% endif %}
-        {% for page, link in paginator.getRangeUrls() %}
-            {% if (page != paginator.getCurrentPage()) %}
+        {% for page, link in paginator.rangeUrls %}
+            {% if (page != paginator.currentPage) %}
                 <li><a href="{{ link }}">{{ page }}</a></li>
             {% else %}
                 <li class="active"><span>{{ page }}</span></li>
             {% endif %}
         {% endfor %}
-        {% if (paginator.getNextPage()) %}
-            <li><a href="{{ paginator.getNextPageUrl() }}">{{ translate('Next') }}</a></li>
+        {% if (paginator.nextPage) %}
+            <li><a href="{{ paginator.nextPageUrl }}">{{ translate('Next') }}</a></li>
         {% endif %}
     </ul>
 {% endif %}

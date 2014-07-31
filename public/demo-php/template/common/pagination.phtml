@@ -5,22 +5,22 @@
 
 ?>
 
-<?php if ($paginator->getPagesCount()) : ?>
+<?php if ($paginator->pagesCount) : ?>
     <ul class="pagination">
-        <?php if ($paginator->getPreviousPage()) : ?>
-            <li><a href="<?= $paginator->getPreviousPageUrl() ?>"><?=$this->translate('Previous')?></a></li>
+        <?php if ($paginator->previousPage) : ?>
+            <li><a href="<?= $paginator->previousPageUrl ?>"><?=$this->translate('Previous')?></a></li>
         <?php endif; ?>
-        <?php foreach ($paginator->getRangeUrls() as $page => $link) : ?>
+        <?php foreach ($paginator->rangeUrls as $page => $link) : ?>
 
-            <?php if ($page != $paginator->getCurrentPage()) : ?>
+            <?php if ($page != $paginator->currentPage) : ?>
                 <li><a href="<?= $link ?>"><?= $page ?></a></li>
             <?php else : ?>
                 <li class="active"><span><?= $page ?></span></li>
             <?php endif; ?>
 
         <?php endforeach; ?>
-        <?php if ($paginator->getNextPage()) : ?>
-            <li><a href="<?= $paginator->getNextPageUrl() ?>"><?=$this->translate('Next')?></a></li>
+        <?php if ($paginator->nextPage) : ?>
+            <li><a href="<?= $paginator->nextPageUrl ?>"><?=$this->translate('Next')?></a></li>
         <?php endif; ?>
     </ul>
 <?php endif; ?>
