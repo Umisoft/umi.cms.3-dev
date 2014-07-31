@@ -1006,6 +1006,43 @@ function program1(depth0,data) {
   
 });
 
+Ember.TEMPLATES["UMI/partials/singleCollectionObjectRelationElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "clearValue", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-delete\"></i> </span> </li> ");
+  return buffer;
+  }
+
+  data.buffer.push("<div ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":small-2 :columns :umi-columns-fixed view.value:small-2-right:small-1-right")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("> <span class=\"postfix\"> <span class=\"button-group\"> <li> <span class=\"button flat white square\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showPopup", "view.popupParams", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push("> <i class=\"icon icon-open-folder\"></i> </span> </li> ");
+  stack1 = helpers['if'].call(depth0, "view.value", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </span> </span> </div> <div class=\"small-10 columns\"> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "textElement", {hash:{
+    'object': ("view.object"),
+    'meta': ("view.meta")
+  },hashTypes:{'object': "ID",'meta': "ID"},hashContexts:{'object': depth0,'meta': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(" </div> ");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["UMI/partials/textareaElement"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -1487,6 +1524,16 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "objectRelationLayout", "templateParams", options) : helperMissing.call(depth0, "render", "objectRelationLayout", "templateParams", options))));
+  
+});
+
+Ember.TEMPLATES["UMI/partials/popup/singleCollectionObjectRelation"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "singleCollectionObjectRelationLayout", "templateParams", options) : helperMissing.call(depth0, "render", "singleCollectionObjectRelationLayout", "templateParams", options))));
   
 });
 
@@ -2155,7 +2202,12 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"umi-top-bar-label\"> <i class=\"icon icon-butterfly\"></i> </span> </li> <li> <span class=\"umi-top-bar-label\">");
+  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.moduleDropdownView", {hash:{
+    'tagName': ("span"),
+    'class': ("button tiny flat dropdown without-arrow umi-top-bar-button")
+  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </li> <li> <span class=\"umi-top-bar-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</span> </li> <li> <a href=\"");

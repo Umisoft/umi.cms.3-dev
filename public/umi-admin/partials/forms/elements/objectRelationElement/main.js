@@ -23,7 +23,7 @@ define(['App'], function(UMI){
                     },
 
                     viewParams: {
-                        title: 'Выбор страницы',
+                        title: this.get('meta.label'),
                         popupType: 'objectRelation'
                     }
                 };

@@ -47,11 +47,19 @@ class Backup extends CmsObject
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
      * Генерирует отображаемое имя, если оно не было установлено.
      * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName($localeId = null)
+    protected function generateDisplayName($localeId = null)
     {
         if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
             $value = 'Backup for ' . $this->refCollectionName . '#' . $this->objectId;
