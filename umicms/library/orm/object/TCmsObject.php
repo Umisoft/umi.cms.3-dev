@@ -79,6 +79,11 @@ trait TCmsObject
     abstract public function getValue($propName, $localeId = null);
 
     /**
+     * @see CmsObject::getLocalizedValue()
+     */
+    abstract protected function getLocalizedValue(IProperty $property, $localeId);
+
+    /**
      * @see TLocalesAware::getDefaultDataLocale()
      */
     abstract protected function getDefaultDataLocale();
@@ -150,7 +155,13 @@ trait TCmsObject
                 continue;
             }
 
-            if (!$property->validate($this->getValue($property->getName()))) {
+            if ($property->getField()->getIsLocalized()) {
+                $value = $this->getLocalizedValue($property, $localeId);
+            } else {
+                $value = $property->getValue();
+            }
+
+            if (!$property->validate($value)) {
                 /** @noinspection PhpUndefinedFieldInspection */
                 $this->validationErrors[$property->getFullName()] = $property->getValidationErrors();
                 $result = false;
