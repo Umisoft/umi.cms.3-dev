@@ -78,6 +78,10 @@ EOF;
         return $this->createPlainResult($result);
     }
 
+    /**
+     * Возвращает информацию о доступных модулях
+     * @return array
+     */
     private function getModulesInfo()
     {
         $dispatcher = $this->getContext()->getDispatcher();
