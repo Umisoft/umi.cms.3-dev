@@ -36,7 +36,7 @@
                 </xsl:attribute>
             </xsl:if>
             <xsl:if test="tag = 'button'">
-                <xsl:attribute name="value" />
+                <xsl:attribute name="name" />
                 <xsl:value-of select="label"/>
             </xsl:if>
         </xsl:element>
