@@ -16,6 +16,7 @@ use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
+use umicms\project\Environment;
 
 /**
  * Виджет вывода верхней панели сайта.
@@ -52,8 +53,11 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         $logoutLabel = $this->translate('Logout', [], $currentAdminLocale);
         $adminPanelLabel = $this->translate('Administrative panel', [], $currentAdminLocale);
 
-        return <<<EOF
-<link rel="stylesheet" type="text/css" href="/umi-admin/sitePanel/styles/styles.css?version=1">
+        $baseResourceUrl = Environment::$baseUrl;
+        $version = CMS_VERSION;
+
+        $result = <<<EOF
+<link rel="stylesheet" type="text/css" href="{$baseResourceUrl}/umi-admin/sitePanel/styles/styles.css?version={$version}">
 <script>
     window.UmiSettings = {
         "baseURL": "{$baseAdminUrl}",
@@ -98,8 +102,9 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         ]
     }
 </script>
-<script src="/umi-admin/sitePanel/main.js?version=1"></script>
+<script src="{$baseResourceUrl}/umi-admin/sitePanel/main.js?version={$version}"></script>
 EOF;
+        return $this->createPlainResult($result);
     }
 
     /**

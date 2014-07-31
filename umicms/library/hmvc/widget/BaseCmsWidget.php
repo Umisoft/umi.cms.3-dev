@@ -21,6 +21,7 @@ use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsPlainView;
 use umicms\hmvc\view\CmsTreeView;
 use umicms\hmvc\view\CmsView;
 use umicms\orm\selector\CmsSelector;
@@ -89,6 +90,27 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     {
         $variables['widget'] = $this->getShortPath();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
+
+        $view->addSerializerConfigurator(
+            function(ISerializer $serializer)
+            {
+                if ($serializer instanceof BaseSerializer) {
+                    $serializer->setAttributes(['widget']);
+                }
+            }
+        );
+
+        return $view;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createPlainResult($content)
+    {
+        $view = new CmsPlainView($content);
+        $view['widget'] = $this->getShortPath();
+        $view['contents'] = $content;
 
         $view->addSerializerConfigurator(
             function(ISerializer $serializer)

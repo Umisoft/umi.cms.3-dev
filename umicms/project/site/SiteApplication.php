@@ -219,8 +219,7 @@ class SiteApplication extends SiteComponent
         $requestFormat = $request->getRequestFormat(null);
         if ($request->getMethod() === 'POST' &&
             empty($_FILES) &&
-            (is_null($requestFormat) || $requestFormat== self::DEFAULT_REQUEST_FORMAT))
-        {
+            (is_null($requestFormat) || $requestFormat== self::DEFAULT_REQUEST_FORMAT)) {
 
             $post = $request->request->all();
             $this->setSessionVar($prgKey, $post);

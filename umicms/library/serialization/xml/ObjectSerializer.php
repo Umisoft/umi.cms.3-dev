@@ -11,6 +11,7 @@
 namespace umicms\serialization\xml;
 
 use umicms\serialization\exception\UnexpectedValueException;
+use umicms\serialization\ISerializerConfigurator;
 
 /**
  * XML-сериализатор для произвольных объектов "по умолчанию".
@@ -30,6 +31,10 @@ class ObjectSerializer extends BaseSerializer
                 'Cannot serialize object. Value type "{type}" is not object.',
                 ['type' => gettype($object)]
             ));
+        }
+
+        if ($object instanceof ISerializerConfigurator) {
+            $this->configure($object);
         }
 
         if ($object instanceof \Traversable) {
