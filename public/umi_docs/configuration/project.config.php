@@ -17,7 +17,7 @@ return  [
         'default' => [
             'type' => 'ProjectHostRoute',
             'defaults' => [
-                'prefix' => '/docs',
+                'prefix' => '',
                 'locale' => 'ru-RU'
             ]
         ]

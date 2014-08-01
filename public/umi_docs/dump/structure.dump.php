@@ -35,12 +35,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:39";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -197,9 +197,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -272,17 +291,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -291,6 +299,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -345,7 +364,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -419,9 +438,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -500,23 +538,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>editDraftLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogDraft</td>
           <td>BlogPost</td>
           <td></td>
-          <td> черновик или GUID редактируемого черновика</td>
+          <td>черновик или GUID редактируемого черновика</td>
         </tr></tbody>
               </table>',
       ),
@@ -529,17 +567,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
@@ -597,7 +635,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -729,9 +767,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -810,23 +867,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>publishForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста, тербующего модерации</td>
+          <td>пост или GUID поста, тербующего модерации</td>
         </tr></tbody>
               </table>',
       ),
@@ -839,21 +896,359 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
   5 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '071e3044-2a72-4662-ab5c-d13c108a87e2',
+      'displayName' => 'Стандарты написания кода',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3.0',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'code-style',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Стандарты написания кода',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:30:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 14:21:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Стандарты написания кода (Coding Standards)',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Для разработки качественных решений для UMI.CMS мы рекомендуем следовать стандартам написания кода, принятыми командой UMI.CMS.</p>
+
+<p>Для быстрого и качественного старта, мы настоятельно рекомендуем использовать современную IDE (рекомендуем PHP Storm), выбрав в нем&nbsp; схему PSR.</p>
+
+<p>Также для быстрого старта рекомендуется изучить уже существующий код UMI.CMS и следовать его стилю.</p>
+
+<p>Придерживаться единых стандартов очень важно, так как это делает код любого разработчика частью единого целого, что значительно повышает качество и читаемость кода.</p>
+
+<p>UMI.CMS полностью следует стандартам, принятыми в <a href="http://www.php-fig.org/">PHP Framework Interop Group</a>:</p>
+
+<ul>
+	<li><a href="http://www.php-fig.org/psr/psr-0/">PSR-0</a></li>
+	<li><a href="http://www.php-fig.org/psr/psr-1/">PSR-1</a></li>
+	<li><a href="http://www.php-fig.org/psr/psr-2/">PSR-2</a></li>
+	<li><a href="http://www.php-fig.org/psr/psr-3/">PSR-3</a></li>
+	<li><a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a></li>
+</ul>
+
+<p>Поддержка этих стандартов есть во всех современных IDE по-умолчанию.</p>
+
+<p>Следование PSR-стандартам дает использовать огромное количество современных качественных решений, написанные open-source сообществом. Перед написанием какой-либо библиотеки, настоятельно рекомендуем поискать качественное решение на (<a href="https://packagist.org/">https://packagist.org/</a>) и если такое решение существует, интегрировать его в проект через <a href="http://getcomposer.org">Composer</a>.</p>
+
+<p>Кроме принятых PSR-стандартов, существуют некоторые соглашения, описанные ниже. Некоторые соглашения дублируются из PSR, чтобы подчеркнуть их важность.</p>
+
+<h2>Соглашения по структуре кода (Code Structure)</h2>
+
+<ul>
+	<li>
+	<p>Определяйте один класс в одном файле, как этого требует <a href="http://www.php-fig.org/psr/psr-0/">PSR-0</a>;</p>
+	</li>
+	<li>
+	<p>Все файлы с кодом должны быть в UTF-8 без BOM сигнатуры;</p>
+	</li>
+</ul>
+
+<p>Правила написания ключевых слов PHP, и некоторых специальных типов данных:</p>
+
+<ul>
+	<li>все ключевые слова ДОЛЖНЫ быть в нижнем регистре (while, for, false, true, ...);</li>
+	<li>используйте короткий синтаксис определения массивов. $b = [1, 2, 3];</li>
+	<li>null ДОЛЖЕН быть в нижнем регистре;</li>
+</ul>
+
+<p>PHP-tags:</p>
+
+<ul>
+	<li>PHP-код ДОЛЖЕН начинаться тэгом &quot;&lt;?php&quot;, до этого тэга НЕ ДОЛЖНО быть ни каких пробелов, переносов строк, BOM-сигнатуры;</li>
+	<li>запрещено использовать короткий открывающий тег &lt;?;</li>
+	<li>в шаблонах пользуйтесь коротким синтаксисом для вывода переменных &lt;?= $boo-&gt;a ?&gt;</li>
+	<li>файлы с классами НЕ ДОЛЖНЫ использовать закрывающий тэг ?&gt;;</li>
+</ul>
+
+<p>Пространства имен (namespace):</p>
+
+<ul>
+	<li>каждый класс должен принадлежать какому-либо namespace;</li>
+	<li>запрещено засорять глобальную область видимости;</li>
+	<li>в одном файле может быть объявлен только один namespace;</li>
+	<li>если декларация требует обращения к сущностям из другого неймспейса (даже в PHPDoc-комментариях), то такие сущности ДОЛЖНЫ быть импортированы в неймспейс через use;</li>
+	<li>между namespace и use ДОЛЖНА быть одна пустая строка;</li>
+	<li>каждый use ДОЛЖЕН быть на отдельной строке;</li>
+	<li>после последнего use, до декларации сущности ДОЛЖНА быть одна пустая строка;</li>
+</ul>
+
+<p>Порядок определения сущностей в классе:</p>
+
+<ul>
+	<li>блок use для подключения трейтов;</li>
+	<li>константы класса</li>
+	<li>свойства класса</li>
+	<li>статичные методы класса</li>
+	<li>абстрактные методы класса</li>
+	<li>методы класса</li>
+</ul>
+
+<p>Порядок следования методов, в зависимости от режима доступа:</p>
+
+<ul>
+	<li>public</li>
+	<li>protected</li>
+	<li>private</li>
+</ul>
+
+<p>Вы ДОЛЖНЫ использовать пробелы в следующих случаях:</p>
+
+<ul>
+	<li>вокруг оператора конкатенации .. Ex: $s = &#39;string&#39; . $postfix;</li>
+	<li>вокруг операторов присваивания =, +=, .= , ... Ex: public function boo($var = &#39;default&#39;);</li>
+	<li>вокруг логических операторов &amp;&amp;, ||. Ex: if ($a == 2 &amp;&amp; $b == 3);</li>
+	<li>вокруг операторов эквивалентности ==, ===, !=, !==. Ex: return $a === $b;</li>
+	<li>вокруг операторов сравнения &lt;, &gt;, &lt;=, &gt;=. Ex: $a &lt; 5;</li>
+	<li>вокруг двоичных операторов &amp;, |, ^., &lt;&lt;, &gt;&gt; Ex: $z = $x | 2;</li>
+	<li>вокруг аддитивных и мультипликативных операторов +, -, *, /, %. Ex: $a = 5 + 5;</li>
+	<li>после if, else, for, while, do, switch, try, catch. Ex: if ($boo === true);</li>
+	<li>после разделителя (; и ,). Ex: for ($i = 0; $i &lt; 5; $i++) {; list($a, $b) = $c;</li>
+	<li>после type cast. Ex: $i = (int) $i;</li>
+	<li>перед открывающей фигурной скобкой Ex: public function boo() {, if ($a) {;</li>
+	<li>внутри тернарного оператора. Ex: $k = $x &gt; 5 ? 1 : 2, $x = $y ?: null;</li>
+</ul>
+
+<p>Вы НЕ ДОЛЖНЫ использовать пробелы в следующих случаях:</p>
+
+<ul>
+	<li>перед и после открывающей скобкой декларации параметров метода. Ex: public function test($boo)</li>
+	<li>вокруг оператора вызова метода. Ex: $this-&gt;test($boo);</li>
+	<li>вокруг унарных операторов ++, --. Ex: $a++;</li>
+	<li>внутри brackets []. Ex: $arr[&#39;boo&#39;];</li>
+	<li>внутри скобок инициализации массивов. Ex: $boo = [1, 2, 3]; []. Ex: $arr[&#39;boo&#39;];</li>
+	<li>внутри скобок групп операторов. Ex: $y = ((5 - 7) + (6 - 8)) * 10;</li>
+	<li>внутри скобок параметров вызова метода и скобок декларации метода. Ex: $this-&gt;test($boo);</li>
+	<li>внутри скобок в if, for, while, switch, catch; Ex: while (true)</li>
+	<li>перед разделителем (; и ,). Ex: for ($i = 0; $i &lt; 5; $i++) {; list($a, $b) = $c;</li>
+</ul>
+
+<p>Комментарии в коде:</p>
+
+<ul>
+	<li>комментарии внутри кода, описывающие как он работает ЗАПРЕЩЕНЫ;</li>
+	<li>если часть кода в методе требует комментирования, скорее всего необходимо провести рефакторинг метода (например, Extract Method и описать его в PHPDoc) ;</li>
+	<li>разрешены только управляющие комментарии, например // TODO:</li>
+</ul>
+
+<p>PHPDoc-аннонтции:</p>
+
+<ul>
+	<li>каждый класс, метод, свойство, константа должен быть задокументирован в PHPDoc;</li>
+	<li>описание метода ДОЛЖНО начинаться с Заглавной буквы и находиться в третьем лице, единственном числе. (как в документации php);</li>
+	<li>все исключения, которые выбрасывает метод должны быть задокументированы;</li>
+	<li>на данный момент все описание принято описывать на русском языке. Возможно, это изменится в будущем.</li>
+</ul>
+
+<h2>Соглашения по именованию (Naming Conventions)</h2>
+
+<p>Используйте camelCase для:</p>
+
+<ul>
+	<li>имен переменных;</li>
+	<li>имен функций, методов и их аргументов Ex: public function myFirstMethod($param1, $secondParam);</li>
+	<li>имен опций в конфигурационных массивах; $options[&#39;someOption&#39;];</li>
+</ul>
+
+<p>Используйте underscore для:</p>
+
+<ul>
+	<li>имен таблиц и колонок в БД</li>
+	<li>имен констант</li>
+</ul>
+
+<p>Используйте StudlyCaps для:</p>
+
+<ul>
+	<li>имен классов</li>
+	<li>имен трейтов</li>
+	<li>имен интерфейсов</li>
+</ul>
+
+<p>Правила именования пространств имен, классов, интерфейсов, трейтов:</p>
+
+<ul>
+	<li>имена namespace должны быть в нижнем регистре. Ex: umicms\\project;</li>
+	<li>имена классов ДОЛЖНЫ быть указаны в StudlyCaps и не содержать никаких префиксов;</li>
+	<li>если класс абстракный, то он должен иметь префикс Base. Ex: BaseUser;</li>
+	<li>имена интерфейсов ДОЛЖНЫ быть указаны в StudlyCaps и начинаться с префикса &quot;I&quot;. Ex: ICmsCollection;</li>
+	<li>имена трейтов ДОЛЖНЫ быть указаны в StudlyCaps и начинаться с префикса &quot;T&quot;. Ex: TLoggerAware;</li>
+	<li>для классов-исключений вы должны испольщовать суффикс Exception. Ex: InvalidArgumentException;</li>
+</ul>
+
+<p>Правила именования констант класса / трейта / интерфейса:</p>
+
+<ul>
+	<li>имена констант должны быть написаны в UPPERCASE;</li>
+	<li>в качестве разделителя в имени нужно использовать underscore (_);</li>
+</ul>
+
+<p>Правила именования переменных / свойств класса / аргументов метода:</p>
+
+<ul>
+	<li>имя переменной должно быть в camelCase. Ex: $myFirstVariable = 1;</li>
+	<li>имя переменной ДОЛЖНО однозначно отражать ее назначение;</li>
+	<li>имя переменной не должно вызывать сомнения в том, скалярное или объектное значение в нем содержится. Например, если необходимо хранить в переменной идентификатор пользователя, запрещено использовать имя переменной $user, необходимо использовать $userId;</li>
+	<li>если приватное свойство определяется в трейте, оно должно иметь префикс trait. Ex: private $traitTranslator;</li>
+	<li>для итерируемых переменных цикла рекомендуется использовать именя $i, $j, $k...;</li>
+</ul>
+
+<p>Правила именования функций / методов класса:</p>
+
+<ul>
+	<li>имена методов должны быть в camelCase;</li>
+	<li>имя метода не должно вызывать сомнения в том, скалярное или объектное значение он возвращает. Например, метод getTypes() не должен возвращать список имен типов, он должен возвращать список экземпляров объектов. Для возврата имен типов, следует назвать метод getTypeNames().</li>
+	<li>режим доступа (private/static...) НЕ ДОЛЖЕН влиять на имя метода (Запрещено: private function __privateMethod());</li>
+	<li>геттеры и сеттеры должны иметь префиксы get, set;</li>
+	<li>методы, для проверки состояния должны иметь префикс is. Ex: isAllowed()</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  6 => 
   array (
     'meta' => 
     array (
@@ -907,9 +1302,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -982,23 +1396,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$authenticated</td><td>флаг, указывающий на то, авторизован пользователь или нет </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница авторизаци </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -1007,6 +1404,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$authenticated</td><td>флаг, указывающий на то, авторизован пользователь или нет </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница авторизаци </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -1063,7 +1477,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -1072,7 +1486,7 @@ return array (
       ),
     ),
   ),
-  6 => 
+  7 => 
   array (
     'meta' => 
     array (
@@ -1115,119 +1529,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  7 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '0a9564bc-a0d6-4777-8284-3580e5dd80e0',
-      'displayName' => 'blog.author.profile',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-          'displayName' => 'Компонент "Авторы"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'author',
-        ),
-      ),
-      'slug' => 'profile',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.author.profile',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1291,23 +1593,23 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '0ac8f305-6c62-42e7-a4d7-cf92376ac804',
-      'displayName' => 'blog.post.edit',
+      'guid' => '0a9564bc-a0d6-4777-8284-3580e5dd80e0',
+      'displayName' => 'blog.author.profile',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
-          'displayName' => 'blog.post',
+          'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
+          'displayName' => 'Компонент "Авторы"',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
               'displayName' => 'Блог',
               'branch' => 
               array (
@@ -1315,31 +1617,31 @@ return array (
                 array (
                   'collection' => 'structure',
                   'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
                   'branch' => NULL,
-                  'slug' => 'controllers',
+                  'slug' => 'widgets',
                 ),
               ),
               'slug' => 'blog',
             ),
           ),
-          'slug' => 'post',
+          'slug' => 'author',
         ),
       ),
-      'slug' => 'edit',
+      'slug' => 'profile',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.post.edit',
+        1 => 'blog.author.profile',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1402,6 +1704,118 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '0ac8f305-6c62-42e7-a4d7-cf92376ac804',
+      'displayName' => 'blog.post.edit',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
+          'displayName' => 'blog.post',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'post',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.edit',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  10 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '0bbcf6f2-0f08-4f68-9e84-e5dcba614098',
       'displayName' => 'blog.comment.publishForm',
@@ -1451,9 +1865,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -1532,23 +1965,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>publishForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
           <td>string|BlogComment</td>
           <td></td>
-          <td> комментарий или GUID комментария</td>
+          <td>комментарий или GUID комментария</td>
         </tr></tbody>
               </table>',
       ),
@@ -1561,21 +1994,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  10 => 
+  11 => 
   array (
     'meta' => 
     array (
@@ -1607,12 +2040,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:48";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1704,7 +2137,7 @@ return array (
       ),
     ),
   ),
-  11 => 
+  12 => 
   array (
     'meta' => 
     array (
@@ -1758,9 +2191,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -1839,18 +2291,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -1863,21 +2315,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  12 => 
+  13 => 
   array (
     'meta' => 
     array (
@@ -1920,7 +2372,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1978,7 +2430,7 @@ return array (
       ),
     ),
   ),
-  13 => 
+  14 => 
   array (
     'meta' => 
     array (
@@ -1993,7 +2445,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'Восстановление',
+          'displayName' => 'Восстановление доступа',
           'branch' => 
           array (
             'meta' => 
@@ -2032,9 +2484,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -2113,18 +2584,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -2137,21 +2608,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  14 => 
+  15 => 
   array (
     'meta' => 
     array (
@@ -2174,7 +2645,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-              'displayName' => 'Восстановление',
+              'displayName' => 'Восстановление доступа',
               'branch' => 
               array (
                 'meta' => 
@@ -2216,9 +2687,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -2297,23 +2787,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>1</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
           <td>string</td>
           <td></td>
-          <td> код активации</td>
+          <td>код активации</td>
         </tr></tbody>
               </table>',
       ),
@@ -2326,21 +2816,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  15 => 
+  16 => 
   array (
     'meta' => 
     array (
@@ -2394,9 +2884,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -2475,23 +2984,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>unpublishForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
           <td>string|BlogComment</td>
           <td></td>
-          <td> комментарий или GUID комментария</td>
+          <td>комментарий или GUID комментария</td>
         </tr></tbody>
               </table>',
       ),
@@ -2504,21 +3013,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  16 => 
+  17 => 
   array (
     'meta' => 
     array (
@@ -2539,12 +3048,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:38";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2641,7 +3150,7 @@ return array (
       ),
     ),
   ),
-  17 => 
+  18 => 
   array (
     'meta' => 
     array (
@@ -2706,9 +3215,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -2787,38 +3315,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -2831,23 +3365,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  18 => 
+  19 => 
   array (
     'meta' => 
     array (
@@ -2901,9 +3435,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -2982,23 +3535,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>rubric</td>
           <td>NewsRubric|string|null</td>
           <td></td>
-          <td> рубрика или GUID рубрики, URL на RSS которой генерировать. Если не указана, генерируется URL на все новости.</td>
+          <td>рубрика или GUID рубрики, URL на RSS которой генерировать. Если не указана, генерируется URL на все новости</td>
         </tr></tbody>
               </table>',
       ),
@@ -3011,21 +3564,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  19 => 
+  20 => 
   array (
     'meta' => 
     array (
@@ -3068,12 +3621,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3165,7 +3718,7 @@ return array (
       ),
     ),
   ),
-  20 => 
+  21 => 
   array (
     'meta' => 
     array (
@@ -3219,7 +3772,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3244,138 +3797,6 @@ return array (
       array (
         0 => 'string',
         1 => 'Контроллер помещения поста блога в черновики',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  21 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '10805734-ebd6-4f19-ac20-492353e4bb9e',
-      'displayName' => 'blog.comment.reject',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '0d4dca62-1e8a-41a1-a009-227c283a3e12',
-          'displayName' => 'blog.comment',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'comment',
-        ),
-      ),
-      'slug' => 'reject',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.comment.reject',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер отклонения комментария',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер отклонения комментария',
       ),
       'active#ru-RU' => 
       array (
@@ -3434,6 +3855,138 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '10805734-ebd6-4f19-ac20-492353e4bb9e',
+      'displayName' => 'blog.comment.reject',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '0d4dca62-1e8a-41a1-a009-227c283a3e12',
+          'displayName' => 'blog.comment',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'comment',
+        ),
+      ),
+      'slug' => 'reject',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.reject',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер отклонения комментария',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер отклонения комментария',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  23 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '146bbb7d-5c4e-44b1-a397-05b5d7e832f1',
       'displayName' => 'blog.tag.postList',
@@ -3483,9 +4036,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3564,43 +4136,49 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>postList</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>tags</td>
           <td>array|BlogTag[]|BlogTag|null</td>
           <td></td>
-          <td> тэг, список тэгов блога или GUID, из которых выводятся посты. Если не указаны, то посты выводятся из всех тэгов</td>
+          <td>тэг, список тэгов блога или GUID, из которых выводятся посты. Если не указаны, то посты выводятся из всех тэгов</td>
         </tr></tbody>
               </table>',
       ),
@@ -3613,23 +4191,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  23 => 
+  24 => 
   array (
     'meta' => 
     array (
@@ -3683,9 +4261,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3764,38 +4361,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -3808,23 +4411,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  24 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3878,9 +4481,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -3953,17 +4575,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -3972,7 +4594,7 @@ return array (
       ),
     ),
   ),
-  25 => 
+  26 => 
   array (
     'meta' => 
     array (
@@ -4015,12 +4637,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:33";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4112,7 +4734,136 @@ return array (
       ),
     ),
   ),
-  26 => 
+  27 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+      'displayName' => 'Структура',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+          'displayName' => 'Контроллеры',
+          'branch' => NULL,
+          'slug' => 'controllers',
+        ),
+      ),
+      'slug' => 'structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:28:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  28 => 
   array (
     'meta' => 
     array (
@@ -4166,7 +4917,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4244,7 +4995,7 @@ return array (
       ),
     ),
   ),
-  27 => 
+  29 => 
   array (
     'meta' => 
     array (
@@ -4287,7 +5038,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4345,7 +5096,7 @@ return array (
       ),
     ),
   ),
-  28 => 
+  30 => 
   array (
     'meta' => 
     array (
@@ -4399,9 +5150,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4480,38 +5250,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -4524,23 +5300,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  29 => 
+  31 => 
   array (
     'meta' => 
     array (
@@ -4583,7 +5359,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4641,7 +5417,128 @@ return array (
       ),
     ),
   ),
-  30 => 
+  32 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '1f28ca78-3388-4eb7-b882-04def7d5ad21',
+      'displayName' => 'Система прав',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3.0',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'access-control-list',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Система прав',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:30:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Система прав',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  33 => 
   array (
     'meta' => 
     array (
@@ -4706,9 +5603,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4787,18 +5703,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -4811,21 +5727,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  31 => 
+  34 => 
   array (
     'meta' => 
     array (
@@ -4879,9 +5795,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4954,17 +5889,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -4973,6 +5897,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -5027,7 +5962,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -5036,7 +5971,7 @@ return array (
       ),
     ),
   ),
-  32 => 
+  35 => 
   array (
     'meta' => 
     array (
@@ -5090,9 +6025,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5171,38 +6125,41 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
           <td>CmsHierarchicObject</td>
           <td></td>
-          <td> родительская нода или GUID родительской ноды</td>
+          <td>родительская нода или GUID родительской ноды</td>
         </tr><tr>
           <td>depth</td>
           <td>int</td>
           <td></td>
-          <td> глубина вложения</td>
+          <td>глубина вложения</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>blogPost</td>
+          <td>string|BlogPost</td>
           <td></td>
-          <td></td>
-          <td></td>
+          <td>GUID или пост блога, к которому необходимо вывести комментарии</td>
         </tr></tbody>
               </table>',
       ),
@@ -5215,21 +6172,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\hmvc\\view\\CmsTreeView</td>
           <td>$tree</td><td>представление дерева </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  33 => 
+  36 => 
   array (
     'meta' => 
     array (
@@ -5283,9 +6240,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5364,23 +6340,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>form</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>noRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>type</td>
           <td>string</td>
-          <td></td>
-          <td> тип регистрируемого пользователя</td>
+          <td>registered</td>
+          <td>тип регистрируемого пользователя</td>
         </tr></tbody>
               </table>',
       ),
@@ -5393,21 +6369,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  34 => 
+  37 => 
   array (
     'meta' => 
     array (
@@ -5461,7 +6437,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5519,7 +6495,7 @@ return array (
       ),
     ),
   ),
-  35 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -5562,9 +6538,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5637,21 +6632,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница поиска </td></tr><tr>
-          <td>string</td>
-          <td>$query</td><td>текущий поисковый запрос </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -5660,6 +6640,21 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница поиска </td></tr><tr>
+          <td>string</td>
+          <td>$query</td><td>текущий поисковый запрос </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -5716,7 +6711,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -5725,7 +6720,7 @@ return array (
       ),
     ),
   ),
-  36 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -5779,7 +6774,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5857,7 +6852,7 @@ return array (
       ),
     ),
   ),
-  37 => 
+  40 => 
   array (
     'meta' => 
     array (
@@ -5911,9 +6906,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5986,17 +7000,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -6005,6 +7008,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -6059,7 +7073,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -6068,7 +7082,7 @@ return array (
       ),
     ),
   ),
-  38 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -6122,7 +7136,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6180,7 +7194,7 @@ return array (
       ),
     ),
   ),
-  39 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -6234,7 +7248,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6292,7 +7306,7 @@ return array (
       ),
     ),
   ),
-  40 => 
+  43 => 
   array (
     'meta' => 
     array (
@@ -6346,9 +7360,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -6427,18 +7460,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>loginLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -6451,21 +7484,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  41 => 
+  44 => 
   array (
     'meta' => 
     array (
@@ -6530,9 +7563,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -6605,14 +7657,14 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr><tr>
           <td>array</td>
@@ -6623,15 +7675,15 @@ return array (
           <td>$page</td><td>текущая страница добавления поста </td></tr><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>созданный пост блога. Передается только, если пост был успешно добавлен </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -6688,15 +7740,15 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
+              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -6751,7 +7803,7 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -6760,7 +7812,7 @@ return array (
       ),
     ),
   ),
-  42 => 
+  45 => 
   array (
     'meta' => 
     array (
@@ -6825,9 +7877,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -6906,18 +7977,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>form</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>noRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
       ),
@@ -6930,21 +8001,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  43 => 
+  46 => 
   array (
     'meta' => 
     array (
@@ -6998,9 +8069,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7079,43 +8169,51 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>postList</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>categories</td>
           <td>array|BlogCategory[]|BlogCategory|null</td>
           <td></td>
-          <td>',
+          <td>категория, список категорий блога или GUID, из которых выводятся посты. Если не указаны, то посты выводятся из всех категорий</td>
+        </tr></tbody>
+              </table>',
       ),
       'description' => 
       array (
@@ -7126,23 +8224,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  44 => 
+  47 => 
   array (
     'meta' => 
     array (
@@ -7196,9 +8294,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7277,23 +8394,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>sendToModerationForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> черновик или GUID черновика отправляемого на модерацию</td>
+          <td>черновик или GUID черновика отправляемого на модерацию</td>
         </tr></tbody>
               </table>',
       ),
@@ -7306,21 +8423,189 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  45 => 
+  48 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '32f0b62d-5f0a-4e1c-bcd6-70e386a79c53',
+      'displayName' => 'Development и Production окружения',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'dev-version',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Development и Production окружения',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:27:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 03:26:46";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Окружение - это сгруппированный набор базовых настроек (пути к файлам, настройки безопасности, кэширование), с которыми работает ядро UMI.CMS 3.</p>
+
+<p>Настройка окружений происходит через конфигурационный файл<strong> ~/configuration/environment.config.php</strong>.</p>
+
+<p>Из коробки доступны три окружения - <strong>development</strong>, <strong>production</strong> и <strong>console</strong>. Параметры этих окружений сконфигурированы оптимально под задачи, которые в них выполняются.</p>
+
+<ul>
+	<li><strong>development окружение </strong>сконфигурировано таким образом, чтобы разработчику сайта было удобнее заниматься отладкой проекта. Используется распакованное ядро, выводится очень подробная информация об ошибках, полностью выключено кэширование шаблонов и браузерное кэширование;</li>
+	<li><strong>console окружение </strong>используется для консольного приложения UMI.CMS и имеет конфигурацию, аналогичную development - окружению;</li>
+	<li><strong>production окружение </strong>сконфигурирована так, чтобы обеспечить максимальную безопасность и производительность&nbsp; сайта. Используется запакованное ядро, выключен подробный вывод всех ошибок, выводится лишь краткая и безопасная информация, полностью включено кэширование.</li>
+</ul>
+
+<p>Вы можете добавить неограниченное количество собственных окружений в конфигурацию.</p>
+
+<p>По-умолчанию UMI.CMS устанавливается с включенным <strong>production</strong>-окружением. Это можно изменить в опции <strong>defaultMode</strong>.</p>
+
+<h2>Параметры окружения</h2>
+
+<p>В этом окружении используются следующие настройки:</p>
+
+<ul>
+	<li>corePath&nbsp; - путь к ядру UMI.CMS;</li>
+	<li>errorReporting&nbsp; - уровень вывода всех ошибок php;</li>
+	<li>displayErrors - выводить ли ошибки на экран;</li>
+	<li>showExceptionTrace - отображать ли в error - виджетах и error - контроллерах&nbsp; backtrace исключения;</li>
+	<li>showExceptionStack&nbsp; - отображать ли в error - виджетах и error - контроллерах стэк произошедших исключений;</li>
+	<li>browserCacheEnabled - включено ли кэширование страниц браузером (используется <strong>ETag</strong>);</li>
+	<li>cacheTemplateEnabled - включено ли кэширование / компиляция шаблонов (актуально для <strong>twig-шаблонизатора</strong>);</li>
+	<li>timezone&nbsp; - временнАя зона сервера;</li>
+	<li>directoryPublic - публичная директория с проектами;</li>
+	<li>directoryRoot - корневая директория сервера</li>
+</ul>
+
+<p>&nbsp;</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  49 => 
   array (
     'meta' => 
     array (
@@ -7374,9 +8659,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7455,38 +8759,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -7499,23 +8809,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  46 => 
+  50 => 
   array (
     'meta' => 
     array (
@@ -7569,9 +8879,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7650,43 +8979,49 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>parentCategory</td>
           <td>string|null|BlogCategory</td>
           <td></td>
-          <td> категория блога или GUID, из которой выводятся дочерние категории. Если не указан, выводятся все корневые категории.</td>
+          <td>категория блога или GUID, из которой выводятся дочерние категории. Если не указан, выводятся все корневые категории</td>
         </tr></tbody>
               </table>',
       ),
@@ -7699,23 +9034,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  47 => 
+  51 => 
   array (
     'meta' => 
     array (
@@ -7769,7 +9104,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7827,7 +9162,7 @@ return array (
       ),
     ),
   ),
-  48 => 
+  52 => 
   array (
     'meta' => 
     array (
@@ -7881,9 +9216,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7962,18 +9316,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>subject</td>
           <td>string|NewsSubject</td>
           <td></td>
-          <td> сюжет или GUID</td>
+          <td>сюжет или GUID</td>
         </tr></tbody>
               </table>',
       ),
@@ -7986,17 +9340,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#NewsSubject">NewsSubject</a></td>
-          <td>$subject</td><td>новостной сюжет </td></tr></tbody>
-              </table><a name="NewsSubject"></a><h4>NewsSubject</h4><p>Новостной сюжет.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -8005,6 +9348,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#NewsSubject">NewsSubject</a></td>
+          <td>$subject</td><td>новостной сюжет </td></tr></tbody>
+          </table><a name="NewsSubject"></a><h4>NewsSubject</h4><p>Новостной сюжет.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -8043,11 +9397,11 @@ return array (
           <td>$news</td><td>новости сюжета </td></tr><tr>
           <td>IManyToManyObjectSet</td>
           <td>$rss</td><td>RSS-ленты сюжета </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  49 => 
+  53 => 
   array (
     'meta' => 
     array (
@@ -8112,9 +9466,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -8193,23 +9566,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>editPostLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID отклоненного поста</td>
+          <td>пост или GUID отклоненного поста</td>
         </tr></tbody>
               </table>',
       ),
@@ -8222,21 +9595,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  50 => 
+  54 => 
   array (
     'meta' => 
     array (
@@ -8279,9 +9652,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -8354,17 +9746,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -8373,6 +9754,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -8427,7 +9819,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -8436,7 +9828,7 @@ return array (
       ),
     ),
   ),
-  51 => 
+  55 => 
   array (
     'meta' => 
     array (
@@ -8501,9 +9893,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -8582,18 +9993,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>moderateLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -8606,21 +10017,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  52 => 
+  56 => 
   array (
     'meta' => 
     array (
@@ -8674,12 +10085,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:00:22";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:00:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8786,7 +10197,7 @@ return array (
       ),
     ),
   ),
-  53 => 
+  57 => 
   array (
     'meta' => 
     array (
@@ -8840,9 +10251,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -8921,23 +10351,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rejectForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста, тербующего модерации</td>
+          <td>пост или GUID поста, тербующего модерации</td>
         </tr></tbody>
               </table>',
       ),
@@ -8950,21 +10380,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  54 => 
+  58 => 
   array (
     'meta' => 
     array (
@@ -9029,9 +10459,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -9110,18 +10559,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>moderateLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -9134,21 +10583,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  55 => 
+  59 => 
   array (
     'meta' => 
     array (
@@ -9213,9 +10662,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -9294,38 +10762,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -9338,23 +10812,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  56 => 
+  60 => 
   array (
     'meta' => 
     array (
@@ -9419,9 +10893,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -9500,18 +10993,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogDraft</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> GUID или черновик</td>
+          <td>GUID или черновик</td>
         </tr></tbody>
               </table>',
       ),
@@ -9524,17 +11017,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogPost">BlogPost</a></td>
-          <td>$blogPost</td><td>черновик поста блога </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -9543,6 +11025,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogPost">BlogPost</a></td>
+          <td>$blogPost</td><td>черновик поста блога </td></tr></tbody>
+          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -9597,11 +11090,175 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  57 => 
+  61 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '4200ab42-65cb-4e86-81c2-9b594fdafc02',
+      'displayName' => 'Диспетчеризация запроса',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3.0',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'request-scheduling',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Диспетчеризация запроса',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:19:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:20:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Как все работает</h3>
+
+<ul>
+	<li>запуск index.php: определение базовых директорий и настройка окружения</li>
+	<li>загрузка приложения UMI.CMS:
+	<ul>
+		<li>базовая настройка сервисов, необходимых для старта системы</li>
+		<li>разбор запроса и определение текущего проекта</li>
+		<li>регистрация конфигурации проекта (~/project)</li>
+		<li>регистрация и конфигурация сервисов, используемых в проекте</li>
+		<li>диспетчеризация до конкретного контроллера одного из компонентов</li>
+		<li>выполнение контроллера, формирование View для шаблонизации</li>
+		<li>шаблонизация / сериализация</li>
+		<li>вывод ответа</li>
+	</ul>
+	</li>
+</ul>
+
+<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  62 => 
   array (
     'meta' => 
     array (
@@ -9666,9 +11323,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -9747,18 +11423,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>draftLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -9771,21 +11447,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  58 => 
+  63 => 
   array (
     'meta' => 
     array (
@@ -9850,9 +11526,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -9925,17 +11620,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -9944,6 +11628,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -9998,7 +11693,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -10007,7 +11702,7 @@ return array (
       ),
     ),
   ),
-  59 => 
+  64 => 
   array (
     'meta' => 
     array (
@@ -10072,9 +11767,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -10153,18 +11867,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> GUID или поста</td>
+          <td>GUID поста блога или пост</td>
         </tr></tbody>
               </table>',
       ),
@@ -10177,17 +11891,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogPost">BlogPost</a></td>
-          <td>$blogPost</td><td>пост блога </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -10196,6 +11899,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogPost">BlogPost</a></td>
+          <td>$blogPost</td><td>пост блога </td></tr></tbody>
+          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -10250,11 +11964,11 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  60 => 
+  65 => 
   array (
     'meta' => 
     array (
@@ -10319,9 +12033,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -10394,17 +12127,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -10413,7 +12146,7 @@ return array (
       ),
     ),
   ),
-  61 => 
+  66 => 
   array (
     'meta' => 
     array (
@@ -10467,9 +12200,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -10548,23 +12300,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>category</td>
           <td>BlogCategory|string|null</td>
           <td></td>
-          <td>es категория или GUID, URL на RSS которой генерировать. Если не указана, генерируется URL на все посты.</td>
+          <td>категория или GUID категории, URL на RSS которой генерировать. Если не указана, генерируется URL на все посты</td>
         </tr></tbody>
               </table>',
       ),
@@ -10577,21 +12329,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  62 => 
+  67 => 
   array (
     'meta' => 
     array (
@@ -10634,7 +12386,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10692,7 +12444,7 @@ return array (
       ),
     ),
   ),
-  63 => 
+  68 => 
   array (
     'meta' => 
     array (
@@ -10746,9 +12498,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -10827,18 +12598,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>rubric</td>
           <td>string|NewsRubric</td>
           <td></td>
-          <td> рубрика или GUID рубрики</td>
+          <td>рубрика или GUID рубрики</td>
         </tr></tbody>
               </table>',
       ),
@@ -10851,17 +12622,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#NewsRubric">NewsRubric</a></td>
-          <td>$rubric</td><td>новостная рубрика </td></tr></tbody>
-              </table><a name="NewsRubric"></a><h4>NewsRubric</h4><p>Новостная рубрика.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -10870,6 +12630,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#NewsRubric">NewsRubric</a></td>
+          <td>$rubric</td><td>новостная рубрика </td></tr></tbody>
+          </table><a name="NewsRubric"></a><h4>NewsRubric</h4><p>Новостная рубрика.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -10916,11 +12687,11 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>IObjectSet</td>
           <td>$news</td><td>новости рубрики </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  64 => 
+  69 => 
   array (
     'meta' => 
     array (
@@ -10985,9 +12756,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -11060,17 +12850,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -11079,6 +12858,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -11133,7 +12923,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -11142,7 +12932,7 @@ return array (
       ),
     ),
   ),
-  65 => 
+  70 => 
   array (
     'meta' => 
     array (
@@ -11196,7 +12986,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11274,7 +13064,7 @@ return array (
       ),
     ),
   ),
-  66 => 
+  71 => 
   array (
     'meta' => 
     array (
@@ -11317,9 +13107,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -11398,43 +13207,49 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>results</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
           <td></td>
-          <td> строка поиска</td>
+          <td>строка поиска</td>
         </tr></tbody>
               </table>',
       ),
@@ -11447,23 +13262,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  67 => 
+  72 => 
   array (
     'meta' => 
     array (
@@ -11506,12 +13321,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:49";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11603,7 +13418,7 @@ return array (
       ),
     ),
   ),
-  68 => 
+  73 => 
   array (
     'meta' => 
     array (
@@ -11657,9 +13472,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -11738,23 +13572,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogAuthor</td>
           <td>string|BlogAuthor</td>
           <td></td>
-          <td> автор, для постов которого формировать RSS-ленту.</td>
+          <td>автор, для постов которого формировать RSS-ленту</td>
         </tr></tbody>
               </table>',
       ),
@@ -11767,21 +13601,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  69 => 
+  74 => 
   array (
     'meta' => 
     array (
@@ -11813,12 +13647,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:26";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11910,7 +13744,7 @@ return array (
       ),
     ),
   ),
-  70 => 
+  75 => 
   array (
     'meta' => 
     array (
@@ -11953,7 +13787,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12011,7 +13845,7 @@ return array (
       ),
     ),
   ),
-  71 => 
+  76 => 
   array (
     'meta' => 
     array (
@@ -12043,7 +13877,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12106,7 +13940,7 @@ return array (
       ),
     ),
   ),
-  72 => 
+  77 => 
   array (
     'meta' => 
     array (
@@ -12160,9 +13994,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -12235,17 +14088,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -12254,7 +14107,7 @@ return array (
       ),
     ),
   ),
-  73 => 
+  78 => 
   array (
     'meta' => 
     array (
@@ -12319,9 +14172,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -12400,23 +14272,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>1</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
           <td>string</td>
           <td></td>
-          <td> код активации</td>
+          <td>код активации</td>
         </tr></tbody>
               </table>',
       ),
@@ -12429,21 +14301,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  74 => 
+  79 => 
   array (
     'meta' => 
     array (
@@ -12497,793 +14369,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  75 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-      'displayName' => 'Авторизация',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-          'displayName' => 'Пользователи',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'users',
-        ),
-      ),
-      'slug' => 'authorization',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Авторизация',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:06";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  76 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '59633ba2-b358-41ab-8bf7-6098e82a609f',
-      'displayName' => 'news.subject.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
-          'displayName' => 'Компонент "Сюжеты"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'subject',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.subject.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  77 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '5b9eb30a-b741-4119-9cfb-c94f1bdfae2d',
-      'displayName' => 'blog.author.view',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-          'displayName' => 'Компонент "Авторы"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'author',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.author.view',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  78 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '5bcaf048-7650-4dde-9e99-37ab2ec023c0',
-      'displayName' => 'news.item.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-          'displayName' => 'Компонент "Новости"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'item',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.item.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  79 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '5bd409ab-8b0f-44b6-91f2-2f6aa1ba3110',
-      'displayName' => 'users.restoration.confirmation',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
-          'displayName' => 'users.restoration',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'Пользователи',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'restoration',
-        ),
-      ),
-      'slug' => 'confirmation',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'users.restoration.confirmation',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13346,6 +14432,830 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
+      'displayName' => 'Авторизация',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
+          'displayName' => 'Пользователи',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'authorization',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Авторизация',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  81 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '59633ba2-b358-41ab-8bf7-6098e82a609f',
+      'displayName' => 'news.subject.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '71386eb7-06ad-4096-bd59-2b9e6ebbdbf0',
+          'displayName' => 'Компонент "Сюжеты"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'subject',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  82 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5b9eb30a-b741-4119-9cfb-c94f1bdfae2d',
+      'displayName' => 'blog.author.view',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
+          'displayName' => 'Компонент "Авторы"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'author',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  83 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '5bcaf048-7650-4dde-9e99-37ab2ec023c0',
+      'displayName' => 'news.item.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
+          'displayName' => 'Компонент "Новости"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'item',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  84 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5bd409ab-8b0f-44b6-91f2-2f6aa1ba3110',
+      'displayName' => 'users.restoration.confirmation',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
+          'displayName' => 'users.restoration',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+              'displayName' => 'Пользователи',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'restoration',
+        ),
+      ),
+      'slug' => 'confirmation',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.confirmation',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  85 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => '5bfdf20d-b15b-47b5-a8f1-54775984158d',
       'displayName' => 'structure.index',
@@ -13395,7 +15305,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13552,7 +15462,7 @@ return array (
       ),
     ),
   ),
-  81 => 
+  86 => 
   array (
     'meta' => 
     array (
@@ -13606,9 +15516,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -13687,23 +15616,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogTag</td>
           <td>string|BlogTag</td>
           <td></td>
-          <td> тэг блога или GUID, по которому формируется RSS-лента</td>
+          <td>тэг блога или GUID, по которому формируется RSS-лента</td>
         </tr></tbody>
               </table>',
       ),
@@ -13716,21 +15645,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  82 => 
+  87 => 
   array (
     'meta' => 
     array (
@@ -13773,12 +15702,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:45:02";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:45:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13870,7 +15799,7 @@ return array (
       ),
     ),
   ),
-  83 => 
+  88 => 
   array (
     'meta' => 
     array (
@@ -13891,7 +15820,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13954,7 +15883,7 @@ return array (
       ),
     ),
   ),
-  84 => 
+  89 => 
   array (
     'meta' => 
     array (
@@ -13969,7 +15898,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'Восстановление',
+          'displayName' => 'Восстановление доступа',
           'branch' => 
           array (
             'meta' => 
@@ -14008,7 +15937,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14066,7 +15995,7 @@ return array (
       ),
     ),
   ),
-  85 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -14120,7 +16049,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14178,7 +16107,138 @@ return array (
       ),
     ),
   ),
-  86 => 
+  91 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '61024d24-63bf-4857-9141-4d12cf6eb8e5',
+      'displayName' => 'Глоссарий',
+      'branch' => NULL,
+      'slug' => 'glossariy',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Глоссарий',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 13:11:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-21 15:24:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Глоссарий по UMI.CMS 3.0',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Глоссарий по UMI.CMS 3.0',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Глоссарий',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<ul>
+	<li>MVC&nbsp;&mdash; концепция Model-View-Controller, заложенная в архитектуру UMI.CMS 3. Подробнее на <a href="http://ru.wikipedia.org/wiki/Model-View-Controller">Википедии</a>.</li>
+	<li>Компонент &mdash;&nbsp;MVC-триада.</li>
+	<li>Виджет &mdash;&nbsp;служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
+	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
+	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем созавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
+	<li>Проект &mdash;&nbsp;компонент, состоящий из модулей.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  92 => 
   array (
     'meta' => 
     array (
@@ -14232,9 +16292,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -14313,23 +16392,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>publishDraftForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> черновик или GUID черновика</td>
+          <td>черновик или GUID черновика</td>
         </tr></tbody>
               </table>',
       ),
@@ -14342,21 +16421,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  87 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -14364,7 +16443,18 @@ return array (
       'type' => 'static',
       'guid' => '625916b0-f727-4689-a6fc-39bed8dffc7d',
       'displayName' => 'Как написать свой модуль?',
-      'branch' => NULL,
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
       'slug' => 'own-module',
     ),
     'data' => 
@@ -14377,12 +16467,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:05:25";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:05:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:40";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-22 11:33:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14463,7 +16553,7 @@ return array (
 <h2>Права</h2>
 
 <ul>
-	<li><span style="line-height:1.6">Доступ к каждому компоненту, контроллеру и виджету контролируется через <a href="http://ru.wikipedia.org/wiki/ACL">ACL</a>.</span></li>
+	<li>Доступ к каждому компоненту, контроллеру и виджету контролируется через <a href="http://ru.wikipedia.org/wiki/ACL">ACL</a>.</li>
 	<li>Каждый компонент описывает в своей конфигурации свои ресурсы (контроллеры, виджеты и дочерние компоненты), роли и правила доступа (каким ролям разрешен доступ к ресурсам и с какими ограничениями).</li>
 	<li>По умолчанию все дочерние компоненты, контроллеры и виджеты компонента автоматически попадают в список его ресурсов при настройке AclManager`а.</li>
 	<li>По умолчанию для каждого дочернего компонента автоматически создается роль с названием, состоящим из имени дочернего компонента и суффиксом Executor. Для роли назначаются права на исполнение связанного компонента.</li>
@@ -14491,8 +16581,8 @@ return array (
 <h2>Настройки модуля</h2>
 
 <ul>
-	<li><span style="line-height:1.6">Каждый модуль может иметь отдельную иерархию настроечных компонентов, которая должна быть зарегистрирована как дочерний компонент модуля &ldquo;Настройки&rdquo; (project.admin.rest.settings)&nbsp;</span></li>
-	<li><span style="line-height:1.6">Все компоненты настроечной части модуля лежат в папке project/modules/имя_модуля/admin/settings.</span></li>
+	<li>Каждый модуль может иметь отдельную иерархию настроечных компонентов, которая должна быть зарегистрирована как дочерний компонент модуля &ldquo;Настройки&rdquo; (project.admin.rest.settings)&nbsp;</li>
+	<li>Все компоненты настроечной части модуля лежат в папке project/modules/имя_модуля/admin/settings.</li>
 	<li>Часть для редактирования настроек модуля должна представлять собой двухуровневую иерархию компонентов. Конфигурации дефолтных компонентов описывают контроллеры, маршрутизацию и права.</li>
 	<li>Первый уровень является группирующим и должен быть представлен компонентом&nbsp;umicms\\hmvc\\component\\admin\\settings\\SettingsGroupComponent.</li>
 	<li>Задачей настроечных компонентов второго уровня является вывод и сохранение формы с настройками. Компоненты второго уровня представлены классом&nbsp;umicms\\hmvc\\component\\admin\\settings\\SettingsComponent. Для работы компонента необходимо задать алиас пути редактируемого конфигурационного файла и конфигурацию формы &lsquo;settings&rsquo;, которая используется для отображения и редактирования настроек.</li>
@@ -14623,26 +16713,23 @@ return array (
 
 <h3>Способность отображаться на сайте как контентная страница</h3>
 
-<p>- Объекты, отображаемые на сайте как страницы, обязательно реализуют интерфейс&nbsp;umicms\\orm\\object\\ICmsPage&nbsp;(например, через трейт&nbsp;umicms\\orm\\object\\TCmsPage) и обязательно имеют свойства</p>
-
 <ul>
-	<li>string $metaTitle заголовок окна браузера</li>
-	<li>string $metaKeywords ключевые слова</li>
-	<li>string $metaDescription описание страницы</li>
-	<li>string $contents содержимое страницы</li>
-	<li>string $h1 заголовок страницы</li>
-	<li>string $slug последней часть ЧПУ</li>
+	<li>Объекты, отображаемые на сайте как страницы, обязательно реализуют интерфейс&nbsp;umicms\\orm\\object\\ICmsPage&nbsp;(например, через трейт&nbsp;umicms\\orm\\object\\TCmsPage) и обязательно имеют свойства
+	<ul>
+		<li>string $metaTitle заголовок окна браузера</li>
+		<li>string $metaKeywords ключевые слова</li>
+		<li>string $metaDescription описание страницы</li>
+		<li>string $contents содержимое страницы</li>
+		<li>string $h1 заголовок страницы</li>
+		<li>string $slug последней часть ЧПУ</li>
+	</ul>
+	</li>
+	<li>umicms\\project\\module\\structure\\model\\object\\Layout|null $layout шаблон для вывода</li>
+	<li>Объекты, отображаемые на сайте как страницы, обязательно также имеют способность хранить активность, могут быть удалены в корзину и имеют резерыные копии.</li>
+	<li>Коллекция объектов, отображаемых как страницы, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\ICmsPageCollection.</li>
+	<li>Для коллекции неиерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsPageCollection.</li>
+	<li>Для коллекции иерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsHierarchicPageCollection.</li>
 </ul>
-
-<p>- umicms\\project\\module\\structure\\model\\object\\Layout|null $layout шаблон для вывода</p>
-
-<p>- Объекты, отображаемые на сайте как страницы, обязательно также имеют способность хранить активность, могут быть удалены в корзину и имеют резерыные копии.</p>
-
-<p>- Коллекция объектов, отображаемых как страницы, обязательно реализует интерфейс&nbsp;umicms\\orm\\collection\\ICmsPageCollection.</p>
-
-<p>- Для коллекции неиерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsPageCollection.</p>
-
-<p>- Для коллекции иерархических объектов, отображаемых как страницы, предусмотрена стандартная реализация&nbsp;umicms\\orm\\collection\\CmsHierarchicPageCollection.</p>
 
 <p>&nbsp;</p>
 
@@ -14650,71 +16737,62 @@ return array (
 
 <p>Модуль test работает с простыми страницами из коллекции test - управляет страницами в административной панели, отображает их контент на сайте и умеет редактировать настройки, относящиеся к test-страницам.</p>
 
-<p>1. Подготовить файловую структуру. Создать папки:</p>
-
-<p>- /modules/test</p>
-
-<p>- /modules/test/model</p>
-
-<p>- /modules/test/model/object</p>
-
-<p>- /modules/test/model/collection</p>
-
-<p>- /modules/test/configuration</p>
-
-<p>- /modules/test/admin</p>
-
-<p>- /modules/test/admin/settings</p>
-
-<p>- /modules/test/site</p>
-
-<p>2. Настроить ORM для работы с коллекцией test</p>
-
-<p>2.1. Определить возможное поведение объектов коллекции и в соответствии с этим сконфигурировать метаданные коллекции (/modules/test/configuration/test/metadata.config.php).</p>
-
-<p>2.2. Для каждого типа объектов коллекции создать класс, обеспечивающий ожидаемое поведение объектов. Для коллекции с одним типом объектов base достаточно одного класса (/modules/test/model/object/TestObject.php).</p>
-
-<p>2.2.1. Все дополнительные свойства объекта должны быть описаны в аннотации класс</p>
-
-<p>2.2.2. &nbsp;Все названия свойств объекта должны быть вынесены в константы класса</p>
-
-<p>2.3. Создать класс коллекции объектов (/modules/test/model/collection/TestCollection.php)</p>
-
-<p>2.3.1. В аннотации коллекции объектов должно быть описано с каким классом объектов работают методы, выполняющие CRUD-операции.</p>
-
-<p>2.4. Сконфигурировать коллекцию (/modules/test/configuration/test/collection.config.php), указав:</p>
-
-<p>- тип коллекции (иерархическая или неиерархическая)</p>
-
-<p>- класс коллекции</p>
-
-<p>- пути компонентов-обработчиков на сайте и в административной панели</p>
-
-<p>- конфигурации форм для создания и редактирования объектов коллекции, сгруппированые по типам объектов</p>
-
-<p>- имена словарей, используемых в коллекции. Словари коллекции используются, для генерации лейблов форм редактирования и создания объектов.</p>
-
-<p>- путь до конфигурации с настройками, которые будут редактироваться в настроечной части модуля</p>
-
-<p>2.5. Зарегистрировать коллекцию в конфигурации ORMTools</p>
-
-<p>3. Создать таблицу в БД для хранения объектов коллекции</p>
-
-<p>4. Создать административную часть модуля</p>
-
-<p>4.1. Создать конфигурацию административной части модуля (/modules/test/admin/module.config.php), зарегистрировать ее как дочерний компонент в ~project/admin/rest/rest.config.php</p>
-
-<p>4.2. Создать конфигурацию компонента, управляющего объектами коллекции (/modules/test/admin/test/component.config.php), зарегистрировать его как дочерний компонент административной части модуля, определив маршрутизацию. Для компонента, который выполняет только CRUD-операции над объектами определенной коллекции в конфигурации достаточно задать класс&nbsp;umicms\\hmvc\\component\\admin\\collection\\CollectionComponent&nbsp;и указать имя коллекции, с которой он работает.</p>
-
-<p>5. Настройки компонента - делаем все по дефолту, указывая для редактирования файл с конфигурацией коллекции.</p>
-
-<p>6. Создать сайтовую часть модуля</p>
-
-<p>6.1. Создать конфигурацию сайтовой части модуля (/modules/test/site/module.config.php), зарегистрировать ее как дочерний компонент в ~project/site/site.config.php</p>
-
-<p>6.2. Создать конфигурацию компонента, выводящего объекты коллекции как страницы на сайте (/modules/test/site/test/component.config.php), зарегистрировать его как дочерний компонент сайтовой части модуля, определив маршрутизацию. Для компонента, отображающего неиерархические страницы на сайте подходит компонент&nbsp;umicms\\hmvc\\component\\site\\SitePageComponent,&nbsp;остается только указать имя класса компонента, имя коллекции, с которой он работает и папку с шаблонами</p>
-
-<p>7. Создать шаблоны</p>
+<ol>
+	<li>Подготовить файловую структуру. Создать папки:
+	<ul>
+		<li>/modules/test</li>
+		<li>/modules/test/model</li>
+		<li>/modules/test/model/object</li>
+		<li>/modules/test/model/collection</li>
+		<li>/modules/test/configuration</li>
+		<li>/modules/test/admin</li>
+		<li>/modules/test/admin/settings</li>
+		<li>/modules/test/site</li>
+	</ul>
+	</li>
+	<li>Настроить ORM для работы с коллекцией test
+	<ol>
+		<li>Определить возможное поведение объектов коллекции и в соответствии с этим сконфигурировать метаданные коллекции (/modules/test/configuration/test/metadata.config.php).</li>
+		<li>Для каждого типа объектов коллекции создать класс, обеспечивающий ожидаемое поведение объектов. Для коллекции с одним типом объектов base достаточно одного класса (/modules/test/model/object/TestObject.php).
+		<ol>
+			<li>Все дополнительные свойства объекта должны быть описаны в аннотации класс</li>
+			<li>Все названия свойств объекта должны быть вынесены в константы класса</li>
+		</ol>
+		</li>
+		<li>Создать класс коллекции объектов (/modules/test/model/collection/TestCollection.php)
+		<ol>
+			<li>В аннотации коллекции объектов должно быть описано с каким классом объектов работают методы, выполняющие CRUD-операции.</li>
+		</ol>
+		</li>
+		<li>Сконфигурировать коллекцию (/modules/test/configuration/test/collection.config.php), указав:
+		<ul>
+			<li>тип коллекции (иерархическая или неиерархическая)</li>
+			<li>класс коллекции</li>
+			<li>пути компонентов-обработчиков на сайте и в административной панели</li>
+			<li>конфигурации форм для создания и редактирования объектов коллекции, сгруппированые по типам объектов</li>
+			<li>имена словарей, используемых в коллекции. Словари коллекции используются, для генерации лейблов форм редактирования и создания объектов.</li>
+			<li>путь до конфигурации с настройками, которые будут редактироваться в настроечной части модуля</li>
+		</ul>
+		</li>
+		<li>Зарегистрировать коллекцию в конфигурации ORMTools</li>
+	</ol>
+	</li>
+	<li>Создать таблицу в БД для хранения объектов коллекции</li>
+	<li>Создать административную часть модуля
+	<ol>
+		<li>Создать конфигурацию административной части модуля (/modules/test/admin/module.config.php), зарегистрировать ее как дочерний компонент в ~project/admin/rest/rest.config.php</li>
+		<li>Создать конфигурацию компонента, управляющего объектами коллекции (/modules/test/admin/test/component.config.php), зарегистрировать его как дочерний компонент административной части модуля, определив маршрутизацию. Для компонента, который выполняет только CRUD-операции над объектами определенной коллекции в конфигурации достаточно задать класс&nbsp;umicms\\hmvc\\component\\admin\\collection\\CollectionComponent&nbsp;и указать имя коллекции, с которой он работает.</li>
+	</ol>
+	</li>
+	<li>Настройки компонента - делаем все по дефолту, указывая для редактирования файл с конфигурацией коллекции.</li>
+	<li>Создать сайтовую часть модуля
+	<ol>
+		<li>Создать конфигурацию сайтовой части модуля (/modules/test/site/module.config.php), зарегистрировать ее как дочерний компонент в ~project/site/site.config.php</li>
+		<li>Создать конфигурацию компонента, выводящего объекты коллекции как страницы на сайте (/modules/test/site/test/component.config.php), зарегистрировать его как дочерний компонент сайтовой части модуля, определив маршрутизацию. Для компонента, отображающего неиерархические страницы на сайте подходит компонент&nbsp;umicms\\hmvc\\component\\site\\SitePageComponent,&nbsp;остается только указать имя класса компонента, имя коллекции, с которой он работает и папку с шаблонами</li>
+	</ol>
+	</li>
+	<li>Создать шаблоны</li>
+</ol>
 ',
       ),
       'active#ru-RU' => 
@@ -14759,7 +16837,7 @@ return array (
       ),
     ),
   ),
-  88 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -14824,9 +16902,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -14899,23 +16996,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница изменения пароля пользователя </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -14924,6 +17004,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница изменения пароля пользователя </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -14980,7 +17077,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -14989,7 +17086,7 @@ return array (
       ),
     ),
   ),
-  89 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -15021,12 +17118,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:10";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15118,7 +17215,7 @@ return array (
       ),
     ),
   ),
-  90 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -15172,9 +17269,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -15253,23 +17369,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>cloud</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>minFontSize</td>
           <td>int</td>
-          <td></td>
-          <td> минимальный размер шрифта</td>
+          <td>13</td>
+          <td>минимальный размер шрифта</td>
         </tr><tr>
           <td>maxFontSize</td>
           <td>int</td>
-          <td></td>
-          <td> максимальный размер шрифта</td>
+          <td>24</td>
+          <td>максимальный размер шрифта</td>
         </tr></tbody>
               </table>',
       ),
@@ -15282,21 +17398,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array</td>
           <td>$tags</td><td>список тегов в формате [ \'tag\' => Tag $tag, \'weight\' => float вес тэга в облаке ] </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  91 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -15350,9 +17466,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -15431,18 +17566,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>view</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogComment</td>
           <td>string|BlogComment</td>
           <td></td>
-          <td> комментарий или GUID комментария</td>
+          <td>комментарий или GUID комментария</td>
         </tr></tbody>
               </table>',
       ),
@@ -15455,17 +17590,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogComment">BlogComment</a></td>
-          <td>$blogComment</td><td>комментарий в блоге </td></tr></tbody>
-              </table><a name="BlogComment"></a><h4>BlogComment</h4><p>Комментарий к посту.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -15474,6 +17598,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogComment">BlogComment</a></td>
+          <td>$blogComment</td><td>комментарий в блоге </td></tr></tbody>
+          </table><a name="BlogComment"></a><h4>BlogComment</h4><p>Комментарий к посту.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>bool</td>
           <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
           <td>string</td>
@@ -15514,11 +17649,11 @@ return array (
           <td>$contents</td><td>комментарий </td></tr><tr>
           <td>string</td>
           <td>$publishStatus</td><td>статус публикации комментария </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  92 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -15561,9 +17696,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -15636,17 +17790,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -15655,6 +17798,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -15709,7 +17863,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -15718,7 +17872,7 @@ return array (
       ),
     ),
   ),
-  93 => 
+  99 => 
   array (
     'meta' => 
     array (
@@ -15761,7 +17915,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15819,7 +17973,7 @@ return array (
       ),
     ),
   ),
-  94 => 
+  100 => 
   array (
     'meta' => 
     array (
@@ -15884,9 +18038,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -15959,17 +18132,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -15978,6 +18140,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -16032,7 +18205,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -16041,7 +18214,7 @@ return array (
       ),
     ),
   ),
-  95 => 
+  101 => 
   array (
     'meta' => 
     array (
@@ -16106,9 +18279,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -16187,23 +18379,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>addPostLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogCategory</td>
           <td>string|BlogCategory</td>
           <td></td>
-          <td> категория или GUID в которую добавляется пост</td>
+          <td>категория или GUID в которую добавляется пост</td>
         </tr></tbody>
               </table>',
       ),
@@ -16216,21 +18408,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  96 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -16284,7 +18476,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16342,7 +18534,7 @@ return array (
       ),
     ),
   ),
-  97 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -16396,7 +18588,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16454,7 +18646,7 @@ return array (
       ),
     ),
   ),
-  98 => 
+  104 => 
   array (
     'meta' => 
     array (
@@ -16508,9 +18700,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -16589,18 +18800,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет.</td>
+          <td>infoblock</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>infoBlock</td>
           <td>BaseInfoBlock</td>
           <td></td>
-          <td> информационный блок или его название</td>
+          <td>информационный блок или его название</td>
         </tr></tbody>
               </table>',
       ),
@@ -16613,17 +18824,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BaseInfoBlock">BaseInfoBlock</a></td>
-          <td>$infoBlock</td><td>информационный блок </td></tr></tbody>
-              </table><a name="BaseInfoBlock"></a><h4>BaseInfoBlock</h4><p>Информационный блок сайта.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -16632,6 +18832,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BaseInfoBlock">BaseInfoBlock</a></td>
+          <td>$infoBlock</td><td>информационный блок </td></tr></tbody>
+          </table><a name="BaseInfoBlock"></a><h4>BaseInfoBlock</h4><p>Информационный блок сайта.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
           <td>IObjectType</td>
@@ -16650,37 +18861,48 @@ return array (
           <td>$editor</td><td>последний редактор объекта </td></tr><tr>
           <td>string</td>
           <td>$infoblockName</td><td>название информационного блока </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  99 => 
+  105 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '6edce471-9726-4f83-87db-aa1ed01780b8',
-      'displayName' => 'Аналогия и различия',
-      'branch' => NULL,
-      'slug' => 'diff',
+      'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+      'displayName' => 'Архитектура UMI.CMS 3.0',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'architecture',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Аналогия и различия',
+        1 => 'Архитектура UMI.CMS 3.0',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:57:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:23:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:31";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:05:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16713,12 +18935,12 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Аналогия и различия от UMI.CMS 2.*',
+        1 => 'Архитектура UMI.CMS 3.0',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Архитектура UMI.CMS 3.0',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -16728,12 +18950,20 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Аналогия и различия от UMI.CMS 2.*',
+        1 => 'Архитектура UMI.CMS 3.0',
       ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<ul>
+        1 => '<p>тут описание</p>
+
+<h3>UMI.CMS 3.0 - иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов</h3>
+
+<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/screenshot_2014-06-29_15_15_32.png" style="height:230px; width:605px" /></p>
+
+<h2>Отличия от UMI.CMS 2.*</h2>
+
+<ul>
 	<li>Вся бизнес-логика вынесена в модели, что позволяет повторно использовать код. В двойке практически вся логика находилась в теле метода, выполняющего роль контроллера.</li>
 	<li>Контроллеры не выполняют и не запускает логику шаблонизации (rendering), задачей контроллера является только обработка запроса (Request), запуск необходимой бизнес-логики через модели и формирования параметризованного ответа (Response). Ответ может идти или не идти на шаблонизацию или сериализацию. Ответ может включать в себя переменные, которые используются для шаблонизации и сериализации, а также имя шаблона для шаблонизации. Контроллеры должны быть &ldquo;тонкими&rdquo; и не должны содержать бизнес-логики.</li>
 	<li>Результат работы любого контроллера, написанного по правилам, можно получить в сериализованном виде в форматах json и xml. Таким образом, можно легко запостить форму ajax&rsquo;ом и получить удобный для разбора ответ об успехе или список ошибок.</li>
@@ -16787,7 +19017,152 @@ return array (
       ),
     ),
   ),
-  100 => 
+  106 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '6edce471-9726-4f83-87db-aa1ed01780b8',
+      'displayName' => 'Архитектура UMI.CMS 3.0',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'diff',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Архитектура UMI.CMS 3.0',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:57:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:23:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отличия от UMI.CMS 2.*',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Архитектура UMI.CMS 3.0',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<h2>Отличия от UMI.CMS 2.*</h2>
+<ul>
+	<li>Вся бизнес-логика вынесена в модели, что позволяет повторно использовать код. В двойке практически вся логика находилась в теле метода, выполняющего роль контроллера.</li>
+	<li>Контроллеры не выполняют и не запускает логику шаблонизации (rendering), задачей контроллера является только обработка запроса (Request), запуск необходимой бизнес-логики через модели и формирования параметризованного ответа (Response). Ответ может идти или не идти на шаблонизацию или сериализацию. Ответ может включать в себя переменные, которые используются для шаблонизации и сериализации, а также имя шаблона для шаблонизации. Контроллеры должны быть &ldquo;тонкими&rdquo; и не должны содержать бизнес-логики.</li>
+	<li>Результат работы любого контроллера, написанного по правилам, можно получить в сериализованном виде в форматах json и xml. Таким образом, можно легко запостить форму ajax&rsquo;ом и получить удобный для разбора ответ об успехе или список ошибок.</li>
+	<li>Виджеты являются аналогами макросов в двойке, но виджеты не могут совершать никаких действий по изменению данных, они служат исключительно для визуализации запрашиваемой информации.</li>
+	<li>Полное разделение запросов на чтение и модификацию данных. Все запросы каким-либо образом меняющие состояние системы выполняются методом POST. Все входные данные контролируются через формы. Запрещено заполнять свойства объектов из произвольного массива POST из соображений безопасности. Для защиты от CSRF-атак в формах должно присутствовать поле csrf. Можно обойтись без формы, но необходимо жестко контролировать входные данные, не забывая про CSRF и XSS уязвимости.</li>
+	<li>Минимизированы запросы к базе, так как все настройки и конфигурации содержатся в файлах, а так же появилась возможность выборок по связанным полям, а так же возможность выбирать объект со нужными связями (см. ISelector)</li>
+	<li>Нет единой иерархии страниц, отображаемых на сайте. Каждый компонент для иерархических типов страниц имеет свою иерархию, для неиерархических типов - не имеет вообще.</li>
+	<li>Все данные разделены по отдельным коллекциям, которые связаны с &ldquo;плоскими&rdquo; таблицами, что увеличивает производительность выборок, позволяет настроить индексы и практически полностью избавляет от тяжелых JOIN в запросах.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  107 => 
   array (
     'meta' => 
     array (
@@ -16841,7 +19216,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16899,7 +19274,7 @@ return array (
       ),
     ),
   ),
-  101 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -16942,12 +19317,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:57";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17039,7 +19414,7 @@ return array (
       ),
     ),
   ),
-  102 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -17104,9 +19479,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -17185,18 +19579,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста требующего модерации</td>
+          <td>пост или GUID поста требующего модерации</td>
         </tr></tbody>
               </table>',
       ),
@@ -17209,17 +19603,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogPost">BlogPost</a></td>
-          <td>$blogPost</td><td>пост блога </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -17228,6 +19611,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogPost">BlogPost</a></td>
+          <td>$blogPost</td><td>пост блога </td></tr></tbody>
+          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -17282,11 +19676,11 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  103 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -17351,9 +19745,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -17426,23 +19839,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>bool</td>
-          <td>$authenticated</td><td>флаг, указывающий на то, авторизован пользователь или нет </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница активации </td></tr><tr>
-          <td><a href="#RegisteredUser">RegisteredUser</a></td>
-          <td>$user</td><td>активированный пользователь в случае успеха </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список произошедших ошибок в случае неуспеха </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -17451,6 +19847,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>bool</td>
+          <td>$authenticated</td><td>флаг, указывающий на то, авторизован пользователь или нет </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница активации </td></tr><tr>
+          <td><a href="#RegisteredUser">RegisteredUser</a></td>
+          <td>$user</td><td>активированный пользователь в случае успеха </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список произошедших ошибок в случае неуспеха </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -17507,15 +19920,15 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
+              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>bool</td>
           <td>$active</td><td>состояние активности на сайте </td></tr><tr>
           <td>bool</td>
@@ -17550,7 +19963,7 @@ return array (
           <td>$lastName</td><td>фамилия </td></tr><tr>
           <td>\\DateTime</td>
           <td>$registrationDate</td><td>дата регистрации </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -17559,7 +19972,7 @@ return array (
       ),
     ),
   ),
-  104 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -17602,12 +20015,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17699,7 +20112,7 @@ return array (
       ),
     ),
   ),
-  105 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -17753,9 +20166,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -17834,18 +20266,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>logoutForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>noRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
       ),
@@ -17858,21 +20290,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  106 => 
+  113 => 
   array (
     'meta' => 
     array (
@@ -17926,9 +20358,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -18007,23 +20458,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rejectForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
           <td>string|BlogComment</td>
           <td></td>
-          <td> комментарий или GUID комментария</td>
+          <td>комментарий или GUID комментария</td>
         </tr></tbody>
               </table>',
       ),
@@ -18036,21 +20487,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  107 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -18104,7 +20555,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18162,7 +20613,7 @@ return array (
       ),
     ),
   ),
-  108 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -18205,7 +20656,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18263,7 +20714,7 @@ return array (
       ),
     ),
   ),
-  109 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -18328,9 +20779,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -18409,18 +20879,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID отклоненного поста</td>
+          <td>пост или GUID отклоненного поста</td>
         </tr></tbody>
               </table>',
       ),
@@ -18433,17 +20903,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogPost">BlogPost</a></td>
-          <td>$blogPost</td><td>пост блога </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -18452,6 +20911,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogPost">BlogPost</a></td>
+          <td>$blogPost</td><td>пост блога </td></tr></tbody>
+          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -18506,11 +20976,11 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  110 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -18564,9 +21034,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -18645,23 +21134,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>sendToModerationForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста отправляемого на модерацию</td>
+          <td>пост или GUID поста отправляемого на модерацию</td>
         </tr></tbody>
               </table>',
       ),
@@ -18674,21 +21163,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  111 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -18753,9 +21242,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -18828,17 +21336,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -18847,7 +21355,7 @@ return array (
       ),
     ),
   ),
-  112 => 
+  119 => 
   array (
     'meta' => 
     array (
@@ -18901,7 +21409,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18959,7 +21467,7 @@ return array (
       ),
     ),
   ),
-  113 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -19002,12 +21510,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:16";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19099,7 +21607,7 @@ return array (
       ),
     ),
   ),
-  114 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -19153,9 +21661,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -19228,14 +21755,14 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr><tr>
           <td>array</td>
@@ -19248,15 +21775,15 @@ return array (
           <td>$page</td><td>текущая страница регистрации пользователя </td></tr><tr>
           <td><a href="#RegisteredUser">RegisteredUser</a></td>
           <td>$user</td><td>новый зарегистрированный пользователь текущая страница регистрации пользователя </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -19313,15 +21840,15 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
+              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>bool</td>
           <td>$active</td><td>состояние активности на сайте </td></tr><tr>
           <td>bool</td>
@@ -19356,7 +21883,7 @@ return array (
           <td>$lastName</td><td>фамилия </td></tr><tr>
           <td>\\DateTime</td>
           <td>$registrationDate</td><td>дата регистрации </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -19365,7 +21892,7 @@ return array (
       ),
     ),
   ),
-  115 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -19430,9 +21957,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -19511,23 +22057,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>editPostLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogPost</td>
           <td>BlogPost</td>
           <td></td>
-          <td> пост или GUID редактируемого поста</td>
+          <td>пост или GUID редактируемого поста</td>
         </tr></tbody>
               </table>',
       ),
@@ -19540,21 +22086,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  116 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -19608,7 +22154,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19686,7 +22232,7 @@ return array (
       ),
     ),
   ),
-  117 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -19740,9 +22286,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -19815,17 +22380,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -19834,6 +22388,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -19888,7 +22453,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -19897,7 +22462,7 @@ return array (
       ),
     ),
   ),
-  118 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -19962,9 +22527,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -20037,23 +22621,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования профиля автора </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -20062,6 +22629,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования профиля автора </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -20118,7 +22702,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -20127,7 +22711,7 @@ return array (
       ),
     ),
   ),
-  119 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -20159,12 +22743,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20256,7 +22840,7 @@ return array (
       ),
     ),
   ),
-  120 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -20310,7 +22894,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20368,7 +22952,7 @@ return array (
       ),
     ),
   ),
-  121 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -20411,7 +22995,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20469,7 +23053,7 @@ return array (
       ),
     ),
   ),
-  122 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -20523,9 +23107,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -20604,18 +23207,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -20628,21 +23231,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  123 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -20696,1000 +23299,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  124 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '8ac20a28-e1aa-40ed-a040-98808e22f0e3',
-      'displayName' => 'blog.moderate.draft',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
-          'displayName' => 'blog.moderate',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'moderate',
-        ),
-      ),
-      'slug' => 'draft',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.moderate.draft',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер снятия поста с модерации и переноса в черновики',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер снятия поста с модерации и переноса в черновики',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  125 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '8b9e807a-341c-4cc6-8323-b61fe05324f9',
-      'displayName' => 'blog.draft.edit',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
-          'displayName' => 'blog.draft',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'draft',
-        ),
-      ),
-      'slug' => 'edit',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.edit',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  126 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => '8bdeaed9-47cf-4722-b2c2-d5f42c8a3fa8',
-      'displayName' => 'news.subject.newsList',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'Компонент "Сюжеты"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'subject',
-        ),
-      ),
-      'slug' => 'newslist',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.subject.newsList',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода списка новостей по сюжетам',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода списка новостей по сюжетам',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr><tr>
-          <td>limit</td>
-          <td>int</td>
-          <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
-        </tr><tr>
-          <td>offset</td>
-          <td>int</td>
-          <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
-        </tr><tr>
-          <td>options</td>
-          <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
-        </tr><tr>
-          <td>pagination</td>
-          <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
-        </tr><tr>
-          <td>fullyLoad</td>
-          <td>bool</td>
-          <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
-        </tr><tr>
-          <td>subjects</td>
-          <td>array|NewsSubject[]|NewsSubject|null</td>
-          <td></td>
-          <td> сюжет, новостных сюжетов или GUID, из которых выводятся новости. Если не указаны, то выводятся новости всех сюжетов</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>array|umi\\orm\\selector\\ISelector</td>
-          <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
-          <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  127 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => '8ef66359-b0f5-48b2-bef5-96612796f6b3',
-      'displayName' => 'users.profile.link',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
-          'displayName' => 'Профиль',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'Пользователи',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'profile',
-        ),
-      ),
-      'slug' => 'link',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'users.profile.link',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет вывода ссылки на страницу редактирования профиля',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет вывода ссылки на страницу редактирования профиля',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr><tr>
-          <td>absolute</td>
-          <td>bool</td>
-          <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>string</td>
-          <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  128 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '8f399ada-205c-4d44-bbd8-52c57df8a8b1',
-      'displayName' => 'blog.draft.publish',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
-          'displayName' => 'blog.draft',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'draft',
-        ),
-      ),
-      'slug' => 'publish',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.publish',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер публикации черновика',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер публикации черновика',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  129 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => '8f6532c0-6daa-41a5-baec-c91f5b5b8b37',
-      'displayName' => 'news.item.rss',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-          'displayName' => 'Компонент "Новости"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'item',
-        ),
-      ),
-      'slug' => 'rss',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.item.rss',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода общей RSS-ленты',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода общей RSS-ленты',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  130 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '9017a315-0aac-4602-998b-d994434cfd60',
-      'displayName' => 'blog.reject.edit',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '09d280ca-fd17-4687-a7dd-7faf76962e99',
-          'displayName' => 'blog.reject',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'reject',
-        ),
-      ),
-      'slug' => 'edit',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.reject.edit',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21753,16 +23363,126 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '913b9c1f-95b5-4784-8f90-7b1c5344ea40',
-      'displayName' => 'blog.author.profile',
+      'guid' => '87da0559-9773-4215-807f-bd239fc80f2e',
+      'displayName' => 'Быстрый старт',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
-          'displayName' => 'blog.author',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'quick-start',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Быстрый старт',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:11:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Быстрый старт',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  132 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '8ac20a28-e1aa-40ed-a040-98808e22f0e3',
+      'displayName' => 'blog.moderate.draft',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
+          'displayName' => 'blog.moderate',
           'branch' => 
           array (
             'meta' => 
@@ -21786,22 +23506,154 @@ return array (
               'slug' => 'blog',
             ),
           ),
-          'slug' => 'author',
+          'slug' => 'moderate',
         ),
       ),
-      'slug' => 'profile',
+      'slug' => 'draft',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.author.profile',
+        1 => 'blog.moderate.draft',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер снятия поста с модерации и переноса в черновики',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер снятия поста с модерации и переноса в черновики',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  133 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '8b9e807a-341c-4cc6-8323-b61fe05324f9',
+      'displayName' => 'blog.draft.edit',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
+          'displayName' => 'blog.draft',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'draft',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.edit',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21859,7 +23711,1044 @@ return array (
       ),
     ),
   ),
-  132 => 
+  134 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.widget',
+      'guid' => '8bdeaed9-47cf-4722-b2c2-d5f42c8a3fa8',
+      'displayName' => 'news.subject.newsList',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
+          'displayName' => 'Компонент "Сюжеты"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'subject',
+        ),
+      ),
+      'slug' => 'newslist',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.newsList',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода списка новостей по сюжетам',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода списка новостей по сюжетам',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>newsList</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr><tr>
+          <td>limit</td>
+          <td>int</td>
+          <td></td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+        </tr><tr>
+          <td>offset</td>
+          <td>int</td>
+          <td></td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+        </tr><tr>
+          <td>options</td>
+          <td>array</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
+        </tr><tr>
+          <td>pagination</td>
+          <td>array</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+        </tr><tr>
+          <td>fullyLoad</td>
+          <td>bool</td>
+          <td></td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+        </tr><tr>
+          <td>subjects</td>
+          <td>array|NewsSubject[]|NewsSubject|null</td>
+          <td>Array
+(
+)
+</td>
+          <td>сюжет, новостных сюжетов или GUID, из которых выводятся новости. Если не указаны, то выводятся новости всех сюжетов</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>array|umi\\orm\\selector\\ISelector</td>
+          <td>$list</td><td>список объектов </td></tr><tr>
+          <td>umicms\\pagination\\CmsPaginator</td>
+          <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  135 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+      'displayName' => 'Шаблонизаторы',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'template-engines',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Шаблонизаторы',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:16:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  136 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.widget',
+      'guid' => '8ef66359-b0f5-48b2-bef5-96612796f6b3',
+      'displayName' => 'users.profile.link',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'db52cf05-c365-45f3-a7c2-7d9777997fdc',
+          'displayName' => 'Профиль',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
+              'displayName' => 'Пользователи',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'profile',
+        ),
+      ),
+      'slug' => 'link',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.link',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет вывода ссылки на страницу редактирования профиля',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет вывода ссылки на страницу редактирования профиля',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr><tr>
+          <td>absolute</td>
+          <td>bool</td>
+          <td></td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>string</td>
+          <td>$url</td><td>URL ссылки </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  137 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '8f399ada-205c-4d44-bbd8-52c57df8a8b1',
+      'displayName' => 'blog.draft.publish',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
+          'displayName' => 'blog.draft',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'draft',
+        ),
+      ),
+      'slug' => 'publish',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.publish',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер публикации черновика',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер публикации черновика',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  138 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => '8f6532c0-6daa-41a5-baec-c91f5b5b8b37',
+      'displayName' => 'news.item.rss',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
+          'displayName' => 'Компонент "Новости"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'item',
+        ),
+      ),
+      'slug' => 'rss',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.rss',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода общей RSS-ленты',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода общей RSS-ленты',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  139 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '9017a315-0aac-4602-998b-d994434cfd60',
+      'displayName' => 'blog.reject.edit',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '09d280ca-fd17-4687-a7dd-7faf76962e99',
+          'displayName' => 'blog.reject',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'reject',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.edit',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  140 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '913b9c1f-95b5-4784-8f90-7b1c5344ea40',
+      'displayName' => 'blog.author.profile',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
+          'displayName' => 'blog.author',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'author',
+        ),
+      ),
+      'slug' => 'profile',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.profile',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  141 => 
   array (
     'meta' => 
     array (
@@ -21902,9 +24791,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -21983,28 +24891,28 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>fragments</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>page</td>
           <td>ICmsPage</td>
           <td></td>
-          <td>lt страница, которая попала в результат поиска</td>
+          <td>страница, которая попала в результат поиска</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
           <td></td>
-          <td> запрос, по которому найден результат</td>
+          <td>запрос, по которому найден результат</td>
         </tr><tr>
           <td>contextWordsLimit</td>
           <td>int</td>
-          <td></td>
-          <td> сколько слов контекста выводить в цитате</td>
+          <td>5</td>
+          <td>сколько слов контекста выводить в цитате</td>
         </tr></tbody>
               </table>',
       ),
@@ -22017,23 +24925,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$query</td><td>поисковый запрос </td></tr><tr>
           <td>umicms\\project\\module\\search\\model\\highlight\\Fragmenter</td>
           <td>$fragmenter</td><td>фрагментатор текста по найденным в нем словам </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  133 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -22087,9 +24995,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -22162,17 +25089,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -22181,6 +25097,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -22235,7 +25162,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -22244,7 +25171,7 @@ return array (
       ),
     ),
   ),
-  134 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -22298,9 +25225,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -22379,18 +25325,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -22403,21 +25349,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  135 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -22482,9 +25428,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -22557,21 +25522,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница сброса пароля пользователя </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное отправку нового пароля </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список произошедших ошибок, не передается, если ошибок не было </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -22580,6 +25530,21 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница сброса пароля пользователя </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное отправку нового пароля </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список произошедших ошибок, не передается, если ошибок не было </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -22636,7 +25601,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -22645,7 +25610,7 @@ return array (
       ),
     ),
   ),
-  136 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -22710,9 +25675,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -22791,38 +25775,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -22835,23 +25825,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  137 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -22894,9 +25884,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -22975,33 +25984,33 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>highlight</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>text</td>
           <td>string</td>
           <td></td>
-          <td></td>
+          <td>текст, в котором требуется выделить фрагмент</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
           <td></td>
-          <td></td>
+          <td>фрагмент текста, который нужно выделить</td>
         </tr><tr>
           <td>highlightStart</td>
           <td>string</td>
-          <td></td>
-          <td>tStart</td>
+          <td><mark></td>
+          <td>настройка маркера начала подсветки найденных результатов</td>
         </tr><tr>
           <td>highlightEnd</td>
           <td>string</td>
-          <td></td>
-          <td>ghtEnd</td>
+          <td></mark></td>
+          <td>настройка маркера конца подсветки найденных результатов</td>
         </tr></tbody>
               </table>',
       ),
@@ -23017,7 +26026,7 @@ return array (
       ),
     ),
   ),
-  138 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -23082,9 +26091,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -23157,23 +26185,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -23182,6 +26193,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -23238,7 +26266,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -23247,7 +26275,7 @@ return array (
       ),
     ),
   ),
-  139 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -23279,12 +26307,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:08";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23376,7 +26404,7 @@ return array (
       ),
     ),
   ),
-  140 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -23430,7 +26458,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23488,7 +26516,7 @@ return array (
       ),
     ),
   ),
-  141 => 
+  150 => 
   array (
     'meta' => 
     array (
@@ -23531,7 +26559,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23589,7 +26617,7 @@ return array (
       ),
     ),
   ),
-  142 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -23643,9 +26671,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -23718,17 +26765,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -23737,7 +26784,7 @@ return array (
       ),
     ),
   ),
-  143 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -23791,9 +26838,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -23866,23 +26932,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница запроса смены пароля </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -23891,6 +26940,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница запроса смены пароля </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -23947,7 +27013,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -23956,7 +27022,7 @@ return array (
       ),
     ),
   ),
-  144 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -23999,7 +27065,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24057,7 +27123,7 @@ return array (
       ),
     ),
   ),
-  145 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -24072,7 +27138,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-          'displayName' => 'Восстановление',
+          'displayName' => 'Восстановление доступа',
           'branch' => 
           array (
             'meta' => 
@@ -24111,9 +27177,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -24192,18 +27277,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>form</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>noRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
       ),
@@ -24216,21 +27301,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  146 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -24284,7 +27369,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24362,7 +27447,7 @@ return array (
       ),
     ),
   ),
-  147 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -24427,9 +27512,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -24502,23 +27606,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -24527,6 +27614,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -24583,7 +27687,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -24592,7 +27696,7 @@ return array (
       ),
     ),
   ),
-  148 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -24657,9 +27761,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -24732,23 +27855,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -24757,6 +27863,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -24813,7 +27936,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -24822,7 +27945,7 @@ return array (
       ),
     ),
   ),
-  149 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -24887,9 +28010,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -24968,18 +28110,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>link</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -24992,21 +28134,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  150 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -25049,12 +28191,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:03";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25146,7 +28288,7 @@ return array (
       ),
     ),
   ),
-  151 => 
+  160 => 
   array (
     'meta' => 
     array (
@@ -25211,9 +28353,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -25286,17 +28447,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -25305,7 +28466,7 @@ return array (
       ),
     ),
   ),
-  152 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -25370,9 +28531,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -25445,23 +28625,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования черновика </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -25470,6 +28633,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования черновика </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -25526,7 +28706,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -25535,7 +28715,7 @@ return array (
       ),
     ),
   ),
-  153 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -25589,9 +28769,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -25670,18 +28869,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>category</td>
           <td>string|BlogCategory</td>
           <td></td>
-          <td> категория или GUID</td>
+          <td>категория или GUID</td>
         </tr></tbody>
               </table>',
       ),
@@ -25694,17 +28893,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogCategory">BlogCategory</a></td>
-          <td>$category</td><td>категория постов блога </td></tr></tbody>
-              </table><a name="BlogCategory"></a><h4>BlogCategory</h4><p>Категория поста.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -25713,6 +28901,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogCategory">BlogCategory</a></td>
+          <td>$category</td><td>категория постов блога </td></tr></tbody>
+          </table><a name="BlogCategory"></a><h4>BlogCategory</h4><p>Категория поста.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -25759,11 +28958,11 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>IObjectSet</td>
           <td>$posts</td><td>категория поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  154 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -25828,9 +29027,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -25909,28 +29127,28 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>addComment</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста</td>
+          <td>пост или GUID поста</td>
         </tr><tr>
           <td>blogComment</td>
           <td>null|string|BlogComment</td>
           <td></td>
-          <td> комментарий или GUID родительского комментария</td>
+          <td>комментарий или GUID родительского комментария</td>
         </tr></tbody>
               </table>',
       ),
@@ -25943,21 +29161,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  155 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -26011,7 +29229,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26089,7 +29307,7 @@ return array (
       ),
     ),
   ),
-  156 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -26154,9 +29372,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -26235,38 +29472,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -26279,23 +29522,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  157 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -26349,9 +29592,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -26430,33 +29692,33 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет.</td>
+          <td>auto</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>branch</td>
           <td>string|StructureElement</td>
           <td></td>
-          <td> ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.</td>
+          <td>ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта</td>
         </tr><tr>
           <td>depth</td>
           <td>int</td>
-          <td></td>
-          <td> уровень вложенности меню.</td>
+          <td>1</td>
+          <td>уровень вложенности меню</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки при значении true игнорируется</td>
         </tr><tr>
           <td>fields</td>
           <td>string</td>
           <td></td>
-          <td> список имен полей, с которыми нужно загрузить объекты, в виде строки с разделителем в виде запятой</td>
+          <td>список имен полей, с которыми нужно загрузить объекты, в виде строки с разделителем в виде запятой</td>
         </tr></tbody>
               </table>',
       ),
@@ -26469,21 +29731,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array</td>
           <td>$menu</td><td>элементы меню в формате: [ [ \'page\' => StructureElement $page, \'active\' => bool страница находится в списке хлебных крошек для текущей странице , \'current\' => bool страница является текущей, \'children\' => array список дочерних элементов меню ], ... ] </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  158 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -26548,9 +29810,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -26629,38 +29910,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -26673,23 +29960,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  159 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -26743,9 +30030,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -26818,17 +30124,17 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\orm\\object\\ICmsPage</td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
+          </table>',
       ),
       'templateName' => 
       array (
@@ -26837,7 +30143,7 @@ return array (
       ),
     ),
   ),
-  160 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -26880,12 +30186,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:37";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:37";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26977,7 +30283,7 @@ return array (
       ),
     ),
   ),
-  161 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -27031,9 +30337,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27112,43 +30437,49 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>newsList</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>rubrics</td>
           <td>array|NewsRubric[]|NewsRubric|null</td>
           <td></td>
-          <td> рубрика, список новостных рубрик или GUID, из которых выводятся новости. Если не указаны, то новости выводятся из всех рубрик</td>
+          <td>рубрика, список новостных рубрик или GUID, из которых выводятся новости. Если не указаны, то новости выводятся из всех рубрик</td>
         </tr></tbody>
               </table>',
       ),
@@ -27161,23 +30492,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  162 => 
+  171 => 
   array (
     'meta' => 
     array (
@@ -27231,7 +30562,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27289,7 +30620,7 @@ return array (
       ),
     ),
   ),
-  163 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -27343,9 +30674,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27424,13 +30774,13 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>view</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr></tbody>
               </table>',
       ),
@@ -27443,17 +30793,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#RegisteredUser">RegisteredUser</a></td>
-          <td>$user</td><td>текущий пользователь </td></tr></tbody>
-              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -27462,6 +30801,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#RegisteredUser">RegisteredUser</a></td>
+          <td>$user</td><td>текущий пользователь </td></tr></tbody>
+          </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>bool</td>
           <td>$active</td><td>состояние активности на сайте </td></tr><tr>
           <td>bool</td>
@@ -27496,11 +30846,11 @@ return array (
           <td>$lastName</td><td>фамилия </td></tr><tr>
           <td>\\DateTime</td>
           <td>$registrationDate</td><td>дата регистрации </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  164 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -27554,9 +30904,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27635,33 +31004,36 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>tree</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
           <td>CmsHierarchicObject</td>
           <td></td>
-          <td> родительская нода или GUID родительской ноды</td>
+          <td>родительская нода или GUID родительской ноды</td>
         </tr><tr>
           <td>depth</td>
           <td>int</td>
           <td></td>
-          <td> глубина вложения</td>
+          <td>глубина вложения</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -27674,21 +31046,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\hmvc\\view\\CmsTreeView</td>
           <td>$tree</td><td>представление дерева </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  165 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -27742,9 +31114,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27823,18 +31214,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogTag</td>
           <td>string|BlogTag</td>
           <td></td>
-          <td> GUID тэга</td>
+          <td>тэг или GUID тэга</td>
         </tr></tbody>
               </table>',
       ),
@@ -27847,17 +31238,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogTag">BlogTag</a></td>
-          <td>$blogTag</td><td>тэг </td></tr></tbody>
-              </table><a name="BlogTag"></a><h4>BlogTag</h4><p>Теги блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -27866,6 +31246,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogTag">BlogTag</a></td>
+          <td>$blogTag</td><td>тэг </td></tr></tbody>
+          </table><a name="BlogTag"></a><h4>BlogTag</h4><p>Теги блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -27906,11 +31297,11 @@ return array (
           <td>$rss</td><td>RSS-ленты тэга </td></tr><tr>
           <td>int</td>
           <td>$postsCount</td><td>количество постов, относящихся к тэгу </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  166 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -27964,7 +31355,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28042,7 +31433,7 @@ return array (
       ),
     ),
   ),
-  167 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -28096,9 +31487,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -28171,17 +31581,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -28190,6 +31589,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -28244,7 +31654,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -28253,7 +31663,7 @@ return array (
       ),
     ),
   ),
-  168 => 
+  177 => 
   array (
     'meta' => 
     array (
@@ -28296,7 +31706,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28354,7 +31764,7 @@ return array (
       ),
     ),
   ),
-  169 => 
+  178 => 
   array (
     'meta' => 
     array (
@@ -28408,7 +31818,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28486,7 +31896,7 @@ return array (
       ),
     ),
   ),
-  170 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -28551,9 +31961,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -28632,38 +32061,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>postList</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>blogAuthors</td>
           <td>array|BlogAuthor[]|BlogAuthor|null</td>
@@ -28681,23 +32116,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  171 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -28740,12 +32175,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:13";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28837,7 +32272,7 @@ return array (
       ),
     ),
   ),
-  172 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -28891,9 +32326,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -28972,23 +32426,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>unPublishPostForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста</td>
+          <td>пост или GUID поста</td>
         </tr></tbody>
               </table>',
       ),
@@ -29001,21 +32455,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  173 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -29069,9 +32523,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -29150,18 +32623,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>newsItem</td>
           <td>string|NewsItem</td>
           <td></td>
-          <td> новость или GUID новости</td>
+          <td>новость или GUID новости</td>
         </tr></tbody>
               </table>',
       ),
@@ -29174,17 +32647,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#NewsItem">NewsItem</a></td>
-          <td>$newsItem</td><td>новость </td></tr></tbody>
-              </table><a name="NewsItem"></a><h4>NewsItem</h4><p>Новость.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -29193,6 +32655,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#NewsItem">NewsItem</a></td>
+          <td>$newsItem</td><td>новость </td></tr></tbody>
+          </table><a name="NewsItem"></a><h4>NewsItem</h4><p>Новость.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -29237,11 +32710,11 @@ return array (
           <td>$subjects</td><td>сюжеты, в которые входит новость </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник публикации </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  174 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -29295,7 +32768,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29373,7 +32846,7 @@ return array (
       ),
     ),
   ),
-  175 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -29427,7 +32900,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29485,7 +32958,7 @@ return array (
       ),
     ),
   ),
-  176 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -29539,9 +33012,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -29620,38 +33112,41 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет.</td>
+          <td>customMenu</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
           <td>CmsHierarchicObject</td>
           <td></td>
-          <td> родительская нода или GUID родительской ноды</td>
+          <td>родительская нода или GUID родительской ноды</td>
         </tr><tr>
           <td>depth</td>
           <td>int</td>
           <td></td>
-          <td> глубина вложения</td>
+          <td>глубина вложения</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>menuName</td>
           <td>string</td>
           <td></td>
-          <td> имя выводимого меню.</td>
+          <td>имя выводимого меню</td>
         </tr></tbody>
               </table>',
       ),
@@ -29664,21 +33159,190 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umicms\\hmvc\\view\\CmsTreeView</td>
           <td>$tree</td><td>представление дерева </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  177 => 
+  186 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'c108b63e-2d2a-41ae-b74e-d492de025453',
+      'displayName' => 'Схема базы данных',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3.0',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'db-structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Схема базы данных',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:26:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 16:25:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Схема базы данных',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>UMI.CMS 3 имеет классическую и интуитивно понятную схему базы данных и связей между ними, что позволяет делать простые низкоуровневые запросы на выборку без использования ORM.</p>
+
+<p>Все таблицы в БД имеют префикс, который соответсвует имени вашего проекта (по умолчанию <strong>default_</strong>). Это позволяет использовать одну и ту же базу данных для нескольких проектов на UMI.CMS 3, а так же разрешает проблему конфликтов с существующими в БД таблицами.</p>
+
+<p>Для примера, приводим UML-схему таблиц для модуля <strong>Новости</strong>:<br />
+<img alt="Схема таблиц UMI.CMS" src="/umi_docs/asset/images/database/db.diagram.svg" /></p>
+
+<h2>Прямые запросы к БД и денормализация данных</h2>
+
+<p>Мы не запрещаем использовать прямые запросы к БД для ускорения некоторых выборок в вашем проекте, но не рекомендуем делать прямые запросы в &quot;коробочных&quot; решениях.</p>
+
+<p>Если есть необходимость изменять данные прямыми запросами, то нужно понимать, что UMI.CMS 3 вычисляет некоторые поля для более быстрых выборок и избавления от лишних JOIN-запросов (<a href="http://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" target="_blank">денормализация данных</a>), поэтому необходимо обновлять эти данные так же.</p>
+
+<p>Для примера, рассмотрим таблицу <strong>default_news_rubric</strong>:</p>
+
+<p><img alt="Схема таблицы default_news_rubric" src="/umi_docs/asset/images/database/db.table.rubric.jpg" style="height:567px; width:600px" /></p>
+
+<p>Эта таблица служит иcточником данных для типичной иерархической коллекции новостных рубрик и определяет следующие поля для денормализации:</p>
+
+<ul>
+	<li><strong>uri</strong> - служит для быстрой выборки по <strong>uri</strong> рубрики и вычисляется исходя из поля <strong>slug</strong> рубрики и ее родителей. Автоматически пересчитывается ORM для рубрики и ее детей при изменении <strong>slug</strong>, перемещении в другую рубрику.</li>
+	<li><strong>mpath и level</strong> - служат для быстрых выборок по иерархии на произвольную глубину. Так же автоматически пересчитывается при меремещении у рубрики и ее детей.</li>
+	<li><strong>site_child_count</strong> и <strong>admin_child_count</strong> - содержит количество дочерних рубрик, отображаемых в административной панели и на сайте. Эти поля пересчитываются с учетом активности и удаленности рубрики.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  187 => 
   array (
     'meta' => 
     array (
@@ -29721,1583 +33385,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:56";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  178 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-      'displayName' => 'Блог',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-          'displayName' => 'Виджеты',
-          'branch' => NULL,
-          'slug' => 'widgets',
-        ),
-      ),
-      'slug' => 'blog',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Блог',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:33";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  179 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'c3a6303a-8237-45bb-a7f7-9f94b4da343f',
-      'displayName' => 'blog.post.view.page',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '7b7a1070-e717-46f5-b523-ab6f2244b419',
-          'displayName' => 'blog.post.view',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
-              'displayName' => 'blog.post',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'Блог',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                      'displayName' => 'Контроллеры',
-                      'branch' => NULL,
-                      'slug' => 'controllers',
-                    ),
-                  ),
-                  'slug' => 'blog',
-                ),
-              ),
-              'slug' => 'post',
-            ),
-          ),
-          'slug' => 'view',
-        ),
-      ),
-      'slug' => 'page',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.post.view.page',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер для отображения поста',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер для отображения поста',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umicms\\orm\\object\\ICmsPage</td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'page',
-      ),
-    ),
-  ),
-  180 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'c3b3a011-e9cf-40ef-b0f1-4dcd7c63b55e',
-      'displayName' => 'blog.moderate.edit',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
-          'displayName' => 'blog.moderate',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'moderate',
-        ),
-      ),
-      'slug' => 'edit',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.moderate.edit',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  181 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'c6e7b334-a38c-4ca6-8d39-acd41fdcd19f',
-      'displayName' => 'blog.author.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
-          'displayName' => 'blog.author',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'author',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.author.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  182 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'c741c6c9-9cd1-45e7-b5dc-aa2d96df6050',
-      'displayName' => 'users.profile.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
-          'displayName' => 'users.profile',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-              'displayName' => 'Пользователи',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'profile',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'users.profile.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер сохранения профиля пользователя',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер сохранения профиля пользователя',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>bool</td>
-          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница редактирования профиля пользователя </td></tr><tr>
-          <td><a href="#RegisteredUser">RegisteredUser</a></td>
-          <td>$user</td><td>текущий пользователь </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>bool</td>
-          <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>IManyToManyObjectSet</td>
-          <td>$groups</td><td>группы, в которые входит пользователь </td></tr><tr>
-          <td>string</td>
-          <td>$login</td><td>логин </td></tr><tr>
-          <td>string</td>
-          <td>$email</td><td>e-mail </td></tr><tr>
-          <td>string</td>
-          <td>$firstName</td><td>имя </td></tr><tr>
-          <td>string</td>
-          <td>$middleName</td><td>отчество </td></tr><tr>
-          <td>string</td>
-          <td>$lastName</td><td>фамилия </td></tr><tr>
-          <td>\\DateTime</td>
-          <td>$registrationDate</td><td>дата регистрации </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  183 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'c91fcfbf-7655-4ef9-98ad-6859b8997eda',
-      'displayName' => 'blog.comment.add',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-          'displayName' => 'Компонент "Комментарии"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'comment',
-        ),
-      ),
-      'slug' => 'add',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.comment.add',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  184 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'ca03f29d-b34e-4294-bd2c-0442b806fb7e',
-      'displayName' => 'blog.author.rss',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
-          'displayName' => 'blog.author',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'author',
-        ),
-      ),
-      'slug' => 'rss',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.author.rss',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода RSS-ленты автора',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода RSS-ленты автора',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  185 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'ca5220a5-772c-4c3f-853c-097323332e4b',
-      'displayName' => 'blog.draft.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
-          'displayName' => 'blog.draft',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'draft',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  186 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'cd10d5a0-8a53-4031-a6b1-c69f7a15f228',
-      'displayName' => 'blog.draft.view',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
-          'displayName' => 'blog.draft',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'draft',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.view',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  187 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-      'displayName' => 'Новости',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-          'displayName' => 'Контроллеры',
-          'branch' => NULL,
-          'slug' => 'controllers',
-        ),
-      ),
-      'slug' => 'news',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Новости',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:54";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:56";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31395,49 +33488,38 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
-      'displayName' => 'Компонент "Новости"',
+      'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+      'displayName' => 'Блог',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'Новости',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'news',
+          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+          'displayName' => 'Виджеты',
+          'branch' => NULL,
+          'slug' => 'widgets',
         ),
       ),
-      'slug' => 'item',
+      'slug' => 'blog',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Компонент "Новости"',
+        1 => 'Блог',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:47:05";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31534,6 +33616,1914 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'c3a6303a-8237-45bb-a7f7-9f94b4da343f',
+      'displayName' => 'blog.post.view.page',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '7b7a1070-e717-46f5-b523-ab6f2244b419',
+          'displayName' => 'blog.post.view',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
+              'displayName' => 'blog.post',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+                  'displayName' => 'Блог',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                      'displayName' => 'Контроллеры',
+                      'branch' => NULL,
+                      'slug' => 'controllers',
+                    ),
+                  ),
+                  'slug' => 'blog',
+                ),
+              ),
+              'slug' => 'post',
+            ),
+          ),
+          'slug' => 'view',
+        ),
+      ),
+      'slug' => 'page',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view.page',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер для отображения поста',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер для отображения поста',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umicms\\orm\\object\\ICmsPage</td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'page',
+      ),
+    ),
+  ),
+  190 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'c3b3a011-e9cf-40ef-b0f1-4dcd7c63b55e',
+      'displayName' => 'blog.moderate.edit',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
+          'displayName' => 'blog.moderate',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'moderate',
+        ),
+      ),
+      'slug' => 'edit',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.edit',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  191 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'c5458f3b-c14d-4390-93c5-77ec8ec9bf9c',
+      'displayName' => 'Добавление своего поля',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'add-field',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавление своего поля',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 20:32:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Добавление своего поля',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  192 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'c6e7b334-a38c-4ca6-8d39-acd41fdcd19f',
+      'displayName' => 'blog.author.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
+          'displayName' => 'blog.author',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'author',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  193 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'c741c6c9-9cd1-45e7-b5dc-aa2d96df6050',
+      'displayName' => 'users.profile.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
+          'displayName' => 'users.profile',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+              'displayName' => 'Пользователи',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'profile',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер сохранения профиля пользователя',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер сохранения профиля пользователя',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>bool</td>
+          <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница редактирования профиля пользователя </td></tr><tr>
+          <td><a href="#RegisteredUser">RegisteredUser</a></td>
+          <td>$user</td><td>текущий пользователь </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>bool</td>
+          <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
+              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>IManyToManyObjectSet</td>
+          <td>$groups</td><td>группы, в которые входит пользователь </td></tr><tr>
+          <td>string</td>
+          <td>$login</td><td>логин </td></tr><tr>
+          <td>string</td>
+          <td>$email</td><td>e-mail </td></tr><tr>
+          <td>string</td>
+          <td>$firstName</td><td>имя </td></tr><tr>
+          <td>string</td>
+          <td>$middleName</td><td>отчество </td></tr><tr>
+          <td>string</td>
+          <td>$lastName</td><td>фамилия </td></tr><tr>
+          <td>\\DateTime</td>
+          <td>$registrationDate</td><td>дата регистрации </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  194 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'c91fcfbf-7655-4ef9-98ad-6859b8997eda',
+      'displayName' => 'blog.comment.add',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
+          'displayName' => 'Компонент "Комментарии"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'comment',
+        ),
+      ),
+      'slug' => 'add',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.add',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  195 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'ca03f29d-b34e-4294-bd2c-0442b806fb7e',
+      'displayName' => 'blog.author.rss',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
+          'displayName' => 'blog.author',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'author',
+        ),
+      ),
+      'slug' => 'rss',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.rss',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода RSS-ленты автора',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода RSS-ленты автора',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  196 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'ca5220a5-772c-4c3f-853c-097323332e4b',
+      'displayName' => 'blog.draft.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
+          'displayName' => 'blog.draft',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'draft',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  197 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'cd10d5a0-8a53-4031-a6b1-c69f7a15f228',
+      'displayName' => 'blog.draft.view',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
+          'displayName' => 'blog.draft',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'draft',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  198 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+      'displayName' => 'Новости',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+          'displayName' => 'Контроллеры',
+          'branch' => NULL,
+          'slug' => 'controllers',
+        ),
+      ),
+      'slug' => 'news',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новости',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  199 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'd1bca38e-fdb2-4706-b349-fd065c947129',
+      'displayName' => 'ntcn',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+          'displayName' => 'Шаблонизаторы',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'template-engines',
+        ),
+      ),
+      'slug' => 'nctnct',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'ntcn',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  200 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'd2be550d-6034-4adf-8025-e1890e6964bd',
+      'displayName' => 'Компонент "Новости"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+          'displayName' => 'Новости',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'news',
+        ),
+      ),
+      'slug' => 'item',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Новости"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:47:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  201 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => 'd3769047-794a-4f27-96bc-9c69cd3119df',
       'displayName' => 'blog.moderate.own.post',
@@ -31594,9 +35584,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -31675,18 +35684,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста требующего модерации</td>
+          <td>пост или GUID поста требующего модерации</td>
         </tr></tbody>
               </table>',
       ),
@@ -31699,17 +35708,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogPost">BlogPost</a></td>
-          <td>$blogPost</td><td>пост блога </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -31718,6 +35716,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogPost">BlogPost</a></td>
+          <td>$blogPost</td><td>пост блога </td></tr></tbody>
+          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -31772,11 +35781,11 @@ return array (
           <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
           <td>string</td>
           <td>$source</td><td>источник поста </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  190 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -31797,12 +35806,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:07:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 12:16:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31850,43 +35859,18 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Добро пожаловать!',
+        1 => 'Центр разработчиков UMI',
       ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
+        1 => '<p>Добро пожаловать в центр для разработчиков компании Юмисофт!</p>
 
-<h3>Глоссарий</h3>
+<p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
 
-<ul>
-	<li><a href="http://ru.wikipedia.org/wiki/Model-View-Controller" target="_blank">MVC</a>.</li>
-	<li>Компонент - MVC-триада.</li>
-	<li>Виджет - служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
-	<li>Модуль - это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
-	<li>Проект - компонент, состоящий из модулей.</li>
-</ul>
+<p>Предполагается, что знакомство с администрированием системы уже состоялось (иначе рекомендуется сначала обратить внимание на <a href="http://umi-cms.ru/help" target="_blank">Пользовательскую документацию</a>.)</p>
 
-<h3>UMI.CMS 3.0 - иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов</h3>
-
-<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/screenshot_2014-06-29_15_15_32.png" style="height:230px; width:605px" />&nbsp;</p>
-
-<h3>Как все работает</h3>
-
-<ul>
-	<li>запуск index.php: определение базовых директорий и настройка окружения</li>
-	<li>загрузка приложения UMI.CMS:</li>
-	<li>- базовая настройка тулкита</li>
-	<li>- разбор запроса и определение текущего проекта</li>
-	<li>- регистрация конфигурации проекта (~/project)</li>
-	<li>- регистрация и конфигурация тулбоксов, используемых в проекте</li>
-	<li>- диспетчеризация до конкретного контроллера одного из компонентов</li>
-	<li>- выполнение контроллера, формирование View для шаблонизации</li>
-	<li>- шаблонизация / сериализация</li>
-	<li>- вывод ответа</li>
-</ul>
-
-<p>&nbsp;<img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
+<p>&nbsp;</p>
 ',
       ),
       'active#ru-RU' => 
@@ -31931,7 +35915,7 @@ return array (
       ),
     ),
   ),
-  191 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -31985,7 +35969,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32043,14 +36027,14 @@ return array (
       ),
     ),
   ),
-  192 => 
+  204 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'd5f8f9b6-9141-4ea0-beed-695349bf4926',
-      'displayName' => 'Восстановление',
+      'displayName' => 'Восстановление доступа',
       'branch' => 
       array (
         'meta' => 
@@ -32081,17 +36065,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Восстановление',
+        1 => 'Восстановление доступа',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:00";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-21 15:38:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32183,7 +36167,7 @@ return array (
       ),
     ),
   ),
-  193 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -32248,9 +36232,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -32329,23 +36332,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>editPostLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID редактируемого поста, требующего модерации</td>
+          <td>пост или GUID редактируемого поста, требующего модерации</td>
         </tr></tbody>
               </table>',
       ),
@@ -32358,21 +36361,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  194 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -32393,12 +36396,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:22:51";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:22:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32530,7 +36533,7 @@ return array (
       ),
     ),
   ),
-  195 => 
+  207 => 
   array (
     'meta' => 
     array (
@@ -32595,9 +36598,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -32676,18 +36698,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>editLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
           <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
         </tr></tbody>
               </table>',
       ),
@@ -32700,21 +36722,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>string</td>
           <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  196 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -32757,12 +36779,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:13";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32854,7 +36876,7 @@ return array (
       ),
     ),
   ),
-  197 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -32908,7 +36930,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32966,7 +36988,7 @@ return array (
       ),
     ),
   ),
-  198 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -33020,9 +37042,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -33101,23 +37142,23 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>draftForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
           <td></td>
-          <td> пост или GUID поста на модерации, необходимого перенесте в черновики</td>
+          <td>пост или GUID поста на модерации, необходимого перенесте в черновики</td>
         </tr></tbody>
               </table>',
       ),
@@ -33130,21 +37171,21 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>umi\\form\\FormEntityView</td>
           <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  199 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -33209,9 +37250,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -33284,23 +37344,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr><tr>
-          <td>array</td>
-          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
-          <td>string|bool</td>
-          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
-          <td><a href="#SystemPage">SystemPage</a></td>
-          <td>$page</td><td>текущая страница добавления комментария </td></tr></tbody>
-              </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -33309,6 +37352,23 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr><tr>
+          <td>array</td>
+          <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
+          <td>string|bool</td>
+          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
+          <td><a href="#SystemPage">SystemPage</a></td>
+          <td>$page</td><td>текущая страница добавления комментария </td></tr></tbody>
+          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -33365,7 +37425,7 @@ return array (
           <td>$children</td><td>дочерние элементы </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -33374,7 +37434,7 @@ return array (
       ),
     ),
   ),
-  200 => 
+  212 => 
   array (
     'meta' => 
     array (
@@ -33417,1890 +37477,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:50";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  201 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => 'e18a5327-3842-4e5e-aff3-9bfef44d3b2a',
-      'displayName' => 'news.rubric.list',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-          'displayName' => 'Компонент "Рубрики"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'rubric',
-        ),
-      ),
-      'slug' => 'list',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.rubric.list',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода списка новостных рубрик',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода списка новостных рубрик',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr><tr>
-          <td>limit</td>
-          <td>int</td>
-          <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
-        </tr><tr>
-          <td>offset</td>
-          <td>int</td>
-          <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
-        </tr><tr>
-          <td>options</td>
-          <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
-        </tr><tr>
-          <td>pagination</td>
-          <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
-        </tr><tr>
-          <td>fullyLoad</td>
-          <td>bool</td>
-          <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
-        </tr><tr>
-          <td>parentRubric</td>
-          <td>string|null|NewsRubric</td>
-          <td></td>
-          <td> новостная рубрика или GUID, из которой выводятся дочерние рубрики. Если не указан, выводятся все корневые рубрики.</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>array|umi\\orm\\selector\\ISelector</td>
-          <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
-          <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  202 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'e1a445b5-e762-4ff9-98f6-d35ffa2e4144',
-      'displayName' => 'blog.moderate.all.page',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '28d69521-2101-4bc3-8dcb-4e4656674ec5',
-          'displayName' => 'blog.moderate.all',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
-              'displayName' => 'blog.moderate',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'Блог',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                      'displayName' => 'Контроллеры',
-                      'branch' => NULL,
-                      'slug' => 'controllers',
-                    ),
-                  ),
-                  'slug' => 'blog',
-                ),
-              ),
-              'slug' => 'moderate',
-            ),
-          ),
-          'slug' => 'all',
-        ),
-      ),
-      'slug' => 'page',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.moderate.all.page',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода поста блога, требующего модерации',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода поста блога, требующего модерации',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umicms\\orm\\object\\ICmsPage</td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'page',
-      ),
-    ),
-  ),
-  203 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'e3187a27-2840-4bdf-aaf4-4943ba79526a',
-      'displayName' => 'news.rubric.page',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '515a3b57-7513-456d-9756-ac320a343506',
-          'displayName' => 'Компонент "Рубрики"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                  'displayName' => 'Контроллеры',
-                  'branch' => NULL,
-                  'slug' => 'controllers',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'rubric',
-        ),
-      ),
-      'slug' => 'page',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.rubric.page',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц компонента',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц компонента',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umicms\\orm\\object\\ICmsPage</td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'page',
-      ),
-    ),
-  ),
-  204 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => 'e4473d19-6e86-40e9-803d-e5ded63e8157',
-      'displayName' => 'news.subject.rssLink',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
-          'displayName' => 'Компонент "Сюжеты"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-              'displayName' => 'Новости',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'news',
-            ),
-          ),
-          'slug' => 'subject',
-        ),
-      ),
-      'slug' => 'rsslink',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.subject.rssLink',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода ссылки на RSS-ленту по сюжету',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет для вывода ссылки на RSS-ленту по сюжету',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr><tr>
-          <td>absolute</td>
-          <td>bool</td>
-          <td></td>
-          <td> генерировать ли абсолютный URL для ссылки</td>
-        </tr><tr>
-          <td>subject</td>
-          <td>string|NewsSubject</td>
-          <td></td>
-          <td> новостной сюжет или GUID сюжета, по которым формируется RSS-лента.</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>string</td>
-          <td>$url</td><td>URL ссылки </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  205 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => 'e46fcb30-2555-4364-932d-b57a9116b019',
-      'displayName' => 'search.form',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-          'displayName' => 'Поиск',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'search',
-        ),
-      ),
-      'slug' => 'form',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'search.form',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет, выводящий форму поиска',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет, выводящий форму поиска',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы поиска </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  206 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.widget',
-      'guid' => 'e638546b-6a0a-48fe-a83e-afc09d6669e2',
-      'displayName' => 'users.authorization.loginForm',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
-          'displayName' => 'Авторизация',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-              'displayName' => 'Пользователи',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'users',
-            ),
-          ),
-          'slug' => 'authorization',
-        ),
-      ),
-      'slug' => 'loginform',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'users.authorization.loginForm',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет вывода формы авторизации',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Виджет вывода формы авторизации',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'parameters' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Параметр</th>
-              <th>Тип</th>
-              <th>Значение</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>forbiddenTemplate</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
-        </tr><tr>
-          <td>template</td>
-          <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
-        </tr><tr>
-          <td>redirectUrl</td>
-          <td>string</td>
-          <td></td>
-          <td> URL для редиректа после успешной обработки формы</td>
-        </tr></tbody>
-              </table>',
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umi\\form\\FormEntityView</td>
-          <td>$form</td><td>представление формы </td></tr></tbody>
-              </table>',
-      ),
-    ),
-  ),
-  207 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
-      'displayName' => 'Компонент "Рубрики"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-          'displayName' => 'Новости',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'news',
-        ),
-      ),
-      'slug' => 'rubric',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Рубрики"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:42";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  208 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'e6693b4a-d8d7-4192-b611-e57b1e43fa0e',
-      'displayName' => 'blog.draft.view',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
-          'displayName' => 'Черновики',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'draft',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.view',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  209 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'ea63873e-44f7-4375-b4f9-11ba213fd969',
-      'displayName' => 'news.index',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-          'displayName' => 'Новости',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'news',
-        ),
-      ),
-      'slug' => 'index',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'news.index',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода страниц структуры',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Параметр</th>
-          <th>Описание</th>
-        </tr>
-      </thead>
-      <tbody><tr>
-          <td>string</td>
-          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
-          <td>string</td>
-          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
-          <td>string</td>
-          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
-          <td>string</td>
-          <td>$contents</td><td>содержимое страницы </td></tr><tr>
-          <td>string</td>
-          <td>$h1</td><td>заголовок страницы </td></tr><tr>
-          <td>string</td>
-          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
-          <td>Layout|null</td>
-          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
-          <td>bool</td>
-          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
-          <td>string</td>
-          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
-          <td>IObjectType</td>
-          <td>$type</td><td>тип </td></tr><tr>
-          <td>string</td>
-          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
-          <td>int</td>
-          <td>$version</td><td>версия </td></tr><tr>
-          <td>DateTime</td>
-          <td>$created</td><td>время создания объекта </td></tr><tr>
-          <td>DateTime</td>
-          <td>$updated</td><td>время обновления объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$owner</td><td>владелец объекта </td></tr><tr>
-          <td>BaseUser</td>
-          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
-          <td>bool</td>
-          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
-          <td>bool</td>
-          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
-          <td>int</td>
-          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
-          <td>int</td>
-          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
-          <td>CmsHierarchicObject|null</td>
-          <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
-          <td>IObjectSet</td>
-          <td>$children</td><td>дочерние элементы </td></tr><tr>
-          <td>string</td>
-          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
-          <td>string</td>
-          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
-          <td>bool</td>
-          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
-          <td>int</td>
-          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'index',
-      ),
-    ),
-  ),
-  210 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'efd0cf61-7f28-49b3-a253-3408ce105c0a',
-      'displayName' => 'blog.post.view',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
-          'displayName' => 'Компонент "Посты"',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-              'displayName' => 'Блог',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-                  'displayName' => 'Виджеты',
-                  'branch' => NULL,
-                  'slug' => 'widgets',
-                ),
-              ),
-              'slug' => 'blog',
-            ),
-          ),
-          'slug' => 'post',
-        ),
-      ),
-      'slug' => 'view',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.post.view',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  211 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static.controller',
-      'guid' => 'f14593c0-af66-4363-9700-212432dd3bae',
-      'displayName' => 'blog.draft.view.page',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'cd10d5a0-8a53-4031-a6b1-c69f7a15f228',
-          'displayName' => 'blog.draft.view',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
-              'displayName' => 'blog.draft',
-              'branch' => 
-              array (
-                'meta' => 
-                array (
-                  'collection' => 'structure',
-                  'type' => 'static',
-                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-                  'displayName' => 'Блог',
-                  'branch' => 
-                  array (
-                    'meta' => 
-                    array (
-                      'collection' => 'structure',
-                      'type' => 'static',
-                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-                      'displayName' => 'Контроллеры',
-                      'branch' => NULL,
-                      'slug' => 'controllers',
-                    ),
-                  ),
-                  'slug' => 'blog',
-                ),
-              ),
-              'slug' => 'draft',
-            ),
-          ),
-          'slug' => 'view',
-        ),
-      ),
-      'slug' => 'page',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'blog.draft.view.page',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода черновика блога',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Контроллер вывода черновика блога',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'description' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'returnValue' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td>umicms\\orm\\object\\ICmsPage</td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table>',
-      ),
-      'templateName' => 
-      array (
-        0 => 'string',
-        1 => 'page',
-      ),
-    ),
-  ),
-  212 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
-      'displayName' => 'Компонент "Новости"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-          'displayName' => 'Новости',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'news',
-        ),
-      ),
-      'slug' => 'item',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Новости"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:05";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35397,45 +37579,1331 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'f610b0f2-5805-4c8b-abb6-a7b3d9348d23',
-      'displayName' => 'users.authorization',
+      'type' => 'static.widget',
+      'guid' => 'e18a5327-3842-4e5e-aff3-9bfef44d3b2a',
+      'displayName' => 'news.rubric.list',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'Пользователи',
+          'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
+          'displayName' => 'Компонент "Рубрики"',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
+              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'news',
             ),
           ),
-          'slug' => 'users',
+          'slug' => 'rubric',
         ),
       ),
-      'slug' => 'authorization',
+      'slug' => 'list',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.authorization',
+        1 => 'news.rubric.list',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода списка новостных рубрик',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода списка новостных рубрик',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr><tr>
+          <td>limit</td>
+          <td>int</td>
+          <td></td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+        </tr><tr>
+          <td>offset</td>
+          <td>int</td>
+          <td></td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+        </tr><tr>
+          <td>options</td>
+          <td>array</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
+        </tr><tr>
+          <td>pagination</td>
+          <td>array</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+        </tr><tr>
+          <td>fullyLoad</td>
+          <td>bool</td>
+          <td></td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+        </tr><tr>
+          <td>parentRubric</td>
+          <td>string|null|NewsRubric</td>
+          <td></td>
+          <td>новостная рубрика или GUID, из которой выводятся дочерние рубрики. Если не указан, выводятся все корневые рубрики</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>array|umi\\orm\\selector\\ISelector</td>
+          <td>$list</td><td>список объектов </td></tr><tr>
+          <td>umicms\\pagination\\CmsPaginator</td>
+          <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  214 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'e1a445b5-e762-4ff9-98f6-d35ffa2e4144',
+      'displayName' => 'blog.moderate.all.page',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '28d69521-2101-4bc3-8dcb-4e4656674ec5',
+          'displayName' => 'blog.moderate.all',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
+              'displayName' => 'blog.moderate',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+                  'displayName' => 'Блог',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                      'displayName' => 'Контроллеры',
+                      'branch' => NULL,
+                      'slug' => 'controllers',
+                    ),
+                  ),
+                  'slug' => 'blog',
+                ),
+              ),
+              'slug' => 'moderate',
+            ),
+          ),
+          'slug' => 'all',
+        ),
+      ),
+      'slug' => 'page',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.page',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода поста блога, требующего модерации',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода поста блога, требующего модерации',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umicms\\orm\\object\\ICmsPage</td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'page',
+      ),
+    ),
+  ),
+  215 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'e3187a27-2840-4bdf-aaf4-4943ba79526a',
+      'displayName' => 'news.rubric.page',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '515a3b57-7513-456d-9756-ac320a343506',
+          'displayName' => 'Компонент "Рубрики"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                  'displayName' => 'Контроллеры',
+                  'branch' => NULL,
+                  'slug' => 'controllers',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'rubric',
+        ),
+      ),
+      'slug' => 'page',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.page',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц компонента',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц компонента',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umicms\\orm\\object\\ICmsPage</td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'page',
+      ),
+    ),
+  ),
+  216 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.widget',
+      'guid' => 'e4473d19-6e86-40e9-803d-e5ded63e8157',
+      'displayName' => 'news.subject.rssLink',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'e05d9cd3-7fe6-428e-a215-8f3db8d29f93',
+          'displayName' => 'Компонент "Сюжеты"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+              'displayName' => 'Новости',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'news',
+            ),
+          ),
+          'slug' => 'subject',
+        ),
+      ),
+      'slug' => 'rsslink',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.rssLink',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода ссылки на RSS-ленту по сюжету',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет для вывода ссылки на RSS-ленту по сюжету',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>rssLink</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr><tr>
+          <td>absolute</td>
+          <td>bool</td>
+          <td></td>
+          <td>генерировать ли абсолютный URL для ссылки</td>
+        </tr><tr>
+          <td>subject</td>
+          <td>string|NewsSubject</td>
+          <td></td>
+          <td>новостной сюжет или GUID сюжета, по которым формируется RSS-лента</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>string</td>
+          <td>$url</td><td>URL ссылки </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  217 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.widget',
+      'guid' => 'e46fcb30-2555-4364-932d-b57a9116b019',
+      'displayName' => 'search.form',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '0035d042-0d55-462e-99f8-20904599b568',
+          'displayName' => 'Поиск',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'search',
+        ),
+      ),
+      'slug' => 'form',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'search.form',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет, выводящий форму поиска',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет, выводящий форму поиска',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>form</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы поиска </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  218 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.widget',
+      'guid' => 'e638546b-6a0a-48fe-a83e-afc09d6669e2',
+      'displayName' => 'users.authorization.loginForm',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '58c35417-0b4c-4c77-8ebb-9dcfb368a55b',
+          'displayName' => 'Авторизация',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
+              'displayName' => 'Пользователи',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'users',
+            ),
+          ),
+          'slug' => 'authorization',
+        ),
+      ),
+      'slug' => 'loginform',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.loginForm',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет вывода формы авторизации',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджет вывода формы авторизации',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'parameters' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Тип</th>
+              <th>Значение</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>forbiddenTemplate</td>
+          <td>string</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
+        </tr><tr>
+          <td>template</td>
+          <td>string</td>
+          <td>loginForm</td>
+          <td>имя шаблона, по которому выводится виджет</td>
+        </tr><tr>
+          <td>redirectUrl</td>
+          <td>string</td>
+          <td>refererRedirect</td>
+          <td>URL для редиректа после успешной обработки формы</td>
+        </tr></tbody>
+              </table>',
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umi\\form\\FormEntityView</td>
+          <td>$form</td><td>представление формы </td></tr></tbody>
+          </table>',
+      ),
+    ),
+  ),
+  219 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e663ba29-d7d3-4a18-9a05-84532791e085',
+      'displayName' => 'Компонент "Рубрики"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+          'displayName' => 'Новости',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'news',
+        ),
+      ),
+      'slug' => 'rubric',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Рубрики"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:42:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  220 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e6693b4a-d8d7-4192-b611-e57b1e43fa0e',
+      'displayName' => 'blog.draft.view',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'b7f54013-c195-41be-8263-255bc868b54e',
+          'displayName' => 'Черновики',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'draft',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35493,7 +38961,1215 @@ return array (
       ),
     ),
   ),
-  214 => 
+  221 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'ea63873e-44f7-4375-b4f9-11ba213fd969',
+      'displayName' => 'news.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+          'displayName' => 'Новости',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'news',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'news.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  222 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'efd0cf61-7f28-49b3-a253-3408ce105c0a',
+      'displayName' => 'blog.post.view',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '5d23b731-f770-445d-803e-3bd97b071bf2',
+          'displayName' => 'Компонент "Посты"',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+              'displayName' => 'Блог',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+                  'displayName' => 'Виджеты',
+                  'branch' => NULL,
+                  'slug' => 'widgets',
+                ),
+              ),
+              'slug' => 'blog',
+            ),
+          ),
+          'slug' => 'post',
+        ),
+      ),
+      'slug' => 'view',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  223 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+      'displayName' => 'Описание системы',
+      'branch' => NULL,
+      'slug' => 'about-umi-cms',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Описание системы',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:09:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 20:32:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  224 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'f14593c0-af66-4363-9700-212432dd3bae',
+      'displayName' => 'blog.draft.view.page',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'cd10d5a0-8a53-4031-a6b1-c69f7a15f228',
+          'displayName' => 'blog.draft.view',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'b4fcfe04-2981-418d-8c2f-e2d12e98021c',
+              'displayName' => 'blog.draft',
+              'branch' => 
+              array (
+                'meta' => 
+                array (
+                  'collection' => 'structure',
+                  'type' => 'static',
+                  'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+                  'displayName' => 'Блог',
+                  'branch' => 
+                  array (
+                    'meta' => 
+                    array (
+                      'collection' => 'structure',
+                      'type' => 'static',
+                      'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+                      'displayName' => 'Контроллеры',
+                      'branch' => NULL,
+                      'slug' => 'controllers',
+                    ),
+                  ),
+                  'slug' => 'blog',
+                ),
+              ),
+              'slug' => 'draft',
+            ),
+          ),
+          'slug' => 'view',
+        ),
+      ),
+      'slug' => 'page',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.page',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода черновика блога',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода черновика блога',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td>umicms\\orm\\object\\ICmsPage</td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'page',
+      ),
+    ),
+  ),
+  225 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'f261b858-e67e-4274-971f-f7ee618d6786',
+      'displayName' => 'Компонент "Новости"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+          'displayName' => 'Новости',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'news',
+        ),
+      ),
+      'slug' => 'item',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Новости"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  226 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'f39fde62-1177-4db3-b7f7-fac9655f90fc',
+      'displayName' => 'Структура директорий',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3.0',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура директорий',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:25:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 16:56:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура директорий',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  227 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'f610b0f2-5805-4c8b-abb6-a7b3d9348d23',
+      'displayName' => 'users.authorization',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+          'displayName' => 'Пользователи',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'authorization',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  228 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static.controller',
+      'guid' => 'f64f4838-6cf9-4f01-81cf-bf367820270d',
+      'displayName' => 'structure.index',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+          'displayName' => 'Структура',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'index',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'structure.index',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Контроллер вывода страниц структуры',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'description' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>string</td>
+          <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
+          <td>string</td>
+          <td>$metaKeywords</td><td>ключевые слова </td></tr><tr>
+          <td>string</td>
+          <td>$metaDescription</td><td>описание страницы </td></tr><tr>
+          <td>string</td>
+          <td>$contents</td><td>содержимое страницы </td></tr><tr>
+          <td>string</td>
+          <td>$h1</td><td>заголовок страницы </td></tr><tr>
+          <td>string</td>
+          <td>$slug</td><td>последняя часть ЧПУ </td></tr><tr>
+          <td>Layout|null</td>
+          <td>$layout</td><td>шаблон для вывода </td></tr><tr>
+          <td>bool</td>
+          <td>$locked</td><td>состояние заблокированности </td></tr><tr>
+          <td>string</td>
+          <td>$guid</td><td>глобальный уникальный идентификатор (GUID) </td></tr><tr>
+          <td>IObjectType</td>
+          <td>$type</td><td>тип </td></tr><tr>
+          <td>string</td>
+          <td>$displayName</td><td>выводимое в интерфейсах имя </td></tr><tr>
+          <td>int</td>
+          <td>$version</td><td>версия </td></tr><tr>
+          <td>DateTime</td>
+          <td>$created</td><td>время создания объекта </td></tr><tr>
+          <td>DateTime</td>
+          <td>$updated</td><td>время обновления объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$owner</td><td>владелец объекта </td></tr><tr>
+          <td>BaseUser</td>
+          <td>$editor</td><td>последний редактор объекта </td></tr><tr>
+          <td>bool</td>
+          <td>$trashed</td><td>состояние "в корзине" </td></tr><tr>
+          <td>bool</td>
+          <td>$active</td><td>состояние активности на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$level</td><td>уровень вложенности в иерархии </td></tr><tr>
+          <td>int</td>
+          <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
+          <td>CmsHierarchicObject|null</td>
+          <td>$parent</td><td>родительский элемент </td></tr><tr>
+          <td>int</td>
+          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>string</td>
+          <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
+          <td>string</td>
+          <td>$componentName</td><td>имя компонента-обработчика </td></tr><tr>
+          <td>bool</td>
+          <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
+          <td>int</td>
+          <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
+              </table>',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => 'index',
+      ),
+    ),
+  ),
+  229 => 
   array (
     'meta' => 
     array (
@@ -35558,9 +40234,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -35639,18 +40334,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>page</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogAuthor</td>
           <td>string|BlogAuthor</td>
           <td></td>
-          <td> GUID автора</td>
+          <td>GUID автора</td>
         </tr></tbody>
               </table>',
       ),
@@ -35663,17 +40358,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#BlogAuthor">BlogAuthor</a></td>
-          <td>$blogAuthor</td><td>автор </td></tr></tbody>
-              </table><a name="BlogAuthor"></a><h4>BlogAuthor</h4><p>Автор поста.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -35682,6 +40366,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#BlogAuthor">BlogAuthor</a></td>
+          <td>$blogAuthor</td><td>автор </td></tr></tbody>
+          </table><a name="BlogAuthor"></a><h4>BlogAuthor</h4><p>Автор поста.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -35726,11 +40421,11 @@ return array (
           <td>$lastActivity</td><td>дата последней активности </td></tr><tr>
           <td>IObjectSet</td>
           <td>$posts</td><td>посты автора </td></tr></tbody>
-          </table>',
+              </table>',
       ),
     ),
   ),
-  215 => 
+  230 => 
   array (
     'meta' => 
     array (
@@ -35795,9 +40490,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -35876,38 +40590,44 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.</td>
+          <td>widget.forbidden</td>
+          <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
-          <td> имя шаблона, по которому выводится виджет</td>
+          <td>list</td>
+          <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td> максимальное количество выводимых элементов. Если не указано, выводятся все элементы.</td>
+          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td> сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
-          <td> настройки селектора</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
-          <td> настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована.</td>
+          <td>Array
+(
+)
+</td>
+          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td> признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется.</td>
+          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -35920,23 +40640,23 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Параметр</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
           <td>umicms\\pagination\\CmsPaginator</td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-              </table>',
+          </table>',
       ),
     ),
   ),
-  216 => 
+  231 => 
   array (
     'meta' => 
     array (
@@ -35968,12 +40688,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:02";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36065,7 +40785,7 @@ return array (
       ),
     ),
   ),
-  217 => 
+  232 => 
   array (
     'meta' => 
     array (
@@ -36119,9 +40839,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -36194,17 +40933,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -36213,6 +40941,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -36267,7 +41006,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -36276,7 +41015,7 @@ return array (
       ),
     ),
   ),
-  218 => 
+  233 => 
   array (
     'meta' => 
     array (
@@ -36341,9 +41080,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -36416,17 +41174,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -36435,6 +41182,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -36489,7 +41247,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -36498,7 +41256,7 @@ return array (
       ),
     ),
   ),
-  219 => 
+  234 => 
   array (
     'meta' => 
     array (
@@ -36563,9 +41321,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -36638,17 +41415,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -36657,6 +41423,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -36711,7 +41488,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -36720,7 +41497,7 @@ return array (
       ),
     ),
   ),
-  220 => 
+  235 => 
   array (
     'meta' => 
     array (
@@ -36741,9 +41518,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -36804,7 +41600,7 @@ return array (
       ),
     ),
   ),
-  221 => 
+  236 => 
   array (
     'meta' => 
     array (
@@ -36858,7 +41654,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36936,7 +41732,7 @@ return array (
       ),
     ),
   ),
-  222 => 
+  237 => 
   array (
     'meta' => 
     array (
@@ -36979,12 +41775,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:09";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37076,7 +41872,7 @@ return array (
       ),
     ),
   ),
-  223 => 
+  238 => 
   array (
     'meta' => 
     array (
@@ -37130,7 +41926,7 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37188,7 +41984,7 @@ return array (
       ),
     ),
   ),
-  224 => 
+  239 => 
   array (
     'meta' => 
     array (
@@ -37242,9 +42038,28 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -37317,17 +42132,6 @@ return array (
       array (
         0 => 'string',
         1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
-          <thead>
-            <tr>
-              <th>Тип</th>
-              <th>Параметр</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody><tr>
-          <td><a href="#StructureElement">StructureElement</a></td>
-          <td>$page</td><td>текущая страница </td></tr></tbody>
-              </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
       <thead>
         <tr>
           <th>Тип</th>
@@ -37336,6 +42140,17 @@ return array (
         </tr>
       </thead>
       <tbody><tr>
+          <td><a href="#StructureElement">StructureElement</a></td>
+          <td>$page</td><td>текущая страница </td></tr></tbody>
+          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
           <td>string</td>
           <td>$metaTitle</td><td>заголовок окна браузера </td></tr><tr>
           <td>string</td>
@@ -37390,7 +42205,7 @@ return array (
           <td>$inMenu</td><td>признак включения в меню </td></tr><tr>
           <td>int</td>
           <td>$submenuState</td><td>состояние дочернего меню </td></tr></tbody>
-          </table>',
+              </table>',
       ),
       'templateName' => 
       array (
@@ -37399,7 +42214,7 @@ return array (
       ),
     ),
   ),
-  225 => 
+  240 => 
   array (
     'meta' => 
     array (
@@ -37442,12 +42257,12 @@ return array (
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:36";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Moscow";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
