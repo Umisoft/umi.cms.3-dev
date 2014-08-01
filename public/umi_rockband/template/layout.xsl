@@ -27,15 +27,17 @@
                 <title>
                     <xsl:value-of select="title"/>
                 </title>
-                <link rel="stylesheet" href="{$assets}css/reset.css"/>
-                <link rel="stylesheet" href="{$assets}css/bootstrap.css"/>
-                <link rel="stylesheet" href="{$assets}css/bootstrap-theme.css"/>
-                <link rel="stylesheet" href="{$assets}css/style.css"/>
-                <link rel="stylesheet" href="{$assets}css/bootstrap-class.css"/>
-                <link rel="shortcut icon" href="{$assets}images/favicon.ico"/>
-                <script src="{$assets}js/jquery-1.11.0.min.js"></script>
-                <script src="{$assets}js/bootstrap.min.js"></script>
-                <script src="{$assets}js/scripts.js"></script>
+                <base href="{$assets}" />
+
+                <link rel="stylesheet" href="css/reset.css"/>
+                <link rel="stylesheet" href="css/bootstrap.css"/>
+                <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+                <link rel="stylesheet" href="css/style.css"/>
+                <link rel="stylesheet" href="css/bootstrap-class.css"/>
+                <link rel="shortcut icon" href="images/favicon.ico"/>
+                <script src="js/jquery-1.11.0.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/scripts.js"></script>
             </head>
             <body>
                 <!-- Хедер сайта -->
