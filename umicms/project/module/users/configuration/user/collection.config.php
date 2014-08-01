@@ -11,7 +11,9 @@
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\project\module\users\model\collection\UserCollection;
+use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
+use umicms\project\module\users\model\object\Supervisor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -23,10 +25,10 @@ return [
         IObjectType::BASE => [
             UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
         ],
-        'guest' => [
+        Guest::TYPE_NAME => [
             UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
         ],
-        'registered.supervisor' => [
+        Supervisor::TYPE_NAME => [
             UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
             UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
         ],
@@ -40,6 +42,11 @@ return [
             RegisteredUser::FORM_REGISTRATION => '{#lazy:~/project/module/users/site/registration/form/registration.config.php}',
             RegisteredUser::FORM_RESTORE_PASSWORD => '{#lazy:~/project/module/users/site/restoration/form/restore.password.config.php}',
             RegisteredUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/change.password.config.php}',
+
+            'supervisor' => [
+                UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
+                UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+            ],
         ]
     ],
     'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}',
