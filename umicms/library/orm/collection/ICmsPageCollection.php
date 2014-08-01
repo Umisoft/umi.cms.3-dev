@@ -26,6 +26,11 @@ use umicms\orm\object\ICmsPage;
 interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRecyclableCollection, IActiveAccessibleCollection, IRobotsAccessibleCollection
 {
     /**
+     * Имя формы для изменения slug
+     */
+    const FORM_CHANGE_SLUG = 'changeSlug';
+
+    /**
      * Возвращает объект по URI.
      * @param string $uri URI
      * @param string $localization указание на локаль, в которой загружается объект.

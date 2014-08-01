@@ -22,6 +22,7 @@ return [
         'action:delete' => 'Delete',
         'action:backupList' => 'Backup list',
         'action:backToFilter' => 'Back to filter',
+        'action:changeSlug' => 'Change slug',
 
         // default add actions
         'action:add' => 'Add',
@@ -77,6 +78,7 @@ return [
         'action:delete' => 'Удалить',
         'action:backupList' => 'Резервные копии',
         'action:backToFilter' => 'Вернуться к списку',
+        'action:changeSlug' => 'Изменить псевдостатический адрес',
 
         // default add actions
         'action:add' => 'Добавить',
