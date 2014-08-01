@@ -12,12 +12,18 @@ namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsItem;
 
 /**
  * Виджет для вывода списка новостных сюжетов.
  */
 class SubjectListWidget extends BaseListWidget
 {
+    /**
+     * @var string|NewsItem $newsItem GUID или новость, список сюжетов которой, необходимо вывести
+     */
+    public $newsItem;
+
     /**
      * @var NewsModule $module модуль "Новости"
      */
@@ -37,6 +43,14 @@ class SubjectListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
+        if (isset($this->newsItem) && is_string($this->newsItem)) {
+            $this->newsItem = $this->module->news()->get($this->newsItem);
+        }
+
+        if ($this->newsItem instanceof NewsItem) {
+            return $this->newsItem->subjects->getSelector();
+        }
+
         return $this->module->getSubjects();
     }
 }

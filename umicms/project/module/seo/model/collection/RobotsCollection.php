@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\structure\model\collection;
+namespace umicms\project\module\seo\model\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\CmsCollection;
 use umicms\orm\object\behaviour\IRobotsAccessibleObject;
-use umicms\project\module\structure\model\object\Robots;
+use umicms\project\module\seo\model\object\Robots;
 
 /**
  * Коллекция страниц входящих в robots.txt.

@@ -14,7 +14,7 @@
                 <?= $page->date->format('d.m.Y | H:i')?>
             </time>
         <?php endif; ?>
-        <?=$this->widget('news.subject.list', ['template' => 'listInline'])?>
+        <?=$this->widget('news.subject.list', ['newsItem' => $page, 'template' => 'listInline'])?>
     </p>
     <?=$page->contents?>
 </div>

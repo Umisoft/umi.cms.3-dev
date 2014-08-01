@@ -26,6 +26,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\numeric\BoolField;
 use umi\orm\metadata\field\string\TextField;
+use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\form\element\Wysiwyg;
@@ -37,6 +38,7 @@ use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
@@ -56,6 +58,21 @@ class ActionController extends BaseController implements IFormAware
 {
     use TActionController;
     use TFormAware;
+
+    /**
+     * Возвращает форму смены slug.
+     * @throws HttpException
+     * @return \ArrayObject
+     */
+    protected function actionGetChangeSlugForm()
+    {
+        $form = $this->getCollection()->getForm(ICmsPageCollection::FORM_CHANGE_SLUG, IObjectType::BASE);
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl(
+            $this->getComponent(), CollectionComponent::ACTION_CHANGE_SLUG)
+        );
+
+        return $form->getView();
+    }
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -207,12 +224,12 @@ class ActionController extends BaseController implements IFormAware
      * @throws HttpException если пришли неверные данные
      * @return ICmsPage
      */
-    protected function changeSlug()
+    protected function actionChangeSlug()
     {
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
 
-        if (isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
+        if (!isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot change object slug. Slug is required.')
@@ -247,6 +264,8 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
+
+        $this->commit();
 
         return $object;
     }

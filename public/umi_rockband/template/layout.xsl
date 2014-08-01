@@ -50,7 +50,7 @@
                 <xsl:call-template name="footer"/>
 
                 <!-- Админ тулбар -->
-                <xsl:apply-templates select="document('widget://topBarw')" />
+                <xsl:apply-templates select="document('widget://topBar')" />
             </body>
         </html>
 

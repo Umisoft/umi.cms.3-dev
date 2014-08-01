@@ -18,6 +18,7 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
+        'robots' => '{#lazy:~/project/module/seo/admin/robots/component.config.php}',
         'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}',
         'yandex' => '{#lazy:~/project/module/seo/admin/yandex/component.config.php}',
     ],

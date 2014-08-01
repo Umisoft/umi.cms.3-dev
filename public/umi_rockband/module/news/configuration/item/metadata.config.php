@@ -51,9 +51,9 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\model\object\NewsItem',
             'fields' => [
                 'image' => [],
+                'announcementImage' => [],
                 'firstImage' => [],
                 'secondImage' => [],
                 'file' => [],

@@ -12,25 +12,20 @@ return [
 
     'en-US' => [
         'component:structure:displayName' => 'Site structure',
-        'component:robots:displayName' => 'Robots.txt',
 
         'role:pageExecutor:displayName' => 'Pages',
         'role:layoutExecutor:displayName' => 'Layouts',
         'role:infoblockExecutor:displayName' => 'Information blocks',
         'role:menuExecutor:displayName' => 'Menu',
-        'role:robotsExecutor:displayName' => 'Robots.txt',
     ],
 
     'ru-RU' => [
         'component:structure:displayName' => 'Структура сайта',
-        'component:robots:displayName' => 'Robots.txt',
 
         'role:pageExecutor:displayName' => 'Страницы',
         'role:layoutExecutor:displayName' => 'Шаблоны',
         'role:infoblockExecutor:displayName' => 'Информационные блоки',
         'role:menuExecutor:displayName' => 'Меню',
-        'role:robotsExecutor:displayName' => 'Robots.txt',
-
     ]
 
 ];

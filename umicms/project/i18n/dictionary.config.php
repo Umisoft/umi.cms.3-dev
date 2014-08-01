@@ -41,7 +41,6 @@ return [
     'project.admin.rest.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
     'project.admin.rest.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
     'project.admin.rest.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
-    'project.admin.rest.structure.robots' => '{#lazy:~/project/module/structure/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
     'project.admin.rest.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
@@ -54,6 +53,7 @@ return [
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
     'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
+    'project.admin.rest.seo.robots' => '{#lazy:~/project/module/seo/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
     'project.admin.rest.blog.category' => '{#lazy:~/project/module/blog/admin/category/i18n/dictionary.config.php}',
@@ -214,6 +214,7 @@ return [
 
             'Save' => 'Save',
             'Add' => 'Add',
+            'Change' => 'Change',
             'Send request' => 'Send request',
         ],
         'ru-RU' => [
@@ -224,6 +225,7 @@ return [
 
             'Save' => 'Сохранить',
             'Add' => 'Добавить',
+            'Change' => 'Изменить',
             'Send request' => 'Отправить запрос',
         ]
     ],
@@ -254,7 +256,7 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
-    'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
+    'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
 
     'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
 

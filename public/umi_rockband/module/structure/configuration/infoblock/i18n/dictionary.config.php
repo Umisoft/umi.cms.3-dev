@@ -48,7 +48,7 @@ return [
         'secondImage' => 'Второе изображение',
         'file' => 'Файл',
         'secondContents' => 'Второй контент',
-        'simpleText' => 'Простой текс',
+        'simpleText' => 'Простой текст',
     ],
 ];
  
