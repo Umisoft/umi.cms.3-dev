@@ -29,8 +29,8 @@
 
 <body>
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid container">
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -42,11 +42,15 @@
             <img src="http://summit.umi-cms.ru/templates/summit/images/umicms-logo.png" class="navbar-right" style="height: 45px"/>
         </div>
 
-        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
-            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+        <div class="nav navbar-nav navbar-right">
+            {{ widget('structure.menu.custom', {'depth': 1, 'menuName': 'navbar-menu'})|raw }}
         </div>
     </div>
 </nav>
+
+<div class="container">
+    {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+</div>
 
 <div class="container">
 
