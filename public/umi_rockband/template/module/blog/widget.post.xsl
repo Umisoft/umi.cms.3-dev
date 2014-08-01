@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="article-content wide">
-                <img src="{$assets}{property[@name='imageList']/value}" />
+                <img src="{property[@name='imageList']/value}" />
                 <div class="content">
                     <xsl:value-of select="property[@name = 'announcement']/value" disable-output-escaping="yes"/>
                 </div>
@@ -74,7 +74,7 @@
     <xsl:template match="blogPost" mode="blog.main.row">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
             <a href="{@url}">
-                <img src="{$assets}{property[@name='imageMain']/value}" class="img" alt=""/>
+                <img src="{property[@name='imageMain']/value}" class="img" alt=""/>
             </a>
             <div class="bottom">
                 <h4>

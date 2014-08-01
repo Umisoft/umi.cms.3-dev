@@ -104,6 +104,10 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
             ->fetch();
 
         if ($element instanceof StructureElement) {
+            if (!$element->active || $element->trashed) {
+                return false;
+            }
+
             $this->setRouteParams($element);
 
             return strlen($element->getURL()) + 1;

@@ -23,7 +23,7 @@
                         </p>
 
                         <!-- Стрелка "Подняться вверх" -->
-                        <a href="#top" class="top-scroll"><img src="{$assets}images/top-scroll.png" alt=""/></a>
+                        <a href="#top" class="top-scroll"><img src="images/top-scroll.png" alt=""/></a>
                     </div>
                 </div>
             </div>
