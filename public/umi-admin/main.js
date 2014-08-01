@@ -10,7 +10,7 @@ require.config({
         Ember:      'vendor/ember/ember',
         DS:         'vendor/ember-data/ember-data',
         iscroll:    'vendorExtend/iscroll-probe-5.1.1',
-        ckEditor:   'vendor/ckeditor/ckeditor',
+        ckEditor:   'vendorExtend/ckeditor/ckeditor',
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'vendor/momentjs/min/moment-with-langs',
         elFinder:   'vendorExtend/elFinder'
