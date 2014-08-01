@@ -273,12 +273,16 @@ define(['App', 'moment'],
                     actions: {
                         submit: function(handler){
                             var self = this;
-                            var object = self.get('object');
+                            var object = self.get('controller.object');
                             var store = self.get('controller.store');
-                            var collectionName = Ember.get(self.get('controller.object'), 'constructor.typeKey');
+                            var collectionName = Ember.get(object, 'constructor.typeKey');
+                            var collection = store.all(collectionName);
+                            object = collection.findBy('id', object.get('id'));
+                            object = object.toJSON({includeId: true});
                             if(handler){
                                 handler.addClass('loading');
                             }
+
                             var data = this.$().serializeArray();
                             var name;
                             for(var i = 0; i < data.length; i++){
@@ -302,9 +306,12 @@ define(['App', 'moment'],
                                         break;
                                     }
                                 }
-
-                                store.update(collectionName, Ember.get(result, actionName));
+                                var data = Ember.get(result, actionName);
+                                delete data.updated;
+                                delete data.created;
+                                store.update(collectionName, data);
                                 self.get('parentView').set('isOpen', false);
+                                $('body').off('click.umi.controlDropDown.form');
                             });
                         }
                     }
