@@ -5462,7 +5462,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:30:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5509,7 +5528,7 @@ return array (
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (
@@ -11142,7 +11161,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:20:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:19:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11213,7 +11232,7 @@ return array (
 	</li>
 </ul>
 
-<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
+<p><img alt="" src="/umi_docs/asset/images/database/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
 ',
       ),
       'active#ru-RU' => 
@@ -11255,6 +11274,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -16133,7 +16157,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-21 15:24:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:45:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16199,7 +16223,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -16209,7 +16233,7 @@ return array (
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (
@@ -18902,7 +18926,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 14:05:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18955,11 +18979,9 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>тут описание</p>
+        1 => '<p>UMI.CMS 3.0 - иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов.</p>
 
-<h3>UMI.CMS 3.0 - иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов</h3>
-
-<p><img alt="" src="http://c-umidoccopy4.sych.umisoft.ru/files/screenshot_2014-06-29_15_15_32.png" style="height:230px; width:605px" /></p>
+<p><img alt="" src="/umi_docs/asset/images/database/structure-1.png" style="height:230px; width:605px" /></p>
 
 <h2>Отличия от UMI.CMS 2.*</h2>
 
@@ -19014,6 +19036,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -23391,7 +23418,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:11:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -23424,6 +23470,12 @@ return array (
       array (
         0 => 'string',
         1 => 'Быстрый старт',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Статья в разработке..</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -23464,6 +23516,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -23976,7 +24033,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:32";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24026,6 +24083,12 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Статья в разработке..</p>
+',
+      ),
       'active#ru-RU' => 
       array (
         0 => 'boolean',
@@ -24065,6 +24128,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -33935,7 +34003,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 20:32:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -33968,6 +34055,12 @@ return array (
       array (
         0 => 'string',
         1 => 'Добавление своего поля',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Статья в разработке..</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -34008,6 +34101,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -35811,7 +35909,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 12:16:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:43:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35868,9 +35966,18 @@ return array (
 
 <p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
 
-<p>Предполагается, что знакомство с администрированием системы уже состоялось (иначе рекомендуется сначала обратить внимание на <a href="http://umi-cms.ru/help" target="_blank">Пользовательскую документацию</a>.)</p>
+<p>Предполагается, что знакомство с администрированием системы уже состоялось (иначе рекомендуется сначала обратить внимание на <a href="http://umi-cms.ru/help" target="_blank">оользовательскую документацию</a>).</p>
 
-<p>&nbsp;</p>
+<h3>Глоссарий по 3.0</h3>
+
+<ul>
+	<li>MVC&nbsp;&mdash; концепция Model-View-Controller, заложенная в архитектуру UMI.CMS 3. Подробнее на&nbsp;<a href="http://ru.wikipedia.org/wiki/Model-View-Controller">Википедии</a>.</li>
+	<li>Компонент &mdash;&nbsp;MVC-триада.</li>
+	<li>Виджет &mdash;&nbsp;служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
+	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
+	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем созавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
+	<li>Проект &mdash;&nbsp;компонент, состоящий из модулей.</li>
+</ul>
 ',
       ),
       'active#ru-RU' => 
@@ -35912,6 +36019,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -39776,7 +39888,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-31 16:56:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39826,6 +39938,12 @@ return array (
         0 => 'string',
         1 => 'Структура директорий',
       ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Статья в разработке..</p>
+',
+      ),
       'active#ru-RU' => 
       array (
         0 => 'boolean',
@@ -39865,6 +39983,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
