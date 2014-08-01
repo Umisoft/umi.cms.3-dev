@@ -20,7 +20,7 @@ return [
         'en-US' => [
             'type' => 'ProjectHostRoute',
             'defaults' => [
-                'prefix' => '/en',
+                'prefix' => '/php/en',
                 'locale' => 'en-US'
             ]
         ],
@@ -28,6 +28,7 @@ return [
         'default' => [
             'type' => 'ProjectHostRoute',
             'defaults' => [
+                'prefix' => '/php',
                 'locale' => 'ru-RU'
             ]
         ]
