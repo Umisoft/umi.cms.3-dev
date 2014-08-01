@@ -2013,6 +2013,85 @@ function program12(depth0,data) {
   
 });
 
+Ember.TEMPLATES["UMI/partials/dropdownButton/form"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" <i ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":icon view.iconClass")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push("></i> ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" <b class=\"umi-button-label\"> ");
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.meta.attributes.label", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" </b> ");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.formView", {hash:{
+    'form': ("view.form")
+  },hashTypes:{'form': "ID"},hashContexts:{'form': depth0},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" ");
+  return buffer;
+  }
+
+  data.buffer.push("<a href=\"javascript:void(0)\" class=\"button white dropdown\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "open", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("> ");
+  stack1 = helpers['if'].call(depth0, "view.meta.attributes.hasIcon", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  stack1 = helpers['if'].call(depth0, "view.meta.attributes.label", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </a> <div class=\"f-dropdown umi-dropdown right\"> ");
+  stack1 = helpers['if'].call(depth0, "view.form", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["UMI/partials/dropdownButton/formLayout"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push(" <div class=\"row\"> <div class=\"large-12 columns\"> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "fieldBase", {hash:{
+    'metaBinding': ("formElement"),
+    'objectBinding': ("view.object")
+  },hashTypes:{'metaBinding': "STRING",'objectBinding': "STRING"},hashContexts:{'metaBinding': depth0,'objectBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(" </div> </div> ");
+  return buffer;
+  }
+
+  data.buffer.push("<br/> ");
+  stack1 = helpers.each.call(depth0, "formElement", "in", "view.form.elements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <br/>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["UMI/partials/dropdownButton"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
