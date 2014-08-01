@@ -28,7 +28,7 @@
 
                 <!-- Контент -->
                 <div class="content">
-                    <img src="{$assets}{//property[@name='image']/value}" align="left" class="image" />
+                    <img src="{//property[@name='image']/value}" align="left" class="image" />
                     <xsl:value-of select="//property[@name='contents']/value" disable-output-escaping="yes" />
                 </div>
 

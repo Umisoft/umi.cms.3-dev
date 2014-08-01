@@ -42,19 +42,19 @@
                 </div>
                 <ul class="list-about">
                     <li>
-                        <img src="{$assets}images/about/1.jpg" alt=""/>
+                        <img src="images/about/1.jpg" alt=""/>
                     </li>
                     <li>
-                        <img src="{$assets}images/about/2.jpg" alt=""/>
+                        <img src="images/about/2.jpg" alt=""/>
                     </li>
                     <li>
-                        <img src="{$assets}images/about/3.jpg" alt=""/>
+                        <img src="images/about/3.jpg" alt=""/>
                     </li>
                     <li>
-                        <img src="{$assets}images/about/4.jpg" alt=""/>
+                        <img src="images/about/4.jpg" alt=""/>
                     </li>
                     <li>
-                        <img src="{$assets}images/about/5.jpg" alt=""/>
+                        <img src="images/about/5.jpg" alt=""/>
                     </li>
                 </ul>
             </div>
@@ -95,7 +95,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="{$assets}images/slider-img.jpg" alt=""/>
+                    <img src="images/slider-img.jpg" alt=""/>
                     <div class="carousel-caption">
                         <h1>
                             <xsl:value-of select="//property[@name='slideName1']/value"/>
@@ -104,14 +104,14 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{$assets}images/slider-img-2.jpg" alt=""/>
+                    <img src="images/slider-img-2.jpg" alt=""/>
                     <div class="carousel-caption">
                         <h1><xsl:value-of select="//property[@name='slideName2']/value"/></h1>
                         <xsl:value-of select="//property[@name='slideContent2']/value" disable-output-escaping="yes" />
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{$assets}images/slider-img-3.jpg" alt=""/>
+                    <img src="images/slider-img-3.jpg" alt=""/>
                     <div class="carousel-caption">
                         <h1><xsl:value-of select="//property[@name='slideName3']/value"/></h1>
                         <xsl:value-of select="//property[@name='slideContent3']/value" disable-output-escaping="yes" />
