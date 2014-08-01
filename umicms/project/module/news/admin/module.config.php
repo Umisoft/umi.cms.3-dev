@@ -18,8 +18,8 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
-        'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
+        'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}',
         'itemsubject' => '{#lazy:~/project/module/news/admin/itemsubject/component.config.php}',
         'rsssubject' => '{#lazy:~/project/module/news/admin/rsssubject/component.config.php}'

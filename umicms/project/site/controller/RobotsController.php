@@ -11,7 +11,7 @@
 namespace umicms\project\site\controller;
 
 use umicms\hmvc\component\BaseCmsController;
-use umicms\project\module\structure\model\StructureModule;
+use umicms\project\module\seo\model\SeoModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
@@ -23,15 +23,15 @@ class RobotsController extends BaseCmsController implements ISiteSettingsAware
     use TSiteSettingsAware;
 
     /**
-     * * @var StructureModule $collection модуль "Структура"
+     * * @var SeoModule $collection модуль "Seo"
      */
     private $module;
 
     /**
      * Конструкторю
-     * @param StructureModule $module модуль "Структура"
+     * @param SeoModule $module модуль "Структура"
      */
-    public function __construct(StructureModule $module)
+    public function __construct(SeoModule $module)
     {
         $this->module = $module;
     }

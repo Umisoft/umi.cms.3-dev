@@ -40,12 +40,12 @@ class DownloadProject implements ICommandInstall
 
         if (!isset($config['license'])) {
             throw new RuntimeException(
-                'Неудалось скачать core. Ошибка лицензии.'
+                'Не удалось скачать core. Ошибка лицензии.'
             );
         }
 
         if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
-            throw new RuntimeException('Неудалось скачать проект.');
+            throw new RuntimeException('Не удалось скачать проект.');
         }
 
         $config['license']['type'] = 'get-project';
@@ -54,7 +54,7 @@ class DownloadProject implements ICommandInstall
 
         if (!$this->installer->copyRemote($path, INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar')) {
             throw new RuntimeException(
-                'Неудалось скачать project.'
+                'Не удалось скачать project.'
             );
         }
 

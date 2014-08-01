@@ -11,12 +11,14 @@
 return [
 
     'en-US' => [
+        'component:robots:displayName' => 'Robots.txt',
         'action:create:base' => 'Add page',
 
         'role:editor:displayName' => 'Manage robots.txt'
     ],
 
     'ru-RU' => [
+        'component:robots:displayName' => 'Robots.txt',
         'action:create:base' => 'Добавить страницу',
 
         'role:editor:displayName' => 'Управление robots.txt'

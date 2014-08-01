@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\structure\model\object;
+namespace umicms\project\module\seo\model\object;
 
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
