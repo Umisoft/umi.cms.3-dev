@@ -25,31 +25,37 @@ define(['App'], function(UMI){
                     }
                 }
             };
+            var browseButton;
+
+            var showFileManager = function(){
+                editor._.filebrowserSe = this;
+                var $dialog = $('.cke_dialog');
+                $dialog.addClass('umi-blur');
+                var $dialogCover = $('.cke_dialog_background_cover');
+                $dialogCover.addClass('hide');
+
+                var showDialogCK = function(){
+                    $dialog.removeClass('umi-blur');
+                    $dialogCover.removeClass('hide');
+                };
+                popupParams.viewParams.beforeClose = showDialogCK;
+                UMI.__container__.lookup('route:application').send('showPopup', popupParams);
+            };
 
             for(var i = 0; i < tabCount; i++) {
-                var browseButton = dialogDefinition.contents[i].get('browse');
+                browseButton = dialogDefinition.contents[i];
+                if(browseButton){
+                    browseButton = browseButton.get('browse');
 
-                if (browseButton !== null) {
-                    browseButton.label = UMI.i18n.getTranslate('File manager');
+                    if (browseButton !== null) {
+                        browseButton.label = UMI.i18n.getTranslate('File manager');
 
-                    if(i === 0){
-                        browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                        if(i === 0){
+                            browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                        }
+                        browseButton.hidden = false;
+                        browseButton.onClick = showFileManager;
                     }
-                    browseButton.hidden = false;
-                    browseButton.onClick = function(dialog, i){
-                        editor._.filebrowserSe = this;
-                        var $dialog = $('.cke_dialog');
-                        $dialog.addClass('umi-blur');
-                        var $dialogCover = $('.cke_dialog_background_cover');
-                        $dialogCover.addClass('hide');
-
-                        var showDialogCK = function(){
-                            $dialog.removeClass('umi-blur');
-                            $dialogCover.removeClass('hide');
-                        };
-                        popupParams.viewParams.beforeClose = showDialogCK;
-                        UMI.__container__.lookup('route:application').send('showPopup', popupParams);
-                    };
                 }
             }
         });
