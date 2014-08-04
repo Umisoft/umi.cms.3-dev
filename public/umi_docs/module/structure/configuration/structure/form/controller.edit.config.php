@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use project\umi_docs\module\structure\model\object\ControllerPage;
+use project\module\structure\model\object\ControllerPage;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;

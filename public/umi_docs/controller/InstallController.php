@@ -10,8 +10,8 @@
 
 namespace project\umi_docs\controller;
 
-use project\umi_docs\module\structure\model\object\ControllerPage;
-use project\umi_docs\module\structure\model\object\WidgetPage;
+use project\module\structure\model\object\ControllerPage;
+use project\module\structure\model\object\WidgetPage;
 use Sami\Parser\Filter\TrueFilter;
 use Sami\Project;
 use Sami\Reflection\ClassReflection;
