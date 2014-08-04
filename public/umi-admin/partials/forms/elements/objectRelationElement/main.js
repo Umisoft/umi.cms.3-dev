@@ -104,7 +104,7 @@ define(['App'], function(UMI){
                                         type: "text",
                                         tag: "input",
                                         id: "displayName",
-                                        label: "Имя отображения",
+                                        label: "Имя отображения",//TODO: localize
                                         attributes: {
                                             name: "displayName",
                                             type: "text",

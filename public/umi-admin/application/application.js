@@ -391,7 +391,7 @@ define(
                             Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
                         }
                     } catch(error){
-                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect field value. Expected array or null. ' + error.message;
                         this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else{
@@ -422,7 +422,7 @@ define(
                     try{
                         serialized = JSON.parse(serialized);
                     } catch(error){
-                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect field value. Expected array or null. ' + error.message;
                         this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else{
@@ -442,7 +442,7 @@ define(
                             guid: serialized.guid
                         };
                     } catch(error){
-                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect field value. Expected array or null. ' + error.message;
                         this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else{

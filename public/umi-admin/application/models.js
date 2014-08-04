@@ -39,7 +39,7 @@ define([], function(){
                 if(filters){
                     var value = this.get(propertyName);
                     for(var i = 0; i < filters.length; i++){
-                        Ember.assert('Фильтр "' + filters[i].type + '" не определен.', propertyFilters.hasOwnProperty(filters[i].type));
+                        Ember.warn('Filter "' + filters[i].type + '" was not defined.', propertyFilters.hasOwnProperty(filters[i].type));
                         value = propertyFilters[filters[i].type](value);
                     }
                     this.set(propertyName, value);
@@ -233,7 +233,7 @@ define([], function(){
                 var isDirty = false;
 
                 if(changedRelationships.hasOwnProperty(property)){
-                    Ember.assert('Не добавлена загруженная связь. После загрузки связей hasMany и ManyToMany необходимо добавлять их результат к loadedRelationshipsByName', loadedRelationships.hasOwnProperty(property));
+                    Ember.warn('Loaded relationship has not been added. After loading hasMany and ManyToMany relations need to add them to the result loadedRelationshipsByName', loadedRelationships.hasOwnProperty(property));
                     if(Object.prototype.toString.call(loadedRelationships[property]).slice(8, -1) === 'Array' && Object.prototype.toString.call(changedRelationships[property]).slice(8, -1) === 'Array'){
                         if(loadedRelationships[property].length !== changedRelationships[property].length){
                             isDirty = true;

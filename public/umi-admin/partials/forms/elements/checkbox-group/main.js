@@ -27,7 +27,7 @@ define(['App'], function(UMI){
                     try{
                         objectValue = JSON.parse(objectValue);
                     } catch(error){
-                        error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect value of field ' + propertyName + '. Expected array or null. ' + error.message;
                         this.get('controller').send('backgroundError', error);
                     }
                     for(var i = 0; i < checkboxes.length; i++){
@@ -38,7 +38,7 @@ define(['App'], function(UMI){
 
             init: function(){
                 this._super();
-                Ember.warn('Поле с типом checkboxGroup не поддерживает lazy choices.', !this.get('meta.lazy'));
+                Ember.warn('Field with type of checkboxGroup no supported lazy choices.', !this.get('meta.lazy'));
                 this.addObserverProperty();
             },
 
@@ -60,7 +60,7 @@ define(['App'], function(UMI){
                     try{
                         objectValue = JSON.parse(objectValue);
                     } catch(error){
-                        error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect value of field ' + propertyName + '. Expected array or null. ' + error.message;
                         this.get('controller').send('backgroundError', error);
                     }
                     if(objectValue.contains(value)){
@@ -71,7 +71,7 @@ define(['App'], function(UMI){
                     return Ember.Handlebars.compile(checkbox + label);
                 }.property(),
                 label: function(){
-                    Ember.warn('Не задан label в choices поля с типом checkboxGroup.', this.get('context.attributes.label'));
+                    Ember.warn('For the field with type of checkboxGroup label not defined in choices.', this.get('context.attributes.label'));
                     return this.get('context.attributes.label') || this.get('context.attributes.value');
                 }.property('context.attributes.label'),
                 actions: {
@@ -86,7 +86,7 @@ define(['App'], function(UMI){
                         try{
                             objectValue = JSON.parse(objectValue);
                         } catch(error){
-                            error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                            error.message = 'Incorrect value of field ' + propertyName + '. Expected array or null. ' + error.message;
                             this.get('controller').send('backgroundError', error);
                         }
 

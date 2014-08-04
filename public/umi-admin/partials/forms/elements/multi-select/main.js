@@ -328,7 +328,7 @@ define(['App'], function(UMI){
                     try{
                         propertyArray = JSON.parse(propertyArray);
                     } catch(error){
-                        error.message = 'Некорректное значение поля ' + property + '. Ожидается массив или null. ' + error.message;
+                        error.message = 'Incorrect value of field ' + property + '. Expected array or null. ' + error.message;
                         this.get('controller').send('backgroundError', error);
                     }
                     self.set('collection', this.get('meta.choices'));

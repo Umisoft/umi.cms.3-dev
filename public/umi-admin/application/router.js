@@ -44,7 +44,7 @@ define([], function(){
 
                 try{
                     if(!UmiSettings.baseApiURL){
-                        throw new Error('Для UmiSettings не задан baseApiURL');
+                        throw new Error('BaseApiURL was not defined in UmiSettings.');
                     }
                     promise = $.get(UmiSettings.baseApiURL).then(function(results){
                         if(results && results.result){
@@ -61,7 +61,7 @@ define([], function(){
                             }
                         } else{
                             try{
-                                throw new Error('Запрашиваемый ресурс ' + UmiSettings.baseApiURL + ' некорректен.');
+                                throw new Error('Resource "' + UmiSettings.baseApiURL + '" not supported.');
                             } catch(error){
                                 transition.abort();
                                 transition.send('dialogError', error);
@@ -413,10 +413,10 @@ define([], function(){
                             }
 
                             invokedObjects.invoke('unloadRecord');
-                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" ' + UMI.i18n.getTranslate('Restored').toLowerCase() + '.'};
                             UMI.notification.create(settings);
                         }, function(){
-                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
+                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" ' + UMI.i18n.getTranslate('Not restored').toLowerCase() + '.'};
                             UMI.notification.create(settings);
                         });
                     } catch(error){
@@ -468,13 +468,13 @@ define([], function(){
                             }
 
                             invokedObjects.invoke('unloadRecord');
-                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
+                            var settings = {type: 'success', 'content': UMI.i18n.getTranslate('Moved to trash') + ': "' + object.get('displayName') + '".'};
                             UMI.notification.create(settings);
                             if(isActiveContext){
                                 self.send('backToFilter');
                             }
                         }, function(){
-                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
+                            var settings = {type: 'error', 'content': UMI.i18n.getTranslate('Failed to move in the trash') + ': "' + object.get('displayName') + '".'};
                             UMI.notification.create(settings);
                         });
                     } catch(error){
@@ -495,10 +495,10 @@ define([], function(){
                     var isActiveContext = this.modelFor('context') === object;
                     var data = {
                         'close': false,
-                        'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': '<div>Объект будет удален без возможности восстановления, все равно продолжить?</div>',
-                        'confirm': 'Удалить',
-                        'reject': 'Отмена'
+                        'title': UMI.i18n.getTranslate('Delete') + ' "' + object.get('displayName') + '".',
+                        'content': '<div>' + UMI.i18n.getTranslate('The object will be deleted permanently, continue anyway') + '?</div>',
+                        'confirm': UMI.i18n.getTranslate('Delete'),
+                        'reject': UMI.i18n.getTranslate('Cancel')
                     };
                     return UMI.dialog.open(data).then(
                         function(){
@@ -517,13 +517,13 @@ define([], function(){
                                     });
                                 }
                                 invokedObjects.invoke('unloadRecord');
-                                var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
+                                var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" ' + UMI.i18n.getTranslate('Successfully removed').toLowerCase() + '.'};
                                 UMI.notification.create(settings);
                                 if(isActiveContext){
                                     self.send('backToFilter');
                                 }
                             }, function(){
-                                var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось удалить.'};
+                                var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" ' + UMI.i18n.getTranslate('Failed to delete').toLowerCase() + '.'};
                                 UMI.notification.create(settings);
                             });
                         },
@@ -543,7 +543,7 @@ define([], function(){
                 importFromRss: function(object){
                     try{
                         var data = {
-                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> Подождите..</div>',
+                            'content': '<div class="text-center"><i class="animate animate-loader-40"></i> ' + UMI.i18n.getTranslate('Waiting') + '..</div>',
                             'close': false,
                             'type': 'check-process'
                         };
@@ -561,7 +561,7 @@ define([], function(){
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(results){
                             var model = UMI.dialog.get('model');
-                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': 'Закрыть', 'type': null});
+                            model.setProperties({'content': Ember.get(results, 'result.importFromRss.message'), 'close': true, 'reject': UMI.i18n.getTranslate('Close'), 'type': null});
                         });
                     } catch(error){
                         this.send('backgroundError', error);
@@ -574,7 +574,7 @@ define([], function(){
                 switchRobots: function(object, currentState, defer){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                        var switchRobotsSource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
+                        var switchRobotsSource = Ember.get(this.controllerFor('component').get('settings'), 'actions.' + (currentState ? 'dis' : '') + 'allowRobots.source');
                         $.ajax({
                             url: switchRobotsSource + '?id=' + object.get('id'),
                             type: "POST",
@@ -597,7 +597,7 @@ define([], function(){
             parseError: function(error){
                 var parsedError = {
                     status: error.status,
-                    title: error.statusText,
+                    title: UMI.i18n.getTranslate(error.statusText),
                     stack: error.stack
                 };
 
@@ -636,7 +636,7 @@ define([], function(){
                     try{
                         firstChild = this.controllerFor('application').get('modules')[0];
                         if(!firstChild){
-                            throw new Error('Ни одного модуля системы не найдено');
+                            throw new Error(UMI.i18n.getTranslate('Modules are not available.'));
                         }
                     } catch(error){
                         transition.send('backgroundError', error);//TODO: Проверить вывод ошибок
@@ -663,7 +663,7 @@ define([], function(){
                     if(module){
                         deferred.resolve(module);
                     } else{
-                        throw new Error('The module "' + params.module + '" was not found.');
+                        throw new Error(UMI.i18n.getTranslate('Module') + ' "' + params.module + '" ' + UMI.i18n.getTranslate('not found') + '.');
                     }
                 } catch(error){
                     deferred.reject(error);
@@ -683,7 +683,7 @@ define([], function(){
                         if(firstChild){
                             deferred.resolve(self.transitionTo('component', Ember.get(firstChild, 'name')));
                         } else{
-                            throw new Error('For module "' + Ember.get(model, 'name') + '" components not found.');
+                            throw new Error(UMI.i18n.getTranslate('For') + ' ' + UMI.i18n.getTranslate('Module').toLowerCase() + '"' + Ember.get(model, 'name') + '" ' + UMI.i18n.getTranslate('Components').toLowerCase() + ' ' + UMI.i18n.getTranslate('Not found').toLowerCase() + '.');
                         }
                     } catch(error){
                         deferred.reject(Ember.run.next(self, function(){this.send('templateLogs', error);}));
@@ -750,7 +750,7 @@ define([], function(){
                                         deferred.resolve(model);
                                     }
                                 } else{
-                                    var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
+                                    var error = new Error(UMI.i18n.getTranslate('Resource') + ' "' + Ember.get(model, 'resource') + '" ' + UMI.i18n.getTranslate('Incorrect').toLowerCase() + '.');
                                     transition.send('backgroundError', error);
                                     deferred.reject();
                                 }
@@ -760,7 +760,7 @@ define([], function(){
                             }
                         });
                     } else{
-                        throw new URIError('The component "' + componentName + '" was not found.');
+                        throw new URIError(UMI.i18n.getTranslate('Component') + ' "' + componentName + '" ' + UMI.i18n.getTranslate('Not found').toLowerCase() + '.');
                     }
                 } catch(error){
                     deferred.reject(Ember.run.next(this, function(){transition.send('templateLogs', error);}));
@@ -849,8 +849,9 @@ define([], function(){
                                     }
                                     if(object){
                                         resolve(object);
+                                        resolve(object);
                                     } else{
-                                        reject('Не найден объект с ID ' + params.context);
+                                        reject(UMI.i18n.getTranslate('Object') + ' ' + UMI.i18n.getTranslate('With').toLowerCase() + ' ID ' + params.context + ' ' + UMI.i18n.getTranslate('Not found').toLowerCase() + '.');
                                     }
                                 });
                                 break;
@@ -863,7 +864,7 @@ define([], function(){
                                 }
                                 break;
                             default:
-                                throw new Error('Неизвестный тип dataSource компонента.');
+                                throw new Error(UMI.i18n.getTranslate('Incorrect') + ' dataSource.');
                         }
                     }
                 } catch(error){
@@ -881,7 +882,7 @@ define([], function(){
                         control = this.controllerFor('component').get('contentControls')[0];
                         controlName = Ember.get(control, 'id');
                         if(!controlName){
-                            throw new Error('Действия для данного контекста не доступны.');
+                            throw new Error(UMI.i18n.getTranslate('The actions for this context is not available') + '.');
                         }
                     } catch(error){
                         transition.send('backgroundError', error);
@@ -928,7 +929,7 @@ define([], function(){
                     contentControls = componentController.get('contentControls');
                     contentControl = contentControls.findBy('id', actionName);
                     if(!contentControl){
-                        throw new Error('Action "dynamic" is undefined for component.');
+                        throw new Error(UMI.i18n.getTranslate('Action') + ' "' + actionName + '" ' + UMI.i18n.getTranslate('Not found').toLowerCase() + '.');
                     }
                     routeData = {
                         'object': contextModel,
@@ -990,7 +991,7 @@ define([], function(){
                                 }
                             });
                         } else{
-                            throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
+                            throw new Error(UMI.i18n.getTranslate('Action') + ' ' + Ember.get(contentControl, 'name') + ' ' + UMI.i18n.getTranslate('Not available for the selected context').toLowerCase() + '.');
                         }
                     }
                 } catch(error){
@@ -1044,10 +1045,10 @@ define([], function(){
                         transition.abort();
                         var data = {
                             'close': false,
-                            'title': 'Изменения не были сохранены.',
-                            'content': 'Переход на другую страницу вызовет потерю несохраненых изменений. Остаться на странице чтобы сохранить изменения?',
-                            'confirm': 'Остаться на странице',
-                            'reject': 'Продолжить без сохранения'
+                            'title': UMI.i18n.getTranslate('The changes were not saved') + '.',
+                            'content': UMI.i18n.getTranslate('Transition:unsaved changes') + '?',
+                            'confirm': UMI.i18n.getTranslate('Stay on the page'),
+                            'reject': UMI.i18n.getTranslate('Continue without saving')
                         };
                         return UMI.dialog.open(data).then(
                             function(){/*При положительном ответе делать ничего не нужно*/ },

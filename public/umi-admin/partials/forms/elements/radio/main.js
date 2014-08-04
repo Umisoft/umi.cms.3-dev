@@ -27,7 +27,7 @@ define(['App'], function(UMI){
 
             init: function(){
                 this._super();
-                Ember.warn('Поле с типом radio не поддерживает lazy choices.', !this.get('meta.lazy'));
+                Ember.warn('Field with the type of radio not supported lazy choices.', !this.get('meta.lazy'));
 
                 if(Ember.typeOf(this.get('object')) === 'instance'){
                     this.addObserverProperty();
@@ -66,7 +66,7 @@ define(['App'], function(UMI){
                 }.property(),
 
                 label: function(){
-                    Ember.warn('Не задан label в choices поля с типом radio.', this.get('context.attributes.label'));
+                    Ember.warn('For field with type of radio label not defined in choices.', this.get('context.attributes.label'));
                     return this.get('context.attributes.label') || this.get('context.attributes.value');
                 }.property('context.attributes.label'),
 

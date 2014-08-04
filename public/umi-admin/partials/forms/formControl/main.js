@@ -33,7 +33,7 @@ define(['App'],
                     var stack = [];
                     var key;
                     var inputElements = this.inputElements();
-                    var validateErrorLabel = 'Объект не валиден.';
+                    var validateErrorLabel = UMI.i18n.getTranslate('Object') + ' ' + UMI.i18n.getTranslate('Not valid').toLowerCase() + '.';
                     var settings = {
                         type: 'error',
                         duration: false,

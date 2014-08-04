@@ -94,7 +94,7 @@ define(
                         meta = this.get('meta');
                         template = this.get(Ember.String.camelize(meta.type) + 'Template') || '';
                         if(!template){
-                            throw new Error('Для поля с типом ' + meta.type + ' не реализован шаблонный метод.');
+                            throw new Error('For a field of type ' + meta.type + ' template method is not implemented.');
                         }
                     } catch(error){
                         this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
@@ -217,19 +217,24 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
+
                         $.ajax({
                             type: "POST",
                             url: self.get('action'),
                             global: false,
                             data: data,
+
                             success: function(results){
                                 var meta = Ember.get(results, 'result.save');
                                 var context = self.get('context');
-                                Ember.set(context, 'control.meta', meta);
+                                if(meta){
+                                    Ember.set(context, 'control.meta', meta);
+                                }
                                 handler.removeClass('loading');
-                                var params = {type: 'success', 'content': 'Сохранено.', duration: false};
+                                var params = {type: 'success', 'content': UMI.i18n.getTranslate('Saved') + '.', duration: false};
                                 UMI.notification.create(params);
                             },
+
                             error: function(results){
                                 var meta = Ember.get(results, 'responseJSON.result.save');
                                 var context = self.get('context');

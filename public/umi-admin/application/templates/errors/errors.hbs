@@ -3,12 +3,11 @@
         <div class="small-10 columns small-centered text-center">
             <p></p>
             <div>
-                <h2>
-                    {{!#if status}}
-                        {{!status}}<!--.-->
-                    {{!/if}}
-                    {{title}}
-                </h2>
+                {{!#if title}}
+                    <h2>
+                        {{title}}.
+                    </h2>
+                {{!/if}}
 
                 {{#if model.content}}
                     <p>{{model.content}}</p>

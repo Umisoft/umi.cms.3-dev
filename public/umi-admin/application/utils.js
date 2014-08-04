@@ -28,7 +28,7 @@ define(['Modernizr'], function(Modernizr){
         };
 
         UMI.Utils.objectsMerge = function(objectBase, objectProperty){
-            Ember.assert('Некорректный тип аргументов. Метод objectsMerge ожидает аргументы с типом "object"', Ember.typeOf(objectBase) === 'object' && Ember.typeOf(objectProperty) === 'object');
+            Ember.warn('Incorrect type of arguments. ObjectsMerge method expects arguments of type "object"', Ember.typeOf(objectBase) === 'object' && Ember.typeOf(objectProperty) === 'object');
             for(var key in objectProperty){
                 if(objectProperty.hasOwnProperty(key)){
                     objectBase[key] = objectProperty[key];
