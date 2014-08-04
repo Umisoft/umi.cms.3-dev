@@ -325,7 +325,7 @@ define(
                             updateMany(self, objects, type, result[i]);
                         }
                         deffered.resolve(objects);
-                    }, 700);
+                    }, 0);
                 });
                 return promiseArray(deffered.promise);
             }

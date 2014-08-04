@@ -27,6 +27,14 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         line-height: 32px;
     }
 
+    &.animate-loader-60{
+        background: url($image-spinner) left top no-repeat;
+        vertical-align: middle;
+        width: 60px;
+        height: 60px;
+        line-height: 60;
+    }
+
     &.animate-loader-blue{
         width: 26px;
         height: 26px;
@@ -102,7 +110,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
     &.icon-search{
         background-position: -300px 0;
     }
-    &.icon-add, &.icon-create{
+    &.icon-add, &.icon-create, &.icon-addAndGoBack{
         background-position: -320px 0;
     }
     &.icon-plus{
@@ -284,7 +292,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-search{
             background-position: -300px -20px;
         }
-        &.icon-add, &.icon-create{
+        &.icon-add, &.icon-create, &.icon-addAndGoBack{
             background-position: -320px -20px;
         }
         &.icon-plus{
@@ -467,7 +475,7 @@ $umi-icons-img: $images-path + 'icons.png' + $images-version !default;
         &.icon-search{
             background-position: -300px -40px;
         }
-        &.icon-add, &.icon-create{
+        &.icon-add, &.icon-create, &.icon-addAndGoBack{
             background-position: -320px -40px;
         }
         &.icon-plus{

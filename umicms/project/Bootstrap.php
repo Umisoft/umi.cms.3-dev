@@ -322,22 +322,24 @@ class Bootstrap
         $this->registerProjectTools();
         $this->configureLocalesService($router, $routeMatches);
         $this->registerProjectEventHandlers();
+        $this->registerProjectAutoload();
+
 
         /**
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
         if (!isset($projectConfig['assetsUrl'])) {
-            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset';
+            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset/';
         }
         $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
 
         if (!isset($projectConfig['adminAssetsUrl'])) {
-            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin';
+            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin/';
         }
 
         if (!isset($projectConfig['assetsDir'])) {
-            $projectConfig['assetsDir'] = '~/project/asset';
+            $projectConfig['assetsDir'] = '~/project/asset/';
         }
         $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
         if (!isset($assetsDir[1])) {
@@ -384,19 +386,6 @@ class Bootstrap
         $response->setETag(md5($response->getContent()));
         $response->setPublic();
         $response->isNotModified($request);
-    }
-
-    /**
-     * Выставляет заголовки UMI.CMS.
-     * @param Response $response
-     */
-    private function setUmiHeaders(Response $response)
-    {
-        $response->headers->set('X-Generated-By', 'UMI.CMS');
-        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
-        if (Environment::$startTime > 0) {
-            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
-        }
     }
 
     /**
@@ -642,6 +631,31 @@ class Bootstrap
         }
 
         return $config;
+    }
+
+    /**
+     * Выставляет заголовки UMI.CMS.
+     * @param Response $response
+     */
+    private function setUmiHeaders(Response $response)
+    {
+        $response->headers->set('X-Generated-By', 'UMI.CMS');
+        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
+        if (Environment::$startTime > 0) {
+            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
+        }
+    }
+
+    /**
+     * Подключает автолоадер для проекта, а так же регистрирует пространство имен project
+     */
+    private function registerProjectAutoload()
+    {
+        if (is_file($this->projectDirectory . '/autoload.php')) {
+            /** @noinspection PhpIncludeInspection */
+            require $this->projectDirectory . '/autoload.php';
+        }
+        Environment::$classLoader->addPsr4('project\\', $this->projectDirectory);
     }
 
     /**

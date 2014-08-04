@@ -8,18 +8,37 @@ define(['App'], function(UMI){
              * @property collectionName
              */
             collectionName: null,
+            
             dictionaryNamespace: 'tableControl',
+            
             hasContextMenu: false,
+            
             localDictionary: function(){
                 var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
+            
             /**
              * Данные
              * @property objects
              */
             objects: null,
+            
             fieldsList: null,
+            
+            objectChange: function(){
+                Ember.run.once(this, 'updateObjectDeleted');
+            }.observes('objects.@each.isDeleted'),
+
+            updateObjectDeleted: function(){//TODO: Реализация плохая: множественное всплытие события
+                var objects = this.get('objects');
+                objects.forEach(function(item){
+                    if(item && item.get('isDeleted')){
+                        objects.removeObject(item);
+                    }
+                });
+            },
+
             /**
              * метод получает данные учитывая query параметры
              * @method getObjects
@@ -29,7 +48,7 @@ define(['App'], function(UMI){
                 self.send('showLoader');
                 var query = this.get('query') || {};
                 var collectionName = self.get('collectionName');
-                var objects = self.store.find(collectionName, query);
+                var objects = self.store.updateCollection(collectionName, query);
                 var orderByProperty = self.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
                 var sortAscending = orderByProperty && 'direction' in orderByProperty ? orderByProperty.direction : true;
@@ -43,27 +62,32 @@ define(['App'], function(UMI){
                 });
                 this.set('objects', data);
             },
+            
             /**
              * Количество объектов на странице
              * @property limit
              */
             limit: 25,
+            
             /**
              * Индекс первого объекта на странице
              * @property offset
              */
             offset: 0,
+            
             /**
              * Количество объектов во всей коллекции
              * @property total
              */
             total: 0,
+            
             /**
              * Свойство по которому необходимо выполнить фильтрацию
              * @property orderByProperty
              * @example {'property' : propertyName, 'direction': sortAscending}
              */
             orderByProperty: null,
+
             /**
              * Вычисляемое свойство возвращающее параметры сортировки
              * @property order
@@ -76,10 +100,12 @@ define(['App'], function(UMI){
                     return order;
                 }
             }.property('orderByProperty'),
+            
             /**
              * Список отображаемых полей принадлежащих объекту
              */
             nativeFieldsList: null,
+            
             /**
              * Вычисляемое свойство списка полей принадлежащих объекту
              * @property fields
@@ -91,10 +117,12 @@ define(['App'], function(UMI){
                     return nativeFieldsList;
                 }
             }.property('nativeFieldsList'),
+            
             /**
              * Список полей имеющих связь belongsTo
              */
             relatedFieldsList: null,
+            
             /**
              * Вычисляемое свойство возвращающее поля belongsTo
              * @property fields
@@ -105,16 +133,19 @@ define(['App'], function(UMI){
                     return relatedFields;
                 }
             }.property('relatedFieldsList'),
+
             /**
              * Свойства фильтрации коллекции
              * @collectionFilterParams
              */
             collectionFilterParams: null,
+            
             /**
              * Свойства фильтрации
              * @property filters
              */
             filterParams: null,
+            
             /**
              * Вычисляемое свойство фильтрации
              * @property filters
@@ -144,6 +175,7 @@ define(['App'], function(UMI){
                 }
                 return filters;
             }.property('filterParams.@each', 'collectionFilterParams.@each'),
+
             setFilters: function(property, filter){
                 this.propertyWillChange('filterParams');
                 this.set('filterParams', null);
@@ -152,6 +184,7 @@ define(['App'], function(UMI){
                 this.set('filterParams', filterParams);
                 this.propertyDidChange('filterParams');
             },
+
             /**
              * Вычисляемое свойство параметров запроса коллекции
              * @property query
@@ -200,6 +233,7 @@ define(['App'], function(UMI){
                 var modelForCollection = store.modelFor(collectionName);
                 var fieldsList = this.get('control.meta.form.elements') || [];
                 var defaultFields = this.get('control.meta.defaultFields') || [];
+
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
                     if(!defaultFields.contains(fieldsList[i].dataSource)){
@@ -267,6 +301,7 @@ define(['App'], function(UMI){
                     });
                 });
             },
+            
             /**
              * @abstract
              */
@@ -331,7 +366,7 @@ define(['App'], function(UMI){
                 var objects = this.get('objects');
                 objects.forEach(function(item){
                     if(item && item.get('isDeleted')){
-                        objects.get('content.content.content').removeObject(item);
+                        objects.get('content.content').removeObject(item);
                     }
                 });
             },

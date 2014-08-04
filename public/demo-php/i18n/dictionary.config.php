@@ -68,7 +68,7 @@ return [
             'All posts' => 'All posts'
         ],
         'ru-RU' => [
-            'Create post' => 'Создать пост',
+            'Create post' => 'Добавить пост',
             'Go' => 'Перейти',
             'Edit' => 'Редактировать',
             'Drafts author' => 'Черновики автора',

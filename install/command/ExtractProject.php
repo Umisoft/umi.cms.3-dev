@@ -40,15 +40,13 @@ class ExtractProject implements ICommandInstall
         $config = $this->installer->getConfig();
 
         if (!isset($config['projectName']) || !in_array($config['projectName'], $this->installer->getTypeProject())) {
-            throw new RuntimeException('Неудалось скачать проект.');
+            throw new RuntimeException('Не удалось скачать проект.');
         }
 
-        // TODO: Распаковывается файл проекта, в зависимости от выбранного типа
-
-        $composer = new Phar(INSTALL_ROOT_DIR . '/demo-' . $config['projectName'] . '.phar');
+        $composer = new Phar(INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar');
         if (!$composer->extractTo(INSTALL_ROOT_DIR . '/public/default', null, true)) {
             throw new RuntimeException(
-                'Неудалось извлечь project.'
+                'Не удалось извлечь project.'
             );
         }
 

@@ -93,7 +93,7 @@ define(['App'], function(UMI){
                     minuteText: 'Минуты',
                     secondText: 'Секунды',
                     currentText: 'Выставить текущее время',
-                    timeFormat: 'hh:mm:ss',
+                    timeFormat: 'HH:mm:ss',
                     dateFormat: 'dd.mm.yy'
                 });
             },

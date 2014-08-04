@@ -9,10 +9,12 @@ define([], function(){
                 mouseWheel: true,
                 scrollbars: true,
                 bounce: false,
-                click: true,
+                click: false,
                 freeScroll: false,
                 keyBindings: true,
-                interactiveScrollbars: true
+                interactiveScrollbars: true,
+                fadeScrollbars: true,
+                disableMouse: true
             },
 
             elFinder: {
@@ -70,6 +72,8 @@ define([], function(){
             config.baseFloatZIndex = 200;
 
             config.image_previewText = ' ';
+
+            config.baseHref = Ember.get(window, 'UmiSettings.projectAssetsUrl');
 
             return config;
         };

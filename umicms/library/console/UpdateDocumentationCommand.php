@@ -186,9 +186,6 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
         }
 
-        if (!$page->childCount) {
-            $this->structureCollection->delete($page);
-        }
     }
 
     protected function buildControllerPage(BaseCmsController $controller, SiteComponent $component, StaticPage $parentPage)

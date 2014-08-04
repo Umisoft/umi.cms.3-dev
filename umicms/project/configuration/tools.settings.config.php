@@ -134,7 +134,6 @@ return [
             'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
             'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
             'menu' => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
-            'robots' => '{#lazy:~/project/module/structure/configuration/robots/metadata.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
@@ -168,7 +167,10 @@ return [
             'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/metadata.config.php}',
             'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/metadata.config.php}',
 			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/metadata.config.php}',
-			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/metadata.config.php}'
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/metadata.config.php}',
+
+            'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
+
         ],
 
         'collections' => [
@@ -176,7 +178,6 @@ return [
             'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
             'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
             'menu'     => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
-            'robots' => '{#lazy:~/project/module/structure/configuration/robots/collection.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
@@ -204,6 +205,7 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
 
+
             'dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/collection.config.php}',
             'reason' => '{#lazy:~/project/module/dispatch/configuration/reason/collection.config.php}',
             'release' => '{#lazy:~/project/module/dispatch/configuration/release/collection.config.php}',
@@ -211,6 +213,9 @@ return [
             'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/collection.config.php}',
 			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/collection.config.php}',
 			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/collection.config.php}'
+
+            'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
+
         ]
     ],
 

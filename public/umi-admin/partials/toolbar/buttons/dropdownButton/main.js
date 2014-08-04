@@ -5,10 +5,19 @@ define(['App', 'moment'],
         return function(){
             UMI.DropdownButtonView = Ember.View.extend({
                 templateName: 'partials/dropdownButton',
+
                 tagName: 'a',
+
                 classNameBindings: 'meta.attributes.class',
+
                 attributeBindings: ['title'],
+
                 title: Ember.computed.alias('meta.attributes.title'),
+
+                iconClass: function(){
+                    return 'icon-' + this.get('meta.behaviour.name');
+                }.property('meta.behaviour.name'),
+
                 didInsertElement: function(){
                     var $el = this.$();
                     $el.on('click.umi.dropdown', function(event){
@@ -202,6 +211,141 @@ define(['App', 'moment'],
                 willDestroyElement: function(){
                     this.get('controller').removeObserver('object');
                     this.get('controller.object').off('didUpdate');
+                }
+            };
+
+
+            DropdownButtonBehaviour.prototype.form = {
+                classNames: ['coupled'],
+
+                classNameBindings: ['isOpen:open'],
+
+                isOpen: false,
+
+                tagName: 'div',
+
+                templateName: 'partials/dropdownButton/form',
+
+                iconClass: function(){
+                    return 'icon-edit'; //+ this.get('meta.behaviour.name');
+                }.property('meta.behaviour.name'),
+
+                actions: {
+                    open: function(){
+                        var self = this;
+                        var el = this.$();
+                        this.toggleProperty('isOpen');
+                        if(this.get('isOpen')){
+                            setTimeout(function(){
+                                $('body').on('click.umi.controlDropDown.form', function(event){
+                                    var targetElement = $(event.target).closest('.umi-dropdown');
+                                    if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                        $('body').off('click.umi.controlDropDown.form');
+                                        self.set('isOpen', false);
+                                    }
+                                });
+                            }, 0);
+                        }
+                    }
+                },
+
+                formView: Ember.View.extend({
+                    tagName: 'form',
+
+                    templateName: 'partials/dropdownButton/formLayout',
+
+                    attributeBindings: ['action'],
+
+                    action: function(){
+                        return this.get('form.attributes.action');
+                    }.property('form.attributes.action'),
+
+                    submit: function(){
+                        return false;
+                    },
+
+                    object: function(){
+                        var contextObject = this.get('controller.object');
+                        var object = contextObject.toJSON({includeId: true});
+                        return object;
+                    }.property('controller.object'),
+
+                    actions: {
+                        submit: function(handler){
+                            var self = this;
+                            var object = self.get('controller.object');
+                            var store = self.get('controller.store');
+                            var collectionName = Ember.get(object, 'constructor.typeKey');
+                            var collection = store.all(collectionName);
+                            object = collection.findBy('id', object.get('id'));
+                            object = object.toJSON({includeId: true});
+                            if(handler){
+                                handler.addClass('loading');
+                            }
+
+                            var data = this.$().serializeArray();
+                            var name;
+                            for(var i = 0; i < data.length; i++){
+                                name = data[i].name;
+                                if(name){
+                                    object[name] = data[i].value;
+                                }
+                            }
+                            var serializeObject = JSON.stringify(object);
+                            $.ajax({
+                                url: self.get('action'),
+                                type: "POST",
+                                data: serializeObject,
+                                contentType: 'application/json; charset=UTF-8'
+                            }).then(function(results){
+                                var result = Ember.get(results, 'result');
+                                var actionName;
+                                for(var key in result){
+                                    if(result.hasOwnProperty(key)){
+                                        actionName = key;
+                                        break;
+                                    }
+                                }
+                                var data = Ember.get(result, actionName);
+                                delete data.updated;
+                                delete data.created;
+                                store.update(collectionName, data);
+                                self.get('parentView').set('isOpen', false);
+                                $('body').off('click.umi.controlDropDown.form');
+                            });
+                        }
+                    }
+                }),
+
+                form: null,
+
+                getForm: function(){
+                    var self = this;
+                    var meta = self.get('meta');
+                    if(self.get('isDestroying') || self.get('isDestroyed')){
+                        return;
+                    }
+                    var action = Ember.get(self.get('controller.settings'), 'actions.' + Ember.get(meta, 'behaviour.action') + '.source');
+                    return $.get(action).then(function(results){
+                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
+                        self.set('form', form);
+                    });
+                },
+
+                didInsertElement: function(){
+                    var self = this;
+
+                    self.set('form', self.getForm());
+
+                    self.addObserver('controller.object', function() {//TODO: check event
+                        Ember.run.next(self, function(){
+                            this.set('form', self.getForm());
+                        });
+                    });
+                },
+
+                willDestroyElement: function(){
+                    this.removeObserver('controller.object');
                 }
             };
 

@@ -189,11 +189,13 @@ define(
                 switchRobots: {
                     isAllowedRobots: null,
                     label: function(){
+                        var title;
                         if(this.get('isAllowedRobots')){
-                            return this.get('meta.attributes.states.disallow.label');
+                            title = this.get('meta.attributes.states.disallow.label');
                         } else{
-                            return this.get('meta.attributes.states.allow.label');
+                            title = this.get('meta.attributes.states.allow.label');
                         }
+                        return title;
                     }.property('meta.attributes.label', 'isAllowedRobots'),
                     iconClass: function(){
                         if(this.get('isAllowedRobots')){
@@ -240,11 +242,19 @@ define(
 
                     willDestroyElement: function(){
                         this.removeObserver('controller.object');
+                        this.removeObserver('label');
                     },
 
                     willClearRender: function(){
                         this.removeObserver('controller.object');
-                    }
+                    },
+
+                    labelChange: function(){
+                        var $el = this.$();
+                        if($el && $el.attr('title')){
+                            $el.attr('title', this.get('label'));
+                        }
+                    }.observes('label').on('didInsertElement')
                 }
             };
             UMI.globalBehaviour = new GlobalBehaviour();

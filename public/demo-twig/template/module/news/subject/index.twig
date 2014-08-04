@@ -1,7 +1,7 @@
 {{ include('breadcrumbs.twig') }}
 
 <h1>{{ page.getHeader() }}</h1>
-{{ page.contents }}
+{{ page.contents | raw }}
 
 {{ widget('news.subject.list', {
     'template' : 'list',

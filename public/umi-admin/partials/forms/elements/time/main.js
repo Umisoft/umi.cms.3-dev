@@ -16,6 +16,7 @@ define(['App'], function(UMI){
                 this.$().find('input').timepicker({
                     hourText: 'Часы',
                     minuteText: 'Минуты',
+                    timeFormat: 'HH:mm:ss',
                     currentText: 'Выставить текущее время'
                 });
             },

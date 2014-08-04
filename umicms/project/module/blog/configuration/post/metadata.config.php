@@ -73,7 +73,7 @@ return array_replace_recursive(
                 'targetField' => 'tag'
             ],
             BlogPost::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_FORMULA,
+                'type' => IField::TYPE_DELAYED,
                 'columnName' => 'comments_count',
                 'defaultValue' => 0,
                 'dataType'     => 'integer',
@@ -85,6 +85,10 @@ return array_replace_recursive(
                 'target' => 'blogComment',
                 'targetField' => BaseBlogComment::FIELD_POST,
                 'readOnly' => true
+            ],
+            BlogPost::FIELD_IMAGE => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'image'
             ],
         ],
         'types' => [
@@ -100,7 +104,8 @@ return array_replace_recursive(
                     BlogPost::FIELD_STATUS => [],
                     BlogPost::FIELD_COMMENTS_COUNT => [],
                     BlogPost::FIELD_COMMENTS => [],
-                    BlogPost::FIELD_AUTHOR => []
+                    BlogPost::FIELD_AUTHOR => [],
+                    BlogPost::FIELD_IMAGE => [],
                 ]
             ]
         ]

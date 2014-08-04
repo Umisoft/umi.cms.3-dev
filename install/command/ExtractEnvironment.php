@@ -44,7 +44,7 @@ class ExtractEnvironment implements ICommandInstall
         $phar = new Phar(ENVIRONMENT_PHAR);
         if (!$phar->extractTo(INSTALL_ROOT_DIR, null, true)) {
             throw new RuntimeException(
-                'Неудалось распаковать окружение.'
+                'Не удалось распаковать окружение.'
             );
         }
 

@@ -33,7 +33,7 @@ return array_replace_recursive(
                 'readOnly' => true
             ],
             BlogAuthor::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_FORMULA,
+                'type' => IField::TYPE_DELAYED,
                 'columnName' => 'comments_count',
                 'defaultValue' => 0,
                 'dataType'     => 'integer',
@@ -47,7 +47,7 @@ return array_replace_recursive(
                 'readOnly' => true
             ],
             BlogAuthor::FIELD_POSTS_COUNT => [
-                'type' => IField::TYPE_FORMULA,
+                'type' => IField::TYPE_DELAYED,
                 'columnName' => 'posts_count',
                 'defaultValue' => 0,
                 'dataType'     => 'integer',

@@ -1,9 +1,10 @@
-<div class="columns small-12" style="overflow: hidden;">
+<div class="columns small-12">
     <div class="row s-full-height umi-tree-wrapper">
         <ul class="umi-tree-list umi-tree">
-            {{#each item in root}}
-                {{view "treeItem" treeControlView=view item=item}}
-            {{/each}}
+            {{view "treeControlItem" item=root treeControlView=view}}
         </ul>
+        {{#if isLoading}}
+            <div class="umi-tree-loader"><i class="animate animate-loader-60"></i></div>
+        {{/if}}
     </div>
 </div>

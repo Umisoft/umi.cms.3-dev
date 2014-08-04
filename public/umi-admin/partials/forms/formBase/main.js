@@ -180,6 +180,10 @@ define(
 
                 radioTemplate: function(){
                     return '{{view "radioElement" object=view.object meta=view.meta}}';
+                }.property(),
+
+                submitTemplate: function(){
+                    return '<span class="button right" {{action "submit" target="view.parentView"}}>{{view.meta.label}}</span>';
                 }.property()
             });
 
@@ -198,7 +202,7 @@ define(
                  * @property classNames
                  * @type Array
                  */
-                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
+                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control', 'umi-validator'],
 
                 attributeBindings: ['action'],
 
@@ -213,13 +217,26 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
-                        $.post(self.get('action'), data).then(function(results){
-                            var meta = Ember.get(results, 'result.save');
-                            var context = self.get('context');
-                            Ember.set(context, 'control.meta', meta);
-                            handler.removeClass('loading');
-                            var params = {type: 'success', 'content': 'Сохранено.', duration: false};
-                            UMI.notification.create(params);
+                        $.ajax({
+                            type: "POST",
+                            url: self.get('action'),
+                            global: false,
+                            data: data,
+                            success: function(results){
+                                var meta = Ember.get(results, 'result.save');
+                                var context = self.get('context');
+                                Ember.set(context, 'control.meta', meta);
+                                handler.removeClass('loading');
+                                var params = {type: 'success', 'content': 'Сохранено.', duration: false};
+                                UMI.notification.create(params);
+                            },
+                            error: function(results){
+                                var meta = Ember.get(results, 'responseJSON.result.save');
+                                var context = self.get('context');
+
+                                Ember.set(context, 'control.meta', meta);
+                                handler.removeClass('loading');
+                            }
                         });
                     }
                 },
@@ -251,10 +268,23 @@ define(
                     switch(type){
                         case 'checkbox':
                             layout = '{{yield}}{{view.isRequired}}';
+                            break;
+                        case 'submit':
+                            layout = '{{yield}}';
+                            break;
                     }
 
+                    var validate = '{{#if view.validateErrors}}<small class="error">{{view.validateErrors}}</small>{{/if}}';
+                    layout = layout + validate;
                     return Ember.Handlebars.compile(layout);
                 }.property(),
+                classNameBindings: ['validateErrors:error'],
+                validateErrors: function(){
+                    var errors = this.get('meta.errors');
+                    if(Ember.typeOf(errors) === 'array'){
+                        return errors.join('.');
+                    }
+                }.property('meta.errors.@each'),
                 singleCollectionObjectRelationTemplate: function(){
                     return '{{view "singleCollectionObjectRelationElement" object=view.object meta=view.meta}}';
                 }.property()

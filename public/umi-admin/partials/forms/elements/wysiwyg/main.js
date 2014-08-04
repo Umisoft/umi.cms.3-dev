@@ -16,36 +16,46 @@ define(['App'], function(UMI){
                 templateParams: {
                     fileSelect: function(fileInfo){
                         var self = this;
-                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, Ember.get(fileInfo, 'url'));
+                        var image = Ember.get(fileInfo, 'url') || '';
+                        var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
+                        var pattern = new RegExp('^' + baseUrl, 'g');
+
+                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, image.replace(pattern, ''));
                         self.get('controller').send('closePopup');
                     }
                 }
             };
+            var browseButton;
+
+            var showFileManager = function(){
+                editor._.filebrowserSe = this;
+                var $dialog = $('.cke_dialog');
+                $dialog.addClass('umi-blur');
+                var $dialogCover = $('.cke_dialog_background_cover');
+                $dialogCover.addClass('hide');
+
+                var showDialogCK = function(){
+                    $dialog.removeClass('umi-blur');
+                    $dialogCover.removeClass('hide');
+                };
+                popupParams.viewParams.beforeClose = showDialogCK;
+                UMI.__container__.lookup('route:application').send('showPopup', popupParams);
+            };
 
             for(var i = 0; i < tabCount; i++) {
-                var browseButton = dialogDefinition.contents[i].get('browse');
+                browseButton = dialogDefinition.contents[i];
+                if(browseButton){
+                    browseButton = browseButton.get('browse');
 
-                if (browseButton !== null) {
-                    browseButton.label = UMI.i18n.getTranslate('File manager');
+                    if (browseButton !== null) {
+                        browseButton.label = UMI.i18n.getTranslate('File manager');
 
-                    if(i === 0){
-                        browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                        if(i === 0){
+                            browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                        }
+                        browseButton.hidden = false;
+                        browseButton.onClick = showFileManager;
                     }
-                    browseButton.hidden = false;
-                    browseButton.onClick = function(dialog, i){
-                        editor._.filebrowserSe = this;
-                        var $dialog = $('.cke_dialog');
-                        $dialog.addClass('umi-blur');
-                        var $dialogCover = $('.cke_dialog_background_cover');
-                        $dialogCover.addClass('hide');
-
-                        var showDialogCK = function(){
-                            $dialog.removeClass('umi-blur');
-                            $dialogCover.removeClass('hide');
-                        };
-                        popupParams.viewParams.beforeClose = showDialogCK;
-                        UMI.__container__.lookup('route:application').send('showPopup', popupParams);
-                    };
                 }
             }
         });

@@ -1,7 +1,7 @@
 {{ include('breadcrumbs.twig') }}
 
 <h1>{{ page.getHeader() }}</h1>
-{{ page.contents }}
+{{ page.contents | raw }}
 
 <p>{{ translate('All comments') }}: {{ page.commentsCount }}</p>
 <p>{{ translate('All posts') }}: {{ page.postsCount }}</p>
