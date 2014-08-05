@@ -375,7 +375,7 @@ define(
          */
         UMI.CustomDateTimeTransform = DS.Transform.extend({
             deserialize: function(deserialized){
-                var date = Ember.get(deserialized, 'date');
+                var date = Ember.get(deserialized || '', 'date');
                 if(date){
                     Ember.set(deserialized, 'date', moment(date).format('DD.MM.YYYY HH:mm:ss'));
                     deserialized = JSON.stringify(deserialized);
