@@ -43,6 +43,7 @@ return [
         'Nothing found' => 'Nothing found',
         'Loading' => 'Loading',
         'Current version' => 'Current version',
+        'No backups' => 'No backups',
         'Select file' => 'Select file',
         'File manager' => 'File manager',
 
