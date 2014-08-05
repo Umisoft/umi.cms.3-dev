@@ -24,7 +24,7 @@ define(['App'], function(UMI){
             inputView: Ember.View.extend({
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
+                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validatorType="collection" name=meta.attributes.name}}');
                 }.property()
             })
         });

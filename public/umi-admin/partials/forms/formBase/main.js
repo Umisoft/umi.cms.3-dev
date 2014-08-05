@@ -78,6 +78,13 @@ define(
             });
 
             UMI.FieldMixin = Ember.Mixin.create({
+                classNameBindings: ['isError:error'],
+                /**
+                 * @property isError
+                 * @hook
+                 */
+                isError: function(){}.property(),
+
                 isRequired: function(){
                     var validators = this.get('meta.validators');
                     if(Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')){
@@ -231,15 +238,22 @@ define(
                                     Ember.set(context, 'control.meta', meta);
                                 }
                                 handler.removeClass('loading');
-                                var params = {type: 'success', 'content': UMI.i18n.getTranslate('Saved') + '.', duration: false};
+                                var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
                                 UMI.notification.create(params);
                             },
 
                             error: function(results){
-                                var meta = Ember.get(results, 'responseJSON.result.save');
+                                var result = Ember.get(results, 'responseJSON.result');
+                                var meta = Ember.get(result, 'save');
                                 var context = self.get('context');
-
-                                Ember.set(context, 'control.meta', meta);
+                                if(meta && Ember.get(meta, 'type')){
+                                    Ember.set(context, 'control.meta', meta);
+                                }
+                                var error = Ember.get(result, 'error');
+                                if(error && Ember.get(error, 'message')){
+                                    var params = {type: 'error', content: Ember.get(error, 'message')};
+                                    UMI.notification.create(params);
+                                }
                                 handler.removeClass('loading');
                             }
                         });
@@ -279,17 +293,16 @@ define(
                             break;
                     }
 
-                    var validate = '{{#if view.validateErrors}}<small class="error">{{view.validateErrors}}</small>{{/if}}';
-                    layout = layout + validate;
                     return Ember.Handlebars.compile(layout);
                 }.property(),
-                classNameBindings: ['validateErrors:error'],
-                validateErrors: function(){
+
+                isError: function(){
                     var errors = this.get('meta.errors');
-                    if(Ember.typeOf(errors) === 'array'){
-                        return errors.join('.');
+                    if(Ember.typeOf(errors) === 'array' && errors.length){
+                        return errors.join('. ');
                     }
                 }.property('meta.errors.@each'),
+
                 singleCollectionObjectRelationTemplate: function(){
                     return '{{view "singleCollectionObjectRelationElement" object=view.object meta=view.meta}}';
                 }.property()

@@ -13,12 +13,13 @@ define(
         'application/i18n',
         'application/templates.compile',
         'application/templates.extends',
+        'application/validators',
         'application/models',
         'application/router',
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates, templatesExtends, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates, templatesExtends, validators, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -486,6 +487,7 @@ define(
         });
 
         templatesExtends();
+        validators(UMI);
         models(UMI);
         router(UMI);
         controller(UMI);
