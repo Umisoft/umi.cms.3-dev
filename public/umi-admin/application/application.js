@@ -375,8 +375,9 @@ define(
          */
         UMI.CustomDateTimeTransform = DS.Transform.extend({
             deserialize: function(deserialized){
-                if(Ember.typeOf(deserialized) === 'object' && deserialized.date){
-                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD.MM.YYYY h:mm:ss'));
+                var date = Ember.get(deserialized, 'date');
+                if(date){
+                    Ember.set(deserialized, 'date', moment(date).format('DD.MM.YYYY HH:mm:ss'));
                     deserialized = JSON.stringify(deserialized);
                 } else{
                     deserialized = "";
@@ -384,11 +385,13 @@ define(
                 return deserialized;
             },
             serialize: function(serialized){
+                var date;
                 if(serialized){
                     try{
                         serialized = JSON.parse(serialized);
-                        if(serialized.date){
-                            Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
+                        date = Ember.get(serialized, 'date');
+                        if(date){
+                            Ember.set(serialized, 'date', moment(date, 'DD.MM.YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'));
                         }
                     } catch(error){
                         error.message = 'Incorrect field value. Expected array or null. ' + error.message;

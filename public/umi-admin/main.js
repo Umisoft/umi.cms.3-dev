@@ -29,7 +29,6 @@ require.config({
 
     packages: [
         {name: 'accordion',         location: "partials/accordion"},
-        {name: 'chartControl',      location: "partials/chartControl"},
         {name: 'dialog',            location: "partials/dialog"},
         {name: 'divider',            location: "partials/divider"},
         {name: 'dock',              location: "partials/dock"},
