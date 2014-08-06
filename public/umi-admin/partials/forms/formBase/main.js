@@ -272,7 +272,7 @@ define(
 
                     switch(type){
                         case 'checkbox':
-                            layout = '{{yield}}{{view.isRequired}}';
+                            layout = '<div class="umi-form-element-without-label">{{yield}}{{view.isRequired}}</div>';
                             break;
                         case 'submit':
                             layout = '{{yield}}';

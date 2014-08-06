@@ -28,6 +28,11 @@
         &-label{
             margin-left: 4px;
             display: inline-block;
+
+            input[type="checkbox"] + label{
+                vertical-align: top;
+                margin-top: rem-calc(1);
+            }
         }
         &-list{
             margin-bottom: 0;
