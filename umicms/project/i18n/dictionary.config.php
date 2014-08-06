@@ -133,6 +133,10 @@ return [
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
     'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+	
+	'project.admin.rest.dispatch' => '{#lazy:~/project/module/dispatch/admin/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatch.dispatch' => '{#lazy:~/project/module/dispatch/admin/dispatch/i18n/dictionary.config.php}',
+	'project.admin.rest.dispatch.subscriber' => '{#lazy:~/project/module/dispatch/admin/subscriber/i18n/dictionary.config.php}',
 
     'collection' => [
 
@@ -229,7 +233,7 @@ return [
             'Send request' => 'Отправить запрос',
         ]
     ],
-
+	
     'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
     'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
     'collection.userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/i18n/dictionary.config.php}',
@@ -256,9 +260,15 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+
     'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
 
-    'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
 
+	'collection.dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/i18n/dictionary.config.php}',
+	'collection.subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/i18n/dictionary.config.php}',
+	'collection.templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/i18n/dictionary.config.php}',
+
+    'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
+    'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
     'collection.serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/i18n/dictionary.config.php}',
 ];

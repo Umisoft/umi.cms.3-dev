@@ -54,7 +54,8 @@ return [
         'seo' => '{#lazy:~/project/module/seo/admin/module.config.php}',
         'files' => '{#lazy:~/project/module/files/admin/module.config.php}',
         'service' => '{#lazy:~/project/module/service/admin/module.config.php}',
-        'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}'
+        'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}',
+        'dispatch' => '{#lazy:~/project/module/dispatch/admin/module.config.php}'
     ],
 
     RestApplication::OPTION_ACL => [
