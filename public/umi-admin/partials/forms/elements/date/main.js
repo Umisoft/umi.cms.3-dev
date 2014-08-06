@@ -1,13 +1,13 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
-    return function(){
+    return function() {
         UMI.DateElementView = Ember.View.extend({
             templateName: 'partials/dateElement',
 
             classNames: ['row', 'collapse'],
 
-            didInsertElement: function(){
+            didInsertElement: function() {
                 this.$().find('input').datepicker({
                     changeMonth: true,
                     changeYear: true,
@@ -16,13 +16,13 @@ define(['App'], function(UMI){
             },
 
             actions: {
-                clearValue: function(){
+                clearValue: function() {
                     var self = this;
                     var el = self.$();
-                    if(Ember.typeOf(self.get('object')) === 'instance'){
+                    if (Ember.typeOf(self.get('object')) === 'instance') {
                         var dataSource = self.get('meta.dataSource');
                         self.get('object').set(dataSource, '');
-                    } else{
+                    } else {
                         el.find('input').val('');
                     }
                 }

@@ -1,7 +1,7 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     "use strict";
 
-    return function(){
+    return function() {
         UMI.EmailElementView = UMI.TextElementView.extend({
             classNames: ['umi-element-email'],
             type: "email"

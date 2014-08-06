@@ -1,9 +1,9 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     "use strict";
 
-    return function(){
+    return function() {
         UMI.CheckboxElementView = Ember.View.extend({
-            template: function(){
+            template: function() {
                 var self = this;
                 var name = self.get('name');
                 var attributeValue = self.get('attributeValue');
@@ -11,22 +11,23 @@ define(['App'], function(UMI){
                 var isChecked = self.get('value');
 
                 var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';
-                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + attributeValue + '" class="' + className + '"/>';
+                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" :
+                    "") + ' name="' + name + '" value="' + attributeValue + '" class="' + className + '"/>';
                 var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(hiddenInput + checkbox + label);
             }.property(),
 
-            name: function(){
+            name: function() {
                 var meta = this.get('meta');
                 return Ember.get(meta, 'attributes.name');
             }.property('meta.attributes.name'),
 
-            value: function(){
+            value: function() {
                 var meta = this.get('meta');
                 return Ember.get(meta, 'value');
             }.property('meta.value'),
 
-            attributeValue: function(){
+            attributeValue: function() {
                 var meta = this.get('meta');
                 return Ember.get(meta, 'attributes.value');
             }.property('meta.attributes.value'),
@@ -34,7 +35,7 @@ define(['App'], function(UMI){
             classNames: ['umi-element-checkbox'],
 
             actions: {
-                change: function(){
+                change: function() {
                     var $el = this.$();
                     var checkbox = $el.find('input[type="checkbox"]')[0];
                     checkbox.checked = !checkbox.checked;
@@ -44,7 +45,7 @@ define(['App'], function(UMI){
         });
 
         UMI.CheckboxCollectionElementView = Ember.View.extend({
-            template: function(){
+            template: function() {
                 var self = this;
                 var isChecked;
                 var object = self.get('object');
@@ -54,40 +55,41 @@ define(['App'], function(UMI){
 
                 isChecked = Ember.get(object, Ember.get(meta, 'dataSource'));
 
-                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + value + '"/>';
+                var checkbox = '<input type="checkbox" ' + (
+                    isChecked ? "checked" : "") + ' name="' + name + '" value="' + value + '"/>';
                 var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(checkbox + label);
             }.property(),
 
             classNames: ['umi-element-checkbox'],
 
-            setCheckboxValue: function(){
+            setCheckboxValue: function() {
                 var self = this;
                 var $el = this.$();
-                if($el){
+                if ($el) {
                     $el.find('input[type="checkbox"]')[0].checked = self.get('object.' + self.get('meta.dataSource'));
                 }
             },
 
-            addObserverProperty: function(){
+            addObserverProperty: function() {
                 var self = this;
-                self.addObserver('object.' + self.get('meta.dataSource'), function(){
+                self.addObserver('object.' + self.get('meta.dataSource'), function() {
                     Ember.run.once(self, 'setCheckboxValue');
                 });
             },
 
-            init: function(){
+            init: function() {
                 this._super();
                 this.addObserverProperty();
             },
 
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 var self = this;
                 self.removeObserver('object.' + self.get('meta.dataSource'));
             },
 
             actions: {
-                change: function(){
+                change: function() {
                     var self = this;
                     var $el = this.$();
                     var checkbox;

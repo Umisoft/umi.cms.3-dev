@@ -1,38 +1,36 @@
-define([], function(){
+define([], function() {
     'use strict';
-    return function(UMI){
-        Ember.Handlebars.registerHelper('i18n',
-            function(label, namespace){
-                if(Ember.typeOf(namespace) !== 'string'){
+    return function(UMI) {
+        Ember.Handlebars.registerHelper('i18n', function(label, namespace) {
+                if (Ember.typeOf(namespace) !== 'string') {
                     namespace = undefined;
                 }
                 var translateLabel = UMI.i18n.getTranslate(label, namespace);
                 return translateLabel ? translateLabel : label;
-            }
-        );
+            });
 
         UMI.i18n = Ember.Object.extend({
             dictionary: {},
-            setDictionary: function(translate, namespace){
+            setDictionary: function(translate, namespace) {
                 var dictionary = this.get('dictionary');
                 var namespaceDictionary;
-                if(namespace && namespace){
+                if (namespace && namespace) {
                     namespaceDictionary = Ember.typeOf(dictionary[namespace]) === 'object' ? dictionary[namespace] : {};
                     Ember.set(dictionary, namespace, namespaceDictionary);
                 }
-                for(var key in translate){
-                    if(translate.hasOwnProperty(key)){
-                        if(namespace){
+                for (var key in translate) {
+                    if (translate.hasOwnProperty(key)) {
+                        if (namespace) {
                             Ember.set(Ember.get(dictionary, namespace), key, translate[key]);
-                        } else{
+                        } else {
                             Ember.set(dictionary, key, translate[key]);
                         }
 
                     }
                 }
             },
-            getTranslate: function(label, componentPath){
-                var path = 'dictionary.' + (componentPath ? componentPath + '.' : '') + label ;
+            getTranslate: function(label, componentPath) {
+                var path = 'dictionary.' + (componentPath ? componentPath + '.' : '') + label;
                 var translate = this.get(path);
                 return translate ? translate : label;
             }
@@ -51,10 +49,10 @@ define([], function(){
              * @abstract
              */
             localDictionary: null,
-            setDictionary: function(){
+            setDictionary: function() {
                 UMI.i18n.setDictionary(this.get('localDictionary'), this.get('dictionaryNamespace'));
             },
-            init: function(){
+            init: function() {
                 this._super();
                 this.setDictionary();
             }

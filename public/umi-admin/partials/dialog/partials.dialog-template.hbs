@@ -1,20 +1,22 @@
 {{#if model.title}}
-    <div class="umi-dialog-header">{{model.title}}</div>
+<div class="umi-dialog-header">{{model.title}}</div>
 {{/if}}
 <div class="umi-dialog-section">
     {{#if model.content}}
-        <div class="umi-dialog-content">
-            {{{model.content}}}
-        </div>
+    <div class="umi-dialog-content">
+        {{{model.content}}}
+    </div>
     {{/if}}
     {{#if view.hasButtons}}
-        <div class="umi-dialog-buttons">
-            {{#if model.confirm}}
-                <button class="button primary left" {{action 'confirm' target="view"}}>{{model.confirm}}</button>
-            {{/if}}
-            {{#if model.reject}}
-                <button class="button secondary right" {{action 'close' target="view"}}>{{model.reject}}</button>
-            {{/if}}
-        </div>
+    <div class="umi-dialog-buttons">
+        {{#if model.confirm}}
+        <button class="button primary left"
+        {{action 'confirm' target="view"}}>{{model.confirm}}</button>
+        {{/if}}
+        {{#if model.reject}}
+        <button class="button secondary right"
+        {{action 'close' target="view"}}>{{model.reject}}</button>
+        {{/if}}
+    </div>
     {{/if}}
 </div>
