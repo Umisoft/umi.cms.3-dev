@@ -1,6 +1,6 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
-    return function(){
+    return function() {
 
         UMI.TreeControlController = Ember.ObjectController.extend({
             /**
@@ -25,14 +25,14 @@ define(['App'], function(UMI){
              * Запрашиваемые свойства объекта
              * @property properties
              */
-            properties: function(){
+            properties: function() {
                 var properties = ['displayName', 'order', 'active', 'childCount', 'type', 'locked'];
                 var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');
                 modelFields = modelFields.keys.list;
-                for(var i = 0; i < properties.length; i++){
-                    if(!modelFields.contains(properties[i])){
+                for (var i = 0; i < properties.length; i++) {
+                    if (!modelFields.contains(properties[i])) {
                         properties.splice(i, 1);
                         --i;
                     }
@@ -45,7 +45,7 @@ define(['App'], function(UMI){
              * Контекстное меню
              * @property contentToolbar
              */
-            contextToolbar: function(){
+            contextToolbar: function() {
                 return Ember.get(this.get('controllers.component'), 'sideBarControl.contextToolbar');
             }.property('controllers.component.sideBarControl.contextToolbar'),
 
@@ -53,10 +53,10 @@ define(['App'], function(UMI){
              * Возвращает корневой элемент
              * @property root
              */
-            root: function(){
+            root: function() {
                 var collectionName = this.get('collectionName');
                 var sideBarControl = this.get('controllers.component.sideBarControl');
-                if(!sideBarControl){
+                if (!sideBarControl) {
                     return;
                 }
                 var self = this;
@@ -77,7 +77,7 @@ define(['App'], function(UMI){
              * Активный контекст
              * @property activeContext
              */
-            activeContext: function(){
+            activeContext: function() {
                 return this.get('controllers.context.model');
             }.property('controllers.context.model'),
 
@@ -96,7 +96,7 @@ define(['App'], function(UMI){
                  @param String id ID элемента после которого вставлен перемещаемый объект
                  @param Array Массив nextSibling следующие обьекты за перемещаемым объектом
                  */
-                updateSortOrder: function(id, parentId, prevSiblingId, nextSibling){
+                updateSortOrder: function(id, parentId, prevSiblingId, nextSibling) {
                     var self = this;
                     var collectionName = this.get('collectionName');
                     var ids = nextSibling || [];
@@ -119,7 +119,7 @@ define(['App'], function(UMI){
                     };
                     oldParentId = node.get('parent.id') || 'root';
 
-                    if(parentId && parentId !== 'root'){
+                    if (parentId && parentId !== 'root') {
                         parent = models.findBy('id', parentId);
                         moveParams.branch = {
                             'id': parent.get('id'),
@@ -127,7 +127,7 @@ define(['App'], function(UMI){
                         };
                     }
 
-                    if(prevSiblingId){
+                    if (prevSiblingId) {
                         sibling = models.findBy('id', prevSiblingId);
                         moveParams.sibling = {
                             'id': sibling.get('id'),
@@ -143,16 +143,16 @@ define(['App'], function(UMI){
                         'dataType': 'json',
                         'contentType': 'application/json',
                         global: false,
-                        success:function(){
+                        success: function() {
                             ids.push(id);
                             var parentsUpdateRelation = {};
 
-                            if(parentId !== oldParentId){
-                                if(parentId && parentId !== 'root'){
+                            if (parentId !== oldParentId) {
+                                if (parentId && parentId !== 'root') {
                                     ids.push(parentId);
                                     parentsUpdateRelation.currentParent = parentId;
                                 }
-                                if(oldParentId && oldParentId !== 'root'){
+                                if (oldParentId && oldParentId !== 'root') {
                                     ids.push(oldParentId);
                                     parentsUpdateRelation.oldParent = oldParentId;
                                 }
@@ -166,46 +166,46 @@ define(['App'], function(UMI){
                             promise = store.updateCollection(collectionName, requestParams);
 
 
-                            return promise.then(
-                                function(updatedObjects){
+                            return promise.then(function(updatedObjects) {
                                     var parent;
 
-                                    if(parentId !== 'root'){
+                                    if (parentId !== 'root') {
                                         node = updatedObjects.findBy('id', id);
-                                        store.find(collectionName, parentId).then(function(parent){
+                                        store.find(collectionName, parentId).then(function(parent) {
                                             node.set('parent', parent);
                                         });
                                     }
 
-                                    if(parentId !== oldParentId){
-                                        for(var key in parentsUpdateRelation){
-                                            if(parentsUpdateRelation.hasOwnProperty(key)){
+                                    if (parentId !== oldParentId) {
+                                        for (var key in parentsUpdateRelation) {
+                                            if (parentsUpdateRelation.hasOwnProperty(key)) {
                                                 parent = models.findBy('id', parentsUpdateRelation[key]);
-                                                parent.trigger('needReloadHasMany', (key === 'currentParent' ? 'add' : 'remove'), node);
+                                                parent.trigger('needReloadHasMany', (
+                                                    key === 'currentParent' ? 'add' : 'remove'), node);
                                             }
                                         }
-                                        if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
-                                            self.get('controllers.component').trigger('needReloadRootElements', (parentId === 'root' ? 'add' : 'remove'), node);
+                                        if (parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')) {
+                                            self.get('controllers.component').trigger('needReloadRootElements', (
+                                                parentId === 'root' ? 'add' : 'remove'), node);
                                         }
                                     }
 
                                     self.send('hideLoader');
-                                }
-                            );
+                                });
 
                         },
-                        error:  function(error){
+                        error: function(error) {
                             self.send('backgroundError', error);
                             self.send('hideLoader');
                         }
                     });
                 },
 
-                showLoader: function(){
+                showLoader: function() {
                     this.set('isLoading', true);
                 },
 
-                hideLoader: function(){
+                hideLoader: function() {
                     this.set('isLoading', false);
                 }
             }

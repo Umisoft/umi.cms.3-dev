@@ -1,16 +1,16 @@
 <a href="javascript:void(0)" class="button white dropdown" {{action "open" target="view"}}>
-    {{#if view.meta.attributes.hasIcon}}
-        <i {{bind-attr class=":icon view.iconClass"}}></i>
-    {{/if}}
-    {{#if view.meta.attributes.label}}
-        <b class="umi-button-label">
-            {{unbound view.meta.attributes.label}}
-        </b>
-    {{/if}}
+{{#if view.meta.attributes.hasIcon}}
+<i {{bind-attr class=":icon view.iconClass"}}></i>
+{{/if}}
+{{#if view.meta.attributes.label}}
+<b class="umi-button-label">
+    {{unbound view.meta.attributes.label}}
+</b>
+{{/if}}
 </a>
 
 <div class="f-dropdown umi-dropdown right">
     {{#if view.form}}
-        {{view view.formView form=view.form}}
+    {{view view.formView form=view.form}}
     {{/if}}
 </div>
