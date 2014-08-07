@@ -145,7 +145,7 @@ module.exports = function(grunt) {
             imagesProduction: {
                 expand: true,
                 cwd: 'development/images',
-                src: ['**/*', '!dock_png/**', '!svg/**'],
+                src: ['**/*', '!dock_png/**', '!svg/**', 'svg/elements/**'],
                 dest: 'production/images'
             },
 
