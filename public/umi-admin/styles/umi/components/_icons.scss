@@ -1,8 +1,6 @@
 @import "../../settings";
-//
-// Icons
-//
-$umi-icons-img: $images-path + 'icons.png' + $images-version !default;
+
+$umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-version !default;
 
 .animate{
     background-position: 0 0;
