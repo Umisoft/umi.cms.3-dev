@@ -8,10 +8,10 @@
     position: relative;
     text-align:center;
     font-weight:normal;
-    padding: 6px 20px;
+    padding: 8px 20px;
 
-    height: 14px;
-    line-height: 14px;
+    height: 20px;
+    line-height: 20px;
 
     border-top: 1px solid transparent;
     border-right:0 solid transparent;
@@ -19,20 +19,6 @@
     border-left:0 solid transparent;
     background: #F5F6F7;
 }
-
-.elfinder .elfinder-statusbar:before {
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 2;
-    display: block;
-    height: 10px;
-    width: 100%;
-    top: -10px;
-    left: 0;
-    background: #F5F6F7;
-}
-
 
 .elfinder .elfinder-statusbar:after {
     content: "";
@@ -42,9 +28,9 @@
     display: block;
     height: 3px;
     width: 100%;
-    top: -12px;
+    top: -3px;
     left: 0;
-    background: url(#{$images-path}shadows/toTopShadow.png);
+    background: url($image-to-top-shadow);
 }
 
 .elfinder-statusbar a { text-decoration:none; }

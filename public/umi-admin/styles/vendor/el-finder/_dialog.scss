@@ -175,7 +175,7 @@
 	float:left;
 	width:48px;
 	height:48px;
-	margin-right:1em;
+    margin: 8px;
 }
 
 .elfinder-info-title strong { display:block; padding:.3em 0 .5em 0; }
@@ -261,3 +261,7 @@
 
 .elfinder-ltr .dialogelfinder-drag-close { right:12px; }
 .elfinder-rtl .dialogelfinder-drag-close { left:12px; }
+
+.std42-dialog .elfinder-info-title, .std42-dialog .elfinder-info-tb{
+    line-height: normal;
+}
