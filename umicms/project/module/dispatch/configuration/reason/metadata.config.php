@@ -7,16 +7,13 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\metadata\field\IField;
-use umicms\project\module\dispatch\model\object\Reason;
-
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'dispatch_reason'
         ],
-        'types'  => [
+        'types'      => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\Reason',
                 'fields'      => []
