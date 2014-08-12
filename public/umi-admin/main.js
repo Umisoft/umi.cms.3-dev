@@ -28,30 +28,30 @@ require.config({
     },
 
     packages: [
-        {name: 'accordion', location: "partials/accordion"},
-        {name: 'dialog', location: "partials/dialog"},
-        {name: 'divider', location: "partials/divider"},
-        {name: 'dock', location: "partials/dock"},
-        {name: 'fileManager', location: "partials/fileManager"},
-        {name: 'forms', location: "partials/forms"},
-        {name: 'notification', location: "partials/notification"},
-        {name: 'popup', location: "partials/popup"},
-        {name: 'search', location: "partials/search"},
-        {name: 'megaIndex', location: "partials/seo/megaIndex"},
-        {name: 'sideMenu', location: "partials/sideMenu"},
-        {name: 'yandexWebmaster', location: "partials/seo/yandexWebmaster"},
-        {name: 'table', location: "partials/table"},
-        {name: 'tableControl', location: "partials/tableControl"},
-        {name: 'toolbar', location: "partials/toolbar"},
-        {name: 'topBar', location: "partials/topBar"},
-        {name: 'tree', location: "partials/tree"},
-        {name: 'treeSimple', location: "partials/treeSimple"},
-        {name: 'updateLayout', location: "partials/updateLayout"}
+        {name: 'accordion', location: 'partials/accordion'},
+        {name: 'dialog', location: 'partials/dialog'},
+        {name: 'divider', location: 'partials/divider'},
+        {name: 'dock', location: 'partials/dock'},
+        {name: 'fileManager', location: 'partials/fileManager'},
+        {name: 'forms', location: 'partials/forms'},
+        {name: 'notification', location: 'partials/notification'},
+        {name: 'popup', location: 'partials/popup'},
+        {name: 'search', location: 'partials/search'},
+        {name: 'megaIndex', location: 'partials/seo/megaIndex'},
+        {name: 'sideMenu', location: 'partials/sideMenu'},
+        {name: 'yandexWebmaster', location: 'partials/seo/yandexWebmaster'},
+        {name: 'table', location: 'partials/table'},
+        {name: 'tableControl', location: 'partials/tableControl'},
+        {name: 'toolbar', location: 'partials/toolbar'},
+        {name: 'topBar', location: 'partials/topBar'},
+        {name: 'tree', location: 'partials/tree'},
+        {name: 'treeSimple', location: 'partials/treeSimple'},
+        {name: 'updateLayout', location: 'partials/updateLayout'}
     ]
 });
 
 require(['jquery'], function() {
-    "use strict";
+    'use strict';
 
     var deffer = $.get(window.UmiSettings.authUrl);
 

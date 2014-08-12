@@ -1,6 +1,38 @@
-//
-// Custom dropdown
-//
+/* Foundation Dropdown extends
+   - exclude triangle
+   - exclude .content
+   - toggle visibility instead negative left(right) position
+*/
+
+.f-dropdown {
+    @include dropdown-container(list, $triangle:false);
+    width: auto;
+    left: auto;
+    visibility: hidden;
+    opacity: .6;
+    transition: opacity 0.1s linear;
+    white-space: nowrap;
+    border: none;
+    box-shadow: 0 0 4px 1px #939699;
+
+    li { @include dropdown-style; }
+
+    // You can also put custom content in these dropdowns
+    //&.content { @include dropdown-container(content, $triangle:false); }
+
+    // Sizes
+    &.tiny    { max-width: 200px; }
+    &.small   { max-width: 300px; }
+    &.medium  { max-width: 500px; }
+    &.large   { max-width: 800px; }
+
+    &.open{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+/*
+
 .f-dropdown{
     top: auto;
     visibility: hidden;
@@ -70,23 +102,6 @@
 }
 
 .dropdown{
-    &.open{
-        > .f-dropdown{
-            opacity: 1;
-            visibility: visible;
-            margin-top: 0;
-        }
-    }
-    &-hover{
-        &:hover{
-            > .f-dropdown{
-                opacity: 1;
-                visibility: visible;
-                margin-top: 0;
-            }
-        }
-    }
-
     &-double-columns{
         width: rem-calc(460);
         > li{
@@ -94,39 +109,4 @@
             float: left;
         }
     }
-}
-
-.umi-dropup{
-    position: absolute;
-    bottom: 100%;
-}
-
-.dropdown.coupled{
-    position: relative;
-    > .button{
-        position: relative;
-    }
-    &.open{
-        > .button{
-            &:before, &:after{
-                display: block;
-            }
-            &.white{
-                background: #fff;
-            }
-        }
-    }
-    .f-dropdown{
-        width: auto;
-        min-width: 340px;
-        .button.flat{
-            border-color: transparent !important;
-        }
-    }
-}
-
-.dropdown.dropup{
-    .f-dropdown{
-        bottom: 100%;
-    }
-}
+}*/

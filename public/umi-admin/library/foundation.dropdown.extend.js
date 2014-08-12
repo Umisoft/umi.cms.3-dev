@@ -10,6 +10,8 @@
      *    В Foundation это событие всегда слушает клик, с самого старта приложения.
      * 2) Атрибут Id не является обязательным атрибутом для выборки, достаточно иметь один экземпляр списка на одном
      *    уровне вложености с кнопкой. Для этого нужно указать в атрибутах кнопки data-options="selectorById: false;"
+     * 3) Кроме определенной в Foundation возможности отределить сторону появления списка относительно кнопки,
+     *    добавляется возможность указать выравнивание по стороне.
      */
     Foundation.libs.dropdown = {
         name: 'dropdown',
@@ -52,10 +54,10 @@
             selectorById: true,
 
             /**
-             * Задает списку минимальную ширину, равную ширине кнопки (хендлера)
-             * @param {bool} minWidthLikeButton
+             * Задает списку минимальную ширину, равную ширине кнопки (хендлера) имеющего соответствующий селектор
+             * @param {string} minWidthLikeElement класс елемента
              */
-            minWidthLikeButton: true,
+            minWidthLikeElement: '.button',
 
             /**
              * @param {bool} adaptiveBehaviour
@@ -90,6 +92,8 @@
                 self.eventListener.mousedown.call(this, scope, settings);
             }
             this.eventListener.click.call(this, scope, settings);
+
+            this.eventListener.resize.call(this);
         },
 
         eventListener: {
@@ -152,6 +156,17 @@
                 var S = self.S;
 
                 S(this.scope).off('click.fndtn.dropdown.miss');
+            },
+
+            resize: function() {
+                var self = this;
+                var S = self.S;
+
+                S(window).off('.dropdown').on('resize.fndtn.dropdown', self.throttle(function() {
+                    self.resize.call(self);
+                }, 50));
+
+                self.resize.call(self);
             }
         },
 
@@ -243,6 +258,15 @@
             this.eventListener.onClickMissDropdown.call(this);
         },
 
+        resize: function() {
+            var dropdown = this.S('[' + this.attr_name() + '-content].open');
+            var target = this.S('[' + this.attr_name() + '="' + dropdown.attr('id') + '"]');
+
+            if (dropdown.length && target.length) {
+                this.setDropdownStyle(dropdown, target);
+            }
+        },
+
         /**
          * Возвращает имя атрибута data для хендлера
          * @return {string}
@@ -265,9 +289,9 @@
             var leftOffset;
             var styleForSmall;
 
-            this.clear_idx();
+            this.clearIdx();
 
-            if (this.small()) {
+            if (this.small()) {//TODO: fix it
                 leftOffset = Math.max((target.width() - dropdown.width()) / 2, 8);
                 var p = this.styleForSide.bottom.call(dropdown, target);
 
@@ -278,7 +302,7 @@
                     top: p.top
                 };
 
-                if (settings.minWidthLikeButton) {
+                if (settings.minWidthLikeElement) {
                     styleForSmall.minWidth = target.outerWidth() + 'px';
                 }
 
@@ -300,6 +324,12 @@
         style: function(dropdown, target, settings) {
             var side = settings.side;
             var align = settings.align;
+            var dropdownStyles = {position: 'absolute'};
+
+            if (settings.minWidthLikeElement) {
+                dropdownStyles.minWidth = target.closest(settings.minWidthLikeElement).outerWidth() + 'px';
+                dropdown.css({'minWidth': dropdownStyles.minWidth});
+            }
 
             var checkPosition = this.checkPosition(dropdown, target, settings, side, align);
             side = checkPosition.side;
@@ -308,11 +338,7 @@
             var basePosition = this.styleFor._basePosition.call(dropdown, target);
             var computedStyle = this.styleFor.side[side].call(dropdown, target, basePosition);
             computedStyle = $.extend(computedStyle, this.styleFor.align[align].call(dropdown, target, basePosition));
-            var dropdownStyles = $.extend({position: 'absolute'}, computedStyle);
-
-            if (settings.minWidthLikeButton) {
-                dropdownStyles.minWidth = target.outerWidth() + 'px';
-            }
+            computedStyle = $.extend(dropdownStyles, computedStyle);
 
             dropdown.attr('style', '').css(dropdownStyles);
         },
@@ -452,7 +478,7 @@
             }
         },
 
-        clear_idx: function() {
+        clearIdx: function() {
             var sheet = Foundation.stylesheet;
 
             if (this.rule_idx) {
@@ -467,6 +493,9 @@
                 !matchMedia(Foundation.media_queries.medium).matches;
         },
 
-        off: function() {}
+        off: function() {
+            this.S(this.scope).off('.fndtn.dropdown');
+            this.S(window).off('.fndtn.dropdown');
+        }
     };
 }(jQuery, window, window.document));
