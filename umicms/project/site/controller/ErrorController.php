@@ -13,6 +13,7 @@ namespace umicms\project\site\controller;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umicms\exception\InvalidLicenseException;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\component\BaseCmsController;
@@ -33,9 +34,14 @@ class ErrorController extends BaseCmsController
     /**
      * Конструктор.
      * @param \Exception $e
+     * @throws \Exception
      */
     public function __construct(\Exception $e)
     {
+        if ($e instanceof InvalidLicenseException) {
+            throw $e;
+        }
+
         $this->exception = $e;
     }
 

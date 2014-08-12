@@ -16,7 +16,7 @@ return [
         'role:pageExecutor:displayName' => 'Pages',
         'role:layoutExecutor:displayName' => 'Layouts',
         'role:infoblockExecutor:displayName' => 'Information blocks',
-        'role:menuExecutor:displayName' => 'Menu'
+        'role:menuExecutor:displayName' => 'Menu',
     ],
 
     'ru-RU' => [
@@ -25,7 +25,7 @@ return [
         'role:pageExecutor:displayName' => 'Страницы',
         'role:layoutExecutor:displayName' => 'Шаблоны',
         'role:infoblockExecutor:displayName' => 'Информационные блоки',
-        'role:menuExecutor:displayName' => 'Меню'
+        'role:menuExecutor:displayName' => 'Меню',
     ]
 
 ];

@@ -10,29 +10,35 @@
 
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
-use umicms\project\Environment;
-use umicms\project\module\blog\model\object\BlogBaseComment;
+use umi\validation\IValidatorFactory;
+use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/recyclable.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/recyclable.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_comment'
         ],
         'fields' => [
+            BaseBlogComment::FIELD_PUBLISH_TIME => [
+                'type' => IField::TYPE_DATE_TIME,
+                'columnName' => 'publish_time',
+            ],
+            BaseBlogComment::FIELD_POST => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'post_id',
+                'target' => 'blogPost',
+                'mutator' => 'setPost'
+            ],
+
             BlogComment::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
-                'target' => 'blogAuthor'
-            ],
-            BlogComment::FIELD_POST => [
-                'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'post_id',
-                'target' => 'blogPost'
+                'target' => 'blogAuthor',
+                'mutator' => 'setAuthor'
             ],
             BlogComment::FIELD_CONTENTS => [
                 'type' => IField::TYPE_TEXT,
@@ -52,20 +58,21 @@ return array_replace_recursive(
                     'en-US' => ['columnName' => 'contents_raw_en']
                 ]
             ],
-            BlogComment::FIELD_PUBLISH_TIME => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'publish_time'
-            ],
-            BlogComment::FIELD_PUBLISH_STATUS => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'publish_status'
+            BlogComment::FIELD_STATUS => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'status_id',
+                'target' => 'blogCommentStatus',
+                'mutator' => 'setStatus',
+                'validators'    => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ]
         ],
         'types' => [
             IObjectType::BASE => [
-                'objectClass' => 'umicms\project\module\blog\model\object\BlogBaseComment',
+                'objectClass' => 'umicms\project\module\blog\model\object\BaseBlogComment',
                 'fields' => [
-                    BlogBaseComment::FIELD_POST => []
+                    BaseBlogComment::FIELD_POST => []
                 ]
             ],
             BlogBranchComment::TYPE => [
@@ -81,7 +88,7 @@ return array_replace_recursive(
                     BlogComment::FIELD_CONTENTS => [],
                     BlogComment::FIELD_CONTENTS_RAW => [],
                     BlogComment::FIELD_PUBLISH_TIME => [],
-                    BlogComment::FIELD_PUBLISH_STATUS => []
+                    BlogComment::FIELD_STATUS => []
                 ]
             ]
         ]

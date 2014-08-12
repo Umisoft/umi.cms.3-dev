@@ -14,7 +14,7 @@ use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
 
 /**
- * Виджет для вывода списка отклонённых постов текущего автора.
+ * Виджет для вывода списка отклоненных постов текущего автора.
  */
 class ListWidget extends BaseListWidget
 {

@@ -1,0 +1,56 @@
+{{ widget('search.form') }}
+
+{{ include('partial/authorization.twig') }}
+
+<div class="sidebar-module sidebar-module-inset">
+    <h4>{{ translate('RSSFeed') }}</h4>
+    <p>{{ translate('Blogs') }}: {{ widget('blog.post.rssLink', {'template' : 'rssLink'}) }}</p>
+</div>
+<div class="sidebar-module">
+    <h4>{{ translate('Categories') }}</h4>
+    {{ widget('blog.category.list', {'template' : 'listShort'}) }}
+</div>
+<div class="sidebar-module">
+    <h4>{{ translate('Tags cloud') }}</h4>
+    {{ widget('blog.tag.cloud', {'template' : 'cloud'}) }}
+</div>
+<div class="sidebar-module">
+    <h4>{{ translate('Authors') }}</h4>
+    {{ widget('blog.author.view.list', {'template' : 'listShort'}) }}
+</div>
+
+{% if (
+    isAllowedResource('blog.draft.view', 'widget:link') and
+    isAllowedResource('blog.moderate.own', 'widget:link') and
+    isAllowedResource('blog.reject.view', 'widget:link')
+) %}
+<div class="sidebar-module">
+    <h4>{{ translate('Authors\'s posts') }}</h4>
+    <ol class="list-unstyled">
+        <li>{{ translate('Drafts') }}:
+            {{ widget('blog.draft.view.link', {'template' : 'draftLinkAuthor'}) }}
+        </li>
+        <li>
+            {{ translate('Post on moderation') }}:
+            {{ widget('blog.moderate.own.link', {'template' : 'moderateLink'}) }}
+        </li>
+        <li>
+            {{ translate('Rejected posts') }}:
+            {{ widget('blog.reject.view.link', {'template' : 'link'}) }}
+        </li>
+    </ol>
+</div>
+{% endif %}
+{% if (isAllowedResource('blog.moderate.all', 'widget:link')) %}
+<div class="sidebar-module">
+    <h4>{{ translate('Moderate') }}</h4>
+    <ol class="list-unstyled">
+        <li>
+            {{ translate('Post on moderation') }}:
+            {{ widget('blog.moderate.all.link', {'template' : 'moderateLink'}) }}
+        </li>
+    </ol>
+</div>
+{% endif %}
+
+{{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}

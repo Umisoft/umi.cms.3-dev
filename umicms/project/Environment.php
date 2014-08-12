@@ -10,6 +10,7 @@
 
 namespace umicms\project;
 
+use Composer\Autoload\ClassLoader;
 use umi\http\Response;
 
 /**
@@ -18,126 +19,112 @@ use umi\http\Response;
 class Environment
 {
     /**
-     * Режим разработки
+     * @var bool $corePath файл для подключения ядра системы
      */
-    const DEV_MODE = 'devMode';
+    public static $corePath;
     /**
-     * Режим "продакшн"
+     * @var bool $displayErrors отображать ли ошибки по месту их возникновения
      */
-    const PRODUCTION_MODE = 'productionMode';
-    /**
-     * Текущий режим
-     */
-    const CURRENT_MODE = 'currentMode';
+    public static $displayErrors = true;
     /**
      * Уровень вывода ошибок
      */
-    const ERROR_REPORTING = 'errorReporting';
+    public static $errorReporting = E_ALL;
     /**
-     * Скрытие/отображение ошибок на экране
+     * @var int $startTime время запуска приложения
      */
-    const DISPLAY_ERRORS = 'displayErrors';
-    /**
-     * Скрытие/отображение трейса исключений
-     */
-    const DISPLAY_EXCEPTION_TRACE = 'displayExceptionTrace';
-    /**
-     * Скрытие/отображение стека предыдущих исключений
-     */
-    const DISPLAY_EXCEPTION_STACK = 'displayExceptionStack';
-
+    public static $startTime = 0;
     /**
      * @var bool $showExceptionTrace скрытие/отображение трейса исключений
      */
-    public static $showExceptionTrace = false;
+    public static $showExceptionTrace = true;
     /**
      * @var bool $showExceptionStack скрытие/отображение стека предыдущих исключений
      */
-    public static $showExceptionStack = false;
+    public static $showExceptionStack = true;
     /**
-     * @var string $currentMode
+     * @var string $bootConfig пользовательская конфигурация загрузчика
      */
-    public static $currentMode = self::PRODUCTION_MODE;
+    public static $bootConfig;
     /**
-     * @var array $bootConfigMaster коробочная конфигурация загрузчика
+     * @var string $directoryCoreError директория шаблонов ошибок ядра UMI.CMS
      */
-    public static $bootConfigMaster;
+    public static $directoryCoreError;
     /**
-     * @var string $bootConfigLocal пользовательская конфигурация загрузчика
+     * @var string $directoryProjects публичная директория
      */
-    public static $bootConfigLocal;
+    public static $directoryPublic = ".";
     /**
-     * @var string $directoryCms директория ядра UMI.CMS
+     * @var string $directoryRoot корневая директория
      */
-    public static $directoryCms;
+    public static $directoryRoot = ".";
     /**
-     * @var string $directoryCmsError директория шаблонов ошибок ядра UMI.CMS
+     * @var string $directoryAssets директория с ассетами проекта
      */
-    public static $directoryCmsError;
+    public static $directoryAssets = ".";
     /**
-     * @var string $directoryCmsProject директория файлов проекта UMI.CMS
+     * @var string $baseUrl базовый URL для ресурсов проектов
      */
-    public static $directoryCmsProject;
+    public static $baseUrl = "";
     /**
-     * @var string $directoryProjects директория для пользовательских проектов
+     * @var string $timezone таймзона сервера по умолчанию
      */
-    public static $directoryProjects;
+    public static $timezone = 'UTC';
     /**
-     * @var string $projectConfiguration файл с настройками проектов
+     * @var bool $cacheTemplate разрешение кеширования шаблонов
      */
-    public static $projectsConfiguration;
+    public static $cacheTemplateEnabled = false;
     /**
-     * @var string $environmentConfiguration файл с настройками окружения
+     * @var bool $cacheBrowserEnabled разрешить ли браузерам кэшировать запросы
      */
-    public static $environmentConfiguration;
+    public static $browserCacheEnabled = true;
+    /**
+     * @var ClassLoader $classLoader загрузчик классов
+     */
+    public static $classLoader;
 
     /**
-     * Настраивает вывод ошибок.
-     * @param array $config
-     * @throws \RuntimeException в случае неверной конфигурации
+     * Инициализирует окружение настройками из конфигурации
+     * @param array $config конфигурация окружения
+     * @throws \RuntimeException
      */
-    public static function initErrorReporting($config)
+    public static function init($config)
     {
         if (!is_array($config)) {
             throw new \RuntimeException(
                 sprintf('Environment configuration should be an array.')
             );
         }
-        if (!isset($config[self::CURRENT_MODE]) || !isset($config[$config[self::CURRENT_MODE]])) {
-            throw new \RuntimeException(
-                sprintf('Environment configuration is corrupted.')
-            );
-        }
-        self::$currentMode = $config[self::CURRENT_MODE];
-        $modeConfig = $config[self::$currentMode];
-        $errorReporting = isset($modeConfig[self::ERROR_REPORTING]) ? $modeConfig[self::ERROR_REPORTING] : 0;
-        $displayErrors = isset($modeConfig[self::DISPLAY_ERRORS]) ? $modeConfig[self::DISPLAY_ERRORS] : 0;
-        self::$showExceptionStack = isset($modeConfig[self::DISPLAY_EXCEPTION_STACK]) ? $modeConfig[self::DISPLAY_EXCEPTION_STACK] : false;
-        self::$showExceptionTrace = isset($modeConfig[self::DISPLAY_EXCEPTION_TRACE]) ? $modeConfig[self::DISPLAY_EXCEPTION_TRACE] : false;
 
-        error_reporting($errorReporting);
-        ini_set('display_errors', $displayErrors);
+        foreach ($config as $name => $value) {
+            self::${$name} = $value;
+        }
+
+        date_default_timezone_set(self::$timezone);
+
+        error_reporting(self::$errorReporting);
+        ini_set('display_errors', (bool) self::$displayErrors);
 
         register_shutdown_function(function() {
             $error = error_get_last();
             if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
-                Environment::reportError('error.phtml', ['e' => $error]);
+                self::reportCoreError('error.phtml', ['e' => $error]);
             }
         });
     }
 
     /**
-     * Выводит сообщение об ошибке
-     * @param $templateName
+     * Выводит сообщение об ошибке ядра UMI.CMS
+     * @param string $templateName
      * @param array $scope
      * @param int $responseStatusCode
      */
-    public static function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
+    public static function reportCoreError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
     {
         $scope['showTrace'] = self::$showExceptionTrace;
         $scope['showStack'] = self::$showExceptionStack;
 
-        $templatePath = self::$directoryCmsError . '/' . $templateName;
+        $templatePath = (self::$directoryCoreError ?: CMS_DIR . '/error') . '/' . $templateName;
         if (file_exists($templatePath)) {
             extract($scope);
 

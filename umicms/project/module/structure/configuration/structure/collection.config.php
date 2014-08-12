@@ -13,24 +13,27 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\SystemPage;
 
-return [
-    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\structure\model\collection\StructureElementCollection',
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
+    [
+        'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+        'class' => 'umicms\project\module\structure\model\collection\StructureElementCollection',
 
-    'handlers' => [
-        'admin' => 'structure.page',
-        'site' => 'structure'
-    ],
-    'forms' => [
-        StaticPage::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/static.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/structure/form/static.create.config.php}'
+        'handlers' => [
+            'admin' => 'structure.page',
+            'site' => 'structure'
         ],
-        SystemPage::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/system.edit.config.php}'
+        'forms' => [
+            StaticPage::TYPE => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/static.edit.config.php}',
+                ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/structure/form/static.create.config.php}'
+            ],
+            SystemPage::TYPE => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/system.edit.config.php}'
+            ]
+        ],
+        'dictionaries' => [
+            'collection.structure', 'collection'
         ]
-    ],
-    'dictionaries' => [
-        'collection.structure', 'collection'
     ]
-];
+);

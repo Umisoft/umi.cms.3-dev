@@ -15,6 +15,8 @@ use umicms\project\module\structure\model\object\SystemPage;
 return [
     'en-US' => [
 
+        'collection:structure:displayName' => 'Structure',
+
         StructureElement::FIELD_COMPONENT_PATH => 'Handler component path',
         StructureElement::FIELD_COMPONENT_NAME => 'Handler component name',
         SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => 'Skip page in breadcrumbs',
@@ -32,14 +34,16 @@ return [
 
     'ru-RU' => [
 
+        'collection:structure:displayName' => 'Структура',
+
         StructureElement::FIELD_COMPONENT_PATH => 'Путь компонента-обработчика',
         StructureElement::FIELD_COMPONENT_NAME => 'Имя компонента-обработчика',
         SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => 'Пропускать в хлебных крошках',
         StaticPage::FIELD_IN_MENU => 'Отображать в меню',
         StaticPage::FIELD_SUBMENU_STATE => 'Статус отображения в меню',
-        'neverShown' => 'Подменю никогда не развернуто',
+        'neverShown' => 'Подменю не развернуто',
         'currentShown' => 'Подменю развернуто, если в нем находится текущая страница',
-        'alwaysShown' => 'Подменю всегда развернуто',
+        'alwaysShown' => 'Подменю развернуто',
 
         'type:base:displayName' => 'Страница',
         'type:system:displayName' => 'Системная страница',

@@ -17,7 +17,7 @@ use umicms\orm\object\ICmsObject;
  * Бэкап объекта CMS.
  *
  * @property int $objectId идентификатор объекта, которому принадлежит резервная копия
- * @property string $collectionName имя коллекции к которой относится объект
+ * @property string $refCollectionName имя коллекции к которой относится объект
  * @property ICmsObject $data данные резервной копии объекта
  */
 class Backup extends CmsObject
@@ -29,7 +29,7 @@ class Backup extends CmsObject
     /**
      * Имя поля для хранения имени коллекции к которой относится объект
      */
-    const FIELD_COLLECTION_NAME = 'collectionName';
+    const FIELD_REF_COLLECTION_NAME = 'refCollectionName';
     /**
      * Имя поля для хранения данных резервной копии
      */
@@ -47,14 +47,22 @@ class Backup extends CmsObject
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
      * Генерирует отображаемое имя, если оно не было установлено.
      * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName($localeId = null)
+    protected function generateDisplayName($localeId = null)
     {
         if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
-            $value = 'Backup for ' . $this->collectionName . '#' . $this->objectId;
+            $value = 'Backup for ' . $this->refCollectionName . '#' . $this->objectId;
             if ($localeId) {
                 $value .= '_' . $localeId;
             }

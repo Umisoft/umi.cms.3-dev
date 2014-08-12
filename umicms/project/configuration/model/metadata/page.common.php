@@ -1,8 +1,13 @@
 <?php
-
 /**
- * Общие метаданные коллекций, объекты которых имеют страницу на сайте.
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
@@ -30,18 +35,10 @@ return [
             'columnName' => 'meta_title',
             'localizations' => [
                 'ru-RU' => [
-                    'columnName' => 'meta_title',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_title'
                 ],
                 'en-US' => [
-                    'columnName' => 'meta_title_en',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_title_en'
                 ]
             ]
         ],
@@ -50,18 +47,10 @@ return [
             'columnName' => 'meta_description',
             'localizations' => [
                 'ru-RU' => [
-                    'columnName' => 'meta_description',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_description'
                 ],
                 'en-US' => [
-                    'columnName' => 'meta_description_en',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_description_en'
                 ]
             ]
         ],
@@ -70,18 +59,10 @@ return [
             'columnName' => 'meta_keywords',
             'localizations' => [
                 'ru-RU' => [
-                    'columnName' => 'meta_keywords',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_keywords'
                 ],
                 'en-US' => [
-                    'columnName' => 'meta_keywords_en',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
-                    ]
+                    'columnName' => 'meta_keywords_en'
                 ]
             ]
         ],
@@ -90,18 +71,10 @@ return [
             'columnName' => 'h1',
             'localizations' => [
                 'ru-RU' => [
-                    'columnName' => 'h1',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => []
-                    ]
+                    'columnName' => 'h1'
                 ],
                 'en-US' => [
-                    'columnName' => 'h1_en',
-                    'filters' => [
-                        IFilterFactory::TYPE_STRIP_TAGS => [],
-                        IFilterFactory::TYPE_HTML_ENTITIES => []
-                    ]
+                    'columnName' => 'h1_en'
                 ]
             ]
         ],

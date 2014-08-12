@@ -1,0 +1,49 @@
+<a href="javascript:void(0)" class="button white dropdown" {{action "open" target="view"}}>
+<i class="icon icon-backupList"></i>
+{{#if view.meta.attributes.label}}
+<b class="umi-button-label">
+    {{unbound view.meta.attributes.label}}
+</b>
+{{/if}}
+</a>
+<div class="f-dropdown umi-dropdown dropdown-rows right">
+    <div class="row collapse">
+        <div class="columns small-12">
+            <strong>{{view.button.displayName}}</strong>
+        </div>
+    </div>
+    <div class="s-scroll-wrap">
+        <div>
+            {{#each view.backupList}}
+            <div
+            {{bind-attr class=":row :collapse isActive::s-pointer"}} {{action 'applyBackup' this target="view"}}>
+            <div class="columns small-7 place-button">
+                {{#if isActive}}
+                <button class="button flat tiny square">
+                    <i class="icon icon-accept"></i>
+                </button>
+                {{else}}
+                <button class="button flat tiny square">
+                    <i class="icon icon-renew"></i>
+                </button>
+                {{/if}}
+                {{created.date}}
+            </div>
+            <div class="columns small-5">
+                {{#if user}}
+                {{user}}
+                {{else}}
+                {{i18n "User name" "toolbar:dropdownButton"}}
+                {{/if}}
+            </div>
+        </div>
+        {{else}}
+        <div class="row collapse">
+            <div class="columns small-12">
+                {{view.noBackupsLabel}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+</div>

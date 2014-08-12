@@ -105,7 +105,7 @@ class ModelManager implements IDbClusterAware
         }
 
         $scheme = new Schema($tables);
-        var_dump($synchronizer->getUpdateSchema($scheme, true));
+
         $synchronizer->updateSchema($scheme, true);
     }
 }

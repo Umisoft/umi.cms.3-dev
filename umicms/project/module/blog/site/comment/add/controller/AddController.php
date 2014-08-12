@@ -15,6 +15,7 @@ use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Контроллер добавления комментария.
@@ -29,7 +30,7 @@ class AddController extends BaseSitePageController
     protected $module;
 
     /**
-     * @var string|null $added флаг указывающий на публикацию комментария
+     * @var string|null $added флаг, указывающий на публикацию комментария
      */
     private $added;
 
@@ -47,7 +48,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -66,13 +67,14 @@ class AddController extends BaseSitePageController
             $parentComment
         );
 
+        $comment->publishTime = new \DateTime();
 
         if ($this->isAllowed($comment, 'publish')) {
-            $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;
-            $comment->publish();
+            $this->added = 'published';
+            $comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
         } else {
-            $this->added = BlogComment::COMMENT_STATUS_NEED_MODERATE;
-            $comment->needModerate();
+            $this->added = 'moderation';
+            $comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
         return $this->module->comment()->getForm(
@@ -93,7 +95,13 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam string|bool $added флаг, указывающий на статус добавленного комментария:
+     * published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления комментария
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

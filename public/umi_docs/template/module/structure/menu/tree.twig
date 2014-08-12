@@ -1,0 +1,31 @@
+{% if (menu) %}
+    <ul class="media-list">
+        {% for pageInfo in menu %}
+
+            <li class="media">
+
+                {% if (pullLeft) %}
+                    <div class="pull-left" style="width: 64px; height: 64px;"></div>
+                {% endif %}
+
+                <div class="media-body">
+
+                    {% if (pageInfo.page.getTypeName() == 'static.widget' or pageInfo.page.getTypeName() == 'static.controller') %}
+
+                        <h4 class="media-heading"><a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.h1 }}</a></h4>
+                        {{ pageInfo.page.displayName | raw }}
+                    {% else %}
+                        <h4 class="media-heading"><a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a></h4>
+                    {% endif %}
+
+                    {{ include('tree.twig', {'menu' : pageInfo.children, 'pullLeft': true}) }}
+
+                </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+
+{% endif %}
+

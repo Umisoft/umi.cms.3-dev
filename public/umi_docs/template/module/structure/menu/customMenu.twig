@@ -1,0 +1,9 @@
+{% if (tree) %}
+    <ul class="nav navbar-nav">
+        {% for node in tree %}
+            <li>
+                <a href="{{ node.item.itemUrl }}">{{ node.item.displayName }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

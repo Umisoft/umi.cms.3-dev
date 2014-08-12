@@ -11,9 +11,11 @@
 namespace umicms\hmvc\component\admin\layout\control;
 
 use umicms\hmvc\component\admin\collection\CollectionComponent;
+use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\hmvc\component\admin\layout\button\SplitButton;
@@ -50,8 +52,20 @@ class EditObjectControl extends CollectionControl
 
         $this->addToolbarButton('backToFilter', $this->createActionButton('backToFilter'));
 
+        if ($this->collection instanceof ICmsPageCollection) {
+
+            $dropDownButton = $this->createActionDropdownButton('changeSlug');
+            $dropDownButton->behaviour = new Behaviour('form', ['action' => CollectionComponent::ACTION_GET_CHANGE_SLUG_FORM]);
+
+            $this->addToolbarButton('changeSlug', $dropDownButton);
+        }
+
         if ($this->collection instanceof IActiveAccessibleCollection) {
             $this->addToolbarButton('switchActivity', $this->createSwitchActivityButton());
+        }
+
+        if ($this->collection instanceof IRobotsAccessibleCollection) {
+            $this->addToolbarButton('switchRobots', $this->createRobotsAccessibleButton());
         }
 
         if ($this->collection instanceof ICmsPageCollection) {

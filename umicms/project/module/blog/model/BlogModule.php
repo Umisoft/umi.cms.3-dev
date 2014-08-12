@@ -21,6 +21,7 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\module\BaseModule;
+use umicms\orm\collection\CmsCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\collection\BlogAuthorCollection;
 use umicms\project\module\blog\model\collection\BlogCategoryCollection;
@@ -35,6 +36,8 @@ use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
+use umicms\project\module\blog\model\object\CommentStatus;
+use umicms\project\module\blog\model\object\PostStatus;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\UsersModule;
 
@@ -125,7 +128,25 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт пост от имени текущего автора.
+     * Возвращает коллекцию статусов постов.
+     * @return CmsCollection
+     */
+    public function postStatus()
+    {
+        return $this->getCollection('blogPostStatus');
+    }
+
+    /**
+     * Возвращает коллекцию статусов комментариев.
+     * @return CmsCollection
+     */
+    public function commentStatus()
+    {
+        return $this->getCollection('blogCommentStatus');
+    }
+
+    /**
+     * Создает пост от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @return BlogPost
      */
@@ -144,7 +165,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getPosts()
     {
         return $this->post()->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED)
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED)
             ->orderBy(BlogPost::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
     }
 
@@ -277,7 +299,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт комментарий от имени текущего автора.
+     * Создает комментарий от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @param BlogPost $post пост, к которому добавляется комментарий
      * @param null|BlogComment $parentComment родительский комментарий
@@ -323,10 +345,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
+                [
+                    CommentStatus::GUID_PUBLISHED,
+                    CommentStatus::GUID_UNPUBLISHED
+                ]
+            );
 
         return $comments;
     }
@@ -336,17 +360,18 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-
     public function getCommentByPostWithNeedModeration(BlogPost $blogPost)
     {
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
+                [
+                    CommentStatus::GUID_PUBLISHED,
+                    CommentStatus::GUID_NEED_MODERATION,
+                    CommentStatus::GUID_UNPUBLISHED
+                ]
+            );
 
         return $comments;
     }
@@ -428,7 +453,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * Если автора не существует - создаёт нового.
+     * Если автора не существует - создает нового.
      * @throws RuntimeException в случае, если текущий автор не установлен
      * @return BlogAuthor
      */
@@ -480,7 +505,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт автора на основе юзера.
+     * Создает автора на основе юзера.
      * @param BaseUser $user
      * @return BlogAuthor
      */
@@ -525,7 +550,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает список отклонённых постов текущего пользователя.
+     * Возвращает список отклоненных постов текущего пользователя.
      * @return CmsSelector|BlogPost
      */
     public function getOwnRejected()
@@ -566,7 +591,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             $blogPost->slug = $blogPost->guid;
             $blogPost->category = $blogRssImportScenario->category;
             $blogPost->author = $blogRssImportScenario->author;
-            $blogPost->publishStatus = $blogRssImportScenario->publishStatus;
+            $blogPost->status = $blogRssImportScenario->postStatus;
 
             foreach ($blogRssImportScenario->tags as $subject) {
                 $blogPost->tags->attach($subject);

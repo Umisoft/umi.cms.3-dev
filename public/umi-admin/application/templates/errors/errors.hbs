@@ -1,0 +1,35 @@
+<div class="umi-component s-full-height">
+    <div class="row">
+        <div class="small-10 columns small-centered text-center">
+            <p></p>
+
+            <div>
+                {{!#if title}}
+                <h2>
+                    {{title}}.
+                </h2>
+                {{!/if}}
+
+                {{#if model.content}}
+                <p>{{model.content}}</p>
+                {{/if}}
+
+                {{#if stack}}
+                <div class="text-left">
+                    <code>{{stack}}</code>
+                </div>
+                {{/if}}
+
+                {{#if lists}}
+                <div class="alert-box error">
+                    <ul>
+                        {{#each lists}}
+                        <li>{{error}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

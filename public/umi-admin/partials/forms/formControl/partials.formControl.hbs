@@ -1,0 +1,48 @@
+{{#if control.toolbar}}
+<div class="s-full-height-before">
+    {{view 'toolbar' toolbar=control.toolbar}}
+</div>
+{{/if}}
+
+<div class="s-full-height">
+    {{#with model.control.meta.elements as formElements}}
+    {{#if view.hasFieldset}}
+    {{#view "magellan" elements=formElements}}
+    {{#each formElement in view.elements itemViewClass="view.elementView"}}
+    {{#if view.isFieldset}}
+    {{#view view.parentView.buttonView model=formElement}}
+    {{formElement.label}}
+    {{/view}}
+    {{/if}}
+    {{/each}}
+    {{/view}}
+    {{/if}}
+
+    <div class="row s-full-height collapse">
+        <div class="columns small-12 magellan-content">
+            {{#each formElement in formElements itemViewClass="view.elementView"}}
+            {{#if view.isFieldset}}
+            <fieldset id="fieldset-{{unbound formElement.id}}">
+                <legend
+                {{action 'expand' target="view"}} class="s-unselectable">
+                <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+                {{formElement.label}}
+                </legend>
+                {{#if view.isExpanded}}
+                {{#each element in formElement.elements itemViewClass="view.parentView.elementView"}}
+                {{view "fieldFormControl" metaBinding="element" objectBinding="controller.object"}}
+                {{/each}}
+                {{/if}}
+            </fieldset>
+            {{else}}
+            {{view "fieldFormControl" metaBinding="formElement" objectBinding="controller.object"}}
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    {{/with}}
+</div>
+
+{{#if model.control.submitToolbar}}
+{{view 'submitToolbar' elements=model.control.submitToolbar}}
+{{/if}}

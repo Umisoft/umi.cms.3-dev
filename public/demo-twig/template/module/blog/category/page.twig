@@ -1,0 +1,8 @@
+{{ include('breadcrumbs.twig') }}
+
+<h1>{{ page.getHeader }}</h1>
+{{ widget('blog.post.add.addLink', {'blogCategory' : page, 'template' : 'addPostLink'}) }}
+{{ page.contents | raw }}
+
+{{ widget('blog.category.list', {'parentCategory' : page, 'template' : 'list'}) }}
+{{ widget('blog.category.postList', {'categories' : [page], 'template' : 'postList'}) }}

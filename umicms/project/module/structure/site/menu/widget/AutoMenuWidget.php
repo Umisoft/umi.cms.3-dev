@@ -11,6 +11,7 @@
 namespace umicms\project\module\structure\site\menu\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\model\object\StructureElement;
@@ -58,7 +59,22 @@ class AutoMenuWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam array $menu элементы меню в формате:
+     * [
+     *  [
+     *    'page' => StructureElement $page,
+     *    'active' => bool страница находится в списке хлебных крошек для текущей странице ,
+     *    'current' => bool страница является текущей,
+     *    'children' => array список дочерних элементов меню
+     *  ],
+     *  ...
+     * ]
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

@@ -11,13 +11,17 @@
 return [
 
     'en-US' => [
+        'component:comment:displayName' => 'Comments',
+
         'action:create:comment' => 'Create comment',
 
         'role:editor:displayName' => 'Manage comments'
     ],
 
     'ru-RU' => [
-        'action:create:comment' => 'Создать комментарий',
+        'component:comment:displayName' => 'Комментарии',
+
+        'action:create:comment' => 'Добавить комментарий',
 
         'role:editor:displayName' => 'Управление комментариями'
     ]

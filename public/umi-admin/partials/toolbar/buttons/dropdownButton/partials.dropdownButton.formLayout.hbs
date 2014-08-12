@@ -1,0 +1,9 @@
+<br/>
+{{#each formElement in view.form.elements}}
+<div class="row">
+    <div class="large-12 columns">
+        {{view "fieldBase" metaBinding="formElement" objectBinding="view.object"}}
+    </div>
+</div>
+{{/each}}
+<br/>

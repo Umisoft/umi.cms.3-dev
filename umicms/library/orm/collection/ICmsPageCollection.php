@@ -16,14 +16,20 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 
 /**
  * Интерфейс коллекции объектов, которые имеют страницу на сайте.
  */
-interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRecyclableCollection, IActiveAccessibleCollection
+interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRecyclableCollection, IActiveAccessibleCollection, IRobotsAccessibleCollection
 {
+    /**
+     * Имя формы для изменения slug
+     */
+    const FORM_CHANGE_SLUG = 'changeSlug';
+
     /**
      * Возвращает объект по URI.
      * @param string $uri URI

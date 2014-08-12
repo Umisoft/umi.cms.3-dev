@@ -21,6 +21,7 @@ use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\selector\CmsSelector;
 
 /**
  * Интерфейс коллекции объектов UMI.CMS
@@ -85,12 +86,6 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
     public function getHandlerPath($applicationName);
 
     /**
-     * Возвращает список компонентов-обработчиков.
-     * @return array
-     */
-    public function getHandlerList();
-
-    /**
      * Проверяет, есть ли обработчик у коллекции для указанного приложения.
      * @param string $applicationName имя приложения
      * @return bool
@@ -134,4 +129,15 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * @return CmsSelector|ICmsObject[]
      */
     public function getInternalSelector();
+
+    /**
+     * Возвращает сообщение коллекции, переведенное для текущей или указанной локали.
+     * Текст сообщения может содержать плейсхолдеры. Ex: File "{path}" not found
+     * Если идентификатор локали не указан, будет использована текущая локаль.
+     * @param string $message текст сообщения на языке разработки
+     * @param array $placeholders значения плейсхолдеров для сообщения. Ex: array('{path}' => '/path/to/file')
+     * @param string $localeId идентификатор локали в которую осуществляется перевод (ru, en_us)
+     * @return string
+     */
+    public function translate($message, array $placeholders = [], $localeId = null);
 }

@@ -1,0 +1,18 @@
+<div class="right umi-table-control-pagination">
+    <div class="right pagination-controls">
+        <span class="pagination-counter">
+            {{view.counter}}
+        </span>
+        {{#view view.prevButtonView}}
+        <i class="icon black icon-left-thin"></i>
+        {{/view}}
+        {{#view view.nextButtonView}}
+        <i class="icon black icon-right-thin"></i>
+        {{/view}}
+    </div>
+
+    <div class="right pagination-limit">
+        <span class="pagination-label">{{i18n "Rows on page" "table"}}:</span>
+        {{view view.limitView}}
+    </div>
+</div>

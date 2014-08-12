@@ -12,32 +12,33 @@ use umicms\project\module\blog\model\object\BlogPost;
 
 return [
         'en-US' => [
+            'collection:blogPost:displayName' => 'Blog posts',
+
             BlogPost::FIELD_ANNOUNCEMENT => 'Announcement',
             BlogPost::FIELD_CATEGORY => 'Category',
             BlogPost::FIELD_TAGS => 'Tags',
             BlogPost::FIELD_AUTHOR => 'Author',
             BlogPost::FIELD_PUBLISH_TIME => 'Publish time',
             BlogPost::FIELD_SOURCE => 'Source',
+            BlogPost::FIELD_STATUS => 'Status',
+            BlogPost::FIELD_IMAGE => 'Image',
+
             'type:base:displayName' => 'Blog post',
-            'publishStatus' => 'Publish status',
-            BlogPost::POST_STATUS_DRAFT => 'Draft',
-            BlogPost::POST_STATUS_NEED_MODERATE => 'Moderate',
-            BlogPost::POST_STATUS_REJECTED => 'Rejected',
-            BlogPost::POST_STATUS_PUBLISHED => 'Published'
+
         ],
 
         'ru-RU' => [
+            'collection:blogPost:displayName' => 'Посты блога',
+
             BlogPost::FIELD_ANNOUNCEMENT => 'Анонс',
             BlogPost::FIELD_CATEGORY => 'Категория',
             BlogPost::FIELD_TAGS => 'Теги',
             BlogPost::FIELD_AUTHOR => 'Автор',
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogPost::FIELD_SOURCE => 'Источник публикации',
+            BlogPost::FIELD_STATUS => 'Статус публикации',
+            BlogPost::FIELD_IMAGE => 'Картинка',
+
             'type:base:displayName' => 'Пост блога',
-            'publishStatus' => 'Статус публикации',
-            BlogPost::POST_STATUS_DRAFT => 'Черновик',
-            BlogPost::POST_STATUS_NEED_MODERATE => 'На модерации',
-            BlogPost::POST_STATUS_REJECTED => 'Отклонён',
-            BlogPost::POST_STATUS_PUBLISHED => 'Опубликован'
         ]
     ];

@@ -9,12 +9,11 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\news\model\object\NewsItem;
 use umicms\project\module\news\model\object\NewsRubric;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'news_rubric'

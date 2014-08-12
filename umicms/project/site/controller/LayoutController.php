@@ -75,7 +75,8 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
         $variables['description'] = $this->getMetaDescription();
         $variables['keywords'] = $this->getMetaKeywords();
         $variables['locales'] = $this->getLocales();
-        $variables['projectUrl'] = $this->getUrlManager()->getProjectUrl();
+        $variables['projectUrl'] = $this->getProjectUrls();
+        $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
 
         $variables['contents'] = $this->response->getContent();
 
@@ -88,8 +89,8 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
     }
 
     /**
-     * Возвращает список локалей сайта в формате [$localeId => $localeUrl, ...]
-     * @return array
+     * Возвращает представление текущего URL для всех локалей
+     * @return LocalesView
      */
     protected function getLocales()
     {
@@ -112,6 +113,30 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
             $locales[] = [
                 'id' => $localeId,
                 'url' => $url,
+                'current' => $isCurrent
+            ];
+        }
+
+        return new LocalesView($locales);
+    }
+
+    /**
+     * Возвращает представление URL проекта для всех локалей
+     * @return LocalesView
+     */
+    protected function getProjectUrls()
+    {
+        $localesService = $this->getLocalesService();
+
+        $locales = [];
+        foreach ($localesService->getSiteLocales() as $locale) {
+
+            $localeId = $locale->getId();
+            $isCurrent = $localesService->getCurrentLocale() === $localeId;
+
+            $locales[] = [
+                'id' => $localeId,
+                'url' => $locale->getUrl(),
                 'current' => $isCurrent
             ];
         }

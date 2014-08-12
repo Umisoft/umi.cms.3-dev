@@ -11,13 +11,17 @@
 return [
 
     'en-US' => [
+        'component:author:displayName' => 'Authors',
+
         'action:create:base' => 'Create author',
 
         'role:editor:displayName' => 'Manage authors'
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Создать автора',
+        'component:author:displayName' => 'Авторы',
+
+        'action:create:base' => 'Добавить автора',
 
         'role:editor:displayName' => 'Управление авторами'
     ]

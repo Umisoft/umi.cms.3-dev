@@ -74,6 +74,11 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     {
         try {
             $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
+
+            if (!$element->active || $element->trashed) {
+                return false;
+            }
+
             $this->setRouteParams($element);
 
             return 1;
@@ -91,7 +96,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     {
         $element =
             $this->structureApi->element()->select()
-            ->types([StaticPage::TYPE])
+            ->types([StaticPage::TYPE . '*'])
             ->where(StaticPage::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)
@@ -99,6 +104,10 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
             ->fetch();
 
         if ($element instanceof StructureElement) {
+            if (!$element->active || $element->trashed) {
+                return false;
+            }
+
             $this->setRouteParams($element);
 
             return strlen($element->getURL()) + 1;

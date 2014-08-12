@@ -11,20 +11,23 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
 
-return [
-    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\news\model\collection\NewsRubricCollection',
-    'handlers' => [
-        'admin' => 'news.rubric',
-        'site' => 'news.rubric'
-    ],
-    'forms' => [
-        'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rubric/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/rubric/form/base.create.config.php}'
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
+    [
+        'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+        'class' => 'umicms\project\module\news\model\collection\NewsRubricCollection',
+        'handlers' => [
+            'admin' => 'news.rubric',
+            'site' => 'news.rubric'
+        ],
+        'forms' => [
+            'base' => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rubric/form/base.edit.config.php}',
+                ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/rubric/form/base.create.config.php}'
+            ]
+        ],
+        'dictionaries' => [
+            'collection.newsRubric', 'collection'
         ]
-    ],
-    'dictionaries' => [
-        'collection.newsRubric', 'collection'
     ]
-];
+);

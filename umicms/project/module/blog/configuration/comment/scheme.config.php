@@ -10,12 +10,10 @@
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/hierarchicCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/recyclable.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/recyclable.config.php',
     [
         'name' => 'blog_comment',
         'columns' => [
@@ -58,10 +56,10 @@ return array_replace_recursive(
             'publish_time' => [
                 'type' => Type::DATETIME
             ],
-            'publish_status' => [
-                'type' => Type::STRING,
+            'status_id' => [
+                'type' => Type::BIGINT,
                 'options' => [
-                    'length' => 50
+                    'unsigned' => true
                 ]
             ],
         ],
@@ -76,9 +74,9 @@ return array_replace_recursive(
                     'post_id' => []
                 ]
             ],
-            'publish_status' => [
+            'status' => [
                 'columns' => [
-                    'publish_status' => []
+                    'status_id' => []
                 ]
             ]
         ],
@@ -97,6 +95,16 @@ return array_replace_recursive(
                 'foreignTable' => 'blog_post',
                 'columns' => [
                     'post_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'comment_to_status' => [
+                'foreignTable' => 'blog_comment_status',
+                'columns' => [
+                    'status_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

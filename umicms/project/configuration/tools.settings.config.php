@@ -24,13 +24,17 @@ use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
+use umicms\form\element\ObjectRelation;
+use umicms\form\element\PageRelation;
 use umicms\form\element\PasswordWithConfirmation;
+use umicms\form\element\SingleCollectionObjectRelation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\project\Environment;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
@@ -66,6 +70,13 @@ return [
                 'engineClasses' => [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
+                ],
+                'defaultOptions' => [
+                    TwigTemplateEngine::NAME => [
+                        TwigTemplateEngine::OPTION_ENVIRONMENT => [
+                            'cache' => Environment::$cacheTemplateEnabled ? '{#localDir:~/project/cache/templates_c/}' : false
+                        ]
+                    ]
                 ]
             ]
         ]
@@ -80,7 +91,10 @@ return [
                     Image::TYPE_NAME => 'umicms\form\element\Image',
                     Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
                     PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
-                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions'
+                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions',
+                    ObjectRelation::TYPE_NAME => 'umicms\form\element\ObjectRelation',
+                    PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation',
+                    SingleCollectionObjectRelation::TYPE_NAME => 'umicms\form\element\SingleCollectionObjectRelation'
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'
@@ -130,8 +144,10 @@ return [
 
             'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
             'blogPost' => '{#lazy:~/project/module/blog/configuration/post/metadata.config.php}',
+            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/metadata.config.php}',
             'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/metadata.config.php}',
             'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
+            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/metadata.config.php}',
             'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
             'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
@@ -145,8 +161,7 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
 
-            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/metadata.config.php}',
-            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/metadata.config.php}',
+            'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
         ],
 
         'collections' => [
@@ -164,8 +179,10 @@ return [
 
             'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
             'blogPost' => '{#lazy:~/project/module/blog/configuration/post/collection.config.php}',
+            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/collection.config.php}',
             'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/collection.config.php}',
             'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
+            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/collection.config.php}',
             'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
             'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
@@ -179,9 +196,7 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
 
-            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/collection.config.php}',
-            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/collection.config.php}',
-
+            'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
         ]
     ],
 

@@ -9,11 +9,10 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\search\model\object\SearchIndex;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'search_index'
@@ -31,7 +30,7 @@ return array_replace_recursive(
                     'en-US' => ['columnName' => 'contents_en']
                 ]
             ],
-            SearchIndex::FIELD_COLLECTION_NAME => [
+            SearchIndex::FIELD_REF_COLLECTION_NAME => [
                 'type' => IField::TYPE_STRING,
                 'columnName' => 'collection_name',
             ]
@@ -42,7 +41,7 @@ return array_replace_recursive(
                 'fields' => [
                     SearchIndex::FIELD_REF_GUID => [],
                     SearchIndex::FIELD_CONTENT => [],
-                    SearchIndex::FIELD_COLLECTION_NAME => []
+                    SearchIndex::FIELD_REF_COLLECTION_NAME => []
                 ]
             ]
         ]

@@ -10,6 +10,7 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
@@ -62,8 +63,38 @@ trait TRecyclableCollection
         }
 
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
+
+            if ($parent = $object->getParent()) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                /**
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+            }
+
             $descendants = $this->selectDescendants($object);
+            /**
+             * @var CmsHierarchicObject $descendant
+             */
             foreach($descendants as $descendant) {
+
+                $siteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+
+                $adminChildCount = $descendant->getParent()->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+
                 $descendant->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
             }
         }
@@ -88,6 +119,21 @@ trait TRecyclableCollection
              * @var CmsHierarchicObject $parent
              */
             foreach($ancestry as $parent) {
+
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                /**
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+
                 $parent->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(false);
             }
         }

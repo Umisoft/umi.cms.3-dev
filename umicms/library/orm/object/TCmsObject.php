@@ -10,6 +10,7 @@
 
 namespace umicms\orm\object;
 
+use umi\orm\metadata\field\special\FormulaField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
@@ -78,6 +79,11 @@ trait TCmsObject
     abstract public function getValue($propName, $localeId = null);
 
     /**
+     * @see CmsObject::getLocalizedValue()
+     */
+    abstract protected function getLocalizedValue(IProperty $property, $localeId);
+
+    /**
      * @see TLocalesAware::getDefaultDataLocale()
      */
     abstract protected function getDefaultDataLocale();
@@ -138,34 +144,24 @@ trait TCmsObject
             return true;
         }
 
+        $this->fillProperties();
+        $this->fillLocalizedProperties();
+
         $result = true;
 
-        $currentLocaleId = $this->getCurrentDataLocale();
-        $defaultLocaleId = $this->getDefaultDataLocale();
-
-        if ($currentLocaleId !== $defaultLocaleId) {
-            foreach ($this->getModifiedProperties() as $property) {
-                if ($property->getLocaleId()) {
-                    $name = $property->getName();
-                    if ($name === IActiveAccessibleObject::FIELD_ACTIVE) {
-                        continue;
-                    }
-                    if ($this->getValue($name, $defaultLocaleId)) {
-                        continue;
-                    }
-                    $this->setValue($name, $this->getValue($name), $defaultLocaleId);
-                }
-            }
-        }
-
         foreach ($this->getAllProperties() as $property) {
-
             $localeId = $property->getLocaleId();
-            if ($localeId && $localeId !== $defaultLocaleId && $localeId !== $currentLocaleId) {
+            if ($localeId && $localeId !== $this->getCurrentDataLocale()) {
                 continue;
             }
 
-            if (!$property->validate()) {
+            if ($property->getField()->getIsLocalized()) {
+                $value = $this->getLocalizedValue($property, $localeId);
+            } else {
+                $value = $property->getValue();
+            }
+
+            if (!$property->validate($value)) {
                 /** @noinspection PhpUndefinedFieldInspection */
                 $this->validationErrors[$property->getFullName()] = $property->getValidationErrors();
                 $result = false;
@@ -212,6 +208,51 @@ trait TCmsObject
     public function isAllowed($role, $operationName, array $assertions)
     {
         return true;
+    }
+
+    /**
+     * Заполняет пустые значения свойств.
+     */
+    protected function fillProperties()
+    {
+
+    }
+
+    /**
+     * @see TLocalizable::getI18nDictionaryNames()
+     */
+    protected function getI18nDictionaryNames()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return array_merge(parent::getI18nDictionaryNames(), $this->getCollection()->getDictionaryNames());
+    }
+
+    /**
+     * Заполняет пустые значения дефолтной локали значениями из текущей.
+     */
+    private function fillLocalizedProperties()
+    {
+        $currentLocaleId = $this->getCurrentDataLocale();
+        $defaultLocaleId = $this->getDefaultDataLocale();
+
+        if ($currentLocaleId !== $defaultLocaleId) {
+            foreach ($this->getModifiedProperties() as $property) {
+                if ($property->getField() instanceof FormulaField) {
+                    continue;
+                }
+                if ($property->getLocaleId()) {
+                    $name = $property->getName();
+                    if ($name === IActiveAccessibleObject::FIELD_ACTIVE) {
+                        continue;
+                    }
+                    if ($this->getValue($name, $defaultLocaleId)) {
+                        continue;
+                    }
+                    $this->setValue($name, $this->getValue($name), $defaultLocaleId);
+                }
+            }
+        }
     }
 
 }

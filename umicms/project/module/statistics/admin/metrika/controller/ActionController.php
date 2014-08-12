@@ -98,7 +98,7 @@ class ActionController extends BaseController
         }
 
         $counters['labels'] = $this->model->getFieldsReport($listCounters['counters'], 'counters');
-        $counters['counters'] = $listCounters['counters'];
+        $counters['objects'] = $listCounters['counters'];
 
         return $counters;
     }

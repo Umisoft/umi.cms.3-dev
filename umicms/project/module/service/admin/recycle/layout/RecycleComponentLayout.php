@@ -70,7 +70,7 @@ class RecycleComponentLayout extends AdminComponentLayout
             if ($collection instanceof IRecyclableCollection && $collection->selectTrashed()->limit('1')->result()->count()) {
                 $this->listCollection[] = [
                     'id' => $collectionName,
-                    'displayName' => $this->component->translate('collection:' . $collectionName)
+                    'displayName' => $collection->translate('collection:' . $collectionName . ':displayName')
                 ];
             }
         }
@@ -100,7 +100,6 @@ class RecycleComponentLayout extends AdminComponentLayout
             $control->params['slug'] = $this->listCollection[0]['id'];
             $this->addEmptyContextControl('redirect', $control);
         } else {
-            $control->params['isStatic'] = true;
             $control->params['content'] = $this->component->translate('No deleted pages.');
             $this->addEmptyContextControl('empty', $control);
         }
@@ -119,6 +118,10 @@ class RecycleComponentLayout extends AdminComponentLayout
                 'trashed' => 'equals(1)'
             ];
             $dynamicControl->params['objectsEditable'] = false;
+            $dynamicControl->labels = [
+                'Rows on page' => $this->component->translate('Rows on page'),
+                'No data' => $this->component->translate('No data')
+            ];
 
             $this->addSelectedContextControl('filter', $dynamicControl);
 

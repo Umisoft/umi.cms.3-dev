@@ -26,11 +26,15 @@ class EditController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'editPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
     /**
-     * @var bool $success флаг указывающий на успешное сохранение изменений
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
      */
     private $success = false;
 
@@ -48,7 +52,7 @@ class EditController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'editPost';
+        return $this->template;
     }
 
     /**
@@ -81,6 +85,14 @@ class EditController extends BaseSitePageController
         $this->success = true;
     }
 
+    /**
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница редактирования поста
+     *
+     * @return array
+     */
     protected function buildResponseContent()
     {
         return [

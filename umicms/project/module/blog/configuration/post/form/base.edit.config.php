@@ -13,6 +13,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -122,17 +123,12 @@ return [
                         'dataSource' => BlogPost::FIELD_PUBLISH_TIME
                     ]
                 ],
-                BlogPost::FIELD_PUBLISH_STATUS => [
+                BlogPost::FIELD_STATUS => [
                     'type' => Select::TYPE_NAME,
-                    'label' => BlogPost::FIELD_PUBLISH_STATUS,
+                    'label' => BlogPost::FIELD_STATUS,
                     'options' => [
-                        'dataSource' => BlogPost::FIELD_PUBLISH_STATUS,
-                        'choices' => [
-                            BlogPost::POST_STATUS_DRAFT => BlogPost::POST_STATUS_DRAFT,
-                            BlogPost::POST_STATUS_NEED_MODERATE => BlogPost::POST_STATUS_NEED_MODERATE,
-                            BlogPost::POST_STATUS_REJECTED => BlogPost::POST_STATUS_REJECTED,
-                            BlogPost::POST_STATUS_PUBLISHED => BlogPost::POST_STATUS_PUBLISHED
-                        ]
+                        'lazy' => true,
+                        'dataSource' => BlogPost::FIELD_STATUS
                     ]
                 ],
                 BlogPost::FIELD_ANNOUNCEMENT => [
@@ -147,6 +143,13 @@ return [
                     'label' => BlogPost::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => BlogPost::FIELD_PAGE_CONTENTS_RAW
+                    ]
+                ],
+                BlogPost::FIELD_IMAGE . '_1' => [
+                    'type' => Image::TYPE_NAME,
+                    'label' => BlogPost::FIELD_IMAGE,
+                    'options' => [
+                        'dataSource' => BlogPost::FIELD_IMAGE
                     ]
                 ],
                 BlogPost::FIELD_SOURCE => [

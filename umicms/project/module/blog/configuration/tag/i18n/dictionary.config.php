@@ -10,10 +10,12 @@
 
 return [
         'en-US' => [
+            'collection:blogTag:displayName' => 'Blog tags',
             'type:base:displayName' => 'Tag'
         ],
 
         'ru-RU' => [
+            'collection:blogTag:displayName' => 'Тэги блога',
             'type:base:displayName' => 'Тег'
         ]
     ];

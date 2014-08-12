@@ -20,26 +20,31 @@ use umi\form\IFormEntity;
 use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umi\i18n\translator\ITranslator;
 use umi\orm\collection\ISimpleHierarchicCollection;
 use umi\orm\metadata\field\datetime\DateTimeField;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\numeric\BoolField;
 use umi\orm\metadata\field\string\TextField;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
 use umicms\form\element\Wysiwyg;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\behaviour\IRobotsAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -55,13 +60,18 @@ class ActionController extends BaseController implements IFormAware
     use TFormAware;
 
     /**
-     * @var ITranslator $translator транслятор
+     * Возвращает форму смены slug.
+     * @throws HttpException
+     * @return \ArrayObject
      */
-    protected $translator;
-
-    public function __construct(ITranslator $translator)
+    protected function actionGetChangeSlugForm()
     {
-        $this->translator = $translator;
+        $form = $this->getCollection()->getForm(ICmsPageCollection::FORM_CHANGE_SLUG, IObjectType::BASE);
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl(
+            $this->getComponent(), CollectionComponent::ACTION_CHANGE_SLUG)
+        );
+
+        return $form->getView();
     }
 
     /**
@@ -84,8 +94,12 @@ class ActionController extends BaseController implements IFormAware
     protected function actionGetCreateForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
+        $collection = $this->getCollection();
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView();
+        return [
+            'guid' => $collection->getGUIDField()->generateGUID(),
+            'form' => $collection->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView()
+        ];
     }
 
     /**
@@ -107,7 +121,7 @@ class ActionController extends BaseController implements IFormAware
             }
 
             $fieldName = $field->getName();
-            $label = $this->translator->translate($collection->getDictionaryNames(), $fieldName);
+            $label = $collection->translate($fieldName);
 
             $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
 
@@ -129,7 +143,7 @@ class ActionController extends BaseController implements IFormAware
 
                     $relatedFieldName = $relatedField->getName();
                     $relatedDataSource = $relatedElementName = $fieldName . '.' . $relatedFieldName;
-                    $relatedLabel = $label . ': ' . $this->translator->translate($targetCollection->getDictionaryNames(), $relatedFieldName);
+                    $relatedLabel = $label . ': ' . $targetCollection->translate($relatedFieldName);
 
                     $elements[] = $this->buildFormElement(
                         $relatedField, $targetCollection, $relatedElementName, $relatedDataSource, $relatedLabel
@@ -168,8 +182,7 @@ class ActionController extends BaseController implements IFormAware
                 $type = Select::TYPE_NAME;
                 $options['choices'] = [];
                 foreach ($collection->getMetadata()->getTypesList() as $typeName) {
-                    $options['choices'][$typeName] =
-                        $this->translator->translate($collection->getDictionaryNames(), 'type:' . $typeName . ':displayName');
+                    $options['choices'][$typeName] = $collection->translate('type:' . $typeName . ':displayName');
                 }
                 break;
             }
@@ -211,12 +224,12 @@ class ActionController extends BaseController implements IFormAware
      * @throws HttpException если пришли неверные данные
      * @return ICmsPage
      */
-    protected function changeSlug()
+    protected function actionChangeSlug()
     {
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
 
-        if (isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
+        if (!isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot change object slug. Slug is required.')
@@ -251,6 +264,8 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
+
+        $this->commit();
 
         return $object;
     }
@@ -311,6 +326,89 @@ class ActionController extends BaseController implements IFormAware
         $this->commit();
 
         return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionAllowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->allow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionDisallowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->disallow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Проверяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionIsAllowedRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot check object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        return $collection->isAllowedRobots($object);
     }
 
     /**
@@ -380,6 +478,9 @@ class ActionController extends BaseController implements IFormAware
     protected function actionGetBackupList()
     {
         $collection = $this->getCollection();
+        /**
+         * @var IRecoverableObject $object
+         */
         $object = $collection->getById($this->getRequiredQueryVar('id'));
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
@@ -390,11 +491,17 @@ class ActionController extends BaseController implements IFormAware
                 )
             );
         }
-        /**
-         * @var IRecoverableObject $object
-         */
-        return $collection->getBackupList($object)
-            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
+        $result = [
+            'i18n' => [
+                'Current version' => $this->translate('Current version'),
+                'No backups' => $this->translate('No backups'),
+            ],
+            'collection' => $collection->getBackupList($object)
+                    ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
+
+        ];
+
+        return $result;
     }
 
     /**
@@ -451,9 +558,19 @@ class ActionController extends BaseController implements IFormAware
         }
 
         /**
-         * @var CmsHierarchicObject $object
+         * @var CmsHierarchicObject|ILockedAccessibleObject $object
          */
         $object = $this->getEditedObject($data['object']);
+
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot move locked object with guid "{guid}" from collection "{collection}".',
+                    ['guid' => $object->getGUID(), 'collection' => $collection->getName()]
+                )
+            );
+        }
+
         /**
          * @var CmsHierarchicObject $branch
          */
@@ -464,6 +581,38 @@ class ActionController extends BaseController implements IFormAware
         $previousSibling = isset($data['sibling']) ? $this->getEditedObject($data['sibling']) : null;
 
         $collection->move($object, $branch, $previousSibling);
+
+        $parent = $object->getParent();
+
+        if ($parent !== $branch) {
+            if ($parent) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                /**
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+            }
+
+            if ($branch) {
+                $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+            }
+        }
+
+        $this->commit();
 
         return '';
     }

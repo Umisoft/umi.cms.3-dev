@@ -18,6 +18,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecoverableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
+use umicms\orm\collection\behaviour\TRobotsAccessibleCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 
@@ -29,6 +30,7 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     use TRecoverableCollection;
     use TRecyclableCollection;
     use TActiveAccessibleCollection;
+    use TRobotsAccessibleCollection;
 
     /**
      * {@inheritdoc}
@@ -103,6 +105,18 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     public function getSlugField()
     {
         return $this->getRequiredField(ICmsPage::FIELD_PAGE_SLUG);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getForcedFieldsToLoad()
+    {
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsPage::FIELD_PAGE_SLUG] = $this->getSlugField();
+        $fields[ICmsPage::FIELD_PAGE_H1] = $this->getRequiredField(ICmsPage::FIELD_PAGE_H1);
+
+        return $fields;
     }
 
     /**

@@ -25,7 +25,7 @@ class ListWidget extends BaseTreeWidget
      */
     public $template = 'list';
     /**
-     * * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
+     * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
      */
     public $blogPost;
     /**

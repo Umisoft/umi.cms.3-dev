@@ -10,10 +10,9 @@
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
     [
         'name' => 'blog_author',
         'columns' => [
@@ -36,15 +35,27 @@ return array_replace_recursive(
                 ]
             ],
             'comments_count' => [
-                'type' => Type::BIGINT,
+                'type'    => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ],
             'posts_count' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
+            ],
+            'posts_count_en' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ]
         ],

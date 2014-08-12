@@ -21,6 +21,7 @@ use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsPlainView;
 use umicms\hmvc\view\CmsTreeView;
 use umicms\hmvc\view\CmsView;
 use umicms\orm\selector\CmsSelector;
@@ -88,7 +89,29 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     protected function createResult($templateName, array $variables = [])
     {
         $variables['widget'] = $this->getShortPath();
+        $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
+
+        $view->addSerializerConfigurator(
+            function(ISerializer $serializer)
+            {
+                if ($serializer instanceof BaseSerializer) {
+                    $serializer->setAttributes(['widget']);
+                }
+            }
+        );
+
+        return $view;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createPlainResult($content)
+    {
+        $view = new CmsPlainView($content);
+        $view['widget'] = $this->getShortPath();
+        $view['contents'] = $content;
 
         $view->addSerializerConfigurator(
             function(ISerializer $serializer)
@@ -144,9 +167,12 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     private function getShortPath()
     {
         $relativePath = substr($this->getComponent()->getPath(), strlen(CmsDispatcher::SITE_COMPONENT_PATH) + 1);
-        $relativePath .= IComponent::PATH_SEPARATOR . $this->getName();
 
-        return $relativePath;
+        if ($relativePath) {
+            return $relativePath . IComponent::PATH_SEPARATOR . $this->getName();
+        }
+
+        return $this->getName();
     }
 }
  
