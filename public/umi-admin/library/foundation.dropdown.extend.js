@@ -10,8 +10,16 @@
      *    В Foundation это событие всегда слушает клик, с самого старта приложения.
      * 2) Атрибут Id не является обязательным атрибутом для выборки, достаточно иметь один экземпляр списка на одном
      *    уровне вложености с кнопкой. Для этого нужно указать в атрибутах кнопки data-options="selectorById: false;"
-     * 3) Кроме определенной в Foundation возможности отределить сторону появления списка относительно кнопки,
-     *    добавляется возможность указать выравнивание по стороне.
+     * 3) Кроме определенной в Foundation возможности определить сторону появления списка относительно кнопки,
+     *    добавляется возможность указать выравнивание по стороне. Это добавляет к четырем возможным позициям положения
+     *    списка, ещё четыре.
+     * 4) Возможность быстрого выбора элемента из списка за один клик. На событие нажатие кнопки мыши, список
+     *    раскрывается, и если отпустить кнопку над элементом списка, вызывается тригер события 'click' для этого
+     *    элемента. Отпустив кнопку вне списка, происходит его закрытие.
+     *    С помощью опций можно кастомизировать событие fastSelect.
+     * 5) Возможность задать элемент списка, при клике на который происходит закрытие этого списка.
+     * 6) Адаптивное поведение списка. При недостатке места для списка, он инвертирует своё положение если с другой
+     *    стороны достаточно места.
      */
     Foundation.libs.dropdown = {
         name: 'dropdown',
@@ -32,9 +40,16 @@
 
             /**
              * Разрешает быстрый выбор при нажатии
-             * @param {bool} selectOnPressIsAllowed
+             * @param {bool} fastSelect
              */
-            selectOnPressIsAllowed: false,
+            fastSelect: true,
+
+            fastSelectHoverSelector: 'li',
+
+            fastSelectHoverClassName: 'hover',
+
+            fastSelectTarget: 'a',
+
             /**
              * Определяет положение спсика относительно кнопки
              * @param {string} side
@@ -64,7 +79,10 @@
              */
             adaptiveBehaviour: true,
 
-            customEventListener: function() {},
+            /**
+             * @param {string} closeAfterClickOnElement
+             */
+            closeAfterClickOnElement: 'a',
 
             opened: function() {},
 
@@ -84,40 +102,140 @@
         events: function(scope) {
             var self = this;
             var S = self.S;
-            var settings = S(scope).data(self.attr_name(true) + '-init') || self.settings;
-
             S(self.scope).off('.' + self.name);
 
-            if (settings.selectOnPress) {
-                self.eventListener.mousedown.call(this, scope, settings);
-            }
-            this.eventListener.click.call(this, scope, settings);
-
-            this.eventListener.resize.call(this);
+            self.eventListener.mousedown.call(this, scope);
+            self.eventListener.click.call(this, scope);
+            self.eventListener.hover.call(this);
+            self.eventListener.resize.call(this);
+            self.eventListener.toggleObserver.call(this);
         },
 
         eventListener: {
-            click: function(scope, settings) {
+            click: function(scope) {
                 var self = this;
                 var S = self.S;
 
-                S(this.scope).on('click.fndtn.dropdown', this.selector(), function(e) {
-                    if (!settings.isHover || Modernizr.touch) {
+                S(self.scope).on('click.fndtn.dropdown', self.selector(), function(e) {
+                    var settings = S(this).data(self.attr_name(true) + '-init') || self.settings;
+                    if (!settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
                         e.preventDefault();
                         self.toggle($(this));
                     }
                 });
             },
 
-            mousedown: function(scope, settings) {
+            mousedown: function(scope) {
                 var self = this;
                 var S = self.S;
+                var dropdownSelector = '[' + self.attr_name() + '-content]';
 
-                S(this.scope).on('mousedown.fndtn.dropdown', this.selector(), function(e) {
-                    if (!settings.isHover || Modernizr.touch) {
+                S(self.scope).on('mousedown.fndtn.dropdown', self.selector(), function(e) {
+                    var settings = S(this).data(self.attr_name(true) + '-init') || self.settings;
+
+                    if (settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
                         e.preventDefault();
-                        self.toggle($(this));
+                        var $targetButton = $(this);
+                        var $dropdown = self.toggle($targetButton);
+                        var hoverSelector = settings.fastSelectHoverSelector;
+                        var hoverClassName = settings.fastSelectHoverClassName;
+                        var fastSelectTarget = settings.fastSelectTarget;
+
+                        S(self.scope).on('mousemove.fndtn.dropdown.fast', dropdownSelector, function(event) {
+                            $dropdown = $(this);
+
+                            var $hoverElement = $(event.target).closest(hoverSelector);
+
+                            if ($hoverElement.length) {
+                                if (!$hoverElement.hasClass(hoverClassName)) {
+                                    $dropdown.find(hoverSelector + '.' + hoverClassName).removeClass(hoverClassName);
+                                    $hoverElement.addClass(hoverClassName);
+                                }
+                            } else {
+                                $dropdown.find(hoverSelector + '.' + hoverClassName).removeClass(hoverClassName);
+                            }
+                        });
+
+                        S(self.scope).on('mouseout.fndtn.dropdown.fast', dropdownSelector, function() {
+                            $(this).find(hoverSelector + '.' + hoverClassName).removeClass(hoverClassName);
+                        });
+
+                        S(self.scope).on('mouseup.fndtn.dropdown.fast', function(e) {
+                            var fastClick;
+                            var $target = $(e.target);
+
+                            if ($dropdown.find(e.target).length) {
+                                fastClick = $target.closest(fastSelectTarget);
+                                if (fastClick.length) {
+                                    fastClick.trigger('click');
+                                }
+                            } else if (!$target.closest($targetButton).length) {
+                                self.closeall();
+                            }
+                            S(self.scope).off('.dropdown.fast');
+                        });
                     }
+                });
+            },
+
+            hover: function() {
+                var self = this,
+                    S = self.S;
+
+                S(self.scope).on('mouseenter.fndtn.dropdown',
+                    '[' + self.attr_name() + '], [' + self.attr_name() + '-content]', function(e) {
+                    var $this = S(this);
+                    var dropdown;
+                    var target;
+
+                    clearTimeout(self.timeout);
+
+                    if ($this.data(self.dataAttr())) {
+                        target = $this;
+                        dropdown = self.getDropdown(target);
+                    } else {
+                        dropdown = $this;
+                        target = S('[' + self.attr_name() + '="' + dropdown.attr('id') + '"]');
+                        if (target.length === 0) {
+                            target = dropdown.parent().children(self.selector());
+                        }
+                    }
+
+                    var settings = target.data(self.attr_name(true) + '-init') || self.settings;
+
+                    if (S(e.target).data(self.dataAttr()) && settings.isHover) {
+                        self.closeall.call(self);
+                    }
+                    if (settings.isHover) {
+                        self.open.apply(self, [dropdown, target]);
+                    }
+                });
+
+                S(self.scope).on('mouseleave.fndtn.dropdown',
+                    '[' + self.attr_name() + '], [' + self.attr_name() + '-content]', function() {
+                    var $this = S(this);
+
+                    self.timeout = setTimeout(function() {
+                        var settings;
+                        var dropdown;
+
+                        if ($this.data(self.dataAttr())) {
+                            settings = $this.data(self.dataAttr() + '-init') || self.settings;
+                            if (settings.isHover) {
+                                dropdown = self.getDropdown($this);
+                                self.close.call(self, dropdown);
+                            }
+                        } else {
+                            var target = S('[' + self.attr_name() + '="' + $this.attr('id') + '"]');
+                            if (target.length === 0) {
+                                target = $this.parent().children(self.selector());
+                            }
+                            settings = target.data(self.attr_name(true) + '-init') || self.settings;
+                            if (settings.isHover) {
+                                self.close.call(self, $this);
+                            }
+                        }
+                    }, 150);
                 });
             },
 
@@ -130,7 +248,7 @@
                 var S = self.S;
                 var dropdownSelector = '[' + self.attr_name() + '-content]';
 
-                S(this.scope).on('click.fndtn.dropdown.miss', function(e) {
+                S(self.scope).on('click.fndtn.dropdown.miss', function(e) {
                     var parent = S(e.target).closest(dropdownSelector);
 
                     if (S(e.target).data(self.dataAttr()) || S(e.target).parent().data(self.dataAttr())) {
@@ -144,6 +262,7 @@
                     }
 
                     self.close.call(self, S(dropdownSelector));
+                    S(self.scope).off('click.fndtn.dropdown.miss');
                 });
             },
 
@@ -167,6 +286,18 @@
                 }, 50));
 
                 self.resize.call(self);
+            },
+
+            toggleObserver: function() {
+                var self = this;
+                var S = self.S;
+
+                S(self.scope).on('opened.fndtn.dropdown', '[' + self.attr_name() + '-content]', function() {
+                    self.settings.opened.call(this);
+                });
+                S(self.scope).on('closed.fndtn.dropdown', '[' + self.attr_name() + '-content]', function() {
+                    self.settings.closed.call(this);
+                });
             }
         },
 
@@ -196,12 +327,14 @@
          * Переключает видимость списка
          * @method toggle
          * @param {JQuery} target
+         * @return {JQuery | null} dropdown
          */
         toggle: function(target) {
             var self = this;
             var dropdown = self.getDropdown(target);
+
             if (!dropdown || dropdown.length === 0) {
-                return;
+                return dropdown;
             }
 
             self.close.call(self, self.S('[' + self.attr_name() + '-content]').not(dropdown));
@@ -214,6 +347,7 @@
             } else {
                 self.open.call(self, dropdown, target);
             }
+            return dropdown;
         },
 
         close: function(dropdown) {
@@ -222,6 +356,7 @@
             dropdown.each(function() {
                 if (self.S(this).hasClass(self.settings.activeClass)) {
                     self.S(this)
+                        .off('click.fndtn.dropdown.closeOnClick')
                         .removeClass(self.settings.activeClass)
                         .removeAttr('style')
                         .prev('[' + self.attr_name() + ']')
@@ -249,13 +384,24 @@
          * @param {JQuery} target хендлер (кнопка) вызвавший открытие списка
          */
         open: function(dropdown, target) {
-            this.setDropdownStyle(dropdown.addClass(this.settings.activeClass), target);
+            var self = this;
+            var S = self.S;
+            var settings = S(target).data(self.attr_name(true) + '-init') || self.settings;
+            self.setDropdownStyle(dropdown.addClass(settings.activeClass), target);
 
-            dropdown.prev('[' + this.attr_name() + ']').addClass(this.settings.activeClass);
-            dropdown.data('target', target.get(0)).trigger('opened')
-                .trigger('opened.fndtn.dropdown', [dropdown, target]);
+            dropdown.prev('[' + self.attr_name() + ']').addClass(settings.activeClass);
+            dropdown.data('target', target.get(0)).trigger('opened.fndtn.dropdown', [dropdown, target]);
 
-            this.eventListener.onClickMissDropdown.call(this);
+            if (settings.closeAfterClickOnElement) {
+                dropdown.on('click.fndtn.dropdown.closeOnClick', settings.closeAfterClickOnElement, function() {
+                    self.close.call(self, S(dropdown));
+                    dropdown.off('click.fndtn.dropdown.closeOnClick');
+                });
+            }
+
+            setTimeout(function() {
+                self.eventListener.onClickMissDropdown.call(self);
+            }, 150);
         },
 
         resize: function() {
