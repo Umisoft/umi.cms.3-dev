@@ -1,19 +1,19 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     "use strict";
 
-    return function(){
+    return function() {
         UMI.TextElementView = Ember.View.extend(UMI.InputValidate, {
             type: "text",
             classNames: ['umi-element-text'],
-            template: function(){
+            template: function() {
                 var template;
-                if(Ember.typeOf(this.get('object')) === 'instance'){
+                if (Ember.typeOf(this.get('object')) === 'instance') {
                     this.set('validator', 'collection');
                     var dataSource = this.get('meta.dataSource');
                     var input = '{{input type=view.type value=view.object.' + dataSource + ' placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
                     var validate = this.validateErrorsTemplate();
                     template = input + validate;
-                } else{
+                } else {
                     template = '{{input type=view.type value=view.meta.value name=view.meta.attributes.name}}';
                 }
                 return Ember.Handlebars.compile(template);

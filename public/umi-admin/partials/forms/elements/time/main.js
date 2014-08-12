@@ -1,15 +1,15 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
 
-    return function(){
+    return function() {
         UMI.TimeElementComponent = Ember.Component.extend(UMI.InputValidate, {
             templateName: 'partials/timeElement',
             classNames: ['row', 'collapse'],
 
-            didInsertElement: function(){
+            didInsertElement: function() {
                 var el = this.$();
-                el.find('.icon-delete').click(function(){
+                el.find('.icon-delete').click(function() {
                     el.find('input').val('');
                 });
 
@@ -22,7 +22,7 @@ define(['App'], function(UMI){
             },
 
             inputView: Ember.View.extend({
-                template: function(){
+                template: function() {
                     var dataSource = this.get('parentView.meta.dataSource');
                     return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
                 }.property()

@@ -1,10 +1,10 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
-    return function(){
+    return function() {
         UMI.TableView = Ember.View.extend(UMI.i18nInterface, {
             dictionaryNamespace: 'table',
-            localDictionary: function(){
+            localDictionary: function() {
                 var table = this.get('content.control') || {};
                 return table.i18n;
             }.property('content'),
@@ -16,7 +16,7 @@ define(['App'], function(UMI){
             limit: 25,
             totalBinding: 'rows.length',
             error: null,
-            visibleRows: function(){
+            visibleRows: function() {
                 var self = this;
                 var controller = self.get('controller');
                 var rows = self.get('rows');
@@ -24,50 +24,50 @@ define(['App'], function(UMI){
                 var limit = parseFloat(self.get('limit'));
                 var begin;
                 var end;
-                if(offset){
+                if (offset) {
                     begin = limit * offset;
-                } else{
+                } else {
                     begin = 0;
                 }
                 end = begin + limit;
-                Ember.run.later(self, function(){
-                   controller.send('hideLoader');
+                Ember.run.later(self, function() {
+                    controller.send('hideLoader');
                 }, 300);
                 return rows.slice(begin, end);
             }.property('offset', 'limit'),
 
             iScroll: null,
 
-            iScrollUpdate: function(){
+            iScrollUpdate: function() {
                 var iScroll = this.get('iScroll');
-                if(iScroll){
-                    setTimeout(function(){
+                if (iScroll) {
+                    setTimeout(function() {
                         iScroll.refresh();
                         iScroll.scrollTo(0, 0);
                     }, 100);
                 }
             }.observes('visibleRows'),
 
-            didInsertElement: function(){
-                if(!this.get('error')){
+            didInsertElement: function() {
+                if (!this.get('error')) {
                     var $table = this.$();
                     var tableContent = $table.find('.s-scroll-wrap')[0];
                     var tableHeader = $table.find('.umi-table-header')[0];
                     var scrollContent = new IScroll(tableContent, UMI.config.iScroll);
                     var tableContentRowSize = $(tableContent).find('.umi-table-content-sizer')[0];
                     this.set('iScroll', scrollContent);
-                    scrollContent.on('scroll', function(){
+                    scrollContent.on('scroll', function() {
                         tableHeader.style.marginLeft = this.x + 'px';
                     });
 
-                    $(window).on('resize.umi.table', function(){
-                        setTimeout(function(){
+                    $(window).on('resize.umi.table', function() {
+                        setTimeout(function() {
                             tableHeader.style.marginLeft = scrollContent.x + 'px';
                         }, 100);
                     });
 
                     // Событие изменения ширины колонки
-                    $table.on('mousedown.umi.table', '.umi-table-header-column-resizer', function(){
+                    $table.on('mousedown.umi.table', '.umi-table-header-column-resizer', function() {
                         $('html').addClass('s-unselectable');
                         var handler = this;
                         $(handler).addClass('on-resize');
@@ -76,15 +76,15 @@ define(['App'], function(UMI){
                         var columnOffset = $(columnEl).offset().left;
                         var columnWidth;
                         var contentCell = tableContentRowSize.querySelectorAll('.umi-table-td')[columnIndex];
-                        $('body').on('mousemove.umi.table', function(event){
+                        $('body').on('mousemove.umi.table', function(event) {
                             event.stopPropagation();
                             columnWidth = event.pageX - columnOffset;
-                            if(columnWidth >= 60 && columnEl.offsetWidth > 59){
+                            if (columnWidth >= 60 && columnEl.offsetWidth > 59) {
                                 columnEl.style.width = contentCell.style.width = columnWidth + 'px';
                             }
                         });
 
-                        $('body').on('mouseup.umi.table', function(){
+                        $('body').on('mouseup.umi.table', function() {
                             $('html').removeClass('s-unselectable');
                             $(handler).removeClass('on-resize');
                             $('body').off('mousemove.umi.table');
@@ -96,7 +96,7 @@ define(['App'], function(UMI){
                 }
             },
 
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 var $table = this.$();
                 $(window).off('resize.umi.table');
                 this.removeObserver('content');
@@ -107,12 +107,12 @@ define(['App'], function(UMI){
             paginationView: Ember.View.extend({
                 classNames: ['s-unselectable', 'umi-toolbar'],
                 templateName: 'partials/table/toolbar',
-                counter: function(){
+                counter: function() {
                     var label = 'из';
                     var limit = this.get('parentView.limit');
                     var offset = this.get('parentView.offset') + 1;
                     var total = this.get('parentView.total');
-                    var maxCount = offset*limit;
+                    var maxCount = offset * limit;
                     var start = maxCount - limit + 1;
                     maxCount = maxCount < total ? maxCount : total;
                     return start + '-' + maxCount + ' ' + label + ' ' + total;
@@ -122,16 +122,16 @@ define(['App'], function(UMI){
                     classNames: ['button', 'secondary', 'tiny'],
                     classNameBindings: ['isActive::disabled'],
 
-                    isActive: function(){
+                    isActive: function() {
                         return this.get('parentView.parentView.offset');
                     }.property('parentView.parentView.offset'),
 
-                    click: function(){
+                    click: function() {
                         var self = this;
                         var controller = self.get('controller');
-                        if(self.get('isActive')){
+                        if (self.get('isActive')) {
                             controller.send('showLoader');
-                            Ember.run.next(self, function(){
+                            Ember.run.next(self, function() {
                                 self.get('parentView.parentView').decrementProperty('offset');
                             });
                         }
@@ -142,19 +142,19 @@ define(['App'], function(UMI){
                     classNames: ['button', 'secondary', 'tiny'],
                     classNameBindings: ['isActive::disabled'],
 
-                    isActive: function(){
+                    isActive: function() {
                         var limit = this.get('parentView.parentView.limit');
                         var offset = this.get('parentView.parentView.offset') + 1;
                         var total = this.get('parentView.parentView.total');
                         return total > limit * offset;
                     }.property('parentView.parentView.limit', 'parentView.parentView.offset', 'parentView.parentView.total'),
 
-                    click: function(){
+                    click: function() {
                         var self = this;
                         var controller = self.get('controller');
-                        if(self.get('isActive')){
+                        if (self.get('isActive')) {
                             controller.send('showLoader');
-                            Ember.run.next(self, function(){
+                            Ember.run.next(self, function() {
                                 self.get('parentView.parentView').incrementProperty('offset');
                             });
                         }
@@ -166,19 +166,19 @@ define(['App'], function(UMI){
                     classNames: ['s-margin-clear'],
                     attributeBindings: ['value', 'type'],
 
-                    value: function(){
+                    value: function() {
                         return this.get('parentView.parentView.limit');
                     }.property('parentView.parentView.limit'),
 
                     type: 'text',
 
-                    keyDown: function(event){
+                    keyDown: function(event) {
                         var self = this;
                         var controller = self.get('controller');
-                        if(event.keyCode === 13){
+                        if (event.keyCode === 13) {
                             controller.send('showLoader');
                             // При изменении количества строк на странице сбрасывается offset
-                            Ember.run.next(self, function(){
+                            Ember.run.next(self, function() {
                                 self.get('parentView.parentView').setProperties({'offset': 0, 'limit': self.$()[0].value});
                             });
                         }
@@ -188,16 +188,16 @@ define(['App'], function(UMI){
         });
 
         UMI.SiteAnalyzeTableView = UMI.TableView.extend({
-            setContent: function(){
+            setContent: function() {
                 var content = this.get('content');
                 var headers;
                 var data = Ember.get(content, 'control.data.data') || [];
                 var index;
-                if(data.length){
+                if (data.length) {
                     headers = data.shift();
                     index = headers.indexOf('n/a');
                     headers.splice(index, 1);
-                    for(var i = 0; i < data.length; i++){
+                    for (var i = 0; i < data.length; i++) {
                         data[i].splice(index, 1);
                     }
                     this.setProperties({'headers': headers, 'rows': data});
@@ -206,17 +206,17 @@ define(['App'], function(UMI){
         });
 
         UMI.BacklinksTableView = UMI.TableView.extend({
-            setContent: function(){
+            setContent: function() {
                 var content = this.get('content');
                 var headers;
                 var data = Ember.get(content, 'control.data');
                 var rows = [];
-                if(Ember.typeOf(data) === 'object' && 'error' in data){
+                if (Ember.typeOf(data) === 'object' && 'error' in data) {
                     this.set('error', data.error);
-                } else if(Ember.typeOf(data) === 'array'){
+                } else if (Ember.typeOf(data) === 'array') {
                     headers = [Ember.get(content, 'control.labels.vs_from')];
-                    for(var i = 0; i < data.length; i++){
-                        rows.push([Ember.get(data[i],'vs_from')]);
+                    for (var i = 0; i < data.length; i++) {
+                        rows.push([Ember.get(data[i], 'vs_from')]);
                     }
                     this.setProperties({'headers': headers, 'rows': rows});
                 }
@@ -224,7 +224,7 @@ define(['App'], function(UMI){
         });
 
         UMI.YaHostTableView = UMI.TableView.extend({
-            setContent: function(){
+            setContent: function() {
                 var control = this.get('content.control');
                 var headers = [];
                 var rows = [];
@@ -232,16 +232,16 @@ define(['App'], function(UMI){
                 var data = Ember.get(control, 'data');
                 var key;
 
-                if(Ember.typeOf(labels) === 'object'){
-                    for(key in labels){
-                        if(labels.hasOwnProperty(key)){
+                if (Ember.typeOf(labels) === 'object') {
+                    for (key in labels) {
+                        if (labels.hasOwnProperty(key)) {
                             headers.push(labels[key]);
                         }
                     }
                 }
-                if(Ember.typeOf(data) === 'object'){
-                    for(key in data){
-                        if(data.hasOwnProperty(key)){
+                if (Ember.typeOf(data) === 'object') {
+                    for (key in data) {
+                        if (data.hasOwnProperty(key)) {
                             var row = UMI.Utils.getStringValue(data[key]);
                             rows.push(row);
                         }
@@ -252,7 +252,7 @@ define(['App'], function(UMI){
         });
 
         UMI.YaIndexesTableView = UMI.TableView.extend({
-            setContent: function(){
+            setContent: function() {
                 var control = this.get('content.control');
                 var headers = [];
                 var rows = [];
@@ -263,8 +263,8 @@ define(['App'], function(UMI){
 
                 headers.push(Ember.get(labels, 'last-week-index-urls'));
 
-                if(Ember.typeOf(url)  === 'array'){
-                    for(i = 0; i < url.length; i++){
+                if (Ember.typeOf(url) === 'array') {
+                    for (i = 0; i < url.length; i++) {
                         rows.push([UMI.Utils.getStringValue(url[i])]);
                     }
                 }
@@ -273,7 +273,7 @@ define(['App'], function(UMI){
         });
 
         UMI.YaTopsTableView = UMI.TableView.extend({
-            setContent: function(){
+            setContent: function() {
                 var control = this.get('content.control');
                 var headers = [];
                 var rows = [];
@@ -288,8 +288,8 @@ define(['App'], function(UMI){
                 headers.push(Ember.get(labels, 'position'));
                 headers.push(Ember.get(labels, 'clicks-top-rank'));
 
-                if(Ember.typeOf(topQueries)  === 'array'){
-                    for(i = 0; i < topQueries.length; i++){
+                if (Ember.typeOf(topQueries) === 'array') {
+                    for (i = 0; i < topQueries.length; i++) {
                         row = [];
                         row.push(UMI.Utils.getStringValue(topQueries[i].query));
                         row.push(UMI.Utils.getStringValue(topQueries[i].count));
@@ -303,12 +303,12 @@ define(['App'], function(UMI){
         });
 
         UMI.TableCountersView = UMI.TableView.extend({
-            rowCount: function(){
+            rowCount: function() {
                 var rows = this.get('rows') || [];
                 var row = rows[0] || {};
                 var count = [];
-                for(var key in row){
-                    if(row.hasOwnProperty(key)){
+                for (var key in row) {
+                    if (row.hasOwnProperty(key)) {
                         count.push({});
                     }
                 }
@@ -318,24 +318,24 @@ define(['App'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-content-tr'],
-                cell: function(){
+                cell: function() {
                     var object = this.get('row');
                     var cell = [];
-                    for(var key in object){
-                        if(object.hasOwnProperty(key)){
+                    for (var key in object) {
+                        if (object.hasOwnProperty(key)) {
                             cell.push({'displayName': object[key]});
                         }
                     }
                 }
             }),
 
-            setContent: function(){
+            setContent: function() {
                 var content = this.get('content');
                 var headers = Ember.get(content, 'control.meta.labels');
                 var headersList = [];
                 var rows = Ember.get(content, 'control.meta.objects');
-                for(var key in headers){
-                    if(headers.hasOwnProperty(key)){
+                for (var key in headers) {
+                    if (headers.hasOwnProperty(key)) {
                         headersList.push(headers[key]);
                     }
                 }
@@ -343,7 +343,7 @@ define(['App'], function(UMI){
             }.observes('content').on('init'),
 
             actions: {
-                rowEvent: function(context){
+                rowEvent: function(context) {
                     this.get('controller').transitionToRoute('context', Ember.get(context, 'id'));
                 }
             }

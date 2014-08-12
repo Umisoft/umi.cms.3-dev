@@ -1,4 +1,4 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
     UMI.Notification = Ember.Object.extend({
@@ -10,19 +10,19 @@ define(['App'], function(UMI){
             'duration': 3000,
             'kind': 'default'
         },
-        create: function(params){
+        create: function(params) {
             var defaultSettings = this.get('settings');
             var settings = {};
             var param;
-            for(param in defaultSettings){
-                if(defaultSettings.hasOwnProperty(param)){
+            for (param in defaultSettings) {
+                if (defaultSettings.hasOwnProperty(param)) {
                     settings[param] = defaultSettings[param];
                 }
             }
 
-            if(params){
-                for(param in params){
-                    if(params.hasOwnProperty(param)){
+            if (params) {
+                for (param in params) {
+                    if (params.hasOwnProperty(param)) {
                         settings[param] = params[param];
                     }
                 }
@@ -30,16 +30,18 @@ define(['App'], function(UMI){
 
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
-            console.log(settings);
-            Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});
+
+            Ember.run.next(this, function() {
+                data.pushObject(Ember.Object.create(settings));
+            });
         },
-        removeAll: function(){
+        removeAll: function() {
             UMI.notificationList.set('content', []);
         },
-        removeWithKind: function(kind){
+        removeWithKind: function(kind) {
             var content = UMI.notificationList.get('content');
-            content = content.filter(function(item){
-                if(Ember.get(item, 'kind') !== kind){
+            content = content.filter(function(item) {
+                if (Ember.get(item, 'kind') !== kind) {
                     return true;
                 }
             });
@@ -51,24 +53,22 @@ define(['App'], function(UMI){
 
     UMI.NotificationList = Ember.ArrayController.extend({
         content: [],
-        sortContent: function(){
+        sortContent: function() {
             return this.get('content').sortBy('id');
         }.property('content.length'),
         notificationId: 0,
         closeAll: false,
-        itemCount: function(){
-            if(this.get('content.length') > 1 && !this.get('closeAll')){
+        itemCount: function() {
+            if (this.get('content.length') > 1 && !this.get('closeAll')) {
                 this.set('closeAll', true);
-                this.get('content').pushObject(
-                    Ember.Object.create({
-                        id: 'closeAll',
-                        type: 'secondary',
-                        kind: 'closeAll',
-                        content: 'Закрыть все'
-                    })
-                );
+                this.get('content').pushObject(Ember.Object.create({
+                    id: 'closeAll',
+                    type: 'secondary',
+                    kind: 'closeAll',
+                    content: 'Закрыть все'
+                }));
             }
-            if(this.get('content.length') <= 2 && this.get('closeAll')){
+            if (this.get('content.length') <= 2 && this.get('closeAll')) {
                 var object = this.get('content').findBy('id', 'closeAll');
                 this.get('content').removeObject(object);
                 this.set('closeAll', false);
@@ -82,10 +82,10 @@ define(['App'], function(UMI){
         classNames: ['alert-box'],
         classNameBindings: ['content.type'],
         layoutName: 'partials/alert-box',
-        didInsertElement: function(){
+        didInsertElement: function() {
             var duration = this.get('content.duration');
-            if(duration){
-                Ember.run.later(this, function(){
+            if (duration) {
+                Ember.run.later(this, function() {
                     //this.$().slideDown();
                     var id = this.get('content.id');
                     var content = this.get('controller.content') || [];
@@ -95,7 +95,7 @@ define(['App'], function(UMI){
             }
         },
         actions: {
-            close: function(){
+            close: function() {
                 var content = this.get('controller.content');
                 content.removeObject(this.get('content'));
             }
@@ -106,7 +106,7 @@ define(['App'], function(UMI){
         classNames: ['alert-box text-center alert-box-close-all'],
         classNameBindings: ['content.type'],
         layoutName: 'partials/alert-box/close-all',
-        click: function(){
+        click: function() {
             UMI.notification.removeAll();
         }
     });

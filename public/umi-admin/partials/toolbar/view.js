@@ -1,33 +1,33 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
-    return function(){
+    return function() {
 
         UMI.ToolbarElement = Ember.Mixin.create({
             tagName: 'li',
 
-            template: function(){
+            template: function() {
                 var self = this;
                 var type = this.get('context.type');
-                if(this.get(type + 'View')){
+                if (this.get(type + 'View')) {
                     return Ember.Handlebars.compile('{{view view.' + type + 'View meta=this}}');
-                } else{
-                    try{
+                } else {
+                    try {
                         throw new Error('View c типом ' + type + ' не зарегестрирован для toolbar');
-                    } catch(error){
-                        Ember.run.next(function(){
+                    } catch (error) {
+                        Ember.run.next(function() {
                             self.get('controller').send('backgroundError', error);
                         });
                     }
                 }
             }.property(),
 
-            buttonView: function(){
+            buttonView: function() {
                 var behaviourName = this.get('context.behaviour.name');
                 var dirtyBehaviour = Ember.get(UMI.buttonBehaviour, behaviourName) || {};
                 var behaviour = {};
-                for(var key in dirtyBehaviour){
-                    if(dirtyBehaviour.hasOwnProperty(key)){
+                for (var key in dirtyBehaviour) {
+                    if (dirtyBehaviour.hasOwnProperty(key)) {
                         behaviour[key] = dirtyBehaviour[key];
                     }
                 }
@@ -35,12 +35,12 @@ define(['App'], function(UMI){
                 return instance;
             }.property(),
 
-            dropdownButtonView: function(){
+            dropdownButtonView: function() {
                 var behaviourName = this.get('context.behaviour.name');
                 var dirtyBehaviour = Ember.get(UMI.dropdownButtonBehaviour, behaviourName) || {};
                 var behaviour = {};
-                for(var key in dirtyBehaviour){
-                    if(dirtyBehaviour.hasOwnProperty(key)){
+                for (var key in dirtyBehaviour) {
+                    if (dirtyBehaviour.hasOwnProperty(key)) {
                         behaviour[key] = dirtyBehaviour[key];
                     }
                 }
@@ -48,13 +48,13 @@ define(['App'], function(UMI){
                 return instance;
             }.property(),
 
-            splitButtonView: function(){
+            splitButtonView: function() {
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
                 var behaviourName = this.get('context.behaviour.name');
-                var dirtyBehaviour =  Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                var dirtyBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                 var behaviour = {};
-                for(var key in dirtyBehaviour){
-                    if(dirtyBehaviour.hasOwnProperty(key)){
+                for (var key in dirtyBehaviour) {
+                    if (dirtyBehaviour.hasOwnProperty(key)) {
                         behaviour[key] = dirtyBehaviour[key];
                     }
                 }
@@ -75,27 +75,27 @@ define(['App'], function(UMI){
             classNames: ['s-unselectable', 'umi-toolbar'],
 
             elementView: Ember.View.extend(UMI.ToolbarElement),
-            didInsertElement: function(){
+            didInsertElement: function() {
                 var $el = this.$();
-                var $buttonGroup = $el.find('.button-group' );
+                var $buttonGroup = $el.find('.button-group');
                 var buttonGroupWidth = $buttonGroup.width();
                 var nextElementsWidth = 0;
                 var $nextElements = $buttonGroup.next();
-                if($nextElements.length){
+                if ($nextElements.length) {
                     nextElementsWidth = $nextElements.width();
                     buttonGroupWidth += nextElementsWidth + 60;
                 }
-                var toggleLabel = function(needShow){
+                var toggleLabel = function(needShow) {
                     var $button = $buttonGroup.find('.button');
-                    if(needShow){
+                    if (needShow) {
                         $buttonGroup.removeClass('umi-hide-button-label');
-                    } else{
+                    } else {
                         $buttonGroup.addClass('umi-hide-button-label');
                     }
-                    if($button.length){
-                        $button.each(function(index){
+                    if ($button.length) {
+                        $button.each(function(index) {
                             var label = '';
-                            if(!needShow){
+                            if (!needShow) {
                                 label = $($button[index]).find('.umi-button-label').text();
                             }
                             $($button[index]).attr('title', label);
@@ -103,20 +103,20 @@ define(['App'], function(UMI){
                     }
                 };
 
-                if($buttonGroup.length){
-                    if(buttonGroupWidth >= $el.width()){
+                if ($buttonGroup.length) {
+                    if (buttonGroupWidth >= $el.width()) {
                         toggleLabel();
                     }
                 }
-                $(window).on('resize.umi.toolbar', function(){
-                    if(buttonGroupWidth >= $el.width()){
+                $(window).on('resize.umi.toolbar', function() {
+                    if (buttonGroupWidth >= $el.width()) {
                         toggleLabel();
-                    } else{
+                    } else {
                         toggleLabel(true);
                     }
                 });
             },
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 $(window).off('resize.umi.toolbar');
             }
         });

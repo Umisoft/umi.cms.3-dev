@@ -1,5 +1,22 @@
-input::-ms-clear { //Убираем крестик браузера из поля
+$umi-input-placeholder-color: #a9a9a9;
+
+input:-ms-clear {//Убираем крестик браузера из поля
     display: none;
+}
+
+input{
+    &::-webkit-input-placeholder{
+        color: $umi-input-placeholder-color;
+    }
+
+    &:-ms-input-placeholder{
+        color: $umi-input-placeholder-color;
+    }
+
+    &::-moz-placeholder{
+        color: $umi-input-placeholder-color;
+        opacity: 1;
+    }
 }
 
 //Хак для Firefox input file на один пискел выше

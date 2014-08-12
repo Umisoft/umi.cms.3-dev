@@ -1,22 +1,24 @@
 {{#if view.meta.attributes.hasIcon}}
-    <i {{bind-attr class=":icon view.defaultBehaviourIcon"}}></i>
+<i {{bind-attr class=":icon view.defaultBehaviourIcon"}}></i>
 {{/if}}
 
 {{#if view.label}}
-    <b class="umi-button-label">{{view.label}}</b>
+<b class="umi-button-label">{{view.label}}</b>
 {{/if}}
 
 <span class="dropdown-toggler" {{action 'open' target="view"}}></span>
 {{#if view.isOpen}}
-    <ul class="f-dropdown composite">
-        {{#each view.meta.behaviour.choices}}
-            {{#view view.itemView}}
-                <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}} class="umi-dropdown-item-link">
-                    <i {{bind-attr class=":icon view.icon"}}></i>
-                    <div>{{view.label}}</div>
-                </a>
-                <i {{bind-attr class=":icon :icon-accept :split-default-button view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>
-            {{/view}}
-        {{/each}}
-    </ul>
+<ul class="f-dropdown composite">
+    {{#each view.meta.behaviour.choices}}
+    {{#view view.itemView}}
+    <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}
+    class="umi-dropdown-item-link">
+    <i {{bind-attr class=":icon view.icon"}}></i>
+    <div>{{view.label}}</div>
+    </a>
+    <i {{bind-attr class=":icon :icon-accept :split-default-button view.isDefaultBehaviour::white"}} {{action
+    'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>
+    {{/view}}
+    {{/each}}
+</ul>
 {{/if}}

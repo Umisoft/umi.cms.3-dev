@@ -1,7 +1,7 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     "use strict";
 
-    return function(){
+    return function() {
         UMI.ObjectRelationElementView = Ember.View.extend(UMI.SerializedValue, {
             templateName: 'partials/objectRelationElement',
 
@@ -15,7 +15,7 @@ define(['App'], function(UMI){
              */
             objectIsObservable: true,
 
-            popupParams: function(){
+            popupParams: function() {
                 return {
                     templateParams: {
                         object: this.get('object'),
@@ -30,7 +30,7 @@ define(['App'], function(UMI){
             }.property(),
 
             actions: {
-                clearValue: function(){
+                clearValue: function() {
                     var self = this;
                     var object = self.get('object');
                     var property = this.get('meta.dataSource');
@@ -39,7 +39,7 @@ define(['App'], function(UMI){
                     object.validateProperty(property);
                 },
 
-                showPopup: function(params){
+                showPopup: function(params) {
                     var self = this;
                     var object = self.get('object');
                     var property = this.get('meta.dataSource');
@@ -53,9 +53,9 @@ define(['App'], function(UMI){
 
                 classNames: ['umi-element-text'],
 
-                template: function(){
+                template: function() {
                     var template;
-                    if(Ember.typeOf(this.get('object')) === 'instance'){
+                    if (Ember.typeOf(this.get('object')) === 'instance') {
                         this.set('validator', 'collection');
                         var input = '{{input type=view.type value=view.parentView.value placeholder=view.meta.placeholder name=view.meta.attributes.name disabled=true}}';
                         var validate = this.validateErrorsTemplate();
@@ -74,18 +74,18 @@ define(['App'], function(UMI){
 
             selectedCollection: null,
 
-            tableControlSettings: function(){
+            tableControlSettings: function() {
                 var self = this;
                 var selectedCollectionId = self.get('selectedCollection.id');
                 var object = self.get('model.object');
                 var meta = self.get('model.meta');
                 var property = object.get(Ember.get(meta, 'dataSource'));
                 var activeObjectGuid;
-                if(property){
-                    try{
+                if (property) {
+                    try {
                         property = JSON.parse(property);
                         activeObjectGuid = Ember.get(property, 'guid');
-                    } catch(error){
+                    } catch (error) {
                         self.send('backgroundError', error);
                     }
                 }
@@ -104,30 +104,30 @@ define(['App'], function(UMI){
                                         type: "text",
                                         tag: "input",
                                         id: "displayName",
-                                        label: "Имя отображения",
+                                        label: "Имя отображения",//TODO: localize
                                         attributes: {
                                             name: "displayName",
                                             type: "text",
                                             value: null
                                         },
                                         valid: true,
-                                        errors: [ ],
+                                        errors: [],
                                         dataSource: "displayName",
                                         value: null,
-                                        validators: [ ],
-                                        filters: [ ]
+                                        validators: [],
+                                        filters: []
                                     }
                                 ]
                             }
                         },
                         behaviour: {
-                            rowEvent: function(context, selectedObject){
+                            rowEvent: function(context, selectedObject) {
                                 var dataSource = Ember.get(meta, 'dataSource');
                                 var collectionName = Ember.get(selectedObject, 'constructor.typeKey');
                                 var value = {
                                     collection: collectionName,
                                     guid: selectedObject.get('guid'),
-                                    displayName:  selectedObject.get('displayName')
+                                    displayName: selectedObject.get('displayName')
                                 };
                                 object.set(dataSource, JSON.stringify(value));
                                 context.send('closePopup');
@@ -138,7 +138,7 @@ define(['App'], function(UMI){
                 };
             }.property('selectedCollection'),
 
-            init: function(){
+            init: function() {
                 var self = this;
                 var object = self.get('object');
                 var meta = self.get('meta');
@@ -147,21 +147,21 @@ define(['App'], function(UMI){
                 var collections = Ember.get(meta, 'collections');
                 var collectionName;
 
-                if(Ember.typeOf(collections) !== 'array'){
+                if (Ember.typeOf(collections) !== 'array') {
                     collections = [];
                 }
                 Ember.warn('Collection list is empty.', collections.length);
                 self.set('collections', collections);
 
-                if(computedProperty){
-                    try{
+                if (computedProperty) {
+                    try {
                         computedProperty = JSON.parse(computedProperty);
-                        collectionName = Ember.get(computedProperty, 'meta.collectionName') ||  Ember.get(computedProperty, 'collection');
+                        collectionName = Ember.get(computedProperty, 'meta.collectionName') || Ember.get(computedProperty, 'collection');
                         self.set('selectedCollection', collections.findBy('id', collectionName));
-                    } catch(error){
+                    } catch (error) {
                         this.send('backgroundError', error);
                     }
-                } else{
+                } else {
                     self.set('selectedCollection', collections[0]);
                 }
             }
@@ -177,11 +177,11 @@ define(['App'], function(UMI){
                 itemView: Ember.View.extend({
                     tagName: 'li',
                     classNameBindings: ['isActive:active'],
-                    isActive: function(){
+                    isActive: function() {
                         return this.get('controller.selectedCollection.id') === this.get('item.id');
                     }.property('controller.selectedCollection'),
-                    click: function(){
-                        if(!this.get('isActive')){
+                    click: function() {
+                        if (!this.get('isActive')) {
                             this.get('controller').set('selectedCollection', this.get('item'));
                         }
                     }
