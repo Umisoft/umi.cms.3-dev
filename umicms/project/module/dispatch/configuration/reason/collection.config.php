@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -9,14 +8,11 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umi\orm\metadata\IObjectType;
-use umicms\project\module\dispatch\model\collection\ReasonCollection;
-use umicms\project\module\dispatch\model\object\Reason;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\dispatch\model\collection\ReasonCollection',
-    'handlers' => [
+    'type'         => ICollectionFactory::TYPE_SIMPLE,
+    'class'        => 'umicms\project\module\dispatch\model\collection\ReasonCollection',
+    'handlers'     => [
         'admin' => 'dispatch.reason',
         //'site' => 'dispatch.dispatch'
     ],
@@ -27,6 +23,7 @@ return [
         ]
     ], */
     'dictionaries' => [
-        'collection.reason', 'collection'
+        'collection.reason',
+        'collection'
     ]
 ];
