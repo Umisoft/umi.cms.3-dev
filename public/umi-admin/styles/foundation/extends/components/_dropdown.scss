@@ -30,34 +30,22 @@
         opacity: 1;
         visibility: visible;
     }
+
+    //UMI extends
+
+    //double columns
+    &-double{
+        width: rem-calc(460);
+
+        > li{
+            width: 50%;
+            float: left;
+        }
+    }
 }
 /*
 
 .f-dropdown{
-    top: auto;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.2s linear;
-    margin-top: 10px;
-    left: 0;
-    color: #44474d;
-    font-size: rem-calc(13);
-    white-space: nowrap;
-    width: auto;
-    min-width: 100%;
-    margin-bottom: 0;
-    border: none;
-    box-shadow: 0 0 5px 1px #AFB4BB;
-    &.right{
-        right: 0;
-        left: auto;
-    }
-    &:before{
-        display: none;
-    }
-    &:after{
-        display: none;
-    }
     li{
         text-align: left;
         cursor: default;
@@ -97,16 +85,6 @@
                     }
                 }
             }
-        }
-    }
-}
-
-.dropdown{
-    &-double-columns{
-        width: rem-calc(460);
-        > li{
-            width: 50%;
-            float: left;
         }
     }
 }*/

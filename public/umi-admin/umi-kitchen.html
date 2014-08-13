@@ -221,6 +221,23 @@
                 </ul>
                 <p></p>
 
+                <p>Выпадающий список связывается с кнопкой посредством id. Возможен вариант когда несколько кнопок
+                    связаны с одним списком.</p>
+                <p>Возможен вариант без указания id. Для этого необходимо иметь на одном уровне вложености один
+                    экземпляр списка и кнопки. В опциях нужно объявить <code>selectorById: false;</code></p>
+                <div>
+                    <a href="#" data-dropdown data-options="selectorById: false;" class="button large dropdown">
+                        Dropdown Button
+                    </a>
+                    <ul data-dropdown-content class="f-dropdown">
+                        <li><a href="#">This is a link</a></li>
+                        <li><a href="#">This is another</a></li>
+                        <li><a href="#">Yet another</a></li>
+                    </ul>
+                </div>
+
+                <p></p>
+
                 <h3 data-magellan-destination="button-split">Split Button [Кнопка с выпадающим списком и дейсвием по-умолчанию].</h3>
 
                 <p>Для определения "Split Button" нужно добавить класс split к кнопке и dropdown-список после кнопки (или внутри
