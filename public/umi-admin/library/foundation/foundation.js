@@ -804,7 +804,7 @@
 
                     clearTimeout(self.timeout);
 
-                    if ($this.data(self.dataAttr())) {
+                    if ($this.data(self.dataAttr()) !== undefined) {
                         target = $this;
                         dropdown = self.getDropdown(target);
                     } else {
@@ -817,10 +817,11 @@
 
                     var settings = target.data(self.attr_name(true) + '-init') || self.settings;
 
-                    if (S(e.target).data(self.dataAttr()) && settings.isHover) {
-                        self.closeall.call(self);
-                    }
+                    /*if (S(e.target).data(self.dataAttr()) !== undefined && settings.isHover) {
+
+                    }*/
                     if (settings.isHover) {
+                        self.closeall.call(self);
                         self.open.apply(self, [dropdown, target]);
                     }
                 });
@@ -833,7 +834,7 @@
                         var settings;
                         var dropdown;
 
-                        if ($this.data(self.dataAttr())) {
+                        if ($this.data(self.dataAttr()) !== undefined) {
                             settings = $this.data(self.dataAttr() + '-init') || self.settings;
                             if (settings.isHover) {
                                 dropdown = self.getDropdown($this);

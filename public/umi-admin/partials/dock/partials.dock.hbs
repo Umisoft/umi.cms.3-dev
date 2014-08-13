@@ -2,21 +2,24 @@
     <div class="dock-wrapper-bg">
         <ul class="dock navigation">
             {{#each module in modules}}
-            {{#view 'dockModuleButton' module=module}}
-            {{#link-to 'module' module.name tagName="span" class="dock-module"}}
-            <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
-            <span>{{module.displayName}}</span>
-            {{/link-to}}
-            <ul class="f-dropdown center">
-                {{#each component in module.components}}
-                <li class="{{unbound component.name}}">
-                    {{#link-to 'component' module.name component.name}}
-                    {{component.displayName}}
+
+                {{#view 'dockModuleButton' module=module}}
+                    {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
+            data-options="selectorById: false; isHover: true;"}}
+                        <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
+                        <span>{{module.displayName}}</span>
                     {{/link-to}}
-                </li>
-                {{/each}}
-            </ul>
-            {{/view}}
+
+                    <ul class="f-dropdown" data-dropdown-content>
+                        {{#each component in module.components}}
+                            <li class="{{unbound component.name}}">
+                                {{#link-to 'component' module.name component.name}}
+                                {{component.displayName}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/view}}
             {{/each}}
         </ul>
     </div>
