@@ -9,11 +9,13 @@ require.config({
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
-        iscroll: 'vendorExtend/iscroll-probe-5.1.1',
-        ckEditor: 'vendorExtend/ckeditor/ckeditor',
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment: 'vendor/momentjs/min/moment-with-langs',
-        elFinder: 'vendorExtend/elFinder'
+        FastClick: 'vendor/fastclick/lib/fastclick',
+        iscroll: 'library/iScroll/iscroll-probe-5.1.1',
+        ckEditor: 'library/ckeditor/ckeditor',
+        elFinder: 'library/elFinder/elFinder',
+        Foundation: 'library/foundation/foundation'
     },
 
     shim: {
@@ -24,7 +26,8 @@ require.config({
         Ember: {exports: 'Ember', deps: ['Handlebars', 'jquery']},
         DS: {exports: 'DS', deps: ['Ember']},
         ckEditor: {exports: 'ckEditor'},
-        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']}
+        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']},
+        Foundation: {exports: 'Foundation', deps: ['jquery', 'FastClick']}
     },
 
     packages: [
