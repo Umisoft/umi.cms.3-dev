@@ -12,22 +12,25 @@ define(['App'], function(UMI) {
 
             GlobalBehaviour.prototype = {
                 save: {
-                    label: function() {
-                        if (this.get('controller.object.isDirty')) {
-                            return this.get('defaultBehaviour.attributes.label');
-                        } else {
-                            return this.get('meta.attributes.states.notModified.label');
-                        }
-                    }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
+                    extendButton: {
+                        label: function() {
+                            if (this.get('controller.object.isDirty')) {
+                                return this.get('defaultBehaviour.attributes.label');
+                            } else {
+                                return this.get('meta.attributes.states.notModified.label');
+                            }
+                        }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
 
-                    classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
+                        classNameBindings: ['controller.object.isDirty::disabled',
+                            'controller.object.isValid::disabled']
+                    },
 
                     beforeSave: function() {
                         var model = this.get('controller.object');
                         if (!model.get('isDirty') || !model.get('isValid')) {
                             return false;
                         }
-                        var button = this.$();
+                        var button = this.$().children('.button');
                         button.addClass('loading');
                         var params = {
                             object: model,

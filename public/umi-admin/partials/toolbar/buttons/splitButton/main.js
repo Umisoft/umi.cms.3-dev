@@ -141,10 +141,6 @@ define(['App'], function(UMI) {
 
             SplitButtonBehaviour.prototype = Object.create(UMI.globalBehaviour);
 
-            SplitButtonBehaviour.prototype.dropUp = {
-                classNames: ['split-dropup']
-            };
-
             SplitButtonBehaviour.prototype.contextMenu = {
                 itemView: function() {
                     var baseItem = ListItemView.extend({
