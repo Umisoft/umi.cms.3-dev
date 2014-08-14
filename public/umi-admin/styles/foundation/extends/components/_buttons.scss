@@ -4,7 +4,7 @@
     background-color: darken($color-end, 1%);
     transition: background-position 0.1s linear;
 
-    &:hover, &:focus{
+    &:hover, &:focus, &.open{
         background-position-y: - $button-med*1.2;
         background-color: darken($color-end, 1%);
     }
@@ -40,7 +40,7 @@
         background: none;
         border-color: transparent;
         color: $button-font-color-alt;
-        &:hover{
+        &:hover, &:focus, &.open{
             background: #fff;
         }
     }

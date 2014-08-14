@@ -15,10 +15,66 @@
     border: none;
     box-shadow: 0 0 4px 1px #939699;
 
-    li { @include dropdown-style; }
+    li {
+        @include dropdown-style;
+
+        &.hover{
+            background: $f-dropdown-list-hover-bg;
+        }
+    }
 
     // You can also put custom content in these dropdowns
-    //&.content { @include dropdown-container(content, $triangle:false); }
+    &.content {
+        padding: 10px;
+
+        .f-dropdown-content-header{
+            font-weight: bold;
+            margin-bottom: rem-calc(10);
+        }
+
+        li{
+            cursor: default;
+            &:hover{
+                background: transparent;
+            }
+        }
+
+        .row{
+            padding: rem-calc(8);
+        }
+
+        .s-scroll-wrap{
+            max-height: 200px;
+            height: auto;
+            border: 1px solid #D1D1D1;
+        }
+
+        table{
+            min-width: rem-calc(250);
+            border-collapse: collapse;
+
+            tr{
+                &:nth-child(even){
+                    background: #EEF7FC;
+                }
+
+                &.selectable{
+                    &:hover{
+                        cursor: pointer;
+                        background: #C5E2F7;
+                    }
+                }
+            }
+            td{
+                padding: rem-calc(8) rem-calc(15);
+                line-height: rem-calc(22);
+            }
+        }
+
+        form{
+            min-width: rem-calc(250);
+        }
+    }
 
     // Sizes
     &.tiny    { max-width: 200px; }
