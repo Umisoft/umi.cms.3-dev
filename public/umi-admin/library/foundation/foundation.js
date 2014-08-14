@@ -634,6 +634,7 @@
      * 5) Возможность задать элемент списка, при клике на который происходит закрытие этого списка.
      * 6) Адаптивное поведение списка. При недостатке места для списка, он инвертирует своё положение если с другой
      *    стороны достаточно места.
+     * 7) Runtime регистрация компонентов
      */
     Foundation.libs.dropdown = {
         name: 'dropdown',
@@ -641,10 +642,24 @@
 
         settings: {
             /**
+             * В Foundation регистрируется только те экземпляры компонентов, которые были в DOM на момент инициализации
+             * приложения. Для того чтобы зарегистрировать компоненты, появляющиеся в процессе работы с приложением
+             * нужно заново инициализировать Foundation. Это может быть довольно затратной операцией, вынуждающая к
+             * дублированию вызова Foundation. runtimeInit позволяет регистрировать компоненты появляющиеся во время
+             * работы приложения.
+             */
+            runtimeInit: true,
+            /**
              * Класс изменяющий видимость списка
              * @param {string} activeClass
              */
             activeClass: 'open',
+
+            /**
+             * Назначать activeClass для кнопки (хендлера)
+             * @property respondActiveClassForElement
+             */
+            respondActiveClassForButton: true,
 
             /**
              * Список открывается при наведении
@@ -683,6 +698,11 @@
             selectorById: true,
 
             /**
+             * Селектор кнопки
+             */
+            buttonSelector: '.button',
+
+            /**
              * Задает списку минимальную ширину, равную ширине кнопки (хендлера) имеющего соответствующий селектор
              * @param {string} minWidthLikeElement класс елемента
              */
@@ -692,6 +712,13 @@
              * @param {bool} adaptiveBehaviour
              */
             adaptiveBehaviour: true,
+
+            /**
+             * Проверять позицию относительно родительского элемента имеющего данный селектор. По умолчанию это первый
+             * предок имеющий position отличный от static
+             * @param {string | null} checkPositionRegardingElement
+             */
+            checkPositionRegardingElement: null,
 
             /**
              * @param {string} closeAfterClickOnElement
@@ -731,10 +758,10 @@
                 var S = self.S;
 
                 S(self.scope).on('click.fndtn.dropdown', self.selector(), function(e) {
-                    var settings = S(this).data(self.attr_name(true) + '-init') || self.settings;
+                    var settings = self.getSettings(this);
                     if (!settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
                         e.preventDefault();
-                        self.toggle($(this));
+                        self.toggle($(this), settings);
                     }
                 });
             },
@@ -745,12 +772,12 @@
                 var dropdownSelector = '[' + self.attr_name() + '-content]';
 
                 S(self.scope).on('mousedown.fndtn.dropdown', self.selector(), function(e) {
-                    var settings = S(this).data(self.attr_name(true) + '-init') || self.settings;
+                    var settings = self.getSettings(this);
 
                     if (settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
                         e.preventDefault();
                         var $targetButton = $(this);
-                        var $dropdown = self.toggle($targetButton);
+                        var $dropdown = self.toggle($targetButton, settings);
                         var hoverSelector = settings.fastSelectHoverSelector;
                         var hoverClassName = settings.fastSelectHoverClassName;
                         var fastSelectTarget = settings.fastSelectTarget;
@@ -815,11 +842,8 @@
                         }
                     }
 
-                    var settings = target.data(self.attr_name(true) + '-init') || self.settings;
+                    var settings = self.getSettings(target);
 
-                    /*if (S(e.target).data(self.dataAttr()) !== undefined && settings.isHover) {
-
-                    }*/
                     if (settings.isHover) {
                         self.closeall.call(self);
                         self.open.apply(self, [dropdown, target]);
@@ -835,9 +859,10 @@
                         var dropdown;
 
                         if ($this.data(self.dataAttr()) !== undefined) {
-                            settings = $this.data(self.dataAttr() + '-init') || self.settings;
+                            settings = self.getSettings($this);
+
                             if (settings.isHover) {
-                                dropdown = self.getDropdown($this);
+                                dropdown = self.getDropdown($this, settings);
                                 self.close.call(self, dropdown);
                             }
                         } else {
@@ -845,7 +870,7 @@
                             if (target.length === 0) {
                                 target = $this.parent().children(self.selector());
                             }
-                            settings = target.data(self.attr_name(true) + '-init') || self.settings;
+                            settings = self.getSettings(target);
                             if (settings.isHover) {
                                 self.close.call(self, $this);
                             }
@@ -916,11 +941,11 @@
             }
         },
 
-        getDropdown: function(target) {
+        getDropdown: function(target, settings) {
             var self = this;
             var S = self.S;
             var dropdown;
-            var settings = S(target).data(self.attr_name(true) + '-init') || self.settings;
+            settings = settings || self.getSettings(target);
             var dropdownId;
 
             if (settings.selectorById) {
@@ -932,7 +957,7 @@
                     return false;
                 }
             } else {
-                dropdown = $($(S(target)[0].parentNode).children('[data-' + self.name + '-content]')[0]);
+                dropdown = S(target).closest(settings.buttonSelector).parent().children('[data-' + self.name + '-content]');
             }
 
             return dropdown;
@@ -942,11 +967,12 @@
          * Переключает видимость списка
          * @method toggle
          * @param {JQuery} target
+         * @param {object} settings
          * @return {JQuery | null} dropdown
          */
-        toggle: function(target) {
+        toggle: function(target, settings) {
             var self = this;
-            var dropdown = self.getDropdown(target);
+            var dropdown = self.getDropdown(target, settings);
 
             if (!dropdown || dropdown.length === 0) {
                 return dropdown;
@@ -954,7 +980,7 @@
 
             self.close.call(self, self.S('[' + self.attr_name() + '-content]').not(dropdown));
 
-            if (dropdown.hasClass(self.settings.activeClass)) {
+            if (dropdown.hasClass(settings.activeClass)) {
                 self.close.call(self, dropdown);
                 if (dropdown.data('target') !== target.get(0)) {
                     self.open.call(self, dropdown, target);
@@ -967,18 +993,36 @@
 
         close: function(dropdown) {
             var self = this;
+            var S = self.S;
 
             dropdown.each(function() {
-                if (self.S(this).hasClass(self.settings.activeClass)) {
-                    self.S(this)
+                var target = $(S(this).data('target'));
+                var settings;
+
+                if (target.length) {
+                    settings = self.getSettings(target);
+                } else {
+                    settings = self.settings;
+                }
+
+                if (S(this).hasClass(settings.activeClass)) {
+                    S(this)
                         .off('click.fndtn.dropdown.closeOnClick')
-                        .removeClass(self.settings.activeClass)
+                        .removeClass(settings.activeClass)
                         .removeAttr('style')
-                        .prev('[' + self.attr_name() + ']')
-                        .removeClass(self.settings.activeClass)
                         .removeData('target');
 
-                    self.S(this).trigger('closed').trigger('closed.fndtn.dropdown', [dropdown]);
+                    if (target.length && settings.respondActiveClassForButton) {
+                        target = target.closest(settings.buttonSelector);
+                    } else {
+                        target = S(this).prev('[' + self.attr_name() + ']');
+                    }
+
+                    if (target.length) {
+                        target.removeClass(settings.activeClass);
+                    }
+
+                    S(this).trigger('closed').trigger('closed.fndtn.dropdown', [S(this)]);
                 }
             });
 
@@ -1001,10 +1045,17 @@
         open: function(dropdown, target) {
             var self = this;
             var S = self.S;
-            var settings = S(target).data(self.attr_name(true) + '-init') || self.settings;
+            var settings = self.getSettings(target);
+            var button;
             self.setDropdownStyle(dropdown.addClass(settings.activeClass), target);
 
-            dropdown.prev('[' + self.attr_name() + ']').addClass(settings.activeClass);
+            if (settings.respondActiveClassForButton) {
+                button = target.closest(settings.buttonSelector);
+            } else {
+                button = dropdown.prev('[' + self.attr_name() + ']');
+            }
+            button.addClass(settings.activeClass);
+
             dropdown.data('target', target.get(0)).trigger('opened.fndtn.dropdown', [dropdown, target]);
 
             if (settings.closeAfterClickOnElement) {
@@ -1039,6 +1090,21 @@
             return this.name;
         },
 
+        getSettings: function(scope) {
+            var self = this;
+            var S = self.S;
+            var settings = S(scope).data(self.attr_name(true) + '-init');
+
+            if (self.settings.runtimeInit && !settings) {
+                S(scope).data(self.attr_name(true) + '-init', $.extend({}, self.settings, self.data_options(S(scope))));
+                settings = S(scope).data(self.attr_name(true) + '-init');
+            } else if (!settings) {
+                settings = self.settings;
+            }
+
+            return settings;
+        },
+
         /**
          * Устанавливает стили для выпадающего списка
          * @param {JQuery} dropdown
@@ -1046,32 +1112,9 @@
          * @return {JQuery} dropdown
          */
         setDropdownStyle: function(dropdown, target) {
-            var settings = target.data(this.attr_name(true) + '-init') || this.settings;
-            var leftOffset;
-            var styleForSmall;
-
+            var settings = this.getSettings(target);
             this.clearIdx();
-
-            if (this.small()) {//TODO: fix it
-                leftOffset = Math.max((target.width() - dropdown.width()) / 2, 8);
-                var p = this.styleForSide.bottom.call(dropdown, target);
-
-                styleForSmall = {
-                    position: 'absolute',
-                    width: '95%',
-                    'maxWidth': 'none',
-                    top: p.top
-                };
-
-                if (settings.minWidthLikeElement) {
-                    styleForSmall.minWidth = target.outerWidth() + 'px';
-                }
-
-                dropdown.attr('style', '').removeClass('drop-left drop-right drop-top').css(styleForSmall);
-                dropdown.css(Foundation.rtl ? 'right' : 'left', leftOffset);
-            } else {
-                this.style(dropdown, target, settings);
-            }
+            this.style(dropdown, target, settings);
 
             return dropdown;
         },
@@ -1114,12 +1157,28 @@
                     width: dropdown.outerWidth(),
                     height: dropdown.outerHeight()
                 };
-                var dropdownPosition = dropdown.offset();
+
+                var closestTarget;
+                if (settings.checkPositionRegardingElement) {
+                    closestTarget = target.closest(settings.checkPositionRegardingElement);
+                    target = closestTarget.length ? closestTarget : target;
+                } else if (settings.minWidthLikeElement && !target.is(settings.minWidthLikeElement)) {
+                    closestTarget = target.closest(settings.minWidthLikeElement);
+                    target = closestTarget.length ? closestTarget : target;
+                }
+
                 var targetSize = {
                     width: target.outerWidth(),
                     height: target.outerHeight()
                 };
+
                 var targetOffset = target.offset();
+
+                for (var key in targetOffset) {
+                    if (targetOffset.hasOwnProperty(key)) {
+                        targetOffset[key] = Math.ceil(targetOffset[key]);
+                    }
+                }
 
                 switch (side) {
                     case 'top':

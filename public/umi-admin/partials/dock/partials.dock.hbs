@@ -5,7 +5,7 @@
 
                 {{#view 'dockModuleButton' module=module}}
                     {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
-            data-options="selectorById: false; isHover: true;"}}
+            data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;"}}
                         <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
                         <span>{{module.displayName}}</span>
                     {{/link-to}}
