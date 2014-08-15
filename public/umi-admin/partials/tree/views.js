@@ -531,6 +531,11 @@ define(['App', 'toolbar'], function(UMI) {
                     behaviour.extendButton.dataOptions = function() {
                         return 'align: right; checkPositionRegardingElement: .umi-tree-wrapper;';
                     }.property();
+                    behaviour.actions = behaviour.actions || {};
+                    behaviour.actions.sendActionForBehaviour = function(contextBehaviour) {
+                        var object = this.get('controller.model');
+                        this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
+                    };
 
                     instance = instance.extend(behaviour);
                     return instance;
