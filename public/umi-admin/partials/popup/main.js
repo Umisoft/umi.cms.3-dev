@@ -1,14 +1,9 @@
-define(
-    [
-        './controller',
-        './view',
-        'App'
-    ],
-    function(controller, view){
+define([
+    './controller', './view', 'App'
+], function(controller, view) {
         'use strict';
 
         controller();
         view();
 
-    }
-);
+    });

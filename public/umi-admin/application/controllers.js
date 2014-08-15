@@ -1,6 +1,6 @@
-define([], function(){
+define([], function() {
     'use strict';
-    return function(UMI){
+    return function(UMI) {
         UMI.ApplicationController = Ember.ObjectController.extend({
             settings: null,
             modules: null,
@@ -17,7 +17,7 @@ define([], function(){
              * Уникальное имя компонента
              * @property name
              */
-            name: function(){
+            name: function() {
                 return this.get('container').lookup('route:module').get('context.name') + Ember.String.capitalize(this.get('model.name'));
             }.property('model.name'),
 
@@ -42,31 +42,31 @@ define([], function(){
              @method contentControls
              @return Array Возвращает массив Ember объектов содержащий возможные действия текущего контрола
              */
-            contentControls: function(){
+            contentControls: function() {
                 var self = this;
                 var contentControls = [];
                 var settings = this.get('settings');
-                try{
+                try {
 
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
                     var controls = settings.contents[selectedContext];
                     var key;
                     var control;
-                    for(key in controls){ //for empty - createForm & filter
-                        if(controls.hasOwnProperty(key)){
+                    for (key in controls) { //for empty - createForm & filter
+                        if (controls.hasOwnProperty(key)) {
                             control = controls[key];
                             control.id = key;// used by router
                             control.name = key;// used by templates
                             contentControls.push(control);
                         }
                     }
-                } catch(error){
+                } catch (error) {
                     var errorObject = {
                         'statusText': error.name,
                         'message': error.message,
                         'stack': error.stack
                     };
-                    Ember.run.next(function(){
+                    Ember.run.next(function() {
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }
@@ -80,18 +80,18 @@ define([], function(){
              @type Boolean
              @default false
              */
-            sideBarControl: function(){
+            sideBarControl: function() {
                 var sideBarControl;
                 var self = this;
-                try{
+                try {
                     var settings = this.get('settings');
-                    if(settings && settings.hasOwnProperty('sideBar')){
+                    if (settings && settings.hasOwnProperty('sideBar')) {
                         var control;
                         var controlParams;
-                        for(control in settings.sideBar){
-                            if(settings.sideBar.hasOwnProperty(control)){
+                        for (control in settings.sideBar) {
+                            if (settings.sideBar.hasOwnProperty(control)) {
                                 controlParams = settings.sideBar[control];
-                                if(Ember.typeOf(controlParams) !== 'object'){
+                                if (Ember.typeOf(controlParams) !== 'object') {
                                     controlParams = {};
                                 }
                                 sideBarControl = controlParams;
@@ -100,13 +100,13 @@ define([], function(){
                         }
                     }
 
-                } catch(error){
+                } catch (error) {
                     var errorObject = {
                         'statusText': error.name,
                         'message': error.message,
                         'stack': error.stack
                     };
-                    Ember.run.next(function(){
+                    Ember.run.next(function() {
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }

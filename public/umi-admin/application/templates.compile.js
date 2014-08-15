@@ -1189,7 +1189,7 @@ function program13(depth0,data) {
 function program15(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" <br /> ");
+  data.buffer.push(" <br/> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "fieldBase", {hash:{
     'metaBinding': ("formElement"),
     'objectBinding': ("formElement")
@@ -2614,7 +2614,7 @@ function program1(depth0,data) {
   data.buffer.push(" ");
   stack1 = helpers._triageMustache.call(depth0, "view.data.control.params.latestVersion.version", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</h5> <br /> <span class=\"button large\" ");
+  data.buffer.push("</h5> <br/> <span class=\"button large\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "update", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
@@ -2628,7 +2628,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', helper, options;
-  data.buffer.push(" <br /> <span class=\"button large disabled\">");
+  data.buffer.push(" <br/> <span class=\"button large disabled\">");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Nothing update", "updateLayout", options) : helperMissing.call(depth0, "i18n", "Nothing update", "updateLayout", options))));
   data.buffer.push("</span> ");
   return buffer;
