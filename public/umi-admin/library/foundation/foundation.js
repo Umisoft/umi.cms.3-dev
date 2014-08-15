@@ -976,7 +976,7 @@
         toggle: function(target, settings) {
             var self = this;
             var dropdown = self.getDropdown(target, settings);
-            var isOutherTarget;
+            var isOtherTarget;
 
             if (!dropdown || dropdown.length === 0) {
                 return dropdown;
@@ -985,10 +985,10 @@
             self.close.call(self, self.S('[' + self.attr_name() + '-content]').not(dropdown));
 
             if (dropdown.hasClass(settings.activeClass)) {
-                isOutherTarget = dropdown.data('target') !== target.get(0);
+                isOtherTarget = dropdown.data('target') !== target.get(0);
                 self.close.call(self, dropdown);
 
-                if (isOutherTarget) {
+                if (isOtherTarget) {
                     self.open.call(self, dropdown, target);
                 }
             } else {
@@ -1164,21 +1164,26 @@
                     height: dropdown.outerHeight()
                 };
 
-                var closestTarget;
-                if (settings.checkPositionRegardingElement) {
-                    closestTarget = target.closest(settings.checkPositionRegardingElement);
-                    target = closestTarget.length ? closestTarget : target;
-                } else if (settings.minWidthLikeElement && !target.is(settings.minWidthLikeElement)) {
-                    closestTarget = target.closest(settings.minWidthLikeElement);
-                    target = closestTarget.length ? closestTarget : target;
-                }
-
                 var targetSize = {
                     width: target.outerWidth(),
                     height: target.outerHeight()
                 };
 
                 var targetOffset = target.offset();
+
+                var closestTarget;
+                if (settings.checkPositionRegardingElement) {
+                    closestTarget = target.closest(settings.checkPositionRegardingElement);
+                    target = closestTarget.length ? closestTarget : target;
+                    screenSize.width = target.outerWidth();//TODO: check parent with overflow: hidden
+                } else if (settings.minWidthLikeElement && !target.is(settings.minWidthLikeElement)) {
+                    closestTarget = target.closest(settings.minWidthLikeElement);
+                    target = closestTarget.length ? closestTarget : target;
+                }
+
+                //TODO: optimize
+                targetSize.width = target.outerWidth();
+                targetOffset.width = target.offset().width;
 
                 for (var key in targetOffset) {
                     if (targetOffset.hasOwnProperty(key)) {
