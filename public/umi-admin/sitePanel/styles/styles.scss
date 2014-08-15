@@ -11,7 +11,7 @@
 $umi-top-bar-height: 25px;
 $umi-bg-darken-set: #404959, #181B21;
 $images-path:  '../../production/images/';
-$umi-icons-img: $images-path + 'icons.png' + $images-version;
+$umi-icons-img: $images-path + 'svg/elements/icons-sprite.svg' + $images-version;
 $image-to-bottom-shadow: $images-path + 'shadows/toBottomShadow.png' + $images-version;
 
 //rem-calc() использовать не нужно так как font-size для body неизвестен

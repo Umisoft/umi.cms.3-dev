@@ -93,7 +93,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     &.icon-upload{
         background-position: -200px 0;
     }
-    &.icon-list, &.icon-backToFilter{
+    &.icon-list{
         background-position: -220px 0;
     }
     &.icon-delete{
@@ -117,7 +117,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     &.icon-settings{
         background-position: -360px 0;
     }
-    &.icon-eye, &.icon-read, &.icon-switchActivity{
+    &.icon-eye, &.icon-read, &.icon-switchActivity, &.icon-active{
         background-position: -380px 0;
     }
     &.icon-window{
@@ -240,6 +240,12 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     &.icon-trash{
         background-position: -1200px 0;
     }
+    &.icon-inactive{
+        background-position: -1240px 0;
+    }
+    &.icon-backToFilter{
+        background-position: -1260px 0;
+    }
 
     &.white{
         &.icon-image{
@@ -275,7 +281,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         &.icon-upload{
             background-position: -200px -20px;
         }
-        &.icon-list, &.icon-backToFilter{
+        &.icon-list{
             background-position: -220px -20px;
         }
         &.icon-delete{
@@ -299,7 +305,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         &.icon-settings{
             background-position: -360px -20px;
         }
-        &.icon-eye, &.icon-read, &.icon-switchActivity{
+        &.icon-eye, &.icon-read, &.icon-switchActivity, &.icon-active{
             background-position: -380px -20px;
         }
         &.icon-window{
@@ -422,6 +428,12 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         &.icon-trash{
             background-position: -1200px -20px;
         }
+        &.icon-inactive{
+            background-position: -1240px -20px;
+        }
+        &.icon-backToFilter{
+            background-position: -1260px  -20px;
+        }
     }
 
     &.black{
@@ -458,7 +470,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         &.icon-upload{
             background-position: -200px -40px;
         }
-        &.icon-list, &.icon-backToFilter{
+        &.icon-list{
             background-position: -220px -40px;
         }
         &.icon-delete{
@@ -482,7 +494,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         &.icon-settings{
             background-position: -360px -40px;
         }
-        &.icon-eye, &.icon-read, &.icon-switchActivity{
+        &.icon-eye, &.icon-read, &.icon-switchActivity, &.icon-active{
             background-position: -380px -40px;
         }
         &.icon-window{
@@ -604,6 +616,12 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         }
         &.icon-trash{
             background-position: -1200px -40px;
+        }
+        &.icon-inactive{
+            background-position: -1240px -40px;
+        }
+        &.icon-backToFilter{
+            background-position: -1260px  -40px;
         }
     }
 }
