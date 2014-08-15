@@ -976,6 +976,7 @@
         toggle: function(target, settings) {
             var self = this;
             var dropdown = self.getDropdown(target, settings);
+            var isOutherTarget;
 
             if (!dropdown || dropdown.length === 0) {
                 return dropdown;
@@ -984,8 +985,10 @@
             self.close.call(self, self.S('[' + self.attr_name() + '-content]').not(dropdown));
 
             if (dropdown.hasClass(settings.activeClass)) {
+                isOutherTarget = dropdown.data('target') !== target.get(0);
                 self.close.call(self, dropdown);
-                if (dropdown.data('target') !== target.get(0)) {
+
+                if (isOutherTarget) {
                     self.open.call(self, dropdown, target);
                 }
             } else {
