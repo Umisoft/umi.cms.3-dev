@@ -2,10 +2,11 @@ define(
     [
         'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'elFinder', 'timepicker', 'moment', 'application/config',
         'application/utils', 'application/i18n', 'application/templates.compile', 'application/templates.extends',
-        'application/models', 'application/router', 'application/controllers', 'application/views'
+        'application/validators', 'application/models', 'application/router', 'application/controllers',
+        'application/views'
     ],
     function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates,
-    templatesExtends, models, router, controller, views) {
+    templatesExtends, validators, models, router, controller, views) {
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -25,7 +26,7 @@ define(
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
-                resolveTemplate: function(parsedName) {
+                resolveTemplate: function(parsedName){
                     parsedName.fullNameWithoutType = 'UMI/' + parsedName.fullNameWithoutType;
                     return this._super(parsedName);
                 }
@@ -238,11 +239,16 @@ define(
                 }
 
                 function serializerFor(container, type, defaultSerializer) {
-                    return container.lookup('serializer:' + type) || container.lookup('serializer:application') || container.lookup('serializer:' + defaultSerializer) || container.lookup('serializer:-default');
+                    return container.lookup('serializer:' + type) ||
+                        container.lookup('serializer:application') ||
+                        container.lookup('serializer:' + defaultSerializer) ||
+                        container.lookup('serializer:-default');
                 }
 
                 function serializerForAdapter(adapter, type) {
-                    var serializer = adapter.serializer, defaultSerializer = adapter.defaultSerializer, container = adapter.container;
+                    var serializer = adapter.serializer,
+                        defaultSerializer = adapter.defaultSerializer,
+                        container = adapter.container;
 
                     if (container && serializer === undefined) {
                         serializer = serializerFor(container, type.typeKey, defaultSerializer);
@@ -328,7 +334,7 @@ define(
                     var i;
                     var objects = [];
 
-                    Ember.run.later(function() {//TODO: Очередь запросов
+                    Ember.run.later(function() {
 
                         var updateMany = function(self, objects, type, params) {
                             objects.push(self.update(type, params));
@@ -367,7 +373,7 @@ define(
          */
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized) {
-                deserialized = Ember.isNone(deserialized) ? "" : String(deserialized);
+                deserialized = Ember.isNone(deserialized) ? '' : String(deserialized);
                 if (deserialized) {
                     deserialized = moment(deserialized).format('DD.MM.YYYY');
                 }
@@ -395,7 +401,7 @@ define(
                     Ember.set(deserialized, 'date', moment(date).format('DD.MM.YYYY HH:mm:ss'));
                     deserialized = JSON.stringify(deserialized);
                 } else {
-                    deserialized = "";
+                    deserialized = '';
                 }
                 return deserialized;
             },
@@ -502,6 +508,7 @@ define(
         });
 
         templatesExtends();
+        validators(UMI);
         models(UMI);
         router(UMI);
         controller(UMI);
