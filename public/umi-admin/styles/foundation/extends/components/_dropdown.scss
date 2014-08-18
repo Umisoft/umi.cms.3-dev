@@ -106,6 +106,9 @@
             a{
                 padding: 0;
                 display: inline-block;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .split-default-button{
@@ -122,7 +125,7 @@
             .umi-dropdown-item-link{
                 div{
                     margin-left: rem-calc(5);
-                    display: inline-block;
+                    display: inline;
                 }
 
                 &:hover{

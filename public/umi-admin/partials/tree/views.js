@@ -529,7 +529,8 @@ define(['App', 'toolbar'], function(UMI) {
                     behaviour.extendButton.classNames = ['tiny white square'];
                     behaviour.extendButton.label = null;
                     behaviour.extendButton.dataOptions = function() {
-                        return 'align: right; checkPositionRegardingElement: .umi-tree-wrapper;';
+                        return 'align: right; checkPositionRegardingElement: .umi-tree-wrapper;' +
+                            ' maxWidthLikeElement: .umi-tree-wrapper;';
                     }.property();
                     behaviour.actions = behaviour.actions || {};
                     behaviour.actions.sendActionForBehaviour = function(contextBehaviour) {

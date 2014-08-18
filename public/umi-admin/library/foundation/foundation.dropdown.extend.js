@@ -92,10 +92,16 @@
             buttonSelector: '.button',
 
             /**
-             * Задает списку минимальную ширину, равную ширине кнопки (хендлера) имеющего соответствующий селектор
-             * @param {string} minWidthLikeElement класс елемента
+             * Задает списку минимальную ширину, равную ширине кнопки или её предка имеющего соответствующий селектор
+             * @param {string | null} minWidthLikeElement класс елемента
              */
             minWidthLikeElement: '.button',
+
+            /**
+             * Задаёт списку максимальную ширину, равную ширине кнопки или её предка имеющего соответствующий селектор
+             * @param {string | null} maxWidthLikeElement класс елемента
+             */
+            maxWidthLikeElement: null,
 
             /**
              * @param {bool} adaptiveBehaviour
@@ -521,10 +527,23 @@
             var side = settings.side;
             var align = settings.align;
             var dropdownStyles = {position: 'absolute'};
+            var minWidthLikeElement;
+            var maxWidthLikeElement;
 
             if (settings.minWidthLikeElement) {
-                dropdownStyles.minWidth = target.closest(settings.minWidthLikeElement).outerWidth() + 'px';
-                dropdown.css({'minWidth': dropdownStyles.minWidth});
+                minWidthLikeElement = target.closest(settings.minWidthLikeElement);
+                if (minWidthLikeElement.length) {
+                    dropdownStyles.minWidth = minWidthLikeElement.outerWidth() + 'px';
+                    dropdown.css({'minWidth': dropdownStyles.minWidth});
+                }
+            }
+
+            if (settings.maxWidthLikeElement) {
+                maxWidthLikeElement = target.closest(settings.maxWidthLikeElement);
+                if (maxWidthLikeElement.length) {
+                    dropdownStyles.maxWidth = maxWidthLikeElement.outerWidth() - 10 + 'px';
+                    dropdown.css({'maxWidth': dropdownStyles.maxWidth});
+                }
             }
 
             var checkPosition = this.checkPosition(dropdown, target, settings, side, align);
