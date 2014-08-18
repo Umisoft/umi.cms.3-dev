@@ -106,11 +106,11 @@ class PackInstallerCommand extends BaseCommand
 header("Content-Type: text/html; charset=utf-8");
 
 set_error_handler(function(\$errno, \$errmsg, \$filename, \$linenum) {
-    \$date = date('Y-m-d H:i:s (T)');
+    \$date = date('Y-m-d H:i:s');
     \$f = fopen('./errors.txt', 'a');
     if (!empty(\$f)) {
         \$filename = str_replace(\$_SERVER['DOCUMENT_ROOT'],'',\$filename);
-        \$err = "\$errmsg = \$filename = \$linenum\r\n";
+        \$err = "[\$date] \$errmsg \$filename : \$linenum\r\n";
         fwrite(\$f, \$err);
         fclose(\$f);
     }
