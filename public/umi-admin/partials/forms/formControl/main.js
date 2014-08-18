@@ -117,7 +117,6 @@ define(['App'],
                         return ' *';
                     }
                 }.property(),
-                classNameBindings: ['isError:error'],
 
                 isError: function() {
                     var dataSource = this.get('meta.dataSource');
