@@ -79,7 +79,7 @@ body.has-umi-site-panel-topbar {
   display: inline-block;
   line-height: 16px;
   background-color: transparent;
-  background: url("../../production/images/icons.png?version=2ba0681652d9280c465e30f02ec242fa677a4340") no-repeat;
+  background: url("../../production/images/svg/elements/icons-sprite.svg?version=2ba0681652d9280c465e30f02ec242fa677a4340") no-repeat;
   background-color: transparent;
   background-position: -940px 0;
 }

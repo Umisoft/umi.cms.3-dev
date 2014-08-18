@@ -77,6 +77,14 @@ define(['App'], function(UMI) {
 
                     classNameBindings: ['controller.object.active::umi-disabled'],
 
+                    iconClass: function() {
+                        var iconClass = 'inactive';
+                        if (this.get('controller.object.active')) {
+                            iconClass = 'active';
+                        }
+                        return 'icon-' + iconClass;
+                    }.property('meta.behaviour.name', 'controller.object.active'),
+
                     actions: {
                         switchActivity: function(params) {
                             params = params || {};
