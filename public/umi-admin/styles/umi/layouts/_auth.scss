@@ -95,6 +95,7 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         border: 1px solid #d0dce6;
         box-shadow: 0 0 10px 1px #097AAA;
     }
+
     label{
         color: #6f7582;
         margin-top: rem-calc(10);
@@ -114,7 +115,6 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
     input[type="text"], input[type="password"]{
         height: rem-calc(46);
         font-size: rem-calc(18);
-        border-radius: 3px;
     }
 
     .umi-validator span.error{
@@ -134,7 +134,8 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         padding-left: 40px;
         font-size: rem-calc(15);
         opacity: 0;
-        margin-right: -176px;;
+        margin-right: -176px;
+
         &:before{
             left: 0;
             border-bottom-color: transparent;
@@ -143,6 +144,7 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
             margin-left: -20px;
             top: 14px;
         }
+
         &:after{
             left: 0;
             border-bottom-color: transparent;
@@ -165,12 +167,14 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         transition: all 0.3s linear;
         padding: 0;
         overflow: hidden;
+
         &.alert{
             background-color: rgba(240, 179, 179, 1);
             border-color: rgb(211, 69, 69);
             border-radius: 2px;
             color: #832E2E;
         }
+
         &.visible{
             padding: 10px;
             height: auto;
@@ -181,6 +185,10 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         position: fixed;
         right: 10px;
         top: 10px;
+
+        .f-dropdown{
+            box-shadow: 0 1px 1px 1px #000;
+        }
     }
 }
 
