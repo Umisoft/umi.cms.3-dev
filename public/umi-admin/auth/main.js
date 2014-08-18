@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jquery'], function(templates) {
+define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templates) {
     'use strict';
 
     /**
@@ -204,17 +204,39 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates) {
                 templates(self);
 
                 this.getForm('form').then(function() {
+                    var currentLocale = self.cookie.get('auth-locale');
+
+                    if (!currentLocale) {
+                        if (window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
+                            currentLocale = window.UmiSettings.locale;
+                        } else {
+                            try {
+                                currentLocale = self.forms.form.elements[2].choices[0].value;
+                            } catch (error) {
+                                console.warn(error);
+                            }
+                        }
+                    }
+
                     // Проверяем есть ли шаблон и если нет то собираем его
                     if (!document.querySelector('.auth-layout')) {
                         var helper = document.createElement('div');
                         helper.innerHTML = self.TEMPLATES.app({
                             assetsUrl: assetsUrl,
-                            outlet: self.TEMPLATES.index({accessError: self.accessError, form: self.forms.form})
+                            outlet: self.TEMPLATES.index(
+                                {
+                                    accessError: self.accessError,
+                                    form: self.forms.form,
+                                    currentLocale: currentLocale
+                                }
+                            )
                         });
                         helper = document.body.appendChild(helper);
                         $(helper.firstElementChild).unwrap();
                     }
                     $('body').removeClass('loading');
+
+                    $(document.querySelector('.auth-layout')).foundation();
 
                     var bubbles = document.querySelector('.bubbles');
                     var bubblesFront = document.querySelector('.bubbles-front');
@@ -241,13 +263,15 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates) {
                         parallax(event);
                     };
 
-                    if (history.state && history.state.hasOwnProperty('language')) {
-                        $('.select-language').val(history.state.language);
-                    }
+                    $(document).on('click.umi.auth', '.locale-select', function(event) {
+                        event.preventDefault();
 
-                    $(document).on('change.umi.auth', '.select-language', function() {
-                        history.replaceState({language: this.value}, '?language=' + this.value);
-                        window.location.href = window.location.href;
+                        var locale = $(this).data('locale');
+
+                        if (locale && self.cookie.get('auth-locale') !== locale) {
+                            self.cookie.set('auth-locale', locale, {path: '/'});
+                            window.location.href = window.location.href;
+                        }
                     });
 
                     $(document).on('click.umi.auth', '.close', function() {
@@ -304,10 +328,55 @@ define(['auth/templates', 'Handlebars', 'jquery'], function(templates) {
                     });
                 });
             },
+
             destroy: function() {
                 $(document).off('click.umi.auth');
                 $(document).off('submit.umi.auth');
                 $(document).off('change.umi.auth');
+            },
+
+            cookie: {
+                get: function(name) {
+                    var matches = document.cookie.match(new RegExp(
+                        '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
+                    ));
+                    return matches ? decodeURIComponent(matches[1]) : undefined;
+                },
+
+                set: function(name, value, options) {
+                    options = options || {};
+
+                    var expires = options.expires;
+
+                    if (typeof expires === 'number' && expires) {
+                        var d = new Date();
+                        d.setTime(d.getTime() + expires * 1000);
+                        expires = options.expires = d;
+                    }
+                    if (expires && expires.toUTCString) {
+                        options.expires = expires.toUTCString();
+                    }
+
+                    value = encodeURIComponent(value);
+
+                    var updatedCookie = name + '=' + value;
+
+                    for (var propName in options) {
+                        if (options.hasOwnProperty(propName)) {
+                            updatedCookie += '; ' + propName;
+                            var propValue = options[propName];
+                            if (propValue !== true) {
+                                updatedCookie += '=' + propValue;
+                            }
+                        }
+                    }
+
+                    document.cookie = updatedCookie;
+                },
+
+                delete: function(name) {
+                    Auth.cookie.set(name, '', { expires: -1 });
+                }
             }
         };
 
