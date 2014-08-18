@@ -46,11 +46,11 @@ class EditObjectControl extends CollectionControl
      */
     protected function configureToolbar()
     {
+        $this->addToolbarButton('backToFilter', $this->createActionButton('backToFilter'));
+
         if ($createButton = $this->buildCreateButton()) {
             $this->addToolbarButton('create', $createButton);
         }
-
-        $this->addToolbarButton('backToFilter', $this->createActionButton('backToFilter'));
 
         if ($this->collection instanceof ICmsPageCollection) {
 

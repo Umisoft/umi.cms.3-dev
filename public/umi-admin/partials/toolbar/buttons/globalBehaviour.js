@@ -86,6 +86,8 @@ define(['App'], function(UMI) {
                 },
 
                 backToFilter: {
+                    classNames: ['wide', 'umi-toolbar-button-border'],
+
                     actions: {
                         backToFilter: function() {
                             this.get('controller').send('backToFilter');
