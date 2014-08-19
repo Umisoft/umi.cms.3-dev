@@ -205,17 +205,24 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                 this.getForm('form').then(function() {
                     var currentLocale = self.cookie.get('auth-locale');
+                    var options;
+                    var currentLocaleLabel;
 
-                    if (!currentLocale) {
-                        if (window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
-                            currentLocale = window.UmiSettings.locale;
-                        } else {
-                            try {
-                                currentLocale = self.forms.form.elements[2].choices[0].value;
-                            } catch (error) {
-                                console.warn(error);
+                    if (!currentLocale && window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
+                        currentLocale = window.UmiSettings.locale;
+                    }
+
+                    try {
+                        options = self.forms.form.elements[2].choices;
+                        currentLocale = currentLocale || options[0].value;
+
+                        for (var i = 0; i < options.length; i++) {
+                            if (options[i].value === currentLocale) {
+                                currentLocaleLabel = options[i].label || options[i].value;
                             }
                         }
+                    } catch (error) {
+                        console.warn(error);
                     }
 
                     // Проверяем есть ли шаблон и если нет то собираем его
@@ -227,7 +234,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                                 {
                                     accessError: self.accessError,
                                     form: self.forms.form,
-                                    currentLocale: currentLocale
+                                    currentLocale: currentLocaleLabel
                                 }
                             )
                         });
