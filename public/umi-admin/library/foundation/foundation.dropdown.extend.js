@@ -87,6 +87,12 @@
             selectorById: true,
 
             /**
+             * Заменяет элемент вызвавщий список, на его предка с указанным селектором, для корректного расчета стилей
+             * @param {string | null} replaceTarget
+             */
+            replaceTarget: null,
+
+            /**
              * Селектор кнопки
              */
             buttonSelector: '.button',
@@ -529,6 +535,14 @@
             var dropdownStyles = {position: 'absolute'};
             var minWidthLikeElement;
             var maxWidthLikeElement;
+            var replaceTarget;
+
+            if (settings.replaceTarget) {
+                replaceTarget = target.closest(settings.replaceTarget);
+                if (replaceTarget.length) {
+                    target = replaceTarget;
+                }
+            }
 
             if (settings.minWidthLikeElement) {
                 minWidthLikeElement = target.closest(settings.minWidthLikeElement);
@@ -588,7 +602,7 @@
 
                 //TODO: optimize
                 targetSize.width = target.outerWidth();
-                targetOffset.width = target.offset().width;
+                targetOffset.left = target.offset().left;
 
                 for (var key in targetOffset) {
                     if (targetOffset.hasOwnProperty(key)) {

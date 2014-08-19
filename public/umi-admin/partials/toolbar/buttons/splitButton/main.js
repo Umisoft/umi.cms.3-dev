@@ -109,7 +109,7 @@ define(['App'], function(UMI) {
                     attributeBindings: ['meta.attributes.title'],
 
                     dataOptions: function() {
-                        return 'align: right;';
+                        return 'replaceTarget: .button;';
                     }.property(),
 
                     label: function() {

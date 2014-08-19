@@ -14,7 +14,7 @@ define(['App', 'moment'], function(UMI, moment) {
                 _button: {
                     classNameBindings: 'meta.attributes.class',
 
-                    attributeBindings: ['dataDropdown:data-dropdown', 'title'],
+                    attributeBindings: ['dataDropdown:data-dropdown', 'title', 'dataOptions:data-options'],
 
                     dataDropdown: function() {
                         return this.get('parentView.dropdownId');
@@ -54,6 +54,12 @@ define(['App', 'moment'], function(UMI, moment) {
                 dropdownClassName: 'content',
 
                 noBackupsLabel: null,
+
+                extendButton: {
+                    dataOptions: function() {
+                        return 'fastSelectHoverSelector: tr; fastSelectTarget: tr;';
+                    }.property()
+                },
 
                 getBackupList: function() {
                     var backupList;
@@ -190,6 +196,7 @@ define(['App', 'moment'], function(UMI, moment) {
                         }
                     }
                 },
+
                 didInsertElement: function() {
                     var el = this.$();
                     var scroll;
@@ -211,6 +218,7 @@ define(['App', 'moment'], function(UMI, moment) {
                         }
                     });
                 },
+
                 willDestroyElement: function() {
                     this.get('controller').removeObserver('object');
                     this.get('controller.object').off('didUpdate');
@@ -222,6 +230,12 @@ define(['App', 'moment'], function(UMI, moment) {
                 templateName: 'partials/dropdownButton/form',
 
                 dropdownClassName: 'content',
+
+                extendButton: {
+                    dataOptions: function() {
+                        return 'fastSelect: false;';
+                    }.property()
+                },
 
                 formView: Ember.View.extend({
                     tagName: 'form',
