@@ -101,39 +101,26 @@
 
     &-composite{
         li{
-            padding: $f-dropdown-list-padding;
-
             a{
-                padding: 0;
                 display: inline-block;
-                max-width: 100%;
+                width: 100%;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                position: relative;
+                vertical-align: top;
+                padding-right: rem-calc(30);
+                box-sizing: border-box;
+
+                div{
+                    margin-left: rem-calc(5);
+                    display: inline;
+                }
             }
 
             .split-default-button{
                 position: absolute;
                 right: rem-calc(10);
                 margin-top: 0;
-            }
-
-            &.has-default-button{
-                position: relative;
-                padding-right: rem-calc(40);
-            }
-
-            .umi-dropdown-item-link{
-                div{
-                    margin-left: rem-calc(5);
-                    display: inline;
-                }
-
-                &:hover{
-                    text-decoration: none;
-                    div{
-                        text-decoration: underline;
-                    }
-                }
             }
         }
     }
