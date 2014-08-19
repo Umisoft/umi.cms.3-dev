@@ -7,7 +7,7 @@
                 exclude-result-prefixes="php umi">
 
     <!-- Статические страницы <Начало> -->
-    <xsl:template match="contents[@controller = 'structure.index']" >
+    <xsl:template match="contents[@controller='structure.index'][page]" >
         <div class="site-name">
             <div class="container-fluid">
                 <h1><xsl:value-of select="page/@h1" disable-output-escaping="yes" /></h1>

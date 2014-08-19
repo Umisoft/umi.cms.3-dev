@@ -14,31 +14,25 @@
             <div class="container-fluid">
                 <!-- Последние новости  -->
                 <div class="block">
-                    <h2 class="title-block">
-                        <span>
-                            <xsl:value-of select="document('translate://project.site.news/RecentEvents')/result"/>
-                        </span>
-                    </h2>
-                    <p class="desc-block">
-                        <xsl:value-of select="document('translate://project.site.news/LatestNews')/result"/>
-                    </p>
+                    <div class="page-title">
+                        <div class="title"><xsl:value-of select="document('translate://project.site.news/RecentEvents')/result"/></div>
+                        <div class="separating-line"></div>
+                        <div class="caption"><xsl:value-of select="document('translate://project.site.news/LatestNews')/result"/></div>
+                    </div>
                     <!-- Список последних новостей  -->
                     <ul class="list-dev row">
-                        <xsl:apply-templates select="document('widget://news.item.list?limit=5')" mode="news.main.row"/>
+                        <xsl:apply-templates select="document('widget://news.item.list?limit=4')" mode="news.main.row"/>
                     </ul>
                 </div>
             </div>
             <!-- О нас -->
             <div class="block">
                 <div class="container-fluid text-center">
-                    <h2 class="title-block">
-                        <span>
-                            <xsl:value-of select="document('translate://project.site.news/AboutUs')/result"/>
-                        </span>
-                    </h2>
-                    <p class="desc-block">
-                        <xsl:value-of select="document('translate://project.site.blog/Most%20famous')"/>
-                    </p>
+                    <div class="page-title">
+                        <div class="title"><xsl:value-of select="document('translate://project.site.news/AboutUs')/result"/></div>
+                        <div class="separating-line"></div>
+                        <div class="caption"><xsl:value-of select="document('translate://project.site.blog/Most%20famous')"/></div>
+                    </div>
                 </div>
                 <ul class="list-about">
                     <li>
@@ -58,21 +52,19 @@
                     </li>
                 </ul>
             </div>
+
             <!-- Контент -->
             <div class="container-fluid content-page">
                 <xsl:value-of select="page/property[@name='contents']/value" disable-output-escaping="yes"/>
             </div>
-            <div class="block">
-                <h2 class="title-block">
-                    <span>
-                        <xsl:value-of select="document('translate://project.site.news/Blog')/result"/>
-                    </span>
-                </h2>
-                <p class="desc-block">
-                    <xsl:value-of select="document('translate://project.site.blog/RecentBlogPosts')/result"/>
-                </p>
-            </div>
+
             <!-- Последние посты блогов -->
+            <div class="page-title">
+                <div class="title"><xsl:value-of select="document('translate://project.site.news/Blog')/result"/></div>
+                <div class="separating-line"></div>
+                <div class="caption"><xsl:value-of select="document('translate://project.site.blog/RecentBlogPosts')/result"/></div>
+            </div>
+
             <div class="main-blog">
                 <div class="container-fluid">
                     <xsl:apply-templates select="document('widget://blog.post.view.list')" mode="blog.main.row"/>

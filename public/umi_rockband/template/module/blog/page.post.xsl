@@ -27,20 +27,20 @@
 
                 <!-- Контент -->
                 <div class="row top-info">
-                    <div class="col-md-4">
+                    <div class="col-xs-12 col-sm-4">
                         <div class="userinfo">
                             <div class="name">
                                 <xsl:value-of select="//property[@name='author']/value/@displayName"/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-xs-12 col-sm-4">
                         <div class="title-top"><xsl:value-of select="document('translate://project.site/Tags')" /></div>
                         <div class="tags">
                             <xsl:apply-templates select="//property[@name='tags']/value/item" mode="blog.tags.list"/>
                         </div>
                     </div>
-                    <div class="col-md-3 share">
+                    <div class="col-xs-12 col-sm-4 share">
                         <div class="title-top"><xsl:value-of select="document('translate://project.site.blog/Share')" /></div>
                         <a href="#" class="vk">
                             <i></i>
@@ -61,13 +61,12 @@
                     <xsl:value-of select="//property[@name='contents']/value" disable-output-escaping="yes"/>
                 </div>
 
-                <div class="comment">
-                    <div class="com-title"><xsl:value-of select="document('translate://project.site.blog/Comments')/result" /> - <xsl:value-of select="//property[@name='commentsCount']/value" /></div>
-                    <xsl:apply-templates select="document(concat('widget://blog.comment.add.addForm?blogPost=', page/@guid))" mode="blog.comments.form" />
+                <div id="comments">
+                    <h3><xsl:value-of select="document('translate://project.site.blog/Comments')/result" /> - <xsl:value-of select="//property[@name='commentsCount']/value" /></h3>
                     <xsl:apply-templates select="document(concat('widget://blog.comment.list?blogPost=', page/@guid, '&amp;options%5Bfields%5D=contents,publishTime'))" mode="blog.comments.list">
                         <xsl:with-param name="postGuid" select="page/@guid" />
                     </xsl:apply-templates>
-
+                    <xsl:apply-templates select="document(concat('widget://blog.comment.add.addForm?blogPost=', page/@guid))" mode="blog.comments.form" />
                 </div>
             </div>
         </div>

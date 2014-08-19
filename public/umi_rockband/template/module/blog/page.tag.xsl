@@ -19,17 +19,16 @@
                     </div>
                 </div>
 
+                <!-- Сайдбар -->
+                <xsl:call-template name="blog.sidebar" />
+
                 <!-- Вывод постов-->
-                <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="itemslist">
                     <xsl:apply-templates select="document(concat('widget://blog.tag.postList?tags=', page/@guid,
                     '&amp;pagination%5BpageParam%5D=p&amp;pagination%5Btype%5D=elastic&amp;pagination%5BpagesCount%5D=',
                     $pagesCount, '&amp;limit=5'))" mode="blog.content.list" />
                 </div>
 
-                <!-- Сайдбар -->
-                <div class="col-xs-6 col-md-4">
-                    <xsl:call-template name="blog.sidebar" />
-                </div>
             </div>
         </div>
     </xsl:template>

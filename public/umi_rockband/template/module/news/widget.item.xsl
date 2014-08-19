@@ -53,7 +53,7 @@
 
     <!-- Список свежих новостей на главной <Начало> -->
     <xsl:template match="result[@widget = 'news.item.list']" mode="news.main.row" >
-        <ul class="list-dev row">
+        <ul class="row news-block">
             <xsl:apply-templates select="list/collection/item" mode="news.main.row"/>
         </ul>
     </xsl:template>
@@ -66,21 +66,25 @@
     <!-- Отдельная новость -->
     <xsl:template match="newsItem" mode="news.main.row">
         <li class="col-md-3 col-sm-6">
-            <a href="{@url}">
-                <img width="221" height="170" src="{property[@name='image']/value}" class="img" alt="{@displayName}"/>
-            </a>
-            <a href="{@url}" class="title">
-                <xsl:value-of select="@displayName" disable-output-escaping="yes" />
-            </a>
+            <p>
+                <a href="{@url}">
+                    <img src="{property[@name='image']/value}" alt="{@displayName}"/>
+                </a>
+            </p>
+            <p class="text-center">
+                <a href="{@url}">
+                    <xsl:value-of select="@displayName" disable-output-escaping="yes" />
+                </a>
+            </p>
             <span class="date">
                 <xsl:call-template name="dateTime">
                     <xsl:with-param name="format">Y-m-d H:i:s</xsl:with-param>
                     <xsl:with-param name="stringTime" select="property[@name='created']/value/date"/>
                 </xsl:call-template>
             </span>
-            <p class="desc">
+            <div class="announce">
                 <xsl:value-of select="property[@name='announcement']/value" disable-output-escaping="yes"/>
-            </p>
+            </div>
         </li>
     </xsl:template>
     <!-- Список свежих новостей на главной <Конец> -->

@@ -10,16 +10,14 @@
     <xsl:template match="result[@widget = 'search.form']" mode="search.head.form">
         <li class="search">
             <form class="h-search-form">
-                <xsl:apply-templates select="form/attributes/@*" mode="form"/>
+                <xsl:apply-templates select="form/attributes" mode="all.form"/>
                 <div class="input-group input-group-sm">
                     <span class="input-group-btn">
                         <button class="btn" type="button">
                             <img src="images/search-icon.png" width="12" height="12"/>
                         </button>
                     </span>
-                    <xsl:apply-templates select="form/elements/item[id='query']" mode="form">
-                        <xsl:with-param name="class">form-control</xsl:with-param>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="form/elements/item[id='query']" mode="search.form" />
                 </div>
             </form>
         </li>

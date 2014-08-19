@@ -9,13 +9,24 @@
     <!-- Объявляем переменные -->
     <xsl:variable name="assets" select="/layout/assetsUrl" />
     <xsl:variable name="root" select="/layout/projectUrl/locale[@current = 1]/@url" />
-    <xsl:variable name="pagesCount" select="'5'" />
+    <xsl:variable name="pagesCount" select="5" />
+
+    <!-- Базовый шаблон для не обработанных страниц <Начало> -->
+    <xsl:template match="contents[@controller]">
+        <div class="content-inner" xmlns="">
+            <div class="container-fluid">
+                <h2>not found template for controller <strong><xsl:value-of select="@controller" /></strong></h2>
+            </div>
+        </div>
+    </xsl:template>
+    <!-- Базовый шаблон для не обработанных страниц <Конец> -->
 
     <!-- Подключаем шаблоны модулей <Начало> -->
     <xsl:include href="template://module/structure/common" />
     <xsl:include href="template://module/news/common" />
     <xsl:include href="template://module/blog/common" />
     <xsl:include href="template://module/search/common" />
+    <xsl:include href="template://module/users/common" />
     <!-- Подключаем шаблоны модулей <Конец> -->
 
     <!-- Подключаем дополнительные шаблоны <Начало> -->
@@ -53,7 +64,7 @@
         <xsl:attribute name="class">active</xsl:attribute>
     </xsl:template>
     <xsl:template match="locale" mode="locale.separator">
-        <xsl:text>/</xsl:text>
+        <xsl:text> /</xsl:text>
     </xsl:template>
     <xsl:template match="locale[position() = last()]" mode="locale.separator"/>
     <!-- Переключение языковой версии <Конец> -->

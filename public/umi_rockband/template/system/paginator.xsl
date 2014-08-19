@@ -8,16 +8,15 @@
 
     <!-- Пагинация <Начало> -->
     <xsl:template match="paginator">
-        <xsl:variable name="var" select="'5'" />
         <div class="navigation navcent">
             <xsl:apply-templates select="previousPage"/>
             <ul class="pagination">
-                <xsl:apply-templates select="firstPage[../currentPage/@number &gt; $var - 2]">
-                    <xsl:with-param name="var" select="$var" />
+                <xsl:apply-templates select="firstPage[../currentPage/@number &gt; $pagesCount - 2]">
+                    <xsl:with-param name="var" select="$pagesCount" />
                 </xsl:apply-templates>
                 <xsl:apply-templates select="range/page" mode="pagination"/>
-                <xsl:apply-templates select="lastPage[../currentPage/@number &lt; @number - ($var - 3)]">
-                    <xsl:with-param name="var" select="$var" />
+                <xsl:apply-templates select="lastPage[../currentPage/@number &lt; @number - ($pagesCount - 3)]">
+                    <xsl:with-param name="var" select="$pagesCount" />
                 </xsl:apply-templates>
             </ul>
             <xsl:apply-templates select="nextPage"/>
@@ -49,6 +48,7 @@
     </xsl:template>
 
     <xsl:template match="previousPage">
+        <!--TODO labels -->
         <a href="{@url}" class="np">Назад</a>
     </xsl:template>
 
@@ -58,14 +58,18 @@
 
     <xsl:template match="page" mode="pagination">
         <li>
-            <a href="{@url}">
-                <xsl:apply-templates select="@current"/>
+            <a>
+                <xsl:apply-templates select="." mode="pagination.current" />
                 <xsl:value-of select="@number"/>
             </a>
         </li>
     </xsl:template>
 
-    <xsl:template match="@current">
+    <xsl:template match="page[not(@current)]" mode="pagination.current">
+        <xsl:attribute name="href"><xsl:value-of select="@url" /></xsl:attribute>
+    </xsl:template>
+
+    <xsl:template match="page[@current]" mode="pagination.current">
         <xsl:attribute name="class">active</xsl:attribute>
     </xsl:template>
     <!-- Пагинация <Конец> -->

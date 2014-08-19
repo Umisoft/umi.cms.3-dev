@@ -15,9 +15,11 @@
     </xsl:template>
 
     <xsl:template match="item" mode="headerMenu">
-        <li><a href="{page/@url}">
-            <xsl:value-of select="page/@displayName"/>
-        </a></li>
+        <li>
+            <a href="{page/@url}">
+                <xsl:value-of select="page/@displayName"/>
+            </a>
+        </li>
     </xsl:template>
     <!-- Меню в хедере <Конец> -->
 
