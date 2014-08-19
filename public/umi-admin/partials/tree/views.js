@@ -1,6 +1,6 @@
-define(['App', 'toolbar'], function(UMI){
+define(['App', 'toolbar'], function(UMI) {
     'use strict';
-    return function(){
+    return function() {
         UMI.TreeControlView = Ember.View.extend({
 
             /**
@@ -24,7 +24,7 @@ define(['App', 'toolbar'], function(UMI){
              * Observer для активного контекста
              * @observer activeContext
              */
-            activeContextChange: function(){
+            activeContextChange: function() {
                 Ember.run.next(this, 'expandBranch');
             }.observes('controller.activeContext').on('didInsertElement'),
 
@@ -32,31 +32,31 @@ define(['App', 'toolbar'], function(UMI){
              * Раскрывает загруженную ветвь дерева и выставляет значение expandBranch
              * @method expandBranch
              */
-            expandBranch: function(){
-                if(this.get('isDestroying') || this.get('isDestroyed')){//TODO: fixed
+            expandBranch: function() {
+                if (this.get('isDestroying') || this.get('isDestroyed')) {//TODO: fixed
                     return;
                 }
                 var $el = this.$();
                 var activeContext = this.get('controller.activeContext');
-                var checkExpandItem = function(id){
-                    if($el.length){
-                        var itemView = $el.find('[data-id='+ id +']');
+                var checkExpandItem = function(id) {
+                    if ($el.length) {
+                        var itemView = $el.find('[data-id=' + id + ']');
                         return itemView.length ? true : false;
                     }
                 };
-                if(activeContext){
+                if (activeContext) {
                     var mpath = [];
                     var contextMpath = [];
                     var needsExpandedItems = [];
                     mpath.push('root');
-                    if(activeContext.get('id') !== 'root' && activeContext.get('mpath')){
+                    if (activeContext.get('id') !== 'root' && activeContext.get('mpath')) {
                         contextMpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
                     }
                     contextMpath = mpath.concat(contextMpath);
-                    for(var i = 0, size = contextMpath.length; i < size; i++){
-                        if(checkExpandItem(contextMpath[i])){
+                    for (var i = 0, size = contextMpath.length; i < size; i++) {
+                        if (checkExpandItem(contextMpath[i])) {
                             this.send('expandItem', contextMpath[i]);
-                        } else{
+                        } else {
                             needsExpandedItems.push(contextMpath[i]);
                         }
                     }
@@ -72,12 +72,12 @@ define(['App', 'toolbar'], function(UMI){
             needsExpandedItems: '',
 
             actions: {
-                expandItem: function(id){
-                    if(this.$()){
-                        var itemView = this.$().find('[data-id='+ id +']');
-                        if(itemView.length){
+                expandItem: function(id) {
+                    if (this.$()) {
+                        var itemView = this.$().find('[data-id=' + id + ']');
+                        if (itemView.length) {
                             itemView = Ember.View.views[itemView[0].id];
-                            if(itemView && !itemView.get('isExpanded')){
+                            if (itemView && !itemView.get('isExpanded')) {
                                 itemView.set('isExpanded', true);
                             }
                         }
@@ -89,7 +89,7 @@ define(['App', 'toolbar'], function(UMI){
              * Метод устанавливающий события после рендинга шаблона.
              * @method didInsertElement
              */
-            didInsertElement: function(){
+            didInsertElement: function() {
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
                 var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
 
@@ -97,10 +97,10 @@ define(['App', 'toolbar'], function(UMI){
                 var self = this;
 
                 // Раскрытие ноды имеющую потомков
-                var setExpanded = function(node){
+                var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];
 
-                    if(itemView.get('hasChildren')){
+                    if (itemView.get('hasChildren')) {
                         itemView.set('isExpanded', true);
                     }
                 };
@@ -108,7 +108,7 @@ define(['App', 'toolbar'], function(UMI){
                 /**
                  * Устанавливает позицию призрака
                  * */
-                var ghostPosition = function(event, ghost, ghostPositionOffset){
+                var ghostPosition = function(event, ghost, ghostPositionOffset) {
                     ghost.style.top = event.pageY + ghostPositionOffset + 'px';
                     ghost.style.left = event.pageX + ghostPositionOffset + 'px';
                 };
@@ -120,16 +120,16 @@ define(['App', 'toolbar'], function(UMI){
                  * @param {string} Тип элемента который требуется найти
                  * @returns {Object|Null} Возвращаем найденный элемент
                  * */
-                function findNextSibling(element, type){
+                function findNextSibling(element, type) {
                     type = type.toUpperCase();
                     var nextElement = element.nextElementSibling;
-                    while(nextElement && nextElement.tagName !== type){
+                    while (nextElement && nextElement.tagName !== type) {
                         nextElement = nextElement.nextElementSibling;
                     }
                     return nextElement;
                 }
 
-                var dragAndDrop = function(event, el){
+                var dragAndDrop = function(event, el) {
                     var draggableNode = el.parentNode.parentNode;
                     var placeholder = document.createElement('li');
                     var ghost = document.createElement('span');
@@ -154,8 +154,8 @@ define(['App', 'toolbar'], function(UMI){
 
                     ghostPosition(event, ghost, ghostPositionOffset);
 
-                    $(document).on('mousemove', 'body, .umi-tree-ghost', function(event){
-                        if(delayBeforeExpand){
+                    $(document).on('mousemove', 'body, .umi-tree-ghost', function(event) {
+                        if (delayBeforeExpand) {
                             clearTimeout(delayBeforeExpand);
                         }
                         ghostPosition(event, ghost, ghostPositionOffset);
@@ -168,28 +168,28 @@ define(['App', 'toolbar'], function(UMI){
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
 
                         // Проверим находимся мы над деревом или нет
-                        if($(elem).closest('.umi-tree').length){
+                        if ($(elem).closest('.umi-tree').length) {
                             hoverElement = $(elem).closest('li')[0];
                             // Устанавливаем плэйсхолдер рядом с элементом
-                            if(hoverElement && hoverElement !== placeholder && hoverElement.getAttribute('data-id') !== 'root'){
+                            if (hoverElement && hoverElement !== placeholder && hoverElement.getAttribute('data-id') !== 'root') {
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
                                 // 1) после ноды - Если позиция курсора на ноде ниже ~70% ее высоты
                                 // 2) перед нодой - Если позиция курсора на ноде выше ~30% ее высоты
                                 // 3) "внутрь" ноды - если навели на центр. При задержке пользователя на центре раскрываем ноду.
-                                if(event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)){
+                                if (event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)) {
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     nextElement = findNextSibling(hoverElement, 'li');
-                                    if(nextElement){
+                                    if (nextElement) {
                                         placeholder = hoverElement.parentNode.insertBefore(placeholder, nextElement);
-                                    } else{
+                                    } else {
                                         placeholder = hoverElement.parentNode.appendChild(placeholder);
                                     }
-                                } else if(event.clientY < elemPositionTop + parseInt(elemHeight * 0.3, 10)){
+                                } else if (event.clientY < elemPositionTop + parseInt(elemHeight * 0.3, 10)) {
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     placeholder = hoverElement.parentNode.insertBefore(placeholder, hoverElement);
-                                } else{
+                                } else {
                                     var emptyChildList = document.createElement('ul');
                                     emptyChildList.className = 'umi-tree-list';
                                     emptyChildList.setAttribute('data-parent-id', hoverElement.getAttribute('data-id'));
@@ -197,7 +197,7 @@ define(['App', 'toolbar'], function(UMI){
 
                                     placeholder = emptyChildList.appendChild(placeholder);
                                     emptyChildList = hoverElement.appendChild(emptyChildList);
-                                    delayBeforeExpand = setTimeout(function(){
+                                    delayBeforeExpand = setTimeout(function() {
                                         setExpanded(hoverElement);
                                     }, 500);
                                 }
@@ -205,7 +205,7 @@ define(['App', 'toolbar'], function(UMI){
                         }
                     });
 
-                    $(document).on('mouseup', function(event){
+                    $(document).on('mouseup', function(event) {
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
                         var prevSiblingId = null;
                         var list = $(elem).closest('.umi-tree-list')[0];
@@ -217,15 +217,15 @@ define(['App', 'toolbar'], function(UMI){
                         ghost.parentNode.removeChild(ghost);
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
-                        if(list && !$(list).hasClass('umi-tree')){
+                        if (list && !$(list).hasClass('umi-tree')) {
                             /**
                              * Находим предыдущего соседа
                              */
-                            (function findPrevSibling(el){
+                            (function findPrevSibling(el) {
                                 var sibling = el.previousElementSibling;
-                                if(sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')){
+                                if (sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')) {
                                     findPrevSibling(sibling);
-                                } else{
+                                } else {
                                     prevSiblingId = sibling ? sibling.getAttribute('data-id') : null;
                                 }
                             }(placeholder));
@@ -234,12 +234,12 @@ define(['App', 'toolbar'], function(UMI){
                             /**
                              * Фильтр элементов списка
                              */
-                            (function findNextSibling(element){
+                            (function findNextSibling(element) {
                                 var sibling = element.nextElementSibling;
-                                if(sibling){
-                                    if($(sibling).hasClass('hide') || sibling.tagName !== 'LI'){
+                                if (sibling) {
+                                    if ($(sibling).hasClass('hide') || sibling.tagName !== 'LI') {
                                         findNextSibling(sibling);
-                                    } else{
+                                    } else {
                                         nextSibling.push(sibling.getAttribute('data-id'));
                                     }
                                 }
@@ -249,7 +249,7 @@ define(['App', 'toolbar'], function(UMI){
                             self.send('expandItem', parentId);
                         }
                         // Удаление плэйсхолдера
-                        if(placeholder.parentNode){
+                        if (placeholder.parentNode) {
                             placeholder.parentNode.removeChild(placeholder);
                         }
                         $(draggableNode).removeClass('hide');
@@ -258,24 +258,24 @@ define(['App', 'toolbar'], function(UMI){
                 };
 
                 var timeoutForDrag;
-                this.$().on('mousedown', '.icon.move', function(event){
-                    if(event.originalEvent.which !== 1){
+                this.$().on('mousedown', '.icon.move', function(event) {
+                    if (event.originalEvent.which !== 1) {
                         return;
                     }
                     var el = this;
-                    timeoutForDrag = setTimeout(function(){
+                    timeoutForDrag = setTimeout(function() {
                         dragAndDrop(event, el);
                     }, 200);
                 });
 
-                this.$().on('mouseup', '.icon.move', function(){
-                    if(timeoutForDrag){
+                this.$().on('mouseup', '.icon.move', function() {
+                    if (timeoutForDrag) {
                         clearTimeout(timeoutForDrag);
                     }
                 });
             },
 
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 this.removeObserver('controller.activeContext');
             }
         });
@@ -315,18 +315,18 @@ define(['App', 'toolbar'], function(UMI){
             /**
              * @property dataId
              */
-            dataId: function(){
+            dataId: function() {
                 return this.get('item.id');
             }.property('item.id'),
 
-            iconTypeClass: function(){
+            iconTypeClass: function() {
                 var iconTypeClass;
                 var item = this.get('item');
 
-                if(item.get('id') === 'root'){
+                if (item.get('id') === 'root') {
                     iconTypeClass = 'icon-open-folder';
-                } else{
-                    switch(item.get('type')){
+                } else {
+                    switch (item.get('type')) {
                         case 'system':
                             iconTypeClass = 'icon-settings';
                             break;
@@ -343,14 +343,14 @@ define(['App', 'toolbar'], function(UMI){
              * Ссылка на редактирование елемента
              * @property editLInk
              */
-            editLink: function(){
+            editLink: function() {
                 var link = this.get('item.meta.editLink');
                 return link;
             }.property('item'),
 
-            allowMove: function(){
+            allowMove: function() {
                 var item = this.get('item');
-                if(item.get('id') !== 'root' && !item.get('locked')){
+                if (item.get('id') !== 'root' && !item.get('locked')) {
                     return true;
                 }
             }.property('item.id'),
@@ -359,10 +359,10 @@ define(['App', 'toolbar'], function(UMI){
              * Сохранённое имя отображения объекта
              * @property savedDisplayName
              */
-            savedDisplayName: function(){
-                if(this.get('item.id') === 'root'){
+            savedDisplayName: function() {
+                if (this.get('item.id') === 'root') {
                     return this.get('item.displayName');
-                } else{
+                } else {
                     return this.get('item._data.displayName');
                 }
             }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
@@ -371,12 +371,12 @@ define(['App', 'toolbar'], function(UMI){
              * Для активного объекта добавляется класс active
              * @property active
              */
-            isActiveContext: function(){
+            isActiveContext: function() {
                 return this.get('controller.activeContext.id') === this.get('item.id');
             }.property('controller.activeContext.id'),
 
-            childrenList: function(){
-                if(!this.get('item')){//TODO: fixed
+            childrenList: function() {
+                if (!this.get('item')) {//TODO: fixed
                     return;
                 }
                 return this.getChildren();
@@ -388,7 +388,7 @@ define(['App', 'toolbar'], function(UMI){
              *
              * @returns {*}
              */
-            getChildren: function(){
+            getChildren: function() {
                 var model = this.get('item');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
@@ -396,20 +396,20 @@ define(['App', 'toolbar'], function(UMI){
 
                 var properties = self.get('controller.properties').join(',');
                 var parentId;
-                if(model.get('id') === 'root'){
+                if (model.get('id') === 'root') {
                     parentId = 'null()';
-                } else{
+                } else {
                     parentId = model.get('id');
                 }
                 var requestParams = {'filters[parent]': parentId, 'fields': properties};
-                if(self.get('controller.isTrashableCollection')){
+                if (self.get('controller.isTrashableCollection')) {
                     requestParams['filters[trashed]'] = 'equals(0)';
                 }
                 promise = this.get('controller.store').updateCollection(collectionName, requestParams);
 
-                if(model.get('id') !== 'root'){
-                    promise.then(function(children){
-                        for(var i = 0; i < children.length; i++){
+                if (model.get('id') !== 'root') {
+                    promise.then(function(children) {
+                        for (var i = 0; i < children.length; i++) {
                             children[i].set('parent', model);
                         }
                     });
@@ -423,19 +423,19 @@ define(['App', 'toolbar'], function(UMI){
                 return promiseArray;
             },
 
-            scrollUpdate: function(){
+            scrollUpdate: function() {
                 var self = this;
-                setTimeout(function(){
+                setTimeout(function() {
                     var iScroll = self.get('treeControlView.iScroll');
-                    if(iScroll){
-                        setTimeout(function(){
+                    if (iScroll) {
+                        setTimeout(function() {
                             iScroll.refresh();
                         }, 100);
                     }
                 }, 0);
             },
 
-            scrollNeedUpdate: function(){
+            scrollNeedUpdate: function() {
                 this.scrollUpdate();
             }.observes('childrenList.length'),
 
@@ -443,20 +443,20 @@ define(['App', 'toolbar'], function(UMI){
              * Для неактивных элементов добавляется класс inActive
              * @property inActive
              */
-            inActive: function(){
+            inActive: function() {
                 return this.get('item.active') === false ? true : false;
             }.property('item.active'),
 
             isExpanded: false,
 
-            expandActiveContext: function(){
-                if(!this.get('isExpanded')){
+            expandActiveContext: function() {
+                if (!this.get('isExpanded')) {
                     var id = this.get('item.id');
                     var treeControlView = this.get('treeControlView');
                     var needsExpandedItems = treeControlView.get('needsExpandedItems');
-                    if(id === 'root'){
+                    if (id === 'root') {
                         this.set('isExpanded', true);
-                    } else if(needsExpandedItems && needsExpandedItems.contains(parseFloat(id))){
+                    } else if (needsExpandedItems && needsExpandedItems.contains(parseFloat(id))) {
                         treeControlView.set('needsExpandedItems', needsExpandedItems.without(parseFloat(id)));
                         this.set('isExpanded', true);
                     }
@@ -464,41 +464,41 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             actions: {
-                expanded: function(){
+                expanded: function() {
                     var isExpanded = this.toggleProperty('isExpanded');
                     this.scrollUpdate();
                 }
             },
 
-            didInsertElement: function(){
+            didInsertElement: function() {
                 Ember.run.once(this, 'expandActiveContext');
             },
 
-            init: function(){
+            init: function() {
                 this._super();
                 var self = this;
                 var model = this.get('item');
 
-                if(model.get('id') === 'root'){
-                    self.get('controller.controllers.component').on('needReloadRootElements', function(event, object){
-                        if(event === 'add'){
+                if (model.get('id') === 'root') {
+                    self.get('controller.controllers.component').on('needReloadRootElements', function(event, object) {
+                        if (event === 'add') {
                             self.get('childrenList').pushObject(object);
-                        } else if(event === 'remove'){
+                        } else if (event === 'remove') {
                             self.get('childrenList').removeObject(object);
                         }
                     });
-                } else{
-                    this.get('item').on('needReloadHasMany', function(event, object){
-                        if(event === 'add'){
+                } else {
+                    this.get('item').on('needReloadHasMany', function(event, object) {
+                        if (event === 'add') {
                             self.get('childrenList').pushObject(object);
-                        } else{
+                        } else {
                             self.get('childrenList').removeObject(object);
                         }
                     });
                 }
             },
 
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 this.removeObserver('childrenList.length');
             }
         });
@@ -507,29 +507,29 @@ define(['App', 'toolbar'], function(UMI){
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
             elementView: Ember.View.extend(UMI.ToolbarElement, {
-                splitButtonView: function(){
+                splitButtonView: function() {
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
                     var behaviour = {};
                     var splitButtonBehaviour;
                     var i;
                     var action;
-                    if(behaviourName){
+                    if (behaviourName) {
                         splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
-                        for(var key in splitButtonBehaviour){
-                            if(splitButtonBehaviour.hasOwnProperty(key)){
+                        for (var key in splitButtonBehaviour) {
+                            if (splitButtonBehaviour.hasOwnProperty(key)) {
                                 behaviour[key] = splitButtonBehaviour[key];
                             }
                         }
                     }
                     var choices = this.get('context.behaviour.choices');
-                    if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
-                        for(i = 0; i < choices.length; i++){
+                    if (behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array') {
+                        for (i = 0; i < choices.length; i++) {
                             var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
-                            if(behaviourAction){
+                            if (behaviourAction) {
                                 action = behaviourAction.actions[choices[i].behaviour.name];
-                                if(action){
-                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                if (action) {
+                                    if (Ember.typeOf(behaviour.actions) !== 'object') {
                                         behaviour.actions = {};
                                     }
                                     behaviour.actions[choices[i].behaviour.name] = action;
@@ -537,12 +537,13 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
-                    behaviour.actions.sendActionForBehaviour = function(contextBehaviour){
+                    behaviour.actions.sendActionForBehaviour = function(contextBehaviour) {
                         var object = this.get('controller.model');
                         this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
                     };
                     behaviour.classNames = ['tiny white square'];
                     behaviour.label = null;
+                    behaviour.iconClass = '';
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

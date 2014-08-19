@@ -1,12 +1,14 @@
 <div class="umi-permissions">
     {{#each component in view.meta.resources}}
-        <dl class="accordion">
-            <dd class="accordion-navigation">
-                <a class="accordion-navigation-button" href="javascript:void(0)"><i class="icon icon-right"></i> {{component.label}}</a>
-                <div class="content">
-                    {{view "permissionsPartial" component=component}}
-                </div>
-            </dd>
-        </dl>
+    <dl class="accordion">
+        <dd class="accordion-navigation">
+            <a class="accordion-navigation-button" href="javascript:void(0)"><i class="icon icon-right"></i>
+                {{component.label}}</a>
+
+            <div class="content">
+                {{view "permissionsPartial" component=component}}
+            </div>
+        </dd>
+    </dl>
     {{/each}}
 </div>

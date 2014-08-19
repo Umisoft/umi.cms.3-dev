@@ -1,34 +1,34 @@
 define(['App'],
 
-    function(UMI){
+    function(UMI) {
         "use strict";
 
-        return function(){
+        return function() {
 
             UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
 
-                settings: function(){
+                settings: function() {
                     var settings = {};
                     settings = this.get('controllers.component.settings');
                     return settings;
                 }.property(),
 
-                inputElements: function(){
+                inputElements: function() {
                     var elements = this.get('control.meta.elements');
                     var inputElements = [];
                     var i;
-                    for(i = 0; i < elements.length; i++){
-                        if(Ember.get(elements[i], 'type') === 'fieldset' && Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array'){
+                    for (i = 0; i < elements.length; i++) {
+                        if (Ember.get(elements[i], 'type') === 'fieldset' && Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array') {
                             inputElements = inputElements.concat(elements[i].elements);
-                        } else{
+                        } else {
                             inputElements.push(elements[i]);
                         }
                     }
                     return inputElements;
                 },
 
-                validationErrors: function(){
+                validationErrors: function() {
                     var validErrors = this.get('object.validErrors');
                     var stack = [];
                     var key;
@@ -42,21 +42,21 @@ define(['App'],
                         close: false
                     };
 
-                    for(key in validErrors){
-                        if(validErrors.hasOwnProperty(key) && !inputElements.findBy('dataSource', key)){
+                    for (key in validErrors) {
+                        if (validErrors.hasOwnProperty(key) && !inputElements.findBy('dataSource', key)) {
                             stack.push('<div>' + key + ': ' + validErrors[key] + '</div>');
                         }
                     }
 
-                    if(stack.length){
+                    if (stack.length) {
                         settings.content = stack.join();
                         UMI.notification.create(settings);
-                    } else{
+                    } else {
                         UMI.notification.removeWithKind('validateError');
                     }
                 }.observes('object.validErrors.@each'),
 
-                actionWithCustomValidate: function(actionName, params){
+                actionWithCustomValidate: function(actionName, params) {
                     var elements = this.inputElements();
                     elements = elements.mapBy('dataSource');
                     params.fields = elements;
@@ -64,19 +64,19 @@ define(['App'],
                 },
 
                 actions: {
-                    save: function(params){
+                    save: function(params) {
                         this.actionWithCustomValidate('save', params);
                     },
 
-                    saveAndGoBack: function(params){
+                    saveAndGoBack: function(params) {
                         this.actionWithCustomValidate('saveAndGoBack', params);
                     },
 
-                    add: function(params){
+                    add: function(params) {
                         this.actionWithCustomValidate('add', params);
                     },
 
-                    addAndGoBack: function(params){
+                    addAndGoBack: function(params) {
                         this.actionWithCustomValidate('addAndGoBack', params);
                     }
                 }
@@ -92,67 +92,65 @@ define(['App'],
 
                 classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
 
-                willDestroyElement: function(){
+                willDestroyElement: function() {
                     this.get('controller').removeObserver('object.validErrors.@each');
                 }
             });
 
             UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
-                layout: function(){
+                layout: function() {
                     var type = this.get('meta.type');
                     var layout = '<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}';
 
-                    switch(type){
+                    switch (type) {
                         case 'checkbox':
-                            layout = '{{yield}}{{view.isRequired}}';
+                            layout = '<div class="umi-form-element-without-label">{{yield}}{{view.isRequired}}</div>';
                     }
 
                     return Ember.Handlebars.compile(layout);
                 }.property(),
 
-                isRequired: function(){
+                isRequired: function() {
                     var dataSource = this.get('meta.dataSource');
                     var validators = this.get('object').validatorsForProperty(dataSource);
-                    if(Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')){
+                    if (Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')) {
                         return ' *';
                     }
                 }.property(),
-                classNameBindings: ['isError:error'],
 
-                isError: function(){
+                isError: function() {
                     var dataSource = this.get('meta.dataSource');
                     var isValid = !!this.get('object.validErrors.' + dataSource);
                     return isValid;
                 }.property('object.validErrors.@each'),
 
-                wysiwygTemplate: function(){
+                wysiwygTemplate: function() {
                     return '{{view "htmlEditorCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
-                selectTemplate: function(){
+                selectTemplate: function() {
                     return '{{view "selectCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
-                checkboxTemplate: function(){
+                checkboxTemplate: function() {
                     return '{{view "checkboxCollectionElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                checkboxGroupTemplate: function(){
+                checkboxGroupTemplate: function() {
                     return '{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                permissionsTemplate: function(){
+                permissionsTemplate: function() {
                     return '{{view "permissions" object=view.object meta=view.meta}}';
                 }.property(),
 
-                objectRelationTemplate: function(){
+                objectRelationTemplate: function() {
                     return '{{view "objectRelationElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                pageRelationTemplate: function(){
+                pageRelationTemplate: function() {
                     return this.get('objectRelationTemplate');
                 }.property()
             });
         };
-    }
-);
+    });

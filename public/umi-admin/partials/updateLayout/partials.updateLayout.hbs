@@ -6,12 +6,12 @@
             <h5>{{i18n "Current version" "updateLayout"}} {{view.data.control.params.currentVersion.version}}</h5>
             {{#if view.data.control.params.latestVersion}}
                 <h5>{{i18n "Latest version" "updateLayout"}} {{view.data.control.params.latestVersion.version}}</h5>
-                <br />
+                <br/>
                 <span class="button large" {{action "update" target="view"}}>{{view.buttonLabel}}</span>
-            {{else}}
-                <br />
-                <span class="button large disabled">{{i18n "Nothing update" "updateLayout"}}</span>
-            {{/if}}
+        {{else}}
+        <br/>
+        <span class="button large disabled">{{i18n "Nothing update" "updateLayout"}}</span>
+        {{/if}}
         </span>
     </div>
 </div>

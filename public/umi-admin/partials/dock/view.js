@@ -1,7 +1,7 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     'use strict';
 
-    return function(){
+    return function() {
 
         var expanded = false;
         var move = {};
@@ -11,79 +11,79 @@ define(['App'], function(UMI){
         UMI.DockView = Ember.View.extend({
             templateName: 'partials/dock',
             classNames: ['umi-dock', 's-unselectable'],
-            didInsertElement: function(){
+            didInsertElement: function() {
                 var self = this;
                 var dock = self.$().find('.dock')[0];
                 dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
                 $(dock).addClass('active');
-                if(!dock.style.marginLeft){
+                if (!dock.style.marginLeft) {
                     dock.style.marginLeft = 0;
                 }
                 var futureOffset;
 
-                var moving = function(el, event){
+                var moving = function(el, event) {
                     move.proccess = true;
                     var isDropdown = $(event.target).closest('.dropdown-menu').size();
                     var elOffsetLeft = el.offsetLeft;
                     var elWidth = el.offsetWidth;
                     var dockParentWidth = el.parentNode.offsetWidth;
                     def.cur = event.clientX;
-                    if(def.old){
+                    if (def.old) {
                         def.def = def.old - def.cur;
                     }
-                    if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
-                        if(def.def > 0){
+                    if (Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown) {
+                        if (def.def > 0) {
                             // move left
                             def.coeff = Math.abs(elOffsetLeft) / (event.clientX);
                             futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
-                            if(def.coeff > 0 && futureOffset + parseInt(el.style.left, 10) < -20){
+                            if (def.coeff > 0 && futureOffset + parseInt(el.style.left, 10) < -20) {
                                 el.style.marginLeft = futureOffset + 'px';
                             }
-                        } else if(def.def < 0){
+                        } else if (def.def < 0) {
                             // move right
                             def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - event.clientX));
                             futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
 
-                            if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left, 10) ))){
+                            if (def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left, 10) ))) {
                                 el.style.marginLeft = futureOffset + 'px';
                             }
                         }
                     }
                     def.old = event.clientX;
                 };
-                $(dock).mousemove(function(event){
-                    if(!move.oldtime){
+                $(dock).mousemove(function(event) {
+                    if (!move.oldtime) {
                         move.oldtime = new Date();
                     }
                     move.curtime = new Date();
-                    if(move.curtime - move.oldtime > 700 || move.proccess){
+                    if (move.curtime - move.oldtime > 700 || move.proccess) {
                         moving(this, event);
                     }
                 });
 
-                $(window).on('resize.umi.dock', function(){
-                    setTimeout(function(){
+                $(window).on('resize.umi.dock', function() {
+                    setTimeout(function() {
                         dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
                     }, 0);
                 });
 
-                $(dock).find('.f-dropdown').on('click.umi.dock.component', 'a', function(){
+                $(dock).find('.f-dropdown').on('click.umi.dock.component', 'a', function() {
                     self.set('closeDropdown', true);
                     $(dock).find('.dropdown').removeClass('open');
                     self.leaveDock();
-                    setTimeout(function(){
+                    setTimeout(function() {
                         self.set('closeDropdown', false);
                     }, 300);
                 });
             },
-            mouseLeave: function(event){
+            mouseLeave: function(event) {
                 var self = this;
                 var dock = self.$().find('.dock')[0];
                 def.old = false;
 
-                if(!event.relatedTarget){
-                    $(document.body).bind('mouseover', function(e){
-                        if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
+                if (!event.relatedTarget) {
+                    $(document.body).bind('mouseover', function(e) {
+                        if ($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()) {
                             self.leaveDock();
                         }
                         $(this).unbind('mouseover');
@@ -93,7 +93,7 @@ define(['App'], function(UMI){
                 this.leaveDock();
             },
 
-            leaveDock: function(){
+            leaveDock: function() {
                 var self = this;
                 var dock = self.$().find('.dock')[0];
 
@@ -104,12 +104,12 @@ define(['App'], function(UMI){
                     duration: 130,
                     easing: 'linear'
                 });
-                $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
+                $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function() {
                     $(dock).removeClass('full');
                 }});
             },
 
-            willDestroyElement: function(){
+            willDestroyElement: function() {
                 $(window).off('resize.umi.dock');
             }
         });
@@ -120,26 +120,26 @@ define(['App'], function(UMI){
             classNames: ['umi-dock-button', 'dropdown'],
             classNameBindings: ['open'],
             open: false,
-            mouseEnter: function(){
+            mouseEnter: function() {
                 var self = this;
                 var dock = this.$().closest('.dock');
                 var $el = this.$();
 
-                var onHover = function(){
+                var onHover = function() {
                     self.set('open', true);
-                    if(!expanded){
+                    if (!expanded) {
                         expanded = true;
                         move.proccess = false;
                         var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
 
                         $($el[0].parentNode).find('.umi-dock-module-icon').stop().animate({height: 48, width: 48, margin: '8px 36px 28px'}, {
                             duration: 280,
-                            step: function(n, o){
-                                if(this.parentNode.parentNode === $el[0]){
+                            step: function(n, o) {
+                                if (this.parentNode.parentNode === $el[0]) {
                                     dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
                                 }
                             },
-                            complete: function(){
+                            complete: function() {
                                 dock.addClass('full');
                                 move.proccess = true;
                             }
@@ -147,16 +147,16 @@ define(['App'], function(UMI){
                     }
                 };
 
-                !intervalLeaveItem||clearTimeout(intervalLeaveItem);
+                !intervalLeaveItem || clearTimeout(intervalLeaveItem);
                 intervalLeaveItem = setTimeout(function() {
                     onHover();
                 }, 120);
             },
-            mouseLeave: function(){
-                if(intervalLeaveItem){
+            mouseLeave: function() {
+                if (intervalLeaveItem) {
                     clearTimeout(intervalLeaveItem);
                 }
-                if(dropDownTimeout){
+                if (dropDownTimeout) {
                     clearInterval(dropDownTimeout);
                 }
                 this.set('open', false);

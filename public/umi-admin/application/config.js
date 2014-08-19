@@ -1,7 +1,7 @@
-define([], function(){
-    "use strict";
+define([], function() {
+    'use strict';
 
-    return function(UMI){
+    return function(UMI) {
         UMI.config = {
             iScroll: {
                 scrollX: true,
@@ -18,41 +18,47 @@ define([], function(){
             },
 
             elFinder: {
-                url : '/admin/api/files/manager/action/connector',
+                url: '/admin/api/files/manager/action/connector',
                 lang: 'ru',
 
-                closeOnGetFileCallback : true,
+                closeOnGetFileCallback: true,
 
                 uiOptions: {
-                    toolbar : [
-                        ['back', 'forward'], ['reload'], ['getfile'],
+                    toolbar: [
+                        ['back', 'forward'],
+                        ['reload'],
+                        ['getfile'],
                         // ['home', 'up'],
-                        ['mkdir', 'mkfile', 'upload'], ['download'],
-//                      ['info'], ['quicklook'],
-                        ['copy', 'cut', 'paste'], ['rm'], ['duplicate', 'rename', 'edit'],
-//                      ['extract', 'archive'], ['search'],
-                        ['view'], ['help']
+                        ['mkdir', 'mkfile', 'upload'],
+                        ['download'],
+                        //                      ['info'], ['quicklook'],
+                        ['copy', 'cut', 'paste'],
+                        ['rm'],
+                        ['duplicate', 'rename', 'edit'],
+                        //                      ['extract', 'archive'], ['search'],
+                        ['view'],
+                        ['help']
                     ]
                 }
             }
         };
 
-        UMI.config.CkEditor = function(){
+        UMI.config.CkEditor = function() {
             var config = {};
             // http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
             config.toolbarGroups = [
-                { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-                { name: 'editing',     groups: [ 'find', 'selection'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'] },
+                { name: 'editing', groups: ['find', 'selection'] },
                 { name: 'links' },
                 { name: 'insert' },
                 { name: 'forms' },
                 { name: 'tools' },
-                { name: 'document',   groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'document', groups: ['mode', 'document', 'doctools'] },
                 { name: 'others' },
                 '/',
-                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
                 { name: 'styles' },
                 { name: 'colors' }
             ];

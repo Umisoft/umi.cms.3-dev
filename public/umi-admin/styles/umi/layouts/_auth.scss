@@ -166,3 +166,11 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         }
     }
 }
+
+@media #{$medium-only}{
+    .auth-layout{
+        .bubbles-front, .bubbles{
+            background-size: 100%;
+        }
+    }
+}
