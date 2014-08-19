@@ -59,7 +59,7 @@
                 }
 
                 &.selectable{
-                    &:hover{
+                    &:hover, &.hover{
                         cursor: pointer;
                         background: #C5E2F7;
                     }

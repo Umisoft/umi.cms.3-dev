@@ -84,7 +84,7 @@ define(['App'], function(UMI) {
                         }
                         return 'icon-' + iconClass;
                     }.property('meta.behaviour.name', 'controller.object.active'),
-        
+
                     actions: {
                         switchActivity: function(params) {
                             params = params || {};
