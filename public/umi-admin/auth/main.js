@@ -1,4 +1,4 @@
-define(['Modernizr', 'auth/templates', 'Handlebars', 'jquery'], function(Modernizr, templates) {
+define(['auth/templates', 'Handlebars', 'jquery'], function(templates) {
     'use strict';
 
     /**
