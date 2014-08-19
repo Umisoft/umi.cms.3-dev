@@ -22,12 +22,11 @@
                             <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="phone"/>
                             <!-- Авторизация-->
                             <div class="login">
-                                <span class="glyphicon glyphicon-user"></span><xsl:text> </xsl:text>
-                                <!--TODO label register -->
-                                <a role="dialog" data-target="#auth" data-remote="false" data-toggle="modal" href="{document('widget://users.authorization.loginLink')/result/url}">Вход</a>
+                                <span class="glyphicon glyphicon-user"></span>
+                                <xsl:text> </xsl:text>
+                                <a role="dialog" data-target="#auth" data-remote="false" data-toggle="modal" href="{document('widget://users.authorization.loginLink')/result/url}"><xsl:value-of select="document('translate://project.site.users/Login')/result"/></a>
                                 <xsl:text> / </xsl:text>
-                                <!--TODO label login-->
-                                <a role="dialog" data-target="#reg" data-remote="false" data-toggle="modal" href="{document('widget://users.registration.link')/result/url}">Регистрация</a>
+                                <a role="dialog" data-target="#reg" data-remote="false" data-toggle="modal" href="{document('widget://users.registration.link')/result/url}"><xsl:value-of select="document('translate://project.site.users/Registration')/result"/></a>
                             </div>
                             <!-- Меню в хедере -->
                             <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="headerMenu"/>

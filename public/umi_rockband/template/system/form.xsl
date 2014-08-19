@@ -20,7 +20,7 @@
 
     <xsl:template match="item[type='text']" mode="search.form">
         <input class="form-control">
-            <xsl:apply-templates select="attributes" mode="all.form"/>  <!-- name, type, value -->
+            <xsl:apply-templates select="attributes" mode="all.form"/>
         </input>
     </xsl:template>
 
@@ -28,8 +28,8 @@
         <span class="input-group-btn">
             <xsl:element name="{tag}">
                 <xsl:attribute name="class">btn btn-primary</xsl:attribute>
-                <xsl:apply-templates select="attributes/@value" mode="all.form"/>  <!-- name, type, value -->
-                <xsl:apply-templates select="attributes/@type" mode="all.form"/> <!-- name, type, value -->
+                <xsl:apply-templates select="attributes/@value" mode="all.form"/>
+                <xsl:apply-templates select="attributes/@type" mode="all.form"/>
                 <xsl:value-of select="label"/>
             </xsl:element>
         </span>
@@ -80,7 +80,7 @@
                 <xsl:value-of select="label"/>:
                 <xsl:apply-templates select="errors" mode="default.form" />
                 <textarea class="form-control" rows="4">
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                 </textarea>
             </label>
         </div>
@@ -93,7 +93,7 @@
                 <xsl:value-of select="label"/>:
                 <xsl:apply-templates select="errors" mode="default.form" />
                 <input class="form-control">
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                 </input>
             </label>
         </div>
@@ -106,16 +106,16 @@
                 <xsl:value-of select="label"/>:
                 <xsl:apply-templates select="errors" mode="default.form" />
                 <input class="form-control">
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                 </input>
             </label>
         </div>
         <div class="form-group">
             <xsl:apply-templates select="." mode="default.form.validation" />
             <label class="control-label">
-                <xsl:value-of select="label"/> ещё раз: <!--TODO label?-->
+                <xsl:value-of select="document('translate://project.site.users/Confirm%20password')/result"/>
                 <input class="form-control">
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                 </input>
             </label>
         </div>
@@ -138,7 +138,7 @@
                     <button class="btn btn-primary glyphicon glyphicon-refresh" onclick="reloadCaptcha_{sessionKey}();return false;"></button>
                 </span>
                 <input type="text" class="form-control input-lg">
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                 </input>
             </div>
         </div>
@@ -149,7 +149,7 @@
             <div class="text-right">
                 <xsl:element name="{tag}">
                     <xsl:attribute name="class">btn btn-primary</xsl:attribute>
-                    <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+                    <xsl:apply-templates select="attributes" mode="all.form"/>
                     <xsl:value-of select="label"/>
                 </xsl:element>
             </div>
@@ -158,7 +158,7 @@
 
     <xsl:template match="item[type='hidden' or type='csrf']" mode="default.form">
         <xsl:element name="{tag}">
-            <xsl:apply-templates select="attributes" mode="all.form"/> <!-- name, type, value -->
+            <xsl:apply-templates select="attributes" mode="all.form"/>
         </xsl:element>
     </xsl:template>
 

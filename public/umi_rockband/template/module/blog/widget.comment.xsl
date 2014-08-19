@@ -8,8 +8,7 @@
 
     <!-- Форма добавления комментария <Начало> -->
     <xsl:template match="result[@widget = 'blog.comment.add.addForm']" mode="blog.comments.form">
-        <h3>Добавить комментарий</h3>
-        <!--TODO add label-->
+        <h3><xsl:value-of select="document('translate://project.site.blog/Add%20comment')/result"/></h3>
         <xsl:apply-templates select="form" mode="default.form">
             <xsl:with-param name="css.class">col-sm-12 col-md-6</xsl:with-param>
         </xsl:apply-templates>

@@ -48,12 +48,11 @@
     </xsl:template>
 
     <xsl:template match="previousPage">
-        <!--TODO labels -->
-        <a href="{@url}" class="np">Назад</a>
+        <a href="{@url}" class="np"><xsl:value-of select="document('translate://project.site/Previous')/result"/></a>
     </xsl:template>
 
     <xsl:template match="nextPage">
-        <a href="{@url}" class="np">Вперед</a>
+        <a href="{@url}" class="np"><xsl:value-of select="document('translate://project.site/Next')/result"/></a>
     </xsl:template>
 
     <xsl:template match="page" mode="pagination">

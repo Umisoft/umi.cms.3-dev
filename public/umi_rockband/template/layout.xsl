@@ -58,8 +58,7 @@
 
                             <div class="modal-header">
                                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                <!--TODO Label for title-->
-                                <h4 class="modal-title">Авторизация</h4>
+                                <h4 class="modal-title"><xsl:value-of select="document('translate://project.site.users/Login')/result"/></h4>
                             </div>
                             <div class="modal-body">
                                 <xsl:apply-templates select="document('widget://users.authorization.loginForm')/result/form" mode="default.form">
@@ -75,8 +74,7 @@
 
                             <div class="modal-header">
                                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                <!--TODO Label for title-->
-                                <h4 class="modal-title">Регистраци</h4>
+                                <h4 class="modal-title"><xsl:value-of select="document('translate://project.site.users/Registration')/result"/></h4>
                             </div>
                             <div class="modal-body">
                                 <xsl:apply-templates select="document('widget://users.registration.form')/result/form" mode="default.form">
