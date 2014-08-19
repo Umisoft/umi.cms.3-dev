@@ -29,6 +29,7 @@ use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
 use umicms\project\module\blog\model\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\model\collection\BlogTagCollection;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogCategory;
@@ -37,6 +38,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
 use umicms\project\module\blog\model\object\CommentStatus;
+use umicms\project\module\blog\model\object\GuestBlogPost;
 use umicms\project\module\blog\model\object\PostStatus;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\UsersModule;
@@ -68,6 +70,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     protected $usersModule;
 
+    /**
+     * Конструктор.
+     * @param UsersModule $usersModule
+     */
     public function __construct(UsersModule $usersModule)
     {
         $this->usersModule = $usersModule;
@@ -160,7 +166,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки постов.
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getPosts()
     {
@@ -174,7 +180,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * Строит RSS-ленту.
      * @param string $title заголовок RSS-ленты
      * @param string $description описание RSS-ленты
-     * @param CmsSelector|BlogPost[] $postSelector список постов
+     * @param CmsSelector|BlogPost[]|GuestBlogPost[] $postSelector список постов
      * @return IRssFeed
      */
     public function getPostRssFeed($title, $description, CmsSelector $postSelector)
@@ -217,7 +223,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки постов указанных тэгов.
      * @param BlogTag[] $tags список GUID тэгов постов
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getTagPost(array $tags = [])
     {
@@ -235,7 +241,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки постов в указанной категории.
      * @param BlogCategory|null $parentCategory GUID категории
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getCategories(BlogCategory $parentCategory = null)
     {
@@ -265,7 +271,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов автора.
      * @param BlogAuthor[] $authors категория
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getPostsByAuthor(array $authors = [])
     {
@@ -283,7 +289,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов категорий.
      * @param BlogCategory[] $categories категории блога
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getPostByCategory(array $categories = [])
     {
@@ -301,11 +307,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Создает комментарий от имени текущего автора.
      * @param string $typeName имя дочернего типа
-     * @param BlogPost $post пост, к которому добавляется комментарий
+     * @param BaseBlogPost $post пост, к которому добавляется комментарий
      * @param null|BlogComment $parentComment родительский комментарий
      * @return BlogComment
      */
-    public function addComment($typeName = BlogComment::TYPE, BlogPost $post, BlogComment $parentComment = null)
+    public function addComment($typeName = BlogComment::TYPE, BaseBlogPost $post, BlogComment $parentComment = null)
     {
         if (is_null($parentComment)) {
             $parentComment = $this->getBranchComment($post);
@@ -337,10 +343,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки опубликованных комментариев к посту.
-     * @param BlogPost $blogPost
+     * @param BaseBlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentsByPost(BlogPost $blogPost)
+    public function getCommentsByPost(BaseBlogPost $blogPost)
     {
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
@@ -357,10 +363,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки опубликованных и требующих модерации комментариев к посту.
-     * @param BlogPost $blogPost
+     * @param BaseBlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentByPostWithNeedModeration(BlogPost $blogPost)
+    public function getCommentByPostWithNeedModeration(BaseBlogPost $blogPost)
     {
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
@@ -379,7 +385,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов по тэгу.
      * @param BlogTag[] $tags
-     * @return CmsSelector|BlogPost[]
+     * @return CmsSelector|BlogPost[]|GuestBlogPost[]
      */
     public function getPostByTag(array $tags = [])
     {
@@ -669,10 +675,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает ветку комментариев к посту.
-     * @param BlogPost $blogPost
+     * @param BaseBlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    protected function getBranchCommentByPost(BlogPost $blogPost)
+    protected function getBranchCommentByPost(BaseBlogPost $blogPost)
     {
         $branchComments = $this->getComments()
             ->types([BlogBranchComment::TYPE])
@@ -686,10 +692,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает корень ветки комментариев к посту.
-     * @param BlogPost $post
+     * @param BaseBlogPost $post
      * @return BlogComment
      */
-    protected function getBranchComment(BlogPost $post)
+    protected function getBranchComment(BaseBlogPost $post)
     {
         $branchComment = $this->getBranchCommentByPost($post);
 

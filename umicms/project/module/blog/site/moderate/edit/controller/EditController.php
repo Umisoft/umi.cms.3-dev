@@ -53,7 +53,7 @@ class EditController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return $this->getTemplateName();
+        return $this->template;
     }
 
     /**

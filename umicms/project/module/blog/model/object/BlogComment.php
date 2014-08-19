@@ -95,7 +95,7 @@ class BlogComment extends BaseBlogComment
             if ($this->author instanceof BlogAuthor) {
                 $this->author->recalculateCommentsCount();
             }
-            if ($this->post instanceof BlogPost) {
+            if ($this->post instanceof BaseBlogPost) {
                 $this->post->recalculateCommentsCount();
             }
         }

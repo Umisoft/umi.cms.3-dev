@@ -2,6 +2,8 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogPost $blogPost
  */
+use umicms\project\module\blog\model\object\BlogPost;
+
 ?>
 <div class="blog-post">
     <h1><?= $blogPost->displayName ?></h1>
@@ -22,6 +24,8 @@
     <div class="btn-toolbar">
         <?=$this->widget('blog.moderate.publishForm', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
         <?=$this->widget('blog.moderate.rejectForm', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
-        <?=$this->widget('blog.moderate.toDraftForm', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+        <?php if ($blogPost instanceof BlogPost) : ?>
+            <?=$this->widget('blog.moderate.toDraftForm', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+        <?php endif; ?>
     </div>
 </div>

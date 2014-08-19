@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\comment\widget;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 
 /**
  * Виджет для вывода списка коментов.
@@ -25,7 +25,7 @@ class ListWidget extends BaseTreeWidget
      */
     public $template = 'list';
     /**
-     * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
+     * @var string|BaseBlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
      */
     public $blogPost;
     /**
@@ -51,13 +51,13 @@ class ListWidget extends BaseTreeWidget
             $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BaseBlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BlogPost::className()
+                        'class' => BaseBlogPost::className()
                     ]
                 )
             );
