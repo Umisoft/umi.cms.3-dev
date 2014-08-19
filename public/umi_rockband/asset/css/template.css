@@ -410,6 +410,9 @@ textarea.form-control {
 }
 
 /* main-page: news block */
+.row.news-block {
+	padding: 0 10px;
+}
 .news-block li > p:first-child {
 	text-align: center;
 }
