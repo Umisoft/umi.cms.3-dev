@@ -41,10 +41,25 @@ body{
     image-rendering: -webkit-optimize-contrast;
     &.loading{
         background: #D6E0E9;
-        background-image: url($image-spinner);
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 6%
+        background-size: 50px;
+    }
+}
+
+.smil{
+    body{
+        &.loading{
+            background-image: url($image-spinner);
+        }
+    }
+}
+
+.no-smil{
+    body{
+        &.loading{
+            background-image: url($image-spinner-gif);
+        }
     }
 }
 

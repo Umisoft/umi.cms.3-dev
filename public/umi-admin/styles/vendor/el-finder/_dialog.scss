@@ -200,6 +200,11 @@
 	background: url($image-spinner) center center no-repeat;
 	margin:0 5px;
 }
+.no-smil{
+    .elfinder-info-spinner{
+        background: url($image-spinner-gif) center center no-repeat;
+    }
+}
 
 .elfinder-netmount-tb { margin:0 auto; }
 .elfinder-netmount-tb input { border:1px solid #ccc; }

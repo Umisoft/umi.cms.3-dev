@@ -9,16 +9,16 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     vertical-align: top;
     background-color: transparent;
     background-repeat: no-repeat;
+    background: url($image-spinner) left top no-repeat;
+    background-size: contain;
 
     &.animate-loader-20{
         width: 20px;
         height: 20px;
         line-height: 16px;
-        background: url($image-spinner) left top no-repeat;
     }
 
     &.animate-loader-40{
-        background: url($image-spinner) left top no-repeat;
         vertical-align: middle;
         width: 32px;
         height: 32px;
@@ -26,18 +26,16 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     }
 
     &.animate-loader-60{
-        background: url($image-spinner) left top no-repeat;
         vertical-align: middle;
         width: 60px;
         height: 60px;
         line-height: 60;
     }
+}
 
-    &.animate-loader-blue{
-        width: 26px;
-        height: 26px;
-        line-height: 26px;
-        background: url($image-spinner-blue) center center no-repeat;
+.no-smil{
+    .animate{
+        background: url($image-spinner-gif) left top no-repeat;
     }
 }
 
