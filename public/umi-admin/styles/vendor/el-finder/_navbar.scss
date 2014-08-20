@@ -183,6 +183,7 @@
 .no-smil{
     .elfinder-navbar-spinner {
         background: url($image-spinner-gif) center center no-repeat;
+        background-size: contain;
     }
 }
 

@@ -203,6 +203,7 @@
 .no-smil{
     .elfinder-info-spinner{
         background: url($image-spinner-gif) center center no-repeat;
+        background-size: contain;
     }
 }
 

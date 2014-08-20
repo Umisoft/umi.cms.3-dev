@@ -36,6 +36,7 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
 .no-smil{
     .animate{
         background: url($image-spinner-gif) left top no-repeat;
+        background-size: contain;
     }
 }
 
