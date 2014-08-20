@@ -1,8 +1,12 @@
-define([
-    'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'elFinder', 'timepicker', 'moment', 'application/config',
-    'application/utils', 'application/i18n', 'application/templates.compile', 'application/templates.extends',
-    'application/models', 'application/router', 'application/controllers', 'application/views'
-], function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates, templatesExtends, models, router, controller, views) {
+define(
+    [
+        'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'elFinder', 'timepicker', 'moment', 'application/config',
+        'application/utils', 'application/i18n', 'application/templates.compile', 'application/templates.extends',
+        'application/validators', 'application/models', 'application/router', 'application/controllers',
+        'application/views'
+    ],
+    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates,
+    templatesExtends, validators, models, router, controller, views) {
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -16,13 +20,13 @@ define([
         /**
          * Umi application.
          * @module UMI
-         * @extends Ember.Application
+         * @extends {Ember.Application}
          * @requires Ember
          */
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
-                resolveTemplate: function(parsedName) {
+                resolveTemplate: function(parsedName){
                     parsedName.fullNameWithoutType = 'UMI/' + parsedName.fullNameWithoutType;
                     return this._super(parsedName);
                 }
@@ -36,8 +40,16 @@ define([
         i18n(UMI);
 
         /**
+         * @class OrmSettings
+         * @type {{defaultProperties: string[]}}
+         */
+        UMI.OrmSettings = {
+            defaultProperties: ['id', 'guid', 'type', 'version', 'mpath', 'slug', 'uri', 'h1', 'meta']
+        };
+
+        /**
          * @class UmiRESTAdapter
-         * @extends DS.RESTAdapter
+         * @extends {DS.RESTAdapter}
          */
         DS.UmiRESTAdapter = DS.RESTAdapter.extend({
             /**
@@ -128,19 +140,23 @@ define([
 
 
         UMI.ApplicationSerializer = DS.RESTSerializer.extend({
+
             /**
              Переносим в store metadata для коллекции
              Чтобы получить: store.metadataFor(type)
              */
             extractMeta: function(store, type, payload) {
-                if (payload && payload.result && payload.result.meta) {
-                    var meta = store.metadataFor(type) || {};
-                    for (var property in payload.result.meta) {
-                        if(payload.result.meta.hasOwnProperty(property)){
-                            meta[property] = payload.result.meta[property];
-                        }
+                var payloadMeta = Ember.get(payload, 'result.meta');
 
+                if (payloadMeta) {
+                    var meta = store.metadataFor(type) || {};
+
+                    for (var property in payloadMeta) {
+                        if (payloadMeta.hasOwnProperty(property)) {
+                            meta[property] = payloadMeta[property];
+                        }
                     }
+
                     store.metaForType(type, meta);
                     delete payload.result.meta;
                 }
@@ -223,11 +239,16 @@ define([
                 }
 
                 function serializerFor(container, type, defaultSerializer) {
-                    return container.lookup('serializer:' + type) || container.lookup('serializer:application') || container.lookup('serializer:' + defaultSerializer) || container.lookup('serializer:-default');
+                    return container.lookup('serializer:' + type) ||
+                        container.lookup('serializer:application') ||
+                        container.lookup('serializer:' + defaultSerializer) ||
+                        container.lookup('serializer:-default');
                 }
 
                 function serializerForAdapter(adapter, type) {
-                    var serializer = adapter.serializer, defaultSerializer = adapter.defaultSerializer, container = adapter.container;
+                    var serializer = adapter.serializer,
+                        defaultSerializer = adapter.defaultSerializer,
+                        container = adapter.container;
 
                     if (container && serializer === undefined) {
                         serializer = serializerFor(container, type.typeKey, defaultSerializer);
@@ -251,8 +272,8 @@ define([
 
                     var adapter = self.adapterFor(type);
 
-                    Ember.assert("You tried to load a query but you have no adapter (for " + type + ")", adapter);
-                    Ember.assert("You tried to load a query but your adapter does not implement `findQuery`", adapter.findQuery);
+                    Ember.warn('You tried to load a query but you have no adapter (for ' + type + ')', adapter);
+                    Ember.warn('You tried to load a query but your adapter does not implement `findQuery`', adapter.findQuery);
 
                     return promiseArray(_findQuery(adapter, self, type, query, array));
                 }
@@ -261,17 +282,27 @@ define([
                     var promise = adapter.findQuery(store, type, query, recordArray), serializer = serializerForAdapter(adapter, type), label = "DS: Handle Adapter#findQuery of " + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
-                        var queryParams = Ember.get(query, 'fields') || '';
+                        var key;
+                        var queryParams = (Ember.get(query, 'fields') || '').split(',');
+                        var baseParams = UMI.OrmSettings.defaultProperties;
+                        queryParams = queryParams.concat(baseParams);
+
+                        var belongsToFields = Ember.get(query, 'with');
+
+                        if (Ember.typeOf(belongsToFields) === 'object') {
+                            for (key in belongsToFields) {
+                                if (belongsToFields.hasOwnProperty(key)) {
+                                    queryParams.push(key);
+                                }
+                            }
+                        }
+
                         var payload = serializer.extract(store, type, adapterPayload, null, 'findQuery');
 
-                        Ember.assert("The response from a findQuery must be an Array, not " + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
+                        Ember.assert('The response from a findQuery must be an Array, not ' + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
 
-                        queryParams = queryParams.split(',');
-                        queryParams.push('id');
-                        queryParams.push('version');
-                        queryParams.push('meta');
                         for (var i = 0; i < payload.length; i++) {
-                            for (var key in payload[i]) {
+                            for (key in payload[i]) {
                                 if (payload[i].hasOwnProperty(key) && !queryParams.contains(key)) {
                                     delete payload[i][key];
                                 }
@@ -279,15 +310,15 @@ define([
                         }
                         //recordArray.load(payload);
                         return payload;
-                    }, null, "DS: Extract payload of findQuery " + type);
+                    }, null, 'DS: Extract payload of findQuery ' + type);
                 }
 
                 function coerceId(id) {
-                    return id == null ? null : id + '';
+                    return Boolean(id) ? null : id + '';
                 }
 
-                Ember.assert("You need to pass a type to the store's find method", arguments.length >= 1);
-                Ember.assert("You may not pass `" + id + "` as id to the store's find method", arguments.length === 1 || !Ember.isNone(id));
+                Ember.warn('You need to pass a type to the store\'s find method', arguments.length >= 1);
+                Ember.warn('You may not pass `' + id + '` as id to the store\'s find method', arguments.length === 1 || !Ember.isNone(id));
 
                 if (arguments.length === 1) {
                     promise = self.findAll(type);
@@ -297,21 +328,27 @@ define([
                     promise = self.findById(type, coerceId(id));
                 }
 
-                var deffered = Ember.RSVP.defer();
+                var deferred = Ember.RSVP.defer();
+
                 promise.then(function(result) {
                     var i;
                     var objects = [];
-                    Ember.run.later(function() {//TODO: Очередь запросов
+
+                    Ember.run.later(function() {
+
                         var updateMany = function(self, objects, type, params) {
                             objects.push(self.update(type, params));
                         };
+
                         for (i = 0; i < result.length; i++) {
                             updateMany(self, objects, type, result[i]);
                         }
-                        deffered.resolve(objects);
+
+                        deferred.resolve(objects);
                     }, 0);
+
                 });
-                return promiseArray(deffered.promise);
+                return promiseArray(deferred.promise);
             }
         });
 
@@ -323,7 +360,7 @@ define([
          */
         DS.StringTransform.reopen({
             deserialize: function(serialized) {
-                return Ember.isNone(serialized) ? "" : String(serialized);
+                return Ember.isNone(serialized) ? '' : String(serialized);
             }
         });
 
@@ -336,7 +373,7 @@ define([
          */
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized) {
-                deserialized = Ember.isNone(deserialized) ? "" : String(deserialized);
+                deserialized = Ember.isNone(deserialized) ? '' : String(deserialized);
                 if (deserialized) {
                     deserialized = moment(deserialized).format('DD.MM.YYYY');
                 }
@@ -364,7 +401,7 @@ define([
                     Ember.set(deserialized, 'date', moment(date).format('DD.MM.YYYY HH:mm:ss'));
                     deserialized = JSON.stringify(deserialized);
                 } else {
-                    deserialized = "";
+                    deserialized = '';
                 }
                 return deserialized;
             },
@@ -459,7 +496,7 @@ define([
          * Вывод всех ajax ошибок в tooltip
          */
         $.ajaxSetup({
-            headers: {"X-Csrf-Token": window.UmiSettings.token},
+            headers: {'X-Csrf-Token': Ember.get(window, 'UmiSettings.token')},
             error: function(error) {
                 var activeTransition = UMI.__container__.lookup('router:main').router.activeTransition;
                 if (activeTransition) {
@@ -471,10 +508,12 @@ define([
         });
 
         templatesExtends();
+        validators(UMI);
         models(UMI);
         router(UMI);
         controller(UMI);
         views(UMI);
 
         return UMI;
-    });
+    }
+);

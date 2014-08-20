@@ -393,6 +393,7 @@ define(['App', 'toolbar'], function(UMI) {
                             break;
                         default:
                             properties = column.dataSource.split('.');
+
                             if (this.checkRelation(properties[0])) {
                                 if (properties.length > 1) {
                                     value = object.get(properties[0]);
@@ -505,6 +506,7 @@ define(['App', 'toolbar'], function(UMI) {
                     }
                     behaviour.classNames = ['white square'];
                     behaviour.label = null;
+                    behaviour.iconClass = '';
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

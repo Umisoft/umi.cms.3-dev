@@ -32,6 +32,9 @@ form{
 @media #{$large-up} {
     .umi-form-element-without-label{
         margin-top: rem-calc(18);
+        .umi-element-checkbox{
+            padding-top: 7px;
+        }
     }
 }
 

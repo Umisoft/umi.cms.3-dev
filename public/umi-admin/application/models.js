@@ -1,110 +1,82 @@
 define([], function() {
     'use strict';
 
-
     return function(UMI) {
-
-        /**
-         * Фильтрация значения полей
-         * @type {{stringTrim: stringTrim, htmlSafe: htmlSafe}}
-         */
-        var propertyFilters = {
-            stringTrim: function(value) {
-                if (value) {
-                    value = value.replace(/^\s+|\s+$/g, '');
-                }
-                return value;
-            },
-
-            htmlSafe: function(value) {
-                return Ember.String.htmlSafe(value);
-            },
-
-            stripTags: function(value) {//TODO: add filter
-                return value;
-            },
-
-            slug: function(value) {//TODO: add filter
-                return value;
-            }
-        };
 
         DS.Model.reopen({
             needReloadHasMany: Ember.K,
+
             validErrors: null,
 
             filterProperty: function(propertyName) {
                 var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
                 var filters = Ember.get(meta, 'filters.' + propertyName);
+
                 if (filters) {
                     var value = this.get(propertyName);
-                    for (var i = 0; i < filters.length; i++) {
-                        Ember.warn('Filter "' + filters[i].type + '" was not defined.', propertyFilters.hasOwnProperty(filters[i].type));
-                        value = propertyFilters[filters[i].type](value);
-                    }
+                    value = UMI.validator.filterProperty(value, filters);
                     this.set(propertyName, value);
                 }
             },
 
             validatorsForProperty: function(propertyName) {
-                Ember.assert('propertyName is required for method validatorsForProperty.', propertyName);
+                Ember.assert('PropertyName is required for method validatorsForProperty.', propertyName);
                 var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
                 return Ember.get(meta, 'validators.' + propertyName);
             },
 
             validateProperty: function(propertyName) {
-                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
-                var validators = Ember.get(meta, 'validators.' + propertyName);
-                if (validators) {
-                    var value = this.get(propertyName);
-                    var errors = [];
-                    var activeErrors;
-                    for (var i = 0; i < validators.length; i++) {
-                        switch (validators[i].type) {
-                            case "required":
-                                if (!value) {
-                                    errors.push(validators[i].message);
-                                }
-                                break;
-                            case "regexp":
-                                var pattern = eval(validators[i].options.pattern); //TODO: Заменить eval
-                                if (!pattern.test(value)) {
-                                    errors.push(validators[i].message);
-                                }
-                                break;
+                var validators = this.validatorsForProperty(propertyName);
+                var value;
+                var errorList;
+                var activeErrors;
+                var otherErrors;
+
+                if (Ember.typeOf(validators) === 'array' && validators.length) {
+                    value = this.get(propertyName);
+                    errorList = UMI.validator.validateProperty(value, validators);
+
+                    if (Ember.typeOf(errorList) === 'array' && errorList.length) {
+                        errorList = errorList.join('. ');
+                        activeErrors = this.get('validErrors');
+
+                        if (activeErrors) {
+                            this.set('validErrors.' + propertyName, errorList);
+                        } else {
+                            activeErrors = {};
+                            activeErrors[propertyName] = errorList;
+                            this.set('validErrors', activeErrors);
                         }
 
-                        if (errors.length) {
-                            errors = errors.join(' ');
-                            activeErrors = this.get('validErrors');
-                            if (activeErrors) {
-                                this.set('validErrors.' + propertyName, errors);
-                            } else {
-                                activeErrors = {};
-                                activeErrors[propertyName] = errors;
-                                this.set('validErrors', activeErrors);
+                        if (this.get('isValid')) {
+                            this.send('becameInvalid');
+                        }
+
+                    } else if (!this.get('isValid')) {
+                        activeErrors = this.get('validErrors');
+
+                        if (activeErrors && activeErrors.hasOwnProperty(propertyName)) {
+                            delete activeErrors[propertyName];
+                        }
+
+                        otherErrors = 0;
+
+                        for (var error in activeErrors) {
+                            if (activeErrors.hasOwnProperty(error)) {
+                                ++otherErrors;
                             }
-                            if (this.get('isValid')) {
-                                this.send('becameInvalid');
-                            }
-                        } else if (!this.get('isValid')) {
-                            activeErrors = this.get('validErrors');
-                            if (activeErrors && activeErrors.hasOwnProperty(propertyName)) {
-                                delete activeErrors[propertyName];
-                            }
-                            i = 0;
-                            for (var error in activeErrors) {
-                                if (activeErrors.hasOwnProperty(error)) {
-                                    ++i;
-                                }
-                            }
-                            activeErrors = i ? activeErrors : null;
+                        }
+
+                        if (otherErrors) {
                             this.set('validErrors', activeErrors);
+                        } else {
+                            this.set('validErrors', null);
                             this.send('becameValid');
                         }
                     }
                 }
             },
+
             /**
              * Валидация объекта
              * @method validateObject
@@ -119,16 +91,19 @@ define([], function() {
 
                 if (Ember.typeOf(fields) !== 'array') {
                     fields = [];
+                    Ember.warn('Unexpected arguments. "fields" must be array');
                 }
+
                 fieldsLength = fields.length;
 
                 if (Ember.typeOf(filters) === 'object') {
-                    for (key in filters) {
-                        if (filters.hasOwnProperty(key)) {
+                    for(key in filters){
+                        if(filters.hasOwnProperty(key)){
                             this.filterProperty(key);
                         }
                     }
                 }
+
                 if (Ember.typeOf(validators) === 'object') {
                     for (key in validators) {
                         if (validators.hasOwnProperty(key)) {
@@ -191,6 +166,7 @@ define([], function() {
             },
 
             loadedRelationshipsByName: {},
+
             changedRelationshipsByName: {},
 
             changeRelationshipsValue: function(property, value) {
@@ -240,10 +216,8 @@ define([], function() {
                         if (loadedRelationships[property].length !== changedRelationships[property].length) {
                             isDirty = true;
                         } else {
-                            isDirty = changedRelationships[property].every(function(id) {
-                                if (loadedRelationships[property].contains(id)) {
-                                    return true;
-                                }
+                            isDirty = changedRelationships[property].every(function(id){
+                                if(loadedRelationships[property].contains(id)) { return true; }
                             });
                             isDirty = !isDirty;
                         }
@@ -294,7 +268,7 @@ define([], function() {
             belongsToRelation: function(params, field, collection) {
                 params.async = true;
                 //TODO: инверсия избыточна, но DS почему то без нее не может
-                if (field.targetCollection === collection.name) {
+                if(field.targetCollection === collection.name) {
                     params.inverse = 'children';
                 }
                 params.readOnly = false;
@@ -317,7 +291,7 @@ define([], function() {
         var getBaseTypes = function(typeName) {
             var baseType = typeName;
 
-            switch (typeName) {
+            switch(typeName) {
                 case 'integer':
                     baseType = 'number';
                     break;
@@ -391,9 +365,9 @@ define([], function() {
                 UMI[collectionName.capitalize()] = DS.Model.extend(fields);
 
                 UMI.__container__.lookup('store:main').metaForType(collectionName, {
-                    "collectionType": collection.type,
-                    "filters": filters,
-                    "validators": validators
+                    'collectionType': collection.type,
+                    'filters': filters,
+                    'validators': validators
                 });// TODO: Найти рекоммендации на что заменить __container__
 
                 if (collection.source) {

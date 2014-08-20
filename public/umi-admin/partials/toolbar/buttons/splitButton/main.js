@@ -64,14 +64,36 @@ define(['App'], function(UMI) {
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 templateName: 'partials/splitButton',
+
                 tagName: 'span',
+
                 isOpen: false,
+
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
+
                 attributeBindings: ['title'],
+
                 label: function() {
                     return this.get('defaultBehaviour.attributes.label');
                 }.property('defaultBehaviour.attributes.label'),
+
                 title: Ember.computed.alias('meta.attributes.title'),
+
+                iconClass: function(){
+                    var classIcon;
+
+                    switch (this.get('meta.attributes.class')) {
+                        case 'white':
+                            classIcon = '';
+                            break;
+                        default:
+                            classIcon = 'white';
+                            break;
+                    }
+
+                    return classIcon;
+                }.property('meta.attributes.class'),
+
                 click: function(event) {
                     var el = this.$();
                     if (event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('umi-button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))) {
