@@ -297,5 +297,5 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
     grunt.registerTask('docs', ['yuidoc']);
-    grunt.registerTask('svg', ['svgmin', 'grunticon']);
+    grunt.registerTask('svg', ['grunticon']);
 };
