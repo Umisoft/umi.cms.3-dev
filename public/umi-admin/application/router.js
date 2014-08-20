@@ -998,9 +998,15 @@ define([], function() {
                             case 'collection':
                                 if (this.store.hasRecordForId(Ember.get(collection, 'name'), params.context)) {
                                     model = this.store.getById(Ember.get(collection, 'name'), params.context);
-                                    model = model.reload();
+                                    //model = model.reload();
                                 } else {
-                                    model = this.store.find(Ember.get(collection, 'name'), params.context);
+                                    model = this.store.find(
+                                        Ember.get(collection, 'name'),
+                                        {'filters[id]': params.context, fields: 'displayName'}
+                                    ).then(function(results) {
+                                        var objects = Ember.get(results, 'content');
+                                        return objects[0];
+                                    });
                                 }
                                 break;
                             default:
