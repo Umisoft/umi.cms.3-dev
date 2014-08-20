@@ -2142,7 +2142,7 @@ function program1(depth0,data) {
   var buffer = '';
   data.buffer.push(" <i ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon view.defaultBehaviourIcon")
+    'class': (":icon view.iconClass view.defaultBehaviourIcon")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push("></i> ");
   return buffer;

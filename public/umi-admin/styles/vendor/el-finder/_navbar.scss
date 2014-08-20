@@ -180,6 +180,13 @@
     background: url($image-spinner) center center no-repeat;
 }
 
+.no-smil{
+    .elfinder-navbar-spinner {
+        background: url($image-spinner-gif) center center no-repeat;
+        background-size: contain;
+    }
+}
+
 /* spinner ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-spinner {
     left: 0;
