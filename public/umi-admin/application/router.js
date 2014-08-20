@@ -592,25 +592,31 @@ define([], function() {
              @return Object|null|String {status: status, title: title, content: content, stack: stack}
              */
             parseError: function(error) {
+                error = error || {};
+                var status = Ember.get(error, 'status');
+                var stack = Ember.get(error, 'stack');
+
                 var parsedError = {
-                    status: error.status,
+                    status: status,
                     title: UMI.i18n.getTranslate(error.statusText),
-                    stack: error.stack
+                    stack: stack
                 };
 
-                if (error.status === 403 || error.status === 401) {
+                if (status === 403 || status === 401) {
                     // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     this.send('logout');
                     return 'silence';
                 }
 
                 var content;
+                var responseError;
                 if (error.hasOwnProperty('responseJSON')) {
-                    if (error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')) {
-                        content = error.responseJSON.result.error.message;
+                    responseError = Ember.get(error, 'responseJSON.result.error');
+                    if (responseError) {
+                        content = Ember.get(responseError, 'message');
                     }
                 } else {
-                    content = error.responseText || error.message;
+                    content = Ember.get(error, 'responseText') || Ember.get(error, 'message');
                 }
                 parsedError.content = content;
                 return parsedError;
