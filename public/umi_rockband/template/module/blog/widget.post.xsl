@@ -74,7 +74,7 @@
     <xsl:template match="blogPost" mode="blog.main.row">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
             <a href="{@url}">
-                <img src="{property[@name='imageMain']/value}" class="img" alt=""/>
+                <img src="{property[@name='imageMain']/value}" class="img" alt="{@h1}"/>
             </a>
             <div class="bottom">
                 <h4>

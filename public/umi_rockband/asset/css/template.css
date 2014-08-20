@@ -29,6 +29,9 @@
 .content-inner > .container-fluid > p:first-child {
 	margin-top: 0;
 }
+.content-inner .navcent {
+	margin: 30px 0 0;
+}
 .form-group label {
 	width: 100%;
 	margin-bottom: 0;
@@ -167,11 +170,14 @@ header.fixed .login {
 	display: none;
 }
 header.fixed .logo {
-	margin-top: 15px;
+	margin-top: 19px;
 	display: inline-block;
 }
 header.fixed .menu {
 	margin: 23px 0 0;
+}
+header.fixed .logo img {
+	width: 100px;
 }
 @media screen and (max-width: 767px) {
 	header {

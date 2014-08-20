@@ -6,7 +6,7 @@
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
 
-    <!-- Страница сюжетов <Начало> -->
+    <!-- Страница Сюжетов <Начало> -->
     <xsl:template match="contents[@controller = 'news.subject.index'][page]" >
         <xsl:call-template name="news.head" />
 
@@ -25,6 +25,6 @@
             </div>
         </div>
     </xsl:template>
-    <!-- Страница сюжетов <Конец> -->
+    <!-- Страница Сюжетов <Конец> -->
 
 </xsl:stylesheet>
