@@ -30,15 +30,13 @@ return array_replace_recursive(
         ],
         'forms' => [
             IObjectType::BASE => [
-                BaseBlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/base.add.config.php}',
-                BaseBlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
                 BaseBlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
                 BaseBlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',
             ],
             BlogPost::TYPE => [
                 BlogPostCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/post.edit.config.php}',
                 BlogPostCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/post.create.config.php}',
-                BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/base.add.config.php}',
+                BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/post.add.config.php}',
                 BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
                 BlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
                 BlogPost::FORM_MODERATE_POST => '{#lazy:~/project/module/blog/site/form/base.moderate.config.php}',
@@ -48,7 +46,7 @@ return array_replace_recursive(
             GuestBlogPost::TYPE => [
                 BlogPostCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/guest.edit.config.php}',
                 BlogPostCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/guest.create.config.php}',
-                GuestBlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/base.add.config.php}',
+                GuestBlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/guest.add.config.php}',
                 GuestBlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
                 GuestBlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
                 GuestBlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',

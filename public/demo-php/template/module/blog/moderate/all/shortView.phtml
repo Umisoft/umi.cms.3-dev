@@ -2,6 +2,7 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogPost $blogPost
  */
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
 ?>
@@ -13,7 +14,11 @@ use umicms\project\module\blog\model\object\BlogPost;
             <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?php if ($blogPost->author instanceof BlogAuthor) : ?>
+            <?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a>
+        <?php else : ?>
+            <?=$this->translate('Author')?>: <?=$blogPost->authorGuest?>
+        <?php endif; ?>
         <?=$this->widget('blog.moderate.edit.editLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 

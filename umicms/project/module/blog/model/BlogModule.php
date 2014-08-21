@@ -156,10 +156,14 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param string $typeName имя дочернего типа
      * @return BlogPost
      */
-    public function addPost($typeName = IObjectType::BASE)
+    public function addPost($typeName = BlogPost::TYPE)
     {
         $post = $this->post()->add($typeName);
-        $post->author = $this->getCurrentAuthor();
+        $post->active = true;
+        $post->publishTime = new \DateTime();
+        if (!$this->isGuestAuthor()) {
+            $post->author = $this->getCurrentAuthor();
+        }
 
         return $post;
     }
@@ -495,6 +499,15 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Проверяет, является ли текущий автор гостём.
+     * @return bool
+     */
+    public function isGuestAuthor()
+    {
+        return !$this->usersModule->isAuthenticated();
+    }
+
+    /**
      * Проверяет существование текущего автора блога.
      * @return bool
      */
@@ -522,6 +535,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         return $this->author()->add(IObjectType::BASE)
+            ->setValue(BlogAuthor::FIELD_ACTIVE, true)
             ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->login)
             ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
             ->setValue(BlogAuthor::FIELD_PROFILE, $user);
