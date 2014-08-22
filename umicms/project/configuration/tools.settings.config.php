@@ -38,6 +38,7 @@ use umicms\project\Environment;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
+use umicms\validation\Url;
 
 return [
     AuthenticationTools::NAME => [
@@ -221,6 +222,7 @@ return [
             'validator' => [
                 'types' => [
                     Range::NAME => 'umicms\validation\Range',
+                    Url::NAME => 'umicms\validation\Url',
                 ]
             ]
         ]
