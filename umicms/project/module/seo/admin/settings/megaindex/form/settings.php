@@ -10,7 +10,9 @@
 
 use umi\form\element\Password;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\seo\model\MegaindexModel;
+use umicms\validation\Url;
 
 return [
     'options' => [
@@ -24,21 +26,31 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => MegaindexModel::MEGAINDEX_LOGIN,
             'options' => [
-                'dataSource' => MegaindexModel::MEGAINDEX_LOGIN
-            ]
+                'dataSource' => MegaindexModel::MEGAINDEX_LOGIN,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
+            ],
         ],
         MegaindexModel::MEGAINDEX_PASSWORD => [
             'type' => Password::TYPE_NAME,
             'label' => MegaindexModel::MEGAINDEX_PASSWORD,
             'options' => [
-                'dataSource' => MegaindexModel::MEGAINDEX_PASSWORD
+                'dataSource' => MegaindexModel::MEGAINDEX_PASSWORD,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ]
         ],
         MegaindexModel::MEGAINDEX_SITE_URL => [
             'type' => Text::TYPE_NAME,
             'label' => MegaindexModel::MEGAINDEX_SITE_URL,
             'options' => [
-                'dataSource' => MegaindexModel::MEGAINDEX_SITE_URL
+                'dataSource' => MegaindexModel::MEGAINDEX_SITE_URL,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => [],
+                    Url::NAME => []
+                ]
             ]
         ]
     ]
