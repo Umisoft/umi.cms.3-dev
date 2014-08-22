@@ -69,6 +69,7 @@ class LicenseApi implements IConfigIOAware
 
         $license = $this->activateLicense($licenseKey, $domain);
         $config->set('defaultDomain', $domain);
+        $config->set('licenseKey', '');
         $config->set('domainKey', $license['domain-keycode']);
         $config->set('licenseType', $license['codename']);
 
