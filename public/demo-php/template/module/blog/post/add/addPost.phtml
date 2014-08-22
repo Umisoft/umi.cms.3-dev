@@ -4,11 +4,21 @@
  * @var bool $added
  * @var \umicms\project\module\blog\model\object\BlogPost $blogPost
  */
+use umicms\project\module\blog\model\object\BlogPost;
+
 ?>
 <?php if ($added) : ?>
     <div class="alert alert-success">
         <p class="bg-success text-success"><?=$this->translate('Post has been added.')?></p>
-        <p class="bg-success text-success"><a href="<?=$blogPost->getPageUrl()?>" class="alert-link"><?=$this->translate('ReadMore')?></a></p>
+        <p class="bg-success text-success">
+            <a href="<?=$blogPost->getPageUrl()?>" class="alert-link">
+                <?php if ($blogPost instanceof BlogPost) : ?>
+                    <?=$this->translate('ReadMore')?>
+                <?php else : ?>
+                    <?=$this->translate('GoBackCategory')?>
+                <?php endif; ?>
+            </a>
+        </p>
     </div>
 <?php else : ?>
     <?=$this->render('form/form.phtml', ['form' => $form])?>

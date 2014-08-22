@@ -23,7 +23,8 @@ return [
             'Subjects' => 'Subjects',
             'BackToTop' => 'Back to top',
             'Add post' => 'Add post',
-            'ReadMore' => 'Читать далее',
+            'ReadMore' => 'Read more',
+            'GoBackCategory' => 'Go back to category',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -47,6 +48,7 @@ return [
             'BackToTop' => 'Наверх',
             'Add post' => 'Добавить пост',
             'ReadMore' => 'Читать далее',
+            'GoBackCategory' => 'Вернуться назад в категорию',
         ]
     ],
 
@@ -59,6 +61,7 @@ return [
             'Author' => 'Author',
             'Comments' => 'Comments',
             'Moderation queue' => 'Moderation queue',
+            'Post has been added.' => 'Post has been added.',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
             'Edit author profile' => 'Edit author profile',
@@ -75,6 +78,7 @@ return [
             'Author' => 'Автор',
             'Comments' => 'Комментарии',
             'Moderation queue' => 'Очередь модерации',
+            'Post has been added.' => 'Пост добавлен.',
             'Post has been saved.' => 'Пост сохранен.',
             'Profile has been saved.' => 'Профиль сохранен.',
             'Edit author profile' => 'Редактировать автора',
