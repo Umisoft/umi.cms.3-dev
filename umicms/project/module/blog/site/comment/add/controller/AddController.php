@@ -16,6 +16,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\object\CommentStatus;
+use umicms\project\module\blog\model\object\GuestBlogComment;
 
 /**
  * Контроллер добавления комментария.
@@ -62,7 +63,7 @@ class AddController extends BaseSitePageController
         $post = $this->module->post()->getById($this->getPostVar('post'));
 
         $comment = $this->module->addComment(
-            BlogComment::TYPE,
+            $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
             $post,
             $parentComment
         );
@@ -79,7 +80,7 @@ class AddController extends BaseSitePageController
 
         return $this->module->comment()->getForm(
             BlogComment::FORM_ADD_COMMENT,
-            BlogComment::TYPE,
+            $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
             $comment
         );
     }

@@ -88,7 +88,7 @@ class BlogPost extends BaseBlogPost
                 break;
             }
             case PostStatus::GUID_NEED_MODERATION : {
-                if ($this->usersModule->getCurrentUser() === $this->author->profile) {
+                if ($this->author instanceof BlogAuthor && $this->usersModule->getCurrentUser() === $this->author->profile) {
                     $handler = BlogPostCollection::HANDLER_MODERATE_OWN;
                 } else {
                     $handler = BlogPostCollection::HANDLER_MODERATE_ALL;

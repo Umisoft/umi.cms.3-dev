@@ -325,7 +325,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comment->post = $post;
         $comment->slug = $comment->getGUID();
 
-        if ($this->hasCurrentAuthor()) {
+        if (!$this->isGuestAuthor()) {
             $comment->author = $this->getCurrentAuthor();
         }
 
@@ -353,7 +353,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getCommentsByPost(BaseBlogPost $blogPost)
     {
         $comments = $this->getComments()
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
                 [
@@ -373,7 +372,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getCommentByPostWithNeedModeration(BaseBlogPost $blogPost)
     {
         $comments = $this->getComments()
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
                 [

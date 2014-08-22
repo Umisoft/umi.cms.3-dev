@@ -12,6 +12,7 @@ use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\GuestBlogComment;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
@@ -28,6 +29,14 @@ return [
             BlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
             BlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
             BlogComment::FORM_UNPUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.unpublish.config.php}',
+        ],
+        GuestBlogComment::TYPE => [
+            BlogCommentCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/guest.edit.config.php}',
+            BlogCommentCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/guest.create.config.php}',
+            GuestBlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/guest.addComment.config.php}',
+            GuestBlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
+            GuestBlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
+            GuestBlogComment::FORM_UNPUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.unpublish.config.php}',
         ],
         BlogBranchComment::TYPE => [
             BlogCommentCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/branchComment.edit.config.php}'

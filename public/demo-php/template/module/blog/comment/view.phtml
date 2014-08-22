@@ -2,6 +2,7 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogComment $blogComment
  */
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\CommentStatus;
 
 ?>
@@ -10,11 +11,19 @@ use umicms\project\module\blog\model\object\CommentStatus;
         <?= $this->translate('Comment has been unpublish.') ?>
     <?php else : ?>
         <h1><?= $blogComment->displayName ?></h1>
-        <?php if ($blogComment->publishTime) : ?>
-            <time datetime="<?= $blogComment->publishTime->format('c') ?>">
-                <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
-            </time>
-        <?php endif; ?>
+        <p class="blog-post-meta">
+            <?php if ($blogComment->publishTime) : ?>
+                <time datetime="<?= $blogComment->publishTime->format('c') ?>">
+                    <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
+                </time>
+            <?php endif; ?>
+            <?php if ($blogComment->author instanceof BlogAuthor) : ?>
+                <?=$this->translate('Author')?>: <a href="<?=$blogComment->author->getPageUrl()?>"><?=$blogComment->author->displayName?></a>
+            <?php else : ?>
+                <?=$this->translate('Author')?>: <?=$blogComment->authorGuest?>
+            <?php endif; ?>
+        </p>
+
         <?= $blogComment->contents ?>
 
         <?php if ($blogComment->status->guid == CommentStatus::GUID_NEED_MODERATION) : ?>

@@ -11,9 +11,9 @@
 namespace umicms\project\module\blog\model\object;
 
 /**
- * Комментарий к посту.
+ * Комментарий к посту от зарегистрированного пользователя.
  *
- * @property BlogAuthor $author автор поста
+ * @property BlogAuthor $author автор комментария
  * @property string $contents комментарий
  * @property CommentStatus $status статус публикации комментария
  */
