@@ -27,10 +27,6 @@ class ViewTwigExtension extends Twig_Extension
      */
     public $widgetFunctionName = 'widget';
     /**
-     * @var string $isAllowedFunctionName имя функции для проверки прав
-     */
-    public $isAllowedFunctionName = 'isAllowed';
-    /**
      * @var string $purifyHtml имя функции для очистки контента от XSS
      */
     public $purifyHtmlFunctionName = 'purifyHtml';
@@ -74,28 +70,10 @@ class ViewTwigExtension extends Twig_Extension
                 ['is_safe' => ['html']]
             ),
             new Twig_SimpleFunction(
-                $this->isAllowedFunctionName,
-                $this->getIsAllowedHelper()
-            ),
-            new Twig_SimpleFunction(
                 $this->purifyHtmlFunctionName,
                 $this->getPurifyHtml()
             )
         ];
-    }
-
-    /**
-     * Возвращает помощник вида для проверки прав.
-     * @return callable
-     */
-    protected function getIsAllowedHelper()
-    {
-        if (!$this->isAllowedHelper) {
-            /** @var CmsDispatcher $dispatcher */
-            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-            $this->isAllowedHelper = new IsAllowedHelper($dispatcher);
-        }
-        return $this->isAllowedHelper;
     }
 
     /**

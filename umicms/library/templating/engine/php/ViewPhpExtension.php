@@ -26,10 +26,6 @@ class ViewPhpExtension implements IPhpExtension
      */
     public $widgetFunctionName = 'widget';
     /**
-     * @var string $isAllowedFunctionName имя функции для проверки прав
-     */
-    public $isAllowedFunctionName = 'isAllowed';
-    /**
      * @var string $escapeHtmlFunctionName имя функции для экранирования html
      */
     public $escapeHtmlFunctionName = 'escape';
@@ -84,27 +80,12 @@ class ViewPhpExtension implements IPhpExtension
     {
         return [
             $this->widgetFunctionName => $this->getWidgetHelper(),
-            $this->isAllowedFunctionName => $this->getIsAllowedHelper(),
             $this->escapeHtmlFunctionName => $this->getEscapeHtmlHelper(),
             $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
             $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
             $this->escapeUrlFunctionName => $this->getEscapeUrlHelper(),
             $this->purifyHtmlFunctionName => $this->getPurifyHtml()
         ];
-    }
-
-    /**
-     * Возвращает помощник вида для проверки прав.
-     * @return callable
-     */
-    protected function getIsAllowedHelper()
-    {
-        if (!$this->isAllowedHelper) {
-            /** @var CmsDispatcher $dispatcher */
-            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-            $this->isAllowedHelper = new IsAllowedHelper($dispatcher);
-        }
-        return $this->isAllowedHelper;
     }
 
     /**
