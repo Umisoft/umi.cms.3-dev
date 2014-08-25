@@ -14,6 +14,7 @@ use Exception;
 use GuzzleHttp;
 use PDO;
 use PDOException;
+use Symfony\Component\HttpFoundation\Request;
 use umicms\install\exception\RuntimeException;
 
 /**
@@ -35,6 +36,10 @@ class Installer
      */
     private $config;
     /**
+     * @var Request $request Http foundation request
+     */
+    private $request;
+    /**
      * @var string $updateLink сервер обновлений
      */
     private $updateLink = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91cGRhdGVzZXJ2ZXIzLw';
@@ -50,10 +55,12 @@ class Installer
     /**
      * Конструктор.
      * @param string $config
+     * @param Request $request
      */
-    public function __construct($config = './config')
+    public function __construct($config = './config', Request $request)
     {
         $this->config = $config;
+        $this->request = $request;
     }
 
     /**
@@ -209,11 +216,11 @@ class Installer
      */
     public function getHostDomain()
     {
-        $hostDomain = $_SERVER['HTTP_HOST'];
-        if (mb_strrpos($hostDomain, 'www.') === 0) {
-            $hostDomain = mb_substr($hostDomain, 4);
+        $host = $this->request->getHost();
+        if (mb_strrpos($host, 'www.') === 0) {
+            $host = mb_substr($host, 4);
         }
-        return $hostDomain;
+        return $host;
     }
 }
  

@@ -43,7 +43,7 @@ ini_set('max_execution_time', 0);
 /** @noinspection PhpIncludeInspection */
 require $autoLoaderPath;
 
-$request = new Request($_GET);
+$request = Request::createFromGlobals();
 $response = new Response();
 
 try {
@@ -67,7 +67,7 @@ if (!isset($_SESSION['configFileName'])) {
     $_SESSION['configFileName'] = './config-' . time();
 }
 
-$installer = new Installer($_SESSION['configFileName']);
+$installer = new Installer($_SESSION['configFileName'], $request);
 
 $registry = new InstallCommandRegistry();
 $registry->add(new CheckLicense($installer, $request->query->get('licenseKey')), 'checkLicense');
