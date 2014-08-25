@@ -111,7 +111,7 @@ define([], function() {
                     } else {
                         params.object.save().then(
                             function() {
-                                params.object.updateRelationhipsMap();
+                                params.object.updateRelationshipsMap();
 
                                 if (params.handler) {
                                     $(params.handler).removeClass('loading');
@@ -1000,12 +1000,11 @@ define([], function() {
                                     model = this.store.getById(Ember.get(collection, 'name'), params.context);
                                     //model = model.reload();
                                 } else {
-                                    model = this.store.find(
+                                    model = this.store.updateCollection(
                                         Ember.get(collection, 'name'),
                                         {'filters[id]': params.context, fields: 'displayName'}
                                     ).then(function(results) {
-                                        var objects = Ember.get(results, 'content');
-                                        return objects[0];
+                                        return results.get('firstObject');
                                     });
                                 }
                                 break;
