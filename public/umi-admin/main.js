@@ -9,11 +9,13 @@ require.config({
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
-        iscroll: 'vendorExtend/iscroll-probe-5.1.1',
-        ckEditor: 'vendorExtend/ckeditor/ckeditor',
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment: 'vendor/momentjs/min/moment-with-langs',
-        elFinder: 'vendorExtend/elFinder'
+        FastClick: 'vendor/fastclick/lib/fastclick',
+        iscroll: 'library/iScroll/iscroll-probe-5.1.1',
+        ckEditor: 'library/ckeditor/ckeditor',
+        elFinder: 'library/elFinder/elFinder',
+        Foundation: 'library/foundation/foundation'
     },
 
     shim: {
@@ -24,34 +26,35 @@ require.config({
         Ember: {exports: 'Ember', deps: ['Handlebars', 'jquery']},
         DS: {exports: 'DS', deps: ['Ember']},
         ckEditor: {exports: 'ckEditor'},
-        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']}
+        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']},
+        Foundation: {exports: 'Foundation', deps: ['jquery', 'FastClick']}
     },
 
     packages: [
-        {name: 'accordion', location: "partials/accordion"},
-        {name: 'dialog', location: "partials/dialog"},
-        {name: 'divider', location: "partials/divider"},
-        {name: 'dock', location: "partials/dock"},
-        {name: 'fileManager', location: "partials/fileManager"},
-        {name: 'forms', location: "partials/forms"},
-        {name: 'notification', location: "partials/notification"},
-        {name: 'popup', location: "partials/popup"},
-        {name: 'search', location: "partials/search"},
-        {name: 'megaIndex', location: "partials/seo/megaIndex"},
-        {name: 'sideMenu', location: "partials/sideMenu"},
-        {name: 'yandexWebmaster', location: "partials/seo/yandexWebmaster"},
-        {name: 'table', location: "partials/table"},
-        {name: 'tableControl', location: "partials/tableControl"},
-        {name: 'toolbar', location: "partials/toolbar"},
-        {name: 'topBar', location: "partials/topBar"},
-        {name: 'tree', location: "partials/tree"},
-        {name: 'treeSimple', location: "partials/treeSimple"},
-        {name: 'updateLayout', location: "partials/updateLayout"}
+        {name: 'accordion', location: 'partials/accordion'},
+        {name: 'dialog', location: 'partials/dialog'},
+        {name: 'divider', location: 'partials/divider'},
+        {name: 'dock', location: 'partials/dock'},
+        {name: 'fileManager', location: 'partials/fileManager'},
+        {name: 'forms', location: 'partials/forms'},
+        {name: 'notification', location: 'partials/notification'},
+        {name: 'popup', location: 'partials/popup'},
+        {name: 'search', location: 'partials/search'},
+        {name: 'megaIndex', location: 'partials/seo/megaIndex'},
+        {name: 'sideMenu', location: 'partials/sideMenu'},
+        {name: 'yandexWebmaster', location: 'partials/seo/yandexWebmaster'},
+        {name: 'table', location: 'partials/table'},
+        {name: 'tableControl', location: 'partials/tableControl'},
+        {name: 'toolbar', location: 'partials/toolbar'},
+        {name: 'topBar', location: 'partials/topBar'},
+        {name: 'tree', location: 'partials/tree'},
+        {name: 'treeSimple', location: 'partials/treeSimple'},
+        {name: 'updateLayout', location: 'partials/updateLayout'}
     ]
 });
 
 require(['jquery'], function() {
-    "use strict";
+    'use strict';
 
     var deffer = $.get(window.UmiSettings.authUrl);
 
