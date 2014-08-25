@@ -190,7 +190,7 @@ define(
                 }.property(),
 
                 submitTemplate: function() {
-                    return '<span class="button right" {{action "submit" target="view.parentView"}}>{{view.meta.label}}</span>';
+                    return '<span class="button right" {{action "submit" target="view"}}>{{view.meta.label}}</span>';
                 }.property()
             });
 

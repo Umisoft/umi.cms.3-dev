@@ -1,5 +1,5 @@
 define(['App'], function(UMI) {
-        "use strict";
+        'use strict';
 
         return function() {
             /**
@@ -12,20 +12,25 @@ define(['App'], function(UMI) {
 
             GlobalBehaviour.prototype = {
                 save: {
-                    label: function() {
-                        if (this.get('controller.object.isDirty')) {
-                            return this.get('defaultBehaviour.attributes.label');
-                        } else {
-                            return this.get('meta.attributes.states.notModified.label');
-                        }
-                    }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
-                    classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
+                    extendButton: {
+                        label: function() {
+                            if (this.get('controller.object.isDirty')) {
+                                return this.get('defaultBehaviour.attributes.label');
+                            } else {
+                                return this.get('meta.attributes.states.notModified.label');
+                            }
+                        }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
+
+                        classNameBindings: ['controller.object.isDirty::disabled',
+                            'controller.object.isValid::disabled']
+                    },
+
                     beforeSave: function() {
                         var model = this.get('controller.object');
                         if (!model.get('isDirty') || !model.get('isValid')) {
                             return false;
                         }
-                        var button = this.$();
+                        var button = this.$().children('.button');
                         button.addClass('loading');
                         var params = {
                             object: model,
@@ -33,6 +38,7 @@ define(['App'], function(UMI) {
                         };
                         return params;
                     },
+
                     actions: {
                         save: function() {
                             var params = this.beforeSave();
@@ -50,9 +56,9 @@ define(['App'], function(UMI) {
                     }
                 },
 
-                "create": {
+                'create': {
                     actions: {
-                        "create": function(params) {
+                        'create': function(params) {
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});
@@ -68,7 +74,9 @@ define(['App'], function(UMI) {
                             return this.get('meta.attributes.states.activate.label');
                         }
                     }.property('meta.attributes.label', 'controller.object.active'),
+
                     classNameBindings: ['controller.object.active::umi-disabled'],
+
                     iconClass: function() {
                         var iconClass = 'inactive';
                         if (this.get('controller.object.active')) {
@@ -76,6 +84,7 @@ define(['App'], function(UMI) {
                         }
                         return 'icon-' + iconClass;
                     }.property('meta.behaviour.name', 'controller.object.active'),
+
                     actions: {
                         switchActivity: function(params) {
                             params = params || {};
@@ -113,9 +122,9 @@ define(['App'], function(UMI) {
                     }
                 },
 
-                "delete": {
+                'delete': {
                     actions: {
-                        "delete": function(params) {
+                        'delete': function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('delete', model);
@@ -145,6 +154,7 @@ define(['App'], function(UMI) {
 
                 add: {
                     classNameBindings: ['controller.object.isValid::disabled'],
+
                     beforeAdd: function(params) {
                         params = params || {};
                         var model = params.object || this.get('controller.object');
@@ -159,6 +169,7 @@ define(['App'], function(UMI) {
                         };
                         return params;
                     },
+
                     actions: {
                         add: function(params) {
                             params = params || {};
@@ -195,6 +206,7 @@ define(['App'], function(UMI) {
 
                 switchRobots: {
                     isAllowedRobots: null,
+
                     label: function() {
                         var title;
                         if (this.get('isAllowedRobots')) {
@@ -204,6 +216,7 @@ define(['App'], function(UMI) {
                         }
                         return title;
                     }.property('meta.attributes.label', 'isAllowedRobots'),
+
                     iconClass: function() {
                         if (this.get('isAllowedRobots')) {
                             return 'icon-allowRobots';
@@ -211,6 +224,7 @@ define(['App'], function(UMI) {
                             return 'icon-disallowRobots';
                         }
                     }.property('isAllowedRobots'),
+
                     actions: {
                         switchRobots: function() {
                             var self = this;
@@ -224,6 +238,7 @@ define(['App'], function(UMI) {
                             });
                         }
                     },
+
                     checkIsAllowedRobots: function() {
                         if (this.get('isDestroying') || this.get('isDestroyed')) {
                             return;
@@ -233,6 +248,7 @@ define(['App'], function(UMI) {
                         var componentController = this.get('container').lookup('controller:component');
                         var isAllowedRobotsSource;
                         var serializeObject;
+
                         if (componentController) {
                             serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                             isAllowedRobotsSource = componentController.get('settings.actions.isAllowedRobots.source');
@@ -264,6 +280,7 @@ define(['App'], function(UMI) {
                     }.observes('label').on('didInsertElement')
                 }
             };
+
             UMI.globalBehaviour = new GlobalBehaviour();
         };
     });
