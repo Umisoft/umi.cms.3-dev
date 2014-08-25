@@ -24,7 +24,6 @@ return [
             'BackToTop' => 'Back to top',
             'Add post' => 'Add post',
             'ReadMore' => 'Read more',
-            'GoBackCategory' => 'Go back to category',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -48,7 +47,6 @@ return [
             'BackToTop' => 'Наверх',
             'Add post' => 'Добавить пост',
             'ReadMore' => 'Читать далее',
-            'GoBackCategory' => 'Вернуться назад в категорию',
         ]
     ],
 
