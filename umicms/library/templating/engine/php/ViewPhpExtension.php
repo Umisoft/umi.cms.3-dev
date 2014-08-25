@@ -10,11 +10,12 @@
 
 namespace umicms\templating\engine\php;
 
-use umi\hmvc\view\helper\IsAllowedHelper;
 use umi\templating\engine\php\IPhpExtension;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\hmvc\url\IUrlManager;
 use umicms\purifier\IPurifier;
+use umicms\templating\helper\AnchorHelper;
 
 /**
  * Расширение для подключения помощников вида в PHP-шаблонах.
@@ -45,16 +46,15 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $purifyHtml имя функции для очистки контента от XSS
      */
     public $purifyHtmlFunctionName = 'purifyHtml';
+    /**
+     * @var string $anchorFunctionName имя функции для формирования якорной ссылки
+     */
+    public $anchorFunctionName = 'anchor';
 
     /**
      * @var IToolkit $toolkit набор инструментов
      */
     protected $toolkit;
-
-    /**
-     * @var IsAllowedHelper $isAllowedHelper
-     */
-    private $isAllowedHelper;
 
     /**
      * Конструктор.
@@ -84,8 +84,26 @@ class ViewPhpExtension implements IPhpExtension
             $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
             $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
             $this->escapeUrlFunctionName => $this->getEscapeUrlHelper(),
-            $this->purifyHtmlFunctionName => $this->getPurifyHtml()
+            $this->purifyHtmlFunctionName => $this->getPurifyHtml(),
+            $this->anchorFunctionName => [$this->getAnchorHelper(), 'buildAnchorLink']
         ];
+    }
+
+    /**
+     * Возвращает помощник для формирования якорных ссылок.
+     * @return AnchorHelper
+     */
+    protected function getAnchorHelper()
+    {
+        static $helper;
+
+        if (!$helper) {
+            /** @var IUrlManager $urlManager */
+            $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+            $helper = new AnchorHelper($urlManager);
+        }
+
+        return $helper;
     }
 
     /**

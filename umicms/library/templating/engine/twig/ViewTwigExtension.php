@@ -12,10 +12,11 @@ namespace umicms\templating\engine\twig;
 
 use Twig_Extension;
 use Twig_SimpleFunction;
-use umi\hmvc\view\helper\IsAllowedHelper;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\hmvc\url\IUrlManager;
 use umicms\purifier\IPurifier;
+use umicms\templating\helper\AnchorHelper;
 
 /**
  * Расширение Twig для подключения помощников вида.
@@ -30,16 +31,15 @@ class ViewTwigExtension extends Twig_Extension
      * @var string $purifyHtml имя функции для очистки контента от XSS
      */
     public $purifyHtmlFunctionName = 'purifyHtml';
+    /**
+     * @var string $anchorFunctionName имя функции для формирования якорной ссылки
+     */
+    public $anchorFunctionName = 'anchor';
 
     /**
      * @var IToolkit $toolkit набор инструментов
      */
     protected $toolkit;
-
-    /**
-     * @var IsAllowedHelper $isAllowedHelper
-     */
-    private $isAllowedHelper;
 
     /**
      * Конструктор.
@@ -72,6 +72,10 @@ class ViewTwigExtension extends Twig_Extension
             new Twig_SimpleFunction(
                 $this->purifyHtmlFunctionName,
                 $this->getPurifyHtml()
+            ),
+            new Twig_SimpleFunction(
+                $this->anchorFunctionName,
+                [$this->getAnchorHelper(), 'buildAnchorLink']
             )
         ];
     }
@@ -85,6 +89,7 @@ class ViewTwigExtension extends Twig_Extension
         return function($widgetPath, array $args = []) {
             /** @var CmsDispatcher $dispatcher */
             $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+
             return $dispatcher->executeWidgetByPath($widgetPath, $args);
         };
     }
@@ -93,13 +98,31 @@ class ViewTwigExtension extends Twig_Extension
      * Хелпер очищающий контент от XSS.
      * @return callable
      */
-    public function getPurifyHtml()
+    protected function getPurifyHtml()
     {
         return function($string, array $options = []) {
             /** @var IPurifier $purifierHtml */
             $purifierHtml = $this->toolkit->getService('umicms\purifier\IPurifier');
+
             return $purifierHtml->purify($string, $options);
         };
+    }
+
+    /**
+     * Возвращает помощник для формирования якорных ссылок.
+     * @return AnchorHelper
+     */
+    protected function getAnchorHelper()
+    {
+        static $helper;
+
+        if (!$helper) {
+            /** @var IUrlManager $urlManager */
+            $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+            $helper = new AnchorHelper($urlManager);
+        }
+
+        return $helper;
     }
 }
  
