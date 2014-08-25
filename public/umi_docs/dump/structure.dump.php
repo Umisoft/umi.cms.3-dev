@@ -202,7 +202,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -352,10 +352,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -443,7 +445,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -538,12 +540,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>editDraftLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -772,7 +774,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -867,17 +869,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>publishForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -1307,7 +1309,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1471,10 +1473,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -1870,7 +1874,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1965,17 +1969,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>publishForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -2196,7 +2200,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2291,12 +2295,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -2489,7 +2493,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2584,12 +2588,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -2692,7 +2696,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2787,17 +2791,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td>1</td>
+          <td></td>
           <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
@@ -2889,7 +2893,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2984,17 +2988,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>unpublishForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -3220,7 +3224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3315,12 +3319,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -3335,18 +3339,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -3375,9 +3373,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -3440,7 +3481,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3535,12 +3576,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -4041,7 +4082,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4136,12 +4177,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>postList</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -4156,18 +4197,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -4201,9 +4236,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -4266,7 +4344,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4361,12 +4439,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -4381,24 +4459,23 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
           <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+        </tr><tr>
+          <td>newsItem</td>
+          <td>string|NewsItem</td>
+          <td></td>
+          <td>GUID или новость, список сюжетов которой, необходимо вывести</td>
         </tr></tbody>
               </table>',
       ),
@@ -4421,9 +4498,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -4771,7 +4891,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:28:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5155,7 +5275,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5250,12 +5370,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -5270,18 +5390,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -5310,9 +5424,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -5627,7 +5784,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5722,12 +5879,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -5819,7 +5976,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5969,10 +6126,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -6049,7 +6208,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6144,12 +6303,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -6164,10 +6323,7 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -6206,6 +6362,107 @@ return array (
     ),
   ),
   36 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '275244d7-2053-4f14-8137-ae820f8c3fff',
+      'displayName' => 'structure.menu',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+          'displayName' => 'Структура',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'menu',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'structure.menu',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  37 => 
   array (
     'meta' => 
     array (
@@ -6264,7 +6521,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6359,22 +6616,22 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>form</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>noRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>type</td>
           <td>string</td>
-          <td>registered</td>
+          <td></td>
           <td>тип регистрируемого пользователя</td>
         </tr></tbody>
               </table>',
@@ -6402,7 +6659,7 @@ return array (
       ),
     ),
   ),
-  37 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -6514,7 +6771,7 @@ return array (
       ),
     ),
   ),
-  38 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -6562,7 +6819,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6664,7 +6921,9 @@ return array (
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница поиска </td></tr><tr>
           <td>string</td>
-          <td>$query</td><td>текущий поисковый запрос </td></tr></tbody>
+          <td>$query</td><td>текущий поисковый запрос </td></tr><tr>
+          <td>string</td>
+          <td>$encodedQuery</td><td>URL-закодированный текущий поисковый запрос </td></tr></tbody>
           </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
           <thead>
             <tr>
@@ -6724,10 +6983,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -6739,7 +7000,7 @@ return array (
       ),
     ),
   ),
-  39 => 
+  40 => 
   array (
     'meta' => 
     array (
@@ -6871,7 +7132,7 @@ return array (
       ),
     ),
   ),
-  40 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -6930,7 +7191,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7080,10 +7341,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -7101,7 +7364,7 @@ return array (
       ),
     ),
   ),
-  41 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -7213,7 +7476,7 @@ return array (
       ),
     ),
   ),
-  42 => 
+  43 => 
   array (
     'meta' => 
     array (
@@ -7325,7 +7588,7 @@ return array (
       ),
     ),
   ),
-  43 => 
+  44 => 
   array (
     'meta' => 
     array (
@@ -7384,7 +7647,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7479,12 +7742,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>loginLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -7517,7 +7780,7 @@ return array (
       ),
     ),
   ),
-  44 => 
+  45 => 
   array (
     'meta' => 
     array (
@@ -7587,7 +7850,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7753,10 +8016,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
@@ -7814,14 +8079,16 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
       'templateName' => 
@@ -7831,7 +8098,7 @@ return array (
       ),
     ),
   ),
-  45 => 
+  46 => 
   array (
     'meta' => 
     array (
@@ -7901,7 +8168,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7996,17 +8263,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>form</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>noRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -8034,7 +8301,7 @@ return array (
       ),
     ),
   ),
-  46 => 
+  47 => 
   array (
     'meta' => 
     array (
@@ -8093,7 +8360,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8188,12 +8455,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>postList</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -8208,18 +8475,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -8253,13 +8514,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  47 => 
+  48 => 
   array (
     'meta' => 
     array (
@@ -8318,7 +8622,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8413,17 +8717,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>sendToModerationForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -8456,7 +8760,7 @@ return array (
       ),
     ),
   ),
-  48 => 
+  49 => 
   array (
     'meta' => 
     array (
@@ -8624,7 +8928,7 @@ return array (
       ),
     ),
   ),
-  49 => 
+  50 => 
   array (
     'meta' => 
     array (
@@ -8683,7 +8987,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8778,12 +9082,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -8798,18 +9102,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -8838,13 +9136,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  50 => 
+  51 => 
   array (
     'meta' => 
     array (
@@ -8903,7 +9244,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8998,12 +9339,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -9018,18 +9359,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -9063,13 +9398,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  51 => 
+  52 => 
   array (
     'meta' => 
     array (
@@ -9181,7 +9559,7 @@ return array (
       ),
     ),
   ),
-  52 => 
+  53 => 
   array (
     'meta' => 
     array (
@@ -9240,7 +9618,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9335,12 +9713,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>subject</td>
@@ -9420,7 +9798,7 @@ return array (
       ),
     ),
   ),
-  53 => 
+  54 => 
   array (
     'meta' => 
     array (
@@ -9490,7 +9868,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9585,12 +9963,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>editPostLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -9628,7 +10006,7 @@ return array (
       ),
     ),
   ),
-  54 => 
+  55 => 
   array (
     'meta' => 
     array (
@@ -9676,7 +10054,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9826,10 +10204,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -9847,7 +10227,7 @@ return array (
       ),
     ),
   ),
-  55 => 
+  56 => 
   array (
     'meta' => 
     array (
@@ -9917,7 +10297,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10012,12 +10392,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>moderateLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -10050,7 +10430,7 @@ return array (
       ),
     ),
   ),
-  56 => 
+  57 => 
   array (
     'meta' => 
     array (
@@ -10216,7 +10596,7 @@ return array (
       ),
     ),
   ),
-  57 => 
+  58 => 
   array (
     'meta' => 
     array (
@@ -10275,7 +10655,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10370,17 +10750,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rejectForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -10413,7 +10793,7 @@ return array (
       ),
     ),
   ),
-  58 => 
+  59 => 
   array (
     'meta' => 
     array (
@@ -10483,7 +10863,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10578,12 +10958,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>moderateLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -10616,7 +10996,7 @@ return array (
       ),
     ),
   ),
-  59 => 
+  60 => 
   array (
     'meta' => 
     array (
@@ -10686,7 +11066,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10781,12 +11161,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -10801,18 +11181,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -10841,13 +11215,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  60 => 
+  61 => 
   array (
     'meta' => 
     array (
@@ -10917,7 +11334,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11012,12 +11429,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -11101,19 +11518,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  61 => 
+  62 => 
   array (
     'meta' => 
     array (
@@ -11282,7 +11701,7 @@ return array (
       ),
     ),
   ),
-  62 => 
+  63 => 
   array (
     'meta' => 
     array (
@@ -11352,7 +11771,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11447,12 +11866,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>draftLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -11485,7 +11904,7 @@ return array (
       ),
     ),
   ),
-  63 => 
+  64 => 
   array (
     'meta' => 
     array (
@@ -11555,7 +11974,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11705,10 +12124,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -11726,7 +12147,7 @@ return array (
       ),
     ),
   ),
-  64 => 
+  65 => 
   array (
     'meta' => 
     array (
@@ -11796,7 +12217,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11891,12 +12312,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -11980,19 +12401,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  65 => 
+  66 => 
   array (
     'meta' => 
     array (
@@ -12170,7 +12593,7 @@ return array (
       ),
     ),
   ),
-  66 => 
+  67 => 
   array (
     'meta' => 
     array (
@@ -12229,7 +12652,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12324,12 +12747,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -12367,7 +12790,7 @@ return array (
       ),
     ),
   ),
-  67 => 
+  68 => 
   array (
     'meta' => 
     array (
@@ -12468,7 +12891,7 @@ return array (
       ),
     ),
   ),
-  68 => 
+  69 => 
   array (
     'meta' => 
     array (
@@ -12527,7 +12950,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12622,12 +13045,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>rubric</td>
@@ -12705,17 +13128,19 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>IObjectSet</td>
           <td>$news</td><td>новости рубрики </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  69 => 
+  70 => 
   array (
     'meta' => 
     array (
@@ -12785,7 +13210,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12935,10 +13360,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -12956,7 +13383,7 @@ return array (
       ),
     ),
   ),
-  70 => 
+  71 => 
   array (
     'meta' => 
     array (
@@ -13088,7 +13515,7 @@ return array (
       ),
     ),
   ),
-  71 => 
+  72 => 
   array (
     'meta' => 
     array (
@@ -13136,7 +13563,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13231,12 +13658,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>results</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -13251,18 +13678,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -13296,13 +13717,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  72 => 
+  73 => 
   array (
     'meta' => 
     array (
@@ -13442,7 +13906,7 @@ return array (
       ),
     ),
   ),
-  73 => 
+  74 => 
   array (
     'meta' => 
     array (
@@ -13501,7 +13965,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13596,12 +14060,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -13639,7 +14103,7 @@ return array (
       ),
     ),
   ),
-  74 => 
+  75 => 
   array (
     'meta' => 
     array (
@@ -13768,7 +14232,7 @@ return array (
       ),
     ),
   ),
-  75 => 
+  76 => 
   array (
     'meta' => 
     array (
@@ -13869,7 +14333,7 @@ return array (
       ),
     ),
   ),
-  76 => 
+  77 => 
   array (
     'meta' => 
     array (
@@ -13964,7 +14428,7 @@ return array (
       ),
     ),
   ),
-  77 => 
+  78 => 
   array (
     'meta' => 
     array (
@@ -14131,7 +14595,7 @@ return array (
       ),
     ),
   ),
-  78 => 
+  79 => 
   array (
     'meta' => 
     array (
@@ -14201,7 +14665,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14296,17 +14760,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td>1</td>
+          <td></td>
           <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
@@ -14339,7 +14803,7 @@ return array (
       ),
     ),
   ),
-  79 => 
+  80 => 
   array (
     'meta' => 
     array (
@@ -14451,7 +14915,7 @@ return array (
       ),
     ),
   ),
-  80 => 
+  81 => 
   array (
     'meta' => 
     array (
@@ -14591,7 +15055,7 @@ return array (
       ),
     ),
   ),
-  81 => 
+  82 => 
   array (
     'meta' => 
     array (
@@ -14650,7 +15114,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14800,10 +15264,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -14821,7 +15287,7 @@ return array (
       ),
     ),
   ),
-  82 => 
+  83 => 
   array (
     'meta' => 
     array (
@@ -14933,7 +15399,7 @@ return array (
       ),
     ),
   ),
-  83 => 
+  84 => 
   array (
     'meta' => 
     array (
@@ -14992,7 +15458,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15142,10 +15608,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -15163,7 +15631,7 @@ return array (
       ),
     ),
   ),
-  84 => 
+  85 => 
   array (
     'meta' => 
     array (
@@ -15275,7 +15743,7 @@ return array (
       ),
     ),
   ),
-  85 => 
+  86 => 
   array (
     'meta' => 
     array (
@@ -15486,7 +15954,7 @@ return array (
       ),
     ),
   ),
-  86 => 
+  87 => 
   array (
     'meta' => 
     array (
@@ -15545,7 +16013,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15640,12 +16108,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -15683,7 +16151,7 @@ return array (
       ),
     ),
   ),
-  87 => 
+  88 => 
   array (
     'meta' => 
     array (
@@ -15823,7 +16291,7 @@ return array (
       ),
     ),
   ),
-  88 => 
+  89 => 
   array (
     'meta' => 
     array (
@@ -15907,7 +16375,7 @@ return array (
       ),
     ),
   ),
-  89 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -16019,7 +16487,7 @@ return array (
       ),
     ),
   ),
-  90 => 
+  91 => 
   array (
     'meta' => 
     array (
@@ -16131,7 +16599,7 @@ return array (
       ),
     ),
   ),
-  91 => 
+  92 => 
   array (
     'meta' => 
     array (
@@ -16262,7 +16730,7 @@ return array (
       ),
     ),
   ),
-  92 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -16321,7 +16789,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16416,17 +16884,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>publishDraftForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -16459,7 +16927,7 @@ return array (
       ),
     ),
   ),
-  93 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -16861,7 +17329,7 @@ return array (
       ),
     ),
   ),
-  94 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -16931,7 +17399,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17095,10 +17563,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -17110,7 +17580,7 @@ return array (
       ),
     ),
   ),
-  95 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -17239,7 +17709,7 @@ return array (
       ),
     ),
   ),
-  96 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -17298,7 +17768,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17393,22 +17863,22 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>cloud</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>minFontSize</td>
           <td>int</td>
-          <td>13</td>
+          <td></td>
           <td>минимальный размер шрифта</td>
         </tr><tr>
           <td>maxFontSize</td>
           <td>int</td>
-          <td>24</td>
+          <td></td>
           <td>максимальный размер шрифта</td>
         </tr></tbody>
               </table>',
@@ -17436,7 +17906,7 @@ return array (
       ),
     ),
   ),
-  97 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -17495,7 +17965,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17590,12 +18060,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>view</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogComment</td>
@@ -17663,21 +18133,23 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>BlogAuthor</td>
           <td>$author</td><td>автор поста </td></tr><tr>
           <td>string</td>
           <td>$contents</td><td>комментарий </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации комментария </td></tr></tbody>
+          <td>CommentStatus</td>
+          <td>$status</td><td>статус публикации комментария </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  98 => 
+  99 => 
   array (
     'meta' => 
     array (
@@ -17725,7 +18197,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17875,10 +18347,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -17896,7 +18370,7 @@ return array (
       ),
     ),
   ),
-  99 => 
+  100 => 
   array (
     'meta' => 
     array (
@@ -17997,7 +18471,7 @@ return array (
       ),
     ),
   ),
-  100 => 
+  101 => 
   array (
     'meta' => 
     array (
@@ -18067,7 +18541,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18217,10 +18691,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -18238,7 +18714,7 @@ return array (
       ),
     ),
   ),
-  101 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -18308,7 +18784,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18403,12 +18879,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>addPostLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -18446,7 +18922,7 @@ return array (
       ),
     ),
   ),
-  102 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -18558,7 +19034,7 @@ return array (
       ),
     ),
   ),
-  103 => 
+  104 => 
   array (
     'meta' => 
     array (
@@ -18670,7 +19146,7 @@ return array (
       ),
     ),
   ),
-  104 => 
+  105 => 
   array (
     'meta' => 
     array (
@@ -18729,7 +19205,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18824,12 +19300,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>infoblock</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>infoBlock</td>
@@ -18889,7 +19365,108 @@ return array (
       ),
     ),
   ),
-  105 => 
+  106 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '6e203cf5-5178-40f4-be11-1baf6fb95403',
+      'displayName' => 'structure.infoblock',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+          'displayName' => 'Структура',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'infoblock',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'structure.infoblock',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  107 => 
   array (
     'meta' => 
     array (
@@ -19044,7 +19621,7 @@ return array (
       ),
     ),
   ),
-  106 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -19189,7 +19766,7 @@ return array (
       ),
     ),
   ),
-  107 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -19301,7 +19878,7 @@ return array (
       ),
     ),
   ),
-  108 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -19441,7 +20018,7 @@ return array (
       ),
     ),
   ),
-  109 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -19511,7 +20088,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19606,12 +20183,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -19695,19 +20272,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  110 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -19777,7 +20356,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19941,10 +20520,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -19999,7 +20580,7 @@ return array (
       ),
     ),
   ),
-  111 => 
+  113 => 
   array (
     'meta' => 
     array (
@@ -20139,7 +20720,7 @@ return array (
       ),
     ),
   ),
-  112 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -20198,7 +20779,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20293,17 +20874,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>logoutForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>noRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -20331,7 +20912,7 @@ return array (
       ),
     ),
   ),
-  113 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -20390,7 +20971,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20485,17 +21066,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rejectForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -20528,7 +21109,7 @@ return array (
       ),
     ),
   ),
-  114 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -20640,7 +21221,7 @@ return array (
       ),
     ),
   ),
-  115 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -20741,7 +21322,7 @@ return array (
       ),
     ),
   ),
-  116 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -20811,7 +21392,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20906,12 +21487,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -20995,19 +21576,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  117 => 
+  119 => 
   array (
     'meta' => 
     array (
@@ -21066,7 +21649,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21161,17 +21744,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>sendToModerationForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -21204,7 +21787,7 @@ return array (
       ),
     ),
   ),
-  118 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -21382,7 +21965,7 @@ return array (
       ),
     ),
   ),
-  119 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -21494,7 +22077,7 @@ return array (
       ),
     ),
   ),
-  120 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -21634,7 +22217,7 @@ return array (
       ),
     ),
   ),
-  121 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -21693,7 +22276,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21861,10 +22444,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -21919,7 +22504,7 @@ return array (
       ),
     ),
   ),
-  122 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -21989,7 +22574,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22084,12 +22669,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>editPostLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -22127,7 +22712,7 @@ return array (
       ),
     ),
   ),
-  123 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -22259,7 +22844,7 @@ return array (
       ),
     ),
   ),
-  124 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -22318,7 +22903,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22468,10 +23053,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -22489,7 +23076,7 @@ return array (
       ),
     ),
   ),
-  125 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -22559,7 +23146,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22723,10 +23310,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -22738,7 +23327,7 @@ return array (
       ),
     ),
   ),
-  126 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -22867,7 +23456,7 @@ return array (
       ),
     ),
   ),
-  127 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -22979,7 +23568,7 @@ return array (
       ),
     ),
   ),
-  128 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -23080,7 +23669,7 @@ return array (
       ),
     ),
   ),
-  129 => 
+  131 => 
   array (
     'meta' => 
     array (
@@ -23139,7 +23728,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23234,12 +23823,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -23272,7 +23861,7 @@ return array (
       ),
     ),
   ),
-  130 => 
+  132 => 
   array (
     'meta' => 
     array (
@@ -23384,7 +23973,7 @@ return array (
       ),
     ),
   ),
-  131 => 
+  133 => 
   array (
     'meta' => 
     array (
@@ -23524,7 +24113,7 @@ return array (
       ),
     ),
   ),
-  132 => 
+  134 => 
   array (
     'meta' => 
     array (
@@ -23656,7 +24245,7 @@ return array (
       ),
     ),
   ),
-  133 => 
+  135 => 
   array (
     'meta' => 
     array (
@@ -23768,7 +24357,7 @@ return array (
       ),
     ),
   ),
-  134 => 
+  136 => 
   array (
     'meta' => 
     array (
@@ -23827,7 +24416,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23922,12 +24511,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>newsList</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -23942,18 +24531,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -23963,10 +24546,7 @@ return array (
         </tr><tr>
           <td>subjects</td>
           <td>array|NewsSubject[]|NewsSubject|null</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>сюжет, новостных сюжетов или GUID, из которых выводятся новости. Если не указаны, то выводятся новости всех сюжетов</td>
         </tr></tbody>
               </table>',
@@ -23990,13 +24570,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  135 => 
+  137 => 
   array (
     'meta' => 
     array (
@@ -24136,7 +24759,7 @@ return array (
       ),
     ),
   ),
-  136 => 
+  138 => 
   array (
     'meta' => 
     array (
@@ -24195,7 +24818,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24290,12 +24913,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -24328,7 +24951,7 @@ return array (
       ),
     ),
   ),
-  137 => 
+  139 => 
   array (
     'meta' => 
     array (
@@ -24460,7 +25083,7 @@ return array (
       ),
     ),
   ),
-  138 => 
+  140 => 
   array (
     'meta' => 
     array (
@@ -24592,7 +25215,7 @@ return array (
       ),
     ),
   ),
-  139 => 
+  141 => 
   array (
     'meta' => 
     array (
@@ -24704,7 +25327,7 @@ return array (
       ),
     ),
   ),
-  140 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -24816,7 +25439,7 @@ return array (
       ),
     ),
   ),
-  141 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -24864,7 +25487,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24959,18 +25582,18 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>fragments</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
-          <td>page</td>
-          <td>ICmsPage</td>
+          <td>index</td>
+          <td>string|SearchIndex</td>
           <td></td>
-          <td>страница, которая попала в результат поиска</td>
+          <td>поисковый индекс или его GUID</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
@@ -24979,7 +25602,7 @@ return array (
         </tr><tr>
           <td>contextWordsLimit</td>
           <td>int</td>
-          <td>5</td>
+          <td></td>
           <td>сколько слов контекста выводить в цитате</td>
         </tr></tbody>
               </table>',
@@ -25003,13 +25626,15 @@ return array (
       <tbody><tr>
           <td>string</td>
           <td>$query</td><td>поисковый запрос </td></tr><tr>
+          <td>string</td>
+          <td>$encodedQuery</td><td>URL-закодированный поисковый запрос </td></tr><tr>
           <td>umicms\\project\\module\\search\\model\\highlight\\Fragmenter</td>
           <td>$fragmenter</td><td>фрагментатор текста по найденным в нем словам </td></tr></tbody>
           </table>',
       ),
     ),
   ),
-  142 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -25068,7 +25693,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25218,10 +25843,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -25239,7 +25866,7 @@ return array (
       ),
     ),
   ),
-  143 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -25298,7 +25925,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25393,12 +26020,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -25431,7 +26058,7 @@ return array (
       ),
     ),
   ),
-  144 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -25501,7 +26128,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25663,10 +26290,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -25678,7 +26307,7 @@ return array (
       ),
     ),
   ),
-  145 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -25748,7 +26377,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25843,12 +26472,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -25863,18 +26492,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -25903,13 +26526,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  146 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -25957,7 +26623,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26052,12 +26718,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>highlight</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>text</td>
@@ -26072,12 +26738,12 @@ return array (
         </tr><tr>
           <td>highlightStart</td>
           <td>string</td>
-          <td><mark></td>
+          <td></td>
           <td>настройка маркера начала подсветки найденных результатов</td>
         </tr><tr>
           <td>highlightEnd</td>
           <td>string</td>
-          <td></mark></td>
+          <td></td>
           <td>настройка маркера конца подсветки найденных результатов</td>
         </tr></tbody>
               </table>',
@@ -26094,7 +26760,7 @@ return array (
       ),
     ),
   ),
-  147 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -26164,7 +26830,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26328,10 +26994,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -26343,7 +27011,7 @@ return array (
       ),
     ),
   ),
-  148 => 
+  150 => 
   array (
     'meta' => 
     array (
@@ -26472,7 +27140,7 @@ return array (
       ),
     ),
   ),
-  149 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -26584,7 +27252,7 @@ return array (
       ),
     ),
   ),
-  150 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -26685,7 +27353,7 @@ return array (
       ),
     ),
   ),
-  151 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -26852,7 +27520,7 @@ return array (
       ),
     ),
   ),
-  152 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -26911,7 +27579,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27075,10 +27743,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -27090,7 +27760,7 @@ return array (
       ),
     ),
   ),
-  153 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -27191,7 +27861,7 @@ return array (
       ),
     ),
   ),
-  154 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -27250,7 +27920,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27345,17 +28015,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>form</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>noRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -27383,7 +28053,7 @@ return array (
       ),
     ),
   ),
-  155 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -27515,7 +28185,7 @@ return array (
       ),
     ),
   ),
-  156 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -27585,7 +28255,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27749,10 +28419,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -27764,7 +28436,7 @@ return array (
       ),
     ),
   ),
-  157 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -27834,7 +28506,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27998,10 +28670,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -28013,7 +28687,7 @@ return array (
       ),
     ),
   ),
-  158 => 
+  160 => 
   array (
     'meta' => 
     array (
@@ -28083,7 +28757,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28178,12 +28852,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>link</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -28216,7 +28890,7 @@ return array (
       ),
     ),
   ),
-  159 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -28356,7 +29030,7 @@ return array (
       ),
     ),
   ),
-  160 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -28534,7 +29208,7 @@ return array (
       ),
     ),
   ),
-  161 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -28604,7 +29278,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28768,10 +29442,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -28783,7 +29459,7 @@ return array (
       ),
     ),
   ),
-  162 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -28842,7 +29518,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28937,12 +29613,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>category</td>
@@ -29020,17 +29696,19 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>IObjectSet</td>
           <td>$posts</td><td>категория поста </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  163 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -29100,7 +29778,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29195,17 +29873,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>addComment</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -29243,7 +29921,7 @@ return array (
       ),
     ),
   ),
-  164 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -29375,7 +30053,7 @@ return array (
       ),
     ),
   ),
-  165 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -29445,7 +30123,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29540,12 +30218,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -29560,18 +30238,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -29600,13 +30272,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  166 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -29665,7 +30380,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29760,12 +30475,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>auto</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>branch</td>
@@ -29775,7 +30490,7 @@ return array (
         </tr><tr>
           <td>depth</td>
           <td>int</td>
-          <td>1</td>
+          <td></td>
           <td>уровень вложенности меню</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -29813,7 +30528,7 @@ return array (
       ),
     ),
   ),
-  167 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -29883,7 +30598,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29978,12 +30693,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -29998,18 +30713,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -30038,13 +30747,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  168 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -30211,7 +30963,7 @@ return array (
       ),
     ),
   ),
-  169 => 
+  171 => 
   array (
     'meta' => 
     array (
@@ -30351,7 +31103,7 @@ return array (
       ),
     ),
   ),
-  170 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -30410,7 +31162,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30505,12 +31257,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>newsList</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -30525,18 +31277,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -30570,13 +31316,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  171 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -30688,7 +31477,7 @@ return array (
       ),
     ),
   ),
-  172 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -30747,7 +31536,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30842,12 +31631,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>view</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr></tbody>
               </table>',
@@ -30918,7 +31707,7 @@ return array (
       ),
     ),
   ),
-  173 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -30977,7 +31766,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31072,12 +31861,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>tree</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -31092,10 +31881,7 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -31128,7 +31914,7 @@ return array (
       ),
     ),
   ),
-  174 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -31187,7 +31973,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31282,12 +32068,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogTag</td>
@@ -31369,7 +32155,7 @@ return array (
       ),
     ),
   ),
-  175 => 
+  177 => 
   array (
     'meta' => 
     array (
@@ -31501,7 +32287,7 @@ return array (
       ),
     ),
   ),
-  176 => 
+  178 => 
   array (
     'meta' => 
     array (
@@ -31560,7 +32346,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31710,10 +32496,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -31731,7 +32519,7 @@ return array (
       ),
     ),
   ),
-  177 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -31832,7 +32620,7 @@ return array (
       ),
     ),
   ),
-  178 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -31964,7 +32752,7 @@ return array (
       ),
     ),
   ),
-  179 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -32034,7 +32822,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32129,12 +32917,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>postList</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -32149,18 +32937,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -32194,13 +32976,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  180 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -32340,7 +33165,7 @@ return array (
       ),
     ),
   ),
-  181 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -32399,7 +33224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32494,17 +33319,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>unPublishPostForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -32537,7 +33362,7 @@ return array (
       ),
     ),
   ),
-  182 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -32596,7 +33421,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32691,12 +33516,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>newsItem</td>
@@ -32782,7 +33607,7 @@ return array (
       ),
     ),
   ),
-  183 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -32914,7 +33739,7 @@ return array (
       ),
     ),
   ),
-  184 => 
+  186 => 
   array (
     'meta' => 
     array (
@@ -33026,7 +33851,7 @@ return array (
       ),
     ),
   ),
-  185 => 
+  187 => 
   array (
     'meta' => 
     array (
@@ -33085,7 +33910,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33180,12 +34005,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>customMenu</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -33200,10 +34025,7 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -33241,7 +34063,7 @@ return array (
       ),
     ),
   ),
-  186 => 
+  188 => 
   array (
     'meta' => 
     array (
@@ -33410,7 +34232,7 @@ return array (
       ),
     ),
   ),
-  187 => 
+  189 => 
   array (
     'meta' => 
     array (
@@ -33550,7 +34372,7 @@ return array (
       ),
     ),
   ),
-  188 => 
+  190 => 
   array (
     'meta' => 
     array (
@@ -33679,7 +34501,7 @@ return array (
       ),
     ),
   ),
-  189 => 
+  191 => 
   array (
     'meta' => 
     array (
@@ -33857,7 +34679,7 @@ return array (
       ),
     ),
   ),
-  190 => 
+  192 => 
   array (
     'meta' => 
     array (
@@ -33969,7 +34791,7 @@ return array (
       ),
     ),
   ),
-  191 => 
+  193 => 
   array (
     'meta' => 
     array (
@@ -34109,7 +34931,7 @@ return array (
       ),
     ),
   ),
-  192 => 
+  194 => 
   array (
     'meta' => 
     array (
@@ -34168,7 +34990,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34318,10 +35140,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -34339,7 +35163,7 @@ return array (
       ),
     ),
   ),
-  193 => 
+  195 => 
   array (
     'meta' => 
     array (
@@ -34398,7 +35222,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34564,10 +35388,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -34622,7 +35448,7 @@ return array (
       ),
     ),
   ),
-  194 => 
+  196 => 
   array (
     'meta' => 
     array (
@@ -34734,7 +35560,7 @@ return array (
       ),
     ),
   ),
-  195 => 
+  197 => 
   array (
     'meta' => 
     array (
@@ -34866,7 +35692,7 @@ return array (
       ),
     ),
   ),
-  196 => 
+  198 => 
   array (
     'meta' => 
     array (
@@ -34925,7 +35751,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35075,10 +35901,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -35096,7 +35924,7 @@ return array (
       ),
     ),
   ),
-  197 => 
+  199 => 
   array (
     'meta' => 
     array (
@@ -35208,7 +36036,7 @@ return array (
       ),
     ),
   ),
-  198 => 
+  200 => 
   array (
     'meta' => 
     array (
@@ -35337,7 +36165,7 @@ return array (
       ),
     ),
   ),
-  199 => 
+  201 => 
   array (
     'meta' => 
     array (
@@ -35477,7 +36305,7 @@ return array (
       ),
     ),
   ),
-  200 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -35617,7 +36445,7 @@ return array (
       ),
     ),
   ),
-  201 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -35687,7 +36515,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35782,12 +36610,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -35871,19 +36699,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  202 => 
+  204 => 
   array (
     'meta' => 
     array (
@@ -36027,7 +36857,7 @@ return array (
       ),
     ),
   ),
-  203 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -36139,7 +36969,7 @@ return array (
       ),
     ),
   ),
-  204 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -36279,7 +37109,7 @@ return array (
       ),
     ),
   ),
-  205 => 
+  207 => 
   array (
     'meta' => 
     array (
@@ -36349,7 +37179,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36444,12 +37274,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>editPostLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -36487,7 +37317,7 @@ return array (
       ),
     ),
   ),
-  206 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -36645,7 +37475,7 @@ return array (
       ),
     ),
   ),
-  207 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -36715,7 +37545,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36810,12 +37640,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>editLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -36848,7 +37678,7 @@ return array (
       ),
     ),
   ),
-  208 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -36988,7 +37818,7 @@ return array (
       ),
     ),
   ),
-  209 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -37100,7 +37930,7 @@ return array (
       ),
     ),
   ),
-  210 => 
+  212 => 
   array (
     'meta' => 
     array (
@@ -37159,7 +37989,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37254,17 +38084,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>draftForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -37297,7 +38127,7 @@ return array (
       ),
     ),
   ),
-  211 => 
+  213 => 
   array (
     'meta' => 
     array (
@@ -37367,7 +38197,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37469,7 +38299,7 @@ return array (
           <td>array</td>
           <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
           <td>string|bool</td>
-          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
+          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница добавления комментария </td></tr></tbody>
           </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
@@ -37531,10 +38361,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -37546,7 +38378,7 @@ return array (
       ),
     ),
   ),
-  212 => 
+  214 => 
   array (
     'meta' => 
     array (
@@ -37686,7 +38518,7 @@ return array (
       ),
     ),
   ),
-  213 => 
+  215 => 
   array (
     'meta' => 
     array (
@@ -37745,7 +38577,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37840,12 +38672,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -37860,18 +38692,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -37905,13 +38731,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  214 => 
+  216 => 
   array (
     'meta' => 
     array (
@@ -38089,7 +38958,7 @@ return array (
       ),
     ),
   ),
-  215 => 
+  217 => 
   array (
     'meta' => 
     array (
@@ -38256,7 +39125,7 @@ return array (
       ),
     ),
   ),
-  216 => 
+  218 => 
   array (
     'meta' => 
     array (
@@ -38315,7 +39184,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38410,12 +39279,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>rssLink</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -38453,7 +39322,7 @@ return array (
       ),
     ),
   ),
-  217 => 
+  219 => 
   array (
     'meta' => 
     array (
@@ -38501,7 +39370,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38596,12 +39465,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>form</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr></tbody>
               </table>',
@@ -38629,7 +39498,7 @@ return array (
       ),
     ),
   ),
-  218 => 
+  220 => 
   array (
     'meta' => 
     array (
@@ -38688,7 +39557,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38783,17 +39652,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>loginForm</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td>refererRedirect</td>
+          <td></td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -38821,7 +39690,7 @@ return array (
       ),
     ),
   ),
-  219 => 
+  221 => 
   array (
     'meta' => 
     array (
@@ -38961,7 +39830,7 @@ return array (
       ),
     ),
   ),
-  220 => 
+  222 => 
   array (
     'meta' => 
     array (
@@ -39073,7 +39942,7 @@ return array (
       ),
     ),
   ),
-  221 => 
+  223 => 
   array (
     'meta' => 
     array (
@@ -39121,7 +39990,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39271,10 +40140,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -39292,7 +40163,7 @@ return array (
       ),
     ),
   ),
-  222 => 
+  224 => 
   array (
     'meta' => 
     array (
@@ -39404,7 +40275,7 @@ return array (
       ),
     ),
   ),
-  223 => 
+  225 => 
   array (
     'meta' => 
     array (
@@ -39522,7 +40393,7 @@ return array (
       ),
     ),
   ),
-  224 => 
+  226 => 
   array (
     'meta' => 
     array (
@@ -39700,7 +40571,7 @@ return array (
       ),
     ),
   ),
-  225 => 
+  227 => 
   array (
     'meta' => 
     array (
@@ -39840,7 +40711,7 @@ return array (
       ),
     ),
   ),
-  226 => 
+  228 => 
   array (
     'meta' => 
     array (
@@ -39991,7 +40862,7 @@ return array (
       ),
     ),
   ),
-  227 => 
+  229 => 
   array (
     'meta' => 
     array (
@@ -40092,7 +40963,7 @@ return array (
       ),
     ),
   ),
-  228 => 
+  230 => 
   array (
     'meta' => 
     array (
@@ -40137,7 +41008,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -40271,10 +41161,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -40292,7 +41184,7 @@ return array (
       ),
     ),
   ),
-  229 => 
+  231 => 
   array (
     'meta' => 
     array (
@@ -40362,7 +41254,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40457,12 +41349,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>page</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogAuthor</td>
@@ -40543,12 +41435,14 @@ return array (
           <td>DateTime</td>
           <td>$lastActivity</td><td>дата последней активности </td></tr><tr>
           <td>IObjectSet</td>
-          <td>$posts</td><td>посты автора </td></tr></tbody>
+          <td>$posts</td><td>посты автора </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  230 => 
+  232 => 
   array (
     'meta' => 
     array (
@@ -40618,7 +41512,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40713,12 +41607,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td>list</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -40733,18 +41627,12 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td>Array
-(
-)
-</td>
+          <td></td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -40773,13 +41661,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  231 => 
+  233 => 
   array (
     'meta' => 
     array (
@@ -40908,7 +41839,7 @@ return array (
       ),
     ),
   ),
-  232 => 
+  234 => 
   array (
     'meta' => 
     array (
@@ -40967,7 +41898,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41117,10 +42048,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41138,7 +42071,7 @@ return array (
       ),
     ),
   ),
-  233 => 
+  235 => 
   array (
     'meta' => 
     array (
@@ -41208,7 +42141,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41358,10 +42291,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41379,7 +42314,7 @@ return array (
       ),
     ),
   ),
-  234 => 
+  236 => 
   array (
     'meta' => 
     array (
@@ -41449,7 +42384,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41599,10 +42534,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41620,7 +42557,7 @@ return array (
       ),
     ),
   ),
-  235 => 
+  237 => 
   array (
     'meta' => 
     array (
@@ -41723,7 +42660,7 @@ return array (
       ),
     ),
   ),
-  236 => 
+  238 => 
   array (
     'meta' => 
     array (
@@ -41855,7 +42792,7 @@ return array (
       ),
     ),
   ),
-  237 => 
+  239 => 
   array (
     'meta' => 
     array (
@@ -41995,7 +42932,7 @@ return array (
       ),
     ),
   ),
-  238 => 
+  240 => 
   array (
     'meta' => 
     array (
@@ -42107,7 +43044,7 @@ return array (
       ),
     ),
   ),
-  239 => 
+  241 => 
   array (
     'meta' => 
     array (
@@ -42166,7 +43103,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42316,10 +43253,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -42337,7 +43276,7 @@ return array (
       ),
     ),
   ),
-  240 => 
+  242 => 
   array (
     'meta' => 
     array (
