@@ -445,7 +445,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -540,12 +540,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>editDraftLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -774,7 +774,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -869,17 +869,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>publishForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -1874,7 +1874,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1969,17 +1969,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>publishForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -2200,7 +2200,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2295,12 +2295,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -2493,7 +2493,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2588,12 +2588,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -2696,7 +2696,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2791,17 +2791,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td></td>
+          <td>1</td>
           <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
@@ -2893,7 +2893,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2988,17 +2988,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>unpublishForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -3057,7 +3057,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3082,8 +3082,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -3224,7 +3224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3319,12 +3319,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -3339,12 +3339,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -3481,7 +3487,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3576,12 +3582,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -4082,7 +4088,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4177,12 +4183,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>postList</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -4197,12 +4203,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -4344,7 +4356,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4439,12 +4451,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -4459,12 +4471,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -4891,7 +4909,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5275,7 +5293,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5370,12 +5388,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -5390,12 +5408,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -5784,7 +5808,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5879,12 +5903,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -6208,7 +6232,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6303,12 +6327,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -6323,7 +6347,10 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -6406,7 +6433,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:30";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -6433,7 +6479,7 @@ return array (
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (
@@ -6521,7 +6567,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6616,22 +6662,22 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>form</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>noRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>type</td>
           <td>string</td>
-          <td></td>
+          <td>registered</td>
           <td>тип регистрируемого пользователя</td>
         </tr></tbody>
               </table>',
@@ -7647,7 +7693,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7742,12 +7788,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>loginLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -8168,7 +8214,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8263,17 +8309,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>form</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>noRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -8360,7 +8406,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8455,12 +8501,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>postList</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -8475,12 +8521,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -8622,7 +8674,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8717,17 +8769,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>sendToModerationForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -8767,7 +8819,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '32f0b62d-5f0a-4e1c-bcd6-70e386a79c53',
-      'displayName' => 'Development и Production окружения',
+      'displayName' => 'Разные окружения',
       'branch' => 
       array (
         'meta' => 
@@ -8787,7 +8839,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Development и Production окружения',
+        1 => 'Разные окружения',
       ),
       'created' => 
       array (
@@ -8797,7 +8849,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 03:26:46";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-02 07:32:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8822,20 +8874,20 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'разные окружения',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'В UMI.CMS 3.0 есть разные окружения, сконфигурированные под оптимальные задачи.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -8845,7 +8897,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Разные окружения',
       ),
       'contents#ru-RU' => 
       array (
@@ -8858,8 +8910,8 @@ return array (
 
 <ul>
 	<li><strong>development окружение </strong>сконфигурировано таким образом, чтобы разработчику сайта было удобнее заниматься отладкой проекта. Используется распакованное ядро, выводится очень подробная информация об ошибках, полностью выключено кэширование шаблонов и браузерное кэширование;</li>
-	<li><strong>console окружение </strong>используется для консольного приложения UMI.CMS и имеет конфигурацию, аналогичную development - окружению;</li>
-	<li><strong>production окружение </strong>сконфигурирована так, чтобы обеспечить максимальную безопасность и производительность&nbsp; сайта. Используется запакованное ядро, выключен подробный вывод всех ошибок, выводится лишь краткая и безопасная информация, полностью включено кэширование.</li>
+	<li><strong>console окружение </strong>используется для консольного приложения UMI.CMS и имеет конфигурацию, аналогичную development окружению;</li>
+	<li><strong>production окружение </strong>сконфигурирована так, чтобы обеспечить максимальную безопасность и производительность сайта. Используется запакованное ядро, выключен подробный вывод всех ошибок, выводится лишь краткая и безопасная информация, полностью включено кэширование.</li>
 </ul>
 
 <p>Вы можете добавить неограниченное количество собственных окружений в конфигурацию.</p>
@@ -8880,7 +8932,7 @@ return array (
 	<li>cacheTemplateEnabled - включено ли кэширование / компиляция шаблонов (актуально для <strong>twig-шаблонизатора</strong>);</li>
 	<li>timezone&nbsp; - временнАя зона сервера;</li>
 	<li>directoryPublic - публичная директория с проектами;</li>
-	<li>directoryRoot - корневая директория сервера</li>
+	<li>directoryRoot - корневая директория сервера.</li>
 </ul>
 
 <p>&nbsp;</p>
@@ -8925,6 +8977,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -8987,7 +9044,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9082,12 +9139,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -9102,12 +9159,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -9244,7 +9307,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9339,12 +9402,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -9359,12 +9422,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -9618,7 +9687,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9713,12 +9782,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>subject</td>
@@ -9868,7 +9937,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9963,12 +10032,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>editPostLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -10297,7 +10366,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10392,12 +10461,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>moderateLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -10655,7 +10724,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10750,17 +10819,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rejectForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -10863,7 +10932,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10958,12 +11027,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>moderateLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -11066,7 +11135,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11161,12 +11230,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -11181,12 +11250,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -11334,7 +11409,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11429,12 +11504,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -11771,7 +11846,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11866,12 +11941,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>draftLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -12217,7 +12292,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12312,12 +12387,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -12652,7 +12727,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12747,12 +12822,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -12950,7 +13025,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13045,12 +13120,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>rubric</td>
@@ -13563,7 +13638,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13658,12 +13733,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>results</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -13678,12 +13753,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -13965,7 +14046,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14060,12 +14141,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -14665,7 +14746,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14760,17 +14841,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
           <td>bool</td>
-          <td></td>
+          <td>1</td>
           <td>генерировать ли абсолютный URL для ссылки</td>
         </tr><tr>
           <td>activationCode</td>
@@ -16013,7 +16094,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16108,12 +16189,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -16314,6 +16395,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -16325,6 +16411,20 @@ return array (
             'type' => 'registered.supervisor',
             'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
             'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -16625,7 +16725,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:45:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16650,8 +16750,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -16789,7 +16889,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16884,17 +16984,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>publishDraftForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogDraft</td>
@@ -17768,7 +17868,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17863,22 +17963,22 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>cloud</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>minFontSize</td>
           <td>int</td>
-          <td></td>
+          <td>13</td>
           <td>минимальный размер шрифта</td>
         </tr><tr>
           <td>maxFontSize</td>
           <td>int</td>
-          <td></td>
+          <td>24</td>
           <td>максимальный размер шрифта</td>
         </tr></tbody>
               </table>',
@@ -17965,7 +18065,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18060,12 +18160,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>view</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogComment</td>
@@ -18784,7 +18884,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18879,12 +18979,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>addPostLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -19205,7 +19305,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19300,12 +19400,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>infoblock</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>infoBlock</td>
@@ -19410,7 +19510,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -19437,7 +19556,7 @@ return array (
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (
@@ -19503,7 +19622,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19528,8 +19647,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -19658,7 +19777,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:23:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-02 07:32:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19683,8 +19802,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -20088,7 +20207,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20183,12 +20302,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -20779,7 +20898,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20874,17 +20993,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>logoutForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>noRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -20971,7 +21090,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21066,17 +21185,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rejectForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogComment</td>
@@ -21392,7 +21511,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21487,12 +21606,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -21649,7 +21768,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21744,17 +21863,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>sendToModerationForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -22574,7 +22693,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22669,12 +22788,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>editPostLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -23728,7 +23847,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23823,12 +23942,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -24010,7 +24129,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:08:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24035,8 +24154,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -24069,7 +24188,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -24416,7 +24535,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24511,12 +24630,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>newsList</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -24531,12 +24650,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -24546,7 +24671,10 @@ return array (
         </tr><tr>
           <td>subjects</td>
           <td>array|NewsSubject[]|NewsSubject|null</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>сюжет, новостных сюжетов или GUID, из которых выводятся новости. Если не указаны, то выводятся новости всех сюжетов</td>
         </tr></tbody>
               </table>',
@@ -24656,7 +24784,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24681,8 +24809,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -24715,7 +24843,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -24818,7 +24946,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24913,12 +25041,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -25487,7 +25615,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25582,12 +25710,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>fragments</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>index</td>
@@ -25602,7 +25730,7 @@ return array (
         </tr><tr>
           <td>contextWordsLimit</td>
           <td>int</td>
-          <td></td>
+          <td>5</td>
           <td>сколько слов контекста выводить в цитате</td>
         </tr></tbody>
               </table>',
@@ -25925,7 +26053,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26020,12 +26148,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -26377,7 +26505,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26472,12 +26600,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -26492,12 +26620,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -26623,7 +26757,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26718,12 +26852,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>highlight</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>text</td>
@@ -26738,12 +26872,12 @@ return array (
         </tr><tr>
           <td>highlightStart</td>
           <td>string</td>
-          <td></td>
+          <td><mark></td>
           <td>настройка маркера начала подсветки найденных результатов</td>
         </tr><tr>
           <td>highlightEnd</td>
           <td>string</td>
-          <td></td>
+          <td></mark></td>
           <td>настройка маркера конца подсветки найденных результатов</td>
         </tr></tbody>
               </table>',
@@ -27920,7 +28054,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28015,17 +28149,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>form</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>noRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -28757,7 +28891,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28852,12 +28986,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>link</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -29518,7 +29652,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29613,12 +29747,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>category</td>
@@ -29778,7 +29912,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29873,17 +30007,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>addComment</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -30123,7 +30257,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30218,12 +30352,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -30238,12 +30372,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -30380,7 +30520,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30475,12 +30615,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>auto</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>branch</td>
@@ -30490,7 +30630,7 @@ return array (
         </tr><tr>
           <td>depth</td>
           <td>int</td>
-          <td></td>
+          <td>1</td>
           <td>уровень вложенности меню</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -30598,7 +30738,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30693,12 +30833,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -30713,12 +30853,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -31162,7 +31308,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31257,12 +31403,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>newsList</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -31277,12 +31423,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -31536,7 +31688,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31631,12 +31783,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>view</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr></tbody>
               </table>',
@@ -31766,7 +31918,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31861,12 +32013,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>tree</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -31881,7 +32033,10 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -31973,7 +32128,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32068,12 +32223,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogTag</td>
@@ -32822,7 +32977,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32917,12 +33072,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>postList</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -32937,12 +33092,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -33224,7 +33385,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33319,17 +33480,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>unPublishPostForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -33421,7 +33582,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33516,12 +33677,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>newsItem</td>
@@ -33910,7 +34071,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34005,12 +34166,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>customMenu</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>parentNode</td>
@@ -34025,7 +34186,10 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -34828,7 +34992,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-17 14:52:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34861,12 +35025,12 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Как добавить свое поле?',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Как добавить свое поле?',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -34881,7 +35045,97 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Статья в разработке..</p>
+        1 => '<p>В младших редакциях UMI.CMS отсутствует модуль &quot;Модели данных&quot;, но вы всегда можете расширить объекты собственными свойствами через конфигурационные файлы. Каждый объект, характеризуется определенным набором свойств, описанных для его типа в метаданных его коллекции.&nbsp; Чтобы у объекта появилось новое свойство, в локальных конфигурационных файлах необходимо расширить метаданные коллекции, в которую добавляется поле, и соответсвующую схему таблицы базы данных.</p>
+
+<p>Для примера, добавим строчное поле &quot;Дополнительный заголовок&quot; в простую контентную страницу, в базе данных значение этого поле будет также хранится как строка. Чтобы сделать это вручную, в папке расширяемого проекта создадим или отредактируем существующие конфигурационные файлы.</p>
+
+<p>Сначала опишем свойство в метаданных коллекции и добавим его к нужному типу данных в файле <strong>~/project/module/structure/configuration/structure/metadata.config.php:</strong></p>
+
+<pre>
+&lt;?php
+use umi\\orm\\metadata\\field\\IField;
+
+return
+    [
+        &#39;fields&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; [
+                &#39;type&#39; =&gt; IField::TYPE_STRING,
+                &#39;columnName&#39; =&gt; &#39;additional_title&#39;
+            ]
+        ],
+        &#39;types&#39; =&gt; [
+            &#39;static&#39; =&gt; [
+                &#39;fields&#39; =&gt; [
+                    &#39;additionalTitle&#39; =&gt; []
+                ]
+            ]
+        ]
+    ];</pre>
+
+<p>Затем отредактируем схему таблицы базы данных в файле <strong>~/project/module/structure/configuration/structure/scheme.config.php</strong>, чтобы обеспечить хранение значения свойства.</p>
+
+<pre>
+&lt;?php
+
+use Doctrine\\DBAL\\Types\\Type;
+
+return
+    [
+    &#39;columns&#39;     =&gt;  [
+        &#39;additional_title&#39; =&gt; [
+            &#39;type&#39; =&gt; Type::STRING
+        ]
+    ]
+];
+</pre>
+
+<p>После редактирования схемы таблицы базы данных необходимо запустить миграцию через консольное приложение:</p>
+
+<pre>
+php ./bin/umi sync:project-scheme [http://домен_проекта]</pre>
+
+<p>После успешного выполнения синхронизации схем база примет вид, соответствующий конфигурационным файлам - все новые описанные таблицы и колонки будут добавлены, все неописанные в конфигурационных файлах колонки таблиц будут удалены.</p>
+
+<p>Если необходимо редактировать значение добавленного свойства объекта в административной панели, потребуется также расширить конфигурации форм для редактирования и/или создания объекта. Расширим форму создания страницы полем &quot;Дополнительный заголовок&quot; в файле <strong>~/project/module/structure/cofiguration/structure/form/static.create.config.php</strong>. Добавим поле, например, в группу&nbsp; &quot;Контент&quot;:</p>
+
+<pre>
+&lt;?php
+
+use umi\\form\\element\\Text;
+
+return [
+
+    &#39;elements&#39; =&gt; [
+        &#39;contents&#39; =&gt; [
+            &#39;elements&#39; =&gt; [
+                &#39;additionalTitle&#39; =&gt; [
+                    &#39;type&#39; =&gt; Text::TYPE_NAME,
+                    &#39;label&#39; =&gt; &#39;additionalTitle&#39;,
+                    &#39;options&#39; =&gt; [
+                        &#39;dataSource&#39; =&gt; &#39;additionalTitle&#39;
+                    ]
+                ]
+            ]
+        ]
+    ]
+];</pre>
+
+<p>Таким образом, мы добавили в форму создания контентной страницы простое поле для ввода строки, значение которого будет сохранено в свойство &quot;Дополнительный заголовок&quot;.</p>
+
+<p>Не имея перевода для своего лейбла, это поле будет отображаться в формах создания страниц во всех доступных языках административной панели как additionalTitle. Для перевода расширим конфигурационный файл словаря коллекции страниц <strong>~/project/module/structure/configuration/structure/i18n/dictionary.config.php</strong>:</p>
+
+<pre>
+&lt;?php
+
+return [
+        &#39;en-US&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; &#39;Additional title&#39;
+        ],
+
+        &#39;ru-RU&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; &#39;Дополнительный заголовок&#39;
+        ]
+    ];</pre>
 ',
       ),
       'active#ru-RU' => 
@@ -36213,7 +36467,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36238,8 +36492,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -36266,7 +36520,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -36515,7 +36769,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36610,12 +36864,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogPost</td>
@@ -36739,7 +36993,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:43:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:37:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36764,8 +37018,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -36777,7 +37031,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Документация для разработчиков сайтов и сервисов на платформе UMI',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -36796,17 +37050,17 @@ return array (
 
 <p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
 
-<p>Предполагается, что знакомство с администрированием системы уже состоялось (иначе рекомендуется сначала обратить внимание на <a href="http://umi-cms.ru/help" target="_blank">оользовательскую документацию</a>).</p>
+<p>Предполагается, что знакомство с <a href="http://help.umi-cms.ru" target="_blank">администрированием системы</a> уже состоялось. <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/trebovaniya_k_serveru/" target="_blank">Требования к серверу</a> и <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/ustanovka_sistemy1/" target="_blank">процесс установки</a>&nbsp;UMI.CMS 3.0 описаны&nbsp;там же.&nbsp;</p>
 
 <h3>Глоссарий по 3.0</h3>
 
 <ul>
 	<li>MVC&nbsp;&mdash; концепция Model-View-Controller, заложенная в архитектуру UMI.CMS 3. Подробнее на&nbsp;<a href="http://ru.wikipedia.org/wiki/Model-View-Controller">Википедии</a>.</li>
 	<li>Компонент &mdash;&nbsp;MVC-триада.</li>
-	<li>Виджет &mdash;&nbsp;служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
-	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
-	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем созавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
 	<li>Проект &mdash;&nbsp;компонент, состоящий из модулей.</li>
+	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
+	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем создавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
+	<li><strong>Виджет</strong> служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
 </ul>
 ',
       ),
@@ -37179,7 +37433,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37274,12 +37528,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>editPostLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -37343,7 +37597,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:22:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37368,8 +37622,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -37545,7 +37799,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37640,12 +37894,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>editLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -37989,7 +38243,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38084,17 +38338,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>draftForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr><tr>
           <td>blogPost</td>
@@ -38577,7 +38831,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38672,12 +38926,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -38692,12 +38946,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -39184,7 +39444,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39279,12 +39539,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>rssLink</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>absolute</td>
@@ -39370,7 +39630,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39465,12 +39725,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>form</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr></tbody>
               </table>',
@@ -39557,7 +39817,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39652,17 +39912,17 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>loginForm</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>redirectUrl</td>
           <td>string</td>
-          <td></td>
+          <td>refererRedirect</td>
           <td>URL для редиректа после успешной обработки формы</td>
         </tr></tbody>
               </table>',
@@ -40301,7 +40561,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 20:32:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40326,8 +40586,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -40718,7 +40978,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'f39fde62-1177-4db3-b7f7-fac9655f90fc',
-      'displayName' => 'Структура директорий',
+      'displayName' => 'Описание файлов и директорий',
       'branch' => 
       array (
         'meta' => 
@@ -40749,7 +41009,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Структура директорий',
+        1 => 'Описание файлов и директорий',
       ),
       'created' => 
       array (
@@ -40759,7 +41019,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40784,8 +41044,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -40807,7 +41067,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Структура директорий',
+        1 => 'Описание файлов и директорий',
       ),
       'contents#ru-RU' => 
       array (
@@ -40818,7 +41078,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -41254,7 +41514,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41349,12 +41609,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>page</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>blogAuthor</td>
@@ -41512,7 +41772,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41607,12 +41867,12 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td></td>
+          <td>widget.forbidden</td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
           <td>string</td>
-          <td></td>
+          <td>list</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
           <td>limit</td>
@@ -41627,12 +41887,18 @@ return array (
         </tr><tr>
           <td>options</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки селектора</td>
         </tr><tr>
           <td>pagination</td>
           <td>array</td>
-          <td></td>
+          <td>Array
+(
+)
+</td>
           <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
@@ -42583,7 +42849,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:38:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42608,8 +42874,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -42617,6 +42883,31 @@ return array (
       array (
         0 => 'string',
         1 => 'Контроллеры',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Контроллер обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями.</p>
+
+<p>Мы не рекомендуем создавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</p>
+
+<p>&nbsp;</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -42657,6 +42948,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
