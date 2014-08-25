@@ -1,7 +1,7 @@
-define(['App'], function(UMI){
+define(['App'], function(UMI) {
     "use strict";
 
-    return function(){
+    return function() {
         UMI.SingleCollectionObjectRelationElementView = UMI.ObjectRelationElementView.extend({
             templateName: 'partials/singleCollectionObjectRelationElement',
 
@@ -9,7 +9,7 @@ define(['App'], function(UMI){
 
             objectIsObservable: false,
 
-            popupParams: function(){
+            popupParams: function() {
                 return {
                     templateParams: {
                         meta: this.get('meta')
@@ -23,19 +23,19 @@ define(['App'], function(UMI){
             }.property(),
 
             actions: {
-                clearValue: function(){
+                clearValue: function() {
                     var self = this;
                     self.set('value', '');
                 },
 
-                showPopup: function(params){
+                showPopup: function(params) {
                     this.get('controller').send('showPopup', params);
                 }
             }
         });
 
         UMI.SingleCollectionObjectRelationLayoutController = UMI.ObjectRelationLayoutController.extend({
-            tableControlSettings: function(){
+            tableControlSettings: function() {
                 var self = this;
                 var selectedCollectionId = self.get('selectedCollection.id');
                 var meta = self.get('model.meta');
@@ -56,24 +56,24 @@ define(['App'], function(UMI){
                                         type: "text",
                                         tag: "input",
                                         id: "displayName",
-                                        label: "Имя отображения",
+                                        label: "Имя отображения",//TODO: localize
                                         attributes: {
                                             name: "displayName",
                                             type: "text",
                                             value: null
                                         },
                                         valid: true,
-                                        errors: [ ],
+                                        errors: [],
                                         dataSource: "displayName",
                                         value: null,
-                                        validators: [ ],
-                                        filters: [ ]
+                                        validators: [],
+                                        filters: []
                                     }
                                 ]
                             }
                         },
                         behaviour: {
-                            rowEvent: function(context, selectedObject){
+                            rowEvent: function(context, selectedObject) {
                                 var value = selectedObject.get('guid');
                                 Ember.set(meta, 'value', value);
                                 context.send('closePopup');
@@ -83,7 +83,7 @@ define(['App'], function(UMI){
                 };
             }.property('selectedCollection'),
 
-            init: function(){
+            init: function() {
                 var self = this;
                 var meta = self.get('meta');
                 var collection = Ember.get(meta, 'collection');

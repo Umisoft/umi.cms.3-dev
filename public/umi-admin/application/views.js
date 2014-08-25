@@ -1,13 +1,13 @@
-define([], function(){
+define([], function() {
     'use strict';
 
-    return function(UMI){
+    return function(UMI) {
 
         UMI.ApplicationView = Ember.View.extend({
             classNames: ['umi-main-view', 's-full-height'],
-            didInsertElement: function(){
+            didInsertElement: function() {
                 $('body').removeClass('loading');
-                if(window.applicationLoading){
+                if (window.applicationLoading) {
                     window.applicationLoading.resolve();
                 }
             }

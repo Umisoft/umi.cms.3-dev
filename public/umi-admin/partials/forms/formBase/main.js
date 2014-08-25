@@ -4,7 +4,7 @@ define(
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, magellan, submitToolbar){
+    function(UMI, magellan, submitToolbar) {
         'use strict';
 
         /**
@@ -13,14 +13,14 @@ define(
          * Объявление формы:
          *  {{render 'formBase' model}}
          */
-        return function(){
+        return function() {
 
             magellan();
             submitToolbar();
 
             UMI.FormControllerMixin = Ember.Mixin.create(UMI.i18nInterface, {
                 dictionaryNamespace: 'form',
-                localDictionary: function(){
+                localDictionary: function() {
                     var form = this.get('control') || {};
                     return form.i18n;
                 }.property()
@@ -34,7 +34,7 @@ define(
                  * @default "form"
                  */
                 tagName: 'form',
-                submit: function(){
+                submit: function() {
                     return false;
                 },
                 /**
@@ -42,35 +42,35 @@ define(
                  * @method hasFieldset
                  * @return bool
                  */
-                hasFieldset: function(){
+                hasFieldset: function() {
                     return this.get('context.control.meta.elements').isAny('type', 'fieldset');
                 }.property('context.control.meta'),
 
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
-                    isFieldset: function(){
+                    isFieldset: function() {
                         return this.get('content.type') === 'fieldset';
                     }.property(),
                     isExpanded: true,
-                    isField: function(){
-                        if(!this.get('isFieldset')){
+                    isField: function() {
+                        if (!this.get('isFieldset')) {
                             return this.gridType();
                         }
                     }.property(),
                     /**
                      * @method gridType
                      */
-                    gridType: function(){
+                    gridType: function() {
                         var wideElements = ['wysiwyg', 'permissions'];
                         var widthClass = 'large-4 small-12';
-                        if(wideElements.contains(this.get('content.type'))){
+                        if (wideElements.contains(this.get('content.type'))) {
                             widthClass = 'small-12';
                         }
                         return 'umi-columns ' + widthClass;
                     },
 
                     actions: {
-                        expand: function(){
+                        expand: function() {
                             this.toggleProperty('isExpanded');
                         }
                     }
@@ -78,27 +78,34 @@ define(
             });
 
             UMI.FieldMixin = Ember.Mixin.create({
-                isRequired: function(){
+                classNameBindings: ['isError:error'],
+                /**
+                 * @property isError
+                 * @hook
+                 */
+                isError: function() {}.property(),
+
+                isRequired: function() {
                     var validators = this.get('meta.validators');
-                    if(Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')){
+                    if (Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')) {
                         return ' *';
                     }
                 }.property(),
 
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}'),
 
-                template: function(){
+                template: function() {
                     var meta;
                     var template;
-                    try{
+                    try {
                         meta = this.get('meta');
                         template = this.get(Ember.String.camelize(meta.type) + 'Template') || '';
-                        if(!template){
-                            throw new Error('Для поля с типом ' + meta.type + ' не реализован шаблонный метод.');
+                        if (!template) {
+                            throw new Error('For a field of type ' + meta.type + ' template method is not implemented.');
                         }
-                    } catch(error){
+                    } catch (error) {
                         this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
-                    } finally{
+                    } finally {
                         template = this.extendTemplate(template);
                         return Ember.Handlebars.compile(template);
                     }
@@ -110,79 +117,79 @@ define(
                  * @param template
                  * @returns String
                  */
-                extendTemplate: function(template){
+                extendTemplate: function(template) {
                     return template;
                 },
 
-                textTemplate: function(){
+                textTemplate: function() {
                     return '{{view "textElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                emailTemplate: function(){
+                emailTemplate: function() {
                     return '{{view "emailElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                passwordTemplate: function(){
+                passwordTemplate: function() {
                     return '{{view "passwordElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                numberTemplate: function(){
+                numberTemplate: function() {
                     return '{{view "numberElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                colorTemplate: function(){
+                colorTemplate: function() {
                     return '{{view "colorElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                timeTemplate: function(){
+                timeTemplate: function() {
                     return '{{time-element object=view.object meta=view.meta}}';
                 }.property(),
 
-                dateTemplate: function(){
+                dateTemplate: function() {
                     return '{{view "dateElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                datetimeTemplate: function(){
+                datetimeTemplate: function() {
                     return '{{view "dateTimeElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                fileTemplate: function(){
+                fileTemplate: function() {
                     return '{{view "fileElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                imageTemplate: function(){
+                imageTemplate: function() {
                     return '{{view "imageElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                textareaTemplate: function(){
+                textareaTemplate: function() {
                     return '{{view "textareaElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                wysiwygTemplate: function(){
+                wysiwygTemplate: function() {
                     return '{{view "htmlEditor" object=view.object meta=view.meta}}';
                 }.property(),
 
-                selectTemplate: function(){
+                selectTemplate: function() {
                     return '{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
-                multiSelectTemplate: function(){
+                multiSelectTemplate: function() {
                     return '{{view "multiSelect" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
-                checkboxTemplate: function(){
+                checkboxTemplate: function() {
                     return '{{view "checkboxElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                checkboxGroupTemplate: function(){
+                checkboxGroupTemplate: function() {
                     return '{{view "checkboxGroupElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                radioTemplate: function(){
+                radioTemplate: function() {
                     return '{{view "radioElement" object=view.object meta=view.meta}}';
                 }.property(),
 
-                submitTemplate: function(){
+                submitTemplate: function() {
                     return '<span class="button right" {{action "submit" target="view.parentView"}}>{{view.meta.label}}</span>';
                 }.property()
             });
@@ -206,35 +213,47 @@ define(
 
                 attributeBindings: ['action'],
 
-                action: function(){
+                action: function() {
                     return this.get('context.control.meta.attributes.action');
                 }.property('context.control.meta.attributes.action'),
 
                 actions: {
-                    submit: function(handler){
+                    submit: function(handler) {
                         var self = this;
-                        if(handler){
+                        if (handler) {
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
+
                         $.ajax({
-                            type: "POST",
+                            type: 'POST',
                             url: self.get('action'),
                             global: false,
                             data: data,
-                            success: function(results){
+
+                            success: function(results) {
                                 var meta = Ember.get(results, 'result.save');
                                 var context = self.get('context');
-                                Ember.set(context, 'control.meta', meta);
+                                if (meta) {
+                                    Ember.set(context, 'control.meta', meta);
+                                }
                                 handler.removeClass('loading');
-                                var params = {type: 'success', 'content': 'Сохранено.', duration: false};
+                                var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
                                 UMI.notification.create(params);
                             },
-                            error: function(results){
-                                var meta = Ember.get(results, 'responseJSON.result.save');
-                                var context = self.get('context');
 
-                                Ember.set(context, 'control.meta', meta);
+                            error: function(results) {
+                                var result = Ember.get(results, 'responseJSON.result');
+                                var meta = Ember.get(result, 'save');
+                                var context = self.get('context');
+                                if (meta && Ember.get(meta, 'type')) {
+                                    Ember.set(context, 'control.meta', meta);
+                                }
+                                var error = Ember.get(result, 'error');
+                                if (error && Ember.get(error, 'message')) {
+                                    var params = {type: 'error', content: Ember.get(error, 'message')};
+                                    UMI.notification.create(params);
+                                }
                                 handler.removeClass('loading');
                             }
                         });
@@ -243,12 +262,12 @@ define(
 
                 submitToolbarView: UMI.SubmitToolbarView.extend({
                     elementView: Ember.View.extend(UMI.ToolbarElement, {
-                        buttonView: function(){
+                        buttonView: function() {
                             var params = {};
-                            if(this.get('context.behaviour.name') === 'save'){
+                            if (this.get('context.behaviour.name') === 'save') {
                                 params = {
                                     actions: {
-                                        save: function(){
+                                        save: function() {
                                             this.get('parentView.parentView.parentView').send('submit', this.$());
                                         }
                                     }
@@ -261,31 +280,30 @@ define(
             });
 
             UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {
-                layout: function(){
+                layout: function() {
                     var type = this.get('meta.type');
                     var layout = '<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}';
 
-                    switch(type){
+                    switch (type) {
                         case 'checkbox':
-                            layout = '{{yield}}{{view.isRequired}}';
+                            layout = '<div class="umi-form-element-without-label">{{yield}}{{view.isRequired}}</div>';
                             break;
                         case 'submit':
                             layout = '{{yield}}';
                             break;
                     }
 
-                    var validate = '{{#if view.validateErrors}}<small class="error">{{view.validateErrors}}</small>{{/if}}';
-                    layout = layout + validate;
                     return Ember.Handlebars.compile(layout);
                 }.property(),
-                classNameBindings: ['validateErrors:error'],
-                validateErrors: function(){
+
+                isError: function() {
                     var errors = this.get('meta.errors');
-                    if(Ember.typeOf(errors) === 'array'){
-                        return errors.join('.');
+                    if (Ember.typeOf(errors) === 'array' && errors.length) {
+                        return errors.join('. ');
                     }
                 }.property('meta.errors.@each'),
-                singleCollectionObjectRelationTemplate: function(){
+
+                singleCollectionObjectRelationTemplate: function() {
                     return '{{view "singleCollectionObjectRelationElement" object=view.object meta=view.meta}}';
                 }.property()
             });

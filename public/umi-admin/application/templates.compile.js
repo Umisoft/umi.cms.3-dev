@@ -243,10 +243,10 @@ function program6(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"umi-component s-full-height\"> <div class=\"row\"> <div class=\"small-10 columns small-centered text-center\"> <p></p> <div> <h2>  <!--.-->  ");
+  data.buffer.push("<div class=\"umi-component s-full-height\"> <div class=\"row\"> <div class=\"small-10 columns small-centered text-center\"> <p></p> <div>  <h2> ");
   stack1 = helpers._triageMustache.call(depth0, "title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </h2> ");
+  data.buffer.push(". </h2>  ");
   stack1 = helpers['if'].call(depth0, "model.content", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
@@ -277,16 +277,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "treeControl", "model", options) : helperMissing.call(depth0, "render", "treeControl", "model", options))));
-  
-});
-
-Ember.TEMPLATES["UMI/partials/chartControl"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  
-
-
-  data.buffer.push("<div class=\"umi-canvas-wrapper\"> <canvas id=\"umi-metrika-canvas\"></canvas> </div>");
   
 });
 
@@ -1199,7 +1189,7 @@ function program13(depth0,data) {
 function program15(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" <br /> ");
+  data.buffer.push(" <br/> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "fieldBase", {hash:{
     'metaBinding': ("formElement"),
     'objectBinding': ("formElement")
@@ -2152,7 +2142,7 @@ function program1(depth0,data) {
   var buffer = '';
   data.buffer.push(" <i ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":icon view.defaultBehaviourIcon")
+    'class': (":icon view.iconClass view.defaultBehaviourIcon")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push("></i> ");
   return buffer;
@@ -2624,7 +2614,7 @@ function program1(depth0,data) {
   data.buffer.push(" ");
   stack1 = helpers._triageMustache.call(depth0, "view.data.control.params.latestVersion.version", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</h5> <br /> <span class=\"button large\" ");
+  data.buffer.push("</h5> <br/> <span class=\"button large\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "update", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
@@ -2638,7 +2628,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', helper, options;
-  data.buffer.push(" <br /> <span class=\"button large disabled\">");
+  data.buffer.push(" <br/> <span class=\"button large disabled\">");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Nothing update", "updateLayout", options) : helperMissing.call(depth0, "i18n", "Nothing update", "updateLayout", options))));
   data.buffer.push("</span> ");
   return buffer;

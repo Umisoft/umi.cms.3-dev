@@ -20,8 +20,22 @@ form{
     font-size: rem-calc(13);
     margin-bottom: rem-calc(5);
 }
+
 .umi-form-control{
     background: #f5f6f7;
+}
+
+.umi-form-element-without-label{
+    margin-bottom: rem-calc(10);
+}
+
+@media #{$large-up} {
+    .umi-form-element-without-label{
+        margin-top: rem-calc(18);
+        .umi-element-checkbox{
+            padding-top: 7px;
+        }
+    }
 }
 
 .umi-form-control .magellan-content{

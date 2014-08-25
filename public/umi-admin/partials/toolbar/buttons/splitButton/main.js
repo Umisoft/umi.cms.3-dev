@@ -1,55 +1,54 @@
-define(['App'],
-    function(UMI){
+define(['App'], function(UMI) {
         "use strict";
 
-        return function(){
+        return function() {
             /**
              * Mixin реализующий интерфейс действия по умолчанию для split button.
              */
             UMI.SplitButtonDefaultBehaviour = Ember.Mixin.create({
-                pathInLocalStorage: function(){
-                    var meta = this.get('meta') || {behaviour : {}};
+                pathInLocalStorage: function() {
+                    var meta = this.get('meta') || {behaviour: {}};
                     return 'layout.defaultBehaviour.' + meta.type + '.' + meta.behaviour.name;
                 }.property(),
 
                 defaultBehaviourIndex: null,
 
-                defaultBehaviour: function(){
+                defaultBehaviour: function() {
                     var index = this.get('defaultBehaviourIndex');
                     var choices = this.get('meta.behaviour.choices') || [];
-                    if(choices[index]){
+                    if (choices[index]) {
                         return choices[index];
-                    } else if(index > 0){
+                    } else if (index > 0) {
                         this.set('defaultBehaviourIndex', 0);
                     }
                     return choices[0];
                 }.property('defaultBehaviourIndex'),
 
-                defaultBehaviourIcon: function(){
-                    if(this.get('defaultBehaviour')){
+                defaultBehaviourIcon: function() {
+                    if (this.get('defaultBehaviour')) {
                         return 'icon-' + this.get('defaultBehaviour.behaviour.name');
                     }
                 }.property('defaultBehaviour'),
 
                 actions: {
-                    toggleDefaultBehaviour: function(index){
-                        if(this.get('defaultBehaviourIndex') !== index){
+                    toggleDefaultBehaviour: function(index) {
+                        if (this.get('defaultBehaviourIndex') !== index) {
                             this.set('defaultBehaviourIndex', index);
                             UMI.Utils.LS.set(this.get('pathInLocalStorage'), index);
                         }
                     }
                 },
 
-                init: function(){
+                init: function() {
                     this._super();
                     this.set('defaultBehaviourIndex', UMI.Utils.LS.get(this.get('pathInLocalStorage')) || 0);
                 }
             });
 
             UMI.SplitButtonDefaultBehaviourForComponent = Ember.Mixin.create({
-                pathInLocalStorage: function(){
+                pathInLocalStorage: function() {
                     var componentName = this.get('controller.componentName');
-                    var meta = this.get('meta') || {behaviour : {}};
+                    var meta = this.get('meta') || {behaviour: {}};
                     return 'layout.defaultBehaviour.' + meta.type + '.' + meta.behaviour.name + '.' + componentName;
                 }.property('controller.componentName')
             });
@@ -65,35 +64,57 @@ define(['App'],
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 templateName: 'partials/splitButton',
+
                 tagName: 'span',
+
                 isOpen: false,
+
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
+
                 attributeBindings: ['title'],
-                label: function(){
+
+                label: function() {
                     return this.get('defaultBehaviour.attributes.label');
                 }.property('defaultBehaviour.attributes.label'),
+
                 title: Ember.computed.alias('meta.attributes.title'),
-                click: function(event){
+
+                iconClass: function(){
+                    var classIcon;
+
+                    switch (this.get('meta.attributes.class')) {
+                        case 'white':
+                            classIcon = '';
+                            break;
+                        default:
+                            classIcon = 'white';
+                            break;
+                    }
+
+                    return classIcon;
+                }.property('meta.attributes.class'),
+
+                click: function(event) {
                     var el = this.$();
-                    if(event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('umi-button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
+                    if (event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('umi-button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))) {
                         this.send('sendActionForBehaviour', this.get('defaultBehaviour').behaviour);
                     }
                 },
                 actions: {
-                    open: function(event){
+                    open: function(event) {
                         var self = this;
                         var $el = self.$();
-                        setTimeout(function(){
+                        setTimeout(function() {
                             self.toggleProperty('isOpen');
 
-                            if(self.get('isOpen')){
+                            if (self.get('isOpen')) {
                                 // закрывает список в случае клика мимо списка
-                                $('html').on('click.splitButton', function(event){
-                                    if($el.children('.dropdown-toggler')[0] === event.target){
+                                $('html').on('click.splitButton', function(event) {
+                                    if ($el.children('.dropdown-toggler')[0] === event.target) {
                                         return;
                                     }
                                     var targetElement = $(event.target).closest('.f-dropdown');
-                                    if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== $el[0].getAttribute('id')){
+                                    if (!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== $el[0].getAttribute('id')) {
                                         $('html').off('click.splitButton');
                                         self.set('isOpen', false);
                                     }
@@ -106,7 +127,7 @@ define(['App'],
                      * @method sendActionForBehaviour
                      * @param behaviour
                      */
-                    sendActionForBehaviour: function(behaviour){
+                    sendActionForBehaviour: function(behaviour) {
                         this.send(behaviour.name, {behaviour: behaviour});
                     }
                 },
@@ -114,20 +135,22 @@ define(['App'],
                 itemView: Ember.View.extend({
                     tagName: 'li',
                     classNames: ['has-default-button'],
-                    label: function(){
+                    label: function() {
                         return this.get('context.attributes.label');
                     }.property('context.attributes.label'),
-                    icon: function(){
+                    icon: function() {
                         return 'icon-' + this.get('context.behaviour.name');
                     }.property('context.behaviour.name'),
-                    isDefaultBehaviour: function(){
+                    isDefaultBehaviour: function() {
                         var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
                         return defaultBehaviourIndex === this.get('_parentView.contentIndex');
                     }.property('parentView.defaultBehaviourIndex')
                 })
             });
 
-            function SplitButtonBehaviour(){}
+            function SplitButtonBehaviour() {
+            }
+
             SplitButtonBehaviour.prototype = Object.create(UMI.globalBehaviour);
 
             SplitButtonBehaviour.prototype.dropUp = {
@@ -135,29 +158,29 @@ define(['App'],
             };
 
             SplitButtonBehaviour.prototype.contextMenu = {
-                itemView: function(){
+                itemView: function() {
                     var baseItem = Ember.View.extend({
                         tagName: 'li',
                         classNames: ['has-default-button'],
-                        label: function(){
+                        label: function() {
                             return this.get('context.attributes.label');
                         }.property('context.attributes.label'),
-                        isDefaultBehaviour: function(){
+                        isDefaultBehaviour: function() {
                             var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
                             return defaultBehaviourIndex === this.get('_parentView.contentIndex');
                         }.property('parentView.defaultBehaviourIndex'),
-                        icon: function(){
+                        icon: function() {
                             return 'icon-' + this.get('context.behaviour.name');
                         }.property('context.behaviour.name'),
-                        init: function(){
+                        init: function() {
                             this._super();
                             var context = this.get('context');
-                            if(Ember.get(context, 'behaviour.name') === 'switchActivity'){
+                            if (Ember.get(context, 'behaviour.name') === 'switchActivity') {
                                 this.reopen({
-                                    label: function(){
-                                        if(this.get('controller.object.active')){
+                                    label: function() {
+                                        if (this.get('controller.object.active')) {
                                             return this.get('context.attributes.states.deactivate.label');
-                                        } else{
+                                        } else {
                                             return this.get('context.attributes.states.activate.label');
                                         }
                                     }.property('context.attributes.label', 'controller.object.active')
@@ -171,5 +194,4 @@ define(['App'],
 
             UMI.splitButtonBehaviour = new SplitButtonBehaviour();
         };
-    }
-);
+    });

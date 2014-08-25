@@ -1,28 +1,28 @@
-define(
-    ['App'],
-    function(UMI){
+define(['App'], function(UMI) {
         "use strict";
 
-        return function(){
+        return function() {
             /**
              * Абстрактный класс поведения
              * @class
              * @abstract
              */
-            function GlobalBehaviour(){}
+            function GlobalBehaviour() {
+            }
+
             GlobalBehaviour.prototype = {
                 save: {
-                    label: function(){
-                        if(this.get('controller.object.isDirty')){
+                    label: function() {
+                        if (this.get('controller.object.isDirty')) {
                             return this.get('defaultBehaviour.attributes.label');
-                        } else{
+                        } else {
                             return this.get('meta.attributes.states.notModified.label');
                         }
                     }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
                     classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
-                    beforeSave: function(){
+                    beforeSave: function() {
                         var model = this.get('controller.object');
-                        if(!model.get('isDirty') || !model.get('isValid')){
+                        if (!model.get('isDirty') || !model.get('isValid')) {
                             return false;
                         }
                         var button = this.$();
@@ -34,16 +34,16 @@ define(
                         return params;
                     },
                     actions: {
-                        save: function(){
+                        save: function() {
                             var params = this.beforeSave();
-                            if(params){
+                            if (params) {
                                 this.get('controller').send('save', params);
                             }
                         },
 
-                        saveAndGoBack: function(){
+                        saveAndGoBack: function() {
                             var params = this.beforeSave();
-                            if(params){
+                            if (params) {
                                 this.get('controller').send('saveAndGoBack', params);
                             }
                         }
@@ -52,7 +52,7 @@ define(
 
                 "create": {
                     actions: {
-                        "create": function(params){
+                        "create": function(params) {
                             var behaviour = params.behaviour;
                             var object = params.object || this.get('controller.object');
                             this.get('controller').send('create', {behaviour: behaviour, object: object});
@@ -61,16 +61,23 @@ define(
                 },
 
                 switchActivity: {
-                    label: function(){
-                        if(this.get('controller.object.active')){
+                    label: function() {
+                        if (this.get('controller.object.active')) {
                             return this.get('meta.attributes.states.deactivate.label');
-                        } else{
+                        } else {
                             return this.get('meta.attributes.states.activate.label');
                         }
                     }.property('meta.attributes.label', 'controller.object.active'),
                     classNameBindings: ['controller.object.active::umi-disabled'],
+                    iconClass: function() {
+                        var iconClass = 'inactive';
+                        if (this.get('controller.object.active')) {
+                            iconClass = 'active';
+                        }
+                        return 'icon-' + iconClass;
+                    }.property('meta.behaviour.name', 'controller.object.active'),
                     actions: {
-                        switchActivity: function(params){
+                        switchActivity: function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('switchActivity', model);
@@ -80,7 +87,7 @@ define(
 
                 backToFilter: {
                     actions: {
-                        backToFilter: function(){
+                        backToFilter: function() {
                             this.get('controller').send('backToFilter');
                         }
                     }
@@ -88,7 +95,7 @@ define(
 
                 trash: {
                     actions: {
-                        trash: function(params){
+                        trash: function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('trash', model);
@@ -98,7 +105,7 @@ define(
 
                 untrash: {
                     actions: {
-                        untrash: function(params){
+                        untrash: function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('untrash', model);
@@ -108,7 +115,7 @@ define(
 
                 "delete": {
                     actions: {
-                        "delete": function(params){
+                        "delete": function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('delete', model);
@@ -118,7 +125,7 @@ define(
 
                 viewOnSite: {
                     actions: {
-                        viewOnSite: function(params){
+                        viewOnSite: function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('viewOnSite', model);
@@ -128,7 +135,7 @@ define(
 
                 edit: {
                     actions: {
-                        edit: function(params){
+                        edit: function(params) {
                             params = params || {};
                             var model = params.object || this.get('controller.object');
                             this.get('controller').send('edit', model);
@@ -138,10 +145,10 @@ define(
 
                 add: {
                     classNameBindings: ['controller.object.isValid::disabled'],
-                    beforeAdd: function(params){
+                    beforeAdd: function(params) {
                         params = params || {};
                         var model = params.object || this.get('controller.object');
-                        if(!model.get('isValid')){
+                        if (!model.get('isValid')) {
                             return false;
                         }
                         var button = this.$();
@@ -153,24 +160,24 @@ define(
                         return params;
                     },
                     actions: {
-                        add: function(params){
+                        add: function(params) {
                             params = params || {};
                             var addParams = this.beforeAdd(params.object);
-                            if(addParams){
+                            if (addParams) {
                                 this.get('controller').send('add', addParams);
                             }
                         },
 
-                        addAndGoBack: function(){
+                        addAndGoBack: function() {
                             var params = this.beforeAdd();
-                            if(params){
+                            if (params) {
                                 this.get('controller').send('addAndGoBack', params);
                             }
                         },
 
-                        addAndCreate: function(){
+                        addAndCreate: function() {
                             var params = this.beforeAdd();
-                            if(params){
+                            if (params) {
                                 this.get('controller').send('addAndCreate', params);
                             }
                         }
@@ -179,7 +186,7 @@ define(
 
                 importFromRss: {
                     actions: {
-                        importFromRss: function(){
+                        importFromRss: function() {
                             var model = this.get('controller.object');
                             this.get('controller').send('importFromRss', model);
                         }
@@ -188,35 +195,37 @@ define(
 
                 switchRobots: {
                     isAllowedRobots: null,
-                    label: function(){
-                        if(this.get('isAllowedRobots')){
-                            return this.get('meta.attributes.states.disallow.label');
-                        } else{
-                            return this.get('meta.attributes.states.allow.label');
+                    label: function() {
+                        var title;
+                        if (this.get('isAllowedRobots')) {
+                            title = this.get('meta.attributes.states.disallow.label');
+                        } else {
+                            title = this.get('meta.attributes.states.allow.label');
                         }
+                        return title;
                     }.property('meta.attributes.label', 'isAllowedRobots'),
-                    iconClass: function(){
-                        if(this.get('isAllowedRobots')){
+                    iconClass: function() {
+                        if (this.get('isAllowedRobots')) {
                             return 'icon-allowRobots';
-                        } else{
+                        } else {
                             return 'icon-disallowRobots';
                         }
                     }.property('isAllowedRobots'),
                     actions: {
-                        switchRobots: function(){
+                        switchRobots: function() {
                             var self = this;
                             var defer = Ember.RSVP.defer();
                             var promise = defer.promise;
                             var currentState = this.get('isAllowedRobots');
                             var model = this.get('controller.object');
                             this.get('controller').send('switchRobots', model, currentState, defer);
-                            promise.then(function(){
+                            promise.then(function() {
                                 self.set('isAllowedRobots', !currentState);
                             });
                         }
                     },
-                    checkIsAllowedRobots: function(){
-                        if(this.get('isDestroying') || this.get('isDestroyed')){
+                    checkIsAllowedRobots: function() {
+                        if (this.get('isDestroying') || this.get('isDestroyed')) {
                             return;
                         }
                         var self = this;
@@ -224,30 +233,37 @@ define(
                         var componentController = this.get('container').lookup('controller:component');
                         var isAllowedRobotsSource;
                         var serializeObject;
-                        if(componentController){
+                        if (componentController) {
                             serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                             isAllowedRobotsSource = componentController.get('settings.actions.isAllowedRobots.source');
-                            return $.get(isAllowedRobotsSource + '?id=' + object.get('id')).then(function(results){
+                            return $.get(isAllowedRobotsSource + '?id=' + object.get('id')).then(function(results) {
                                 results = results || {};
                                 self.set('isAllowedRobots', Ember.get(results, 'result.isAllowedRobots'));
                             });
                         }
                     },
 
-                    checkIsAllowedRobotsChange: function(){
+                    checkIsAllowedRobotsChange: function() {
                         Ember.run.once(this, 'checkIsAllowedRobots');
                     }.observes('controller.object').on('didInsertElement'),
 
-                    willDestroyElement: function(){
+                    willDestroyElement: function() {
+                        this.removeObserver('controller.object');
+                        this.removeObserver('label');
+                    },
+
+                    willClearRender: function() {
                         this.removeObserver('controller.object');
                     },
 
-                    willClearRender: function(){
-                        this.removeObserver('controller.object');
-                    }
+                    labelChange: function() {
+                        var $el = this.$();
+                        if ($el && $el.attr('title')) {
+                            $el.attr('title', this.get('label'));
+                        }
+                    }.observes('label').on('didInsertElement')
                 }
             };
             UMI.globalBehaviour = new GlobalBehaviour();
         };
-    }
-);
+    });
