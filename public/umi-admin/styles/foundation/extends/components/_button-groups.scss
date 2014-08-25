@@ -6,9 +6,10 @@
         float: none;
         display: inline-block;
         letter-spacing: normal;
-        > button.white,
-        .button.white{
-            border-color: transparent;
+        > button, > .button, button, .button{
+            &.white, &.flat{
+                border-color: transparent;
+            }
         }
     }
 }

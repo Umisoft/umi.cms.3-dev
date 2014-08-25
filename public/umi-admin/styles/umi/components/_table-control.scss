@@ -225,12 +225,6 @@ $table-control-row-bg-hover: #C8DEEE;
             background: #E9F1F7;
         }
     }
-    .f-dropdown{//TODO: replaced 'right' class
-        margin-top: 7px;
-        right: -1px;
-        left: auto;
-        width: auto;
-    }
 }
 
 
@@ -372,8 +366,19 @@ $table-control-row-bg-hover: #C8DEEE;
             }
         }
     }
+
     &.hover{
         background: $table-control-row-bg-hover !important;
+        .button{
+            visibility: visible;
+        }
+    }
+
+    .button{
+        visibility: hidden;
+        &.open{
+            visibility: visible;
+        }
     }
     &.selected{
         background: #259cec !important;
