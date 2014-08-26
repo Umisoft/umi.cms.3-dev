@@ -198,7 +198,7 @@ define(['App', 'moment'], function(UMI, moment) {
                     }
                     this.set('iScroll', scroll);
                     var self = this;
-                    self.set('backupList', self.getBackupList());
+                    //self.set('backupList', self.getBackupList());
                     self.get('controller.object').off('didUpdate');
                     self.get('controller.object').on('didUpdate', function() {
                         self.set('backupList', self.getBackupList());
@@ -324,9 +324,7 @@ define(['App', 'moment'], function(UMI, moment) {
                 getForm: function() {
                     var self = this;
                     var meta = self.get('meta');
-                    if (self.get('isDestroying') || self.get('isDestroyed')) {
-                        return;
-                    }
+
                     var action = Ember.get(self.get('controller.settings'), 'actions.' + Ember.get(meta, 'behaviour.action') + '.source');
                     return $.get(action).then(function(results) {
                         var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
@@ -337,7 +335,7 @@ define(['App', 'moment'], function(UMI, moment) {
                 didInsertElement: function() {
                     var self = this;
 
-                    self.set('form', self.getForm());
+                    //self.set('form', self.getForm());
 
                     self.addObserver('controller.object', function() {//TODO: check event
                         Ember.run.next(self, function() {
