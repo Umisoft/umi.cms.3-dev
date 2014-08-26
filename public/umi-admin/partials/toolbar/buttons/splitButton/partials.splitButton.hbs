@@ -1,24 +1,28 @@
-{{#if view.meta.attributes.hasIcon}}
-<i {{bind-attr class=":icon view.iconClass view.defaultBehaviourIcon"}}></i>
-{{/if}}
+{{#view view.buttonView meta=view.meta defaultBehaviour=view.defaultBehaviour}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.parentView.defaultBehaviourIcon"}}></i>
+    {{/if}}
 
-{{#if view.label}}
-<b class="umi-button-label">{{view.label}}</b>
-{{/if}}
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
 
-<span class="dropdown-toggler" {{action 'open' target="view"}}></span>
-{{#if view.isOpen}}
-<ul class="f-dropdown composite">
+    <span class="dropdown-toggler" {{action 'open' target="view"}}
+        {{bind-attr data-options="view.dataOptions" data-dropdown="view.parentView.dropdownId"}}></span>
+{{/view}}
+
+<ul {{bind-attr id="view.dropdownId"}} class="f-dropdown f-dropdown-composite" data-dropdown-content>
     {{#each view.meta.behaviour.choices}}
-    {{#view view.itemView}}
-    <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}
-    class="umi-dropdown-item-link">
-    <i {{bind-attr class=":icon view.icon"}}></i>
-    <div>{{view.label}}</div>
-    </a>
-    <i {{bind-attr class=":icon :icon-accept :split-default-button view.isDefaultBehaviour::white"}} {{action
-    'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>
-    {{/view}}
+        {{#view view.itemView}}
+            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}>
+                <i {{bind-attr class=":icon view.icon"}}></i>
+
+                <div>{{view.label}}</div>
+
+                <i {{bind-attr class=":icon :icon-accept :split-default-button view.isDefaultBehaviour::white"}}
+                {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView"
+                on="mouseUp" bubbles=false}}></i>
+            </a>
+        {{/view}}
     {{/each}}
 </ul>
-{{/if}}

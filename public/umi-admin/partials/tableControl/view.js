@@ -474,12 +474,12 @@ define(['App', 'toolbar'], function(UMI) {
             classNames: ['button-group', 'table-context-toolbar'],
             elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function() {
-                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
+                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent,
+                        UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
                     var behaviour = {};
                     var splitButtonBehaviour;
-                    var i;
-                    var action;
+
                     if (behaviourName) {
                         splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                         for (var key in splitButtonBehaviour) {
@@ -488,25 +488,11 @@ define(['App', 'toolbar'], function(UMI) {
                             }
                         }
                     }
-                    var choices = this.get('context.behaviour.choices');
-                    if (behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array') {
-                        for (i = 0; i < choices.length; i++) {
-                            action = '';
-                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
-                            if (behaviourAction) {
-                                action = behaviourAction.actions[choices[i].behaviour.name];
-                                if (action) {
-                                    if (Ember.typeOf(behaviour.actions) !== 'object') {
-                                        behaviour.actions = {};
-                                    }
-                                    behaviour.actions[choices[i].behaviour.name] = action;
-                                }
-                            }
-                        }
-                    }
-                    behaviour.classNames = ['white square'];
-                    behaviour.label = null;
-                    behaviour.iconClass = '';
+
+                    behaviour.extendButton = behaviour.extendButton = {};
+                    behaviour.extendButton.classNames = ['white square'];
+                    behaviour.extendButton.label = null;
+
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()
