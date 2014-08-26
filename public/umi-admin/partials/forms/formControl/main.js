@@ -1,12 +1,88 @@
 define(['App'],
 
     function(UMI) {
-        "use strict";
+        'use strict';
 
         return function() {
 
+            UMI.FormHelper = {
+                getNestedProperties: function(elements, ignoreTypes) {
+                    var propertyNames = [];
+                    if (Ember.typeOf(elements) !== 'array') {
+                        Ember.warn('Wrong type argument: expected array.');
+                        elements = [];
+                    }
+
+                    if (Ember.typeOf(ignoreTypes) !== 'array') {
+                        ignoreTypes = [];
+                    }
+
+                    for (var i = 0; i < elements.length; i++) {
+                        if (!ignoreTypes.contains(Ember.get(elements[i], 'type'))) {
+                            var dataSource = Ember.get(elements[i], 'dataSource');
+                            if (dataSource) {
+                                propertyNames.push(dataSource);
+                            }
+                        }
+
+                        var nestedElements = Ember.get(elements[i], 'elements');
+
+                        if (nestedElements) {
+                            var nestedPropertyNames = this.getNestedProperties(nestedElements, ignoreTypes);
+                            propertyNames = propertyNames.concat(nestedPropertyNames);
+                        }
+                    }
+
+                    return propertyNames;
+                }
+            };
+
+            var objectFetch = function(routeData) {
+                var meta = Ember.get(routeData, 'control.meta');
+                var incompleteObject = Ember.get(routeData, 'object');
+                var collectionName = incompleteObject.constructor.typeKey;
+                var store = incompleteObject.get('store');
+                var fields;
+                var ignoreTypes = ['fieldset'];
+
+                fields = UMI.FormHelper.getNestedProperties(Ember.get(meta, 'elements'), ignoreTypes);
+
+                var request = UMI.OrmHelper.buildRequest(incompleteObject, fields);
+                request.filters = {id: incompleteObject.get('id')};
+                var promise = store.updateCollection(collectionName, request);
+                return promise;
+            };
+
+            var FormControlService = Ember.Object.extend({
+                route: {
+                    action: {
+                        afterModel: function(model) {
+                            var defer = Ember.RSVP.defer();
+
+                            objectFetch(model).then(
+                                function(result) {
+                                    defer.resolve(result);
+                                },
+                                function(error) {
+                                    defer.reject(error);
+                                }
+                            );
+
+                            return defer.promise;
+                        }
+                    }
+                }
+            });
+
+            UMI.register('service:formControl', FormControlService);
+            UMI.inject('controller:action', 'editFormService', 'service:formControl');
+
             UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
+
+                formElementsBinding: 'control.meta.elements',
+
+                objectBinding: 'model.object',
 
                 settings: function() {
                     var settings = {};
@@ -18,13 +94,16 @@ define(['App'],
                     var elements = this.get('control.meta.elements');
                     var inputElements = [];
                     var i;
+
                     for (i = 0; i < elements.length; i++) {
-                        if (Ember.get(elements[i], 'type') === 'fieldset' && Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array') {
+                        if (Ember.get(elements[i], 'type') === 'fieldset' &&
+                            Ember.typeOf(Ember.get(elements[i], 'elements')) === 'array') {
                             inputElements = inputElements.concat(elements[i].elements);
                         } else {
                             inputElements.push(elements[i]);
                         }
                     }
+
                     return inputElements;
                 },
 
@@ -33,7 +112,8 @@ define(['App'],
                     var stack = [];
                     var key;
                     var inputElements = this.inputElements();
-                    var validateErrorLabel = UMI.i18n.getTranslate('Object') + ' ' + UMI.i18n.getTranslate('Not valid').toLowerCase() + '.';
+                    var validateErrorLabel = UMI.i18n.getTranslate('Object') + ' ' +
+                        UMI.i18n.getTranslate('Not valid').toLowerCase() + '.';
                     var settings = {
                         type: 'error',
                         duration: false,
@@ -100,7 +180,8 @@ define(['App'],
             UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
                 layout: function() {
                     var type = this.get('meta.type');
-                    var layout = '<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span></div>{{yield}}';
+                    var layout = '<div><span class="umi-form-label">{{view.meta.label}}{{view.isRequired}}</span>' +
+                        '</div>{{yield}}';
 
                     switch (type) {
                         case 'checkbox':
@@ -111,16 +192,21 @@ define(['App'],
                 }.property(),
 
                 isRequired: function() {
+                    var object = this.get('object');
                     var dataSource = this.get('meta.dataSource');
-                    var validators = this.get('object').validatorsForProperty(dataSource);
-                    if (Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')) {
-                        return ' *';
+                    var validators;
+                    if (object) {
+                        validators = this.get('object').validatorsForProperty(dataSource);
+                        if (Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')) {
+                            return ' *';
+                        }
                     }
-                }.property(),
+                }.property('object'),
 
                 isError: function() {
                     var dataSource = this.get('meta.dataSource');
                     var isValid = !!this.get('object.validErrors.' + dataSource);
+
                     return isValid;
                 }.property('object.validErrors.@each'),
 

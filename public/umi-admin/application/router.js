@@ -1083,6 +1083,8 @@ define([], function() {
                             UMI.i18n.getTranslate('Not found').toLowerCase() + '.');
                     }
 
+                    contentControl = $.extend({}, contentControl);
+
                     routeData = {
                         'object': contextModel,
                         'control': contentControl
@@ -1171,6 +1173,37 @@ define([], function() {
                     deferred.reject(transition.send('templateLogs', error, 'component'));
                 } finally {
                     return deferred.promise;
+                }
+            },
+
+            afterModel: function(model, transition) {
+                try {
+                    var defer = Ember.RSVP.defer();
+                    var control = this.controllerFor('action');
+                    var controlName = Ember.get(model, 'control.name');
+                    var controlService = control[controlName + 'Service'];
+
+                    if (controlService) {
+                        var actionHook = controlService.get('route.action');
+                        if (Ember.canInvoke(actionHook, 'afterModel')) {
+                            actionHook.afterModel(model).then(
+                                function(result) {
+                                    defer.resolve(result);
+                                },
+
+                                function(error) {
+                                    defer.reject(error);
+                                }
+                            );
+                        } else {
+                            defer.resolve();
+                        }
+                    } else {
+                        defer.resolve();
+                    }
+                    return defer.promise;
+                } catch (error) {
+                    transition.send('backgroundError', error);
                 }
             },
 
