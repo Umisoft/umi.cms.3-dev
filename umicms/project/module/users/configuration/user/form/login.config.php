@@ -2,6 +2,7 @@
 
 use umi\filter\IFilterFactory;
 use umi\form\element\Password;
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -40,7 +41,11 @@ return [
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
-            ],
+            ]
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Log in'
         ]
     ]
 ];
