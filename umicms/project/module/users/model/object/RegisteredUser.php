@@ -229,14 +229,6 @@ class RegisteredUser extends BaseUser
 
         $result = true;
 
-        if (!strlen(trim($this->rawPassword))) {
-            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
-                [$this->translate('Value is required.')]
-            );
-
-            $result = false;
-        }
-
         /**
          * @var UserCollection $collection
          */
