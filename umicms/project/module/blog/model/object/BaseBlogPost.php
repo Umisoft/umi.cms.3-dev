@@ -243,7 +243,6 @@ abstract class BaseBlogPost extends CmsObject implements ICmsPage
 
         return $commentCollection->getInternalSelector()
             ->fields([BlogComment::FIELD_IDENTIFY])
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($this)
             ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
                 ->equals(CommentStatus::GUID_PUBLISHED)
