@@ -46,6 +46,18 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
     }
 
     /**
+     * Форма смены пароля пользователя
+     */
+    const FORM_CHANGE_PASSWORD = 'changePassword';
+    /**
+     * Действие для изменения пароля пользователя
+     */
+    const ACTION_CHANGE_PASSWORD = 'changePassword';
+    /**
+     * Действие для получения формы на смену пароля
+     */
+    const ACTION_GET_CHANGE_PASSWORD_FORM = 'getChangePasswordForm';
+    /**
      * Настройка для регистрации пользователей только после активации
      */
     const SETTING_REGISTRATION_WITH_ACTIVATION = 'registrationWithActivation';

@@ -15,6 +15,7 @@ return [
         'button:create' => 'Create user',
         'action:create:registered' => 'Registered',
         'action:create:registered.supervisor' => 'Create supervisor',
+        'action:changePassword' => 'Change password',
 
         'role:editor:displayName' => 'Manage users'
     ],
@@ -24,6 +25,7 @@ return [
         'button:create' => 'Создать пользователя',
         'action:create:registered' => 'Пользователя',
         'action:create:registered.supervisor' => 'Супервайзера',
+        'action:changePassword' => 'Изменить пароль',
 
         'role:editor:displayName' => 'Управление пользователями'
     ]
