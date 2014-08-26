@@ -58,6 +58,18 @@ var UMI = UMI || {};
                 stepRequest(pathInstaller, params);
             });
 
+            $(document).on('click', '.js-handler-error-log', function(e) {
+                if (UMI.errorLog !== null) {
+                    overlay.open('<h3>Лог ошибок</h3><textarea style="height:165px;resize:vertical">' + UMI.errorLog + '</textarea><span>Обратитесь в службу заботы. К обращению прикрепите <a href="/errors.txt" target="_blank">лог ошибок</a>.</span><p><input type="submit" class="next_step_submit marginr_px next js-handler-close-overlay" value="Назад"/></p>');
+                }
+                return false;
+            });
+
+            $(document).on('click', '.js-handler-close-overlay', function(e) {
+                overlay.close();
+                return false;
+            });
+
             $(document).on('click', '.js-handler-changeAuthData', function(e) {
                 var params = {};
                 params.command = hashList.command;
@@ -72,7 +84,14 @@ var UMI = UMI || {};
             $('.js-step-' + step +' .info').removeClass('display_none');
             $('.js-step-' + step + ' .img_stop img').remove();
             $('.js-step-' + step + ' .img_stop').html('<img src="http://install.umi-cms.ru/icon_stop_red.png">');
-            $('.js-step-' + step + ' .img_stop_text').html(error.responseJSON.message);
+
+            var errorMessage = error.responseJSON.message;
+            if (error.responseJSON.errorLog !== null) {
+                errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a>';
+                UMI.errorLog = error.responseJSON.errorLog;
+            }
+
+            $('.js-step-' + step + ' .img_stop_text').html(errorMessage);
         });
     });
 
@@ -110,7 +129,14 @@ var UMI = UMI || {};
             $('.js-step-' + step +' .info').removeClass('display_none');
             $('.js-step-' + step + ' .img_stop img').remove();
             $('.js-step-' + step + ' .img_stop').html('<img src="http://install.umi-cms.ru/icon_stop_red.png">');
-            $('.js-step-' + step + ' .img_stop_text').html(error.responseJSON.message);
+
+            var errorMessage = error.responseJSON.message;
+            if (error.responseJSON.errorLog !== null) {
+                errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a>';
+                UMI.errorLog = error.responseJSON.errorLog;
+            }
+
+            $('.js-step-' + step + ' .img_stop_text').html(errorMessage);
         });
     };
 
@@ -194,7 +220,14 @@ var UMI = UMI || {};
         }, function (error) {
             $('.js-step-' + hashList.command +' .info').removeClass('display_none');
             $('.js-step-' + hashList.command + ' .img_stop img').attr("src", "http://install.umi-cms.ru/icon_stop_red.png");
-            $('.js-step-' + hashList.command + ' .img_stop_text').html(error.responseJSON.message);
+
+            var errorMessage = error.responseJSON.message;
+            if (error.responseJSON.errorLog !== null) {
+                errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a>';
+                UMI.errorLog = error.responseJSON.errorLog;
+            }
+
+            $('.js-step-' + hashList.command + ' .img_stop_text').html(errorMessage);
         });
     };
 
@@ -222,7 +255,14 @@ var UMI = UMI || {};
                     showCurrentStep();
                 }
             }, function (error) {
-                $('<p style="color:red">' + error.responseJSON.message + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').appendTo('.js-handler-scroll-panel');
+
+                var errorMessage = error.responseJSON.message;
+                if (error.responseJSON.errorLog !== null) {
+                    errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a>';
+                    UMI.errorLog = error.responseJSON.errorLog;
+                }
+
+                $('<p style="color:red">' + errorMessage + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').appendTo('.js-handler-scroll-panel');
                 $('.scroll-window').scrollTop($('.js-handler-scroll-panel').height());
 
                 if (error.responseJSON.overlay !== undefined && error.responseJSON.overlay !== null) {

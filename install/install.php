@@ -43,7 +43,7 @@ ini_set('max_execution_time', 0);
 /** @noinspection PhpIncludeInspection */
 require $autoLoaderPath;
 
-$request = new Request($_GET);
+$request = Request::createFromGlobals();
 $response = new Response();
 
 try {
@@ -105,6 +105,7 @@ try {
 } catch (\Exception $e) {
     $response->setContent(json_encode([
         'message' => $e->getMessage(),
+        'errorLog' => file_exists('./errors.txt') ? file_get_contents('./errors.txt') : null,
         'overlay' => $e instanceof RuntimeException ? $e->getOverlay() : null
     ]));
     $response->headers->set('Content-Type', 'application/json');

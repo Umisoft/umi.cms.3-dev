@@ -22,7 +22,6 @@ class StepsInfo implements ICommandInstall
      */
     public function __construct(Installer $installer, $param = null)
     {
-        // TODO: Implement __construct() method.
     }
 
     /**
