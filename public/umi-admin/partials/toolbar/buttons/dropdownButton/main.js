@@ -61,6 +61,8 @@ define(['App', 'moment'], function(UMI, moment) {
                     }.property()
                 },
 
+                isLazyDropdown: true,
+
                 getBackupList: function() {
                     var backupList;
                     var self = this;
@@ -181,16 +183,16 @@ define(['App', 'moment'], function(UMI, moment) {
                                 // При обновлении свойств не вызываются методы desialize для атрибутов модели
                                 self.get('controller.store').modelFor(object.constructor.typeKey)
                                     .eachTransformedAttribute(function(name, type) {
-                                    var backupName = Ember.get(data, 'result.getBackup.' + name);
+                                    var property = Ember.get(data, 'result.getBackup.' + name);
 
-                                    if (type === 'CustomDateTime' && Ember.typeOf(backupName) === 'object') {
-                                        Ember.set(backupName, 'date',
-                                            moment(backupName.date).format('DD.MM.YYYY h:mm:ss'));
+                                    if (type === 'CustomDateTime' && Ember.typeOf(property) === 'object') {
+                                        Ember.set(property, 'date',
+                                            moment(property.date).format('DD.MM.YYYY h:mm:ss'));
 
-                                        backupName = JSON.stringify(backupName);
+                                        Ember.set(data, 'result.getBackup.' + name, JSON.stringify(property));
                                     }
                                 });
-                                object.setProperties(data.result.getBackup);
+                                object.setProperties(Ember.get(data, 'result.getBackup'));
                                 setCurrent();
                             });
                         }
@@ -198,24 +200,35 @@ define(['App', 'moment'], function(UMI, moment) {
                 },
 
                 didInsertElement: function() {
-                    var el = this.$();
+                    var self = this;
+                    var $el = this.$();
                     var scroll;
-                    var scrollElement = el.find('.s-scroll-wrap');
+
+                    var scrollElement = $el.find('.s-scroll-wrap');
                     if (scrollElement.length) {
                         scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
                     }
                     this.set('iScroll', scroll);
-                    var self = this;
-                    //self.set('backupList', self.getBackupList());
+
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('backupList', self.getBackupList());
+                            }
+                        });
+                    }
+
                     self.get('controller.object').off('didUpdate');
                     self.get('controller.object').on('didUpdate', function() {
-                        self.set('backupList', self.getBackupList());
+                        Ember.run.once(self, function() {
+                            this.set('backupList', this.getBackupList());
+                        });
                     });
 
-                    self.get('controller').addObserver('object', function() {//TODO: check event
-                        if (self.get('controller.control.name') === 'editForm') {
-                            self.set('backupList', self.getBackupList());
-                        }
+                    self.get('controller').addObserver('object', function() {
+                        isFirstLoad = true;
                     });
                 },
 
@@ -236,6 +249,8 @@ define(['App', 'moment'], function(UMI, moment) {
                         return 'fastSelect: false;';
                     }.property()
                 },
+
+                isLazyDropdown: true,
 
                 formView: Ember.View.extend({
                     tagName: 'form',
@@ -318,13 +333,20 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 didInsertElement: function() {
                     var self = this;
+                    var $el = this.$();
 
-                    //self.set('form', self.getForm());
-
-                    self.addObserver('controller.object', function() {//TODO: check event
-                        Ember.run.next(self, function() {
-                            this.set('form', self.getForm());
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('form', self.getForm());
+                            }
                         });
+                    }
+
+                    self.addObserver('controller.object', function() {
+                        isFirstLoad = true;
                     });
                 },
 
