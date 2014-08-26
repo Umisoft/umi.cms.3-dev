@@ -13,7 +13,6 @@ namespace umicms\project\site\settings\mail\controller;
 use umi\config\io\IConfigIOAware;
 use umi\form\element\IFormElement;
 use umi\http\Response;
-use umi\messages\toolbox\MessagesTools;
 use umicms\hmvc\component\admin\settings\BaseController;
 use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\hmvc\component\admin\TActionController;
@@ -51,17 +50,16 @@ class ActionController extends BaseController implements IConfigIOAware
             $emailSenderInput = $form->get('sender_address');
             $mailSenderInfo = Utils::parseEmailList($emailSenderInput->getValue());
 
-            $config->del(MessagesTools::NAME . '.mailerOptions.sender_address');
-            $config->del(MessagesTools::NAME . '.mailerOptions.delivery_address');
+            $config->del('mailerOptions.sender_address');
 
             if ($mailSenderInfo) {
                 $i = 0;
                 foreach ($mailSenderInfo as $key => $value) {
                     if (is_numeric($key)) {
-                        $config->set(MessagesTools::NAME . '.mailerOptions.sender_address.'. $i . '.email', $value);
+                        $config->set('mailerOptions.sender_address.'. $i . '.email', $value);
                     } else {
-                        $config->set(MessagesTools::NAME . '.mailerOptions.sender_address.'. $i . '.email', $key);
-                        $config->set(MessagesTools::NAME . '.mailerOptions.sender_address.'. $i . '.name', $value);
+                        $config->set('mailerOptions.sender_address.'. $i . '.email', $key);
+                        $config->set('mailerOptions.sender_address.'. $i . '.name', $value);
                     }
                     $i++;
                 }
