@@ -76,7 +76,7 @@ class AddController extends BaseSitePageController
         if ($this->isAllowed($this->comment, 'publish')) {
             $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
         } else {
-            $$this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
+            $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
         return $this->module->comment()->getForm(

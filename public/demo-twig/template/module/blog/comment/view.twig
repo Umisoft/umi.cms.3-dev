@@ -1,21 +1,29 @@
 <div class="media-body">
-    {% if (blogComment.status.guid == constant('CODE_UNPUBLISHED', blogComment.status)) %}
+    {% if (blogComment.status.guid == constant('GUID_UNPUBLISHED', blogComment.status)) %}
         {{ translate('Comment has been unpublish.') }}
     {% else %}
         <h1>{{ blogComment.displayName }}</h1>
-        <time datetime="{{ blogComment.publishTime.format('c') }}">
-            {{ blogComment.publishTime.format('d.m.Y | H:i') }}
-        </time>
+        <p class="blog-post-meta">
+            <time datetime="{{ blogComment.publishTime.format('c') }}">
+                {{ blogComment.publishTime.format('d.m.Y | H:i') }}
+            </time>
+            {% if blogComment.author.getPageUrl() %}
+                {{ translate('Author') }}: <a href="{{ blogComment.author.getPageUrl() }}">{{ blogComment.author.displayName }}</a>
+            {% else %}
+                {{ translate('Author') }}: {{ blogComment.authorGuest }}
+            {% endif %}
+        </p>
+
         {{ blogComment.contents | raw }}
 
-        {% if (blogComment.status.guid == constant('CODE_NEED_MODERATION', blogComment.status)) %}
+        {% if (blogComment.status.guid == constant('GUID_NEED_MODERATION', blogComment.status)) %}
             <div class="btn-toolbar">
                 {{ widget('blog.comment.publishForm', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
                 {{ widget('blog.comment.rejectForm', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
             </div>
         {% endif %}
 
-        {% if (blogComment.status.guid == constant('CODE_PUBLISHED', blogComment.status)) %}
+        {% if (blogComment.status.guid == constant('GUID_PUBLISHED', blogComment.status)) %}
             <div class="btn-toolbar">
                 {{ widget('blog.comment.unpublishForm', {'blogComment' : blogComment, 'template' : 'unpublishForm'}) }}
             </div>
