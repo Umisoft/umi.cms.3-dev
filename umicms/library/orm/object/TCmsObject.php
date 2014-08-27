@@ -10,7 +10,7 @@
 
 namespace umicms\orm\object;
 
-use umi\orm\metadata\field\special\FormulaField;
+use umi\orm\metadata\field\special\DelayedField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
@@ -238,7 +238,7 @@ trait TCmsObject
 
         if ($currentLocaleId !== $defaultLocaleId) {
             foreach ($this->getModifiedProperties() as $property) {
-                if ($property->getField() instanceof FormulaField) {
+                if ($property->getField() instanceof DelayedField) {
                     continue;
                 }
                 if ($property->getLocaleId()) {
