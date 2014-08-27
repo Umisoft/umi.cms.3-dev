@@ -17,40 +17,36 @@ use umicms\orm\object\CmsObject;
  * Метаданные простой коллекции объектов
  */
 return [
-    'fields'     => [
-        CmsObject::FIELD_IDENTIFY            => [
-            'type'       => IField::TYPE_IDENTIFY,
+    'fields' => [
+        CmsObject::FIELD_IDENTIFY => [
+            'type' => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId',
-            'readOnly'   => true
+            'accessor' => 'getId',
+            'readOnly' => true
         ],
-        CmsObject::FIELD_GUID                => [
-            'type'       => IField::TYPE_GUID,
+        CmsObject::FIELD_GUID => [
+            'type' => IField::TYPE_GUID,
             'columnName' => 'guid',
-            'accessor'   => 'getGuid',
-            'readOnly'   => true
+            'accessor' => 'getGuid',
+            'readOnly' => true
         ],
-        CmsObject::FIELD_TYPE                => [
-            'type'       => IField::TYPE_STRING,
+        CmsObject::FIELD_TYPE => [
+            'type' => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
-        CmsObject::FIELD_VERSION             => [
-            'type'         => IField::TYPE_VERSION,
-            'columnName'   => 'version',
-            'accessor'     => 'getVersion',
-            'readOnly'     => true,
+        CmsObject::FIELD_VERSION => [
+            'type' => IField::TYPE_VERSION,
+            'columnName' => 'version',
+            'accessor' => 'getVersion',
+            'readOnly' => true,
             'defaultValue' => 1
         ],
-        CmsObject::FIELD_DISPLAY_NAME        => [
-            'type'          => IField::TYPE_STRING,
-            'columnName'    => 'display_name',
-            'filters'       => [
-                IFilterFactory::TYPE_STRING_TRIM => [],
-                IFilterFactory::TYPE_STRIP_TAGS => []
-            ],
-            'validators'    => [
+        CmsObject::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
@@ -58,25 +54,33 @@ return [
                     'columnName' => 'display_name',
                     'validators' => [
                         IValidatorFactory::TYPE_REQUIRED => []
-                    ]
+                    ],
+                    'filters' => [
+                        IFilterFactory::TYPE_STRING_TRIM => [],
+                        IFilterFactory::TYPE_STRIP_TAGS => []
+                    ],
                 ],
                 'en-US' => [
                     'columnName' => 'display_name_en',
                     'validators' => [
                         IValidatorFactory::TYPE_REQUIRED => []
-                    ]
+                    ],
+                    'filters' => [
+                        IFilterFactory::TYPE_STRING_TRIM => [],
+                        IFilterFactory::TYPE_STRIP_TAGS => []
+                    ],
                 ]
             ]
         ],
-        CmsObject::FIELD_CREATED               => [
-            'type'       => IField::TYPE_DATE_TIME,
+        CmsObject::FIELD_CREATED => [
+            'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
-            'readOnly'   => true
+            'readOnly' => true
         ],
-        CmsObject::FIELD_UPDATED               => [
-            'type'       => IField::TYPE_DATE_TIME,
+        CmsObject::FIELD_UPDATED => [
+            'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'updated',
-            'readOnly'   => true
+            'readOnly' => true
         ],
         CmsObject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
@@ -89,9 +93,9 @@ return [
             'target' => 'user'
         ]
     ],
-    'types'      => [
+    'types' => [
         'base' => [
-            'fields'      => [
+            'fields' => [
                 CmsObject::FIELD_IDENTIFY => [],
                 CmsObject::FIELD_GUID => [],
                 CmsObject::FIELD_TYPE => [],
