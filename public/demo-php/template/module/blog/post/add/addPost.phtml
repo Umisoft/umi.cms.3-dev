@@ -12,11 +12,11 @@ use umicms\project\module\blog\model\object\BlogPost;
     <div class="alert alert-success">
         <p class="bg-success text-success"><?=$this->translate('Post has been added.')?></p>
         <p class="bg-success text-success">
-            <a href="<?=$blogPost->getPageUrl()?>" class="alert-link">
-                <?php if ($blogPost instanceof BlogPost) : ?>
+            <?php if ($blogPost instanceof BlogPost) : ?>
+                <a href="<?=$blogPost->getPageUrl()?>" class="alert-link">
                     <?=$this->translate('ReadMore')?>
-                <?php endif; ?>
-            </a>
+                </a>
+            <?php endif; ?>
         </p>
     </div>
 <?php else : ?>

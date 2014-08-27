@@ -46,9 +46,6 @@ return [
         CmsObject::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
-            ],
             'localizations' => [
                 'ru-RU' => [
                     'columnName' => 'display_name',
