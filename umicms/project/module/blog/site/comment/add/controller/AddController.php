@@ -29,11 +29,14 @@ class AddController extends BaseSitePageController
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
-
     /**
-     * @var string|null $added флаг, указывающий на публикацию комментария
+     * @var string|bool $added флаг, указывающий на публикацию комментария
      */
-    private $added;
+    private $added = false;
+    /**
+     * @var BlogComment $comment
+     */
+    private $comment;
 
     /**
      * Конструктор.
@@ -62,26 +65,24 @@ class AddController extends BaseSitePageController
 
         $post = $this->module->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->module->addComment(
+        $this->comment = $this->module->addComment(
             $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
             $post,
             $parentComment
         );
 
-        $comment->publishTime = new \DateTime();
+        $this->comment->publishTime = new \DateTime();
 
-        if ($this->isAllowed($comment, 'publish')) {
-            $this->added = 'published';
-            $comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
+        if ($this->isAllowed($this->comment, 'publish')) {
+            $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
         } else {
-            $this->added = 'moderation';
-            $comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
+            $$this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
         return $this->module->comment()->getForm(
             BlogComment::FORM_ADD_COMMENT,
             $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
-            $comment
+            $this->comment
         );
     }
 
@@ -91,6 +92,12 @@ class AddController extends BaseSitePageController
     protected function processForm(IForm $form)
     {
         $this->commit();
+
+        if ($this->comment->status->guid === CommentStatus::GUID_PUBLISHED) {
+            $this->added = 'published';
+        } elseif ($this->comment->status->guid === CommentStatus::GUID_NEED_MODERATION) {
+            $this->added = 'moderation';
+        }
 
         return $this->buildRedirectResponse();
     }

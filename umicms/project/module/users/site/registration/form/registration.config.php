@@ -47,14 +47,6 @@ return [
             ]
         ],
 
-        RegisteredUser::FIELD_DISPLAY_NAME => [
-            'type' => Text::TYPE_NAME,
-            'label' => RegisteredUser::FIELD_DISPLAY_NAME,
-            'options' => [
-                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
-            ]
-        ],
-
         RegisteredUser::FIELD_FIRST_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_FIRST_NAME,
