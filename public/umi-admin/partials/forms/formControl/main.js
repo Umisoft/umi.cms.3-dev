@@ -34,6 +34,30 @@ define(['App'],
                     }
 
                     return propertyNames;
+                },
+
+                filterLazyProperties: function(elements) {
+                    var lazyProperties = [];
+
+                    if (Ember.typeOf(elements) !== 'array') {
+                        Ember.warn('Wrong type argument: expected array.');
+                        elements = [];
+                    }
+
+                    for (var i = 0; i < elements.length; i++) {
+                        if (elements[i].lazy) {
+                            lazyProperties.push(Ember.get(elements[i], 'dataSource'));
+                        }
+
+                        var nestedElements = Ember.get(elements[i], 'elements');
+
+                        if (nestedElements) {
+                            var nestedLazyProperties = this.filterLazyProperties(nestedElements);
+                            lazyProperties = lazyProperties.concat(nestedLazyProperties);
+                        }
+                    }
+
+                    return lazyProperties;
                 }
             };
 
@@ -44,38 +68,46 @@ define(['App'],
                 var store = incompleteObject.get('store');
                 var fields;
                 var ignoreTypes = ['fieldset'];
-
+                var promises = [];
                 fields = UMI.FormHelper.getNestedProperties(Ember.get(meta, 'elements'), ignoreTypes);
 
                 var request = UMI.OrmHelper.buildRequest(incompleteObject, fields);
                 request.filters = {id: incompleteObject.get('id')};
-                var promise = store.updateCollection(collectionName, request);
-                return promise;
+                promises.push(store.updateCollection(collectionName, request));
+
+                var lazyProperties = UMI.FormHelper.filterLazyProperties(Ember.get(meta, 'elements'));
+                var manyRelationProperties = UMI.OrmHelper.getRelationProperties(incompleteObject, lazyProperties);
+
+                for (collectionName in manyRelationProperties) {
+                    if (manyRelationProperties.hasOwnProperty(collectionName)) {
+                        promises.push(store.updateCollection(collectionName, {
+                            fields: manyRelationProperties[collectionName]
+                        }));
+                    }
+                }
+
+                return Ember.RSVP.all(promises);
             };
 
-            var FormControlService = Ember.Object.extend({
-                route: {
-                    action: {
-                        afterModel: function(model) {
-                            var defer = Ember.RSVP.defer();
+            var FormControlPromiseService = Ember.Object.extend({
+                execute: function(model) {
+                    var defer = Ember.RSVP.defer();
 
-                            objectFetch(model).then(
-                                function(result) {
-                                    defer.resolve(result);
-                                },
-                                function(error) {
-                                    defer.reject(error);
-                                }
-                            );
-
-                            return defer.promise;
+                    objectFetch(model).then(
+                        function(result) {
+                            defer.resolve(result);
+                        },
+                        function(error) {
+                            defer.reject(error);
                         }
-                    }
+                    );
+
+                    return defer.promise;
                 }
             });
 
-            UMI.register('service:formControl', FormControlService);
-            UMI.inject('controller:action', 'editFormService', 'service:formControl');
+            UMI.register('service:formControlPromise', FormControlPromiseService);
+            UMI.inject('controller:action', 'editFormPromiseService', 'service:formControlPromise');
 
             UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],

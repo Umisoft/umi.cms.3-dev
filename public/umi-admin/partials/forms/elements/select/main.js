@@ -116,27 +116,24 @@ define(['App'], function(UMI) {
 
                     Ember.warn('Name of related collection is undefined.', relatedCollectionName);
 
-                    var promise = store.updateCollection(relatedCollectionName, {fields: 'displayName'});
-
                     var relationDidFetch = function(relatedObject) {
                         Ember.set(object.get('loadedRelationshipsByName'), property, relatedObject ?
                             relatedObject.get('id') : undefined);
-
                         self.set('selection', relatedObject);
                     };
 
-                    return promise.then(function(result) {
-                        self.set('content', result);
-                        var relatedObject = object.get(property);
+                    var relatedCollection = store.all(relatedCollectionName);
 
-                        if (Ember.typeOf(relatedObject) === 'instance') {
-                            return relatedObject.then(function(relatedObject) {
-                                relationDidFetch(relatedObject);
-                            });
-                        } else {
-                            relationDidFetch();
-                        }
-                    });
+                    self.set('content', relatedCollection);
+                    var relatedObject = object.get(property);
+
+                    if (Ember.typeOf(relatedObject) === 'instance') {
+                        return relatedObject.then(function(relatedObject) {
+                            relationDidFetch(relatedObject);
+                        });
+                    } else {
+                        relationDidFetch();
+                    }
                 } else {
                     self.set('selection', this.get('meta.choices').findBy('value', object.get(property)));
                     self.set('content', this.get('meta.choices'));

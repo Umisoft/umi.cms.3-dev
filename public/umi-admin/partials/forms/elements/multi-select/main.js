@@ -300,27 +300,28 @@ define(['App'], function(UMI) {
                 var property = this.get('meta.dataSource');
                 var object = this.get('object');
                 var store = self.get('controller.store');
-                var promises = [];
+                var allCollection;
                 var selectedObjects;
                 this.set('isLazy', this.get('meta.lazy'));
+
                 if (this.get('isLazy')) {
                     this.reopen(lazyChoicesBehaviour);
                     selectedObjects = object.get(property);
-                    promises.push(selectedObjects);
 
                     var getCollection = function(relation) {
-                        promises.push(store.findAll(relation.type));
+                        return store.all(relation.type);
                     };
+
                     object.eachRelationship(function(name, relation) {
                         if (name === property) {
-                            getCollection(relation);
+                            allCollection = getCollection(relation);
                         }
                     });
 
-                    return Ember.RSVP.all(promises).then(function(results) {
-                        var relatedObjectsId = results[0].mapBy('id') || [];
-                        var loadedRelationshipsByName = results[0].mapBy('id') || [];
-                        self.set('collection', results[1]);
+                    return selectedObjects.then(function(result) {
+                        var relatedObjectsId = result.mapBy('id') || [];
+                        var loadedRelationshipsByName = result.mapBy('id') || [];
+                        self.set('collection', allCollection);
                         self.set('selectedIds', relatedObjectsId);
                         Ember.set(object.get('loadedRelationshipsByName'), property, loadedRelationshipsByName);
                     });

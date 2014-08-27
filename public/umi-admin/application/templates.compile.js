@@ -1445,6 +1445,8 @@ function program3(depth0,data) {
   stack1 = helpers['if'].call(depth0, "view.content.title", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
+  data.buffer.push(escapeExpression(helpers.log.call(depth0, "view.content.stack", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.content.content", {hash:{
     'unescaped': ("true")
   },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));

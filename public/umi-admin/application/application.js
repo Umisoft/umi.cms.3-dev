@@ -123,6 +123,64 @@ define(
                 });
 
                 return fieldsList;
+            },
+
+            getHasManyProperties: function(model, fields) {
+                var fieldsList = {};
+
+                model.eachRelationship(function(name, relatedModel) {
+                    var i;
+                    var dataSource;
+
+                    if (relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany') {
+                        for (i = 0; i < fields.length; i++) {
+                            dataSource = fields[i];
+
+                            if (dataSource === name) {
+                                fieldsList[name] = fieldsList[name] || [];
+                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                                fieldsList[name] = fieldsList[name] || [];
+                                fieldsList[name].push(dataSource.slice(name.length + 1));
+                            }
+                        }
+
+                        if (fieldsList[name]) {//TODO: parametrize properties list
+                            fieldsList[name] = fieldsList[name].join(',') || 'displayName';
+                        }
+                    }
+                });
+
+                return fieldsList;
+            },
+
+            getRelationProperties: function(model, fields) {
+                var fieldsList = {};
+
+                model.eachRelationship(function(name, relatedModel) {
+                    var i;
+                    var dataSource;
+                    var collectionName = Ember.get(relatedModel, 'type.typeKey');
+
+                    if (relatedModel.kind === 'belongsTo' || relatedModel.kind === 'hasMany' ||
+                        relatedModel.kind === 'manyToMany') {
+                        for (i = 0; i < fields.length; i++) {
+                            dataSource = fields[i];
+
+                            if (dataSource === name) {
+                                fieldsList[collectionName] = fieldsList[collectionName] || [];
+                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                                fieldsList[collectionName] = fieldsList[collectionName] || [];
+                                fieldsList[collectionName].push(dataSource.slice(name.length + 1));
+                            }
+                        }
+
+                        if (fieldsList[collectionName]) {//TODO: parametrize properties list
+                            fieldsList[collectionName] = fieldsList[collectionName].join(',') || 'displayName';
+                        }
+                    }
+                });
+
+                return fieldsList;
             }
         };
 

@@ -1181,12 +1181,11 @@ define([], function() {
                     var defer = Ember.RSVP.defer();
                     var control = this.controllerFor('action');
                     var controlName = Ember.get(model, 'control.name');
-                    var controlService = control[controlName + 'Service'];
+                    var controlPromiseService = control[controlName + 'PromiseService'];
 
-                    if (controlService) {
-                        var actionHook = controlService.get('route.action');
-                        if (Ember.canInvoke(actionHook, 'afterModel')) {
-                            actionHook.afterModel(model).then(
+                    if (controlPromiseService) {
+                        if (Ember.canInvoke(controlPromiseService, 'execute')) {
+                            controlPromiseService.execute(model).then(
                                 function(result) {
                                     defer.resolve(result);
                                 },
