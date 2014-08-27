@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\search\model;
 
-use umi\dbal\builder\IExpressionGroup;
 use umi\dbal\builder\ISelectBuilder;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\search\model\highlight\Fragmenter;
