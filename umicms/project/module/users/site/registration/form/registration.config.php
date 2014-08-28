@@ -1,6 +1,5 @@
 <?php
 
-use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
@@ -44,14 +43,6 @@ return [
             'label' => RegisteredUser::FIELD_EMAIL,
             'options' => [
                 'dataSource' => RegisteredUser::FIELD_EMAIL
-            ]
-        ],
-
-        RegisteredUser::FIELD_DISPLAY_NAME => [
-            'type' => Text::TYPE_NAME,
-            'label' => RegisteredUser::FIELD_DISPLAY_NAME,
-            'options' => [
-                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
             ]
         ],
 

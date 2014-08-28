@@ -8,9 +8,13 @@ define(['App', 'toolbar'], function(UMI) {
             classNames: ['button-group', 'umi-form-control-buttons'],
             elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function() {
-                    var instance = UMI.SplitButtonView.extend(UMI.splitButtonBehaviour.dropUp);
+                    var instance = UMI.SplitButtonView.extend({});
                     var behaviourName = this.get('context.behaviour.name');
                     var behaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
+                    behaviour.extendButton = behaviour.extendButton || {};
+                    behaviour.extendButton.dataOptions = function() {
+                        return 'side: top; align: right;';
+                    }.property();
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()
