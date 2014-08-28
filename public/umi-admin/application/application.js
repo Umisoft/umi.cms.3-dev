@@ -58,7 +58,7 @@ define(
          * @type {{defaultProperties: string[]}}
          */
         UMI.OrmSettings = {
-            defaultProperties: ['id', 'guid', 'type', 'version', 'mpath', 'slug', 'uri', 'h1', 'meta']
+            defaultProperties: ['id', 'guid', 'type', 'version', 'mpath', 'slug', 'uri', 'h1', 'meta', 'links']
         };
 
         /**
@@ -416,7 +416,9 @@ define(
                 }
 
                 function _findQuery(adapter, store, type, query, recordArray) {
-                    var promise = adapter.findQuery(store, type, query, recordArray), serializer = serializerForAdapter(adapter, type), label = "DS: Handle Adapter#findQuery of " + type;
+                    var promise = adapter.findQuery(store, type, query, recordArray);
+                    var serializer = serializerForAdapter(adapter, type);
+                    var label = 'DS: Handle Adapter#findQuery of ' + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
                         var key;

@@ -306,6 +306,7 @@ define(['App'], function(UMI) {
 
                 if (this.get('isLazy')) {
                     this.reopen(lazyChoicesBehaviour);
+
                     selectedObjects = object.get(property);
 
                     var getCollection = function(relation) {
