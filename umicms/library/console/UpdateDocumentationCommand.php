@@ -25,6 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use umi\hmvc\IMvcEntityFactory;
+use umi\hmvc\widget\IWidget;
 use umi\orm\collection\ICollectionManager;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
@@ -34,7 +35,6 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\component\site\SiteComponent;
 use umicms\hmvc\dispatcher\CmsDispatcher;
-use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
@@ -119,7 +119,13 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $this->samiProject = $sami['project'];
         $this->samiProject->parse();
 
+        /**
+         * @var StaticPage $widgetsPage
+         */
         $widgetsPage = $this->structureCollection->get('d7dda227-cac7-474d-ab0d-d361d0bc16a3');
+        /**
+         * @var StaticPage $controllersPage
+         */
         $controllersPage = $this->structureCollection->get('fda552a8-846a-431d-87bf-ed719cdd884b');
 
         /**
@@ -138,6 +144,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $siteApplication = $dispatcher->getComponentByPath('project.site');
 
         foreach ($siteApplication->getChildComponentNames() as $componentName) {
+            /**
+             * @var SiteComponent $childComponent
+             */
             $childComponent = $siteApplication->getChildComponent($componentName);
             $this->buildComponentStructure($childComponent, $widgetsPage, 'widgets');
             $this->buildComponentStructure($childComponent, $controllersPage, 'controllers');
@@ -149,6 +158,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
     {
         $this->output->write('.');
         try {
+            /**
+             * @var StaticPage $page
+             */
             $page = $this->structureCollection->getByUri($parentPage->getURL() . '/' . $component->getName());
         } catch (NonexistentEntityException $e) {
 
@@ -276,8 +288,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $templateParamsString .= '</td></tr>';
             }
 
-            return '<h3>Переменные, доступные в шаблоне</h3>' .
-            '<table class="table">
+            return '<h2 class="table-header">Переменные, доступные в шаблоне</h3>' .
+            '<table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -347,7 +359,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return [$type, $description];
     }
 
-    protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
+    protected function buildWidgetPage(IWidget $widget, SiteComponent $component, StaticPage $parentPage)
     {
         $className = get_class($widget);
         $class = $this->samiProject->getClass($className);
@@ -374,7 +386,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
 
         $widgetPage->description = $description;
-        $widgetPage->parameters = '<h3>Параметры вызова виджета</h3>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
+        $widgetPage->parameters = '<h2 class="table-header">Параметры вызова виджета</h3>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
         $widgetPage->returnValue = $this->getReturnValue($class);
     }
 
@@ -428,7 +440,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             }
 
             return
-                '<table class="table">
+                '<table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -486,11 +498,6 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 }
             }
 
-            if (strpos($hintDesc, $name) === false) {
-                throw new RuntimeException('Cannot update public properties for class "' . $class->getName() .'". Property "' . $name . '" has wrong description.');
-            }
-
-            $hintDesc = trim(mb_substr($hintDesc, mb_strlen($name) + 1));
             $hintDesc = rtrim($hintDesc, '.');
 
             if (!$hintDesc) {
@@ -516,7 +523,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
         if ($parameters) {
             $parameters =
-                '<table class="table">
+                '<table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -656,4 +663,3 @@ class UpdateDocumentationCommand extends BaseProjectCommand
     }
 
 }
- 
