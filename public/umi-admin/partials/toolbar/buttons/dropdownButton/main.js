@@ -142,9 +142,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         }
                     });
 
-                    backupList = Ember.ArrayProxy.create({
+                    var ArrayProxy = Ember.ArrayProxy.extend({
+                        isLoaded: function() {
+                            return this.get('content.isFulfilled');
+                        }.property('content.isFulfilled')
+                    });
+
+                    backupList = ArrayProxy.create({
                         content: promiseArray
                     });
+
                     return backupList;
                 },
 
@@ -324,11 +331,22 @@ define(['App', 'moment'], function(UMI, moment) {
                     var self = this;
                     var meta = self.get('meta');
 
-                    var action = Ember.get(self.get('controller.settings'), 'actions.' + Ember.get(meta, 'behaviour.action') + '.source');
-                    return $.get(action).then(function(results) {
-                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
-                        self.set('form', form);
+                    var action = Ember.get(self.get('controller.settings'), 'actions.' +
+                        Ember.get(meta, 'behaviour.action') + '.source');
+                    var promise = $.get(action);
+
+                    var proxy = Ember.ObjectProxy.create({
+                        content: null,
+                        isLoaded: false
                     });
+
+                    promise.then(function(results) {
+                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
+                        proxy.set('content', form);
+                        proxy.set('isLoaded', true);
+                    });
+
+                    return proxy;
                 },
 
                 didInsertElement: function() {
