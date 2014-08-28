@@ -202,7 +202,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -290,7 +290,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -301,7 +301,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -445,7 +445,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -528,7 +528,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -540,7 +540,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -568,7 +568,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -774,7 +774,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -857,7 +857,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -869,7 +869,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -897,7 +897,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -1309,7 +1309,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1397,7 +1397,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -1414,7 +1414,7 @@ return array (
           <td>$authenticated</td><td>флаг, указывающий на то, авторизован пользователь или нет </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница авторизаци </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -1874,7 +1874,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1957,7 +1957,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -1969,7 +1969,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -1997,7 +1997,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -2200,7 +2200,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2283,7 +2283,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -2295,7 +2295,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -2318,7 +2318,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -2493,7 +2493,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2576,7 +2576,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -2588,7 +2588,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -2611,7 +2611,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -2696,7 +2696,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2779,7 +2779,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -2791,7 +2791,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -2819,7 +2819,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -2893,7 +2893,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2976,7 +2976,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -2988,7 +2988,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -3016,7 +3016,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -3224,7 +3224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3307,7 +3307,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -3319,7 +3319,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -3330,12 +3330,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -3351,12 +3353,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -3368,7 +3380,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -3381,7 +3393,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -3487,7 +3499,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3570,7 +3582,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -3582,7 +3594,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -3598,7 +3610,8 @@ return array (
           <td>rubric</td>
           <td>NewsRubric|string|null</td>
           <td></td>
-          <td>рубрика или GUID рубрики, URL на RSS которой генерировать. Если не указана, генерируется URL на все новости</td>
+          <td>рубрика или GUID рубрики, URL на RSS которой генерировать.
+Если не указана, генерируется URL на все новости</td>
         </tr></tbody>
               </table>',
       ),
@@ -3610,7 +3623,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -4088,7 +4101,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4171,7 +4184,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -4183,7 +4196,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -4194,12 +4207,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -4215,17 +4230,28 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>tags</td>
           <td>array|BlogTag[]|BlogTag|null</td>
           <td></td>
-          <td>тэг, список тэгов блога или GUID, из которых выводятся посты. Если не указаны, то посты выводятся из всех тэгов</td>
+          <td>тэг, список тэгов блога или GUID, из которых выводятся посты.
+Если не указаны, то посты выводятся из всех тэгов</td>
         </tr></tbody>
               </table>',
       ),
@@ -4237,7 +4263,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -4250,7 +4276,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -4356,7 +4382,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4439,7 +4465,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -4451,7 +4477,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -4462,12 +4488,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -4483,12 +4511,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>newsItem</td>
           <td>string|NewsItem</td>
@@ -4505,7 +4543,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -4518,7 +4556,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -4624,7 +4662,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4712,7 +4750,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -5293,7 +5331,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5376,7 +5414,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -5388,7 +5426,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -5399,12 +5437,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -5420,12 +5460,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -5437,7 +5487,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -5450,7 +5500,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -5808,7 +5858,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5891,7 +5941,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -5903,7 +5953,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -5926,7 +5976,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -6000,7 +6050,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6088,7 +6138,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -6099,7 +6149,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -6232,7 +6282,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6315,7 +6365,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -6327,7 +6377,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -6356,7 +6406,8 @@ return array (
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>blogPost</td>
           <td>string|BlogPost</td>
@@ -6373,7 +6424,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -6567,7 +6618,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6650,7 +6701,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -6662,7 +6713,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -6690,7 +6741,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -6865,7 +6916,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6953,7 +7004,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -6970,7 +7021,7 @@ return array (
           <td>$query</td><td>текущий поисковый запрос </td></tr><tr>
           <td>string</td>
           <td>$encodedQuery</td><td>URL-закодированный текущий поисковый запрос </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -7237,7 +7288,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7325,7 +7376,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -7336,7 +7387,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -7693,7 +7744,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7776,7 +7827,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -7788,7 +7839,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -7811,7 +7862,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -7896,7 +7947,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7984,7 +8035,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -8003,7 +8054,7 @@ return array (
           <td>$page</td><td>текущая страница добавления поста </td></tr><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>созданный пост блога. Передается только, если пост был успешно добавлен </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -8070,7 +8121,7 @@ return array (
           <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-              </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+              </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -8214,7 +8265,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8297,7 +8348,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -8309,7 +8360,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -8332,7 +8383,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -8406,7 +8457,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8489,7 +8540,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -8501,7 +8552,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -8512,12 +8563,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -8533,17 +8586,28 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>categories</td>
           <td>array|BlogCategory[]|BlogCategory|null</td>
           <td></td>
-          <td>категория, список категорий блога или GUID, из которых выводятся посты. Если не указаны, то посты выводятся из всех категорий</td>
+          <td>категория, список категорий блога или GUID, из которых выводятся посты.
+Если не указаны, то посты выводятся из всех категорий</td>
         </tr></tbody>
               </table>',
       ),
@@ -8555,7 +8619,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -8568,7 +8632,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -8674,7 +8738,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8757,7 +8821,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -8769,7 +8833,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -8797,7 +8861,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -9044,7 +9108,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9127,7 +9191,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -9139,7 +9203,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -9150,12 +9214,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -9171,12 +9237,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -9188,7 +9264,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -9201,7 +9277,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -9307,7 +9383,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9390,7 +9466,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -9402,7 +9478,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -9413,12 +9489,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -9434,17 +9512,28 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>parentCategory</td>
           <td>string|null|BlogCategory</td>
           <td></td>
-          <td>категория блога или GUID, из которой выводятся дочерние категории. Если не указан, выводятся все корневые категории</td>
+          <td>категория блога или GUID, из которой выводятся дочерние категории.
+Если не указан, выводятся все корневые категории</td>
         </tr></tbody>
               </table>',
       ),
@@ -9456,7 +9545,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -9469,7 +9558,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -9687,7 +9776,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9770,7 +9859,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -9782,7 +9871,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -9805,7 +9894,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -9816,7 +9905,7 @@ return array (
       <tbody><tr>
           <td><a href="#NewsSubject">NewsSubject</a></td>
           <td>$subject</td><td>новостной сюжет </td></tr></tbody>
-          </table><a name="NewsSubject"></a><h4>NewsSubject</h4><p>Новостной сюжет.</p><table class="table">
+          </table><h2 class="table-header"><a name="NewsSubject"></a>NewsSubject<span class="sub small">Новостной сюжет.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -9937,7 +10026,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10020,7 +10109,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -10032,7 +10121,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -10060,7 +10149,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -10123,7 +10212,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10211,7 +10300,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -10222,7 +10311,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -10366,7 +10455,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10449,7 +10538,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -10461,7 +10550,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -10484,7 +10573,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -10724,7 +10813,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10807,7 +10896,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -10819,7 +10908,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -10847,7 +10936,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -10932,7 +11021,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11015,7 +11104,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -11027,7 +11116,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -11050,7 +11139,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -11135,7 +11224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11218,7 +11307,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -11230,7 +11319,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -11241,12 +11330,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -11262,12 +11353,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -11279,7 +11380,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -11292,7 +11393,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -11409,7 +11510,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11492,7 +11593,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -11504,7 +11605,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -11527,7 +11628,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -11538,7 +11639,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>черновик поста блога </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -11846,7 +11947,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11929,7 +12030,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -11941,7 +12042,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -11964,7 +12065,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -12049,7 +12150,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12137,7 +12238,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -12148,7 +12249,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -12292,7 +12393,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12375,7 +12476,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -12387,7 +12488,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -12410,7 +12511,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -12421,7 +12522,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>пост блога </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -12560,7 +12661,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12648,7 +12749,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -12727,7 +12828,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12810,7 +12911,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -12822,7 +12923,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -12838,7 +12939,8 @@ return array (
           <td>category</td>
           <td>BlogCategory|string|null</td>
           <td></td>
-          <td>категория или GUID категории, URL на RSS которой генерировать. Если не указана, генерируется URL на все посты</td>
+          <td>категория или GUID категории, URL на RSS которой генерировать.
+Если не указана, генерируется URL на все посты</td>
         </tr></tbody>
               </table>',
       ),
@@ -12850,7 +12952,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -13025,7 +13127,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13108,7 +13210,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -13120,7 +13222,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -13143,7 +13245,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -13154,7 +13256,7 @@ return array (
       <tbody><tr>
           <td><a href="#NewsRubric">NewsRubric</a></td>
           <td>$rubric</td><td>новостная рубрика </td></tr></tbody>
-          </table><a name="NewsRubric"></a><h4>NewsRubric</h4><p>Новостная рубрика.</p><table class="table">
+          </table><h2 class="table-header"><a name="NewsRubric"></a>NewsRubric<span class="sub small">Новостная рубрика.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -13285,7 +13387,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13373,7 +13475,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -13384,7 +13486,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -13638,7 +13740,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13721,7 +13823,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -13733,7 +13835,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -13744,12 +13846,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -13765,12 +13869,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
@@ -13787,7 +13901,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -13800,7 +13914,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -14046,7 +14160,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14129,7 +14243,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -14141,7 +14255,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -14169,7 +14283,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -14568,7 +14682,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14656,7 +14770,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -14746,7 +14860,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14829,7 +14943,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -14841,7 +14955,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -14869,7 +14983,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -15195,7 +15309,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15283,7 +15397,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -15294,7 +15408,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -15539,7 +15653,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15627,7 +15741,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -15638,7 +15752,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -16094,7 +16208,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16177,7 +16291,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -16189,7 +16303,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -16217,7 +16331,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -16889,7 +17003,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16972,7 +17086,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -16984,7 +17098,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -17012,7 +17126,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -17499,7 +17613,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17587,7 +17701,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -17604,7 +17718,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница изменения пароля пользователя </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -17868,7 +17982,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17951,7 +18065,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -17963,7 +18077,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -17991,7 +18105,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -18001,7 +18115,11 @@ return array (
       </thead>
       <tbody><tr>
           <td>array</td>
-          <td>$tags</td><td>список тегов в формате [ \'tag\' => Tag $tag, \'weight\' => float вес тэга в облаке ] </td></tr></tbody>
+          <td>$tags</td><td>список тегов в формате
+[
+  \'tag\' => Tag $tag,
+  \'weight\' => float вес тэга в облаке
+] </td></tr></tbody>
           </table>',
       ),
     ),
@@ -18065,7 +18183,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18148,7 +18266,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -18160,7 +18278,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -18183,7 +18301,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -18194,7 +18312,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogComment">BlogComment</a></td>
           <td>$blogComment</td><td>комментарий в блоге </td></tr></tbody>
-          </table><a name="BlogComment"></a><h4>BlogComment</h4><p>Комментарий к посту.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogComment"></a>BlogComment<span class="sub small">Комментарий к посту.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -18297,7 +18415,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18385,7 +18503,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -18396,7 +18514,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -18641,7 +18759,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18729,7 +18847,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -18740,7 +18858,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -18884,7 +19002,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18967,7 +19085,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -18979,7 +19097,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -19007,7 +19125,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -19305,7 +19423,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19388,7 +19506,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -19400,7 +19518,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -19423,7 +19541,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -19434,7 +19552,7 @@ return array (
       <tbody><tr>
           <td><a href="#BaseInfoBlock">BaseInfoBlock</a></td>
           <td>$infoBlock</td><td>информационный блок </td></tr></tbody>
-          </table><a name="BaseInfoBlock"></a><h4>BaseInfoBlock</h4><p>Информационный блок сайта.</p><table class="table">
+          </table><h2 class="table-header"><a name="BaseInfoBlock"></a>BaseInfoBlock<span class="sub small">Информационный блок сайта.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -20207,7 +20325,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20290,7 +20408,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -20302,7 +20420,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -20325,7 +20443,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -20336,7 +20454,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>пост блога </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -20475,7 +20593,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20563,7 +20681,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -20580,7 +20698,7 @@ return array (
           <td>$user</td><td>активированный пользователь в случае успеха </td></tr><tr>
           <td>array</td>
           <td>$errors</td><td>список произошедших ошибок в случае неуспеха </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -20647,7 +20765,7 @@ return array (
           <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+              </table><h2 class="table-header"><a name="RegisteredUser"></a>RegisteredUser<span class="sub small">Зарегистрированный пользователь.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -20898,7 +21016,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20981,7 +21099,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -20993,7 +21111,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -21016,7 +21134,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -21090,7 +21208,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21173,7 +21291,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -21185,7 +21303,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -21213,7 +21331,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -21511,7 +21629,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21594,7 +21712,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -21606,7 +21724,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -21629,7 +21747,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -21640,7 +21758,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>пост блога </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -21768,7 +21886,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21851,7 +21969,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -21863,7 +21981,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -21891,7 +22009,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -21976,7 +22094,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22064,7 +22182,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -22395,7 +22513,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22483,7 +22601,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -22504,7 +22622,7 @@ return array (
           <td>$page</td><td>текущая страница регистрации пользователя </td></tr><tr>
           <td><a href="#RegisteredUser">RegisteredUser</a></td>
           <td>$user</td><td>новый зарегистрированный пользователь текущая страница регистрации пользователя </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -22571,7 +22689,7 @@ return array (
           <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+              </table><h2 class="table-header"><a name="RegisteredUser"></a>RegisteredUser<span class="sub small">Зарегистрированный пользователь.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -22693,7 +22811,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22776,7 +22894,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -22788,7 +22906,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -22816,7 +22934,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -23022,7 +23140,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23110,7 +23228,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -23121,7 +23239,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -23265,7 +23383,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23353,7 +23471,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -23370,7 +23488,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница редактирования профиля автора </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -23847,7 +23965,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23930,7 +24048,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -23942,7 +24060,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -23965,7 +24083,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -24535,7 +24653,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24618,7 +24736,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -24630,7 +24748,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -24641,12 +24759,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -24662,12 +24782,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>subjects</td>
           <td>array|NewsSubject[]|NewsSubject|null</td>
@@ -24675,7 +24805,8 @@ return array (
 (
 )
 </td>
-          <td>сюжет, новостных сюжетов или GUID, из которых выводятся новости. Если не указаны, то выводятся новости всех сюжетов</td>
+          <td>сюжет, новостных сюжетов или GUID, из которых выводятся новости.
+Если не указаны, то выводятся новости всех сюжетов</td>
         </tr></tbody>
               </table>',
       ),
@@ -24687,7 +24818,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -24700,7 +24831,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -24946,7 +25077,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25029,7 +25160,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -25041,7 +25172,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -25064,7 +25195,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -25615,7 +25746,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25698,7 +25829,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -25710,7 +25841,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -25743,7 +25874,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -25821,7 +25952,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25909,7 +26040,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -25920,7 +26051,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -26053,7 +26184,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26136,7 +26267,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -26148,7 +26279,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -26171,7 +26302,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -26256,7 +26387,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26344,7 +26475,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -26359,7 +26490,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное отправку нового пароля </td></tr><tr>
           <td>array</td>
           <td>$errors</td><td>список произошедших ошибок, не передается, если ошибок не было </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -26505,7 +26636,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26588,7 +26719,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -26600,7 +26731,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -26611,12 +26742,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -26632,12 +26765,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -26649,7 +26792,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -26662,7 +26805,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -26757,7 +26900,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26840,7 +26983,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -26852,7 +26995,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -26964,7 +27107,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27052,7 +27195,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -27069,7 +27212,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -27546,7 +27689,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27634,7 +27777,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -27713,7 +27856,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27801,7 +27944,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -27818,7 +27961,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница запроса смены пароля </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -28054,7 +28197,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28137,7 +28280,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -28149,7 +28292,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -28172,7 +28315,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -28389,7 +28532,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28477,7 +28620,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -28494,7 +28637,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -28640,7 +28783,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28728,7 +28871,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -28745,7 +28888,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница редактирования поста </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -28891,7 +29034,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28974,7 +29117,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -28986,7 +29129,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -29009,7 +29152,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -29234,7 +29377,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29322,7 +29465,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -29412,7 +29555,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29500,7 +29643,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -29517,7 +29660,7 @@ return array (
           <td>$success</td><td>флаг, указывающий на успешное сохранение изменений </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница редактирования черновика </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -29652,7 +29795,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29735,7 +29878,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -29747,7 +29890,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -29770,7 +29913,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -29781,7 +29924,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogCategory">BlogCategory</a></td>
           <td>$category</td><td>категория постов блога </td></tr></tbody>
-          </table><a name="BlogCategory"></a><h4>BlogCategory</h4><p>Категория поста.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogCategory"></a>BlogCategory<span class="sub small">Категория поста.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -29912,7 +30055,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29995,7 +30138,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -30007,7 +30150,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -30040,7 +30183,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -30257,7 +30400,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30340,7 +30483,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -30352,7 +30495,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -30363,12 +30506,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -30384,12 +30529,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -30401,7 +30556,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -30414,7 +30569,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -30520,7 +30675,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30603,7 +30758,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -30615,7 +30770,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -30636,7 +30791,8 @@ return array (
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки при значении true игнорируется</td>
         </tr><tr>
           <td>fields</td>
           <td>string</td>
@@ -30653,7 +30809,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -30663,7 +30819,16 @@ return array (
       </thead>
       <tbody><tr>
           <td>array</td>
-          <td>$menu</td><td>элементы меню в формате: [ [ \'page\' => StructureElement $page, \'active\' => bool страница находится в списке хлебных крошек для текущей странице , \'current\' => bool страница является текущей, \'children\' => array список дочерних элементов меню ], ... ] </td></tr></tbody>
+          <td>$menu</td><td>элементы меню в формате:
+[
+ [
+   \'page\' => StructureElement $page,
+   \'active\' => bool страница находится в списке хлебных крошек для текущей странице ,
+   \'current\' => bool страница является текущей,
+   \'children\' => array список дочерних элементов меню
+ ],
+ ...
+] </td></tr></tbody>
           </table>',
       ),
     ),
@@ -30738,7 +30903,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30821,7 +30986,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -30833,7 +30998,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -30844,12 +31009,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -30865,12 +31032,22 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -30882,7 +31059,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -30895,7 +31072,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -31001,7 +31178,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31089,7 +31266,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -31308,7 +31485,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31391,7 +31568,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -31403,7 +31580,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -31414,12 +31591,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -31435,17 +31614,28 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>rubrics</td>
           <td>array|NewsRubric[]|NewsRubric|null</td>
           <td></td>
-          <td>рубрика, список новостных рубрик или GUID, из которых выводятся новости. Если не указаны, то новости выводятся из всех рубрик</td>
+          <td>рубрика, список новостных рубрик или GUID, из которых выводятся новости.
+Если не указаны, то новости выводятся из всех рубрик</td>
         </tr></tbody>
               </table>',
       ),
@@ -31457,7 +31647,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -31470,7 +31660,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -31688,7 +31878,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31771,7 +31961,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -31783,7 +31973,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -31801,7 +31991,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -31812,7 +32002,7 @@ return array (
       <tbody><tr>
           <td><a href="#RegisteredUser">RegisteredUser</a></td>
           <td>$user</td><td>текущий пользователь </td></tr></tbody>
-          </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+          </table><h2 class="table-header"><a name="RegisteredUser"></a>RegisteredUser<span class="sub small">Зарегистрированный пользователь.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -31918,7 +32108,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32001,7 +32191,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -32013,7 +32203,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -32042,7 +32232,8 @@ return array (
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -32054,7 +32245,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -32128,7 +32319,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32211,7 +32402,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -32223,7 +32414,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -32246,7 +32437,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -32257,7 +32448,7 @@ return array (
       <tbody><tr>
           <td><a href="#BlogTag">BlogTag</a></td>
           <td>$blogTag</td><td>тэг </td></tr></tbody>
-          </table><a name="BlogTag"></a><h4>BlogTag</h4><p>Теги блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogTag"></a>BlogTag<span class="sub small">Теги блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -32501,7 +32692,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32589,7 +32780,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -32600,7 +32791,7 @@ return array (
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -32977,7 +33168,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33060,7 +33251,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -33072,7 +33263,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -33083,12 +33274,14 @@ return array (
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -33104,17 +33297,28 @@ return array (
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>blogAuthors</td>
           <td>array|BlogAuthor[]|BlogAuthor|null</td>
           <td></td>
-          <td>авторы, список авторов блога или GUID, посты которых выводятся. Если не указаны, то посты выводятся всех авторов</td>
+          <td>авторы, список авторов блога или GUID, посты которых выводятся.
+Если не указаны, то посты выводятся всех авторов</td>
         </tr></tbody>
               </table>',
       ),
@@ -33126,7 +33330,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -33139,7 +33343,7 @@ return array (
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -33385,7 +33589,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33468,7 +33672,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -33480,7 +33684,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -33508,7 +33712,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -33582,7 +33786,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33665,7 +33869,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -33677,7 +33881,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -33700,7 +33904,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -33711,7 +33915,7 @@ return array (
       <tbody><tr>
           <td><a href="#NewsItem">NewsItem</a></td>
           <td>$newsItem</td><td>новость </td></tr></tbody>
-          </table><a name="NewsItem"></a><h4>NewsItem</h4><p>Новость.</p><table class="table">
+          </table><h2 class="table-header"><a name="NewsItem"></a>NewsItem<span class="sub small">Новость.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -34071,7 +34275,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34154,7 +34358,7 @@ return array (
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -34166,7 +34370,7 @@ return array (
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -34195,7 +34399,8 @@ return array (
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>menuName</td>
           <td>string</td>
@@ -34212,7 +34417,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -34735,7 +34940,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34823,7 +35028,7 @@ return array (
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -35244,7 +35449,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35332,7 +35537,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -35343,7 +35548,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -35476,7 +35681,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35564,7 +35769,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -35583,7 +35788,7 @@ return [
           <td>$page</td><td>текущая страница редактирования профиля пользователя </td></tr><tr>
           <td><a href="#RegisteredUser">RegisteredUser</a></td>
           <td>$user</td><td>текущий пользователь </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -35650,7 +35855,7 @@ return [
           <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
-              </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
+              </table><h2 class="table-header"><a name="RegisteredUser"></a>RegisteredUser<span class="sub small">Зарегистрированный пользователь.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -36005,7 +36210,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36093,7 +36298,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -36104,7 +36309,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -36769,7 +36974,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36852,7 +37057,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -36864,7 +37069,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -36887,7 +37092,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -36898,7 +37103,7 @@ return [
       <tbody><tr>
           <td><a href="#BlogPost">BlogPost</a></td>
           <td>$blogPost</td><td>пост блога </td></tr></tbody>
-          </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogPost"></a>BlogPost<span class="sub small">Пост блога.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -37433,7 +37638,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37516,7 +37721,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -37528,7 +37733,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -37556,7 +37761,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -37799,7 +38004,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37882,7 +38087,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -37894,7 +38099,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -37917,7 +38122,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -38243,7 +38448,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38326,7 +38531,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -38338,7 +38543,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -38366,7 +38571,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -38451,7 +38656,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38539,7 +38744,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -38553,10 +38758,11 @@ return [
           <td>array</td>
           <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
           <td>string|bool</td>
-          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
+          <td>$added</td><td>флаг, указывающий на статус добавленного комментария:
+published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница добавления комментария </td></tr></tbody>
-          </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
+          </table><h2 class="table-header"><a name="SystemPage"></a>SystemPage<span class="sub small">Системная страница UMI.CMS.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -38831,7 +39037,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38914,7 +39120,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -38926,7 +39132,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -38937,12 +39143,14 @@ return [
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -38958,17 +39166,28 @@ return [
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr><tr>
           <td>parentRubric</td>
           <td>string|null|NewsRubric</td>
           <td></td>
-          <td>новостная рубрика или GUID, из которой выводятся дочерние рубрики. Если не указан, выводятся все корневые рубрики</td>
+          <td>новостная рубрика или GUID, из которой выводятся дочерние рубрики.
+Если не указан, выводятся все корневые рубрики</td>
         </tr></tbody>
               </table>',
       ),
@@ -38980,7 +39199,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -38993,7 +39212,7 @@ return [
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -39110,7 +39329,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39198,7 +39417,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -39277,7 +39496,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39365,7 +39584,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -39444,7 +39663,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39527,7 +39746,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -39539,7 +39758,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -39567,7 +39786,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -39630,7 +39849,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39713,7 +39932,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -39725,7 +39944,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -39743,7 +39962,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -39817,7 +40036,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39900,7 +40119,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -39912,7 +40131,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -39935,7 +40154,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -40250,7 +40469,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40338,7 +40557,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -40349,7 +40568,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -40723,7 +40942,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40811,7 +41030,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -41271,7 +41490,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41359,7 +41578,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -41370,7 +41589,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -41514,7 +41733,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41597,7 +41816,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -41609,7 +41828,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -41632,7 +41851,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -41643,7 +41862,7 @@ return [
       <tbody><tr>
           <td><a href="#BlogAuthor">BlogAuthor</a></td>
           <td>$blogAuthor</td><td>автор </td></tr></tbody>
-          </table><a name="BlogAuthor"></a><h4>BlogAuthor</h4><p>Автор поста.</p><table class="table">
+          </table><h2 class="table-header"><a name="BlogAuthor"></a>BlogAuthor<span class="sub small">Автор поста.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -41772,7 +41991,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41855,7 +42074,7 @@ return [
       'parameters' => 
       array (
         0 => 'string',
-        1 => '<h3>Параметры вызова виджета</h3><table class="table">
+        1 => '<h2 class="table-header">Параметры вызова виджета</h2><table>
           <thead>
             <tr>
               <th>Параметр</th>
@@ -41867,7 +42086,7 @@ return [
           <tbody><tr>
           <td>forbiddenTemplate</td>
           <td>string</td>
-          <td>widget.forbidden</td>
+          <td></td>
           <td>имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему</td>
         </tr><tr>
           <td>template</td>
@@ -41878,12 +42097,14 @@ return [
           <td>limit</td>
           <td>int</td>
           <td></td>
-          <td>максимальное количество выводимых элементов. Если не указано, выводятся все элементы</td>
+          <td>максимальное количество выводимых элементов.
+Если не указано, выводятся все элементы</td>
         </tr><tr>
           <td>offset</td>
           <td>int</td>
           <td></td>
-          <td>сдвиг. Игнорируется при заданных настройках вывода постраничной навигации</td>
+          <td>сдвиг.
+Игнорируется при заданных настройках вывода постраничной навигации</td>
         </tr><tr>
           <td>options</td>
           <td>array</td>
@@ -41899,12 +42120,22 @@ return [
 (
 )
 </td>
-          <td>настройки вывода постраничной навигации в формате [ \'pageParam\' => $pageParam, \'type\' => $type, \'pagesCount\' => $pagesCount ], где $pageParam имя GET-параметра, из которого берется текущая страница навигации, $type тип постраничной навигации (all, sliding, jumping, elastic), $pagesCount количество страниц отображаемых в ряду Если не указано, постраничная навигация не будет сформирована</td>
+          <td>настройки вывода постраничной навигации в формате
+[
+     \'pageParam\' => $pageParam,
+     \'type\' => $type,
+     \'pagesCount\' => $pagesCount
+], где
+ $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+ $type тип постраничной навигации (all, sliding, jumping, elastic),
+ $pagesCount количество страниц отображаемых в ряду
+Если не указано, постраничная навигация не будет сформирована</td>
         </tr><tr>
           <td>fullyLoad</td>
           <td>bool</td>
           <td></td>
-          <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+          <td>признак необходимости загружать все свойства объектов списка.
+Список полей для загрузки, занный опциями, при значении true игнорируется</td>
         </tr></tbody>
               </table>',
       ),
@@ -41916,7 +42147,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -41929,7 +42160,7 @@ return [
           <td>$list</td><td>список объектов </td></tr><tr>
           <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          </table><h2 class="table-header"><a name="CmsPaginator"></a>CmsPaginator<span class="sub small">Класс постраничной навигации.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -42164,7 +42395,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42252,7 +42483,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -42263,7 +42494,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -42407,7 +42638,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42495,7 +42726,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -42506,7 +42737,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -42650,7 +42881,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42738,7 +42969,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -42749,7 +42980,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>
@@ -43399,7 +43630,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 13:41:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43487,7 +43718,7 @@ return [
       'returnValue' => 
       array (
         0 => 'string',
-        1 => '<h3>Переменные, доступные в шаблоне</h3><table class="table">
+        1 => '<h2 class="table-header">Переменные, доступные в шаблоне</h2><table>
       <thead>
         <tr>
           <th>Тип</th>
@@ -43498,7 +43729,7 @@ return [
       <tbody><tr>
           <td><a href="#StructureElement">StructureElement</a></td>
           <td>$page</td><td>текущая страница </td></tr></tbody>
-          </table><a name="StructureElement"></a><h4>StructureElement</h4><p>Базовый элемент структуры.</p><table class="table">
+          </table><h2 class="table-header"><a name="StructureElement"></a>StructureElement<span class="sub small">Базовый элемент структуры.</span></h2><table>
           <thead>
             <tr>
               <th>Тип</th>

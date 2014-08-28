@@ -288,7 +288,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $templateParamsString .= '</td></tr>';
             }
 
-            return '<h2 class="table-header">Переменные, доступные в шаблоне</h3>' .
+            return '<h2 class="table-header">Переменные, доступные в шаблоне</h2>' .
             '<table>
       <thead>
         <tr>
@@ -340,12 +340,13 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             $nameParts = explode('\\', $type);
             $name = array_pop($nameParts);
 
-            $description .= '<a name="' . $name. '"></a>';
-            $description .= '<h4>' . $name . '</h4>';
+            $description .= '<h2 class="table-header"><a name="' . $name. '"></a>' . $name;
 
             if ($shortDesc = $class->getShortDesc()) {
-                $description .= '<p>' . $shortDesc . '</p>';
+                $description .= '<span class="sub small">' . $shortDesc . '</span>';
             }
+
+            $description .= '</h2>';
 
             if ($longDesc = $class->getLongDesc()) {
                 $description .= '<p>' . $longDesc . '</p>';
@@ -386,7 +387,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
 
         $widgetPage->description = $description;
-        $widgetPage->parameters = '<h2 class="table-header">Параметры вызова виджета</h3>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
+        $widgetPage->parameters = '<h2 class="table-header">Параметры вызова виджета</h2>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
         $widgetPage->returnValue = $this->getReturnValue($class);
     }
 
