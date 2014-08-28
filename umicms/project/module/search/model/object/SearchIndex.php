@@ -76,7 +76,5 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
             }
             $this->setValue(self::FIELD_DISPLAY_NAME, $value, $localeId);
         }
-
-        return true;
     }
 }
