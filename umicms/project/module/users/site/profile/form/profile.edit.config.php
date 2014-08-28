@@ -1,6 +1,5 @@
 <?php
 
-use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
