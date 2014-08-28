@@ -1,0 +1,8 @@
+{% if (menu) %}
+    {% for pageInfo in menu %}
+        <h4>
+            <a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+        </h4>
+    {% endfor %}
+{% endif %}
+
