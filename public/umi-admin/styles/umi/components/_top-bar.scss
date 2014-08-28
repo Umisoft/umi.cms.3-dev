@@ -69,22 +69,12 @@ $umi-bg-darken-set: #404959, #181B21;
             &:after{
                 border-top-color: #575e6c;
             }
-
-             > .f-dropdown{
-                 margin-top: -1px;
-             }
         }
     }
 
     .f-dropdown{
-        margin-left: -1px;
-        margin-top: -1px;
         padding: 5px 0;
         box-shadow: none;
-
-        &.right{
-            margin-right: -1px;
-        }
 
         li{
             a{
