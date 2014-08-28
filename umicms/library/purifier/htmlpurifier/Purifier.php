@@ -24,6 +24,10 @@ class Purifier implements IPurifier
      */
     protected $defaultOptions;
 
+    /**
+     * Конструктор.
+     * @param array $defaultOptions
+     */
     public function __construct(array $defaultOptions = [])
     {
         $this->defaultOptions = $defaultOptions;
@@ -34,7 +38,7 @@ class Purifier implements IPurifier
      */
     public function purify($string, array $options = [])
     {
-        return $this->buildPurifier()->purify($string);
+        return $this->buildPurifier()->purify($string, $options);
     }
 
     /**
