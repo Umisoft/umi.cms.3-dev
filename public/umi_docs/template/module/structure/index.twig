@@ -1,10 +1,15 @@
+<section class="breadcrumbs">
+    {{ include('breadcrumbs.twig') }}
+</section>
 
-{{ include('breadcrumbs.twig') }}
-
-{% if page.getPageUrl() matches '{.*widgets.*}' %}
-    {{ include('widgets.twig', {'page' : page}) }}
-{% elseif page.getPageUrl() matches '{.*controllers.*}' %}
-    {{ include('controllers.twig', {'page' : page}) }}
-{% else %}
-    {{ include('simple.twig', {'page' : page}) }}
-{% endif %}
+<section class="page">
+    <div class="container">
+        {% if page.getPageUrl() matches '{.*widgets.*}' %}
+            {{ include('widgets.twig', {'page' : page}) }}
+        {% elseif page.getPageUrl() matches '{.*controllers.*}' %}
+            {{ include('controllers.twig', {'page' : page}) }}
+        {% else %}
+            {{ include('simple.twig', {'page' : page}) }}
+        {% endif %}
+    </div>
+</section>

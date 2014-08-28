@@ -1,11 +1,11 @@
 {% if breadcrumbs|length > 1 %}
-    <ol class="breadcrumb">
-        {% for crumb in breadcrumbs %}
-            {% if (loop.last) %}
-                <li class="active">{{ crumb.displayName }}</li>
-            {% else %}
-                <li><a href="{{ crumb.url }}">{{ crumb.displayName }}</a></li>
-            {% endif %}
-        {% endfor %}
-    </ol>
+    <ul class="container simple horizontal small">
+    {% for crumb in breadcrumbs %}
+        {% if (loop.last) %}
+            <li><a>{{ crumb.displayName }}</a></li>
+        {% else %}
+            <li><a href="{{ crumb.url }}">{{ crumb.displayName }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
 {% endif %}

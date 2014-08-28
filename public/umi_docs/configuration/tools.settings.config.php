@@ -20,5 +20,18 @@ return [
                 'dataSourceNamePrefix' => 'docs_'
             ]
         ]
+    ],
+    \umi\templating\toolbox\TemplatingTools::NAME => [
+        'factories' => [
+            'engine' => [
+                'defaultOptions' => [
+                    \umi\extension\twig\TwigTemplateEngine::NAME => [
+                        \umi\extension\twig\TwigTemplateEngine::OPTION_ENVIRONMENT => [
+                            'debug' => true
+                        ]
+                    ]
+                ]
+            ]
+        ]
     ]
 ];

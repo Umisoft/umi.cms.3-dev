@@ -1,0 +1,84 @@
+:root {
+	--outline-size: none;
+}
+/** Mobiles <768px **/
+@media (max-width: 768px) {
+* {
+	outline: var(--outline-size) solid red;
+}
+	/** Main menu **/
+	nav > ul.horizontal > li {
+		display: none;
+	}
+	nav > ul.horizontal > li:first-child {
+		display: block;
+	}
+	nav > ul.horizontal > li:first-child a {
+		transform: rotate(180deg);
+	}
+
+	/** Aside menu **/
+	.page aside {
+		display: none;
+	}
+	.page aside + main {
+		margin-left: 0;
+		border-left: none;
+	}
+
+	/** Footer **/
+	html {
+		padding-bottom: 319px;
+	}
+	footer {
+		height: auto;
+	}
+	footer .container {
+		display: flex;
+		flex-direction: column;
+	}
+	footer .container section {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		order: 2;
+	}
+	footer .container section:first-child {
+		order: 3;
+	}
+	footer .container section:last-child {
+		order: 1;
+	}
+	footer section:first-child img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+/** Tablets ≥768px **/
+@media (min-width: 768px) {
+	* {
+		outline: var(--outline-size) solid orange;
+	}
+	/** Main menu **/
+	nav > ul.horizontal {
+		display: flex;
+		justify-content: space-around;
+	}
+}
+/** Desktops ≥992px **/
+@media (min-width: 992px) {
+	* {
+		outline: var(--outline-size) solid yellowgreen;
+	}
+	/** Main menu **/
+	nav > ul.horizontal {
+		display: block;
+	}
+}
+/** Large desktops ≥1200px **/
+@media (min-width: 1200px) {
+	* {
+		outline: var(--outline-size) solid green;
+	}
+}

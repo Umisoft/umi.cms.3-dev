@@ -1,0 +1,78 @@
+/** General classes **/
+pre {
+	background: #f2f2f2;
+	border: 1px solid #ccc;
+	display: inline-block;
+	font-size: 0.857em;
+	min-width: 620px;
+	padding: 10px 5px;
+}
+a {
+	text-decoration: none;
+}
+hr.vertical {
+	height: 100%;
+	border-top: none;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid;
+}
+ul.simple {
+	list-style:none;
+}
+ul.horizontal {
+	letter-spacing: -0.5em;
+}
+ul.horizontal > li {
+	letter-spacing: normal;
+	display: inline-block;
+}
+.slim {
+	font-weight: 400;
+}
+.small {
+	font-size: 0.857em;
+}
+.big {
+	font-size: 1.143em;
+}
+.breadcrumbs a[href]::after {
+	content: "/";
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	color: black;
+}
+.container {
+	display: block;
+	max-width: 1300px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+[class^='justify'] {
+	overflow: hidden;
+	text-align: center;
+}
+[class^='justify'] .toLeft {
+	float: left;
+}
+[class^='justify'] .toRight {
+	float: right;
+}
+[class^='justify'] .toMid {
+	display: inline-block;
+	float: none;
+	margin: 0 auto;
+}
+.column {
+	-webkit-columns: 200px 3;
+	-moz-columns: 200px 3;
+	columns: 200px 3;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+	-webkit-column-rule: 1px solid #ccc;
+	-moz-column-rule: 1px solid #ccc;
+	column-rule: 1px solid #ccc;
+}

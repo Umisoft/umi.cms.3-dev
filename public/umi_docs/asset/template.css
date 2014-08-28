@@ -1,0 +1,383 @@
+/* Flexbox footer *//*
+		body {
+			display: flex;
+			margin: 0;
+			min-height: 100vh;
+			width: 100%;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		body > .page {
+			flex: 1 1 0;
+		} */
+
+/* table footer *//*
+		html, body { height: 100%; }
+		body {
+			margin: 0;
+			display: table;
+			width: min-width: 1300px;
+		}
+		body > * {
+			display: table-row;
+			height: 1px;
+		}
+		body > .page { height: 100%; } */
+
+/* absolute footer */
+html {
+	min-height: 100%;
+	padding-bottom: 200px;
+	position: relative;
+	box-sizing: border-box;
+}
+footer {
+	bottom: 0;
+	position: absolute;
+	height: 200px;
+	width: 100%;
+}
+
+/** FLEX MODEL **/
+/*
+body {justify-content: space-between;}
+
+body > header {
+	order: 1;
+	flex: 1;
+}
+body > .breadcrumbs {
+	order: 2;
+	flex: 1;
+}
+body > .page {
+	order: 3;
+	flex: 1;
+}
+body > footer {
+	order: 4;
+	flex: 1;
+}*/
+
+
+
+/** Root **/
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTYraN7vELC11_xip9Rz-hMs.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSoraN7vELC11_xip9Rz-hMs.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 800;
+	src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(http://fonts.gstatic.com/s/opensans/v10/EInbV5DfGHOiMmvb1Xr-horaN7vELC11_xip9Rz-hMs.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 300;
+	src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxq6JHp92iES8exGTOIyTn1A.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBmOb2gHztoQeulij-1lvl-8.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 600;
+	src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxl1DIE4XHZKVVbKkAUmpPQQ.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 800;
+	src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxsm6z33g0Z9rhmCMv9JmtIA.woff) format('woff');
+}
+/**@import url();**/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic);
+body {
+	margin: 0;
+	background: white;
+	font-family: "Open Sans",sans-serif;
+	font-size: 14px;
+}
+/** Root **/
+
+/** Headers size **/
+h1 { font-size: 2.572em; }
+h2 { font-size: 1.571em; }
+h3 { font-size: 1.286em; }
+h4 { font-size: 1em; }
+h1,h2,h3,h4 {
+	margin: 0;
+	font-weight: 600;
+	line-height: 1.2em;
+}
+/** Headers size **/
+
+/** Text colors **/
+p, pre, aside a {
+	color: #323232;
+}
+
+/** Header **/
+header a {
+	color: rgba(255, 255, 255, 0.8);
+}
+.justify_head {
+	height: 115px;
+	line-height: 115px;
+	border-bottom: 1px solid white;
+	background-image: radial-gradient(circle farthest-side, #206694 70%, #33586d 100%);
+}
+.justify_head img {
+	vertical-align: middle;
+}
+.justify_head .toRight {
+	margin-left: 30px;
+}
+nav {
+	background: #222;
+}
+nav .container {
+	overflow: visible;
+}
+nav a {
+	color: white;
+	display: block;
+	padding: 11px 20px;
+	background: #222;
+	transition-duration: .3s;
+	transition-property: background;
+	position: relative;
+}
+nav a:hover {
+	background: #0082c6;
+}
+nav > ul > li:first-child a {
+	background: url("/umi_docs/asset/images/home.png") no-repeat scroll center center transparent;
+}
+nav li > ul {
+	display: block;
+	position: absolute;
+	padding: 0;
+}
+nav li > ul li {
+	display: none;
+}
+nav li:hover > ul li {
+	display: list-item;
+}
+nav a.dropdown {
+	padding-right: 25px;
+}
+nav a.dropdown:after {
+	border-color: white transparent transparent;
+	border-style: solid;
+	border-width: 4px;
+	position: absolute;
+	right: 10px;
+	top: 19px;
+	content: " ";
+}
+/** Header **/
+
+/** Breadcrumbs **/
+.breadcrumbs {
+	height: 65px;
+	line-height: 65px;
+	margin-bottom: 20px;
+}
+.breadcrumbs a[href] {
+	color: #0082c6;
+}
+section.breadcrumbs a[href]:after {
+	padding: 0 0.78em;
+}
+/** Breadcrumbs **/
+
+/** Aside **/
+aside {
+	width: 220px;
+	border-right: 1px solid #ccc;
+	float: left;
+	padding-bottom: 30px;
+}
+aside ul {
+	padding-left: 15px;
+	margin: 0;
+}
+aside ul li {
+	margin-bottom: 4px;
+}
+aside h4 {
+	 margin-top: 20px;
+ }
+aside h4:first-child {
+	margin-top: 0;
+}
+aside a.active {
+	color: #0082c6;
+}
+aside + main {
+	margin-left: 220px;
+	border-left: 1px solid #ccc;
+}
+/** Aside **/
+
+/** Main **/
+main {
+	padding: 0 0 30px 45px;
+}
+main a {
+	color: #0082c6;
+}
+main h1 + h3.slim {
+	margin-top: 10px;
+}
+/** Main **/
+
+/** Tables **/
+h2.table-header {
+	margin: 30px 0 20px;
+	color: #333;
+}
+h2.table-header .sub {
+	display: block;
+	font-weight: 400;
+}
+.table-header + table {
+	color: #333;
+	width: 100%;
+	border-collapse: collapse;
+}
+.table-header + table th {
+	text-align: left;
+	max-width: 500px;
+}
+.table-header + table td:first-child,
+.table-header + table td:first-child + td + td {
+	min-width: 200px;
+}
+.table-header + table td:first-child + td {
+	min-width: 150px;
+}
+.table-header + table td {
+	line-height: 1.5em;
+	vertical-align: top;
+	border-top: 1px solid #ccc;
+	padding: 10px 0;
+}
+/** Tables **/
+
+/** Media-menu **/
+.media-list, .media-list .media,
+.media-list .media-heading,
+.media-list .media-body {
+	margin: 0;
+	padding: 0;
+}
+.media-list a {
+	color: #0082c6;
+}
+.media-heading .handler {
+	display: inline-block;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 8px;
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+	cursor: pointer;
+	position: relative;
+	top: -2px;
+}
+.media-heading .handler img {
+	display: block;
+	margin: 5px auto;
+}
+.media-list {
+	list-style:none;
+}
+.media-list .media .media-body {
+	margin-top: 10px;
+}
+main > ul.media-list ul {
+	display: none;
+}
+main > ul.media-list ul.active {
+	display: block;
+}
+main > ul.media-list ul.media-list li.media {
+	margin-left: 35px;
+}
+main > ul.media-list >
+.media > .media-body >
+h4.media-heading {
+	font-size: 1.143em;
+}
+main > ul.media-list >
+.media > .media-body >
+h4.media-heading .handler {
+	border-radius: 9px;
+	width: 16px;
+	height: 16px;
+}
+main > ul.media-list >
+.media > .media-body >
+h4.media-heading .handler img {
+	margin: 6px auto;
+}
+/** Media menu **/
+
+/** Footer **/
+footer {
+	background: #191919;
+}
+footer section {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 60px;
+	margin-top: 45px;
+}
+footer h4 {
+	margin-bottom: 15px;
+}
+footer a {
+	color: white;
+}
+footer ul {
+	padding: 0;
+}
+footer section:first-child {
+	margin-top: 30px;
+}
+footer section:first-child img,
+footer section:first-child span {
+	display: block;
+}
+footer section:first-child img {
+	height: 62px;
+}
+footer section:first-child span {
+	margin-left: 2px;
+	margin-top: 38px;
+	color: #7f7f7f;
+}
+/** Footer **/

@@ -1,16 +1,17 @@
-<article class="col-sm-8">
+{{ widget('structure.menu.auto', {'branch' : 'fda552a8-846a-431d-87bf-ed719cdd884b', 'template': 'side', 'depth' : '2'}) }}
+
+<main>
 
     <h1>{{ page.getHeader() }}</h1>
 
     {% if (page.getTypeName() == 'static.controller') %}
 
-        <p> Имя контроллера: {{ page.displayName}} </p>
+        <h3 class="slim">Имя контроллера: {{ page.displayName}} </h3>
         {{ page.description | raw }}
         {{ page.contents | raw }}
 
         {% if page.templateName %}
-            <h3>Шаблон</h3>
-            {{ page.templateName | raw }}
+            <h2 class="table-header">Шаблон<span class="sub small">{{ page.templateName }}</span></h2>
         {% endif %}
 
         {{ page.returnValue | raw }}
@@ -20,8 +21,4 @@
         {{ widget('structure.menu.auto', {'depth': 10, 'branch' : page, 'template' : 'tree'})|raw }}
     {% endif %}
 
-</article>
-
-<aside class="col-sm-3 col-sm-offset-1">
-    {{ widget('structure.menu.auto', {'branch' : 'fda552a8-846a-431d-87bf-ed719cdd884b', 'template' : 'side'})|raw }}
-</aside>
+</main>
