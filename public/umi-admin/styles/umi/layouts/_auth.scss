@@ -165,6 +165,10 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
             height: auto;
         }
     }
+
+    &-logo{
+        opacity: 0.8;
+    }
 }
 
 @media #{$medium-only}{
