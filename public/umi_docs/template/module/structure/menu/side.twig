@@ -1,11 +1,23 @@
 {% if (menu) %}
-    <h3 class="menu-header">Модули</h3>
-    <div class="panel panel-default">
-        <div class="list-group">
-            {% for pageInfo in menu %}
-                <a class="list-group-item {{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+    <aside>
+    <h4>Модули</h4>
+    {% for pageInfo in menu %}
+        <h4>
+            <a class="{{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+        </h4>
+
+        {% if (pageInfo.children) %}
+            <ul class="simple small">
+            {% for subPageInfo in pageInfo.children %}
+                    <li>
+                        <a class="{{ subPageInfo.active ? 'active' }}"
+                           href="{{ subPageInfo.page.getPageUrl() }}">{{ subPageInfo.page.displayName }}</a>
+                    </li>
             {% endfor %}
-        </div>
-    </div>
+            </ul>
+        {% endif %}
+
+    {% endfor %}
+    </aside>
 {% endif %}
 

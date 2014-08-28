@@ -1,9 +1,5 @@
 {% if (tree) %}
-    <ul class="nav navbar-nav">
-        {% for node in tree %}
-            <li>
-                <a href="{{ node.item.itemUrl }}">{{ node.item.displayName }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% for node in tree %}
+        <a href="{{ node.item.itemUrl }}" class="toRight small">{{ node.item.displayName }}</a>
+    {% endfor %}
 {% endif %}

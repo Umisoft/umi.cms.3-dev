@@ -1,10 +1,27 @@
 {% if (menu) %}
-    <ul class="nav nav-pills">
+    <ul class="container simple horizontal">
+        <li>
+            <a href="/">/</a>
+        </li>
         {% for pageInfo in menu %}
             <li class="{{ pageInfo.active ? 'active' }}">
-                <a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+                <a
+                    class="{% if (pageInfo.children) %}dropdown{% endif %}"
+                    href="{{ pageInfo.page.getPageUrl() }}"
+                    >{{ pageInfo.page.displayName }}</a>
+
+                {% if (pageInfo.children) %}
+                    <ul class="simple">
+                        {% for subPageInfo in pageInfo.children %}
+                            <li>
+                                <a class="list-group-item {{ subPageInfo.active ? 'active' }}"
+                                   href="{{ subPageInfo.page.getPageUrl() }}">{{ subPageInfo.page.displayName }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
             </li>
         {% endfor %}
     </ul>
-    <br />
 {% endif %}
