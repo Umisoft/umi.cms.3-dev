@@ -12,7 +12,6 @@ namespace umicms\hmvc\component\admin\collection;
 use umi\acl\IAclFactory;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umi\orm\metadata\IObjectType;
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\ICollectionComponent;
