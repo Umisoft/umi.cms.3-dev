@@ -212,11 +212,6 @@ return [
                 'types' => [
                     HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
                     Slug::TYPE => 'umicms\filter\Slug'
-                ],
-                'defaultOptions' => [
-                    HtmlPurifier::TYPE => [
-                        'test' => 'test'
-                    ]
                 ]
             ]
         ]

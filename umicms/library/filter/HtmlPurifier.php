@@ -14,6 +14,9 @@ use umi\filter\IFilter;
 use umicms\purifier\IPurifierAware;
 use umicms\purifier\TPurifierAware;
 
+/**
+ * Фильтр для очистки контента от XSS-атак.
+ */
 class HtmlPurifier implements IFilter, IPurifierAware
 {
     use TPurifierAware;
@@ -35,6 +38,15 @@ class HtmlPurifier implements IFilter, IPurifierAware
     public function __construct(array $options = [])
     {
         $this->options = $options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        return $this;
     }
 
     /**

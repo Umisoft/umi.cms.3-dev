@@ -43,6 +43,15 @@ class Slug implements IFilter, ISlugGeneratorAware
     /**
      * {@inheritdoc}
      */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function filter($var)
     {
         return $this->getSlugGenerator()->generate($var, $this->options);
