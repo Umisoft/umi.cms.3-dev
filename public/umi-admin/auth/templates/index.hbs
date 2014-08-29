@@ -19,9 +19,17 @@
                     <ul class="f-dropdown radius" data-dropdown-content>
                         {{#each choices}}
                         <li>
-                            <a href="javascript: void(0);" class="locale-select" data-locale="{{attributes.value}}">
-                                {{label}}
-                            </a>
+                            {{#if active}}
+                                <a href="javascript: void(0);">
+                                    <i class="icon icon-accept"></i>
+                                    {{label}}
+                                </a>
+                            {{else}}
+                                <a href="javascript: void(0);" class="locale-select" data-locale="{{attributes.value}}">
+                                    <i class="icon white icon-accept"></i>
+                                    {{label}}
+                                </a>
+                            {{/if}}
                         </li>
                         {{/each}}
                     </ul>

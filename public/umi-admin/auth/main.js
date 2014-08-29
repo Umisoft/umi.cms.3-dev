@@ -218,6 +218,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                         for (var i = 0; i < options.length; i++) {
                             if (options[i].value === currentLocale) {
+                                options[i].active = 'true';
                                 currentLocaleLabel = options[i].label || options[i].value;
                             }
                         }
