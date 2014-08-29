@@ -194,7 +194,9 @@ define(
                 }.property()
             });
 
-            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {});
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
+                formElementsBinding: 'control.meta.elements'
+            });
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
                 /**

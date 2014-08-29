@@ -286,15 +286,7 @@ define(
                 var payloadMeta = Ember.get(payload, 'result.meta');
 
                 if (payloadMeta) {
-                    var meta = store.metadataFor(type) || {};
-
-                    for (var property in payloadMeta) {
-                        if (payloadMeta.hasOwnProperty(property)) {
-                            meta[property] = payloadMeta[property];
-                        }
-                    }
-
-                    store.metaForType(type, meta);
+                    store.metaForType(type, payloadMeta);
                     delete payload.result.meta;
                 }
             },

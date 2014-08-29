@@ -109,6 +109,27 @@ define(['App'],
             UMI.register('service:formControlPromise', FormControlPromiseService);
             UMI.inject('controller:action', 'editFormPromiseService', 'service:formControlPromise');
 
+            var CreateFormControlPromiseService = Ember.Object.extend({
+                execute: function(model) {
+                    var defer = Ember.RSVP.defer();
+                    var replacedModel = $.extend({}, model);
+                    replacedModel.object = replacedModel.createObject;
+
+                    objectFetch(replacedModel).then(
+                        function(result) {
+                            defer.resolve(result);
+                        },
+                        function(error) {
+                            defer.reject(error);
+                        }
+                    );
+
+                    return defer.promise;
+                }
+            });
+            UMI.register('service:createFormControlPromise', CreateFormControlPromiseService);
+            UMI.inject('controller:action', 'createFormPromiseService', 'service:createFormControlPromise');
+
             UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
 

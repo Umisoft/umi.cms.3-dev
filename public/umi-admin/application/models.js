@@ -61,7 +61,7 @@ define([], function() {
                             this.set('validErrors', activeErrors);
                         }
 
-                        if (this.get('isValid')) {
+                        if (this.get('isValid') && this.get('isDirty')) {
                             this.send('becameInvalid');
                         }
 

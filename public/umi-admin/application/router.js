@@ -8,7 +8,7 @@ define([], function() {
          @submodule Router
          **/
         UMI.Router.reopen({
-            location: 'auto',
+            location: 'history',
             rootURL: window.UmiSettings.baseURL
         });
 
