@@ -190,6 +190,10 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
             box-shadow: 0 1px 1px 1px #000;
         }
     }
+
+    &-logo{
+        opacity: 0.8;
+    }
 }
 
 @media #{$medium-only}{

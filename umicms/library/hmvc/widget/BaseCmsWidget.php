@@ -89,7 +89,6 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     protected function createResult($templateName, array $variables = [])
     {
         $variables['widget'] = $this->getShortPath();
-        $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
 
         $view->addSerializerConfigurator(
