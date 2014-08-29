@@ -23,6 +23,14 @@ return
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'description'
             ],
+            WidgetPage::FIELD_TWIG_EXAMPLE => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'twig_example'
+            ],
+            WidgetPage::FIELD_PHP_EXAMPLE => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'php_example'
+            ],
             'secondContents' => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'second_contents'
@@ -47,7 +55,9 @@ return
                 'fields'      => [
                     ControllerPage::FIELD_DESCRIPTION => [],
                     ControllerPage::FIELD_RETURN_VALUE => [],
-                    ControllerPage::FIELD_TEMPLATE_NAME => []
+                    ControllerPage::FIELD_TEMPLATE_NAME => [],
+                    ControllerPage::FIELD_TWIG_EXAMPLE => [],
+                    ControllerPage::FIELD_PHP_EXAMPLE => [],
                 ]
             ],
             WidgetPage::TYPE           => [
@@ -56,6 +66,8 @@ return
                     WidgetPage::FIELD_PARAMETERS => [],
                     WidgetPage::FIELD_DESCRIPTION => [],
                     WidgetPage::FIELD_RETURN_VALUE => [],
+                    WidgetPage::FIELD_TWIG_EXAMPLE => [],
+                    WidgetPage::FIELD_PHP_EXAMPLE => [],
                 ]
             ]
         ]

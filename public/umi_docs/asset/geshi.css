@@ -1,0 +1,103 @@
+
+.twig .de1, .twig .de2 {
+    font: normal normal 1em/1.3em monospace;
+    margin:0;
+    padding:0 0 0 10px;
+    vertical-align:top;
+    background-color: #000000;
+    color: #cccccc;
+}
+.twig  {
+    font-family:monospace;
+    color: #aaa;
+    background-color: #ececec;
+}
+.twig .imp {font-weight: bold; color: red;}
+.twig li, .twig .li1 {font-weight: normal; vertical-align:top;}
+.twig .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.twig .li2 {font-weight: bold; vertical-align:top;}
+.twig .kw1 {color: #ff8400;}
+.twig .kw2 {color: #008000;}
+.twig .kw3 {color: #0600FF;}
+.twig .kw4 {color: #804040;}
+.twig .kw5 {color: #008000;}
+.twig .kw6 {color: #008000;}
+.twig .coMULTI {color: #008080; font-style: italic;}
+.twig .es0 {color: #000099; font-weight: bold;}
+.twig .br0 {color: #D36900;}
+.twig .sy0 {color: #D36900;}
+.twig .st0 {color: #56db3a;}
+.twig .nu0 {color: #cc66cc;}
+.twig .me1 {color: #006600;}
+.twig .sc1 {color: #808080; font-style: italic;}
+.twig .sc2 {color: #009000;}
+.twig .re0 {color: #00aaff;}
+.twig .re1 {color: #00aaff;}
+.twig .ln-xtra, .twig li.ln-xtra, .twig div.ln-xtra {background-color: #ffc;}
+.twig span.xtra { display:block; }
+
+.twig ol li:first-child div {
+    padding-top: 10px;
+}
+
+.twig ol li:last-child div {
+    padding-bottom: 10px;
+}
+
+.php .de1, .php .de2 {
+    font: normal normal 1em/1.2em monospace;
+    margin:0;
+    padding:0 0 0 10px;
+    vertical-align:top;
+    background-color: #000000;
+    color: #cccccc;
+}
+.php  {
+    font-family:monospace;
+    color: #aaa;
+    background-color: #ececec;
+}
+
+.php .imp {font-weight: bold; color: red;}
+.php li, .php .li1 {font-weight: normal; vertical-align:top;}
+.php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.php .li2 {font-weight: bold; vertical-align:top;}
+.php .kw1 {color: #ff8400;}
+.php .kw2 {color: #a0a0a0; font-weight: bold;}
+.php .kw3 {color: #990000;}
+.php .kw4 {color: #009900; font-weight: bold;}
+.php .co1 {color: #666666; font-style: italic;}
+.php .co2 {color: #666666; font-style: italic;}
+.php .co3 {color: #0000cc; font-style: italic;}
+.php .co4 {color: #b729d9; font-style: italic;}
+.php .coMULTI {color: #666666; font-style: italic;}
+.php .es0 {color: #000099; font-weight: bold;}
+.php .es1 {color: #000099; font-weight: bold;}
+.php .es2 {color: #660099; font-weight: bold;}
+.php .es3 {color: #660099; font-weight: bold;}
+.php .es4 {color: #006699; font-weight: bold;}
+.php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+.php .es6 {color: #009933; font-weight: bold;}
+.php .es_h {color: #000099; font-weight: bold;}
+.php .br0 {color: #009900;}
+.php .sy0 {color: #339933;}
+.php .sy1 {color: #a0a0a0; font-weight: bold;}
+.php .st0 {color: #0000ff;}
+.php .st_h {color: #56db3a;}
+.php .nu0 {color: #cc66cc;}
+.php .nu8 {color: #208080;}
+.php .nu12 {color: #208080;}
+.php .nu19 {color:#800080;}
+.php .me1 {color: #ffffff;}
+.php .me2 {color: #004000;}
+.php .re0 {color: #ffffff;}
+.php .ln-xtra, .php li.ln-xtra, .php div.ln-xtra {background-color: #ffc;}
+.php span.xtra { display:block; }
+
+.php ol li:first-child div {
+    padding-top: 10px;
+}
+
+.php ol li:last-child div {
+    padding-bottom: 10px;
+}

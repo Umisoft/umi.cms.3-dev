@@ -16,8 +16,10 @@ use umicms\project\module\structure\model\object\StaticPage;
  * Страница контроллера.
  *
  * @property string $description описание
- * @property string $returnValue описание
- * @property string $templateName описание
+ * @property string $returnValue описание возвращаемого значения
+ * @property string $twigExample пример шаблона для twig
+ * @property string $phpExample пример шаблона для php
+ * @property string $templateName имя шаблона
  */
 class ControllerPage extends StaticPage
 {
@@ -37,5 +39,13 @@ class ControllerPage extends StaticPage
      * Имя поля для хранения используемого шаблона
      */
     const FIELD_TEMPLATE_NAME = 'templateName';
+    /**
+     * Имя поля для хранения twig-шаблона
+     */
+    const FIELD_TWIG_EXAMPLE = 'twigExample';
+    /**
+     * Имя поля для хранения php-шаблона
+     */
+    const FIELD_PHP_EXAMPLE = 'phpExample';
 }
  
