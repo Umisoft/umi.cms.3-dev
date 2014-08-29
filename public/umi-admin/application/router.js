@@ -381,7 +381,7 @@ define([], function() {
                     if (parentObject.constructor.typeKey) {
                         var meta = this.store.metadataFor(parentObject.constructor.typeKey) || {};
 
-                        if (meta.hasOwnProperty('collectionType') && meta.collectionType === 'hierarchic') {
+                        if (meta.collectionType === 'hierarchic') {
                             contextId = parentObject.get('id');
                         }
                     }
