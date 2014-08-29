@@ -39,6 +39,7 @@ use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\Environment;
 use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\structure\model\object\StaticPage;
@@ -229,9 +230,21 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $controllerPage->description = $description;
         $controllerPage->returnValue = $this->getReturnValue($class);
 
-        $properties = $class->getProperties(true);
-        if (isset($properties['template'])) {
+        if (isset($controller->template)) {
             $controllerPage->templateName = $controller->template;
+
+            $templateDirs = explode('.', substr($component->getPath(), strlen('project.site') + 1));
+            $templateDir = 'template/module/' . implode('/', $templateDirs);
+
+            $twigTemplate = Environment::$directoryPublic . '/demo-twig/' . $templateDir . '/' . $controller->template . '.' . 'twig';
+            if (file_exists($twigTemplate)) {
+                $controllerPage->twigExample =  $this->getHighlightedCode($twigTemplate, 'twig');
+            }
+
+            $phpTemplate = Environment::$directoryPublic . '/demo-php/' . $templateDir . '/' . $controller->template . '.' . 'phtml';
+            if (file_exists($phpTemplate)) {
+                $controllerPage->phpExample = $this->getHighlightedCode($phpTemplate, 'php');
+            }
         }
     }
 
@@ -389,6 +402,33 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $widgetPage->description = $description;
         $widgetPage->parameters = '<h2 class="table-header">Параметры вызова виджета</h2>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
         $widgetPage->returnValue = $this->getReturnValue($class);
+
+        if (isset($widget->template)) {
+
+            $templateDirs = explode('.', substr($component->getPath(), strlen('project.site') + 1));
+            $templateDir = 'template/module/' . implode('/', $templateDirs);
+
+            $twigTemplate = Environment::$directoryPublic . '/demo-twig/' . $templateDir . '/' . $widget->template . '.' . 'twig';
+            if (file_exists($twigTemplate)) {
+                $widgetPage->twigExample = $this->getHighlightedCode($twigTemplate, 'twig');
+            }
+
+            $phpTemplate = Environment::$directoryPublic . '/demo-php/' . $templateDir . '/' . $widget->template . '.' . 'phtml';
+            if (file_exists($phpTemplate)) {
+                $widgetPage->phpExample = $this->getHighlightedCode($phpTemplate, 'php');
+            }
+        }
+
+    }
+
+    protected function getHighlightedCode($source, $language)
+    {
+        $geshi = new \GeSHi(file_get_contents($source), $language);
+        $geshi->enable_classes();
+        $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+        $geshi->set_header_type(GESHI_HEADER_DIV);
+
+        return $geshi->parse_code();
     }
 
     protected function buildAnnotationPropertiesDescriptionTable(ClassReflection $class)

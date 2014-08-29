@@ -128,8 +128,20 @@ return [
                         'dataSource' => WidgetPage::FIELD_PARAMETERS
                     ]
                 ],
-
-
+                WidgetPage::FIELD_TWIG_EXAMPLE => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_TWIG_EXAMPLE,
+                    'options' => [
+                        'dataSource' => WidgetPage::FIELD_TWIG_EXAMPLE
+                    ]
+                ],
+                WidgetPage::FIELD_PHP_EXAMPLE => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_PHP_EXAMPLE,
+                    'options' => [
+                        'dataSource' => WidgetPage::FIELD_PHP_EXAMPLE
+                    ]
+                ],
             ]
         ]
     ]

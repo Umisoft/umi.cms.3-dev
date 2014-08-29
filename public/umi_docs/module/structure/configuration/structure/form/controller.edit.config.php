@@ -128,6 +128,20 @@ return [
                         'dataSource' => ControllerPage::FIELD_TEMPLATE_NAME
                     ]
                 ],
+                ControllerPage::FIELD_TWIG_EXAMPLE => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => ControllerPage::FIELD_TWIG_EXAMPLE,
+                    'options' => [
+                        'dataSource' => ControllerPage::FIELD_TWIG_EXAMPLE
+                    ]
+                ],
+                ControllerPage::FIELD_PHP_EXAMPLE => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => ControllerPage::FIELD_PHP_EXAMPLE,
+                    'options' => [
+                        'dataSource' => ControllerPage::FIELD_PHP_EXAMPLE
+                    ]
+                ],
 
             ]
         ]
