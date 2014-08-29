@@ -11,7 +11,7 @@
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
-use umicms\project\site\SiteApplication;
+use umicms\project\IProjectSettingsAware;
 
 return [
     'options' => [
@@ -21,14 +21,14 @@ return [
     ],
 
     'elements' => [
-        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => [
+        IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => [
             'type' => Select::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
             'options' => [
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ],
-                'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
                 'choices' => [
                     'php' => 'php',
                     'twig' => 'twig',
@@ -36,25 +36,25 @@ return [
                 ]
             ]
         ],
-        SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => [
+        IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION
             ]
         ],
-        SiteApplication::SETTING_TEMPLATE_DIRECTORY => [
+        IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_TEMPLATE_DIRECTORY,
+            'label' => IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_TEMPLATE_DIRECTORY
+                'dataSource' => IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY
             ]
         ],
-        SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => [
+        IProjectSettingsAware::SETTING_COMMON_TEMPLATE_DIRECTORY => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY,
+            'label' => IProjectSettingsAware::SETTING_COMMON_TEMPLATE_DIRECTORY,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY
+                'dataSource' => IProjectSettingsAware::SETTING_COMMON_TEMPLATE_DIRECTORY
             ]
         ]
     ]
