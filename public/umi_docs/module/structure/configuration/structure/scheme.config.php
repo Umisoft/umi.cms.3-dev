@@ -19,6 +19,12 @@ return
         'description' => [
             'type' => Type::TEXT
         ],
+        'twig_example' => [
+            'type' => Type::TEXT
+        ],
+        'php_example' => [
+            'type' => Type::TEXT
+        ],
         'second_contents' => [
             'type' => Type::TEXT
         ],

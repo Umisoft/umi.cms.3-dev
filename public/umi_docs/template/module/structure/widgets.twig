@@ -35,6 +35,13 @@
         {{ page.parameters | raw }}
         {{ page.returnValue | raw }}
         {{ page.secondContents | raw }}
+
+        <h2 class="table-header">Пример шаблона для twig</h2>
+        {{ page.twigExample | raw }}
+
+        <h2 class="table-header">Пример шаблона для php</h2>
+        {{ page.phpExample | raw}}
+
     {% else %}
         {% if page.contents %}
             {{ page.contents | raw }}
