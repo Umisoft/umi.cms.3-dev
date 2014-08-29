@@ -171,7 +171,7 @@ define(['App', 'toolbar'], function(UMI) {
                 classNames: ['right', 'umi-table-control-pagination'],
 
                 counter: function() {
-                    var label = 'из';
+                    var label = (UMI.i18n.getTranslate('Of') || '').toLowerCase();
                     var limit = this.get('controller.limit');
                     var offset = this.get('controller.offset') + 1;
                     var total = this.get('controller.total');
