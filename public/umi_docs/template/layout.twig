@@ -10,22 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>{{ title }}</title>
-    {#
-    <!-- Bootstrap core CSS -->
-    <link href="{{ assetsUrl }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ assetsUrl }}docs.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="{{ assetsUrl }}bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    #}
+    {#TODO use base#}
     <link href="{{ assetsUrl }}styles.css" rel="stylesheet">
     <link href="{{ assetsUrl }}geshi.css" rel="stylesheet">
 
@@ -34,51 +19,45 @@
 
 <body>
 
-<header>
-    <div class="justify_head">
-        <div class="container">
-            <a href="/" class="toLeft">
-                <img src="{{ assetsUrl }}images/butterfly.png" />
-            </a>
-            {{ widget('structure.menu.custom', {'depth': 1, 'menuName': 'navbar-menu'})|raw }}
+    <header>
+        <div class="justify_head">
+            <div class="container">
+                <a href="/" class="toLeft">
+                    <img src="{{ assetsUrl }}images/butterfly.png" />
+                </a>
+                {{ widget('structure.menu.custom', {'depth': 1, 'menuName': 'navbar-menu'})| raw }}
+            </div>
         </div>
-    </div>
-    <nav>
-        {{ widget('structure.menu.auto', {'depth': 2})|raw }}
-    </nav>
-</header>
+        <nav class="dropdown">
+            {{ widget('structure.menu.auto', {'depth': 2})|raw }}
+        </nav>
+    </header>
 
-{{ contents|raw }}
+    {{ contents|raw }}
 
-<footer>
-    <div class="container">
-        <section>
-            <img src="http://summit.umi-cms.ru/templates/summit/images/umicms-logo.png" />
-            {#TODO get (c) Umisoft from data #}
-            <span class="small">© ООО «Юмисофт« 2007-2014</span>
-        </section>
-        <section>
-            {{ widget('structure.menu.auto', {'template' : 'columns'})|raw }}
-        </section>
-    </div>
-</footer>
+    <footer>
+        <div class="container">
+            <section>
+                <img src="http://summit.umi-cms.ru/templates/summit/images/umicms-logo.png" />
+                {#TODO get (c) Umisoft from data #}
+                <span class="small">© ООО «Юмисофт» 2007-2014</span>
+            </section>
+            <section>
+                {{ widget('structure.menu.auto', {'template' : 'columns'})|raw }}
+            </section>
+        </div>
+    </footer>
 
-{#<!-- Bootstrap core JavaScript#}
-{#================================================== -->#}
-{#<!-- Placed at the end of the document so the pages load faster -->#}
-{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>#}
-{#<script src="{{ assetsUrl }}bootstrap/js/bootstrap.min.js"></script>#}
-{#<script src="{{ assetsUrl }}bootstrap/js/docs.min.js"></script>#}
-{#<script>#}
-    {#(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
-        {#(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
-            {#m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
-    {#})(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    {#ga('create', 'UA-53400700-1', 'auto');#}
-    {#ga('send', 'pageview');#}
+        ga('create', 'UA-53400700-1', 'auto');
+        ga('send', 'pageview');
 
-{#</script>#}
+    </script>
 
     <script src="{{ assetsUrl }}scripts.js"></script>
 </body>
