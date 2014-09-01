@@ -22,6 +22,7 @@ return [
         WidgetPage::FIELD_RETURN_VALUE => 'Параметры, идущие на шаблонизацию (автогенерируемое)',
         WidgetPage::FIELD_TWIG_EXAMPLE => 'Пример шаблона для Twig (автогенерируемое)',
         WidgetPage::FIELD_PHP_EXAMPLE => 'Пример шаблона для PHP (автогенерируемое)',
+        WidgetPage::FIELD_PATH => 'Иерархический путь (автогенерируемое)',
         ControllerPage::FIELD_TEMPLATE_NAME => 'Имя шаблона вывода (автогенерируемое)'
     ]
 ];

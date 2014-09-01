@@ -31,6 +31,10 @@ return
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'php_example'
             ],
+            WidgetPage::FIELD_PATH => [
+                'type' => IField::TYPE_STRING,
+                'columnName' => 'path'
+            ],
             'secondContents' => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'second_contents'
@@ -42,7 +46,7 @@ return
             ControllerPage::FIELD_TEMPLATE_NAME => [
                 'type' => IField::TYPE_STRING,
                 'columnName' => 'template_name'
-            ]
+            ],
         ],
         'types'      => [
             StaticPage::TYPE => [
@@ -58,6 +62,7 @@ return
                     ControllerPage::FIELD_TEMPLATE_NAME => [],
                     ControllerPage::FIELD_TWIG_EXAMPLE => [],
                     ControllerPage::FIELD_PHP_EXAMPLE => [],
+                    ControllerPage::FIELD_PATH => [],
                 ]
             ],
             WidgetPage::TYPE           => [
@@ -68,6 +73,7 @@ return
                     WidgetPage::FIELD_RETURN_VALUE => [],
                     WidgetPage::FIELD_TWIG_EXAMPLE => [],
                     WidgetPage::FIELD_PHP_EXAMPLE => [],
+                    WidgetPage::FIELD_PATH => [],
                 ]
             ]
         ]

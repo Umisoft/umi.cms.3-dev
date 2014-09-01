@@ -20,6 +20,7 @@ use umicms\project\module\structure\model\object\StaticPage;
  * @property string $twigExample пример шаблона для twig
  * @property string $phpExample пример шаблона для php
  * @property string $templateName имя шаблона
+ * @property string $path путь виджета
  */
 class ControllerPage extends StaticPage
 {
@@ -27,6 +28,10 @@ class ControllerPage extends StaticPage
      * Тип объекта
      */
     const TYPE = 'static.controller';
+    /**
+     * Имя поля для хранения пути виджета
+     */
+    const FIELD_PATH = 'path';
     /**
      * Имя поля для хранения описания контроллера
      */

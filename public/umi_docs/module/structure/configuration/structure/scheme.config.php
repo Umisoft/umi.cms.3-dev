@@ -33,6 +33,9 @@ return
         ],
         'template_name' => [
             'type' => Type::STRING
+        ],
+        'path' => [
+            'type' => Type::STRING
         ]
     ]
 ];
