@@ -228,6 +228,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
 
         $controllerPage->description = $description;
+        $controllerPage->path = substr($component->getPath(), strlen('project.site') + 1) . '.' . $controller->getName();
         $controllerPage->returnValue = $this->getReturnValue($class);
 
         if (isset($controller->template)) {
@@ -399,6 +400,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             $description .= '<p>' . $longDescription . '</p>';
         }
 
+        $widgetPage->path = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
         $widgetPage->description = $description;
         $widgetPage->parameters = '<h2 class="table-header">Параметры вызова виджета</h2>'.$this->buildPublicPropertiesDescriptionTable($class, $widget);
         $widgetPage->returnValue = $this->getReturnValue($class);

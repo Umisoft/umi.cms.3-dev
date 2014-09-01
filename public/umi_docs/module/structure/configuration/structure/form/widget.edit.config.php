@@ -89,19 +89,11 @@ return [
             'label' => 'contents',
             'elements' => [
 
-                WidgetPage::FIELD_PAGE_CONTENTS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => WidgetPage::FIELD_PAGE_CONTENTS,
+                WidgetPage::FIELD_PATH => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_PATH,
                     'options' => [
-                        'dataSource' => WidgetPage::FIELD_PAGE_CONTENTS
-                    ]
-                ],
-
-                'secondContent' => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => 'secondContent',
-                    'options' => [
-                        'dataSource' => 'secondContent'
+                        'dataSource' => WidgetPage::FIELD_PATH
                     ]
                 ],
 
@@ -140,6 +132,21 @@ return [
                     'label' => WidgetPage::FIELD_PHP_EXAMPLE,
                     'options' => [
                         'dataSource' => WidgetPage::FIELD_PHP_EXAMPLE
+                    ]
+                ],
+                WidgetPage::FIELD_PAGE_CONTENTS => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_PAGE_CONTENTS,
+                    'options' => [
+                        'dataSource' => WidgetPage::FIELD_PAGE_CONTENTS
+                    ]
+                ],
+
+                'secondContent' => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => 'secondContent',
+                    'options' => [
+                        'dataSource' => 'secondContent'
                     ]
                 ],
             ]

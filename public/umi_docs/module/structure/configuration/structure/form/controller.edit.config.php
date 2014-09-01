@@ -89,19 +89,11 @@ return [
             'label' => 'contents',
             'elements' => [
 
-                ControllerPage::FIELD_PAGE_CONTENTS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => ControllerPage::FIELD_PAGE_CONTENTS,
+                ControllerPage::FIELD_PATH => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => ControllerPage::FIELD_PATH,
                     'options' => [
-                        'dataSource' => ControllerPage::FIELD_PAGE_CONTENTS
-                    ]
-                ],
-
-                'secondContent' => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => 'secondContent',
-                    'options' => [
-                        'dataSource' => 'secondContent'
+                        'dataSource' => ControllerPage::FIELD_PATH
                     ]
                 ],
 
@@ -143,6 +135,21 @@ return [
                     ]
                 ],
 
+                ControllerPage::FIELD_PAGE_CONTENTS => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => ControllerPage::FIELD_PAGE_CONTENTS,
+                    'options' => [
+                        'dataSource' => ControllerPage::FIELD_PAGE_CONTENTS
+                    ]
+                ],
+
+                'secondContent' => [
+                    'type' => Wysiwyg::TYPE_NAME,
+                    'label' => 'secondContent',
+                    'options' => [
+                        'dataSource' => 'secondContent'
+                    ]
+                ]
             ]
         ]
     ]

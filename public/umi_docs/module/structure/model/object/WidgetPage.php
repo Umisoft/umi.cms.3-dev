@@ -20,6 +20,7 @@ use umicms\project\module\structure\model\object\StaticPage;
  * @property string $returnValue описание возвращаемого значения
  * @property string $twigExample пример шаблона для twig
  * @property string $phpExample пример шаблона для php
+ * @property string $path путь виджета
  */
 class WidgetPage extends StaticPage
 {
@@ -27,6 +28,10 @@ class WidgetPage extends StaticPage
      * Тип объекта
      */
     const TYPE = 'static.widget';
+    /**
+     * Имя поля для хранения пути виджета
+     */
+    const FIELD_PATH = 'path';
     /**
      *  Имя поля для хранения параметров виджета
      */
