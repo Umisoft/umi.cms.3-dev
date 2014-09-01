@@ -103,11 +103,11 @@ class LicenseApi implements IConfigIOAware
     {
         $source = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91ZGF0YTovL2N1c3RvbS9wcmltYXJ5Q2hlY2tDb2RlLw==';
 
-        $params = array(
+        $params = [
             'ip' => $this->request->server->get('SERVER_ADDR'),
             'domain' => $domain,
             'keycode' => $licenseKey
-        );
+        ];
 
         $result = \GuzzleHttp\get(
             base64_decode($source) . base64_encode(serialize($params)) . '/'
@@ -130,11 +130,11 @@ class LicenseApi implements IConfigIOAware
     {
         $source = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91cGRhdGVzcnYvYWN0aXZhdGVVbWlDbXNMaWNlbnNlLw==';
 
-        $params = array(
+        $params = [
             'ip' => $this->request->server->get('SERVER_ADDR'),
             'domain' => $domain,
             'keycode' => $licenseKey
-        );
+        ];
 
         $result = \GuzzleHttp\get(
             base64_decode($source) . '?' . http_build_query($params)
