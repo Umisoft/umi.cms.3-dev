@@ -11,7 +11,7 @@ define([], function() {
                     window.applicationLoading.resolve();
                 }
 
-                $(document).foundation();
+                this.$().foundation();
             }
         });
 
