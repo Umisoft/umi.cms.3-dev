@@ -1,5 +1,5 @@
 define(['App'], function(UMI) {
-    "use strict";
+    'use strict';
 
     return function() {
 
@@ -58,11 +58,20 @@ define(['App'], function(UMI) {
                 this._super();
                 var self = this;
                 var object = this.get('object');
+
                 if (Ember.typeOf(object) === 'instance') {
                     var dataSource = self.get('meta.dataSource');
                     this.set('value', object.get(dataSource));
-                    self.addObserver('object.' + dataSource, function() {
-                        Ember.run.next(self, function() {
+                }
+            },
+
+            didInsertElement: function() {
+                var self = this;
+                var object = this.get('object');
+                var dataSource = self.get('meta.dataSource');
+                if (Ember.typeOf(object) === 'instance') {
+                    Ember.run.next(self, function() {
+                        this.addObserver('object.' + dataSource, function() {
                             this.set('value', object.get(dataSource));
                         });
                     });
@@ -72,6 +81,7 @@ define(['App'], function(UMI) {
             willDestroyElement: function() {
                 var self = this;
                 var object = this.get('object');
+
                 if (Ember.typeOf(object) === 'instance') {
                     var dataSource = self.get('meta.dataSource');
                     self.removeObserver('object.' + dataSource);

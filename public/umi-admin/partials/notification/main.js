@@ -36,44 +36,45 @@ define(['App'], function(UMI) {
             });
         },
         removeAll: function() {
-            UMI.notificationList.set('content', []);
+            UMI.notificationList.set('model', []);
         },
         removeWithKind: function(kind) {
-            var content = UMI.notificationList.get('content');
-            content = content.filter(function(item) {
+            var model = UMI.notificationList.get('model');
+            model = model.filter(function(item) {
                 if (Ember.get(item, 'kind') !== kind) {
                     return true;
                 }
             });
-            UMI.notificationList.set('content', content);
+            UMI.notificationList.set('model', model);
         }
     });
 
     UMI.notification = UMI.Notification.create({});
 
     UMI.NotificationList = Ember.ArrayController.extend({
-        content: [],
-        sortContent: function() {
-            return this.get('content').sortBy('id');
-        }.property('content.length'),
+        model: [],
+        sortModel: function() {
+            return this.get('model').sortBy('id');
+        }.property('model.length'),
         notificationId: 0,
         closeAll: false,
         itemCount: function() {
-            if (this.get('content.length') > 1 && !this.get('closeAll')) {
+            var model = this.get('model');
+            if (model.get('length') > 1 && !this.get('closeAll')) {
                 this.set('closeAll', true);
-                this.get('content').pushObject(Ember.Object.create({
+                model.pushObject(Ember.Object.create({
                     id: 'closeAll',
                     type: 'secondary',
                     kind: 'closeAll',
                     content: UMI.i18n.getTranslate('Close') + ' ' + (UMI.i18n.getTranslate('All') || '').toLowerCase()
                 }));
             }
-            if (this.get('content.length') <= 2 && this.get('closeAll')) {
-                var object = this.get('content').findBy('id', 'closeAll');
-                this.get('content').removeObject(object);
+            if (model.get('length') <= 2 && this.get('closeAll')) {
+                var object = model.findBy('id', 'closeAll');
+                model.removeObject(object);
                 this.set('closeAll', false);
             }
-        }.observes('content.length')
+        }.observes('model.length')
     });
 
     UMI.notificationList = UMI.NotificationList.create({});
