@@ -8,7 +8,7 @@
 {% set result = widget('structure.menu.auto', {'depth': 10, 'branch' : branch, 'depth': '2'}) %}
 {% if (result['menu']) %}
     <aside>
-        <h4>{{ breadcrumbs[1]['displayName'] }}</h4>
+        <h3>{{ breadcrumbs[1]['displayName'] }}</h3>
         {% for pageInfo in result['menu'] %}
             <h4>
                 <a class="{{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
@@ -25,6 +25,11 @@
             {% endif %}
         {% endfor %}
     </aside>
+{% elseif (page.getIsDefault()) %}
+    <div class="twitter">
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/umidevs" data-widget-id="505040233855868928">Твиты пользователя @umidevs</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
 {% endif %}
 
 <main>

@@ -1,10 +1,11 @@
 {% if (menu) %}
     <ul class="container simple horizontal">
         <li>
-            <a href="/">/</a>
+            <a id="js-menu-main">&nbsp;</a>
         </li>
         {% for pageInfo in menu %}
             <li class="{{ pageInfo.active ? 'active' }}">
+            {% if (pageInfo.children) %}<a class="mobile-button">&nbsp;</a>{% endif %}
                 <a
                     class="{% if (pageInfo.children) %}dropdown{% endif %}"
                     href="{{ pageInfo.page.getPageUrl() }}"

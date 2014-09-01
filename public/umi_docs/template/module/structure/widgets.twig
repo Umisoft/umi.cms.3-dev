@@ -1,47 +1,23 @@
 {{ widget('structure.menu.auto', {'branch' : 'd7dda227-cac7-474d-ab0d-d361d0bc16a3', 'template': 'side', 'depth' : '2'}) }}
 
-{% if (result['menu']) %}
-    {# TODO Label #}
-    <h4>Модули</h4>
-    <aside>
-        {% for pageInfo in result['menu'] %}
-            <h4>
-                <a class="{{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
-            </h4>
-            {% if (pageInfo.children) %}
-                <ul class="simple small">
-                    {% for subPageInfo in pageInfo.children %}
-                        <li>
-                            <a class="{{ subPageInfo.active ? 'active' }}"
-                               href="{{ subPageInfo.page.getPageUrl() }}">{{ subPageInfo.page.displayName }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endfor %}
-    </aside>
-{% endif %}
-
 <main>
     <h1>{{ page.getHeader() }}</h1>
 
     {% if (page.getTypeName() == 'static.widget') %}
         {# TODO Label #}
         <h3 class="slim">Имя виджета: {{ page.displayName}}</h3>
-        {#TODO vertical-intervals#}
-        {#TODO H3 to H2 #}
         {{ page.description | raw }}
         {{ page.contents | raw }}
         {{ page.parameters | raw }}
         {{ page.returnValue | raw }}
         {{ page.secondContents | raw }}
-
         {% if page.twigExample %}
+            {# TODO Label #}
             <h2 class="table-header">Пример шаблона для Twig</h2>
             {{ page.twigExample | raw }}
         {% endif %}
-
         {% if page.phpExample %}
+            {# TODO Label #}
             <h2 class="table-header">Пример шаблона для PHP</h2>
             {{ page.phpExample | raw}}
         {% endif %}
