@@ -33,12 +33,16 @@
         {{ page.parameters | raw }}
         {{ page.returnValue | raw }}
         {{ page.secondContents | raw }}
-        {# TODO Label #}
-        <h2 class="table-header">Пример шаблона для twig</h2>
-        {{ page.twigExample | raw }}
-        {# TODO Label #}
-        <h2 class="table-header">Пример шаблона для php</h2>
-        {{ page.phpExample | raw}}
+        {% if page.twigExample %}
+            {# TODO Label #}
+            <h2 class="table-header">Пример шаблона для Twig</h2>
+            {{ page.twigExample | raw }}
+        {% endif %}
+        {% if page.phpExample %}
+            {# TODO Label #}
+            <h2 class="table-header">Пример шаблона для PHP</h2>
+            {{ page.phpExample | raw}}
+        {% endif %}
 
     {% else %}
         {% if page.contents %}

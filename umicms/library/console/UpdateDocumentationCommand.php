@@ -291,8 +291,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $additionalContent .= $this->getAdditionalDescription($templateParam);
 
                 $templateParamsString .= '<tr>
-          <td>' . $templateParam[0] . '</td>
-          <td>' . $templateParam[1] . '</td><td>';
+          <td>' . $templateParam[1] . '</td>
+          <td>' . $templateParam[0] . '</td><td>';
 
                 for ($i = 2; $i < count($templateParam); $i++) {
                     $templateParamsString .= $templateParam[$i] . ' ';
@@ -305,8 +305,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             '<table>
       <thead>
         <tr>
-          <th>Тип</th>
           <th>Параметр</th>
+          <th>Тип</th>
           <th>Описание</th>
         </tr>
       </thead>
@@ -470,8 +470,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             foreach ($properties as $property) {
 
                 $result .= '<tr>
-          <td>' . $property[0] . '</td>
-          <td>' . $property[1] . '</td><td>';
+          <td>' . $property[1] . '</td>
+          <td>' . $property[0] . '</td><td>';
 
                 for ($i = 2; $i < count($property); $i++) {
                     $result .= $property[$i] . ' ';
@@ -484,8 +484,8 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 '<table>
           <thead>
             <tr>
-              <th>Тип</th>
               <th>Параметр</th>
+              <th>Тип</th>
               <th>Описание</th>
             </tr>
           </thead>
