@@ -21,7 +21,7 @@ use umicms\serialization\json\BaseSerializer;
  */
 class CmsObjectSerializer extends BaseSerializer
 {
-   /**
+    /**
      * Сериализует ICmsObject в JSON.
      * @param ICmsObject $object
      * @param array $options опции сериализации - список полей, которые должны быть отображены
@@ -59,7 +59,6 @@ class CmsObjectSerializer extends BaseSerializer
                 $properties['meta']['isDefault'] = $object->getIsDefault();
             }
         }
-
 
         $this->buildProperties($object, $properties);
 
