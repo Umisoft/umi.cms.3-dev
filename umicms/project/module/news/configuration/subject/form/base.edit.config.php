@@ -8,95 +8,13 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Select;
-use umi\form\element\Text;
-use umi\form\fieldset\FieldSet;
-use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\model\object\NewsSubject;
-
-return [
-
-    'options' => [
-        'dictionaries' => [
-            'collection.newsSubject', 'collection', 'form'
-        ]
-    ],
-
-    'elements' => [
-
-        'common' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'common',
-            'elements' => [
-                NewsSubject::FIELD_DISPLAY_NAME => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_DISPLAY_NAME,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_DISPLAY_NAME
-                    ],
-                ],
-                NewsSubject::FIELD_PAGE_LAYOUT => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_LAYOUT,
-                    'options' => [
-                        'choices' => [
-                            null => 'Default or inherited layout'
-                        ],
-                        'lazy' => true,
-                        'dataSource' => NewsSubject::FIELD_PAGE_LAYOUT
-                    ],
-                ]
-            ]
-        ],
-
-        'meta' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'meta',
-            'elements' => [
-                NewsSubject::FIELD_PAGE_H1 => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_H1,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_PAGE_H1
-                    ],
-                ],
-                NewsSubject::FIELD_PAGE_META_TITLE => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_META_TITLE,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_PAGE_META_TITLE
-                    ],
-                ],
-                NewsSubject::FIELD_PAGE_META_KEYWORDS => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_META_KEYWORDS,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_PAGE_META_KEYWORDS
-                    ]
-                ],
-                NewsSubject::FIELD_PAGE_META_DESCRIPTION => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_META_DESCRIPTION,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_PAGE_META_DESCRIPTION
-                    ]
-                ]
-            ]
-        ],
-
-        'contents' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'contents',
-            'elements' => [
-
-                NewsSubject::FIELD_PAGE_CONTENTS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_PAGE_CONTENTS,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_PAGE_CONTENTS
-                    ]
-                ]
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/form/page.base.edit.config.php',
+    [
+        'options' => [
+            'dictionaries' => [
+                'collection.newsSubject'
             ]
         ]
     ]
-];
+);

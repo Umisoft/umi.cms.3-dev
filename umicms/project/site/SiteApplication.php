@@ -130,12 +130,12 @@ class SiteApplication extends SiteComponent
          */
         //$this->checkLicense($request);
 
-        /*if ($response = $this->postRedirectGet($request)) {
-            return $response; //TODO разобраться, почему проблема в xslt
-        }*/
-
         $this->registerSelectorInitializer();
         $this->registerSerializers();
+
+        if ($response = $this->postRedirectGet($request)) {
+            return $response;
+        }
 
         while (!$this->getPageCallStack()->isEmpty()) {
             $this->getPageCallStack()->pop();

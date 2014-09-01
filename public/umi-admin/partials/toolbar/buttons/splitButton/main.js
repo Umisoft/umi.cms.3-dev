@@ -1,5 +1,5 @@
 define(['App'], function(UMI) {
-        "use strict";
+        'use strict';
 
         return function() {
             /**
@@ -59,70 +59,41 @@ define(['App'], function(UMI) {
 
             UMI.SplitButtonSharedSettingsBehaviour = Ember.Mixin.create({
                 containerSettings: containerSettings,
+
                 defaultBehaviourIndex: Ember.computed.alias('containerSettings.defaultBehaviourIndex')
+            });
+
+            /**
+             * элемент списка
+             * @type {Class}
+             */
+            var ListItemView = Ember.View.extend({
+                tagName: 'li',
+
+                classNames: ['has-default-button'],
+
+                label: function() {
+                    return this.get('context.attributes.label');
+                }.property('context.attributes.label'),
+
+                icon: function() {
+                    return 'icon-' + this.get('context.behaviour.name');
+                }.property('context.behaviour.name'),
+
+                isDefaultBehaviour: function() {
+                    var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
+                    return defaultBehaviourIndex === this.get('_parentView.contentIndex');
+                }.property('parentView.defaultBehaviourIndex')
             });
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 templateName: 'partials/splitButton',
 
-                tagName: 'span',
+                dropdownId: function() {
+                    return Foundation.utils.random_str();
+                }.property(),
 
-                isOpen: false,
-
-                classNameBindings: ['meta.attributes.class', 'isOpen:open'],
-
-                attributeBindings: ['title'],
-
-                label: function() {
-                    return this.get('defaultBehaviour.attributes.label');
-                }.property('defaultBehaviour.attributes.label'),
-
-                title: Ember.computed.alias('meta.attributes.title'),
-
-                iconClass: function(){
-                    var classIcon;
-
-                    switch (this.get('meta.attributes.class')) {
-                        case 'white':
-                            classIcon = '';
-                            break;
-                        default:
-                            classIcon = 'white';
-                            break;
-                    }
-
-                    return classIcon;
-                }.property('meta.attributes.class'),
-
-                click: function(event) {
-                    var el = this.$();
-                    if (event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('umi-button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))) {
-                        this.send('sendActionForBehaviour', this.get('defaultBehaviour').behaviour);
-                    }
-                },
                 actions: {
-                    open: function(event) {
-                        var self = this;
-                        var $el = self.$();
-                        setTimeout(function() {
-                            self.toggleProperty('isOpen');
-
-                            if (self.get('isOpen')) {
-                                // закрывает список в случае клика мимо списка
-                                $('html').on('click.splitButton', function(event) {
-                                    if ($el.children('.dropdown-toggler')[0] === event.target) {
-                                        return;
-                                    }
-                                    var targetElement = $(event.target).closest('.f-dropdown');
-                                    if (!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== $el[0].getAttribute('id')) {
-                                        $('html').off('click.splitButton');
-                                        self.set('isOpen', false);
-                                    }
-                                });
-                            }
-                        }, 0);
-                    },
-
                     /**
                      * @method sendActionForBehaviour
                      * @param behaviour
@@ -132,49 +103,51 @@ define(['App'], function(UMI) {
                     }
                 },
 
-                itemView: Ember.View.extend({
-                    tagName: 'li',
-                    classNames: ['has-default-button'],
+                _button: {
+                    classNameBindings: ['meta.attributes.class'],
+
+                    attributeBindings: ['meta.attributes.title'],
+
+                    dataOptions: function() {
+                        return 'replaceTarget: .button;';
+                    }.property(),
+
                     label: function() {
-                        return this.get('context.attributes.label');
-                    }.property('context.attributes.label'),
-                    icon: function() {
-                        return 'icon-' + this.get('context.behaviour.name');
-                    }.property('context.behaviour.name'),
-                    isDefaultBehaviour: function() {
-                        var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
-                        return defaultBehaviourIndex === this.get('_parentView.contentIndex');
-                    }.property('parentView.defaultBehaviourIndex')
-                })
+                        return this.get('defaultBehaviour.attributes.label');
+                    }.property('defaultBehaviour.attributes.label'),
+
+                    title: Ember.computed.alias('meta.attributes.title'),
+
+                    click: function(event) {
+                        if ($(event.target).data('dropdown') === undefined) {
+                            this.get('parentView').send('sendActionForBehaviour',
+                                this.get('defaultBehaviour').behaviour);
+                        }
+                    }
+                },
+
+                extendButton: {},
+
+                buttonView: function() {
+                    var buttonView = Ember.View.extend(this.get('_button'));
+                    buttonView.reopen(this.get('extendButton'));
+                    return buttonView;
+                }.property(),
+
+                itemView: ListItemView
             });
 
-            function SplitButtonBehaviour() {
-            }
+            function SplitButtonBehaviour() {}
 
             SplitButtonBehaviour.prototype = Object.create(UMI.globalBehaviour);
 
-            SplitButtonBehaviour.prototype.dropUp = {
-                classNames: ['split-dropup']
-            };
-
             SplitButtonBehaviour.prototype.contextMenu = {
                 itemView: function() {
-                    var baseItem = Ember.View.extend({
-                        tagName: 'li',
-                        classNames: ['has-default-button'],
-                        label: function() {
-                            return this.get('context.attributes.label');
-                        }.property('context.attributes.label'),
-                        isDefaultBehaviour: function() {
-                            var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
-                            return defaultBehaviourIndex === this.get('_parentView.contentIndex');
-                        }.property('parentView.defaultBehaviourIndex'),
-                        icon: function() {
-                            return 'icon-' + this.get('context.behaviour.name');
-                        }.property('context.behaviour.name'),
+                    var baseItem = ListItemView.extend({
                         init: function() {
                             this._super();
                             var context = this.get('context');
+
                             if (Ember.get(context, 'behaviour.name') === 'switchActivity') {
                                 this.reopen({
                                     label: function() {
@@ -188,8 +161,35 @@ define(['App'], function(UMI) {
                             }
                         }
                     });
+
                     return baseItem;
-                }.property()
+                }.property(),
+
+                init: function() {
+                    this._super();
+                    var behaviour = {};
+                    var i;
+                    var action;
+                    var choices = this.get('context.behaviour.choices');
+
+                    if (Ember.typeOf(choices) === 'array') {
+                        for (i = 0; i < choices.length; i++) {
+                            action = '';
+                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
+                            if (behaviourAction) {
+                                action = behaviourAction.actions[choices[i].behaviour.name];
+                                if (action) {
+                                    if (Ember.typeOf(behaviour.actions) !== 'object') {
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
+                                }
+                            }
+                        }
+                    }
+
+                    this.reopen(behaviour);
+                }
             };
 
             UMI.splitButtonBehaviour = new SplitButtonBehaviour();
