@@ -20,7 +20,7 @@
 	var toggle_case = document.getElementsByClassName('media-body'), handler, i;
 
 	for (i = 0; i < toggle_case.length; i++) {
-		handler = toggle_case.item(i).getElementsByClassName('media-heading').item(0);
+		handler = toggle_case.item(i).getElementsByClassName('handler').item(0);
 		handler.controlled = toggle_case.item(i).getElementsByClassName('media-list').item(0);
 		jQuery(handler).on('click', function() {
 			event(this);

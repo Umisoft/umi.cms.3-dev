@@ -156,8 +156,8 @@ main {
 main a {
 	color: #0082c6;
 }
-main h1 + h3.slim {
-	margin-top: 10px;
+main h1 {
+	margin-bottom: 10px;
 }
 /** Main **/
 
@@ -192,6 +192,7 @@ h2.table-header .sub {
 	border-top: 1px solid #ccc;
 	padding: 10px 0;
 }
+
 
 /** Media menu **/
 .media-list a {
