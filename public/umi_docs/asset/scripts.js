@@ -2,14 +2,8 @@
 (function() {
 	var event = function(handler) {
 
-		/**((" " + handler.controlled.className + " ").indexOf(" " + 'active' + " ") != -1) ?
-			handler.controlled.className = (" " + handler.controlled.className + " ")
-				.replace(new RegExp(" " + 'active' + " ", "g"), " ")
-				.replace(/^\s+/, "").replace(/\s+$/, "") :
-			handler.controlled.className = (handler.controlled.className + ' active')
-				.replace(/^\s+/, "");**/
 		jQuery(handler.controlled).toggleClass('active');
-		jQuery(handler).toggleClass('active');
+		jQuery(handler).parent().toggleClass('active');
 
 		if(handler.attributes.switcher){
 			var name = handler.attributes.switcher.value;
@@ -20,11 +14,13 @@
 	var toggle_case = document.getElementsByClassName('media-body'), handler, i;
 
 	for (i = 0; i < toggle_case.length; i++) {
-		handler = toggle_case.item(i).getElementsByClassName('handler').item(0);
-		handler.controlled = toggle_case.item(i).getElementsByClassName('media-list').item(0);
-		jQuery(handler).on('click', function() {
-			event(this);
-		});
+		if( jQuery('.media-heading', toggle_case.item(i)).has('.handler').length) {
+			handler = jQuery('.media-heading .handler', toggle_case.item(i))[0];
+			handler.controlled = jQuery('.media-list', toggle_case.item(i))[0];
+			jQuery(handler).on('click', function() {
+				event(this);
+			});
+		}
 	}
 })();
 
