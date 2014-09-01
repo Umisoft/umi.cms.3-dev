@@ -108,7 +108,7 @@ define(['App'], function(UMI) {
                 classNames: ['s-unselectable', 'umi-toolbar'],
                 templateName: 'partials/table/toolbar',
                 counter: function() {
-                    var label = 'из';
+                    var label = (UMI.i18n.getTranslate('Of') || '').toLowerCase();
                     var limit = this.get('parentView.limit');
                     var offset = this.get('parentView.offset') + 1;
                     var total = this.get('parentView.total');
