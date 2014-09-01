@@ -1,43 +1,29 @@
 /* Toggle */
 (function() {
 	var event = function(handler) {
-
 		jQuery(handler.controlled).toggleClass('active');
 		jQuery(handler).parent().toggleClass('active');
-
-		if(handler.attributes.switcher){
-			var name = handler.attributes.switcher.value;
-			handler.attributes.switcher.value = handler.innerHTML;
-			handler.innerHTML = name;
-		}
-	};
-	var toggle_case = document.getElementsByClassName('media-body'), handler, i;
-
-	for (i = 0; i < toggle_case.length; i++) {
-		if( jQuery('.media-heading', toggle_case.item(i)).has('.handler').length) {
-			handler = jQuery('.media-heading .handler', toggle_case.item(i))[0];
-			handler.controlled = jQuery('.media-list', toggle_case.item(i))[0];
+	}, handler;
+	jQuery('.media-body').each(function() {
+		if( jQuery('.media-heading', this).has('.handler').length) {
+			handler = jQuery('.handler', this)[0];
+			handler.controlled = jQuery('.media-list', this)[0];
 			jQuery(handler).on('click', function() {
 				event(this);
 			});
 		}
-	}
+	});
 })();
 
 /* Adaptive */
-var mainNav = jQuery('#js-menu-main');
-
-mainNav.on('click', function() {
+jQuery('#js-menu-main').on('click', function() {
 	jQuery(this).closest('nav').toggleClass('drop');
 });
 
-var dropHandler = jQuery('.mobile-button');
-
-dropHandler.on('click', function() {
+jQuery('.mobile-button').on('click', function() {
 	jQuery('.dropdown + ul' ,this.parent).toggleClass('drop');
 	return false;
 });
-
 
 /* Adaptive aside */
 var page = jQuery('.page > .container'),
