@@ -15,7 +15,7 @@ use GuzzleHttp\Message\ResponseInterface;
 use umi\http\Request;
 use umicms\exception\RuntimeException;
 use umicms\project\Environment;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * API для работы обновления системы.
