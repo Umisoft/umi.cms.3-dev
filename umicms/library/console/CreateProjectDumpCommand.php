@@ -90,6 +90,7 @@ class CreateProjectDumpCommand extends BaseProjectCommand
                     ->orderBy(IHierarchicObject::FIELD_HIERARCHY_LEVEL)
                     ->orderBy(IHierarchicObject::FIELD_ORDER);
             }
+            $selector->orderBy(ICmsObject::FIELD_GUID);
 
             $dump = $objectExporter->getDump($selector);
 
