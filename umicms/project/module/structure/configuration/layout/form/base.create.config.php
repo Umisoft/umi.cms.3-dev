@@ -16,7 +16,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.layout', 'collection', 'form'
+            'collection.layout' => 'collection.layout', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
