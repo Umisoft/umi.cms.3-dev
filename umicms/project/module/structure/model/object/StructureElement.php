@@ -14,8 +14,8 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Базовый элемент структуры.
@@ -25,9 +25,9 @@ use umicms\project\site\config\TSiteSettingsAware;
  * @property bool $inMenu признак включения в меню
  * @property int $submenuState состояние дочернего меню
  */
-abstract class StructureElement extends CmsHierarchicObject implements ICmsPage, ILockedAccessibleObject, ISiteSettingsAware
+abstract class StructureElement extends CmsHierarchicObject implements ICmsPage, ILockedAccessibleObject, IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     use TCmsPage {
         TCmsPage::getPageUrl as protected getPageUrlInternal;
