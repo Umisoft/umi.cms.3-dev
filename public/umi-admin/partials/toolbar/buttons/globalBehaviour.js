@@ -95,7 +95,7 @@ define(['App'], function(UMI) {
                 },
 
                 backToFilter: {
-                    classNames: ['wide', 'umi-toolbar-button-border'],
+                    classNames: ['wide-medium', 'umi-toolbar-button-border'],
 
                     actions: {
                         backToFilter: function() {

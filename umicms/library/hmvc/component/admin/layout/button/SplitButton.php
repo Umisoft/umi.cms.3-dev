@@ -24,7 +24,7 @@ class SplitButton extends Button
      * @var array $attributes атрибуты кнопки
      */
     public $attributes = [
-        'class' => 'button split',
+        'class' => 'button secondary split',
         'hasIcon' => true
     ];
 }
