@@ -1,9 +1,9 @@
 {{#if view.content.title}}
-<h5 class="subheader">{{view.content.title}}</h5>
+    <h5 class="subheader">{{view.content.title}}</h5>
 {{/if}}
-
+{{log view.content.stack}}
 {{{view.content.content}}}
 
 {{#if view.content.close}}
-<span {{action 'close' view.content target="view"}} class="close">&times;</span>
+    <span {{action 'close' view.content target="view"}} class="close">&times;</span>
 {{/if}}

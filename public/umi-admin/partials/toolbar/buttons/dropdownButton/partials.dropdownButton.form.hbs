@@ -9,9 +9,13 @@
 {{/view}}
 
 <ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
-     <li>
-         {{#if view.form}}
-            {{view view.formView form=view.form}}
-         {{/if}}
-     </li>
+    <li>
+        {{#if view.form.isLoaded}}
+            {{#if view.form}}
+                {{view view.formView form=view.form}}
+            {{/if}}
+        {{else}}
+            <div class="form-loading">{{i18n "Loading"}}..</div>
+        {{/if}}
+    </li>
 </ul>

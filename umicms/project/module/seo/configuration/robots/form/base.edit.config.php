@@ -16,7 +16,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.robots', 'collection', 'form'
+            'collection.robots' => 'collection.robots', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 

@@ -14,8 +14,8 @@ use umi\validation\IValidatorFactory;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site',
-            'project.admin.rest.settings.site.license'
+            'project.admin.rest.settings.site' => 'project.admin.rest.settings.site',
+            'project.admin.rest.settings.site.license' => 'project.admin.rest.settings.site.license'
         ]
     ],
 

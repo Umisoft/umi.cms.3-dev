@@ -13,7 +13,10 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.registration', 'form'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.registration' => 'project.site.users.registration',
+            'form' => 'form'
         ],
     ],
     'attributes' => [

@@ -2,7 +2,6 @@
     <div class="dock-wrapper-bg">
         <ul class="dock navigation">
             {{#each module in modules}}
-
                 {{#view 'dockModuleButton' module=module}}
                     {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
             data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;"}}
@@ -14,7 +13,7 @@
                         {{#each component in module.components}}
                             <li class="{{unbound component.name}}">
                                 {{#link-to 'component' module.name component.name}}
-                                {{component.displayName}}
+                                    {{component.displayName}}
                                 {{/link-to}}
                             </li>
                         {{/each}}
@@ -28,13 +27,13 @@
 <div class="dock-components">
     <nav class="components-nav">
         {{#if activeModule}}
-        {{#with activeModule as module}}
-        {{#each component in module.components}}
-        {{#link-to 'component' module.name component.name class=component.name}}
-        {{component.displayName}}
-        {{/link-to}}
-        {{/each}}
-        {{/with}}
+            {{#with activeModule as module}}
+                {{#each component in module.components}}
+                    {{#link-to 'component' module.name component.name class=component.name}}
+                        {{component.displayName}}
+                    {{/link-to}}
+                {{/each}}
+            {{/with}}
         {{/if}}
     </nav>
 </div>

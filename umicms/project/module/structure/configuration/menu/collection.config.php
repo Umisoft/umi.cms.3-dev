@@ -37,7 +37,7 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.menu', 'collection'
+        'collection.menu' => 'collection.menu', 'collection' => 'collection'
     ],
 
     MenuCollection::DEFAULT_TABLE_FILTER_FIELDS => [

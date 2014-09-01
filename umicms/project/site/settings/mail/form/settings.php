@@ -13,7 +13,7 @@ use umi\form\element\Text;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site.mail'
+            'project.admin.rest.settings.site.mail' => 'project.admin.rest.settings.site.mail'
         ]
     ],
 
