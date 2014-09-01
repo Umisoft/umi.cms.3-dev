@@ -66,7 +66,7 @@ define(['App'], function(UMI) {
                     id: 'closeAll',
                     type: 'secondary',
                     kind: 'closeAll',
-                    content: 'Закрыть все'
+                    content: UMI.i18n.getTranslate('Close') + ' ' + (UMI.i18n.getTranslate('All') || '').toLowerCase()
                 }));
             }
             if (model.get('length') <= 2 && this.get('closeAll')) {
