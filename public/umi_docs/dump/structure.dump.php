@@ -40,7 +40,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1319,7 +1319,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'f610b0f2-5805-4c8b-abb6-a7b3d9348d23',
-          'displayName' => 'users.authorization',
+          'displayName' => 'Авторизация',
           'branch' => 
           array (
             'meta' => 
@@ -2175,7 +2175,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:48";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:49:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3251,7 +3251,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3276,8 +3276,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -5286,7 +5286,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:05:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6176,7 +6176,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fe0082b8-15db-4ce5-9659-3472dc97a315',
-          'displayName' => 'blog.reject.view',
+          'displayName' => 'Просмотр',
           'branch' => 
           array (
             'meta' => 
@@ -6184,7 +6184,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-              'displayName' => 'blog.reject',
+              'displayName' => 'Отклоненные посты',
               'branch' => 
               array (
                 'meta' => 
@@ -7380,7 +7380,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10690,7 +10690,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'b0d679bd-34e8-49a6-97fe-1c4cfa6a9a87',
-          'displayName' => 'blog.reject.edit',
+          'displayName' => 'Редактирование',
           'branch' => 
           array (
             'meta' => 
@@ -10698,7 +10698,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-              'displayName' => 'blog.reject',
+              'displayName' => 'Отклоненные посты',
               'branch' => 
               array (
                 'meta' => 
@@ -11362,7 +11362,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'f610b0f2-5805-4c8b-abb6-a7b3d9348d23',
-          'displayName' => 'users.authorization',
+          'displayName' => 'Авторизация',
           'branch' => 
           array (
             'meta' => 
@@ -11964,7 +11964,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fe0082b8-15db-4ce5-9659-3472dc97a315',
-          'displayName' => 'blog.reject.view',
+          'displayName' => 'Просмотр',
           'branch' => 
           array (
             'meta' => 
@@ -11972,7 +11972,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-              'displayName' => 'blog.reject',
+              'displayName' => 'Отклоненные посты',
               'branch' => 
               array (
                 'meta' => 
@@ -14768,7 +14768,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '4fb8933f-b405-4137-b47c-36e0c242beef',
-      'displayName' => 'search.results',
+      'displayName' => 'Результаты поиска',
       'branch' => 
       array (
         'meta' => 
@@ -14799,7 +14799,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search.results',
+        1 => 'Результаты поиска',
       ),
       'created' => 
       array (
@@ -14809,7 +14809,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14844,10 +14844,25 @@ return array (
         0 => 'string',
         1 => 'Виджет для вывода результатов поиска',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Виджет для вывода результатов поиска',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -14888,6 +14903,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'parameters' => 
       array (
@@ -15479,7 +15499,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15578,7 +15598,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
-      'displayName' => 'users.profile',
+      'displayName' => 'Профиль',
       'branch' => 
       array (
         'meta' => 
@@ -15609,12 +15629,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.profile',
+        1 => 'Профиль',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:48:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15629,6 +15654,45 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -15669,6 +15733,11 @@ return array (
       array (
         0 => 'integer',
         1 => 2,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -17092,7 +17161,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
-          'displayName' => 'users.restoration',
+          'displayName' => 'Сброс и смена пароля',
           'branch' => 
           array (
             'meta' => 
@@ -17245,7 +17314,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:49:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -17282,7 +17370,7 @@ return array (
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (
@@ -17782,7 +17870,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17807,8 +17895,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -18109,7 +18197,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18134,8 +18222,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -18853,7 +18941,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
-              'displayName' => 'users.profile',
+              'displayName' => 'Профиль',
               'branch' => 
               array (
                 'meta' => 
@@ -19173,7 +19261,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20067,7 +20155,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '67c92da2-91f6-4f3f-93b4-3480da51b403',
-      'displayName' => 'users.registration',
+      'displayName' => 'Регистрация и активация',
       'branch' => 
       array (
         'meta' => 
@@ -20098,12 +20186,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.registration',
+        1 => 'Регистрация и активация',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:49:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20118,6 +20211,45 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -20158,6 +20290,11 @@ return array (
       array (
         0 => 'integer',
         1 => 2,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -20664,7 +20801,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '67c92da2-91f6-4f3f-93b4-3480da51b403',
-          'displayName' => 'users.registration',
+          'displayName' => 'Регистрация и активация',
           'branch' => 
           array (
             'meta' => 
@@ -21249,7 +21386,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:32:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21274,8 +21411,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -21358,7 +21495,7 @@ return array (
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 0,
+        1 => 2,
       ),
       'secondContents' => 
       array (
@@ -22104,7 +22241,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '67c92da2-91f6-4f3f-93b4-3480da51b403',
-              'displayName' => 'users.registration',
+              'displayName' => 'Регистрация и активация',
               'branch' => 
               array (
                 'meta' => 
@@ -23136,7 +23273,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-      'displayName' => 'blog.reject',
+      'displayName' => 'Отклоненные посты',
       'branch' => 
       array (
         'meta' => 
@@ -23167,12 +23304,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.reject',
+        1 => 'Отклоненные посты',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23187,6 +23329,45 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -23228,6 +23409,11 @@ return array (
         0 => 'integer',
         1 => 2,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
   118 => 
@@ -23245,7 +23431,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => 'fe0082b8-15db-4ce5-9659-3472dc97a315',
-          'displayName' => 'blog.reject.view',
+          'displayName' => 'Просмотр',
           'branch' => 
           array (
             'meta' => 
@@ -23253,7 +23439,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-              'displayName' => 'blog.reject',
+              'displayName' => 'Отклоненные посты',
               'branch' => 
               array (
                 'meta' => 
@@ -23554,7 +23740,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '79e8f566-6853-4c83-8e76-e65988c3f1b2',
-      'displayName' => 'blog.reject.sendToModerationForm',
+      'displayName' => 'Отправка поста на модерацию',
       'branch' => 
       array (
         'meta' => 
@@ -23562,7 +23748,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-          'displayName' => 'blog.reject',
+          'displayName' => 'Отклоненные посты',
           'branch' => 
           array (
             'meta' => 
@@ -23596,7 +23782,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.reject.sendToModerationForm',
+        1 => 'Отправка поста на модерацию',
       ),
       'created' => 
       array (
@@ -23606,7 +23792,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:38:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23641,10 +23827,25 @@ return array (
         0 => 'string',
         1 => 'Виджет отправки поста на модерацию',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Виджет отправки поста на модерацию',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -23685,6 +23886,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'parameters' => 
       array (
@@ -24255,7 +24461,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '67c92da2-91f6-4f3f-93b4-3480da51b403',
-          'displayName' => 'users.registration',
+          'displayName' => 'Регистрация и активация',
           'branch' => 
           array (
             'meta' => 
@@ -24852,7 +25058,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => '805fba33-c692-40f5-b243-2807b5f76e5d',
-      'displayName' => 'news.rubric.rss',
+      'displayName' => 'Вывода RSS-лент',
       'branch' => 
       array (
         'meta' => 
@@ -24894,14 +25100,33 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.rubric.rss',
+        1 => 'Вывода RSS-лент',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:52:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -24920,10 +25145,25 @@ return array (
         0 => 'string',
         1 => 'Контроллер вывода RSS-ленты рубрики',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Контроллер вывода RSS-ленты рубрики',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -24965,12 +25205,32 @@ return array (
         0 => 'integer',
         1 => 0,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'description' => 
       array (
         0 => 'string',
         1 => '',
       ),
       'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'templateName' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'twigExample' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'phpExample' => 
       array (
         0 => 'string',
         1 => '',
@@ -25554,7 +25814,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26085,7 +26345,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
-          'displayName' => 'users.profile',
+          'displayName' => 'Профиль',
           'branch' => 
           array (
             'meta' => 
@@ -26913,7 +27173,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 14:08:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26974,7 +27234,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -27722,7 +27982,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '927a4457-9847-4293-964c-b165f4ce3cdd',
-      'displayName' => 'search.fragments',
+      'displayName' => 'Вывод подсвеченных фрагментов',
       'branch' => 
       array (
         'meta' => 
@@ -27753,7 +28013,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search.fragments',
+        1 => 'Вывод подсвеченных фрагментов',
       ),
       'created' => 
       array (
@@ -27763,7 +28023,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27798,10 +28058,25 @@ return array (
         0 => 'string',
         1 => 'Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -27842,6 +28117,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'parameters' => 
       array (
@@ -28461,7 +28741,7 @@ return array (
               'collection' => 'structure',
               'type' => 'static',
               'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
-              'displayName' => 'users.restoration',
+              'displayName' => 'Сброс и смена пароля',
               'branch' => 
               array (
                 'meta' => 
@@ -29048,7 +29328,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '9777bad1-f9a7-427b-8539-7e9ed4de7ff1',
-      'displayName' => 'search.highlight',
+      'displayName' => 'Выделение подстроки',
       'branch' => 
       array (
         'meta' => 
@@ -29079,7 +29359,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search.highlight',
+        1 => 'Выделение подстроки',
       ),
       'created' => 
       array (
@@ -29089,7 +29369,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 14:53:44";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29124,10 +29404,25 @@ return array (
         0 => 'string',
         1 => 'Виджет, выделяющий подстроку с учетом морфологии в тексте',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Виджет, выделяющий подстроку с учетом морфологии в тексте',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -29168,6 +29463,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'parameters' => 
       array (
@@ -29220,6 +29520,16 @@ return array (
         1 => '',
       ),
       'returnValue' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'twigExample' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'phpExample' => 
       array (
         0 => 'string',
         1 => '',
@@ -29554,7 +29864,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29765,7 +30075,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
-      'displayName' => 'users.restoration',
+      'displayName' => 'Сброс и смена пароля',
       'branch' => 
       array (
         'meta' => 
@@ -29796,12 +30106,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.restoration',
+        1 => 'Сброс и смена пароля',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:48:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29816,6 +30131,45 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -29857,6 +30211,11 @@ return array (
         0 => 'integer',
         1 => 2,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
   153 => 
@@ -29866,7 +30225,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => '9b91f0c2-6636-48da-9c31-26c3803f26d3',
-      'displayName' => 'news.subject.page',
+      'displayName' => 'Вывод страниц компонента',
       'branch' => 
       array (
         'meta' => 
@@ -29908,7 +30267,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.subject.page',
+        1 => 'Вывод страниц компонента',
       ),
       'created' => 
       array (
@@ -29918,7 +30277,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:53:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29953,10 +30312,25 @@ return array (
         0 => 'string',
         1 => 'Контроллер вывода страниц компонента',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Контроллер вывода страниц компонента',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -29997,6 +30371,11 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'description' => 
       array (
@@ -30069,7 +30448,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '9a9468dd-a5c2-437a-8ff9-12d4f6853778',
-          'displayName' => 'users.restoration',
+          'displayName' => 'Сброс и смена пароля',
           'branch' => 
           array (
             'meta' => 
@@ -33992,7 +34371,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:37";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34398,7 +34777,7 @@ return array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'b0d679bd-34e8-49a6-97fe-1c4cfa6a9a87',
-      'displayName' => 'blog.reject.edit',
+      'displayName' => 'Редактирование',
       'branch' => 
       array (
         'meta' => 
@@ -34406,7 +34785,7 @@ return array (
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-          'displayName' => 'blog.reject',
+          'displayName' => 'Отклоненные посты',
           'branch' => 
           array (
             'meta' => 
@@ -34440,12 +34819,17 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.reject.edit',
+        1 => 'Редактирование',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:37:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34460,6 +34844,45 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -34500,6 +34923,11 @@ return array (
       array (
         0 => 'integer',
         1 => 2,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -36271,7 +36699,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:43:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37713,7 +38141,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38662,7 +39090,7 @@ return [
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '537ee7eb-01a4-4197-9fba-99e93c105661',
-          'displayName' => 'users.profile',
+          'displayName' => 'Профиль',
           'branch' => 
           array (
             'meta' => 
@@ -39616,7 +40044,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:40:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40282,7 +40710,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:37:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:38:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40307,8 +40735,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -40905,7 +41333,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:38:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40930,8 +41358,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -42684,7 +43112,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => 'e3187a27-2840-4bdf-aaf4-4943ba79526a',
-      'displayName' => 'news.rubric.page',
+      'displayName' => 'Вывод страниц компонента',
       'branch' => 
       array (
         'meta' => 
@@ -42726,7 +43154,7 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.rubric.page',
+        1 => 'Вывод страниц компонента',
       ),
       'created' => 
       array (
@@ -42736,7 +43164,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:53:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42771,10 +43199,25 @@ published, если комментарий был добававлен и опу
         0 => 'string',
         1 => 'Контроллер вывода страниц компонента',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Контроллер вывода страниц компонента',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -42815,6 +43258,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'description' => 
       array (
@@ -43098,7 +43546,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => 'e46fcb30-2555-4364-932d-b57a9116b019',
-      'displayName' => 'search.form',
+      'displayName' => 'Форма поиска',
       'branch' => 
       array (
         'meta' => 
@@ -43129,7 +43577,7 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'search.form',
+        1 => 'Форма поиска',
       ),
       'created' => 
       array (
@@ -43139,7 +43587,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43174,10 +43622,25 @@ published, если комментарий был добававлен и опу
         0 => 'string',
         1 => 'Виджет, выводящий форму поиска',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Виджет, выводящий форму поиска',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -43218,6 +43681,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'parameters' => 
       array (
@@ -43761,7 +44229,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => 'ea63873e-44f7-4375-b4f9-11ba213fd969',
-      'displayName' => 'news.index',
+      'displayName' => 'Вывод страниц',
       'branch' => 
       array (
         'meta' => 
@@ -43792,7 +44260,7 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'news.index',
+        1 => 'Вывод страниц',
       ),
       'created' => 
       array (
@@ -43802,7 +44270,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:50:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43837,10 +44305,25 @@ published, если комментарий был добававлен и опу
         0 => 'string',
         1 => 'Контроллер вывода страниц структуры',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Контроллер вывода страниц структуры',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -43881,6 +44364,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'description' => 
       array (
@@ -44150,7 +44638,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-28 14:08:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:43:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -44765,7 +45253,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'f610b0f2-5805-4c8b-abb6-a7b3d9348d23',
-      'displayName' => 'users.authorization',
+      'displayName' => 'Авторизация',
       'branch' => 
       array (
         'meta' => 
@@ -44796,12 +45284,17 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'users.authorization',
+        1 => 'Авторизация',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:46:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -44816,6 +45309,45 @@ published, если комментарий был добававлен и опу
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -44857,6 +45389,11 @@ published, если комментарий был добававлен и опу
         0 => 'integer',
         1 => 2,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
   230 => 
@@ -44866,7 +45403,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static.controller',
       'guid' => 'f64f4838-6cf9-4f01-81cf-bf367820270d',
-      'displayName' => 'structure.index',
+      'displayName' => 'Вывод страниц структуры',
       'branch' => 
       array (
         'meta' => 
@@ -44897,7 +45434,7 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'structure.index',
+        1 => 'Вывод страниц структуры',
       ),
       'created' => 
       array (
@@ -44907,7 +45444,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:05:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -44942,10 +45479,25 @@ published, если комментарий был добававлен и опу
         0 => 'string',
         1 => 'Контроллер вывода страниц структуры',
       ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'h1#ru-RU' => 
       array (
         0 => 'string',
         1 => 'Контроллер вывода страниц структуры',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -44986,6 +45538,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'description' => 
       array (
@@ -45746,7 +46303,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:41:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:42:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -46600,7 +47157,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:38:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:05:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -46625,8 +47182,8 @@ published, если комментарий был добававлен и опу
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -46986,7 +47543,7 @@ published, если комментарий был добававлен и опу
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'fe0082b8-15db-4ce5-9659-3472dc97a315',
-      'displayName' => 'blog.reject.view',
+      'displayName' => 'Просмотр',
       'branch' => 
       array (
         'meta' => 
@@ -46994,7 +47551,7 @@ published, если комментарий был добававлен и опу
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '7944a5f4-d77b-4ae0-b36b-6fc049dbf30b',
-          'displayName' => 'blog.reject',
+          'displayName' => 'Отклоненные посты',
           'branch' => 
           array (
             'meta' => 
@@ -47028,12 +47585,17 @@ published, если комментарий был добававлен и опу
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'blog.reject.view',
+        1 => 'Просмотр',
       ),
       'created' => 
       array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:37:14";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -47048,6 +47610,45 @@ published, если комментарий был добававлен и опу
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -47088,6 +47689,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'integer',
         1 => 2,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -47399,7 +48005,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:46:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:49:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -47462,7 +48068,7 @@ published, если комментарий был добававлен и опу
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'locked' => 
       array (

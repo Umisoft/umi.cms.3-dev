@@ -1,6 +1,6 @@
 {% if (menu) %}
     <aside>
-    <h4>Модули</h4>
+    <h3>Модули</h3>
     {% for pageInfo in menu %}
         <h4>
             <a class="{{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>

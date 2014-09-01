@@ -1,27 +1,5 @@
 {{ widget('structure.menu.auto', {'branch' : 'd7dda227-cac7-474d-ab0d-d361d0bc16a3', 'template': 'side', 'depth' : '2'}) }}
 
-{% if (result['menu']) %}
-    {# TODO Label #}
-    <h4>Модули</h4>
-    <aside>
-        {% for pageInfo in result['menu'] %}
-            <h4>
-                <a class="{{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
-            </h4>
-            {% if (pageInfo.children) %}
-                <ul class="simple small">
-                    {% for subPageInfo in pageInfo.children %}
-                        <li>
-                            <a class="{{ subPageInfo.active ? 'active' }}"
-                               href="{{ subPageInfo.page.getPageUrl() }}">{{ subPageInfo.page.displayName }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endfor %}
-    </aside>
-{% endif %}
-
 <main>
     <h1>{{ page.getHeader() }}</h1>
 
