@@ -13,6 +13,9 @@ namespace umicms\project\module\blog\site\moderate\all\widget;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
 
+/**
+ * Виджет вывода всех постов на модерации.
+ */
 class ListWidget extends BaseListWidget
 {
     /**

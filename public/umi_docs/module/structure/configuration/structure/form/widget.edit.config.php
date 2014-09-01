@@ -9,6 +9,7 @@
  */
 
 use project\module\structure\model\object\WidgetPage;
+use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
@@ -44,6 +45,25 @@ return [
                         ],
                         'lazy' => true,
                         'dataSource' => WidgetPage::FIELD_PAGE_LAYOUT
+                    ],
+                ],
+                WidgetPage::FIELD_IN_MENU => [
+                    'type' => Checkbox::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_IN_MENU,
+                    'options' => [
+                        'dataSource' => WidgetPage::FIELD_IN_MENU
+                    ],
+                ],
+                WidgetPage::FIELD_SUBMENU_STATE => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => WidgetPage::FIELD_SUBMENU_STATE,
+                    'options' => [
+                        'dataSource' => WidgetPage::FIELD_SUBMENU_STATE,
+                        'choices' => [
+                            WidgetPage::SUBMENU_NEVER_SHOWN => 'neverShown',
+                            WidgetPage::SUBMENU_CURRENT_SHOWN => 'currentShown',
+                            WidgetPage::SUBMENU_ALWAYS_SHOWN => 'alwaysShown'
+                        ]
                     ],
                 ]
             ]
