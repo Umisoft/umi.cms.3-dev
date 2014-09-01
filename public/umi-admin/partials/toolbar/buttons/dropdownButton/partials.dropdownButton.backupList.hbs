@@ -17,37 +17,43 @@
         <div class="s-scroll-wrap">
             <table>
                 <tbody>
-                    {{#each view.backupList}}
-                        <tr {{bind-attr class="isActive::selectable"}}
-                        {{action 'applyBackup' this target="view"}}>
-                            <td>
-                                {{#if isActive}}
-                                    <button class="button flat tiny square">
-                                        <i class="icon icon-accept"></i>
-                                    </button>
-                                {{else}}
-                                    <button class="button flat tiny square">
-                                        <i class="icon icon-renew"></i>
-                                    </button>
-                                {{/if}}
-                                {{created.date}}
-                            </td>
+                    {{#if view.backupList.isLoaded}}
+                        {{#each view.backupList}}
+                            <tr {{bind-attr class="isActive::selectable"}}
+                            {{action 'applyBackup' this target="view"}}>
+                                <td>
+                                    {{#if isActive}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-accept"></i>
+                                        </button>
+                                    {{else}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-renew"></i>
+                                        </button>
+                                    {{/if}}
+                                    {{created.date}}
+                                </td>
 
-                            <td>
-                                {{#if user}}
-                                    {{user}}
-                                {{else}}
-                                    {{i18n "User name" "toolbar:dropdownButton"}}
-                                {{/if}}
-                            </td>
-                        </tr>
+                                <td>
+                                    {{#if user}}
+                                        {{user}}
+                                    {{else}}
+                                        {{i18n "User name" "toolbar:dropdownButton"}}
+                                    {{/if}}
+                                </td>
+                            </tr>
+                        {{else}}
+                            <tr>
+                                <td colspan="2">
+                                    {{view.noBackupsLabel}}
+                                </td>
+                            </tr>
+                        {{/each}}
                     {{else}}
                         <tr>
-                            <td colspan="2">
-                                {{view.noBackupsLabel}}
-                            </td>
+                            <td colspan="2">{{i18n "Loading"}}..</td>
                         </tr>
-                    {{/each}}
+                    {{/if}}
                 </tbody>
             </table>
         </div>

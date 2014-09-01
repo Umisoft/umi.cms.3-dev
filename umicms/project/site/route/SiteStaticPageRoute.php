@@ -16,17 +16,17 @@ use umi\route\type\BaseRoute;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\hmvc\component\site\SiteComponent;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\structure\model\object\StructureElement;
 
 /**
  * Правила маршрутизации статичных страниц для сайта.
  */
-class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
+class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     /**
      * @var StructureModule $systemApi API работы со структурой
