@@ -9,12 +9,23 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'class' => 'umicms\project\module\surveys\model\collection\AnswerCollection',
 
     'handlers' => [
-        'admin' => 'surveys.answer'
+        'admin' => 'surveys.answer',
+        'site' => 'surveys.answer'
     ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/surveys/configuration/answer/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/surveys/configuration/answer/form/base.create.config.php}'
+        ]
+    ],
+    'dictionaries' => [
+        'collection.answer', 'collection', 'form'
+    ]
 ];

@@ -8,14 +8,14 @@ return [
 
             Answer::FIELD_SURVEY => 'Survey',
 
-            'type:base:displayName' => 'Answer'
+            'type:base:displayName' => 'Answer',
         ],
 
         'ru-RU' => [
             'collection:survey:displayName' => 'Ответы',
 
             Answer::FIELD_SURVEY => 'Опрос',
-
+            
             'type:base:displayName' => 'Ответ'
         ]
     ];

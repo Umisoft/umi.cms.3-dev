@@ -9,6 +9,7 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -18,4 +19,13 @@ return [
         'admin' => 'surveys.survey',
         'site' => 'surveys.survey'
     ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/surveys/configuration/survey/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/surveys/configuration/survey/form/base.create.config.php}'
+        ]
+    ],
+    'dictionaries' => [
+        'collection.survey', 'collection', 'form'
+    ]
 ];
