@@ -202,7 +202,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -389,6 +389,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.moderate.all.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.index',
+      ),
     ),
   ),
   2 => 
@@ -461,7 +466,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -616,6 +621,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.edit.editLink',
+      ),
     ),
   ),
   3 => 
@@ -674,7 +684,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -748,6 +777,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.publish',
+      ),
     ),
   ),
   4 => 
@@ -809,7 +843,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -963,6 +997,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.publishForm',
       ),
     ),
   ),
@@ -1363,7 +1402,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1596,6 +1635,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.login',
       ),
     ),
   ),
@@ -1983,7 +2027,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2135,6 +2179,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.publishForm',
       ),
     ),
   ),
@@ -2326,7 +2375,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2473,6 +2522,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st0">&quot;Register&quot;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.link',
       ),
     ),
   ),
@@ -2636,7 +2690,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2784,6 +2838,11 @@ return array (
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st0">&quot;ForgotYourPassword&quot;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.link',
+      ),
     ),
   ),
   15 => 
@@ -2856,7 +2915,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3009,6 +3068,11 @@ return array (
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$url</span> <span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.confirmation.link',
+      ),
     ),
   ),
   16 => 
@@ -3070,7 +3134,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3222,6 +3286,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.unpublishForm',
       ),
     ),
   ),
@@ -3418,7 +3487,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3658,6 +3727,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.list',
+      ),
     ),
   ),
   19 => 
@@ -3719,7 +3793,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3875,6 +3949,11 @@ return array (
 <li class="li1"><div class="de1">(&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'RSSFeed\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;)</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.rssLink',
       ),
     ),
   ),
@@ -4074,7 +4153,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4147,6 +4245,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.draft',
       ),
     ),
   ),
@@ -4206,7 +4309,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -4279,6 +4401,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.reject',
       ),
     ),
   ),
@@ -4341,7 +4468,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4588,6 +4715,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.postList',
+      ),
     ),
   ),
   24 => 
@@ -4649,7 +4781,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4905,6 +5037,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.list',
+      ),
     ),
   ),
   25 => 
@@ -4966,7 +5103,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5106,6 +5243,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.category.postList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'categories\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'postList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.page',
       ),
     ),
   ),
@@ -5434,7 +5576,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5507,6 +5668,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.reject',
       ),
     ),
   ),
@@ -5670,7 +5836,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5917,6 +6083,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp; &nbsp; &lt;/ol&gt;</div></li>
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.list',
       ),
     ),
   ),
@@ -6231,7 +6402,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6381,6 +6552,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view.link',
+      ),
     ),
   ),
   34 => 
@@ -6442,7 +6618,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6629,6 +6805,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.moderate.own.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.index',
+      ),
     ),
   ),
   35 => 
@@ -6690,7 +6871,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6883,6 +7064,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.list',
+      ),
     ),
   ),
   36 => 
@@ -7064,7 +7250,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7217,6 +7403,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.form',
       ),
     ),
   ),
@@ -7380,7 +7571,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:44:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7607,6 +7798,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'search.search',
+      ),
     ),
   ),
   40 => 
@@ -7665,7 +7861,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -7739,6 +7954,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.rss',
+      ),
     ),
   ),
   41 => 
@@ -7800,7 +8020,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7970,6 +8190,11 @@ return array (
       array (
         0 => 'string',
         1 => 'index',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.index',
       ),
     ),
   ),
@@ -8256,7 +8481,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8406,6 +8631,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.loginLink',
+      ),
     ),
   ),
   45 => 
@@ -8478,7 +8708,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8757,6 +8987,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.add.index',
+      ),
     ),
   ),
   46 => 
@@ -8829,7 +9064,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8978,6 +9213,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.password.form',
+      ),
     ),
   ),
   47 => 
@@ -9039,7 +9279,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9285,6 +9525,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.postList',
+      ),
     ),
   ),
   48 => 
@@ -9346,7 +9591,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9498,6 +9743,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.sendToModerationForm',
       ),
     ),
   ),
@@ -9733,7 +9983,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9978,6 +10228,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.list',
+      ),
     ),
   ),
   51 => 
@@ -10039,7 +10294,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10294,6 +10549,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.list',
+      ),
     ),
   ),
   52 => 
@@ -10467,7 +10727,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10673,6 +10933,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'news.subject.newsList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'subjects\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'newsList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.view',
+      ),
     ),
   ),
   54 => 
@@ -10745,7 +11010,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10900,6 +11165,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.edit.editLink',
+      ),
     ),
   ),
   55 => 
@@ -10950,7 +11220,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11142,6 +11412,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.index',
+      ),
     ),
   ),
   56 => 
@@ -11214,7 +11489,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11345,6 +11620,11 @@ return array (
           <td>string</td><td>URL ссылки </td></tr></tbody>
           </table>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.own.link',
+      ),
     ),
   ),
   57 => 
@@ -11406,7 +11686,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:00:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11511,6 +11791,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.logout',
+      ),
     ),
   ),
   58 => 
@@ -11572,7 +11857,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11725,6 +12010,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.rejectForm',
+      ),
     ),
   ),
   59 => 
@@ -11797,7 +12087,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11947,6 +12237,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.link',
+      ),
     ),
   ),
   60 => 
@@ -12019,7 +12314,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12259,6 +12554,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view.list',
+      ),
     ),
   ),
   61 => 
@@ -12331,7 +12631,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12574,6 +12874,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.draft',
+      ),
     ),
   ),
   62 => 
@@ -12815,7 +13120,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12946,6 +13251,11 @@ return array (
           <td>string</td><td>URL ссылки </td></tr></tbody>
           </table>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.link',
+      ),
     ),
   ),
   64 => 
@@ -13018,7 +13328,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13217,6 +13527,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.post.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view.index',
+      ),
     ),
   ),
   65 => 
@@ -13289,7 +13604,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13547,6 +13862,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view.view',
+      ),
     ),
   ),
   66 => 
@@ -13619,7 +13939,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13760,6 +14080,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.author.view.posts\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'blogAuthors\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'postList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view.page',
+      ),
     ),
   ),
   67 => 
@@ -13821,7 +14146,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13977,6 +14302,11 @@ return array (
 <li class="li1"><div class="de1">(&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'RSSFeed\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;)</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.rssLink',
       ),
     ),
   ),
@@ -14140,7 +14470,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14358,6 +14688,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'news.rubric.newsList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'rubrics\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'newsList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.view',
+      ),
     ),
   ),
   70 => 
@@ -14430,7 +14765,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14627,6 +14962,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$page</span><span class="sy0">-&gt;</span><span class="me1">contents</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view.index',
+      ),
     ),
   ),
   71 => 
@@ -14685,7 +15025,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -14759,6 +15118,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.publish',
+      ),
     ),
   ),
   72 => 
@@ -14809,7 +15173,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15103,6 +15467,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'search.results',
+      ),
     ),
   ),
   73 => 
@@ -15304,7 +15673,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15459,6 +15828,11 @@ return array (
 <li class="li1"><div class="de1">(&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'RSSFeed\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;)</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.rssLink',
       ),
     ),
   ),
@@ -15895,7 +16269,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16029,6 +16403,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.tag.postList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'tags\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'postList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.page',
+      ),
     ),
   ),
   79 => 
@@ -16101,7 +16480,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16253,6 +16632,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$url</span> <span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.activation.link',
       ),
     ),
   ),
@@ -16567,7 +16951,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16781,6 +17165,11 @@ return array (
 <li class="li1"><div class="de1"><span class="br0">&#93;</span> <span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.index',
+      ),
     ),
   ),
   83 => 
@@ -16954,7 +17343,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17143,6 +17532,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp; &nbsp; <span class="br0">&#125;</span></div></li>
 <li class="li1"><div class="de1"><span class="br0">&#125;</span><span class="br0">&#41;</span> <span class="kw6"><span class="br0">&#125;</span><span class="br0">&#125;</span></span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.index',
       ),
     ),
   ),
@@ -17547,7 +17941,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17701,6 +18095,11 @@ return array (
 <li class="li1"><div class="de1">(&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'RSSFeed\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;)</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.rssLink',
       ),
     ),
   ),
@@ -18361,7 +18760,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18513,6 +18912,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.publishForm',
       ),
     ),
   ),
@@ -18988,7 +19392,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19222,6 +19626,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.password.index',
+      ),
     ),
   ),
   96 => 
@@ -19412,7 +19821,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19586,6 +19995,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endforeach</span><span class="sy0">;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.cloud',
+      ),
     ),
   ),
   98 => 
@@ -19647,7 +20061,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19896,6 +20310,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.view',
+      ),
     ),
   ),
   99 => 
@@ -19946,7 +20365,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20145,6 +20564,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.post.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.index',
       ),
     ),
   ),
@@ -20368,7 +20792,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20557,6 +20981,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.reject.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view.index',
+      ),
     ),
   ),
   102 => 
@@ -20629,7 +21058,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20783,6 +21212,11 @@ return array (
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'Add post\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.add.addLink',
       ),
     ),
   ),
@@ -21069,7 +21503,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21226,6 +21660,11 @@ return array (
           <td>$infoblockName</td>
           <td>string</td><td>название информационного блока </td></tr></tbody>
               </table>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'structure.infoblock.view',
       ),
     ),
   ),
@@ -21971,7 +22410,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22216,6 +22655,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.post',
+      ),
     ),
   ),
   112 => 
@@ -22288,7 +22732,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22588,6 +23032,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.activation.index',
+      ),
     ),
   ),
   113 => 
@@ -22789,7 +23238,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22938,6 +23387,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.logoutForm',
+      ),
     ),
   ),
   115 => 
@@ -22999,7 +23453,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23151,6 +23605,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.rejectForm',
       ),
     ),
   ),
@@ -23486,7 +23945,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23731,6 +24190,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view.view',
+      ),
     ),
   ),
   119 => 
@@ -23792,7 +24256,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:38:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23965,6 +24429,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.sendToModerationForm',
+      ),
     ),
   ),
   120 => 
@@ -24037,7 +24506,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24191,6 +24660,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.view.page',
       ),
     ),
   ),
@@ -24505,7 +24979,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24822,6 +25296,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.registration.index',
+      ),
     ),
   ),
   124 => 
@@ -24894,7 +25373,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25049,6 +25528,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.edit.editLink',
+      ),
     ),
   ),
   125 => 
@@ -25110,7 +25594,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:52:57";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25235,6 +25719,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.rss',
+      ),
     ),
   ),
   126 => 
@@ -25296,7 +25785,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25495,6 +25984,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.tag.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.index',
+      ),
     ),
   ),
   127 => 
@@ -25567,7 +26061,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25774,6 +26268,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.profile.index',
       ),
     ),
   ),
@@ -26178,7 +26677,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26327,6 +26826,11 @@ return array (
 <li class="li1"><div class="de1">(&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'RSSFeed\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;)</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.rssLink',
       ),
     ),
   ),
@@ -26638,7 +27142,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -26711,6 +27234,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.draft',
       ),
     ),
   ),
@@ -26885,7 +27413,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27134,6 +27662,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.newsList',
+      ),
     ),
   ),
   137 => 
@@ -27337,7 +27870,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27485,6 +28018,11 @@ return array (
 <li class="li1"><div class="de1">&lt;a class=&quot;btn btn-primary&quot; role=&quot;button&quot; href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st0">&quot;Edit profile&quot;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.link',
+      ),
     ),
   ),
   139 => 
@@ -27543,7 +28081,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27616,6 +28173,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.publish',
       ),
     ),
   ),
@@ -27675,7 +28237,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -27748,6 +28329,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.rss',
       ),
     ),
   ),
@@ -28023,7 +28609,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28228,6 +28814,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'search.fragments',
+      ),
     ),
   ),
   144 => 
@@ -28289,7 +28880,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28504,6 +29095,11 @@ return array (
 <li class="li1"><div class="de1"><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.index',
+      ),
     ),
   ),
   145 => 
@@ -28565,7 +29161,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28716,6 +29312,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.rssLink',
+      ),
     ),
   ),
   146 => 
@@ -28788,7 +29389,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29033,6 +29634,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.confirmation.index',
+      ),
     ),
   ),
   147 => 
@@ -29105,7 +29711,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29319,6 +29925,11 @@ return array (
           <td>array|\\Traversable</td><td>набор элементов на странице </td></tr></tbody>
               </table>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.own.list',
+      ),
     ),
   ),
   148 => 
@@ -29369,7 +29980,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29534,6 +30145,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'search.highlight',
+      ),
     ),
   ),
   149 => 
@@ -29606,7 +30222,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29824,6 +30440,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.edit.index',
       ),
     ),
   ),
@@ -30277,7 +30898,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:53:22";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30431,6 +31052,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'news.subject.newsList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'subjects\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'newsList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.page',
+      ),
     ),
   ),
   154 => 
@@ -30492,7 +31118,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30724,6 +31350,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.index',
+      ),
     ),
   ),
   155 => 
@@ -30886,7 +31517,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31035,6 +31666,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.restoration.form',
+      ),
     ),
   ),
   157 => 
@@ -31093,7 +31729,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -31166,6 +31821,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.sendToModeration',
       ),
     ),
   ),
@@ -31239,7 +31899,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31457,6 +32117,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.edit.index',
       ),
     ),
   ),
@@ -31530,7 +32195,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31749,6 +32414,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.edit.index',
+      ),
     ),
   ),
   160 => 
@@ -31821,7 +32491,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31968,6 +32638,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st0">&quot;Change password&quot;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.password.link',
       ),
     ),
   ),
@@ -32181,7 +32856,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32287,6 +32962,11 @@ return array (
         0 => 'string',
         1 => 'page',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.own.page',
+      ),
     ),
   ),
   163 => 
@@ -32359,7 +33039,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32578,6 +33258,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.edit.index',
+      ),
     ),
   ),
   164 => 
@@ -32639,7 +33324,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32862,6 +33547,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.view',
+      ),
     ),
   ),
   165 => 
@@ -32934,7 +33624,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33093,6 +33783,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.add.addForm',
+      ),
     ),
   ),
   166 => 
@@ -33151,7 +33846,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -33225,6 +33939,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.unpublish',
+      ),
     ),
   ),
   167 => 
@@ -33297,7 +34016,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33537,6 +34256,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view.list',
+      ),
     ),
   ),
   168 => 
@@ -33598,7 +34322,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33789,6 +34513,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'structure.menu.auto',
+      ),
     ),
   ),
   169 => 
@@ -33861,7 +34590,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34112,6 +34841,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view.list',
+      ),
     ),
   ),
   170 => 
@@ -34173,7 +34907,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34320,6 +35054,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sy1">&lt;?=</span><span class="re0">$page</span><span class="sy0">-&gt;</span><span class="me1">contents</span><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.page',
       ),
     ),
   ),
@@ -34522,7 +35261,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34768,6 +35507,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.newsList',
+      ),
     ),
   ),
   173 => 
@@ -34990,7 +35734,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35190,6 +35934,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.view',
+      ),
     ),
   ),
   175 => 
@@ -35251,7 +36000,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35437,6 +36186,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.tree',
+      ),
     ),
   ),
   176 => 
@@ -35498,7 +36252,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35706,6 +36460,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.tag.postList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'tags\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'postList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.tag.view',
+      ),
     ),
   ),
   177 => 
@@ -35764,7 +36523,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -35838,6 +36616,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.sendToModeration',
+      ),
     ),
   ),
   178 => 
@@ -35899,7 +36682,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36098,6 +36881,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.category.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.index',
+      ),
     ),
   ),
   179 => 
@@ -36257,7 +37045,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -36331,6 +37138,11 @@ return array (
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.rss',
+      ),
     ),
   ),
   181 => 
@@ -36403,7 +37215,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36649,6 +37461,11 @@ return array (
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view.posts',
+      ),
     ),
   ),
   182 => 
@@ -36850,7 +37667,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37003,6 +37820,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.toDraftForm',
+      ),
     ),
   ),
   184 => 
@@ -37064,7 +37886,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37290,6 +38112,11 @@ return array (
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.item.view',
+      ),
     ),
   ),
   185 => 
@@ -37348,7 +38175,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -37421,6 +38267,11 @@ return array (
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.category.rss',
       ),
     ),
   ),
@@ -37595,7 +38446,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37792,6 +38643,11 @@ return array (
 <li class="li1"><div class="de1">&nbsp; &nbsp; &lt;/ul&gt;</div></li>
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'structure.menu.custom',
       ),
     ),
   ),
@@ -38303,7 +39159,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38470,6 +39326,11 @@ return array (
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.comment.add.addForm\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'blogPost\'</span> <span class="sy0">=&gt;</span> <span class="re0">$page</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'addComment\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.view.page',
       ),
     ),
   ),
@@ -38874,7 +39735,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39073,6 +39934,11 @@ return [
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.author.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.index',
+      ),
     ),
   ),
   195 => 
@@ -39134,7 +40000,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39399,6 +40265,11 @@ return [
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.profile.index',
+      ),
     ),
   ),
   196 => 
@@ -39569,7 +40440,26 @@ return [
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -39643,6 +40533,11 @@ return [
         0 => 'string',
         1 => '',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.rss',
+      ),
     ),
   ),
   198 => 
@@ -39704,7 +40599,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39892,6 +40787,11 @@ return [
 <li class="li1"><div class="de1">&lt;h1&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'Drafts author\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/h1&gt;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.draft.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.index',
       ),
     ),
   ),
@@ -40486,7 +41386,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40681,6 +41581,11 @@ return [
           <td>$image</td>
           <td>string</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.own.post',
       ),
     ),
   ),
@@ -41150,7 +42055,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41304,6 +42209,11 @@ return [
 <li class="li1"><div class="de1">[&lt;a href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span><span class="sy0">;</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'Edit\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/a&gt;]</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.edit.editLink',
       ),
     ),
   ),
@@ -41535,7 +42445,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41679,6 +42589,11 @@ return [
         1 => '<div class="php"><ol><li class="li1"><div class="de1">&lt;a class=&quot;btn btn-primary&quot; role=&quot;button&quot; href=&quot;<span class="sy1">&lt;?=</span> <span class="re0">$url</span> <span class="sy1">?&gt;</span>&quot;&gt;<span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'Edit author profile\'</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span>&lt;/a&gt;</div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.profile.editLink',
       ),
     ),
   ),
@@ -41993,7 +42908,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42146,6 +43061,11 @@ return [
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.toDraftForm',
+      ),
     ),
   ),
   213 => 
@@ -42218,7 +43138,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42419,6 +43339,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.comment.add.add',
       ),
     ),
   ),
@@ -42621,7 +43546,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42876,6 +43801,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.list',
+      ),
     ),
   ),
   216 => 
@@ -42948,7 +43878,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43103,6 +44033,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.all.page',
+      ),
     ),
   ),
   217 => 
@@ -43164,7 +44099,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:53:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43320,6 +44255,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'news.rubric.newsList\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'rubrics\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'newsList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.rubric.page',
+      ),
     ),
   ),
   218 => 
@@ -43381,7 +44321,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43537,6 +44477,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.rssLink',
+      ),
     ),
   ),
   219 => 
@@ -43587,7 +44532,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:41:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43759,6 +44704,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&nbsp;</div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'search.form',
+      ),
     ),
   ),
   220 => 
@@ -43820,7 +44770,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -43967,6 +44917,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">render</span><span class="br0">&#40;</span><span class="st_h">\'form/form.phtml\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'form\'</span> <span class="sy0">=&gt;</span> <span class="re0">$form</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'users.authorization.loginForm',
       ),
     ),
   ),
@@ -44270,7 +45225,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 10:50:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -44497,6 +45452,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&lt;h2&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'All news\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/h2&gt;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'news.item.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'limit\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'3\'</span><span class="sy0">,</span> <span class="st_h">\'pagination\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="st_h">\'pageParam\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'p\'</span><span class="sy0">,</span> <span class="st_h">\'type\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'sliding\'</span><span class="sy0">,</span> <span class="st_h">\'pagesCount\'</span> <span class="sy0">=&gt;</span> <span class="nu0">5</span><span class="br0">&#93;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.index',
       ),
     ),
   ),
@@ -44800,7 +45760,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:30:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -44952,6 +45912,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sy1">&lt;?=</span> <span class="re0">$page</span><span class="sy0">-&gt;</span><span class="me1">contents</span> <span class="sy1">?&gt;</span></div></li>
 <li class="li1"><div class="de1">&lt;/div&gt;</div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.page',
       ),
     ),
   ),
@@ -45444,7 +46409,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 12:05:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -45659,6 +46624,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$page</span><span class="sy0">-&gt;</span><span class="me1">contents</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'structure.index',
+      ),
     ),
   ),
   231 => 
@@ -45731,7 +46701,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -45952,6 +46922,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.author.view.posts\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'blogAuthors\'</span> <span class="sy0">=&gt;</span> <span class="br0">&#91;</span><span class="re0">$page</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'postList\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.author.view.author',
+      ),
     ),
   ),
   232 => 
@@ -46024,7 +46999,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -46264,6 +47239,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1"><span class="kw2">&lt;?php</span> <span class="kw1">endif</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.list',
+      ),
     ),
   ),
   233 => 
@@ -46454,7 +47434,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -46624,6 +47604,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'string',
         1 => 'index',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.reject.index',
       ),
     ),
   ),
@@ -46697,7 +47682,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -46868,6 +47853,11 @@ published, если комментарий был добававлен и опу
         0 => 'string',
         1 => 'index',
       ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.moderate.own.index',
+      ),
     ),
   ),
   236 => 
@@ -46940,7 +47930,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -47128,6 +48118,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&lt;h1&gt;<span class="sy1">&lt;?=</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">translate</span><span class="br0">&#40;</span><span class="st_h">\'Drafts author\'</span><span class="br0">&#41;</span><span class="sy1">?&gt;</span>&lt;/h1&gt;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.draft.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.draft.view.index',
       ),
     ),
   ),
@@ -47320,7 +48315,26 @@ published, если комментарий был добававлен и опу
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -47393,6 +48407,11 @@ published, если комментарий был добававлен и опу
       array (
         0 => 'string',
         1 => '',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'news.subject.rss',
       ),
     ),
   ),
@@ -47756,7 +48775,7 @@ published, если комментарий был добававлен и опу
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 08:32:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 13:32:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -47954,6 +48973,11 @@ published, если комментарий был добававлен и опу
 <li class="li1"><div class="de1">&nbsp;</div></li>
 <li class="li1"><div class="de1"><span class="sy1">&lt;?=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">widget</span><span class="br0">&#40;</span><span class="st_h">\'blog.post.view.list\'</span><span class="sy0">,</span> <span class="br0">&#91;</span><span class="st_h">\'template\'</span> <span class="sy0">=&gt;</span> <span class="st_h">\'list\'</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy1">?&gt;</span></div></li>
 </ol></div>',
+      ),
+      'path' => 
+      array (
+        0 => 'string',
+        1 => 'blog.post.index',
       ),
     ),
   ),
