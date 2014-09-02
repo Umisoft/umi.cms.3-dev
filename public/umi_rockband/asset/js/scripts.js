@@ -21,13 +21,13 @@ jQuery(document).ready(function() {
 		setHeader();
     });
     jQuery(window).scroll(function() {
-        if (jQuery(document).scrollTop() >= header.height()) {
-            header.addClass('fixed');
-        } else {
-            header.filter('.fixed').each(function() {
+        if (jQuery(document).scrollTop() <= header.height()-20) {
+			header.filter('.fixed').each(function() {
 				jQuery(this).removeClass('fixed');
 				setHeader();
 			});
+        } else {
+			header.addClass('fixed');
         }
     });
     jQuery('.top-scroll').click(function() {

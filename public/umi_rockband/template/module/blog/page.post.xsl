@@ -29,6 +29,9 @@
                 <div class="row top-info">
                     <div class="col-xs-12 col-sm-4">
                         <div class="userinfo">
+                            <div class="author">
+                                <xsl:value-of select="document('translate://project.site.blog/Author')" />
+                            </div>
                             <div class="name">
                                 <xsl:value-of select="//property[@name='author']/value/@displayName"/>
                             </div>

@@ -4,6 +4,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic);
 
 /** subbootstrap **/
+.carousel-caption {
+	left: 10%;
+	right: 10%;
+}
 .alert {
 	border: 1px solid;
 	margin-bottom: 10px;
@@ -374,14 +378,50 @@ footer .top-scroll {
 	border-top: 1px solid #ededed;
 	border-bottom: 1px solid #ededed;
 	margin-bottom: 20px;
-}
-.top-info, .top-info .name {
 	font-size: 16px;
 	color: black;
+}
+.top-info .name {
+	color: #a5a5a5;
+	font-size: 14px;
 }
 
 
 /** ELEMENTS **/
+/* social case */
+.share a {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	background-image: url(../images/social-icons.png);
+	margin: 10px 10px 0 0;
+	transition: .3s; }
+.share a:hover i {
+	opacity: 1; }
+.share a i {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	opacity: 0;
+	transition: .3s;
+	background-image: url(../images/social-icons.png); }
+.share a.fb {
+	background-position: 0 0; }
+.share a.fb i {
+	background-position: 0 -23px; }
+.share a.vk {
+	background-position: -72px 0; }
+.share a.vk i {
+	background-position: -72px -23px; }
+.share a.twitter {
+	background-position: -48px 0; }
+.share a.twitter i {
+	background-position: -48px -23px; }
+.share a.g {
+	background-position: -25px 0; }
+.share a.g i {
+	background-position: -25px -23px; }
+
 
 /* forms text area */
 textarea.form-control {
