@@ -10,7 +10,7 @@
             {{/if}}
         </div>
         {{#each form.elements}}
-            {{#ifCond type 'select'}}
+        {{#ifCond type 'select'}}
                 <div class="auth-layout-lang">
                     <span class="button dropdown without-arrow" data-dropdown
                           data-options="selectorById: false; align: right;">
@@ -36,26 +36,30 @@
                     <input name="{{attributes.name}}" value="{{../../currentLocale}}" type="hidden" class="auth-layout-lang-input"/>
                 </div>
             {{else}}
-                <div class="row">
-                    <div class="small-12 columns">
-                        <i class="icon icon-{{attributes.name}} input-icon"></i>
-                        <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}"
-                               required="required" autocomplete="off" value="">
-                        {{#if validators}}
-                            <span class="error">
-                                {{#each validators}}
-                                    {{message}}
-                                {{/each}}
-                            </span>
-                        {{/if}}
+                {{#ifCond type 'submit'}}
+                    <div class="row">
+                        <div class="small-6 small-offset-6 columns">
+                            <input name="submit" class="button expand s-margin-clear" type="submit" value="{{label}}"/>
+                        </div>
                     </div>
-                </div>
+                {{else}}
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <i class="icon icon-{{attributes.name}} input-icon"></i>
+                            <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}"
+                                   required="required" autocomplete="off" value="">
+                            {{#if validators}}
+                                <span class="error">
+                                    {{#each validators}}
+                                        {{message}}
+                                    {{/each}}
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/ifCond}}
             {{/ifCond}}
         {{/each}}
-        <div class="row">
-            <div class="small-6 small-offset-6 columns">
-                <input name="submit" class="button expand s-margin-clear" type="submit" value="Войти"/>
-            </div>
-        </div>
+
     </form>
 </div>

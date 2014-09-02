@@ -1,7 +1,7 @@
 {{#each formElement in view.form.elements}}
     <div class="row collapse">
         <div class="large-12 columns">
-            {{view "fieldBase" metaBinding="formElement" objectBinding="view.object"}}
+            {{view "view.fieldView" metaBinding="formElement" objectBinding="view.object"}}
         </div>
     </div>
 {{/each}}
