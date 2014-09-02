@@ -1401,7 +1401,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.content.content", {hash:{
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.model.content", {hash:{
     'unescaped': ("true")
   },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));
   
@@ -1416,7 +1416,7 @@ function program1(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" <h5 class=\"subheader\">");
-  stack1 = helpers._triageMustache.call(depth0, "view.content.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers._triageMustache.call(depth0, "view.model.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</h5> ");
   return buffer;
@@ -1426,23 +1426,21 @@ function program3(depth0,data) {
   
   var buffer = '';
   data.buffer.push(" <span ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "close", "view.content", {hash:{
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "close", "view.model", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
-  data.buffer.push(" class=\"close\">&times;</span> ");
+  data.buffer.push(" class=\"close\"><i class=\"icon close white\"></i></span> ");
   return buffer;
   }
 
-  stack1 = helpers['if'].call(depth0, "view.content.title", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.model.title", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers.log.call(depth0, "view.content.stack", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push(" ");
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.content.content", {hash:{
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.model.content", {hash:{
     'unescaped': ("true")
   },hashTypes:{'unescaped': "STRING"},hashContexts:{'unescaped': depth0},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "view.content.close", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "view.model.close", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   return buffer;
   

@@ -29,7 +29,7 @@ define(['App'], function(UMI) {
             }
 
             settings.id = UMI.notificationList.incrementProperty('notificationId');
-            var data = UMI.notificationList.get('content');
+            var data = UMI.notificationList.get('model');
 
             Ember.run.next(this, function() {
                 data.pushObject(Ember.Object.create(settings));
@@ -81,31 +81,31 @@ define(['App'], function(UMI) {
 
     UMI.AlertBox = Ember.View.extend({
         classNames: ['alert-box'],
-        classNameBindings: ['content.type'],
+        classNameBindings: ['model.type'],
         layoutName: 'partials/alert-box',
         didInsertElement: function() {
-            var duration = this.get('content.duration');
+            var duration = this.get('model.duration');
             if (duration) {
                 Ember.run.later(this, function() {
                     //this.$().slideDown();
-                    var id = this.get('content.id');
-                    var content = this.get('controller.content') || [];
-                    var object = content.findBy('id', id);
-                    content.removeObject(object);
+                    var id = this.get('model.id');
+                    var model = this.get('controller.model') || [];
+                    var object = model.findBy('id', id);
+                    model.removeObject(object);
                 }, duration);
             }
         },
         actions: {
             close: function() {
-                var content = this.get('controller.content');
-                content.removeObject(this.get('content'));
+                var model = this.get('controller.model');
+                model.removeObject(this.get('model'));
             }
         }
     });
 
     UMI.AlertBoxCloseAll = Ember.View.extend({
         classNames: ['alert-box text-center alert-box-close-all'],
-        classNameBindings: ['content.type'],
+        classNameBindings: ['model.type'],
         layoutName: 'partials/alert-box/close-all',
         click: function() {
             UMI.notification.removeAll();
@@ -116,14 +116,14 @@ define(['App'], function(UMI) {
         tagName: 'div',
         classNames: ['umi-alert-wrapper'],
         createChildView: function(viewClass, attrs) {
-            if (attrs.content.kind === 'closeAll') {
+            if (attrs.model.kind === 'closeAll') {
                 viewClass = UMI.AlertBoxCloseAll;
             } else {
                 viewClass = UMI.AlertBox;
             }
             return this._super(viewClass, attrs);
         },
-        contentBinding: 'controller.sortContent',
+        modelBinding: 'controller.sortModel',
         controller: UMI.notificationList
     });
 });
