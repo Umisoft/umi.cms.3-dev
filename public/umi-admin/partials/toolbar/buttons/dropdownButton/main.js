@@ -280,6 +280,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         return object;
                     }.property('controller.object'),
 
+                    fieldView: function() {
+                        return UMI.FieldBaseView.extend({
+                            actions: {
+                                submit: function() {
+                                    this.get('parentView').send('submit', this.$());
+                                }
+                            }
+                        });
+                    }.property('object'),
+
                     actions: {
                         submit: function(handler) {
                             var self = this;
@@ -308,20 +318,38 @@ define(['App', 'moment'], function(UMI, moment) {
                                 data: serializeObject,
                                 contentType: 'application/json; charset=UTF-8'
                             }).then(function(results) {
-                                var result = Ember.get(results, 'result');
-                                var actionName;
-                                for (var key in result) {
-                                    if (result.hasOwnProperty(key)) {
-                                        actionName = key;
-                                        break;
+                                var result = Ember.get(results, 'result') || '';
+                                if (!result) {
+                                    Ember.run.later(self, function() {
+                                        var error = new Error(UMI.i18n.getTranslate('Unknown error') + '.');
+                                        self.get('controller').send('backgroundError', error);
+                                    }, 100);
+                                } else {
+                                    var actionName = '';
+                                    for (var key in result) {
+                                        if (result.hasOwnProperty(key)) {
+                                            actionName = key;
+                                            break;
+                                        }
                                     }
+                                    var data = Ember.get(result, actionName);
+                                    delete data.updated;
+                                    delete data.created;
+                                    store.update(collectionName, data);
+                                    var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
+                                    UMI.notification.create(params);
                                 }
-                                var data = Ember.get(result, actionName);
-                                delete data.updated;
-                                delete data.created;
-                                store.update(collectionName, data);
                             });
                         }
+                    },
+
+                    didInsertElement: function() {
+                        var self = this;
+                        var $el = self.$();
+                        self.$().on('submit', function() {
+                            self.send('submit', $el.find('.button'));
+                            return false;
+                        });
                     }
                 }),
 
