@@ -85,7 +85,7 @@ define(['App'], function(UMI) {
         layoutName: 'partials/alert-box',
         didInsertElement: function() {
             var duration = this.get('content.duration');
-            if (!duration) {
+            if (duration) {
                 Ember.run.later(this, function() {
                     //this.$().slideDown();
                     var id = this.get('content.id');
