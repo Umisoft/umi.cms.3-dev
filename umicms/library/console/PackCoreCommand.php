@@ -73,7 +73,8 @@ EOF;
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Version: ' . $input->getArgument('version'));
+        $version = $input->getArgument('version');
+        $output->writeln('Version: ' . $version);
 
         $outputPharPath = $input->getArgument('output') . '/' . 'umicms.phar';
 
