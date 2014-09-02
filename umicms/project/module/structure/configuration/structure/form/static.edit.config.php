@@ -17,7 +17,7 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.structure'
+                'collection.structure' => 'collection.structure'
             ]
         ],
 

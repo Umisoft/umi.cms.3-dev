@@ -29,7 +29,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.blogAuthor', 'collection'
+            'collection.blogAuthor' => 'collection.blogAuthor', 'collection' => 'collection'
         ],
         BlogAuthorCollection::DEFAULT_TABLE_FILTER_FIELDS => [
             BlogAuthor::FIELD_PROFILE => []

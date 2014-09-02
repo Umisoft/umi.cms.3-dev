@@ -11,7 +11,10 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.restoration', 'form'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.restoration' => 'project.site.users.restoration',
+            'form' => 'form'
         ],
     ],
     'attributes' => [

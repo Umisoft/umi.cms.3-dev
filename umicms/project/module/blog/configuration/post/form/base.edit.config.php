@@ -21,7 +21,7 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.blogPost'
+                'collection.blogPost' => 'collection.blogPost'
             ]
         ],
         'elements' => [

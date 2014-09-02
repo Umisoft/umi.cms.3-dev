@@ -41,33 +41,8 @@
     margin: 0;
     //    border-left: 1px solid #ADB9C5;
     user-select: none;
-    overflow: scroll;
+    overflow: auto;
 }
-
-.elfinder-cwd-wrapper:before{
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 1000;
-    display: block;
-    width: 1px;
-    height: calc(100% - 14px);
-    left: 0px;
-    background: #ADB9C5;
-}
-
-.elfinder-workzone:before{
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 10;
-    display: block;
-    width: 1px;
-    height: calc(100% - 14px);
-    right: 14px;
-    background: #ADB9C5;
-}
-
 
 /* container active on dropenter */
 .elfinder .elfinder-cwd-wrapper.elfinder-droppable-active {
@@ -122,6 +97,7 @@
     margin: 3px 1px 0 1px;
     padding: 1px;
     border-radius: 8px;
+    line-height: normal;
 }
 
 /* permissions/symlink markers */

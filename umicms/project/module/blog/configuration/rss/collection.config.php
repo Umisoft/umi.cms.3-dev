@@ -26,7 +26,7 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.blogRssImportScenario', 'collection'
+        'collection.blogRssImportScenario' => 'collection.blogRssImportScenario', 'collection' => 'collection'
     ],
 
     BlogRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [

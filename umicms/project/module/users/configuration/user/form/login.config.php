@@ -10,7 +10,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection'
+            'collection.user' => 'collection.user', 'collection' => 'collection'
         ],
     ],
     'attributes' => [

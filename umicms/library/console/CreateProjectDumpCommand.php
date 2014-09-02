@@ -12,6 +12,8 @@ namespace umicms\console;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use umi\orm\collection\ICollectionManager;
+use umi\orm\collection\IHierarchicCollection;
+use umi\orm\object\IHierarchicObject;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\dump\ICmsObjectExporter;
 use umicms\orm\object\ICmsObject;
@@ -80,9 +82,17 @@ class CreateProjectDumpCommand extends BaseProjectCommand
              * @var ICmsCollection $collection
              */
             $collection = $collectionManager->getCollection($collectionName);
-            $dump = $objectExporter->getDump(
-                $collection->getInternalSelector()->orderBy(ICmsObject::FIELD_GUID)
-            );
+
+            $selector = $collection->getInternalSelector();
+
+            if ($collection instanceof IHierarchicCollection) {
+                $selector
+                    ->orderBy(IHierarchicObject::FIELD_HIERARCHY_LEVEL)
+                    ->orderBy(IHierarchicObject::FIELD_ORDER);
+            }
+            $selector->orderBy(ICmsObject::FIELD_GUID);
+
+            $dump = $objectExporter->getDump($selector);
 
             if (count($dump)) {
                 $progress->setMessage('Writing dump for "' . $collectionName . '".');

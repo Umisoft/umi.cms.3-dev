@@ -17,7 +17,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogAuthor', 'collection', 'form'
+            'collection.blogAuthor' => 'collection.blogAuthor', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
     'attributes' => [
