@@ -28,7 +28,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.newsItem', 'collection'
+            'collection.newsItem' => 'collection.newsItem', 'collection' => 'collection'
         ],
 
         NewsItemCollection::DEFAULT_TABLE_FILTER_FIELDS => [

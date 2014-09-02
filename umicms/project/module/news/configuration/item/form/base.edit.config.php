@@ -20,7 +20,7 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.newsItem'
+                'collection.newsItem' => 'collection.newsItem'
             ]
         ],
 

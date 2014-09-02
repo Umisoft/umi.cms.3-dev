@@ -14,15 +14,15 @@ use umi\http\Response;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\model\NewsModule;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class NewsItemRssController extends BaseCmsController implements ISiteSettingsAware
+class NewsItemRssController extends BaseCmsController implements IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     /**
      * @var NewsModule $module

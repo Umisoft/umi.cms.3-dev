@@ -9,7 +9,10 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.profile', 'form'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.profile' => 'project.site.users.profile',
+            'form' => 'form'
         ],
     ],
     'attributes' => [

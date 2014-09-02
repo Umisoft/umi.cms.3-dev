@@ -8,45 +8,44 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\config;
+namespace umicms\project;
 
 use umi\config\entity\IConfig;
 use umicms\exception\RequiredDependencyException;
-use umicms\project\site\SiteApplication;
 
 /**
- * Трейт для работы с настройками сайта
+ * Трейт для работы с настройками проекта
  */
-trait TSiteSettingsAware
+trait TProjectSettingsAware
 {
     /**
      * @var IConfig $traitSiteSettings
      */
-    private $traitSiteSettings;
+    private $traitProjectSettings;
 
     /**
-     * @see ISiteSettingsAware::setSiteSettings()
+     * @see IProjectSettingsAware::setProjectSettings()
      */
-    public function setSiteSettings(IConfig $config)
+    public function setProjectSettings(IConfig $config)
     {
-        $this->traitSiteSettings = $config;
+        $this->traitProjectSettings = $config;
     }
 
     /**
-     * Возвращает настройки сайта.
+     * Возвращает настройки проекта.
      * @throws RequiredDependencyException если настройки не были установлены
      * @return IConfig
      */
-    protected function getSiteSettings()
+    protected function getProjectSettings()
     {
-        if (!$this->traitSiteSettings) {
+        if (!$this->traitProjectSettings) {
             throw new RequiredDependencyException(sprintf(
-                'Site settings is not injected in class "%s".',
+                'Project settings is not injected in class "%s".',
                 get_class($this)
             ));
         }
 
-        return $this->traitSiteSettings;
+        return $this->traitProjectSettings;
     }
 
     /**
@@ -55,7 +54,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultPageGuid()
     {
-        return $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_PAGE_GUID);
+        return $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID);
     }
 
     /**
@@ -64,7 +63,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultLayoutGuid()
     {
-        return $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_LAYOUT_GUID);
+        return $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID);
     }
 
     /**
@@ -73,7 +72,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultTitle()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TITLE);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_TITLE);
     }
 
     /**
@@ -82,7 +81,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteTitlePrefix()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_TITLE_PREFIX);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_TITLE_PREFIX);
     }
 
     /**
@@ -91,7 +90,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultKeywords()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_KEYWORDS);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_KEYWORDS);
     }
 
     /**
@@ -100,7 +99,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultDescription()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_DESCRIPTION);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_DESCRIPTION);
     }
 
     /**
@@ -109,7 +108,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultTemplateEngineType()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE);
     }
 
     /**
@@ -118,7 +117,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteDefaultTemplateExtension()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION);
     }
 
     /**
@@ -127,7 +126,7 @@ trait TSiteSettingsAware
      */
     protected function getSiteTemplateDirectory()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_TEMPLATE_DIRECTORY);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY);
     }
 
     /**
@@ -136,6 +135,6 @@ trait TSiteSettingsAware
      */
     protected function getSiteCommonTemplateDirectory()
     {
-        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY);
+        return (string) $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_COMMON_TEMPLATE_DIRECTORY);
     }
 }

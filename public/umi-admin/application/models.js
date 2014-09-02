@@ -3,6 +3,19 @@ define([], function() {
 
     return function(UMI) {
 
+        var defaultValueForType = function(type, defaultValue) {
+            switch (type) {
+                case 'number':
+                    defaultValue = Ember.isEmpty(defaultValue) ? undefined : defaultValue;
+                    break;
+                default:
+                    defaultValue = Ember.isEmpty(defaultValue) ? '' : defaultValue;
+                    break;
+            }
+
+            return defaultValue;
+        };
+
         DS.Model.reopen({
             needReloadHasMany: Ember.K,
 
@@ -48,7 +61,7 @@ define([], function() {
                             this.set('validErrors', activeErrors);
                         }
 
-                        if (this.get('isValid')) {
+                        if (this.get('isValid') && this.get('isDirty')) {
                             this.send('becameInvalid');
                         }
 
@@ -97,8 +110,8 @@ define([], function() {
                 fieldsLength = fields.length;
 
                 if (Ember.typeOf(filters) === 'object') {
-                    for(key in filters){
-                        if(filters.hasOwnProperty(key)){
+                    for (key in filters) {
+                        if (filters.hasOwnProperty(key)) {
                             this.filterProperty(key);
                         }
                     }
@@ -177,21 +190,24 @@ define([], function() {
                 var object = this;
 
                 for (var key in changedRelationships) {
-                    if (!(key in loadedRelationships)) {
-                        isDirty = true;
-                    } else if (Object.prototype.toString.call(loadedRelationships[key]).slice(8, -1) === 'Array' && Object.prototype.toString.call(changedRelationships[key]).slice(8, -1) === 'Array') {
-                        if (loadedRelationships[key].length !== changedRelationships[key].length) {
+                    if (changedRelationships.hasOwnProperty(key)) {
+                        if (!(key in loadedRelationships)) {
                             isDirty = true;
-                        } else {
-                            isDirty = changedRelationships[key].every(function(id) {
-                                if (loadedRelationships[key].contains(id)) {
-                                    return true;
-                                }
-                            });
-                            isDirty = !isDirty;
+                        } else if (Object.prototype.toString.call(loadedRelationships[key]).slice(8, -1) === 'Array' &&
+                            Object.prototype.toString.call(changedRelationships[key]).slice(8, -1) === 'Array') {
+                            if (loadedRelationships[key].length !== changedRelationships[key].length) {
+                                isDirty = true;
+                            } else {
+                                isDirty = changedRelationships[key].every(function(id) {
+                                    if (loadedRelationships[key].contains(id)) {
+                                        return true;
+                                    }
+                                });
+                                isDirty = !isDirty;
+                            }
+                        } else if (loadedRelationships[key] !== changedRelationships[key]) {
+                            isDirty = true;
                         }
-                    } else if (loadedRelationships[key] !== changedRelationships[key]) {
-                        isDirty = true;
                     }
                 }
 
@@ -205,19 +221,29 @@ define([], function() {
                 }
             },
 
+            /**
+             * Проверяет не сохранённое состояние для связанного поля (relationships). Используется сериализатором перед
+             * сохранением объекта.
+             * @param {string} property
+             * @return {boolean}
+             */
             relationPropertyIsDirty: function(property) {
                 var loadedRelationships = this.get('loadedRelationshipsByName');
                 var changedRelationships = this.get('changedRelationshipsByName');
                 var isDirty = false;
 
                 if (changedRelationships.hasOwnProperty(property)) {
-                    Ember.warn('Loaded relationship has not been added. After loading hasMany and ManyToMany relations need to add them to the result loadedRelationshipsByName', loadedRelationships.hasOwnProperty(property));
-                    if (Object.prototype.toString.call(loadedRelationships[property]).slice(8, -1) === 'Array' && Object.prototype.toString.call(changedRelationships[property]).slice(8, -1) === 'Array') {
+                    Ember.warn('Loaded relationship has not been added. After loading hasMany and ManyToMany ' +
+                        'relations need to add them to the result loadedRelationshipsByName',
+                        loadedRelationships.hasOwnProperty(property));
+                    if (Object.prototype.toString.call(loadedRelationships[property]).slice(8, -1) === 'Array' &&
+                        Object.prototype.toString.call(changedRelationships[property]).slice(8, -1) === 'Array') {
+
                         if (loadedRelationships[property].length !== changedRelationships[property].length) {
                             isDirty = true;
                         } else {
-                            isDirty = changedRelationships[property].every(function(id){
-                                if(loadedRelationships[property].contains(id)) { return true; }
+                            isDirty = changedRelationships[property].every(function(id) {
+                                if (loadedRelationships[property].contains(id)) { return true; }
                             });
                             isDirty = !isDirty;
                         }
@@ -228,15 +254,35 @@ define([], function() {
                 return isDirty;
             },
 
-            updateRelationhipsMap: function() {
+            /**
+             * Метод вызывается после сохранения объекта. Изменённые связи переносятся в сохраннёные, и список
+             * изменённных сзвязей очищается
+             * @method updateRelationshipsMap
+             */
+            updateRelationshipsMap: function() {
                 var loadedRelationships = this.get('loadedRelationshipsByName');
                 var changedRelationships = this.get('changedRelationshipsByName');
+
                 for (var property in changedRelationships) {
                     if (changedRelationships.hasOwnProperty(property)) {
                         loadedRelationships[property] = changedRelationships[property];
                     }
                 }
+
                 this.set('changedRelationshipsByName', {});
+            },
+
+            getDefaultValueForProperty: function(propertyName) {
+                var defaultValue;
+                //TODO: how get meta for given property?
+                this.eachAttribute(function(name, meta) {
+                    if (name === propertyName) {
+                        defaultValue = defaultValueForType(Ember.get(meta, 'type'),
+                            Ember.get(meta, 'options.defaultValue'));
+                    }
+                });
+
+                return defaultValue;
             }
         });
 
@@ -268,7 +314,7 @@ define([], function() {
             belongsToRelation: function(params, field, collection) {
                 params.async = true;
                 //TODO: инверсия избыточна, но DS почему то без нее не может
-                if(field.targetCollection === collection.name) {
+                if (field.targetCollection === collection.name) {
                     params.inverse = 'children';
                 }
                 params.readOnly = false;
@@ -291,7 +337,7 @@ define([], function() {
         var getBaseTypes = function(typeName) {
             var baseType = typeName;
 
-            switch(typeName) {
+            switch (typeName) {
                 case 'integer':
                     baseType = 'number';
                     break;
@@ -306,7 +352,7 @@ define([], function() {
         /**
          * Создает экземпляры DS.Model
          * @method modelsFactory
-         * @param array Массив обьектов
+         * @param {array} collections Массив обьектов
          */
         UMI.modelsFactory = function(collections) {
             var collection;
@@ -335,7 +381,7 @@ define([], function() {
                         params.displayName = field.displayName;
                     }
 
-                    if (Ember.typeOf(field['default']) !== 'undefined') {
+                    if (field['default'] !== 'null') {
                         params.defaultValue = field['default'];
                     }
 
