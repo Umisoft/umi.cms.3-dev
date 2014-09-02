@@ -20,9 +20,7 @@
                         <div class="caption"><xsl:value-of select="document('translate://project.site.news/LatestNews')/result"/></div>
                     </div>
                     <!-- Список последних новостей  -->
-                    <!--<ul class="list-dev row">-->
-                        <xsl:apply-templates select="document('widget://news.item.list?limit=4')" mode="news.main.row"/>
-                    <!--</ul>-->
+                    <xsl:apply-templates select="document('widget://news.item.list?limit=4')" mode="news.main.row"/>
                 </div>
             </div>
             <!-- О нас -->
