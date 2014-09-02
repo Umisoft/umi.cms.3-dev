@@ -280,6 +280,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         return object;
                     }.property('controller.object'),
 
+                    fieldView: function() {
+                        return UMI.FieldBaseView.extend({
+                            actions: {
+                                submit: function() {
+                                    this.get('parentView').send('submit', this.$());
+                                }
+                            }
+                        });
+                    }.property('object'),
+
                     actions: {
                         submit: function(handler) {
                             var self = this;
@@ -320,6 +330,8 @@ define(['App', 'moment'], function(UMI, moment) {
                                 delete data.updated;
                                 delete data.created;
                                 store.update(collectionName, data);
+                                var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
+                                UMI.notification.create(params);
                             });
                         }
                     }
