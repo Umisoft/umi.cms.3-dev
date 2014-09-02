@@ -17,7 +17,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.userGroup', 'collection', 'form'
+            'collection.userGroup' => 'collection.userGroup', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 

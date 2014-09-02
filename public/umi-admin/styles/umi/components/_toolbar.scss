@@ -1,4 +1,5 @@
 @import "../snippets";
+@import "../../foundation/settings/components/buttons";
 
 .umi-toolbar{
     width: 100%;
@@ -6,27 +7,16 @@
     height: 32px;
     @include s-gradient-grey();
     border-bottom: 1px solid #98A2AB;
-    .dropdown-rows{
-        .row{
-            padding: rem-calc(8) rem-calc(8);
-            .button.tiny{
-                margin-top: -2px;
-                margin-bottom: -2px;
-            }
-        }
+
+    .umi-hide-button-label .button.wide-medium{
+        padding-left: $button-med * 4;
+        padding-right: $button-med * 4;
     }
-    .s-scroll-wrap{
-        max-height: 200px;
-        height: auto;
-        border: 1px solid #D1D1D1;
-        margin:0 8px 8px;
-        .row{
-            &:nth-child(even){
-                background: #EEF7FC;
-            }
-            &:hover{
-                background: #C5E2F7;
-            }
-        }
+
+    .button-group .button{
+        border-top: 0;
+        border-bottom: 0;
+        padding-top: $button-med + rem-calc(1);
+        padding-bottom: $button-med + rem-calc(1);
     }
 }

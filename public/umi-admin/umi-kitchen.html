@@ -1,282 +1,365 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide UMI.CMS HTML Elements</title>
-    <link rel="stylesheet" type="text/css" href="./production/css/styles.css">
-</head>
-<body style="overflow: auto;">
-<div data-magellan-expedition="fixed">
-    <ul class="sub-nav">
-        <li data-magellan-arrival="buttons"><a href="#buttons">Buttons</a></li>
-        <li data-magellan-arrival="buttons-group"><a href="#buttons-group">Buttons Group</a></li>
-        <li data-magellan-arrival="button-split"><a href="#button-split">Split Button</a></li>
-        <li data-magellan-arrival="button-dropdown"><a href="#button-dropdown">Dropdown Button</a></li>
-        <li data-magellan-arrival="forms"><a href="#forms">Forms</a></li>
-    </ul>
-    <hr />
-</div>
-<div class="row">
-<div class="small-12 columns">
-<h3 data-magellan-destination="buttons">Buttons [Кнопки].</h3>
-<p>Для объявления кнопки достаточно задать класс <code>.button</code>.</p>
-<button class="button">Базовая кнопка</button>
-<p>Кнопки имеют классы-модификаторы изменяющие:</p>
-<div class="row">
-    <div class="medium-12 large-6 columns">
-        <p>Размер. Классы <code>tiny, small, large</code>.</p>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guide UMI.CMS HTML Elements</title>
+        <link rel="stylesheet" type="text/css" href="./production/css/styles.css">
+    </head>
+
+    <body style="overflow: auto;">
+
+        <div data-magellan-expedition="fixed">
+            <ul class="sub-nav">
+                <li data-magellan-arrival="buttons"><a href="#buttons">Buttons</a></li>
+                <li data-magellan-arrival="buttons-group"><a href="#buttons-group">Buttons Group</a></li>
+                <li data-magellan-arrival="button-split"><a href="#button-split">Split Button</a></li>
+                <li data-magellan-arrival="button-dropdown"><a href="#button-dropdown">Dropdown Button</a></li>
+                <li data-magellan-arrival="forms"><a href="#forms">Forms</a></li>
+            </ul>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="small-12 columns">
+                <h3 data-magellan-destination="buttons">Buttons [Кнопки].</h3>
+
+                <p>Для объявления кнопки достаточно задать класс <code>.button</code>.</p>
+                <button class="button">Базовая кнопка</button>
+                <p>Кнопки имеют классы-модификаторы изменяющие:</p>
+
+                <div class="row">
+                    <div class="medium-12 large-6 columns">
+                        <p>Размер. Классы <code>tiny, small, large</code>.</p>
                         <pre>
                             <code class="html">
-                                <button class="button tiny">tiny</button><p></p>
-                                <button class="button small">small</button><p></p>
-                                <button class="button medium">medium</button><p></p>
-                                <button class="button large">large</button><p></p>
+                                <button class="button tiny">tiny</button>
+                                <p></p>
+                                <button class="button small">small</button>
+                                <p></p>
+                                <button class="button medium">medium</button>
+                                <p></p>
+                                <button class="button large">large</button>
+                                <p></p>
                             </code>
                         </pre>
-    </div>
-    <div class="medium-12 large-6 columns">
-
-    </div>
-</div>
-<ul>
-    <li>
-        Ширину. Классы <code>expand, wide, square</code>.
-        <div>
-            <button class="button expand">expand</button><p></p>
-            <button class="button wide">wide</button><p></p>
-            <button class="button square">square</button><p></p>
-        </div>
-    </li>
-    <li>
-        Цвет. Классы <code>secondary, success, alert, white, flat</code>.
-        <div>
-            <button class="button secondary">secondary</button><p></p>
-            <button class="button success">success</button><p></p>
-            <button class="button alert">alert</button><p></p>
-            <button class="button white">white</button><p></p>
-            <button class="button flat">flat</button><p></p>
-        </div>
-    </li>
-    <li>
-        Радиус. Классы <code>round, radius</code>.
-        <div>
-            <button class="button round">round</button><p></p>
-            <button class="button radius">radius</button><p></p>
-        </div>
-    </li>
-    <li>
-        Состояние. Классы <code>disabled, loading</code>.
-        <div>
-            <button class="button disabled">disabled</button><p></p>
-            <button class="button loading">loading</button><p></p>
-            <button class="button secondary loading">secondary loading</button><p></p>
-        </div>
-    </li>
-</ul>
-<h3 data-magellan-destination="buttons-group">Buttons Group [Группа кнопок].</h3>
-<p>Для того чтобы определить группу кнопок используется класс <code>button-group</code></p>
-<p>Объединить группы кнопок можно обернув их в элемент с классом <code>button-bar</code></p>
-<ul class="button-group">
-    <li><a href="#" class="button">Button 1</a></li>
-    <li><a href="#" class="button">Button 2</a></li>
-    <li><a href="#" class="button">Button 3</a></li>
-</ul><p></p>
-<ul class="button-group">
-    <li><a href="#" class="button small">Button small 1</a></li>
-    <li><a href="#" class="button small">Button small 2</a></li>
-    <li><a href="#" class="button small">Button small 3</a></li>
-</ul><p></p>
-<div class="button-bar">
-    <ul class="button-group">
-        <li><a href="#" class="tiny button">Button tiny 1</a></li>
-        <li><a href="#" class="tiny button">Button tiny 2</a></li>
-        <li><a href="#" class="tiny button">Button tiny 3</a></li>
-    </ul>
-    <ul class="button-group">
-        <li><a href="#" class="tiny button">Button tiny 1</a></li>
-        <li><a href="#" class="tiny button">Button tiny 2</a></li>
-        <li><a href="#" class="tiny button">Button tiny 3</a></li>
-    </ul>
-</div>
-
-<h3 data-magellan-destination="button-dropdown">Dropdown Button [Кнопка с выпадающим списком].</h3>
-
-<a href="#" data-dropdown="drop1" class="button large dropdown">Dropdown Button</a><p></p>
-<ul id="drop1" data-dropdown-content class="f-dropdown">
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" data-dropdown="drop1142" class="button secondary dropdown">Dropdown Button</a><p></p>
-<ul id="drop1142" data-dropdown-content class="f-dropdown">
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" data-dropdown="drop1" class="button small white dropdown">Dropdown Button</a><p></p>
-<ul id="drop1" data-dropdown-content class="f-dropdown">
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" data-dropdown="drop1" class="button tiny secondary dropdown">Dropdown Button</a><p></p>
-<ul id="drop1" data-dropdown-content class="f-dropdown">
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<h3 data-magellan-destination="button-split">Split Button [Кнопка с выпадающим списком и дейсвием по-умолчанию].</h3>
-<p>Для определения "Split Button" нужно добавить класс split к кнопке и dropdown-список после кнопки (или внутри кнопки).</p>
-
-<a href="#" class="button large split">Split Button<span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" class="button split">Split Button<span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" class="button split white square"><i class="icon icon-viewOnSite"></i> <span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" class="button small split white square"><i class="icon icon-viewOnSite"></i> <span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" class="button small secondary split">Split Button<span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-
-<a href="#" class="button tiny white split">Split Button<span data-dropdown="drop"></span></a>
-<ul id="drop" class="f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-<h3 data-magellan-destination="dropdown">Dropdown [Выпадающий список].</h3>
-
-<a href="#" class="button" data-dropdown="dro43p">Link Dropdown</a>
-<ul id="dro43p" class="medium f-dropdown" data-dropdown-content>
-    <li><a href="#">This is a link</a></li>
-    <li><a href="#">This is another</a></li>
-    <li><a href="#">Yet another</a></li>
-</ul><p></p>
-<h3 data-magellan-destination="forms">Forms [Формы].</h3>
-<form>
-    <fieldset>
-        <legend>Fieldset</legend>
-
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Input Label</label>
-                <input type="text" placeholder="large-12.columns">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="large-4 columns">
-                <label>Input Label</label>
-                <input type="text" placeholder="large-4.columns">
-            </div>
-            <div class="large-4 columns">
-                <label>Input Label</label>
-                <input type="text" placeholder="large-4.columns">
-            </div>
-            <div class="large-4 columns">
-                <div class="row collapse">
-                    <label>Input Label</label>
-
-                    <div class="small-9 columns">
-                        <input type="text" placeholder="small-9.columns">
                     </div>
-                    <div class="small-3 columns">
-                        <span class="postfix">.com</span>
-                    </div>
+                    <div class="medium-12 large-6 columns"></div>
+                </div>
+                <ul>
+                    <li>
+                        Ширину. Классы <code>expand, wide, square</code>.
+                        <div>
+                            <button class="button expand">expand</button>
+                            <p></p>
+                            <button class="button wide">wide</button>
+                            <p></p>
+                            <button class="button square">square</button>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        Цвет. Классы <code>secondary, success, alert, white, flat</code>.
+                        <div>
+                            <button class="button secondary">secondary</button>
+                            <p></p>
+                            <button class="button success">success</button>
+                            <p></p>
+                            <button class="button alert">alert</button>
+                            <p></p>
+                            <button class="button white">white</button>
+                            <p></p>
+                            <button class="button flat">flat</button>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        Радиус. Классы <code>round, radius</code>.
+                        <div>
+                            <button class="button round">round</button>
+                            <p></p>
+                            <button class="button radius">radius</button>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        Состояние. Классы <code>disabled, loading</code>.
+                        <div>
+                            <button class="button disabled">disabled</button>
+                            <p></p>
+                            <button class="button loading">loading</button>
+                            <p></p>
+                            <button class="button secondary loading">secondary loading</button>
+                            <p></p>
+                        </div>
+                    </li>
+                </ul>
+                <h3 data-magellan-destination="buttons-group">Buttons Group [Группа кнопок].</h3>
+
+                <p>Для того чтобы определить группу кнопок используется класс <code>button-group</code></p>
+
+                <p>Объединить группы кнопок можно обернув их в элемент с классом <code>button-bar</code></p>
+                <ul class="button-group">
+                    <li><a href="#" class="button">Button 1</a></li>
+                    <li><a href="#" class="button">Button 2</a></li>
+                    <li><a href="#" class="button">Button 3</a></li>
+                </ul>
+                <p></p>
+                <ul class="button-group">
+                    <li><a href="#" class="button small secondary">Button small 1</a></li>
+                    <li><a href="#" class="button small secondary">Button small 2</a></li>
+                    <li><a href="#" class="button small secondary">Button small 3</a></li>
+                </ul>
+                <p></p>
+
+                <div class="button-bar">
+                    <ul class="button-group">
+                        <li><a href="#" class="tiny button">Button tiny 1</a></li>
+                        <li><a href="#" class="tiny button">Button tiny 2</a></li>
+                        <li><a href="#" class="tiny button">Button tiny 3</a></li>
+                    </ul>
+                    <ul class="button-group">
+                        <li><a href="#" class="tiny button">Button tiny 1</a></li>
+                        <li><a href="#" class="tiny button">Button tiny 2</a></li>
+                        <li><a href="#" class="tiny button">Button tiny 3</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
+                <h3 data-magellan-destination="button-dropdown">Dropdown Button [Кнопка с выпадающим списком].</h3>
+
+                <p></p>
+                <h5>По умолчанию выпадающий список иммет минимальную ширину как у кнопки.</h5>
+                <a href="#" data-dropdown="umi-drop-5" class="button dropdown" data-options="minWidthLikeElement: false;">Dropdown Button [min width off]</a>
+                <a href="#" data-dropdown="umi-drop-5" class="button dropdown" >Dropdown Button [min width on]</a>
+                <ul id="umi-drop-5" data-dropdown-content class="f-dropdown">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+                <p></p>
+
+                <p>Возможны 8 вариантов выравнивания списка относительно кнопки:</p>
+                <ul>
+                    <li>
+                        внизу в левом углу
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="minWidthLikeElement: false;">Dropdown Button</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        внизу в правом углу
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="align: right; minWidthLikeElement: false;">Dropdown Button [align right]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        вверху в левом углу
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: top; minWidthLikeElement: false;">Dropdown Button [side top]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        вверху в правом углу
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: top; align: right; minWidthLikeElement: false;">Dropdown Button [side top, align right]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        Слева по вехнему краю
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: left; align: top; minWidthLikeElement: false;">Dropdown Button [side left, align top]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        Слева по нижнему краю
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: left; align: bottom; minWidthLikeElement: false;">Dropdown Button [side left, align bottom]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        Справа по вехнему краю
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: right; align: top; minWidthLikeElement: false;">Dropdown Button [side right, align top]</a>
+                        <p></p>
+                    </li>
+                    <li>
+                        Справа по нижнему краю
+                        <a href="#" data-dropdown="umi-drop-1" class="button dropdown" data-options="side: right; align: bottom; minWidthLikeElement: false;">Dropdown Button [side right, align bottom]</a>
+                        <p></p>
+                    </li>
+                </ul>
+
+                <ul id="umi-drop-1" data-dropdown-content class="f-dropdown">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+
+                <p></p>
+                <p>По умолчанию разрешены быстрые действия для выпадающих списков.</p>
+                <a href="#" data-dropdown="umi-drop-3" class="button large dropdown" data-options="fastSelect: false;">Dropdown Button [fast select off]</a>
+                <a href="#" data-dropdown="umi-drop-3" class="button large dropdown" data-options="fastSelectHoverClassName: mark; closeAfterClickOnElement: false;">Dropdown Button [fast select on]</a>
+                <ul id="umi-drop-3" data-dropdown-content class="f-dropdown">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+                <p></p>
+
+                <p></p>
+                <p>Для раскрытия списка при наведении нужно задать в атрубутах кнопки <code>data-options="isHover: true;"</code>.</p>
+                <a href="#" data-dropdown="umi-drop-4" class="button large dropdown" data-options="isHover: true;">Dropdown Button [hover]</a>
+                <ul id="umi-drop-4" data-dropdown-content class="f-dropdown">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+                <p></p>
+
+                <p></p>
+                <p>По умолчанию клик на элемент 'a' в списке закрывает список. С помощью опций можно настроить данное поведение
+                    либо совсем отключить его, задав в опциях <code>closeAfterClickOnElement: false;</code>.</p>
+                <a href="#" data-dropdown="umi-drop-6" class="button large dropdown">Dropdown Button</a>
+                <ul id="umi-drop-6" data-dropdown-content class="f-dropdown">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+                <p></p>
+
+                <p>Выпадающий список связывается с кнопкой посредством id. Возможен вариант когда несколько кнопок
+                    связаны с одним списком.</p>
+                <p>Возможен вариант без указания id. Для этого необходимо иметь на одном уровне вложености один
+                    экземпляр списка и кнопки. В опциях нужно объявить <code>selectorById: false;</code></p>
+                <div>
+                    <a href="#" data-dropdown data-options="selectorById: false;" class="button large dropdown">
+                        Dropdown Button
+                    </a>
+                    <ul data-dropdown-content class="f-dropdown">
+                        <li><a href="#">This is a link</a></li>
+                        <li><a href="#">This is another</a></li>
+                        <li><a href="#">Yet another</a></li>
+                    </ul>
+                </div>
+
+                <p></p>
+
+                <h3 data-magellan-destination="button-split">Split Button [Кнопка с выпадающим списком и дейсвием по-умолчанию].</h3>
+
+                <p>Для определения "Split Button" нужно добавить класс split к кнопке и dropdown-список после кнопки (или внутри
+                    кнопки).</p>
+
+                <a href="#" class="button large split">Split Button<span data-dropdown="umi-drop-2" data-options="replaceTarget: .button;"></span></a>
+
+                <a href="#" class="button secondary split">Split secondary Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false;align: right;"></span></a>
+
+                <a href="#" class="button split">Split Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false; align: right;"></span></a>
+
+                <a href="#" class="button split white square"><i class="icon icon-viewOnSite"></i> <span
+                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+
+                <a href="#" class="button small split white square"><i class="icon icon-viewOnSite"></i> <span
+                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+
+                <a href="#" class="button small secondary split">Split Button
+                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+
+                <a href="#" class="button tiny white split">Split Button
+                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+                <ul class="f-dropdown" data-dropdown-content id="umi-drop-2">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
+                <p></p>
+
+
+                <h3 data-magellan-destination="forms">Forms [Формы].</h3>
+
+                <form>
+                    <fieldset>
+                        <legend>Fieldset</legend>
+
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Input Label</label>
+                                <input type="text" placeholder="large-12.columns">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="large-4 columns">
+                                <label>Input Label</label>
+                                <input type="text" placeholder="large-4.columns">
+                            </div>
+                            <div class="large-4 columns">
+                                <label>Input Label</label>
+                                <input type="text" placeholder="large-4.columns">
+                            </div>
+                            <div class="large-4 columns">
+                                <div class="row collapse">
+                                    <label>Input Label</label>
+
+                                    <div class="small-9 columns">
+                                        <input type="text" placeholder="small-9.columns">
+                                    </div>
+                                    <div class="small-3 columns">
+                                        <span class="postfix">.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Textarea Label</label>
+                                <textarea placeholder="small-12.columns"></textarea>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                <h3 data-magellan-destination="alert-box">Alert box [оповещения]</h3>
+
+                <div class="alert-box radius">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is a standard radius alert (div.radius.alert-box).
+                    <a href="" class="close">×</a>
+                </div>
+
+                <div class="alert-box success">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is a success alert (div.alert-box.success).
+                    <a href="" class="close">×</a>
+                </div>
+
+                <div class="alert-box alert round">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is an alert (div.alert-box.alert.round).
+                    <a href="" class="close">×</a>
+                </div>
+
+                <div data-alert="" class="alert-box secondary">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is a secondary alert (div.alert-box.secondary).
+                    <a href="" class="close">×</a>
+                </div>
+
+                <div data-alert="" class="alert-box warning">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is a secondary warning (div.alert-box.warning).
+                    <a href="" class="close">×</a>
+                </div>
+
+                <div data-alert="" class="alert-box info">
+                    <h5 class="subheader">Заголовок</h5>
+                    This is a info alert (div.alert-box.info).
+                    <a href="" class="close">×</a>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Textarea Label</label>
-                <textarea placeholder="small-12.columns"></textarea>
-            </div>
-        </div>
-
-    </fieldset>
-</form>
-
-<h3 data-magellan-destination="alert-box">Alert box [оповещения]</h3>
-<div class="alert-box radius">
-    <h5 class="subheader">Заголовок</h5>
-    This is a standard radius alert (div.radius.alert-box).
-    <a href="" class="close">×</a>
-</div>
-
-<div class="alert-box success">
-    <h5 class="subheader">Заголовок</h5>
-    This is a success alert (div.alert-box.success).
-    <a href="" class="close">×</a>
-</div>
-
-<div class="alert-box alert round">
-    <h5 class="subheader">Заголовок</h5>
-    This is an alert (div.alert-box.alert.round).
-    <a href="" class="close">×</a>
-</div>
-
-<div data-alert="" class="alert-box secondary">
-    <h5 class="subheader">Заголовок</h5>
-    This is a secondary alert (div.alert-box.secondary).
-    <a href="" class="close">×</a>
-</div>
-
-<div data-alert="" class="alert-box warning">
-    <h5 class="subheader">Заголовок</h5>
-    This is a secondary warning (div.alert-box.warning).
-    <a href="" class="close">×</a>
-</div>
-
-<div data-alert="" class="alert-box info">
-    <h5 class="subheader">Заголовок</h5>
-    This is a info alert (div.alert-box.info).
-    <a href="" class="close">×</a>
-</div>
-</div>
-</div>
-
-<script type="text/javascript" src="./production/vendor/modernizr/modernizr.js"></script>
-<script type="text/javascript" src="./production/vendor/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="./production/vendor/foundation/js/foundation.min.js"></script>
-<script type="text/javascript" src="./production/vendor/highlightjs/highlight.pack.js"></script>
-<script>
-    $(document).foundation();
-    $(document).ready(function() {
-        $('pre code').each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
-    });
-</script>
-</body>
+        <script type="text/javascript" src="./production/vendor/modernizr/modernizr.js"></script>
+        <script type="text/javascript" src="./production/vendor/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="./vendor/fastclick/lib/fastclick.js"></script>
+        <script type="text/javascript" src="./library/foundation/foundation.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
 </html>

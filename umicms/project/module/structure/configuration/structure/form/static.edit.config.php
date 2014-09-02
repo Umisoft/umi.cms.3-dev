@@ -10,113 +10,41 @@
 
 use umi\form\element\Checkbox;
 use umi\form\element\Select;
-use umi\form\element\Text;
-use umi\form\fieldset\FieldSet;
-use umicms\form\element\Wysiwyg;
 use umicms\project\module\structure\model\object\StaticPage;
 
-return [
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/form/page.base.edit.config.php',
+    [
+        'options' => [
+            'dictionaries' => [
+                'collection.structure' => 'collection.structure'
+            ]
+        ],
 
-    'options' => [
-        'dictionaries' => [
-            'collection.structure', 'collection', 'form'
-        ]
-    ],
-
-    'elements' => [
-
-        'common' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'common',
-            'elements' => [
-                StaticPage::FIELD_DISPLAY_NAME => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => StaticPage::FIELD_DISPLAY_NAME,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_DISPLAY_NAME
-                    ],
-                ],
-                StaticPage::FIELD_PAGE_LAYOUT => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_LAYOUT,
-                    'options' => [
-                        'choices' => [
-                            null => 'Default or inherited layout'
+        'elements' => [
+            'common' => [
+                'elements' => [
+                    StaticPage::FIELD_IN_MENU => [
+                        'type' => Checkbox::TYPE_NAME,
+                        'label' => StaticPage::FIELD_IN_MENU,
+                        'options' => [
+                            'dataSource' => StaticPage::FIELD_IN_MENU
                         ],
-                        'lazy' => true,
-                        'dataSource' => StaticPage::FIELD_PAGE_LAYOUT
                     ],
-                ],
-                StaticPage::FIELD_IN_MENU => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => StaticPage::FIELD_IN_MENU,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_IN_MENU
-                    ],
-                ],
-                StaticPage::FIELD_SUBMENU_STATE => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => StaticPage::FIELD_SUBMENU_STATE,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_SUBMENU_STATE,
-                        'choices' => [
-                            StaticPage::SUBMENU_NEVER_SHOWN => 'neverShown',
-                            StaticPage::SUBMENU_CURRENT_SHOWN => 'currentShown',
-                            StaticPage::SUBMENU_ALWAYS_SHOWN => 'alwaysShown'
-                        ]
-                    ],
-                ]
-            ]
-        ],
-
-        'meta' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'meta',
-            'elements' => [
-                StaticPage::FIELD_PAGE_H1 => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_H1,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_PAGE_H1
-                    ],
-                ],
-                StaticPage::FIELD_PAGE_META_TITLE => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_META_TITLE,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_PAGE_META_TITLE
-                    ],
-                ],
-                StaticPage::FIELD_PAGE_META_KEYWORDS => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_META_KEYWORDS,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_PAGE_META_KEYWORDS
-                    ]
-                ],
-                StaticPage::FIELD_PAGE_META_DESCRIPTION => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_META_DESCRIPTION,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_PAGE_META_DESCRIPTION
-                    ]
-                ]
-            ]
-        ],
-
-        'contents' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'contents',
-            'elements' => [
-
-                StaticPage::FIELD_PAGE_CONTENTS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => StaticPage::FIELD_PAGE_CONTENTS,
-                    'options' => [
-                        'dataSource' => StaticPage::FIELD_PAGE_CONTENTS
+                    StaticPage::FIELD_SUBMENU_STATE => [
+                        'type' => Select::TYPE_NAME,
+                        'label' => StaticPage::FIELD_SUBMENU_STATE,
+                        'options' => [
+                            'dataSource' => StaticPage::FIELD_SUBMENU_STATE,
+                            'choices' => [
+                                StaticPage::SUBMENU_NEVER_SHOWN => 'neverShown',
+                                StaticPage::SUBMENU_CURRENT_SHOWN => 'currentShown',
+                                StaticPage::SUBMENU_ALWAYS_SHOWN => 'alwaysShown'
+                            ]
+                        ],
                     ]
                 ]
             ]
         ]
     ]
-];
+);

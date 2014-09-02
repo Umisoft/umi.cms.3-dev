@@ -577,6 +577,21 @@ class Bootstrap
                 $this->projectConfig->get(self::OPTION_TOOLS_SETTINGS)
             );
         }
+
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
+        $projectSettings = $configIO->read('~/project/configuration/project.config.php');
+
+        $this->getToolkit()->registerAwareInterface(
+            'umicms\project\IProjectSettingsAware',
+            function ($object) use ($projectSettings) {
+                if ($object instanceof IProjectSettingsAware) {
+                    $object->setProjectSettings($projectSettings);
+                }
+            }
+        );
     }
 
     /**

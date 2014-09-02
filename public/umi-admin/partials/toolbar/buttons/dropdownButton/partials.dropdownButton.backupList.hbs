@@ -1,49 +1,61 @@
-<a href="javascript:void(0)" class="button white dropdown" {{action "open" target="view"}}>
-<i class="icon icon-backupList"></i>
-{{#if view.meta.attributes.label}}
-<b class="umi-button-label">
-    {{unbound view.meta.attributes.label}}
-</b>
-{{/if}}
-</a>
-<div class="f-dropdown umi-dropdown dropdown-rows right">
-    <div class="row collapse">
-        <div class="columns small-12">
-            <strong>{{view.button.displayName}}</strong>
+{{#view view.buttonView meta=view.meta}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.iconClass"}}></i>
+    {{/if}}
+
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
+{{/view}}
+
+<ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
+    <li>
+        {{#if view.button.displayName}}
+            <div class="f-dropdown-content-header">{{view.button.displayName}}</div>
+        {{/if}}
+
+        <div class="s-scroll-wrap">
+            <table>
+                <tbody>
+                    {{#if view.backupList.isLoaded}}
+                        {{#each view.backupList}}
+                            <tr {{bind-attr class="isActive::selectable"}}
+                            {{action 'applyBackup' this target="view"}}>
+                                <td>
+                                    {{#if isActive}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-accept"></i>
+                                        </button>
+                                    {{else}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-renew"></i>
+                                        </button>
+                                    {{/if}}
+                                    {{created.date}}
+                                </td>
+
+                                <td>
+                                    {{#if user}}
+                                        {{user}}
+                                    {{else}}
+                                        {{i18n "User name" "toolbar:dropdownButton"}}
+                                    {{/if}}
+                                </td>
+                            </tr>
+                        {{else}}
+                            <tr>
+                                <td colspan="2">
+                                    {{view.noBackupsLabel}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    {{else}}
+                        <tr>
+                            <td colspan="2">{{i18n "Loading"}}..</td>
+                        </tr>
+                    {{/if}}
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="s-scroll-wrap">
-        <div>
-            {{#each view.backupList}}
-            <div
-            {{bind-attr class=":row :collapse isActive::s-pointer"}} {{action 'applyBackup' this target="view"}}>
-            <div class="columns small-7 place-button">
-                {{#if isActive}}
-                <button class="button flat tiny square">
-                    <i class="icon icon-accept"></i>
-                </button>
-                {{else}}
-                <button class="button flat tiny square">
-                    <i class="icon icon-renew"></i>
-                </button>
-                {{/if}}
-                {{created.date}}
-            </div>
-            <div class="columns small-5">
-                {{#if user}}
-                {{user}}
-                {{else}}
-                {{i18n "User name" "toolbar:dropdownButton"}}
-                {{/if}}
-            </div>
-        </div>
-        {{else}}
-        <div class="row collapse">
-            <div class="columns small-12">
-                {{view.noBackupsLabel}}
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</div>
-</div>
+    </li>
+</ul>

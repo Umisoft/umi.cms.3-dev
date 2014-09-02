@@ -10,7 +10,6 @@
 
 namespace umicms\project\site;
 
-use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\IHttpAware;
@@ -23,7 +22,6 @@ use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\exception\InvalidLicenseException;
-use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -36,8 +34,6 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
 use umicms\hmvc\component\site\SiteComponent;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -52,49 +48,8 @@ class SiteApplication extends SiteComponent
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
-    use TSiteSettingsAware;
     use TSessionAware;
 
-    /**
-     * Имя настройки для задания guid главной страницы
-     */
-    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
-    /**
-     * Имя настройки для задания guid шаблона по умолчанию
-     */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
-    /**
-     * Имя настройки для задания title страниц по умолчанию
-     */
-    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
-    /**
-     * Имя настройки для задания префикса title страниц
-     */
-    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
-    /**
-     * Имя настройки для задания keywords страниц по умолчанию
-     */
-    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
-    /**
-     * Имя настройки для задания description страниц по умолчанию
-     */
-    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
-    /**
-     * Имя настройки для задания шаблонизатора по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
-    /**
-     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
-    /**
-     * Имя настройки для задания директории общих шаблонов
-     */
-    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
-    /**
-     * Имя настройки для задания директории шаблонов
-     */
-    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -112,16 +67,6 @@ class SiteApplication extends SiteComponent
     /**
      * {@inheritdoc}
      */
-    public function __construct($name, $path, array $options = [])
-    {
-        parent::__construct($name, $path, $options);
-
-        $this->registerSiteSettings();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         /**
@@ -130,12 +75,12 @@ class SiteApplication extends SiteComponent
          */
         //$this->checkLicense($request);
 
-        /*if ($response = $this->postRedirectGet($request)) {
-            return $response; //TODO разобраться, почему проблема в xslt
-        }*/
-
         $this->registerSelectorInitializer();
         $this->registerSerializers();
+
+        if ($response = $this->postRedirectGet($request)) {
+            return $response;
+        }
 
         while (!$this->getPageCallStack()->isEmpty()) {
             $this->getPageCallStack()->pop();
@@ -242,15 +187,6 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Возвращает настройки сайта.
-     * @throws RequiredDependencyException если настройки не были установлены
-     * @return IConfig
-     */
-    protected function getSiteSettings() {
-        return $this->getSettings();
-    }
-
-    /**
      * Сериализует результат в указанный формат
      * @param string $format формат
      * @param mixed $variables список переменных
@@ -333,23 +269,6 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Регистрирует сервисы для работы сайта.
-     */
-    protected function registerSiteSettings()
-    {
-        $this->setSiteSettings($this->getSettings());
-
-        $this->getToolkit()->registerAwareInterface(
-            'umicms\project\site\config\ISiteSettingsAware',
-            function ($object) {
-                if ($object instanceof ISiteSettingsAware) {
-                    $object->setSiteSettings($this->getSettings());
-                }
-            }
-        );
-    }
-
-    /**
      * Регистрирует иницициализотор для всех селекторов.
      */
     protected function registerSelectorInitializer()
@@ -377,7 +296,7 @@ class SiteApplication extends SiteComponent
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function checkLicense(Request $request)
     {
-        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $domainKey = $this->getProjectSettings()->get('domainKey');
         $defaultDomain = $this->getDefaultDomain();
 
         if (empty($domainKey)) {
@@ -395,14 +314,14 @@ class SiteApplication extends SiteComponent
                 'Invalid domain key for domain.'
             ));
         }
-        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $licenseType = $this->getProjectSettings()->get('licenseType');
         if (empty($licenseType)) {
             throw new InvalidLicenseException($this->translate(
                 'Wrong license type.'
             ));
         }
         if (strstr($licenseType, base64_decode('dHJpYWw='))) {
-            $deactivation = $this->getSiteSettings()->get('deactivation');
+            $deactivation = $this->getProjectSettings()->get('deactivation');
             if (empty($deactivation) || base64_decode($deactivation) < time()) {
                 throw new InvalidLicenseException($this->translate(
                     'License has expired.'
@@ -437,7 +356,7 @@ class SiteApplication extends SiteComponent
      */
     private function getDefaultDomain()
     {
-        $defaultDomain = $this->getSiteSettings()->get('defaultDomain');
+        $defaultDomain = $this->getProjectSettings()->get('defaultDomain');
         if (mb_strrpos($defaultDomain, 'www.') === 0) {
             $defaultDomain = mb_substr($defaultDomain, 4);
         }
@@ -467,8 +386,8 @@ class SiteApplication extends SiteComponent
      */
     private function checkDomainKey(Request $request)
     {
-        $domainKey = $this->getSiteSettings()->get('domainKey');
-        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $domainKey = $this->getProjectSettings()->get('domainKey');
+        $licenseType = $this->getProjectSettings()->get('licenseType');
         $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
 
         return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);

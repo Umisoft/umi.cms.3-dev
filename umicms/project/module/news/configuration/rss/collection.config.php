@@ -26,7 +26,7 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.newsRssImportScenario', 'collection'
+        'collection.newsRssImportScenario' => 'collection.newsRssImportScenario', 'collection' => 'collection'
     ],
 
     NewsRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [

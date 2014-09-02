@@ -24,6 +24,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.robots', 'collection'
+        'collection.robots' => 'collection.robots', 'collection' => 'collection'
     ]
 ];

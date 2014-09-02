@@ -5,7 +5,7 @@
 /* container */
 .elfinder .elfinder-navbar {
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
     width: 230px;
@@ -178,6 +178,13 @@
     top: 50%;
     margin-top: -7px;
     background: url($image-spinner) center center no-repeat;
+}
+
+.no-smil{
+    .elfinder-navbar-spinner {
+        background: url($image-spinner-gif) center center no-repeat;
+        background-size: contain;
+    }
 }
 
 /* spinner ltr/rtl enviroment */

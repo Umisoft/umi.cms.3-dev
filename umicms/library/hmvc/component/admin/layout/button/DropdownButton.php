@@ -24,7 +24,7 @@ class DropdownButton extends Button
      * @var array $attributes атрибуты кнопки
      */
     public $attributes = [
-        'class' => 'dropdown',
+        'class' => 'button white dropdown',
         'hasIcon' => true
     ];
 

@@ -8,17 +8,18 @@
  * file that was distributed with this source code.
  */
 
-use project\umi_docs\module\structure\model\object\ControllerPage;
-use project\umi_docs\module\structure\model\object\WidgetPage;
 use umicms\orm\collection\ICmsCollection;
 
 return [
     'forms' => [
-        WidgetPage::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/widget.edit.config.php}'
-        ],
-        ControllerPage::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/controller.edit.config.php}'
+
+        'static' => [
+            'widget' => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/widget.edit.config.php}'
+            ],
+            'controller' => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/controller.edit.config.php}'
+            ]
         ]
     ]
 ];

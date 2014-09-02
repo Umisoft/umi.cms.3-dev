@@ -12,15 +12,15 @@ namespace umicms\project\site\controller;
 
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\seo\model\SeoModule;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Контроллер robots.txt.
  */
-class RobotsController extends BaseCmsController implements ISiteSettingsAware
+class RobotsController extends BaseCmsController implements IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     /**
      * * @var SeoModule $collection модуль "Seo"
@@ -45,7 +45,7 @@ class RobotsController extends BaseCmsController implements ISiteSettingsAware
             'module/structure/robots/robots',
             [
                 'pages' => $this->module->robots()->select()->result(),
-                'host' => $this->getSiteSettings()->get('defaultDomain')
+                'host' => $this->getProjectSettings()->get('defaultDomain')
             ]
         )->setIsCompleted();
         $response->headers->set('Content-type', 'text/plain');

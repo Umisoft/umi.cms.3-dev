@@ -16,6 +16,6 @@ return [
         'admin' => 'blog.commentstatus'
     ],
     'dictionaries' => [
-        'collection.blogCommentStatus', 'collection'
+        'collection.blogCommentStatus' => 'collection.blogCommentStatus', 'collection' => 'collection'
     ],
 ];
