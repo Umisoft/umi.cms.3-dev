@@ -18,7 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.infoblock', 'collection', 'form'
+            'collection.infoblock' => 'collection.infoblock', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 

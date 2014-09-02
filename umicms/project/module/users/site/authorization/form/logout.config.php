@@ -8,7 +8,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'project.site.users.authorization'
+            'project.site.users.authorization' => 'project.site.users.authorization'
         ],
     ],
     'attributes' => [

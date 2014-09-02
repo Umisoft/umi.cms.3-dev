@@ -342,6 +342,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                     promise.then(function(results) {
                         var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
+                        form = UMI.FormHelper.fillMeta(form, self.get('controller.object'));
                         proxy.set('content', form);
                         proxy.set('isLoaded', true);
                     });

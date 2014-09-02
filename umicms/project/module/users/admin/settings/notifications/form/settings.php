@@ -14,7 +14,7 @@ use umicms\project\module\users\model\UsersModule;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.users'
+            'project.admin.rest.settings.users' => 'project.admin.rest.settings.users'
         ]
     ],
 

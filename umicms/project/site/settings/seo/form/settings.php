@@ -14,7 +14,7 @@ use umicms\project\IProjectSettingsAware;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site'
+            'project.admin.rest.settings.site' => 'project.admin.rest.settings.site'
         ]
     ],
 
