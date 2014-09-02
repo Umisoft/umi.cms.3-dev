@@ -16,7 +16,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use umicms\Utils;
 
 /**
  * Упаковывает инсталлятор в пакет.
@@ -49,11 +48,6 @@ class PackInstallerCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        list ($version, $versionDate) = Utils::getCurrentGitVersion();
-
-        $output->writeln('Version: ' . $version);
-        $output->writeln('Version date: ' . $versionDate);
-
         $outputPharPath = $input->getArgument('output') . '/' . 'install.phar';
 
         if (is_file($outputPharPath)) {
@@ -61,7 +55,7 @@ class PackInstallerCommand extends BaseCommand
         }
 
         $phar = new Phar($outputPharPath, 0, 'install.phar');
-        $phar->setMetadata('UMI.CMS Installer Version: ' . $version);
+        $phar->setMetadata('UMI.CMS Installer');
         $phar->setSignatureAlgorithm(Phar::SHA1);
 
         $phar->startBuffering();
@@ -150,10 +144,9 @@ EOF;
     /**
      * Добавляет файлы ядра в phar
      * @param Phar $phar
-     * @param InputInterface $input
      * @param OutputInterface $output
      */
-    private function addInstallerFiles(Phar $phar, InputInterface $input, OutputInterface $output)
+    private function addInstallerFiles(Phar $phar, OutputInterface $output)
     {
         $finder = new Finder();
         $finder->files()

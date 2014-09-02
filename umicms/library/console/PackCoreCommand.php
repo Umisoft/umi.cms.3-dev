@@ -17,7 +17,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use umicms\Utils;
 
 /**
  * Упаковывает ядро в пакет.
@@ -74,10 +73,7 @@ EOF;
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        list ($version, $versionDate) = Utils::getCurrentGitVersion();
-
-        $output->writeln('Version: ' . $version);
-        $output->writeln('Version date: ' . $versionDate);
+        $output->writeln('Version: ' . $input->getArgument('version'));
 
         $outputPharPath = $input->getArgument('output') . '/' . 'umicms.phar';
 
