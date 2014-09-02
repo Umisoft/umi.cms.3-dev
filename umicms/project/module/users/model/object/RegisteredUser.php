@@ -92,10 +92,6 @@ class RegisteredUser extends BaseUser
      * Форма смены пароля
      */
     const FORM_CHANGE_PASSWORD = 'changePassword';
-    /**
-     * Форма авторизации пользователя в административной панели
-     */
-    const FORM_LOGIN_ADMIN = 'loginAdmin';
 
     /**
      * @var string $passwordSalt маска соли для хэширования паролей
