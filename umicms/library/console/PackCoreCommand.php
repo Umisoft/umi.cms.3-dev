@@ -50,6 +50,12 @@ EOF;
                 '.'
             )
             ->addArgument(
+                'version',
+                InputArgument::OPTIONAL,
+                'Core version.',
+                'dev'
+            )
+            ->addArgument(
                 'without-vendors',
                 InputArgument::OPTIONAL,
                 'Pack core without vendors.',
@@ -166,7 +172,7 @@ EOF;
 
         $progress->setMessage('Complete.');
 
-        $this->addVersionFile($phar);
+        $this->addVersionFile($phar, $input);
 
 
         $progress->finish();
@@ -192,13 +198,15 @@ EOF;
         $phar->addFromString('umicms/project/site/SiteApplication.php', $contents);
     }
 
-
     /**
      * Добавляет  с версией сборки
      * @param Phar $phar
+     * @param InputInterface $input
      */
-    private function addVersionFile(Phar $phar) {
-        list ($version, $versionDate) = Utils::getCurrentGitVersion();
+    private function addVersionFile(Phar $phar, InputInterface $input) {
+        $versionNumber = $input->getArgument('version');
+        $versionDate = date('Y-m-d H:i');
+
         $version = <<<EOF
 <?php
 /**
@@ -210,7 +218,7 @@ EOF;
  * file that was distributed with this source code.
  */
 
-return ['{$version}', '{$versionDate}'];
+return ['{$versionNumber}', '{$versionDate}'];
 EOF;
 
         $phar->addFromString('umicms/version.php', $version);
