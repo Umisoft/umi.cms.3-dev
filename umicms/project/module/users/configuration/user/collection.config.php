@@ -52,7 +52,7 @@ return [
     'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}',
 
     'dictionaries' => [
-        'collection.user', 'collection'
+        'collection.user' => 'collection.user', 'collection' => 'collection'
     ],
 
     UserCollection::IGNORED_TABLE_FILTER_FIELDS => [

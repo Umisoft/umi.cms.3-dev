@@ -27,7 +27,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.blogCategory', 'collection'
+            'collection.blogCategory' => 'collection.blogCategory', 'collection' => 'collection'
         ]
     ]
 );

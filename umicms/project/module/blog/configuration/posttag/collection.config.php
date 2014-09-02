@@ -17,6 +17,6 @@ return [
     ],
 
     'dictionaries' => [
-        'collection.blogPostTag', 'collection'
+        'collection.blogPostTag' => 'collection.blogPostTag', 'collection' => 'collection'
     ],
 ];

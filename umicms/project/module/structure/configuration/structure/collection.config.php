@@ -33,7 +33,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.structure', 'collection'
+            'collection.structure' => 'collection.structure', 'collection' => 'collection'
         ]
     ]
 );

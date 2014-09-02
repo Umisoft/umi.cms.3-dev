@@ -16,7 +16,7 @@ use umicms\validation\Range;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.service.backup'
+            'project.admin.rest.settings.service.backup' => 'project.admin.rest.settings.service.backup'
         ]
     ],
 

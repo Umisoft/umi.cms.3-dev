@@ -16,7 +16,7 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.blogAuthor'
+                'collection.blogAuthor' => 'collection.blogAuthor'
             ]
         ],
         'elements' => [
