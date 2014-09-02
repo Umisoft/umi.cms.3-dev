@@ -1,9 +1,9 @@
-{{#if view.model.title}}
-    <h5 class="subheader">{{view.model.title}}</h5>
+{{#if view.content.title}}
+    <h5 class="subheader">{{view.content.title}}</h5>
 {{/if}}
 
-{{{view.model.content}}}
+{{{view.content.content}}}
 
-{{#if view.model.close}}
-    <span {{action 'close' view.model target="view"}} class="close"><i class="icon close white"></i></span>
+{{#if view.content.close}}
+    <span {{action 'close' view.content target="view"}} class="close"><i class="icon icon-close white"></i></span>
 {{/if}}
