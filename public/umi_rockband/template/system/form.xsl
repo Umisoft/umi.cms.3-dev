@@ -164,13 +164,13 @@
 
     <xsl:template match="item" mode="default.form.validation">
         <xsl:if test="valid = 0 or not(valid)">
-            <xsl:attribute name="class">form-group has-error</xsl:attribute>
+            <xsl:attribute name="class">form-group input-group-error</xsl:attribute>
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="errors" mode="default.form" />
     <xsl:template match="errors[item]" mode="default.form">
-        <div class="alert alert-danger">
+        <div class="hint">
             <ul>
                 <xsl:apply-templates select="item" mode="default.form" />
             </ul>
