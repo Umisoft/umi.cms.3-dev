@@ -31,7 +31,9 @@ return [
             'type:registered.supervisor:displayName' => 'Supervisor',
             'type:registered.supervisor:createLabel' => 'supervisor',
 
-            'locale' => 'Language'
+            'locale' => 'Language',
+
+            'Log in' => 'Log in'
         ],
 
         'ru-RU' => [
@@ -55,6 +57,8 @@ return [
             'type:registered.supervisor:displayName' => 'Супервайзер',
             'type:registered.supervisor:createLabel' => 'Добавить супервайзера',
 
-            'locale' => 'Язык'
+            'locale' => 'Язык',
+
+            'Log in' => 'Войти'
         ]
     ];

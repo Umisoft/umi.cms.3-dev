@@ -81,6 +81,7 @@ return [
         'Continue without saving' => 'Continue without saving',
 
         'Internal Server Error' => 'Internal Server Error',
+        'Unknown error' => 'Unknown error',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
@@ -174,6 +175,7 @@ return [
         'Continue without saving' => 'Продолжить без сохранения',
 
         'Internal Server Error' => 'Внутренняя ошибка сервера',
+        'Unknown error' => 'Неизвестная ошибка',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',

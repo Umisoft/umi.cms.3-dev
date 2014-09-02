@@ -151,6 +151,7 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'Stay on the page' => $this->translate('Stay on the page'),
             'Continue without saving' => $this->translate('Continue without saving'),
             'Internal Server Error' => $this->translate('Internal Server Error'),
+            'Unknown error' => $this->translate('Unknown error'),
         ];
     }
 
