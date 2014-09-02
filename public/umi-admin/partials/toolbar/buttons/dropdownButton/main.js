@@ -334,6 +334,15 @@ define(['App', 'moment'], function(UMI, moment) {
                                 UMI.notification.create(params);
                             });
                         }
+                    },
+
+                    didInsertElement: function() {
+                        var self = this;
+                        var $el = self.$();
+                        self.$().on('submit', function() {
+                            self.send('submit', $el.find('.button'));
+                            return false;
+                        });
                     }
                 }),
 
