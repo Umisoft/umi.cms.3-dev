@@ -16,10 +16,10 @@ define(['App'], function(UMI) {
                 if (Ember.typeOf(self.get('object')) === 'instance') {
                     self.set('validatorType', 'collection');
                     dataSource = this.get('meta.dataSource');
-                    inputTemplate = '{{input type=view.type value=view.object.' + dataSource + ' placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
+                    inputTemplate = '{{input typeBinding="view.type" value=view.object.' + dataSource + ' placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
                 } else {
                     this.set('validatorType', null);
-                    inputTemplate = '{{input type=view.type value=view.meta.value name=view.meta.attributes.name}}';
+                    inputTemplate = '{{input typeBinding="view.type" value=view.meta.value name=view.meta.attributes.name}}';
                 }
 
                 var validate = this.validateErrorsTemplate();

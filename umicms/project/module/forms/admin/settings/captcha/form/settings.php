@@ -19,7 +19,7 @@ use umicms\validation\Range;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.forms.captcha'
+            'project.admin.rest.settings.forms.captcha' => 'project.admin.rest.settings.forms.captcha'
         ]
     ],
 

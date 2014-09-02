@@ -13,7 +13,7 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.blogCategory'
+                'collection.blogCategory' => 'collection.blogCategory'
             ]
         ]
     ]

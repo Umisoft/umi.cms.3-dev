@@ -1,68 +1,68 @@
-/******************************************************************/
-/*                           STATUSBAR STYLES                     */
-/******************************************************************/
+.elfinder{
+    &-statusbar {
+        position: relative;
+        text-align:center;
+        font-weight:normal;
+        padding: 8px 20px;
 
+        height: 20px;
+        line-height: 20px;
 
-/* statusbar container */
-.elfinder-statusbar {
-    position: relative;
-    text-align:center;
-    font-weight:normal;
-    padding: 6px 20px;
+        border-top: 1px solid transparent;
+        border-right:0 solid transparent;
+        border-bottom:0 solid transparent;
+        border-left:0 solid transparent;
+        background: #F5F6F7;
 
-    height: 14px;
-    line-height: 14px;
+        &:after {
+            content: "";
+            position: absolute;
+            float: left;
+            z-index: 10;
+            display: block;
+            height: 3px;
+            width: 100%;
+            top: -3px;
+            left: 0;
+            background: url($image-to-top-shadow);
+        }
 
-    border-top: 1px solid transparent;
-    border-right:0 solid transparent;
-    border-bottom:0 solid transparent;
-    border-left:0 solid transparent;
-    background: #F5F6F7;
+        a { text-decoration:none; }
+    }
+
+    &-path {
+        max-width:30%;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    &-ltr{
+        .elfinder-path {
+            float:left;
+        }
+
+        .elfinder-stat-size {
+            float:right;
+        }
+    }
+
+    &-rtl{
+        .elfinder-path {
+            float:right;
+        }
+
+        .elfinder-stat-size {
+            float:left;
+        }
+    }
+
+    &-stat-size {
+        white-space:nowrap;
+    }
+
+    &-stat-selected {
+        white-space:nowrap;
+        overflow:hidden;
+    }
 }
-
-.elfinder .elfinder-statusbar:before {
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 2;
-    display: block;
-    height: 10px;
-    width: 100%;
-    top: -10px;
-    left: 0;
-    background: #F5F6F7;
-}
-
-
-.elfinder .elfinder-statusbar:after {
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 100;
-    display: block;
-    height: 3px;
-    width: 100%;
-    top: -12px;
-    left: 0;
-    background: url(#{$images-path}shadows/toTopShadow.png);
-}
-
-.elfinder-statusbar a { text-decoration:none; }
-
-
-/* path in statusbar */
-.elfinder-path {
-    max-width:30%;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.elfinder-ltr .elfinder-path { float:left;  }
-.elfinder-rtl .elfinder-path { float:right; }
-
-/* total/selected size in statusbar */
-.elfinder-stat-size { white-space:nowrap; }
-.elfinder-ltr .elfinder-stat-size { float:right; }
-.elfinder-rtl .elfinder-stat-size { float:left; }
-
-.elfinder-stat-selected { white-space:nowrap; overflow:hidden; }

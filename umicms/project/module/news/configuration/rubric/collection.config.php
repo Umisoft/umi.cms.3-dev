@@ -27,7 +27,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.newsRubric', 'collection'
+            'collection.newsRubric' => 'collection.newsRubric', 'collection' => 'collection'
         ]
     ]
 );

@@ -18,7 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsRssImportScenario', 'collection', 'form'
+            'collection.newsRssImportScenario' => 'collection.newsRssImportScenario', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 

@@ -50,11 +50,11 @@
         }
 
         table{
-            min-width: rem-calc(250);
+            min-width: rem-calc(300);
             border-collapse: collapse;
 
             tr{
-                &:nth-child(even){
+                &:nth-child(odd){
                     background: #EEF7FC;
                 }
 
@@ -71,8 +71,12 @@
             }
         }
 
-        form{
-            min-width: rem-calc(250);
+        form, .form-loading{
+            min-width: rem-calc(300);
+        }
+
+        .form-loading{
+            padding: rem-calc(10) 0;
         }
     }
 
