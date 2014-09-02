@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="umicms3" basedir="." default="build">
+    <!-- property file="./build.properties" / -->
+
+    <property name="branch" value="dev" description="Branch for build."/>
+    <property name="build.dir" value="./build"/>
+    <property name="src.git" value="git@github.com:Umisoft/umi.cms.3-dev.git"/>
+    <property name="src.local" value="./src"/>
+    <property name="deploy.dir" value="deploy@95.211.160.210:/www/updateserver/umi3" />
+
+
+    <target name="build" description="Build UMI.CMS 3 packages.">
+        <mkdir dir="${build.dir}" />
+
+        <!-- phingcall target="gitUpdate" />
+        <phingcall target="gitCheckout" />
+        <phingcall target="updateDependency" />
+        <phingcall target="packCore" / -->
+        <phingcall target="packEnvironment" />
+        <phingcall target="packProjects" />
+        <phingcall target="packInstaller" />
+        <phingcall target="packUpdater" />
+
+        <!-- phingcall target="deploy" /-->
+
+    </target>
+
+    <target name="gitUpdate" description="Updating repository...">
+        <property name="clone-exists" value="false"/>
+        <available property="clone-exists" type="dir" file="${src.local}"/>
+        <if>
+            <istrue value="${clone-exists}"/>
+            <then>
+                <echo>Development repository already cloned. Fetching...</echo>
+                <gitfetch repository="${src.local}" force="true" tags="true" />
+            </then>
+            <else>
+                <echo message="Cloning ${src.git} to ${src.local}"/>
+                <gitclone repository="${src.git}" targetPath="${src.local}"/>
+            </else>
+        </if>
+
+    </target>
+
+    <target name="gitCheckout" description="Checkout...">
+        <echo message="Checkout to ${version}"/>
+        <gitcheckout repository="${src.local}" branchname="${version}" forcecreate="true"/>
+        <gitpull repository="${src.local}" force="true" />
+    </target>
+
+
+    <target name="updateDependency" description="Updating dependency...">
+        <exec command="php composerInstaller" />
+        <exec command="php composer.phar clear-cache" />
+        <exec command="php composer.phar update --working-dir ${src.local}" />
+        <exec command="php composer.phar dump-autoload --optimize --working-dir ${src.local}" />
+    </target>
+
+    <target name="packCore">
+        <echo>Packing core...</echo>
+        <exec command="php ${src.local}/bin/umi-dev pack:core ${build.dir}" passthru="true" />
+    </target>
+
+    <target name="packEnvironment">
+        <echo>Packing environment...</echo>
+        <exec command="php ${src.local}/bin/umi-dev pack:environment ${build.dir}" passthru="true" />
+    </target>
+
+    <target name="packProjects">
+        <echo>Packing projects...</echo>
+        <exec command="php ${src.local}/bin/umi-dev pack:project http://localhost/php ${build.dir}" passthru="true" />
+        <exec command="php ${src.local}/bin/umi-dev pack:project http://localhost/twig ${build.dir}" passthru="true" />
+        <exec command="php ${src.local}/bin/umi-dev pack:project http://localhost/rock ${build.dir}" passthru="true" />
+    </target>
+
+    <target name="packInstaller">
+        <exec command="php composer.phar update --working-dir ${src.local}" />
+        <echo>Packing installer...</echo>
+        <exec command="php ${src.local}/bin/umi-dev pack:installer ${build.dir}" passthru="true" />
+    </target>
+
+    <target name="packUpdater">
+        <echo>Packing updater...</echo>
+        <copy file="${build.dir}/install.phar.php" tofile="${build.dir}/update.phar.php" />
+    </target>
+
+    <target name="deploy">
+        <echo>Deploying packages...</echo>
+        <!--suppress PhingDomInspection -->
+        <filesync
+                sourceDir="${build.dir}/"
+                destinationDir="${deploy.dir}"
+                itemizeChanges="true"
+                checksum="true"
+                identityFile="./id_rsa"
+                />
+    </target>
+
+
+</project>
