@@ -17,7 +17,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use umicms\Utils;
 
 /**
  * Упаковывает ядро в пакет.
@@ -50,6 +49,12 @@ EOF;
                 '.'
             )
             ->addArgument(
+                'version',
+                InputArgument::OPTIONAL,
+                'Core version.',
+                'dev'
+            )
+            ->addArgument(
                 'without-vendors',
                 InputArgument::OPTIONAL,
                 'Pack core without vendors.',
@@ -68,10 +73,8 @@ EOF;
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        list ($version, $versionDate) = Utils::getCurrentGitVersion();
-
+        $version = $input->getArgument('version');
         $output->writeln('Version: ' . $version);
-        $output->writeln('Version date: ' . $versionDate);
 
         $outputPharPath = $input->getArgument('output') . '/' . 'umicms.phar';
 
@@ -166,7 +169,7 @@ EOF;
 
         $progress->setMessage('Complete.');
 
-        $this->addVersionFile($phar);
+        $this->addVersionFile($phar, $input);
 
 
         $progress->finish();
@@ -192,13 +195,15 @@ EOF;
         $phar->addFromString('umicms/project/site/SiteApplication.php', $contents);
     }
 
-
     /**
      * Добавляет  с версией сборки
      * @param Phar $phar
+     * @param InputInterface $input
      */
-    private function addVersionFile(Phar $phar) {
-        list ($version, $versionDate) = Utils::getCurrentGitVersion();
+    private function addVersionFile(Phar $phar, InputInterface $input) {
+        $versionNumber = $input->getArgument('version');
+        $versionDate = date('Y-m-d H:i');
+
         $version = <<<EOF
 <?php
 /**
@@ -210,7 +215,7 @@ EOF;
  * file that was distributed with this source code.
  */
 
-return ['{$version}', '{$versionDate}'];
+return ['{$versionNumber}', '{$versionDate}'];
 EOF;
 
         $phar->addFromString('umicms/version.php', $version);

@@ -18,7 +18,7 @@
     position: absolute;
     float: left;
     display: block;
-    z-index: 2;
+    z-index: 4;
     height: 3px;
     width: 100%;
     bottom: -3px;
@@ -89,8 +89,12 @@ div.elfinder-buttonset {
     width:0;
 }
 
+.elfinder-toolbar .elfinder-button, .elfinder-toolbar .elfinder-button form input{
+    cursor: pointer;
+}
+
 /* change icon opacity^ not button */
-.elfinder .elfinder-button.ui-state-disabled { opacity:1; filter:Alpha(Opacity=100);}
+.elfinder .elfinder-button.ui-state-disabled { opacity:1; filter:Alpha(Opacity=100); cursor: default; }
 .elfinder .elfinder-button.ui-state-disabled .elfinder-button-icon { opacity:.4; filter:Alpha(Opacity=40);}
 
 /* rtl enviroment */

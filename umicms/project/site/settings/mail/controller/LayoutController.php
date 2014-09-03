@@ -26,7 +26,7 @@ class LayoutController extends SettingsLayoutController
     {
         $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
 
-        $sendersInfo = $config->get(MessagesTools::NAME . '.mailerOptions.sender_address');
+        $sendersInfo = $config->get('mailerOptions.sender_address');
         $sendersInfo = ($sendersInfo instanceof IConfig) ? $sendersInfo->toArray() : [];
 
         $from = [];

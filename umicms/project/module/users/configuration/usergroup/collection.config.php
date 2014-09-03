@@ -16,6 +16,6 @@ return [
         'admin' => 'users.usergroup'
     ],
     'dictionaries' => [
-        'collection.userUserGroup', 'collection'
+        'collection.userUserGroup' => 'collection.userUserGroup', 'collection' => 'collection'
     ],
 ];

@@ -19,7 +19,7 @@ return [
         'admin' => 'structure.layout'
     ],
     'dictionaries' => [
-        'collection.layout', 'collection'
+        'collection.layout' => 'collection.layout', 'collection' => 'collection'
     ],
     'forms' => [
         'base' => [

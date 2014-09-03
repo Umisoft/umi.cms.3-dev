@@ -17,7 +17,7 @@ use umicms\validation\Range;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site.slugify'
+            'project.admin.rest.settings.site.slugify' => 'project.admin.rest.settings.site.slugify'
         ]
     ],
 

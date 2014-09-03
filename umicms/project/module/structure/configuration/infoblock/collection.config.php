@@ -28,7 +28,7 @@ return [
         ],
     ],
     'dictionaries' => [
-        'collection.infoblock', 'collection'
+        'collection.infoblock' => 'collection.infoblock', 'collection' => 'collection'
     ],
 
     InfoBlockCollection::DEFAULT_TABLE_FILTER_FIELDS => [
