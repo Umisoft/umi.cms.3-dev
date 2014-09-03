@@ -10,6 +10,7 @@
  */
 
 use umicms\console\ConsoleApplication;
+use umicms\console\CreateMysqlDatabase;
 use umicms\console\InstallProjectCommand;
 use umicms\console\PackCoreCommand;
 use umicms\console\PackEnvironmentCommand;
@@ -31,6 +32,7 @@ $application->add(new PackInstallerCommand());
 $application->add(new PackEnvironmentCommand());
 $application->add(new PackProjectCommand());
 
+$application->add(new CreateMysqlDatabase());
 $application->add(new CreateProjectDumpCommand());
 $application->add(new LoadProjectDumpCommand());
 
