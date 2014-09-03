@@ -8,6 +8,7 @@ define(['App'], function(UMI) {
             }.property('model')
         });
 
+
         UMI.SideMenuView = Ember.View.extend({
             layoutName: 'partials/sideMenu'
         });

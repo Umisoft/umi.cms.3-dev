@@ -14,6 +14,7 @@ use umi\extension\twig\TwigTemplateEngine;
 use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
+use umi\messages\toolbox\MessagesTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\pagination\toolbox\PaginationTools;
@@ -253,6 +254,8 @@ return [
         ]
     ],
 
-    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',
+
+    MessagesTools::NAME => '{#lazy:~/project/configuration/messagesTools.config.php}'
 
 ];

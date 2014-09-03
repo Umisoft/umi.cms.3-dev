@@ -53,10 +53,10 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     amd: 'Handlebars',
-                    namespace: "UMI.Auth.TEMPLATES"
+                    namespace: 'UMI.Auth.TEMPLATES'
                 },
                 files: {
-                    "auth/templates.compile.js": "auth/**/*.hbs"
+                    'auth/templates.compile.js': 'auth/**/*.hbs'
                 }
             }
         },
@@ -66,14 +66,14 @@ module.exports = function(grunt) {
                 options: {
                     baseUrl: './',
                     stubModules: ['text'],
-                    mainConfigFile: "main.js",
+                    mainConfigFile: 'main.js',
                     name: 'main',
                     out: 'development/main.js',
                     inlineText: true,
                     optimize: 'none',
                     exclude: [
                         'Modernizr', 'jquery', 'jqueryUI', 'Handlebars', 'Ember', 'DS', 'iscroll', 'ckEditor',
-                        'timepicker', 'moment', 'elFinder'
+                        'timepicker', 'moment', 'elFinder', 'Foundation', 'FastClick'
                     ],
 
                     findNestedDependencies: true
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
 
         clean: {
             production: {
-                src: ["production/*"]
+                src: ['production/*']
             }
         },
 
@@ -128,13 +128,13 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: 'images/svg/dock/',
                         src: ['*.svg'],
-                        dest: "development/css"
+                        dest: 'development/css'
                     }
                 ],
 
                 options: {
                     datasvgcss: 'icons.dock.svg.css',
-                    cssprefix: ".umi-dock-module-",
+                    cssprefix: '.umi-dock-module-',
                     defaultWidth: '60px',
                     defaultHeight: '60px'
                 }
@@ -142,50 +142,15 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            imagesProduction: {
-                expand: true,
-                cwd: 'development/images',
-                src: ['**/*', '!dock_png/**', '!svg/**'],
-                dest: 'production/images'
-            },
-
-            js: {
-                expand: true,
-                cwd: 'development',
-                src: ['main.js'],
-                dest: 'production'
-            },
-
-            vendorProduction: {
-                expand: true,
-                cwd: './',
-                src: [
-                    'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.min.js',
-                    'vendor/jquery/dist/jquery.min.map', 'vendor/jquery-ui/jquery-ui.min.js',
-                    'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.min.js', 'vendor/ember/ember.min.js',
-                    'vendor/ember-data/ember-data.min.js', 'vendorExtend/ckeditor/**',
-                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
-                    'vendor/momentjs/min/moment-with-langs.min.js', 'vendorExtend/iscroll-probe-5.1.1.js',
-                    'vendorExtend/elFinder.js'
-                ],
-                dest: 'production',
-                rename: function(dest, src) {
-                    if (/\.js$/.test(src)) {
-                        src = src.replace(/\.min/g, '');
-                    }
-                    return dest + '/' + src;
-                }
-            },
-
             vendorDevelopment: {
                 expand: true,
                 cwd: './',
                 src: [
                     'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
                     'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
-                    'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendorExtend/iscroll-probe-5.1.1.js',
-                    'vendorExtend/ckeditor/**', 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
-                    'vendor/momentjs/min/moment-with-langs.js', 'vendorExtend/elFinder.js'
+                    'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
+                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
+                    'vendor/momentjs/min/moment-with-langs.js', 'vendorExtend/elFinder.js', 'library/**'
                 ],
                 dest: 'development'
             },
@@ -195,40 +160,34 @@ module.exports = function(grunt) {
                 cwd: 'images',
                 src: ['**'],
                 dest: 'development/images'
+            },
+
+            imagesProduction: {
+                expand: true,
+                cwd: 'development/images',
+                src: ['**/*', '!dock_png/**', '!svg/**', 'svg/elements/**'],
+                dest: 'production/images'
+            },
+
+            jsProduction: {
+                expand: true,
+                cwd: 'development',
+                src: ['main.js'],
+                dest: 'production'
+            },
+
+            vendorProduction: {
+                expand: true,
+                cwd: 'development',
+                src: [
+                    'vendor/**',
+                    'library/**'
+                ],
+                dest: 'production'
             }
         },
 
         concat: {
-            elFinder: {
-                options: {
-                    separator: ';'
-                },
-
-                src: [
-                    'partials/fileManager/elFinder/js/elFinder.js',
-                    'partials/fileManager/elFinder/js/jquery.elfinder.js',
-                    'partials/fileManager/elFinder/js/elFinder.resources.js',
-                    'partials/fileManager/elFinder/js/elFinder.options.js',
-                    'partials/fileManager/elFinder/js/elFinder.history.js',
-                    'partials/fileManager/elFinder/js/elFinder.command.js',
-
-                    'partials/fileManager/elFinder/js/ui/overlay.js', 'partials/fileManager/elFinder/js/ui/workzone.js',
-                    'partials/fileManager/elFinder/js/ui/navbar.js', 'partials/fileManager/elFinder/js/ui/dialog.js',
-                    'partials/fileManager/elFinder/js/ui/tree.js', 'partials/fileManager/elFinder/js/ui/cwd.js',
-                    'partials/fileManager/elFinder/js/ui/toolbar.js', 'partials/fileManager/elFinder/js/ui/button.js',
-                    'partials/fileManager/elFinder/js/ui/uploadButton.js',
-                    'partials/fileManager/elFinder/js/ui/viewbutton.js',
-                    'partials/fileManager/elFinder/js/ui/searchbutton.js',
-                    'partials/fileManager/elFinder/js/ui/sortbutton.js', 'partials/fileManager/elFinder/js/ui/panel.js',
-                    'partials/fileManager/elFinder/js/ui/contextmenu.js', 'partials/fileManager/elFinder/js/ui/path.js',
-                    'partials/fileManager/elFinder/js/ui/stat.js', 'partials/fileManager/elFinder/js/ui/places.js',
-
-                    'partials/fileManager/elFinder/js/commands/*.js',
-                    'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
-                ],
-                dest: 'libsStatic/elFinder.js'
-            },
-
             development: {
                 options: {
                     separator: '\n'
@@ -239,25 +198,51 @@ module.exports = function(grunt) {
                 ],
 
                 dest: 'development/css/styles.css'
+            },
 
+            foundation: {
+                options: {
+                    separator: '\n'
+                },
+
+                src: ['library/foundation/foundation.core.js', 'library/foundation/foundation.dropdown.extend.js'],
+
+                dest: 'library/foundation/foundation.js'
             }
         },
 
         uglify: {
-            app: {
-                files: {
-                    'production/main.js': ['production/main.js'],
-                    'production/vendorExtend/elFinder.js': ['production/vendorExtend/elFinder.js'],
-                    'production/vendorExtend/iscroll-probe-5.1.1.js': [
-                        'production/vendorExtend/iscroll-probe-5.1.1.js'
-                    ],
-                    'production/vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js': [
-                        'production/vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js'
-                    ],
-                    'production/vendor/modernizr/modernizr.js': ['production/vendor/modernizr/modernizr.js'],
-                    'production/vendor/requirejs/require.js': ['production/vendor/requirejs/require.js'],
-                    'production/vendor/requirejs-text/text.js': ['production/vendor/requirejs-text/text.js']
-                }
+            productionApp: {
+                options: {
+                    mangle: {
+                        except: ['UMI']
+                    },
+                    sourceMap: true,
+                    compress: {
+                        drop_console: true
+                    }
+                },
+                files: [
+                    {
+                        'production/main.js': ['production/main.js']
+                    }
+                ]
+            },
+            productionVendor: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'production/vendor',
+                        src: '**/*.js',
+                        dest: 'production/vendor'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'production/library',
+                        src: '**/*.js',
+                        dest: 'production/library'
+                    }
+                ]
             }
         },
 
@@ -282,7 +267,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-csso');
-    grunt.loadNpmTasks("grunt-contrib-yuidoc");
+    grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
@@ -291,11 +276,18 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['watch']);
+
+    grunt.registerTask('svg', ['grunticon']);
+
+    grunt.registerTask('foundation', ['concat:foundation']);
+
     grunt.registerTask('dev', [
         'copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass', 'autoprefixer', 'concat:development',
         'emberTemplates', 'requirejs:development'
     ]);
-    grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:js', 'copy:vendorProduction', 'uglify']);
+
+    grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:jsProduction', 'copy:vendorProduction',
+        'uglify']);
+
     grunt.registerTask('docs', ['yuidoc']);
-    grunt.registerTask('svg', ['svgmin', 'grunticon']);
 };

@@ -10,6 +10,8 @@ define([], function() {
                 if (window.applicationLoading) {
                     window.applicationLoading.resolve();
                 }
+
+                this.$().foundation();
             }
         });
 
