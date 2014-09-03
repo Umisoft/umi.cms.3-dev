@@ -16,10 +16,32 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatch_release'
         ],
+        'fields'      => [
+            Release::FIELD_COUNT_SEND_MESSAGE => [
+                'type' => IField::TYPE_INTEGER,
+                'columnName' => 'count_views'
+            ],
+            Release::FIELD_COUNT_VIEWS => [
+                'type' => IField::TYPE_INTEGER,
+                'columnName' => 'count_send_message'
+            ],
+            Release::FIELD_PERCENT_READS => [
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'percent_reads',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculatePercentViews',
+                'readOnly'     => true,
+            ],
+        ],
         'types'  => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\Release',
-                'fields'      => []
+                'fields'      => [
+                    Release::FIELD_COUNT_SEND_MESSAGE => [],
+                    Release::FIELD_COUNT_VIEWS => [],
+                    Release::FIELD_PERCENT_READS => [],
+                ]
             ]
         ],
     ]

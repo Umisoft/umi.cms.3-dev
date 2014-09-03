@@ -18,14 +18,14 @@ return [
     'class' => 'umicms\project\module\dispatch\model\collection\ReleaseCollection',
     'handlers' => [
         'admin' => 'dispatch.release',
-        //'site' => 'dispatch.dispatch'
+        'site' => 'dispatch.release'
     ],
-    /* 'forms' => [
+    'forms' => [
         'base' => [
-            DispatchesCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.edit.config.php}',
-            DispatchesCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.create.config.php}'
+            ReleaseCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/release/form/base.edit.config.php}',
+            ReleaseCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/release/form/base.create.config.php}'
         ]
-    ], */
+    ],
     'dictionaries' => [
         'collection.release', 'collection'
     ]

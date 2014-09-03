@@ -19,7 +19,7 @@ return [
     'class' => 'umicms\project\module\dispatch\model\collection\SubscriberCollection',
     'handlers' => [
         'admin' => 'dispatch.subscriber',
-        //'site' => 'dispatch.dispatch'
+        'site' => 'dispatch.subscriber'
     ],
     'forms' => [
 		/* IObjectType::BASE => [

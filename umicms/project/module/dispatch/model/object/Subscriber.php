@@ -19,8 +19,6 @@ use umicms\orm\object\CmsObject;
  */
 class Subscriber extends CmsObject
 {
-    /**
-     * Имя поля для хранения E-mail'a
-    */
+    
     const TYPE_NAME = 'subscriber';
 }

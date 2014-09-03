@@ -18,7 +18,7 @@ return [
     'class' => 'umicms\project\module\dispatch\model\collection\DispatchCollection',
     'handlers' => [
         'admin' => 'dispatch.dispatch',
-        //'site' => 'dispatch.dispatch'
+        'site' => 'dispatch.dispatch'
     ],
     'forms' => [
         'base' => [

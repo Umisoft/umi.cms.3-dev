@@ -212,7 +212,7 @@ return [
             'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/collection.config.php}',
             'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/collection.config.php}',
 			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/collection.config.php}',
-			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/collection.config.php}'
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/collection.config.php}',
 
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
 
