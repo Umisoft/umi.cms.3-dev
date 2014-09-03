@@ -33,7 +33,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:14:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-13 12:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -103,6 +103,11 @@ return array (
         0 => 'string',
         1 => 'Alexander',
       ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
       'active#ru-RU' => 
       array (
         0 => 'boolean',
@@ -117,6 +122,55 @@ return array (
       array (
         0 => 'boolean',
         1 => false,
+      ),
+      'contentsRaw#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'profile' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'avatar' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
