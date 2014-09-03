@@ -61,7 +61,7 @@ class PackInstallerCommand extends BaseCommand
         $phar->startBuffering();
 
         $output->writeln('<info>Packing installer files...</info>');
-        $this->addInstallerFiles($phar, $input, $output);
+        $this->addInstallerFiles($phar, $output);
         $output->writeln('');
 
         if (!$input->getArgument('without-vendors')) {
