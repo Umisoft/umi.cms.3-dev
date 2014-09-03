@@ -108,9 +108,9 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware, IProject
                 return false;
             }
 
-            $defaultPageComponentPathParts = explode('.', $defaultPage->componentPath);
+            $componentPathPartsCount = count(explode('.', $defaultPage->componentPath));
 
-            if (count($defaultPageComponentPathParts) == 1 || count($defaultPageComponentPathParts) - 1 == self::$routingOffset) {
+            if ($componentPathPartsCount == 1 || $componentPathPartsCount - 1 == self::$routingOffset) {
 
                 self::$routingOffset = 0;
                 $this->setRouteParams($defaultPage);
