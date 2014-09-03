@@ -8,7 +8,6 @@ Test
 ```sh
 $ git clone git@github.com:Umisoft/umi.cms.3-dev.git
 ```
-
 ## Установка менеджера пакетов Composer
 ```sh
 $ curl -sS https://getcomposer.org/installer | php
