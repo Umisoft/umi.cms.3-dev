@@ -3,7 +3,6 @@ Official UMI.CMS 3 development repository
 
 ## Contributing
 Для участия в разработке необходимо ознакомиться с [правилами](CONTRIBUTING.md). 
-Test
 ```sh
 $ git clone git@github.com:Umisoft/umi.cms.3-dev.git
 ```
