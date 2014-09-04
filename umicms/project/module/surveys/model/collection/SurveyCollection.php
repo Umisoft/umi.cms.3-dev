@@ -10,15 +10,21 @@
 
 namespace umicms\project\module\surveys\model\collection;
 
+use umi\i18n\ILocalesService;
+use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\CmsPageCollection;
-use umi\acl\IAclResource;
-use umi\acl\IAclAssertionResolver;
+use umicms\orm\selector\CmsSelector;
+use umicms\project\module\surveys\model\object\Survey;
 
 /**
  * Коллекция для работы с опросами.
- * @package umicms\project\module\surveys\model\collection
+ *
+ * @method CmsSelector|Survey[] select() Возвращает селектор для выбора опросов.
+ * @method Survey get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает опрос по его GUID.
+ * @method Survey getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает опрос по его id.
+ * @method Survey add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает опрос.
  */
-class SurveyCollection extends CmsPageCollection implements IAclResource, IAclAssertionResolver
+class SurveyCollection extends CmsPageCollection
 {
 
 }

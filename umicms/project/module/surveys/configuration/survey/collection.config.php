@@ -26,6 +26,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.survey', 'collection', 'form'
+        'collection.survey' =>'collection.survey', 'collection' => 'collection'
     ]
 ];

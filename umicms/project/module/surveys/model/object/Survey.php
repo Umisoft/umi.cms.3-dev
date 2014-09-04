@@ -10,16 +10,16 @@
 
 namespace umicms\project\module\surveys\model\object;
 
+use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umi\orm\objectset;
 
-
 /**
- * Class Survey
- * @package umicms\project\module\surveys\model\object
- * @property $answers ответы опроса
+ * Опрос.
+ *
+ * @property IObjectSet $answers ответы опроса
  * @property boolean $multipleChoice возможность множественного выбора
  */
 class Survey extends CmsObject implements ICmsPage
@@ -38,9 +38,5 @@ class Survey extends CmsObject implements ICmsPage
      * Форма голосования
      */
     const FORM_VOTE = 'vote';
-    /**
-     * Тип объекта
-     */
-    const TYPE = 'survey';
 
 }
