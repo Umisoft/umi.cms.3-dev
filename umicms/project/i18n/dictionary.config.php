@@ -264,7 +264,7 @@ return [
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
     'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
 
-    'collection.Survey' => '{#lazy:~/project/module/surveys/configuration/survey/i18n/dictionary.config.php}',
+    'collection.survey' => '{#lazy:~/project/module/surveys/configuration/survey/i18n/dictionary.config.php}',
     'collection.answer' => '{#lazy:~/project/module/surveys/configuration/answer/i18n/dictionary.config.php}',
 
     'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
