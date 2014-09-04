@@ -12,12 +12,11 @@ namespace umicms\project\module\surveys\model\object;
 
 use umicms\orm\object\CmsObject;
 
-
 /**
- * Class Answer
- * @package umicms\project\module\surveys\model\object
+ * Вариант ответа для опроса.
+ *
  * @property Survey|null $survey опрос
- * @property integer $counter количество голосов
+ * @property int $counter количество голосов
  */
 class Answer extends CmsObject
 {
@@ -25,13 +24,8 @@ class Answer extends CmsObject
      * Имя поля для хранения опроса, к которому относится ответ
      */
     const FIELD_SURVEY = 'survey';
-
     /**
-     * Имя поля для хранения количества голосов, отданных з данный ответ
+     * Имя поля для хранения количества голосов, отданных за данный ответ
      */
     const FIELD_COUNTER = 'counter';
-    /**
-     * Тип объекта
-     */
-    const TYPE = 'answer';
 }

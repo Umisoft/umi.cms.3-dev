@@ -14,7 +14,6 @@ use umicms\orm\collection\CmsCollection;
 
 /**
  * Коллекция для работы с ответами.
- * @package umicms\project\module\surveys\model\collection
  */
 class AnswerCollection extends CmsCollection
 {

@@ -16,8 +16,7 @@ return [
     'class' => 'umicms\project\module\surveys\model\collection\AnswerCollection',
 
     'handlers' => [
-        'admin' => 'surveys.answer',
-        'site' => 'surveys.answer'
+        'admin' => 'surveys.answer'
     ],
     'forms' => [
         'base' => [
@@ -26,6 +25,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.answer', 'collection', 'form'
+        'collection.answer' => 'collection.answer', 'collection' => 'collection'
     ]
 ];
