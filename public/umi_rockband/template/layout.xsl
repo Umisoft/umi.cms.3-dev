@@ -33,7 +33,7 @@
                 <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
                 <link rel="stylesheet" href="css/template.css"/>
 
-                <link rel="shortcut icon" href="images/favicon.ico"/>
+                <link rel="shortcut icon" href="/favicon.ico"/>
                 <script src="js/jquery-1.11.0.min.js"></script>
                 <script src="js/bootstrap.min.js"></script>
                 <script src="js/scripts.js"></script>

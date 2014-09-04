@@ -49,10 +49,16 @@
 }
 
 /*form error*/
-.content-inner .input-group-error {
+.input-group-error {
 	position: relative;
 }
-.content-inner .input-group-error .hint {
+.input-group-error input,
+.input-group-error textarea,
+.input-group-error select {
+	border-color: #fd7575;
+	color: #fd7575 !important;
+}
+.input-group-error .hint {
 	background: none repeat scroll 0 0 #fd7575;
 	border-radius: 5px;
 	bottom: 70%;
@@ -65,7 +71,7 @@
 	position: absolute;
 	z-index: 22;
 }
-.content-inner .input-group-error .hint:after {
+.input-group-error .hint:after {
 	content: '';
 	display: block;
 	width: 100%;
@@ -74,12 +80,6 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-}
-.content-inner .input-group-error input,
-.content-inner .input-group-error textarea,
-.content-inner .input-group-error select {
-	border-color: #fd7575;
-	color: #fd7575 !important;
 }
 
 /** default **/

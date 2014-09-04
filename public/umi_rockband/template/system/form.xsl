@@ -127,15 +127,15 @@
             <label> <xsl:value-of select="label" /> </label>
             <xsl:apply-templates select="errors" mode="default.form" />
             <script type="text/javascript">
-                function reloadCaptcha_<xsl:value-of select="sessionKey" />() {
-                var img = document.getElementById('<xsl:value-of select="sessionKey" />');
+                function reloadCaptcha_<xsl:value-of select="concat(sessionKey, generate-id())" />() {
+                var img = document.getElementById('<xsl:value-of select="concat(sessionKey, generate-id())" />');
                 img.src = '<xsl:value-of select="url" />?t=' + (new Date()).getTime();
                 }
             </script>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <img id="{sessionKey}" src="{url}" alt="{label}" title="{label}" />
-                    <button class="btn btn-primary glyphicon glyphicon-refresh" onclick="reloadCaptcha_{sessionKey}();return false;"></button>
+                    <img id="{concat(sessionKey, generate-id())}" src="{url}" alt="{label}" title="{label}" />
+                    <button class="btn btn-primary glyphicon glyphicon-refresh" onclick="reloadCaptcha_{concat(sessionKey, generate-id())}();return false;"></button>
                 </span>
                 <input type="text" class="form-control input-lg">
                     <xsl:apply-templates select="attributes" mode="all.form"/>

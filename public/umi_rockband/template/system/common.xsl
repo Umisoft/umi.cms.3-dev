@@ -8,6 +8,7 @@
 
     <!-- Объявляем переменные -->
     <xsl:variable name="assets" select="/layout/assetsUrl" />
+    <xsl:variable name="anchor" select="concat(/layout/url, '/#')" />
     <xsl:variable name="root" select="/layout/projectUrl/locale[@current = 1]/@url" />
     <xsl:variable name="pagesCount" select="5" />
 

@@ -13,15 +13,15 @@ jQuery(document).ready(function() {
 	var headerY = jQuery('.header-height'),
 		header = jQuery('header'),
 		setHeader = function() {
-		headerY.height(header.height() + 20 );
-	};
+			headerY.height(header.height() + 20 );
+		};
 
 	setHeader();
     jQuery(window).resize(function() {
 		setHeader();
     });
     jQuery(window).scroll(function() {
-        if (jQuery(document).scrollTop() <= header.height()-20) {
+        if (jQuery(document).scrollTop() <= headerY.height()) {
 			header.filter('.fixed').each(function() {
 				jQuery(this).removeClass('fixed');
 				setHeader();
@@ -55,5 +55,52 @@ jQuery(document).ready(function() {
 			jQuery(comments[i]).addClass('even')
 		}
 	}
+
+	jQuery(".modal-content form[action]").submit(function() {
+		var self = this;
+			$.ajax({
+				type: self.method,
+				data: $('input:visible, textarea, input[name="csrf"]', self).serialize(),
+				url: self.action + '.json'
+			}).done(function( data ) {
+					console.log( "Without errors:", data );
+			}).fail(function( data ) {
+					//the Enter
+					alert('Form sended');
+
+					var errors = data.responseJSON.layout.contents.form.errors,
+						elements = data.responseJSON.layout.contents.form.elements;
+
+					//Clear old messages
+					jQuery('.hint', self).remove();
+					jQuery('.form-group', self).removeClass('input-group-error');
+
+					//Add new error messages
+					for(var prop in errors) {
+						var badField = jQuery('input[name^="' + prop + '"]', self).eq(0);
+						badField.closest('.form-group').addClass('input-group-error');
+
+						var error = '<div class="hint"><ul>';
+						for (var i = 0; i < errors[prop].length; i++) {
+							error += '<li>' + errors[prop][i] + '</li>';
+						}
+						error += '</ul></div>';
+
+						badField.before(error);
+					}
+
+					//Refresh CSRF token
+					var csrf = jQuery('input[name="csrf"]', self);
+					if(csrf[0]) {
+						for (var i = 0; i < elements.length; i++) {
+							if (elements[i].type == 'csrf')
+								csrf.value = elements[i].attributes.value;
+						}
+					}
+
+					//Refresh captha data
+			});
+		return false;
+	});
 
 });
