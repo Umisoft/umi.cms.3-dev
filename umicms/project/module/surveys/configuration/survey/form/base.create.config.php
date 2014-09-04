@@ -2,10 +2,6 @@
 
 use umi\form\element\Checkbox;
 use umi\form\element\MultiSelect;
-use umi\form\element\Select;
-use umi\form\element\Text;
-use umi\form\fieldset\FieldSet;
-use umicms\form\element\Wysiwyg;
 use umicms\project\module\surveys\model\object\Survey;
 
 return array_replace_recursive(
@@ -13,48 +9,13 @@ return array_replace_recursive(
     [
         'options' => [
             'dictionaries' => [
-                'collection.Survey', 'form', 'collection'
+                'collection.survey' => 'collection.survey'
             ]
         ],
 
         'elements' => [
-
-            'common' => [
-                'type' => FieldSet::TYPE_NAME,
-                'label' => 'common',
+            'contents' => [
                 'elements' => [
-                    Survey::FIELD_DISPLAY_NAME => [
-                        'type' => Text::TYPE_NAME,
-                        'label' => Survey::FIELD_DISPLAY_NAME,
-                        'options' => [
-                            'dataSource' => Survey::FIELD_DISPLAY_NAME
-                        ],
-                    ],
-                    Survey::FIELD_PAGE_LAYOUT => [
-                        'type' => Select::TYPE_NAME,
-                        'label' => Survey::FIELD_PAGE_LAYOUT,
-                        'options' => [
-                            'choices' => [
-                                null => 'Default or inherited layout'
-                            ],
-                            'lazy' => true,
-                            'dataSource' => Survey::FIELD_PAGE_LAYOUT
-                        ],
-                    ],
-                    Survey::FIELD_PAGE_SLUG => [
-                        'type' => Text::TYPE_NAME,
-                        'label' => Survey::FIELD_PAGE_SLUG,
-                        'options' => [
-                            'dataSource' => Survey::FIELD_PAGE_SLUG
-                        ],
-                    ],
-                    Survey::FIELD_ACTIVE => [
-                        'type' => Checkbox::TYPE_NAME,
-                        'label' => Survey::FIELD_ACTIVE,
-                        'options' => [
-                            'dataSource' => Survey::FIELD_ACTIVE
-                        ],
-                    ],
                     Survey::FIELD_ANSWERS => [
                         'type' => MultiSelect::TYPE_NAME,
                         'label' => Survey::FIELD_ANSWERS,
@@ -62,20 +23,12 @@ return array_replace_recursive(
                             'lazy' => true,
                             'dataSource' => Survey::FIELD_ANSWERS
                         ]
-                    ]
-                ]
-            ],
-
-            'contents' => [
-                'type' => FieldSet::TYPE_NAME,
-                'label' => 'contents',
-                'elements' => [
-
-                    Survey::FIELD_PAGE_CONTENTS => [
-                        'type' => Wysiwyg::TYPE_NAME,
-                        'label' => Survey::FIELD_PAGE_CONTENTS,
+                    ],
+                    Survey::FIELD_MULTIPLE_CHOICE => [
+                        'type' => Checkbox::TYPE_NAME,
+                        'label' => Survey::FIELD_MULTIPLE_CHOICE,
                         'options' => [
-                            'dataSource' => Survey::FIELD_PAGE_CONTENTS
+                            'dataSource' => Survey::FIELD_MULTIPLE_CHOICE
                         ]
                     ]
                 ]

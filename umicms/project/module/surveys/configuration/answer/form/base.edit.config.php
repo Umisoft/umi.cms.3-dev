@@ -8,7 +8,7 @@ use umicms\project\module\surveys\model\object\Answer;
 return [
     'options' => [
         'dictionaries' => [
-            'collection.survey', 'collection', 'form'
+            'collection.answer' => 'collection.answer', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
