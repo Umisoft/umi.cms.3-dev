@@ -100,6 +100,7 @@ class SurveyModule extends BaseModule implements IHttpAware
      */
     public function markAsVoted(Survey $survey)
     {
+        $this->getHttpRequest()->cookies->set($survey->guid, true);
         //TODO: mark with statistic module. Now it's unavailable.
     }
 }

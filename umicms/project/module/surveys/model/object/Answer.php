@@ -30,5 +30,8 @@ class Answer extends CmsObject
      * Имя поля для хранения количества голосов, отданных з данный ответ
      */
     const FIELD_COUNTER = 'counter';
-
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'answer';
 }

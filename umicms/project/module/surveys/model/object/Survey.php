@@ -34,4 +34,13 @@ class Survey extends CmsObject implements ICmsPage
      * Имя поля для указания возможности множественного выбора ответов
      */
     const FIELD_MULTIPLE_CHOICE = 'multipleChoice';
+    /**
+     * Форма голосования
+     */
+    const FORM_VOTE = 'vote';
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'survey';
+
 }
