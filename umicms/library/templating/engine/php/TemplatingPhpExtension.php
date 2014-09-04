@@ -92,9 +92,10 @@ class TemplatingPhpExtension implements IPhpExtension
     protected function getIsAllowedResourceHelper()
     {
         static $isAllowedResourceHelper;
-        /** @var CmsDispatcher $dispatcher */
-        $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         if (!$isAllowedResourceHelper) {
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+
             $isAllowedResourceHelper = new AccessResource($dispatcher);
         }
 
