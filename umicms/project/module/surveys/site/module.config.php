@@ -9,11 +9,10 @@ return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
     SiteGroupComponent::OPTION_COMPONENTS => [
-        'survey' => '{#lazy:~/project/module/survey/site/survey/component.config.php}',
-        'answer' => '{#lazy:~/project/module/survey/site/answer/component.config.php}'
+        'survey' => '{#lazy:~/project/module/surveys/site/survey/component.config.php}'
     ],
 
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/surveys'],
+        'directories' => ['module/surveys']
     ]
 ];

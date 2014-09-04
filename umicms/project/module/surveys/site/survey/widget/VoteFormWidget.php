@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\surveys\site\survey\vote\widget;
+namespace umicms\project\module\surveys\site\survey\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
@@ -19,7 +19,7 @@ use umicms\project\module\surveys\model\SurveyModule;
 /**
  * Виджет для вывода опроса.
  */
-class VoteWidget extends BaseFormWidget
+class VoteFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -77,11 +77,11 @@ class VoteWidget extends BaseFormWidget
 
         $form = $this->module->survey()->getForm(
             Survey::FORM_VOTE,
-            Survey::TYPE,
+            $this->survey->getTypeName(),
             $this->survey
         );
 
-        $form->setAction($this->getUrl('voteSurvey', ['id' => $this->survey->getId()]));
+        $form->setAction($this->getUrl('page', ['uri' => $this->survey->slug]));
 
         return $form;
     }

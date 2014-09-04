@@ -10,6 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\surveys\model\object\Answer;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -26,5 +27,10 @@ return [
     ],
     'dictionaries' => [
         'collection.answer' => 'collection.answer', 'collection' => 'collection'
+    ],
+
+    ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        Answer::FIELD_SURVEY => [],
+        Answer::FIELD_COUNTER => [],
     ]
 ];
