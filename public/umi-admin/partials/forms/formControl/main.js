@@ -58,6 +58,27 @@ define(['App'],
                     }
 
                     return lazyProperties;
+                },
+
+                fillMeta: function(meta, object) {
+                    var _fillMeta = function(elements) {
+                        var dataSource;
+                        for (var i = 0; i < elements.length; i++) {
+                            dataSource = elements[i].dataSource;
+                            if (dataSource) {
+                                elements[i].value = object.get(dataSource);
+                            }
+
+                            if (elements[i].hasOwnProperty('elements')) {
+                                _fillMeta(elements[i].elements);
+                            }
+                        }
+                    };
+
+                    var elements = Ember.get(meta, 'elements');
+
+                    _fillMeta(elements);
+                    return meta;
                 }
             };
 

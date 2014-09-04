@@ -8,10 +8,4 @@
  * file that was distributed with this source code.
  */
 
-use umicms\Utils;
-
-try {
-    return Utils::getCurrentGitVersion();
-} catch (\Exception $e) {
-    return ['Unknown', 'Unknown'];
-}
+return ['dev', date('Y-m-d H:i')];

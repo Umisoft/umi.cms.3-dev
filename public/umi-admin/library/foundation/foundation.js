@@ -912,7 +912,7 @@
 
                     if (parent.length > 0 && (S(e.target).is(dropdownSelector) ||
                         $.contains(parent.first()[0], e.target))) {
-                        e.stopPropagation();
+                        //e.stopPropagation();
                         return;
                     }
 

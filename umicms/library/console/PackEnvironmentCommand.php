@@ -16,7 +16,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
-use umicms\Utils;
 
 /**
  * Упаковывает файлы окружения в пакет.
@@ -44,8 +43,6 @@ class PackEnvironmentCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        list ($version) = Utils::getCurrentGitVersion();
-
         $outputPharPath = $input->getArgument('output') . '/' . 'environment.phar';
 
         if (is_file($outputPharPath)) {
@@ -53,7 +50,7 @@ class PackEnvironmentCommand extends BaseCommand
         }
 
         $phar = new Phar($outputPharPath, 0, 'environment.phar');
-        $phar->setMetadata('UMI.CMS Environment Version: ' . $version);
+        $phar->setMetadata('UMI.CMS Environment');
         $phar->setSignatureAlgorithm(Phar::SHA1);
 
         $phar->startBuffering();
