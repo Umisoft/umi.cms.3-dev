@@ -26,13 +26,6 @@ class SurveyModule extends BaseModule implements IHttpAware
 {
     use THttpAware;
 
-    protected $statisticModule;
-
-    public function __construct($statistic)
-    {
-        $this->statisticModule = $statistic;
-    }
-
     /**
      * Возвращает коллекцию опросов.
      * @return SurveyCollection
@@ -71,21 +64,18 @@ class SurveyModule extends BaseModule implements IHttpAware
 
     /**
      * Возвращает селектор для выбора ответов опроса.
-     * @param object\Survey $survey
+     * @param Survey $survey
      * @return CmsSelector|Answer[]
      */
-    public function getAnswersBySurvey(Survey $survey) {
-        $answers = $this->getAnswers();
-
-        $answers->begin();
-        $answers->where(Answer::FIELD_SURVEY)->equals($survey);
-        $answers->end();
-
-        return $answers;
+    public function getAnswersBySurvey(Survey $survey)
+    {
+        return
+            $this->getAnswers()
+                ->where(Answer::FIELD_SURVEY)->equals($survey);
     }
 
     /**
-     * Возвращет, голосовал ли текущий пользователь
+     * Проверяет, голосовал ли текущий пользователь
      * @param Survey $survey
      * @return bool
      */
