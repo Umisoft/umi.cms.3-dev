@@ -10,7 +10,6 @@
 
 namespace umicms\console;
 
-use Doctrine\DBAL\Driver\PDOConnection;
 use PDO;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

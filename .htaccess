@@ -2,6 +2,8 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    RewriteBase /
     RewriteCond %{REQUEST_URI} !=/update.phar.php
     RewriteRule ^(.*)$ public/$1
 </IfModule>
