@@ -7,7 +7,7 @@
                 exclude-result-prefixes="php umi">
 
     <xsl:template match="/">
-        WATISIT?
+        Blank template
     </xsl:template>
 
 </xsl:stylesheet>

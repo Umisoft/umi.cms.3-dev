@@ -151,6 +151,9 @@ header .login {
 	text-transform: uppercase;
 	vertical-align: middle;
 }
+header .phone + .menu {
+	margin-top: 30px;
+}
 header .menu {
 	display: inline-block;
 }
@@ -196,6 +199,39 @@ header .menu li .h-search-form .input-group .btn {
 	outline: none;
 	height: 24px;
 }
+
+@media screen and (max-width: 767px) {
+	header {
+		text-align: center;
+	}
+	header .langs {
+		margin: 15px 0;
+		display: block;
+		text-align: left;
+	}
+	header .phone {
+		text-align: center;
+	}
+	header .search {
+		float: right;
+	}
+	header .phone + .menu {
+		margin-top: 0;
+	}
+	header .menu {
+		text-align: center;
+		width: 100%;
+	}
+	header .menu li.search {
+		float: right;
+		margin-top: -1px;
+	}
+	header .login {
+		display: block;
+		text-align: center;
+	}
+}
+
 header.fixed {
 	position: fixed;
 	background: rgba(0, 0, 0, .8);
@@ -216,33 +252,6 @@ header.fixed .menu {
 }
 header.fixed .logo img {
 	width: 100px;
-}
-@media screen and (max-width: 767px) {
-	header {
-		text-align: center;
-	}
-	header .langs {
-		margin: 15px 0;
-		display: block;
-		text-align: left;
-	}
-	header .phone {
-		text-align: center;
-	}
-	header .search {
-		float: right; }
-	header .menu {
-		text-align: center;
-		width: 100%;
-	}
-	header .menu li.search {
-		float: right;
-		margin-top: -1px;
-	}
-	header .login {
-		display: block;
-		text-align: center;
-	}
 }
 
 /** slider **/

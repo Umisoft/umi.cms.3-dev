@@ -60,14 +60,17 @@ jQuery(document).ready(function() {
 		var self = this;
 			$.ajax({
 				type: self.method,
-				data: $('input:visible, textarea, input[name="csrf"]', self).serialize(),
+				data: $('input:not([name="redirectUrl"]), textarea', self).serialize(),
 				url: self.action + '.json'
 			}).done(function( data ) {
-					console.log( "Without errors:", data );
+					var user = data.layout.contents.user;
+					if(user) {
+						jQuery(self).html('<h4>Регистрация успешно завершена.</h4>');
+					} else {
+						jQuery(self).html('<h4>Вы успешно авторизовались.</h4>');
+						jQuery('header#top .login').remove();
+					}
 			}).fail(function( data ) {
-					//the Enter
-					alert('Form sended');
-
 					var errors = data.responseJSON.layout.contents.form.errors,
 						elements = data.responseJSON.layout.contents.form.elements;
 
@@ -99,6 +102,15 @@ jQuery(document).ready(function() {
 					}
 
 					//Refresh captha data
+					var captcha = jQuery('input[name="captcha"]', self);
+					if(captcha[0]) {
+						for (var i = 0; i < elements.length; i++) {
+							if (elements[i].type == 'captcha' && elements[i].isHuman != true) {
+								var captchaImg = captcha.parent().find('span > img').eq(0);
+								captchaImg.attr('src', elements[i].url + '?' + Math.random());
+							}
+						}
+					}
 			});
 		return false;
 	});

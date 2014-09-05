@@ -10,6 +10,7 @@
     <xsl:include href="template://module/users/index.registration" />
     <xsl:include href="template://module/users/login.authorization" />
     <xsl:include href="template://module/users/widget.registration" />
+    <xsl:include href="template://module/users/widget.profile" />
     <!-- Подключаем шаблоны модуля <Конец> -->
 
     <!-- Определяем часто используемые блоки <Начало> -->

@@ -5,9 +5,15 @@
                 xmlns:php="http://php.net/xsl"
                 xmlns:umi="http://umi-cms.ru/xsl"
                 exclude-result-prefixes="php umi">
-
+    <xsl:output
+            encoding="utf-8"
+            method="html"
+            indent="yes"
+            cdata-section-elements="script noscript"
+            omit-xml-declaration="yes"
+            />
     <xsl:template match="/">
-        Mail body
+        Blank activation mail body
     </xsl:template>
 
 </xsl:stylesheet>

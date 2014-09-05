@@ -121,7 +121,8 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="item[type='captcha']" mode="default.form">
+    <xsl:template match="item[type='captcha'][isHuman='1']" mode="default.form" />
+    <xsl:template match="item[type='captcha'][isHuman='0']" mode="default.form">
         <div class="form-group">
             <xsl:apply-templates select="." mode="default.form.validation" />
             <label> <xsl:value-of select="label" /> </label>
