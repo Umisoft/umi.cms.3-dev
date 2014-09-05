@@ -6,10 +6,10 @@
 ?>
 <?php if ($list->getTotal()) : ?>
     <ol class="list-unstyled">
-        <? foreach ($list as $category) : ?>
+        <?php foreach ($list as $category) : ?>
             <li>
                 <?=$this->widget('blog.category.view', ['category' => $category, 'template' => 'listShortView'])?>
             </li>
         <?php endforeach; ?>
     </ol>
-<? endif; ?>
+<?php endif; ?>

@@ -284,7 +284,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:14:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-13 12:40:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -443,8 +443,8 @@ return array (
           array (
             'collection' => 'blogPostStatus',
             'type' => 'base',
-            'guid' => '26b45376-edca-4e0a-982c-e4d956d9212d',
-            'displayName' => 'Опубликован',
+            'guid' => 'f13d7eaa-54bc-4b5a-8a68-721221fa4191',
+            'displayName' => 'Черновик',
           ),
         ),
       ),
@@ -510,7 +510,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-30 16:14:13";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-13 12:40:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -677,8 +677,8 @@ return array (
           array (
             'collection' => 'blogPostStatus',
             'type' => 'base',
-            'guid' => '26b45376-edca-4e0a-982c-e4d956d9212d',
-            'displayName' => 'Опубликован',
+            'guid' => 'f13d7eaa-54bc-4b5a-8a68-721221fa4191',
+            'displayName' => 'Черновик',
           ),
         ),
       ),

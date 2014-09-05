@@ -161,8 +161,17 @@ return [
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+			
+			'dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/metadata.config.php}',
+            'reason' => '{#lazy:~/project/module/dispatch/configuration/reason/metadata.config.php}',
+            'release' => '{#lazy:~/project/module/dispatch/configuration/release/metadata.config.php}',
+            'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/metadata.config.php}',
+            'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/metadata.config.php}',
+			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/metadata.config.php}',
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/metadata.config.php}',
 
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
+
         ],
 
         'collections' => [
@@ -197,7 +206,17 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
 
+
+            'dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/collection.config.php}',
+            'reason' => '{#lazy:~/project/module/dispatch/configuration/reason/collection.config.php}',
+            'release' => '{#lazy:~/project/module/dispatch/configuration/release/collection.config.php}',
+            'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/collection.config.php}',
+            'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/collection.config.php}',
+			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/collection.config.php}',
+			'unsubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribe/collection.config.php}',
+
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
+
         ]
     ],
 
