@@ -25,4 +25,22 @@ use umicms\project\module\dispatch\model\object\BaseSubscriber;
 class SubscriberCollection extends CmsCollection
 {
 
+    /**
+     * Проверяет уникальность e-mail пользователя.
+     * @param $email
+     * @return bool
+     */
+    public function checkEmailUniqueness($email)
+    {
+        $subscribers = $this->getInternalSelector()
+            ->fields([BaseSubscriber::FIELD_IDENTIFY])
+            ->where(BaseSubscriber::FIELD_EMAIL)
+            ->equals($email)
+            /*->where(BaseSubscriber::FIELD_IDENTIFY)
+            ->notEquals($user->getId())*/
+            ->getResult();
+
+        return !count($subscribers);
+    }
+
 }

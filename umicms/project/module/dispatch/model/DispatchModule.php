@@ -25,11 +25,31 @@ use umicms\project\module\dispatch\model\object\Reason;
 use umicms\project\module\dispatch\model\object\Release;
 use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\object\TemplateMail;
+use umi\authentication\IAuthenticationAware;
+use umi\authentication\TAuthenticationAware;
 
 /**
  * Модуль "Рассылки".
  */
-class DispatchModule extends BaseModule
+class DispatchModule extends BaseModule implements IAuthenticationAware
 {
+    use TAuthenticationAware;
+    /**
+     * Возвращает репозиторий для работы с подписчиками.
+     * @return SubscriberCollection
+     */
+    public function subscriber()
+    {
+        return $this->getCollection('subscriber');
+    }
 
+    /**
+     * Проверяет, авторизован ли пользователь в системе.
+     * @return bool
+     */
+    public function isAuthenticated()
+    {
+        return $this->getDefaultAuthManager()
+            ->isAuthenticated();
+    }
 }

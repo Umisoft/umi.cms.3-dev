@@ -26,10 +26,13 @@ return [
             SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.edit.config.php}'
             SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.create.config.php}'
         ], */
-        'base' => [
+        IObjectType::BASE => [
             SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.edit.config.php}',
             SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.create.config.php}'
-        ]
+        ],
+        Subscriber::TYPE_NAME => [
+            Subscriber::FORM_SUBSCRIBE_SITE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/subscriber.site.config.php}'
+        ],
     ],
     'dictionaries' => [
         'collection.subscriber', 'collection'

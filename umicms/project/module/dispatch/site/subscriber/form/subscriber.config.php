@@ -3,12 +3,13 @@
 use umi\filter\IFilterFactory;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umicms\project\module\dispatch\model\object\BaseSubscriber;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'project.site.dispatch'
+            'project.site.dispatch.subscriber'
         ],
     ],
     'attributes' => [
@@ -16,9 +17,9 @@ return [
     ],
 
     'elements' => [
-        'email_subscribe' => [
+        BaseSubscriber::FIELD_EMAIL => [
             'type' => Text::TYPE_NAME,
-            'label' => 'E-mail',
+            'label' => BaseSubscriber::FIELD_EMAIL,
             'options' => [
                 'filters' => [
                 ]

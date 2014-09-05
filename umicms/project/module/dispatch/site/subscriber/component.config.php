@@ -19,6 +19,10 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
     //SiteComponent::OPTION_COLLECTION_NAME => 'subscriber',
 
+    SiteComponent::OPTION_CONTROLLERS => [
+        'subscriber' => __NAMESPACE__ . '\controller\SubscriberController',
+    ],
+
     SiteComponent::OPTION_WIDGET => [
         'form' => __NAMESPACE__ . '\widget\DispatchSubscriberWidget',
     ],
@@ -33,6 +37,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
+                'controller:subscriber' => [],
                 'widget:form' => [],
             ]
         ]
@@ -40,6 +45,15 @@ return [
 
     SiteComponent::OPTION_VIEW => [
         'directories' => ['module/dispatch/subscriber']
+    ],
+
+    SiteComponent::OPTION_ROUTES      => [
+        'subscriber' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => 'subscriber'
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_ROUTES      => [

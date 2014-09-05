@@ -10,15 +10,19 @@
 
 namespace umicms\project\module\dispatch\model\object;
 
-use umi\orm\objectset\IObjectSet;
-use umicms\orm\object\CmsObject;
 
 /**
  * Подписчики.
  *
  */
-class Subscriber extends CmsObject
+class Subscriber extends BaseSubscriber
 {
     
     const TYPE_NAME = 'subscriber';
+
+
+    /**
+     * Форма подписки пользователя на сайте
+     */
+    const FORM_SUBSCRIBE_SITE = 'subscribeSite';
 }
