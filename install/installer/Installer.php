@@ -26,7 +26,9 @@ class Installer
      * @var array $typeProject
      */
     protected $typeProject = [
-        'demo-twig', 'demo-php', 'umi_rockband'
+        'demo-twig',
+        'demo-php',
+        'umi_rockband'
     ];
 
     /**
@@ -50,10 +52,14 @@ class Installer
     /**
      * Конструктор.
      * @param string $config
+     * @throws RuntimeException в случае, если запись в директорию запрещена
      */
     public function __construct($config = './config')
     {
-        $this->config = $config;
+        if (!file_exists($config)) {
+            touch($config);
+        }
+        $this->config = realpath($config);
     }
 
     /**
@@ -71,7 +77,8 @@ class Installer
      * @param string $toFile локальный файл
      * @return bool
      */
-    public function copyRemote($fromUrl, $toFile) {
+    public function copyRemote($fromUrl, $toFile)
+    {
         try {
             $client = new GuzzleHttp\Client();
             $response = $client->get($fromUrl)
@@ -95,7 +102,7 @@ class Installer
     public function checkConnectionDb($dbName, $host, $login, $password)
     {
         try {
-            $dsn = 'mysql:dbname=' . $dbName .';host=' . $host;
+            $dsn = 'mysql:dbname=' . $dbName . ';host=' . $host;
 
             @new PDO($dsn, $login, $password);
         } catch (PDOException $e) {
@@ -108,23 +115,30 @@ class Installer
     /**
      * Сохраняет конфиг.
      * @param array $param добавляемый параметр
+     * @throws RuntimeException в случае, если конфиг запрещён для записи
      */
     public function saveConfig(array $param)
     {
+        if (file_exists($this->config) && !is_writable($this->config)) {
+            throw new RuntimeException("Файл '{$this->config}' запрещён для записи");
+        }
         file_put_contents($this->config, serialize($param));
     }
 
     /**
      * Возвращает конфиг.
      * @return mixed
-     * @throws RuntimeException
+     * @throws RuntimeException в случае, если конфиг запрещён для чтения
      */
     public function getConfig()
     {
         if (file_exists($this->config)) {
+            if (!is_readable($this->config)) {
+                throw new RuntimeException("Файл '{$this->config}' запрещён на чтение");
+            }
             return unserialize(file_get_contents($this->config));
         } else {
-            throw new RuntimeException('File does not exist');
+            throw new RuntimeException("Файл '{$this->config}' не существует");
         }
     }
 
@@ -144,7 +158,7 @@ class Installer
         );
 
         $result = \GuzzleHttp\get(
-            base64_decode($source) . base64_encode(serialize($params)).'/'
+            base64_decode($source) . base64_encode(serialize($params)) . '/'
         )->xml();
 
         if (isset($result->result)) {
@@ -182,8 +196,8 @@ class Installer
         $domainKey = $result->xpath('//keycode/@domain-keycode');
         if (isset($domainKey[0]) && isset($licenseKey[0])) {
             return [
-                'domainKey' => (string) $domainKey[0],
-                'licenseKey' => (string) $licenseKey[0]
+                'domainKey' => (string)$domainKey[0],
+                'licenseKey' => (string)$licenseKey[0]
             ];
         }
 
@@ -200,7 +214,10 @@ class Installer
      */
     public function createConfig($pathTemplateConfig, $pathSaveConfig, array $search, array $replace)
     {
-        return file_put_contents($pathSaveConfig, str_replace($search, $replace, file_get_contents($pathTemplateConfig)));
+        return file_put_contents(
+            $pathSaveConfig,
+            str_replace($search, $replace, file_get_contents($pathTemplateConfig))
+        );
     }
 
     /**
@@ -214,6 +231,38 @@ class Installer
             $hostDomain = mb_substr($hostDomain, 4);
         }
         return $hostDomain;
+    }
+
+    /**
+     * Удаляет файлы относящиеся к инсталлятору.
+     */
+    public function removeInstaller()
+    {
+        unlink(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . $_SESSION['configFileName']);
+        unlink(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'install.phar.php');
+        $this->removeDir(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'resources');
+        if (file_exists(INSTALL_ROOT_DIR . '/' . 'errors.txt')) {
+            unlink(INSTALL_ROOT_DIR . '/' . 'errors.txt');
+        }
+    }
+
+    /**
+     * Удаляет директорию.
+     * @param string $path путь до удаляемой директории
+     * @return bool
+     */
+    private function removeDir($path)
+    {
+        $files = array_diff(
+            scandir($path),
+            ['.', '..']
+        );
+
+        foreach ($files as $file) {
+            (is_dir("$path/$file")) ? $this->removeDir("$path/$file") : unlink("$path/$file");
+        }
+
+        return rmdir($path);
     }
 }
  

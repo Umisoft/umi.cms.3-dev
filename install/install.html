@@ -3,16 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>Установка UMI.CMS 3</title>
-    <link href="//install.umi-cms.ru/umicms3/css/main.css" type="text/css" rel="stylesheet"/>
     <script src="//yandex.st/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//install.umi-cms.ru/umicms3/js/installCommand.js"></script>
-    <script src="//install.umi-cms.ru/umicms3/js/install.js"></script>
+    <script>
+        $.get('action/path').then(
+            function(env) {
+                var asset = function(env) {
+                    return [{
+                        type: 'link',
+                        href: '//install.umi-cms.ru/umicms3/' + (env ===? env) + 'css/main.css'
+                    }];
+                }
+            }
+
+
+        );
+    </script>
+    <link href="/resources/css/main.css" type="text/css" rel="stylesheet"/>
+    <script src="/resources/js/installCommand.js"></script>
+    <script src="/resources/js/install.js"></script>
 </head>
 <body>
 
 <div class="vertical-center">
-<a href="http://umi-cms.ru" title="UMI.CMS" target="_blank"><img alt="" src="//install.umi-cms.ru/umicms3/img/logo.png"
-                                                                 class="logo"/></a>
+<a href="http://umi-cms.ru" title="UMI.CMS" target="_blank"><img alt="" src="/resources/img/logo.png" class="logo"/></a>
 
 <div class="layout-wrapper">
 <div class="header">

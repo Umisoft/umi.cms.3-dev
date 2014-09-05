@@ -38,6 +38,10 @@ var UMI = UMI || {};
             $('.js-handler-getTrial').on('click', function (e) {
                 setHashCommand('trial');
                 showCurrentStep();
+                $('.js-handler-step-next')
+                    .removeAttr('disabled')
+                    .removeClass('back_step_submit')
+                    .addClass('next_step_submit');
                 return false;
             });
 
@@ -219,7 +223,7 @@ var UMI = UMI || {};
             startInstall();
         }, function (error) {
             $('.js-step-' + hashList.command +' .info').removeClass('display_none');
-            $('.js-step-' + hashList.command + ' .img_stop img').attr("src", "http://install.umi-cms.ru/icon_stop_red.png");
+            $('.js-step-' + hashList.command + ' .img_stop').html('<img src="http://install.umi-cms.ru/icon_stop_red.png">');
 
             var errorMessage = error.responseJSON.message;
             if (error.responseJSON.errorLog !== null) {
@@ -258,11 +262,11 @@ var UMI = UMI || {};
 
                 var errorMessage = error.responseJSON.message;
                 if (error.responseJSON.errorLog !== null) {
-                    errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a>';
+                    errorMessage += ' <a class="js-handler-error-log">Лог ошибок</a> ';
                     UMI.errorLog = error.responseJSON.errorLog;
                 }
 
-                $('<p style="color:red">' + errorMessage + '<a class="js-handler-repeat">Попробовать еще раз</a></p>').appendTo('.js-handler-scroll-panel');
+                $('<p style="color:red">' + errorMessage + '<br/><a class="js-handler-repeat">Попробовать еще раз</a></p>').appendTo('.js-handler-scroll-panel');
                 $('.scroll-window').scrollTop($('.js-handler-scroll-panel').height());
 
                 if (error.responseJSON.overlay !== undefined && error.responseJSON.overlay !== null) {

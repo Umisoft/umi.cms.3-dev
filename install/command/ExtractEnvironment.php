@@ -48,6 +48,8 @@ class ExtractEnvironment implements ICommandInstall
             );
         }
 
+        unlink(ENVIRONMENT_PHAR);
+
         return true;
     }
 }

@@ -7346,7 +7346,7 @@ p.vvod_key {
     margin-bottom: 10px;
 }
 
-.slider a, .js-handler-repeat {
+.slider a, .js-handler-repeat, .js-handler-error-log {
     text-decoration: none;
     color: #0092d4;
     font-size: 12px;
@@ -7355,7 +7355,7 @@ p.vvod_key {
     border-bottom: 1px dashed #0092d4;
 }
 
-.js-handler-repeat {
+.js-handler-repeat, .js-handler-error-log {
     margin:20px 0 0;
 }
 
@@ -7520,6 +7520,10 @@ input.radio_but {
 .demo_templates input, .umiru_templates input, .demo_example_left input, .no_demo input {
     margin-right: 20px;
     margin-top: 30px;
+}
+
+.js-handler-scroll-panel p {
+    margin-bottom: 0.25rem;
 }
 
 /** Popup */

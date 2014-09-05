@@ -103,9 +103,14 @@ $registry->add(new StepsInfo($installer), 'getStepsInfo');
 try {
     $result = $registry->get($request->query->get('command'))->execute();
 } catch (\Exception $e) {
+    $errorLog = null;
+    if (file_exists('./errors.txt')) {
+        $content = file_get_contents('./errors.txt');
+        $errorLog = strlen(trim($content)) > 0 ? $content : null;
+    }
     $response->setContent(json_encode([
         'message' => $e->getMessage(),
-        'errorLog' => file_exists('./errors.txt') ? file_get_contents('./errors.txt') : null,
+        'errorLog' => $errorLog,
         'overlay' => $e instanceof RuntimeException ? $e->getOverlay() : null
     ]));
     $response->headers->set('Content-Type', 'application/json');

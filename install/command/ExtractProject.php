@@ -43,12 +43,14 @@ class ExtractProject implements ICommandInstall
             throw new RuntimeException('Не удалось скачать проект.');
         }
 
-        $composer = new Phar(INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar');
-        if (!$composer->extractTo(INSTALL_ROOT_DIR . '/public/default', null, true)) {
+        $projectPhar = new Phar(INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar');
+        if (!$projectPhar->extractTo(INSTALL_ROOT_DIR . '/public/default', null, true)) {
             throw new RuntimeException(
                 'Не удалось извлечь project.'
             );
         }
+
+        unlink(INSTALL_ROOT_DIR . '/' . $config['projectName'] . '.phar');
 
         $project = <<<EOF
 <?php

@@ -105,6 +105,14 @@ class PackInstallerCommand extends BaseCommand
 
 header("Content-Type: text/html; charset=utf-8");
 
+if (!is_writable('.')) {
+    die('Проверте права на запись в директориию ' . __DIR__);
+}
+
+if (!is_readable('.')) {
+    die('Проверте права на чтение директориии ' . __DIR__);
+}
+
 set_error_handler(function(\$errno, \$errmsg, \$filename, \$linenum) {
     \$date = date('Y-m-d H:i:s');
     \$f = fopen('./errors.txt', 'a');
@@ -129,10 +137,30 @@ register_shutdown_function(function() {
     }
 });
 
+function recurseCopy(\$src, \$dst) {
+    \$dir = opendir(\$src);
+    @mkdir(\$dst);
+    while(false !== ( \$file = readdir(\$dir)) ) {
+        if (( \$file != '.' ) && ( \$file != '..' )) {
+            if ( is_dir(\$src . '/' . \$file) ) {
+                recurseCopy(\$src . '/' . \$file, \$dst . '/' . \$file);
+            }
+            else {
+                copy(\$src . '/' . \$file, \$dst . '/' . \$file);
+            }
+        }
+    }
+    closedir(\$dir);
+}
+
 try {
     Phar::mapPhar('install.phar');
 } catch(\Exception \$e) {
     echo 'Произошла ошибка при запуске инсталлятора. Убедитесь, что файл был загружен в бинарном режиме. Если ошибка не устранена, обратитесь в СЗ.';
+}
+
+if (!file_exists('./resources')) {
+    recurseCopy('phar://install.phar/install/resources', './resources');
 }
 
 if (count(\$_GET)) {
@@ -158,7 +186,6 @@ EOF;
         $finder = new Finder();
         $finder->files()
             ->notName('composer.json')
-            ->exclude('resources')
             ->in(dirname(CMS_DIR) . '/install');
 
         $progress = $this->startProgressBar($output, $finder->count());
@@ -235,7 +262,9 @@ EOF;
         $localPath = strtr(str_replace(dirname(CMS_DIR) . DIRECTORY_SEPARATOR, '', $file->getRealPath()), '\\', '/');
 
         $content = file_get_contents($file);
-        $content = $this->stripWhitespace($content);
+        if ($file->getExtension() === 'php') {
+            $content = $this->stripWhitespace($content);
+        }
 
 
         $progress->setMessage('Packing "' . $localPath . '"');

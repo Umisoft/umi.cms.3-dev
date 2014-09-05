@@ -119,8 +119,7 @@ EOF;
 
         $this->activateLicense($toolkit, $config);
 
-        unlink (INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . $_SESSION['configFileName']);
-        unlink (INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'install.phar.php');
+        $this->installer->removeInstaller();
 
         rename(INSTALL_ROOT_DIR . '/.htaccess.dist', INSTALL_ROOT_DIR . '/.htaccess');
 
