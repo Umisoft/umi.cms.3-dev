@@ -25,6 +25,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use umicms\install\installer\Rule;
 
+session_start();
+
 define('INSTALL_ROOT_DIR', getcwd());
 define('CMS_CORE_PHAR', INSTALL_ROOT_DIR . '/umicms.phar');
 define('CMS_CORE_PHP', INSTALL_ROOT_DIR . '/configuration/core.php');
@@ -61,13 +63,7 @@ try {
 
 mb_internal_encoding("utf8");
 
-session_start();
-
-if (!isset($_SESSION['configFileName'])) {
-    $_SESSION['configFileName'] = './config-' . time();
-}
-
-$installer = new Installer($_SESSION['configFileName']);
+$installer = new Installer();
 
 $registry = new InstallCommandRegistry();
 $registry->add(new CheckLicense($installer, $request->query->get('licenseKey')), 'checkLicense');

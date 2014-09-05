@@ -32,11 +32,6 @@ class Installer
     ];
 
     /**
-     * Месторасположения конфига.
-     * @var string $config
-     */
-    private $config;
-    /**
      * @var string $updateLink сервер обновлений
      */
     private $updateLink = 'aHR0cDovL3VwZGF0ZXMudW1pLWNtcy5ydS91cGRhdGVzZXJ2ZXIzLw';
@@ -51,15 +46,12 @@ class Installer
 
     /**
      * Конструктор.
-     * @param string $config
-     * @throws RuntimeException в случае, если запись в директорию запрещена
      */
-    public function __construct($config = './config')
+    public function __construct()
     {
-        if (!file_exists($config)) {
-            touch($config);
+        if (!isset($_SESSION['installConfig'])) {
+            $_SESSION['installConfig'] = [];
         }
-        $this->config = realpath($config);
     }
 
     /**
@@ -119,10 +111,7 @@ class Installer
      */
     public function saveConfig(array $param)
     {
-        if (file_exists($this->config) && !is_writable($this->config)) {
-            throw new RuntimeException("Файл '{$this->config}' запрещён для записи");
-        }
-        file_put_contents($this->config, serialize($param));
+        $_SESSION['installConfig'] = $param;
     }
 
     /**
@@ -132,14 +121,7 @@ class Installer
      */
     public function getConfig()
     {
-        if (file_exists($this->config)) {
-            if (!is_readable($this->config)) {
-                throw new RuntimeException("Файл '{$this->config}' запрещён на чтение");
-            }
-            return unserialize(file_get_contents($this->config));
-        } else {
-            throw new RuntimeException("Файл '{$this->config}' не существует");
-        }
+        return (isset($_SESSION['installConfig'])) ? $_SESSION['installConfig'] : [];
     }
 
     /**
@@ -238,7 +220,6 @@ class Installer
      */
     public function removeInstaller()
     {
-        unlink(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . $_SESSION['configFileName']);
         unlink(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'install.phar.php');
         $this->removeDir(INSTALL_ROOT_DIR . DIRECTORY_SEPARATOR . 'resources');
         if (file_exists(INSTALL_ROOT_DIR . '/' . 'errors.txt')) {
