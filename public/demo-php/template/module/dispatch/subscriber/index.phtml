@@ -1,0 +1,23 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umi\form\FormEntityView $form
+ * @var bool $authenticated
+ */
+?>
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
+    <?=$page->contents?>
+
+    <?php $errors = isset($errors) ? $errors : null ?>
+    <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>
+    <?php if ($authenticated) : ?>
+        Вы зарегистрированный пользователь
+    <?php else : ?>
+
+
+    <?php endif; ?>
+
+
+</div>
