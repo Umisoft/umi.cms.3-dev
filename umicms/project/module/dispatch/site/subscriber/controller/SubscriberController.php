@@ -12,6 +12,7 @@ namespace umicms\project\module\dispatch\site\subscriber\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umicms\project\module\dispatch\model\object\BaseSubscriber;
 use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\DispatchModule;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -28,6 +29,11 @@ class SubscriberController extends BaseSitePageController
      * @var DispatchModule $module модуль "Рассылки"
      */
     protected $module;
+
+    /**
+     * @var Subscriber $subscriber подписчик
+     */
+    protected $subscriber;
 
     /**
      * Конструктор.
@@ -51,6 +57,9 @@ class SubscriberController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $type = $this->getRouteVar('type', Subscriber::TYPE_NAME);
+        $this->subscriber = $this->module->subscriber()->add($type);
+
         return $this->module->subscriber()->getForm(Subscriber::FORM_SUBSCRIBE_SITE, Subscriber::TYPE_NAME);
     }
 
@@ -59,30 +68,23 @@ class SubscriberController extends BaseSitePageController
      */
     protected function processForm(IForm $form)
     {
-        if ($this->module->isAuthenticated()) {
-        }
-
         /**
          * @var IFormElement $emailInput
          */
         $emailInput = $form->get(Subscriber::FIELD_EMAIL);
+        $this->module->subscribe($emailInput->getValue(), $this->subscriber);
+        $this->commit();
 
-        if ($emailInput) {
-            $this->errors[] = $emailInput->getValue();
-            return null;
+        //$this->errors[] = $this->translate('Error subscribe');
 
-        }
-
-        $this->errors[] = $this->translate('Invalid login or password');
-
-        return null;
+        return $this->buildRedirectResponse();
     }
 
     /**
      * Дополняет результат параметрами для шаблонизации.
      *
      * @templateParam bool $authenticated флаг, указывающий на то, авторизован пользователь или нет
-     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница авторизаци
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница подписки
      *
      * @return array
      */

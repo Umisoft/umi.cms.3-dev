@@ -11,36 +11,41 @@
 namespace umicms\project\module\dispatch\site\subscriber\widget;
 
 use umicms\hmvc\view\CmsView;
-use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\hmvc\widget\BaseFormWidget;
+use umicms\project\module\dispatch\model\DispatchModule;
+use umicms\project\module\dispatch\model\object\Subscriber;
 
 /**
  * Виджет вывода выпуска.
  */
-class DispatchSubscriberWidget extends BaseCmsWidget
+class DispatchSubscriberWidget extends BaseFormWidget
 {
+
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'form';
 
     /**
-     * Формирует результат работы виджета.
-     *
-     * Для шаблонизации доступны следущие параметры:
-     * @templateParam umi\form\FormEntityView $form представление формы подписки
-     *
-     * @return CmsView
+     * @var DispatchModule $module модуль "Подписчики"
      */
-    public function __invoke()
-    {
-        $form = $this->getComponent()->getForm('subscriber');
-        $form->setAction($this->getUrl('subscriber'));
+    protected $module;
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $form->getView()
-            ]
-        );
+    /**
+     * Конструктор.
+     * @param DispatchModule $module модуль "Подписчики"
+     */
+    public function __construct(DispatchModule $module)
+    {
+        $this->module = $module;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getForm()
+    {
+        return $this->module->subscriber()->getForm(Subscriber::FORM_SUBSCRIBE_SITE, Subscriber::TYPE_NAME)
+            ->setAction($this->getUrl('subscriber'));
     }
 }

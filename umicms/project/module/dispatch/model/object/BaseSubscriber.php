@@ -22,7 +22,7 @@ class BaseSubscriber extends CmsObject
     /**
      * Имя поля для хранения E-mail'a
      */
-    const FIELD_EMAIL = 'email_subscribe';
+    const FIELD_EMAIL = 'email';
 	
 	 /**
      * Имя поля для хранения имени подписчика

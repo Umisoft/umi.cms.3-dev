@@ -1,8 +1,10 @@
 <?php
 
 use umi\filter\IFilterFactory;
+use umi\validation\IValidatorFactory;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umicms\project\module\dispatch\model\object\BaseSubscriber;
 
 return [
 
@@ -16,11 +18,16 @@ return [
     ],
 
     'elements' => [
-        'email_subscribe' => [
+        BaseSubscriber::FIELD_EMAIL => [
             'type' => Text::TYPE_NAME,
-            'label' => 'E-mail',
+            'label' => BaseSubscriber::FIELD_EMAIL,
             'options' => [
                 'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ],
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => [],
+                    IValidatorFactory::TYPE_EMAIL => []
                 ]
             ]
         ],
