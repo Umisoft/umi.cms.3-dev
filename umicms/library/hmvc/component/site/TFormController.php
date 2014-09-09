@@ -105,7 +105,7 @@ trait TFormController
         }
 
         $response = $this->buildResponse();
-        if (!$formValid) {
+        if (!$formValid || count($this->errors)) {
             $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
