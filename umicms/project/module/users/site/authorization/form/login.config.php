@@ -13,7 +13,9 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.authorization'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.authorization' => 'project.site.users.authorization'
         ],
     ],
     'attributes' => [

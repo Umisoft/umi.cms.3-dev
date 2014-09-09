@@ -61,6 +61,8 @@ define(['App', 'moment'], function(UMI, moment) {
                     }.property()
                 },
 
+                isLazyDropdown: true,
+
                 getBackupList: function() {
                     var backupList;
                     var self = this;
@@ -140,9 +142,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         }
                     });
 
-                    backupList = Ember.ArrayProxy.create({
+                    var ArrayProxy = Ember.ArrayProxy.extend({
+                        isLoaded: function() {
+                            return this.get('content.isFulfilled');
+                        }.property('content.isFulfilled')
+                    });
+
+                    backupList = ArrayProxy.create({
                         content: promiseArray
                     });
+
                     return backupList;
                 },
 
@@ -181,16 +190,16 @@ define(['App', 'moment'], function(UMI, moment) {
                                 // При обновлении свойств не вызываются методы desialize для атрибутов модели
                                 self.get('controller.store').modelFor(object.constructor.typeKey)
                                     .eachTransformedAttribute(function(name, type) {
-                                    var backupName = Ember.get(data, 'result.getBackup.' + name);
+                                    var property = Ember.get(data, 'result.getBackup.' + name);
 
-                                    if (type === 'CustomDateTime' && Ember.typeOf(backupName) === 'object') {
-                                        Ember.set(backupName, 'date',
-                                            moment(backupName.date).format('DD.MM.YYYY h:mm:ss'));
+                                    if (type === 'CustomDateTime' && Ember.typeOf(property) === 'object') {
+                                        Ember.set(property, 'date',
+                                            moment(property.date).format('DD.MM.YYYY h:mm:ss'));
 
-                                        backupName = JSON.stringify(backupName);
+                                        Ember.set(data, 'result.getBackup.' + name, JSON.stringify(property));
                                     }
                                 });
-                                object.setProperties(data.result.getBackup);
+                                object.setProperties(Ember.get(data, 'result.getBackup'));
                                 setCurrent();
                             });
                         }
@@ -198,24 +207,35 @@ define(['App', 'moment'], function(UMI, moment) {
                 },
 
                 didInsertElement: function() {
-                    var el = this.$();
+                    var self = this;
+                    var $el = this.$();
                     var scroll;
-                    var scrollElement = el.find('.s-scroll-wrap');
+
+                    var scrollElement = $el.find('.s-scroll-wrap');
                     if (scrollElement.length) {
                         scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
                     }
                     this.set('iScroll', scroll);
-                    var self = this;
-                    self.set('backupList', self.getBackupList());
+
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('backupList', self.getBackupList());
+                            }
+                        });
+                    }
+
                     self.get('controller.object').off('didUpdate');
                     self.get('controller.object').on('didUpdate', function() {
-                        self.set('backupList', self.getBackupList());
+                        Ember.run.once(self, function() {
+                            this.set('backupList', this.getBackupList());
+                        });
                     });
 
-                    self.get('controller').addObserver('object', function() {//TODO: check event
-                        if (self.get('controller.control.name') === 'editForm') {
-                            self.set('backupList', self.getBackupList());
-                        }
+                    self.get('controller').addObserver('object', function() {
+                        isFirstLoad = true;
                     });
                 },
 
@@ -237,6 +257,8 @@ define(['App', 'moment'], function(UMI, moment) {
                     }.property()
                 },
 
+                isLazyDropdown: true,
+
                 formView: Ember.View.extend({
                     tagName: 'form',
 
@@ -257,6 +279,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         var object = contextObject.toJSON({includeId: true});
                         return object;
                     }.property('controller.object'),
+
+                    fieldView: function() {
+                        return UMI.FieldBaseView.extend({
+                            actions: {
+                                submit: function() {
+                                    this.get('parentView').send('submit', this.$());
+                                }
+                            }
+                        });
+                    }.property('object'),
 
                     actions: {
                         submit: function(handler) {
@@ -286,20 +318,38 @@ define(['App', 'moment'], function(UMI, moment) {
                                 data: serializeObject,
                                 contentType: 'application/json; charset=UTF-8'
                             }).then(function(results) {
-                                var result = Ember.get(results, 'result');
-                                var actionName;
-                                for (var key in result) {
-                                    if (result.hasOwnProperty(key)) {
-                                        actionName = key;
-                                        break;
+                                var result = Ember.get(results, 'result') || '';
+                                if (!result) {
+                                    Ember.run.later(self, function() {
+                                        var error = new Error(UMI.i18n.getTranslate('Unknown error') + '.');
+                                        self.get('controller').send('backgroundError', error);
+                                    }, 100);
+                                } else {
+                                    var actionName = '';
+                                    for (var key in result) {
+                                        if (result.hasOwnProperty(key)) {
+                                            actionName = key;
+                                            break;
+                                        }
                                     }
+                                    var data = Ember.get(result, actionName);
+                                    delete data.updated;
+                                    delete data.created;
+                                    store.update(collectionName, data);
+                                    var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
+                                    UMI.notification.create(params);
                                 }
-                                var data = Ember.get(result, actionName);
-                                delete data.updated;
-                                delete data.created;
-                                store.update(collectionName, data);
                             });
                         }
+                    },
+
+                    didInsertElement: function() {
+                        var self = this;
+                        var $el = self.$();
+                        self.$().on('submit', function() {
+                            self.send('submit', $el.find('.button'));
+                            return false;
+                        });
                     }
                 }),
 
@@ -308,25 +358,42 @@ define(['App', 'moment'], function(UMI, moment) {
                 getForm: function() {
                     var self = this;
                     var meta = self.get('meta');
-                    if (self.get('isDestroying') || self.get('isDestroyed')) {
-                        return;
-                    }
-                    var action = Ember.get(self.get('controller.settings'), 'actions.' + Ember.get(meta, 'behaviour.action') + '.source');
-                    return $.get(action).then(function(results) {
-                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
-                        self.set('form', form);
+
+                    var action = Ember.get(self.get('controller.settings'), 'actions.' +
+                        Ember.get(meta, 'behaviour.action') + '.source');
+                    var promise = $.get(action);
+
+                    var proxy = Ember.ObjectProxy.create({
+                        content: null,
+                        isLoaded: false
                     });
+
+                    promise.then(function(results) {
+                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
+                        form = UMI.FormHelper.fillMeta(form, self.get('controller.object'));
+                        proxy.set('content', form);
+                        proxy.set('isLoaded', true);
+                    });
+
+                    return proxy;
                 },
 
                 didInsertElement: function() {
                     var self = this;
+                    var $el = this.$();
 
-                    self.set('form', self.getForm());
-
-                    self.addObserver('controller.object', function() {//TODO: check event
-                        Ember.run.next(self, function() {
-                            this.set('form', self.getForm());
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('form', self.getForm());
+                            }
                         });
+                    }
+
+                    self.addObserver('controller.object', function() {
+                        isFirstLoad = true;
                     });
                 },
 

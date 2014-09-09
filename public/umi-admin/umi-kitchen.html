@@ -106,9 +106,9 @@
                 </ul>
                 <p></p>
                 <ul class="button-group">
-                    <li><a href="#" class="button small">Button small 1</a></li>
-                    <li><a href="#" class="button small">Button small 2</a></li>
-                    <li><a href="#" class="button small">Button small 3</a></li>
+                    <li><a href="#" class="button small secondary">Button small 1</a></li>
+                    <li><a href="#" class="button small secondary">Button small 2</a></li>
+                    <li><a href="#" class="button small secondary">Button small 3</a></li>
                 </ul>
                 <p></p>
 
@@ -214,6 +214,7 @@
                 <p>По умолчанию клик на элемент 'a' в списке закрывает список. С помощью опций можно настроить данное поведение
                     либо совсем отключить его, задав в опциях <code>closeAfterClickOnElement: false;</code>.</p>
                 <a href="#" data-dropdown="umi-drop-6" class="button large dropdown">Dropdown Button</a>
+                <a href="#" data-dropdown="umi-drop-6" class="button large dropdown" data-options="closeAfterClickOnElement: false;">Dropdown Button</a>
                 <ul id="umi-drop-6" data-dropdown-content class="f-dropdown">
                     <li><a href="#">This is a link</a></li>
                     <li><a href="#">This is another</a></li>
@@ -245,6 +246,8 @@
 
                 <a href="#" class="button large split">Split Button<span data-dropdown="umi-drop-2" data-options="replaceTarget: .button;"></span></a>
 
+                <a href="#" class="button secondary split">Split secondary Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false;align: right;"></span></a>
+
                 <a href="#" class="button split">Split Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false; align: right;"></span></a>
 
                 <a href="#" class="button split white square"><i class="icon icon-viewOnSite"></i> <span
@@ -265,17 +268,6 @@
                 </ul>
                 <p></p>
 
-                <h3 data-magellan-destination="dropdown">Dropdown [Выпадающий список].</h3>
-                <div>
-                    <a href="#" class="button" data-dropdown="" data-options="selectorById: false;">Link Dropdown</a>
-                    <ul class="medium f-dropdown" data-dropdown-content>
-                        <li><a href="#">This is a link</a></li>
-                        <li><a href="#">This is another</a></li>
-                        <li><a href="#">Yet another</a></li>
-                    </ul>
-                </div>
-
-                <p></p>
 
                 <h3 data-magellan-destination="forms">Forms [Формы].</h3>
 

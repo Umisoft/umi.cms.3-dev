@@ -16,6 +16,6 @@ return [
         'admin' => 'news.rsssubject'
     ],
     'dictionaries' => [
-        'collection.rssScenarioSubject', 'collection'
+        'collection.rssScenarioSubject' => 'collection.rssScenarioSubject', 'collection' => 'collection'
     ],
 ];

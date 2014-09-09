@@ -26,7 +26,7 @@ define(
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
-                resolveTemplate: function(parsedName){
+                resolveTemplate: function(parsedName) {
                     parsedName.fullNameWithoutType = 'UMI/' + parsedName.fullNameWithoutType;
                     return this._super(parsedName);
                 }
@@ -58,7 +58,130 @@ define(
          * @type {{defaultProperties: string[]}}
          */
         UMI.OrmSettings = {
-            defaultProperties: ['id', 'guid', 'type', 'version', 'mpath', 'slug', 'uri', 'h1', 'meta']
+            defaultProperties: ['id', 'guid', 'type', 'version', 'mpath', 'slug', 'uri', 'h1', 'meta', 'links']
+        };
+
+        /**
+         * @class OrmHelper
+         */
+        UMI.OrmHelper = {
+            /**
+             * @method buildRequest
+             */
+            buildRequest: function(object, fields) {
+                var store = object.get('store');
+                var collectionName = object.constructor.typeKey;
+                var model = store.modelFor(collectionName);
+
+                var nativeProperties = this.getNativeProperties(model, fields);
+                var belongsToProperties = this.getBelongsToProperties(model, fields);
+
+                var query = {};
+
+                query.fields = nativeProperties;
+                query['with'] = belongsToProperties;
+
+                return query;
+            },
+
+            getNativeProperties: function(model, fields) {
+                var nativeProperties = [];
+
+                model.eachAttribute(function(name) {
+                    if (fields.contains(name)) {
+                        nativeProperties.push(name);
+                    }
+                });
+
+                nativeProperties = nativeProperties.join(',');
+                return nativeProperties;
+            },
+
+            getBelongsToProperties: function(model, fields) {
+                var fieldsList = {};
+
+                model.eachRelationship(function(name, relatedModel) {
+                    var i;
+                    var dataSource;
+
+                    if (relatedModel.kind === 'belongsTo') {
+                        for (i = 0; i < fields.length; i++) {
+                            dataSource = fields[i];
+
+                            if (dataSource === name) {
+                                fieldsList[name] = fieldsList[name] || [];
+                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                                fieldsList[name] = fieldsList[name] || [];
+                                fieldsList[name].push(dataSource.slice(name.length + 1));
+                            }
+                        }
+
+                        if (fieldsList[name]) {//TODO: parametrize properties list
+                            fieldsList[name] = fieldsList[name].join(',') || 'displayName';
+                        }
+                    }
+                });
+
+                return fieldsList;
+            },
+
+            getHasManyProperties: function(model, fields) {
+                var fieldsList = {};
+
+                model.eachRelationship(function(name, relatedModel) {
+                    var i;
+                    var dataSource;
+
+                    if (relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany') {
+                        for (i = 0; i < fields.length; i++) {
+                            dataSource = fields[i];
+
+                            if (dataSource === name) {
+                                fieldsList[name] = fieldsList[name] || [];
+                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                                fieldsList[name] = fieldsList[name] || [];
+                                fieldsList[name].push(dataSource.slice(name.length + 1));
+                            }
+                        }
+
+                        if (fieldsList[name]) {//TODO: parametrize properties list
+                            fieldsList[name] = fieldsList[name].join(',') || 'displayName';
+                        }
+                    }
+                });
+
+                return fieldsList;
+            },
+
+            getRelationProperties: function(model, fields) {
+                var fieldsList = {};
+
+                model.eachRelationship(function(name, relatedModel) {
+                    var i;
+                    var dataSource;
+                    var collectionName = Ember.get(relatedModel, 'type.typeKey');
+
+                    if (relatedModel.kind === 'belongsTo' || relatedModel.kind === 'hasMany' ||
+                        relatedModel.kind === 'manyToMany') {
+                        for (i = 0; i < fields.length; i++) {
+                            dataSource = fields[i];
+
+                            if (dataSource === name) {
+                                fieldsList[collectionName] = fieldsList[collectionName] || [];
+                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                                fieldsList[collectionName] = fieldsList[collectionName] || [];
+                                fieldsList[collectionName].push(dataSource.slice(name.length + 1));
+                            }
+                        }
+
+                        if (fieldsList[collectionName]) {//TODO: parametrize properties list
+                            fieldsList[collectionName] = fieldsList[collectionName].join(',') || 'displayName';
+                        }
+                    }
+                });
+
+                return fieldsList;
+            }
         };
 
         /**
@@ -163,15 +286,7 @@ define(
                 var payloadMeta = Ember.get(payload, 'result.meta');
 
                 if (payloadMeta) {
-                    var meta = store.metadataFor(type) || {};
-
-                    for (var property in payloadMeta) {
-                        if (payloadMeta.hasOwnProperty(property)) {
-                            meta[property] = payloadMeta[property];
-                        }
-                    }
-
-                    store.metaForType(type, meta);
+                    store.metaForType(type, payloadMeta);
                     delete payload.result.meta;
                 }
             },
@@ -293,7 +408,9 @@ define(
                 }
 
                 function _findQuery(adapter, store, type, query, recordArray) {
-                    var promise = adapter.findQuery(store, type, query, recordArray), serializer = serializerForAdapter(adapter, type), label = "DS: Handle Adapter#findQuery of " + type;
+                    var promise = adapter.findQuery(store, type, query, recordArray);
+                    var serializer = serializerForAdapter(adapter, type);
+                    var label = 'DS: Handle Adapter#findQuery of ' + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
                         var key;
@@ -381,7 +498,6 @@ define(
         /**
          * Приводит приходящий объект date:{} к нужному формату даты
          * TODO Смена формата в зависимости от языка системы
-         * TODO Почему не прилылать в простом timeStamp
          * DS.attr('date')
          * @type {*|void|Object}
          */

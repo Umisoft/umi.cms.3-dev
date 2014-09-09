@@ -18,7 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.blogRssImportScenario', 'collection', 'form'
+            'collection.blogRssImportScenario' => 'collection.blogRssImportScenario', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 

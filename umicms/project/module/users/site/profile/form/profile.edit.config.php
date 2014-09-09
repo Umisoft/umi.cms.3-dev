@@ -1,6 +1,5 @@
 <?php
 
-use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
@@ -10,7 +9,10 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.profile', 'form'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.profile' => 'project.site.users.profile',
+            'form' => 'form'
         ],
     ],
     'attributes' => [

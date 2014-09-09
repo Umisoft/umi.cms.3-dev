@@ -53,7 +53,7 @@ return array_replace_recursive(
             ]
         ],
         'dictionaries' => [
-            'collection.blogPost', 'collection'
+            'collection.blogPost' => 'collection.blogPost', 'collection' => 'collection'
         ],
 
         BlogPostCollection::DEFAULT_TABLE_FILTER_FIELDS => [

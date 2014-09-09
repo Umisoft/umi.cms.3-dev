@@ -15,6 +15,6 @@ return [
     'class' => 'umicms\project\module\search\model\collection\SearchIndexCollection',
 
     'dictionaries' => [
-        'collection.searchIndex', 'collection'
+        'collection.searchIndex' => 'collection.searchIndex', 'collection' => 'collection'
     ],
 ];
