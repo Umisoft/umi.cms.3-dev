@@ -14,7 +14,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 
 /**
  * Виджет вывода поста блога.
@@ -26,7 +26,7 @@ class PostWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $blogPost GUID поста блога или пост
+     * @var string|BaseBlogPost $blogPost GUID поста блога или пост
      */
     public $blogPost;
 
@@ -48,7 +48,7 @@ class PostWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      *
      * Для шаблонизации доступны следущие параметры:
-     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost пост блога
+     * @templateParam umicms\project\module\blog\model\object\BaseBlogPost $blogPost пост блога
      *
      * @throws InvalidArgumentException
      * @return CmsView
@@ -59,13 +59,13 @@ class PostWidget extends BaseCmsWidget
             $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BaseBlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BlogPost::className()
+                        'class' => BaseBlogPost::className()
                     ]
                 )
             );

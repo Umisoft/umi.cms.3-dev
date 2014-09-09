@@ -9,12 +9,14 @@
  */
 
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\GuestBlogComment;
 
 return [
         'en-US' => [
             'collection:blogComment:displayName' => 'Blog comments',
 
             BlogComment::FIELD_AUTHOR => 'Author',
+            GuestBlogComment::FIELD_AUTHOR => 'Author',
             BlogComment::FIELD_POST => 'Post',
             BlogComment::FIELD_PUBLISH_TIME => 'Publish time',
             BlogComment::FIELD_STATUS => 'Status',
@@ -25,6 +27,7 @@ return [
             'collection:blogComment:displayName' => 'Комментарии блога',
 
             BlogComment::FIELD_AUTHOR => 'Автор',
+            GuestBlogComment::FIELD_AUTHOR => 'Автор',
             BlogComment::FIELD_POST => 'Пост',
             BlogComment::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogComment::FIELD_STATUS => 'Статус публикации',

@@ -9,6 +9,7 @@
  */
 
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\GuestBlogPost;
 
 return [
         'en-US' => [
@@ -18,6 +19,7 @@ return [
             BlogPost::FIELD_CATEGORY => 'Category',
             BlogPost::FIELD_TAGS => 'Tags',
             BlogPost::FIELD_AUTHOR => 'Author',
+            GuestBlogPost::FIELD_AUTHOR => 'Author',
             BlogPost::FIELD_PUBLISH_TIME => 'Publish time',
             BlogPost::FIELD_SOURCE => 'Source',
             BlogPost::FIELD_STATUS => 'Status',
@@ -34,6 +36,7 @@ return [
             BlogPost::FIELD_CATEGORY => 'Категория',
             BlogPost::FIELD_TAGS => 'Теги',
             BlogPost::FIELD_AUTHOR => 'Автор',
+            GuestBlogPost::FIELD_AUTHOR => 'Автор',
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
             BlogPost::FIELD_SOURCE => 'Источник публикации',
             BlogPost::FIELD_STATUS => 'Статус публикации',

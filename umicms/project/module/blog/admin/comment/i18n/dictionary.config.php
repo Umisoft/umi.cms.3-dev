@@ -14,6 +14,7 @@ return [
         'component:comment:displayName' => 'Comments',
 
         'action:create:comment' => 'Create comment',
+        'action:create:guestComment' => 'Create comment from guest',
 
         'role:editor:displayName' => 'Manage comments'
     ],
@@ -22,6 +23,7 @@ return [
         'component:comment:displayName' => 'Комментарии',
 
         'action:create:comment' => 'Добавить комментарий',
+        'action:create:guestComment' => 'Добавить комментарий от гостя',
 
         'role:editor:displayName' => 'Управление комментариями'
     ]

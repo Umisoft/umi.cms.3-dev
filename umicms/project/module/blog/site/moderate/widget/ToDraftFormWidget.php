@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\moderate\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -78,7 +77,7 @@ class ToDraftFormWidget extends BaseFormWidget
 
         $form = $this->module->post()->getForm(
             BlogPost::FORM_DRAFT_POST,
-            IObjectType::BASE,
+            BlogPost::TYPE,
             $this->blogPost
         );
 

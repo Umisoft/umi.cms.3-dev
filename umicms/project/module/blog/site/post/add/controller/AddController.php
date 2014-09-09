@@ -11,13 +11,14 @@
 namespace umicms\project\module\blog\site\post\add\controller;
 
 use umi\form\IForm;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\object\GuestBlogPost;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер добавления поста
@@ -84,12 +85,18 @@ class AddController extends BaseSitePageController
             );
         }
 
-        $this->blogPost = $this->module->addPost();
+        $typeBlogPost = BlogPost::TYPE;
+        if ($this->module->isGuestAuthor()) {
+            $typeBlogPost = GuestBlogPost::TYPE;
+        }
+        $this->blogPost = $this->module->addPost($typeBlogPost);
         $this->blogPost->category = $blogCategory;
 
+        $this->blogPost->setStatus($this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION));
+
         return $this->module->post()->getForm(
-            BlogPost::FORM_ADD_POST,
-            IObjectType::BASE,
+            $this->module->isGuestAuthor() ? GuestBlogPost::FORM_ADD_POST : BlogPost::FORM_ADD_POST,
+            $typeBlogPost,
             $this->blogPost
         );
     }

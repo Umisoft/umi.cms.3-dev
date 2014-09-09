@@ -6,7 +6,13 @@
             {{ blogPost.publishTime.format('d.m.Y | H:i') }}
         </time>
         {% endif %}
-        {% if (blogPost.author) %}{{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>{% endif %}
+
+        {% if blogPost.author.getPageUrl() %}
+            {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {% else %}
+            {{ translate('Author') }}: {{ blogPost.authorGuest }}
+        {% endif %}
+
         {{ widget('blog.post.edit.editLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
     </p>
 
@@ -15,6 +21,8 @@
     <a href="{{ blogPost.getPageUrl() }}">{{ translate('ReadMore') }}</a>
 
     <div class="btn-toolbar">
-        {{ widget('blog.post.toDraftForm', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+        {% if blogPost.author.getPageUrl() %}
+            {{ widget('blog.post.toDraftForm', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+        {% endif %}
     </div>
 </div>

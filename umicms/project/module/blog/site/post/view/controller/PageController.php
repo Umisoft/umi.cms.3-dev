@@ -12,7 +12,7 @@ namespace umicms\project\module\blog\site\post\view\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 use umicms\hmvc\component\site\SitePageController;
 
 /**
@@ -24,13 +24,13 @@ class PageController extends SitePageController
      * Возвращает хлебные крошки для текущего элемента.
      * @param ICmsPage $page
      * @throws InvalidArgumentException в случае, если не удалось получить хлебные крошки
-     * @return BlogPost[]
+     * @return BaseBlogPost[]
      */
     protected function getNavigationAncestry(ICmsPage $page)
     {
-        if (!$page instanceof BlogPost) {
+        if (!$page instanceof BaseBlogPost) {
             throw new InvalidArgumentException($this->translate(
-                'Cannot get navigation ancestry. Page should be instance of BlogPost.'
+                'Cannot get navigation ancestry. Page should be instance of BaseBlogPost.'
             ));
         }
 
