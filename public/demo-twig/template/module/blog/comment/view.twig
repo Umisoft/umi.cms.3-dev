@@ -1,6 +1,6 @@
 <div class="media-body">
     {% if (blogComment.status.guid == constant('GUID_UNPUBLISHED', blogComment.status)) %}
-        {{ translate('Comment has been unpublish.') }}
+        {{ translate('Comment has been unpublished.') }}
     {% else %}
         <h1>{{ blogComment.displayName }}</h1>
         <p class="blog-post-meta">

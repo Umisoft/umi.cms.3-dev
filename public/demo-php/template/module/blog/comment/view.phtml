@@ -8,7 +8,7 @@ use umicms\project\module\blog\model\object\CommentStatus;
 ?>
 <div class="media-body">
     <?php if ($blogComment->status->guid == CommentStatus::GUID_UNPUBLISHED) : ?>
-        <?= $this->translate('Comment has been unpublish.') ?>
+        <?= $this->translate('Comment has been unpublished.') ?>
     <?php else : ?>
         <h1><?= $blogComment->displayName ?></h1>
         <p class="blog-post-meta">

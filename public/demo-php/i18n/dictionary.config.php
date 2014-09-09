@@ -63,7 +63,7 @@ return [
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
             'Edit author profile' => 'Edit author profile',
-            'Comment has been unpublish.' => 'Comment has been unpublish.',
+            'Comment has been unpublished.' => 'Comment has been unpublished.',
             'Add comment' => 'Add comment',
             'All comments' => 'All comments',
             'All posts' => 'All posts'
@@ -80,7 +80,7 @@ return [
             'Post has been saved.' => 'Пост сохранен.',
             'Profile has been saved.' => 'Профиль сохранен.',
             'Edit author profile' => 'Редактировать автора',
-            'Comment has been unpublish.' => 'Комментарий был снят с публикации',
+            'Comment has been unpublished.' => 'Комментарий был снят с публикации',
             'Add comment' => 'Оставить комментарий',
             'All comments' => 'Комментариев',
             'All posts' => 'Постов'

@@ -30,7 +30,7 @@ class GuestBlogComment extends BlogComment
 
     /**
      * Изменяет автора комментария.
-     * @param BlogAuthor|null $value автор
+     * @param string|null $value автор
      * @return $this
      */
     public function setAuthor($value)
