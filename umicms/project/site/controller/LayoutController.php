@@ -77,6 +77,7 @@ class LayoutController extends BaseCmsController implements IProjectSettingsAwar
         $variables['locales'] = $this->getLocales();
         $variables['projectUrl'] = $this->getProjectUrls();
         $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
+        $variables['url'] = $this->getUrlManager()->getCurrentUrl();
 
         $variables['contents'] = $this->response->getContent();
 

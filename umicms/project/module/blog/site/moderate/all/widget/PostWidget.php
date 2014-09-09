@@ -15,7 +15,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 
 /**
  * Виджет вывода поста, требующего модерации.
@@ -27,7 +27,7 @@ class PostWidget extends BaseCmsWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста требующего модерации
+     * @var string|BaseBlogPost $blogPost пост или GUID поста требующего модерации
      */
     public $blogPost;
 
@@ -49,7 +49,7 @@ class PostWidget extends BaseCmsWidget
      * Формирует результат работы виджета.
      * Для шаблонизации доступны следущие параметры:
      *
-     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost пост блога
+     * @templateParam umicms\project\module\blog\model\object\BaseBlogPost $blogPost пост блога
      *
      * @throws InvalidArgumentException
      * @throws ResourceAccessForbiddenException
@@ -61,13 +61,13 @@ class PostWidget extends BaseCmsWidget
             $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BaseBlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BlogPost::className()
+                        'class' => BaseBlogPost::className()
                     ]
                 )
             );

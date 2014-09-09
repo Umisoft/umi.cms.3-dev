@@ -46,7 +46,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -113,7 +113,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => 'aafb8016-470c-4cca-947c-f999c1ea4b55',
             'displayName' => 'Русский рок',
             'slug' => 'russian-rock',
@@ -180,7 +180,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -247,7 +247,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -314,7 +314,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => 'a402dc52-672a-412d-8a3b-50c4aecbe7be',
             'displayName' => 'Немного истории',
             'slug' => 'little-history',
@@ -381,7 +381,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -448,7 +448,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -515,7 +515,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => 'aafb8016-470c-4cca-947c-f999c1ea4b55',
             'displayName' => 'Русский рок',
             'slug' => 'russian-rock',
@@ -582,7 +582,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => 'a402dc52-672a-412d-8a3b-50c4aecbe7be',
             'displayName' => 'Немного истории',
             'slug' => 'little-history',
@@ -649,7 +649,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',
@@ -716,7 +716,7 @@ return array (
           'meta' => 
           array (
             'collection' => 'blogPost',
-            'type' => 'base',
+            'type' => 'blogPost',
             'guid' => '0045690a-8cca-4c60-a85f-4ad51de7e8d0',
             'displayName' => 'Видеоблог',
             'slug' => 'video-blog',

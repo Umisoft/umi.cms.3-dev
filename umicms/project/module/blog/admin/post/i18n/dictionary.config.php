@@ -13,7 +13,8 @@ return [
     'en-US' => [
         'component:post:displayName' => 'Posts',
 
-        'action:create:base' => 'Create post',
+        'action:create:blogPost' => 'Create post',
+        'action:create:guestBlogPost' => 'Create post from guest',
 
         'role:editor:displayName' => 'Manage posts'
     ],
@@ -21,7 +22,8 @@ return [
     'ru-RU' => [
         'component:post:displayName' => 'Посты',
 
-        'action:create:base' => 'Добавить пост',
+        'action:create:blogPost' => 'Добавить пост',
+        'action:create:guestBlogPost' => 'Добавить пост от гостя',
 
         'role:editor:displayName' => 'Управление постами'
     ]

@@ -18,8 +18,10 @@ use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\GuestBlogPost;
 use umicms\project\module\blog\model\object\PostStatus;
 
 /**
@@ -36,11 +38,12 @@ class BlogPostCollection extends CmsPageCollection
     const HANDLER_MODERATE_OWN = 'moderateOwn';
     const HANDLER_MODERATE_ALL = 'moderateAll';
     const HANDLER_REJECT = 'reject';
+
     /**
      * Возвращает пост по его источнику.
      * @param string $source
      * @throws NonexistentEntityException если пост с указанным источником не существует
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getPostBySource($source)
     {
@@ -50,7 +53,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $post = $selector->getResult()->fetch();
 
-        if (!$post instanceof BlogPost) {
+        if (!$post instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find blog post by source "{source}".',
@@ -68,7 +71,7 @@ class BlogPostCollection extends CmsPageCollection
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
@@ -80,7 +83,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $page = $selector->getResult()->fetch();
 
-        if (!$page instanceof BlogPost) {
+        if (!$page instanceof BaseBlogPost) {
             throw new NonexistentEntityException($this->translate(
                 'Cannot get page by slug "{slug}" from collection "{collection}".',
                 ['slug' => $uri, 'collection' => $this->getName()]
@@ -105,7 +108,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает черновик по GUID.
      * @param string $guid
      * @throws NonexistentEntityException если не удалось получить черновик
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getDraft($guid)
     {
@@ -114,7 +117,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $draft = $selector->getResult()->fetch();
 
-        if (!$draft instanceof BlogPost) {
+        if (!$draft instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find draft by guid "{guid}".',
@@ -130,7 +133,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает черновик по идентификатору.
      * @param int $id
      * @throws NonexistentEntityException если не удалось получить черновик
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getDraftById($id)
     {
@@ -139,7 +142,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $draft = $selector->getResult()->fetch();
 
-        if (!$draft instanceof BlogPost) {
+        if (!$draft instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find draft by id "{id}".',
@@ -157,7 +160,7 @@ class BlogPostCollection extends CmsPageCollection
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getDraftByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
@@ -168,7 +171,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $blogDraft = $selector->getResult()->fetch();
 
-        if (!$blogDraft instanceof BlogPost) {
+        if (!$blogDraft instanceof BaseBlogPost) {
             throw new NonexistentEntityException($this->translate(
                 'Cannot get page by slug "{slug}" from collection "{collection}".',
                 ['slug' => $uri, 'collection' => $this->getName()]
@@ -193,7 +196,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает пост, требующий модерации по GUID
      * @param string $guid
      * @throws NonexistentEntityException если не удалось получить пост требующий модерации
-     * @return null|BlogPost
+     * @return null|BlogPost|GuestBlogPost
      */
     public function getNeedModeratePost($guid)
     {
@@ -202,7 +205,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $moderatePost = $selector->getResult()->fetch();
 
-        if (!$moderatePost instanceof BlogPost) {
+        if (!$moderatePost instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find post for moderation with guid "{guid}".',
@@ -218,7 +221,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает пост, требующий модерации по Id
      * @param int $id
      * @throws NonexistentEntityException если не удалось получить пост требующий модерации
-     * @return null|BlogPost
+     * @return null|BlogPost|GuestBlogPost
      */
     public function getNeedModeratePostById($id)
     {
@@ -227,7 +230,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $moderatePost = $selector->getResult()->fetch();
 
-        if (!$moderatePost instanceof BlogPost) {
+        if (!$moderatePost instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find post for moderation with id "{id}".',
@@ -245,7 +248,7 @@ class BlogPostCollection extends CmsPageCollection
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
-     * @return BlogPost
+     * @return BlogPost|GuestBlogPost
      */
     public function getNeedModeratePostByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
@@ -256,7 +259,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $moderatePost = $selector->getResult()->fetch();
 
-        if (!$moderatePost instanceof BlogPost) {
+        if (!$moderatePost instanceof BaseBlogPost) {
             throw new NonexistentEntityException($this->translate(
                 'Cannot get page by slug "{slug}" from collection "{collection}".',
                 ['slug' => $uri, 'collection' => $this->getName()]
@@ -268,7 +271,7 @@ class BlogPostCollection extends CmsPageCollection
 
     /**
      * Возвращает список отклоненных постов.
-     * @return CmsSelector|BlogPost
+     * @return CmsSelector|BlogPost|GuestBlogPost
      */
     public function getRejectedPosts()
     {
@@ -281,7 +284,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает отклоненный пост по GUID
      * @param string $guid
      * @throws NonexistentEntityException если не удалить получить отклоненный пост
-     * @return null|BlogPost
+     * @return null|BlogPost|GuestBlogPost
      */
     public function getRejectedPost($guid)
     {
@@ -290,7 +293,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $rejectedPost = $selector->getResult()->fetch();
 
-        if (!$rejectedPost instanceof BlogPost) {
+        if (!$rejectedPost instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find rejected post by guid "{guid}".',
@@ -306,7 +309,7 @@ class BlogPostCollection extends CmsPageCollection
      * Возвращает отклоненный пост по Id
      * @param int $id
      * @throws NonexistentEntityException если не удалось получить отклоненный пост
-     * @return null|BlogPost
+     * @return null|BlogPost|GuestBlogPost
      */
     public function getRejectedPostById($id)
     {
@@ -315,7 +318,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $rejectedPost = $selector->getResult()->fetch();
 
-        if (!$rejectedPost instanceof BlogPost) {
+        if (!$rejectedPost instanceof BaseBlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find rejected post by id "{id}".',
@@ -333,7 +336,7 @@ class BlogPostCollection extends CmsPageCollection
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
-     * @return null|BlogPost
+     * @return null|BlogPost|GuestBlogPost
      */
     public function getRejectedPostByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
@@ -344,7 +347,7 @@ class BlogPostCollection extends CmsPageCollection
 
         $rejectedPost = $selector->getResult()->fetch();
 
-        if (!$rejectedPost instanceof BlogPost) {
+        if (!$rejectedPost instanceof BaseBlogPost) {
             throw new NonexistentEntityException($this->translate(
                 'Cannot get page by slug "{slug}" from collection "{collection}".',
                 ['slug' => $uri, 'collection' => $this->getName()]

@@ -67,6 +67,9 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
+            'guest_author' => [
+                'type' => Type::STRING
+            ],
             'comments_count' => [
                 'type' => Type::BIGINT,
                 'options' => [

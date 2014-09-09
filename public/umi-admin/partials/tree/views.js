@@ -96,6 +96,12 @@ define(['App', 'toolbar'], function(UMI) {
                 this.set('iScroll', contentScroll);
                 var self = this;
 
+                //
+                $('html').on('toggled.umi.divider', function() {
+                    setTimeout(function() {
+                        contentScroll.refresh();
+                    }, 100);
+                });
                 // Раскрытие ноды имеющую потомков
                 var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];
