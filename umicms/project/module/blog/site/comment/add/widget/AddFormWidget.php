@@ -13,8 +13,9 @@ namespace umicms\project\module\blog\site\comment\add\widget;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BaseBlogPost;
 use umicms\project\module\blog\model\object\BlogComment;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\GuestBlogComment;
 
 /**
  * Виджет добавления вывода формы добавления комментария.
@@ -30,7 +31,7 @@ class AddFormWidget extends BaseFormWidget
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста
+     * @var string|BaseBlogPost $blogPost пост или GUID поста
      */
     public $blogPost;
     /**
@@ -60,13 +61,13 @@ class AddFormWidget extends BaseFormWidget
             $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BaseBlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BlogPost::className()
+                        'class' => BaseBlogPost::className()
                     ]
                 )
             );
@@ -88,11 +89,18 @@ class AddFormWidget extends BaseFormWidget
             );
         }
 
-        $comment = $this->module->comment()->add(null, BlogComment::TYPE, $this->blogComment);
+        $comment = $this->module->comment()->add(
+            null,
+            $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
+            $this->blogComment
+        );
 
         $comment->post = $this->blogPost;
 
-        $form = $this->module->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
+        $form = $this->module->comment()->getForm(
+            $this->module->isGuestAuthor() ? GuestBlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_COMMENT,
+            $this->module->isGuestAuthor() ? GuestBlogComment::TYPE : BlogComment::TYPE,
+            $comment);
 
         $routeParams = isset($this->blogComment) ? ['parent' => $this->blogComment->getId()] : [];
 

@@ -6,9 +6,13 @@
             {{ blogPost.publishTime.format('d.m.Y | H:i') }}
         </time>
         {% endif %}
-        {% if (blogPost.author) %}
+
+        {% if blogPost.author.getPageUrl() %}
             {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {% else %}
+            {{ translate('Author') }}: {{ blogPost.authorGuest }}
         {% endif %}
+
         {{ widget('blog.moderate.edit.editLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
     </p>
 
@@ -19,6 +23,8 @@
     <div class="btn-toolbar">
         {{ widget('blog.moderate.publishForm', {'blogPost' : blogPost, 'template' : 'publishForm'}) }}
         {{ widget('blog.moderate.rejectForm', {'blogPost' : blogPost, 'template' : 'rejectForm'}) }}
-        {{ widget('blog.moderate.toDraftForm', {'blogPost' : blogPost, 'template' : 'draftForm'}) }}
+        {% if blogPost.author.getPageUrl() %}
+            {{ widget('blog.moderate.toDraftForm', {'blogPost' : blogPost, 'template' : 'draftForm'}) }}
+        {% endif %}
     </div>
 </div>

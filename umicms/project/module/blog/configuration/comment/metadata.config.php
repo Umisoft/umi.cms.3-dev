@@ -11,9 +11,11 @@
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\GuestBlogComment;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
@@ -33,11 +35,15 @@ return array_replace_recursive(
                 'target' => 'blogPost',
                 'mutator' => 'setPost'
             ],
-
             BlogComment::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
                 'target' => 'blogAuthor',
+                'mutator' => 'setAuthor'
+            ],
+            GuestBlogComment::FIELD_AUTHOR => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'guest_author',
                 'mutator' => 'setAuthor'
             ],
             BlogComment::FIELD_CONTENTS => [
@@ -45,8 +51,18 @@ return array_replace_recursive(
                 'columnName' => 'contents',
                 'mutator' => 'setContents',
                 'localizations' => [
-                    'ru-RU' => ['columnName' => 'contents'],
-                    'en-US' => ['columnName' => 'contents']
+                    'ru-RU' => [
+                        'columnName' => 'contents',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'columnName' => 'contents',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
                 ]
             ],
             BlogComment::FIELD_CONTENTS_RAW => [
@@ -89,6 +105,16 @@ return array_replace_recursive(
                     BlogComment::FIELD_CONTENTS_RAW => [],
                     BlogComment::FIELD_PUBLISH_TIME => [],
                     BlogComment::FIELD_STATUS => []
+                ]
+            ],
+            GuestBlogComment::TYPE => [
+                'objectClass' => 'umicms\project\module\blog\model\object\GuestBlogComment',
+                'fields' => [
+                    GuestBlogComment::FIELD_AUTHOR => [],
+                    GuestBlogComment::FIELD_CONTENTS => [],
+                    GuestBlogComment::FIELD_CONTENTS_RAW => [],
+                    GuestBlogComment::FIELD_PUBLISH_TIME => [],
+                    GuestBlogComment::FIELD_STATUS => []
                 ]
             ]
         ]
