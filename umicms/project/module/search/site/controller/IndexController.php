@@ -18,7 +18,7 @@ use umicms\project\module\search\model\SearchModule;
 /**
  * Контроллер вывода страницы поиска.
  */
-class SearchController extends BaseSitePageController
+class IndexController extends BaseSitePageController
 {
     /**
      * @var SearchModule $api модуль "Поиск"

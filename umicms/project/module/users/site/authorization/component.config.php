@@ -19,7 +19,7 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'login' => __NAMESPACE__ . '\controller\LoginController',
+        'index' => __NAMESPACE__ . '\controller\IndexController',
         'logout' => __NAMESPACE__ . '\controller\LogoutController',
     ],
 
@@ -39,7 +39,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:login' => [],
+                'controller:index' => [],
                 'controller:logout' => [],
                 'widget:loginForm' => [],
                 'widget:logoutForm' => [],
@@ -56,10 +56,10 @@ return [
                 'controller' => 'logout'
             ]
         ],
-        'login' => [
+        'index' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => 'login'
+                'controller' => 'index'
             ]
         ]
     ]
