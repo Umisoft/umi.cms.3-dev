@@ -114,7 +114,7 @@
 
                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="footer"/>
                     <p>
-                        <a href="#"><xsl:value-of select="document('translate://project.site/BackToTop')/result"/></a>
+                        <a href="{$anchor}"><xsl:value-of select="document('translate://project.site/BackToTop')/result"/></a>
                     </p>
                 </footer>
 
