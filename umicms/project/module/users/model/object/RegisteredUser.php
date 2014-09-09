@@ -92,10 +92,6 @@ class RegisteredUser extends BaseUser
      * Форма смены пароля
      */
     const FORM_CHANGE_PASSWORD = 'changePassword';
-    /**
-     * Форма авторизации пользователя в административной панели
-     */
-    const FORM_LOGIN_ADMIN = 'loginAdmin';
 
     /**
      * @var string $passwordSalt маска соли для хэширования паролей
@@ -229,14 +225,6 @@ class RegisteredUser extends BaseUser
 
         $result = true;
 
-        if (!strlen(trim($this->rawPassword))) {
-            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
-                [$this->translate('Value is required.')]
-            );
-
-            $result = false;
-        }
-
         /**
          * @var UserCollection $collection
          */
@@ -267,6 +255,27 @@ class RegisteredUser extends BaseUser
         }
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
+     * @return bool
+     */
+    protected function generateDisplayName($localeId = null)
+    {
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $displayName = $this->getValue(self::FIELD_DISPLAY_NAME, $this->getCurrentLocale()) ?: $this->login;
+            $this->setValue(self::FIELD_DISPLAY_NAME, $displayName, $localeId);
+        }
     }
 
 }

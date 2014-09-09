@@ -1,7 +1,10 @@
 <?php
 /**
- * @var umicms\project\module\blog\model\object\BlogPost $blogPost
+ * @var umicms\project\module\blog\model\object\BlogPost|umicms\project\module\blog\model\object\GuestBlogPost $blogPost
  */
+use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogPost;
+
 ?>
 <div class="blog-post">
     <h1><?=$blogPost->displayName?></h1>
@@ -11,7 +14,11 @@
             <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?php if ($blogPost->author instanceof BlogAuthor) : ?>
+            <?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a>
+        <?php else : ?>
+            <?=$this->translate('Author')?>: <?=$blogPost->authorGuest?>
+        <?php endif; ?>
         <?=$this->widget('blog.post.edit.editLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 
@@ -20,6 +27,8 @@
     <a href="<?=$blogPost->getPageUrl()?>"><?=$this->translate('ReadMore')?></a>
 
     <div class="btn-toolbar">
-        <?=$this->widget('blog.post.toDraftForm', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+        <?php if ($blogPost instanceof BlogPost) : ?>
+            <?=$this->widget('blog.post.toDraftForm', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+        <?php endif; ?>
     </div>
 </div>

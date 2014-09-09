@@ -23,7 +23,7 @@ use umicms\project\module\blog\model\object\BlogTag;
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogPost', 'collection', 'form'
+            'collection.blogPost' => 'collection.blogPost', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
     'attributes' => [

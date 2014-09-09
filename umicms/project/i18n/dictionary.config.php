@@ -138,7 +138,7 @@ return [
 
         'en-US' => [
             'en-US' => 'English',
-            'ru-RU' => 'Russian',
+            'ru-RU' => 'Русский',
 
             ICmsObject::FIELD_CREATED => 'Creation date',
             ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
@@ -171,7 +171,7 @@ return [
         ],
 
         'ru-RU' => [
-            'en-US' => 'Английский',
+            'en-US' => 'English',
             'ru-RU' => 'Русский',
 
             ICmsObject::FIELD_CREATED => 'Дата создания',

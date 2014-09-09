@@ -8,10 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\GuestBlogPost;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
@@ -20,6 +23,20 @@ return array_replace_recursive(
             'sourceName' => 'blog_post'
         ],
         'fields' => [
+            BlogPost::FIELD_PAGE_H1 => [
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ]
+                    ]
+                ]
+            ],
             BlogPost::FIELD_PUBLISH_TIME => [
                 'type' => IField::TYPE_DATE_TIME,
                 'columnName' => 'publish_time'
@@ -37,13 +54,38 @@ return array_replace_recursive(
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'announcement',
                 'localizations' => [
-                    'ru-RU' => ['columnName' => 'announcement'],
-                    'en-US' => ['columnName' => 'announcement_en']
+                    'ru-RU' => [
+                        'columnName' => 'announcement',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'columnName' => 'announcement_en',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
                 ]
             ],
             BlogPost::FIELD_SOURCE => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'source'
+            ],
+            BlogPost::FIELD_PAGE_CONTENTS => [
+                'mutator' => 'setContents',
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
+                ]
             ],
             BlogPost::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
@@ -64,6 +106,10 @@ return array_replace_recursive(
                 'columnName' => 'author_id',
                 'target' => 'blogAuthor',
                 'mutator' => 'setAuthor'
+            ],
+            GuestBlogPost::FIELD_AUTHOR => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'guest_author'
             ],
             BlogPost::FIELD_TAGS => [
                 'type' => IField::TYPE_MANY_TO_MANY,
@@ -92,7 +138,7 @@ return array_replace_recursive(
             ],
         ],
         'types' => [
-            'base' => [
+            BlogPost::TYPE => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogPost',
                 'fields' => [
                     BlogPost::FIELD_ANNOUNCEMENT => [],
@@ -106,6 +152,22 @@ return array_replace_recursive(
                     BlogPost::FIELD_COMMENTS => [],
                     BlogPost::FIELD_AUTHOR => [],
                     BlogPost::FIELD_IMAGE => [],
+                ]
+            ],
+            GuestBlogPost::TYPE => [
+                'objectClass' => 'umicms\project\module\blog\model\object\GuestBlogPost',
+                'fields' => [
+                    GuestBlogPost::FIELD_ANNOUNCEMENT => [],
+                    GuestBlogPost::FIELD_SOURCE => [],
+                    GuestBlogPost::FIELD_PAGE_CONTENTS_RAW => [],
+                    GuestBlogPost::FIELD_CATEGORY => [],
+                    GuestBlogPost::FIELD_TAGS => [],
+                    GuestBlogPost::FIELD_PUBLISH_TIME => [],
+                    GuestBlogPost::FIELD_STATUS => [],
+                    GuestBlogPost::FIELD_COMMENTS_COUNT => [],
+                    GuestBlogPost::FIELD_COMMENTS => [],
+                    GuestBlogPost::FIELD_AUTHOR => [],
+                    GuestBlogPost::FIELD_IMAGE => [],
                 ]
             ]
         ]

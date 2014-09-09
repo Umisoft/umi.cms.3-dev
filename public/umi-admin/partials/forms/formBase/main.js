@@ -190,11 +190,13 @@ define(
                 }.property(),
 
                 submitTemplate: function() {
-                    return '<span class="button right" {{action "submit" target="view.parentView"}}>{{view.meta.label}}</span>';
+                    return '<span class="button right" {{action "submit" target="view"}}>{{view.meta.label}}</span>';
                 }.property()
             });
 
-            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {});
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
+                formElementsBinding: 'control.meta.elements'
+            });
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
                 /**

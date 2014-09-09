@@ -202,7 +202,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -352,10 +352,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -443,7 +445,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -772,7 +774,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1307,7 +1309,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1471,10 +1473,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -1870,7 +1874,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2196,7 +2200,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2489,7 +2493,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2692,7 +2696,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2889,7 +2893,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3053,7 +3057,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 17:44:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3078,8 +3082,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -3220,7 +3224,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3375,9 +3379,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -3440,7 +3487,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4041,7 +4088,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4201,9 +4248,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -4266,7 +4356,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -4399,6 +4489,11 @@ return array (
           <td>bool</td>
           <td></td>
           <td>признак необходимости загружать все свойства объектов списка. Список полей для загрузки, занный опциями, при значении true игнорируется</td>
+        </tr><tr>
+          <td>newsItem</td>
+          <td>string|NewsItem</td>
+          <td></td>
+          <td>GUID или новость, список сюжетов которой, необходимо вывести</td>
         </tr></tbody>
               </table>',
       ),
@@ -4421,9 +4516,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -4771,7 +4909,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-20 14:28:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5155,7 +5293,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5310,9 +5448,52 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
@@ -5627,7 +5808,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5819,7 +6000,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -5969,10 +6150,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -6049,7 +6232,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6210,6 +6393,126 @@ return array (
     'meta' => 
     array (
       'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '275244d7-2053-4f14-8137-ae820f8c3fff',
+      'displayName' => 'structure.menu',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+          'displayName' => 'Структура',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'menu',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'structure.menu',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:30";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  37 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
       'type' => 'static.widget',
       'guid' => '280384f3-5b6b-4121-b098-c2eadfff961f',
       'displayName' => 'users.registration.form',
@@ -6264,7 +6567,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6402,7 +6705,7 @@ return array (
       ),
     ),
   ),
-  37 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -6514,7 +6817,7 @@ return array (
       ),
     ),
   ),
-  38 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -6562,7 +6865,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -6664,7 +6967,9 @@ return array (
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница поиска </td></tr><tr>
           <td>string</td>
-          <td>$query</td><td>текущий поисковый запрос </td></tr></tbody>
+          <td>$query</td><td>текущий поисковый запрос </td></tr><tr>
+          <td>string</td>
+          <td>$encodedQuery</td><td>URL-закодированный текущий поисковый запрос </td></tr></tbody>
           </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
           <thead>
             <tr>
@@ -6724,10 +7029,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -6739,7 +7046,7 @@ return array (
       ),
     ),
   ),
-  39 => 
+  40 => 
   array (
     'meta' => 
     array (
@@ -6871,7 +7178,7 @@ return array (
       ),
     ),
   ),
-  40 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -6930,7 +7237,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7080,10 +7387,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -7101,7 +7410,7 @@ return array (
       ),
     ),
   ),
-  41 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -7213,7 +7522,7 @@ return array (
       ),
     ),
   ),
-  42 => 
+  43 => 
   array (
     'meta' => 
     array (
@@ -7325,7 +7634,7 @@ return array (
       ),
     ),
   ),
-  43 => 
+  44 => 
   array (
     'meta' => 
     array (
@@ -7384,7 +7693,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7517,7 +7826,7 @@ return array (
       ),
     ),
   ),
-  44 => 
+  45 => 
   array (
     'meta' => 
     array (
@@ -7587,7 +7896,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -7753,10 +8062,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="BlogPost"></a><h4>BlogPost</h4><p>Пост блога.</p><table class="table">
@@ -7814,14 +8125,16 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
       'templateName' => 
@@ -7831,7 +8144,7 @@ return array (
       ),
     ),
   ),
-  45 => 
+  46 => 
   array (
     'meta' => 
     array (
@@ -7901,7 +8214,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8034,7 +8347,7 @@ return array (
       ),
     ),
   ),
-  46 => 
+  47 => 
   array (
     'meta' => 
     array (
@@ -8093,7 +8406,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8253,13 +8566,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  47 => 
+  48 => 
   array (
     'meta' => 
     array (
@@ -8318,7 +8674,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8456,14 +8812,14 @@ return array (
       ),
     ),
   ),
-  48 => 
+  49 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => '32f0b62d-5f0a-4e1c-bcd6-70e386a79c53',
-      'displayName' => 'Development и Production окружения',
+      'displayName' => 'Разные окружения',
       'branch' => 
       array (
         'meta' => 
@@ -8483,7 +8839,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Development и Production окружения',
+        1 => 'Разные окружения',
       ),
       'created' => 
       array (
@@ -8493,7 +8849,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 03:26:46";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-02 07:32:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8518,20 +8874,20 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'разные окружения',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'В UMI.CMS 3.0 есть разные окружения, сконфигурированные под оптимальные задачи.',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -8541,7 +8897,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Разные окружения',
       ),
       'contents#ru-RU' => 
       array (
@@ -8554,8 +8910,8 @@ return array (
 
 <ul>
 	<li><strong>development окружение </strong>сконфигурировано таким образом, чтобы разработчику сайта было удобнее заниматься отладкой проекта. Используется распакованное ядро, выводится очень подробная информация об ошибках, полностью выключено кэширование шаблонов и браузерное кэширование;</li>
-	<li><strong>console окружение </strong>используется для консольного приложения UMI.CMS и имеет конфигурацию, аналогичную development - окружению;</li>
-	<li><strong>production окружение </strong>сконфигурирована так, чтобы обеспечить максимальную безопасность и производительность&nbsp; сайта. Используется запакованное ядро, выключен подробный вывод всех ошибок, выводится лишь краткая и безопасная информация, полностью включено кэширование.</li>
+	<li><strong>console окружение </strong>используется для консольного приложения UMI.CMS и имеет конфигурацию, аналогичную development окружению;</li>
+	<li><strong>production окружение </strong>сконфигурирована так, чтобы обеспечить максимальную безопасность и производительность сайта. Используется запакованное ядро, выключен подробный вывод всех ошибок, выводится лишь краткая и безопасная информация, полностью включено кэширование.</li>
 </ul>
 
 <p>Вы можете добавить неограниченное количество собственных окружений в конфигурацию.</p>
@@ -8576,7 +8932,7 @@ return array (
 	<li>cacheTemplateEnabled - включено ли кэширование / компиляция шаблонов (актуально для <strong>twig-шаблонизатора</strong>);</li>
 	<li>timezone&nbsp; - временнАя зона сервера;</li>
 	<li>directoryPublic - публичная директория с проектами;</li>
-	<li>directoryRoot - корневая директория сервера</li>
+	<li>directoryRoot - корневая директория сервера.</li>
 </ul>
 
 <p>&nbsp;</p>
@@ -8622,9 +8978,14 @@ return array (
         0 => 'integer',
         1 => 0,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
-  49 => 
+  50 => 
   array (
     'meta' => 
     array (
@@ -8683,7 +9044,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -8838,13 +9199,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  50 => 
+  51 => 
   array (
     'meta' => 
     array (
@@ -8903,7 +9307,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9063,13 +9467,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  51 => 
+  52 => 
   array (
     'meta' => 
     array (
@@ -9181,7 +9628,7 @@ return array (
       ),
     ),
   ),
-  52 => 
+  53 => 
   array (
     'meta' => 
     array (
@@ -9240,7 +9687,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9420,7 +9867,7 @@ return array (
       ),
     ),
   ),
-  53 => 
+  54 => 
   array (
     'meta' => 
     array (
@@ -9490,7 +9937,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9628,7 +10075,7 @@ return array (
       ),
     ),
   ),
-  54 => 
+  55 => 
   array (
     'meta' => 
     array (
@@ -9676,7 +10123,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -9826,10 +10273,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -9847,7 +10296,7 @@ return array (
       ),
     ),
   ),
-  55 => 
+  56 => 
   array (
     'meta' => 
     array (
@@ -9917,7 +10366,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10050,7 +10499,7 @@ return array (
       ),
     ),
   ),
-  56 => 
+  57 => 
   array (
     'meta' => 
     array (
@@ -10216,7 +10665,7 @@ return array (
       ),
     ),
   ),
-  57 => 
+  58 => 
   array (
     'meta' => 
     array (
@@ -10275,7 +10724,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10413,7 +10862,7 @@ return array (
       ),
     ),
   ),
-  58 => 
+  59 => 
   array (
     'meta' => 
     array (
@@ -10483,7 +10932,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10616,7 +11065,7 @@ return array (
       ),
     ),
   ),
-  59 => 
+  60 => 
   array (
     'meta' => 
     array (
@@ -10686,7 +11135,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -10841,13 +11290,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  60 => 
+  61 => 
   array (
     'meta' => 
     array (
@@ -10917,7 +11409,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11101,19 +11593,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  61 => 
+  62 => 
   array (
     'meta' => 
     array (
@@ -11282,7 +11776,7 @@ return array (
       ),
     ),
   ),
-  62 => 
+  63 => 
   array (
     'meta' => 
     array (
@@ -11352,7 +11846,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11485,7 +11979,7 @@ return array (
       ),
     ),
   ),
-  63 => 
+  64 => 
   array (
     'meta' => 
     array (
@@ -11555,7 +12049,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11705,10 +12199,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -11726,7 +12222,7 @@ return array (
       ),
     ),
   ),
-  64 => 
+  65 => 
   array (
     'meta' => 
     array (
@@ -11796,7 +12292,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -11980,19 +12476,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  65 => 
+  66 => 
   array (
     'meta' => 
     array (
@@ -12170,7 +12668,7 @@ return array (
       ),
     ),
   ),
-  66 => 
+  67 => 
   array (
     'meta' => 
     array (
@@ -12229,7 +12727,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12367,7 +12865,7 @@ return array (
       ),
     ),
   ),
-  67 => 
+  68 => 
   array (
     'meta' => 
     array (
@@ -12468,7 +12966,7 @@ return array (
       ),
     ),
   ),
-  68 => 
+  69 => 
   array (
     'meta' => 
     array (
@@ -12527,7 +13025,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12705,17 +13203,19 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>IObjectSet</td>
           <td>$news</td><td>новости рубрики </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  69 => 
+  70 => 
   array (
     'meta' => 
     array (
@@ -12785,7 +13285,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -12935,10 +13435,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -12956,7 +13458,7 @@ return array (
       ),
     ),
   ),
-  70 => 
+  71 => 
   array (
     'meta' => 
     array (
@@ -13088,7 +13590,7 @@ return array (
       ),
     ),
   ),
-  71 => 
+  72 => 
   array (
     'meta' => 
     array (
@@ -13136,7 +13638,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13296,13 +13798,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  72 => 
+  73 => 
   array (
     'meta' => 
     array (
@@ -13442,7 +13987,7 @@ return array (
       ),
     ),
   ),
-  73 => 
+  74 => 
   array (
     'meta' => 
     array (
@@ -13501,7 +14046,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -13639,7 +14184,7 @@ return array (
       ),
     ),
   ),
-  74 => 
+  75 => 
   array (
     'meta' => 
     array (
@@ -13768,7 +14313,7 @@ return array (
       ),
     ),
   ),
-  75 => 
+  76 => 
   array (
     'meta' => 
     array (
@@ -13869,7 +14414,7 @@ return array (
       ),
     ),
   ),
-  76 => 
+  77 => 
   array (
     'meta' => 
     array (
@@ -13964,7 +14509,7 @@ return array (
       ),
     ),
   ),
-  77 => 
+  78 => 
   array (
     'meta' => 
     array (
@@ -14131,7 +14676,7 @@ return array (
       ),
     ),
   ),
-  78 => 
+  79 => 
   array (
     'meta' => 
     array (
@@ -14201,7 +14746,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14339,7 +14884,7 @@ return array (
       ),
     ),
   ),
-  79 => 
+  80 => 
   array (
     'meta' => 
     array (
@@ -14451,7 +14996,7 @@ return array (
       ),
     ),
   ),
-  80 => 
+  81 => 
   array (
     'meta' => 
     array (
@@ -14591,7 +15136,7 @@ return array (
       ),
     ),
   ),
-  81 => 
+  82 => 
   array (
     'meta' => 
     array (
@@ -14650,7 +15195,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -14800,10 +15345,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -14821,7 +15368,7 @@ return array (
       ),
     ),
   ),
-  82 => 
+  83 => 
   array (
     'meta' => 
     array (
@@ -14933,7 +15480,7 @@ return array (
       ),
     ),
   ),
-  83 => 
+  84 => 
   array (
     'meta' => 
     array (
@@ -14992,7 +15539,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15142,10 +15689,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -15163,7 +15712,7 @@ return array (
       ),
     ),
   ),
-  84 => 
+  85 => 
   array (
     'meta' => 
     array (
@@ -15275,7 +15824,7 @@ return array (
       ),
     ),
   ),
-  85 => 
+  86 => 
   array (
     'meta' => 
     array (
@@ -15486,7 +16035,7 @@ return array (
       ),
     ),
   ),
-  86 => 
+  87 => 
   array (
     'meta' => 
     array (
@@ -15545,7 +16094,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -15683,7 +16232,7 @@ return array (
       ),
     ),
   ),
-  87 => 
+  88 => 
   array (
     'meta' => 
     array (
@@ -15823,7 +16372,7 @@ return array (
       ),
     ),
   ),
-  88 => 
+  89 => 
   array (
     'meta' => 
     array (
@@ -15846,6 +16395,11 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
       array (
         0 => 'relation',
@@ -15857,6 +16411,20 @@ return array (
             'type' => 'registered.supervisor',
             'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
             'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -15907,7 +16475,7 @@ return array (
       ),
     ),
   ),
-  89 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -16019,7 +16587,7 @@ return array (
       ),
     ),
   ),
-  90 => 
+  91 => 
   array (
     'meta' => 
     array (
@@ -16131,7 +16699,7 @@ return array (
       ),
     ),
   ),
-  91 => 
+  92 => 
   array (
     'meta' => 
     array (
@@ -16157,7 +16725,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:45:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16182,8 +16750,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -16262,7 +16830,7 @@ return array (
       ),
     ),
   ),
-  92 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -16321,7 +16889,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -16459,7 +17027,7 @@ return array (
       ),
     ),
   ),
-  93 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -16861,7 +17429,7 @@ return array (
       ),
     ),
   ),
-  94 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -16931,7 +17499,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17095,10 +17663,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -17110,7 +17680,7 @@ return array (
       ),
     ),
   ),
-  95 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -17239,7 +17809,7 @@ return array (
       ),
     ),
   ),
-  96 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -17298,7 +17868,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17436,7 +18006,7 @@ return array (
       ),
     ),
   ),
-  97 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -17495,7 +18065,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17663,21 +18233,23 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>BlogAuthor</td>
           <td>$author</td><td>автор поста </td></tr><tr>
           <td>string</td>
           <td>$contents</td><td>комментарий </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации комментария </td></tr></tbody>
+          <td>CommentStatus</td>
+          <td>$status</td><td>статус публикации комментария </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  98 => 
+  99 => 
   array (
     'meta' => 
     array (
@@ -17725,7 +18297,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -17875,10 +18447,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -17896,7 +18470,7 @@ return array (
       ),
     ),
   ),
-  99 => 
+  100 => 
   array (
     'meta' => 
     array (
@@ -17997,7 +18571,7 @@ return array (
       ),
     ),
   ),
-  100 => 
+  101 => 
   array (
     'meta' => 
     array (
@@ -18067,7 +18641,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18217,10 +18791,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -18238,7 +18814,7 @@ return array (
       ),
     ),
   ),
-  101 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -18308,7 +18884,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18446,7 +19022,7 @@ return array (
       ),
     ),
   ),
-  102 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -18558,7 +19134,7 @@ return array (
       ),
     ),
   ),
-  103 => 
+  104 => 
   array (
     'meta' => 
     array (
@@ -18670,7 +19246,7 @@ return array (
       ),
     ),
   ),
-  104 => 
+  105 => 
   array (
     'meta' => 
     array (
@@ -18729,7 +19305,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18889,7 +19465,127 @@ return array (
       ),
     ),
   ),
-  105 => 
+  106 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '6e203cf5-5178-40f4-be11-1baf6fb95403',
+      'displayName' => 'structure.infoblock',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
+          'displayName' => 'Структура',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'structure',
+        ),
+      ),
+      'slug' => 'infoblock',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'structure.infoblock',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:23:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  107 => 
   array (
     'meta' => 
     array (
@@ -18926,7 +19622,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -18951,8 +19647,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -19044,7 +19740,7 @@ return array (
       ),
     ),
   ),
-  106 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -19081,7 +19777,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:23:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-02 07:32:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19106,8 +19802,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -19189,7 +19885,7 @@ return array (
       ),
     ),
   ),
-  107 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -19301,7 +19997,7 @@ return array (
       ),
     ),
   ),
-  108 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -19441,7 +20137,7 @@ return array (
       ),
     ),
   ),
-  109 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -19511,7 +20207,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19695,19 +20391,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  110 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -19777,7 +20475,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -19941,10 +20639,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -19999,7 +20699,7 @@ return array (
       ),
     ),
   ),
-  111 => 
+  113 => 
   array (
     'meta' => 
     array (
@@ -20139,7 +20839,7 @@ return array (
       ),
     ),
   ),
-  112 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -20198,7 +20898,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20331,7 +21031,7 @@ return array (
       ),
     ),
   ),
-  113 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -20390,7 +21090,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20528,7 +21228,7 @@ return array (
       ),
     ),
   ),
-  114 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -20640,7 +21340,7 @@ return array (
       ),
     ),
   ),
-  115 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -20741,7 +21441,7 @@ return array (
       ),
     ),
   ),
-  116 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -20811,7 +21511,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -20995,19 +21695,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  117 => 
+  119 => 
   array (
     'meta' => 
     array (
@@ -21066,7 +21768,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21204,7 +21906,7 @@ return array (
       ),
     ),
   ),
-  118 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -21382,7 +22084,7 @@ return array (
       ),
     ),
   ),
-  119 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -21494,7 +22196,7 @@ return array (
       ),
     ),
   ),
-  120 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -21634,7 +22336,7 @@ return array (
       ),
     ),
   ),
-  121 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -21693,7 +22395,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -21861,10 +22563,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -21919,7 +22623,7 @@ return array (
       ),
     ),
   ),
-  122 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -21989,7 +22693,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22127,7 +22831,7 @@ return array (
       ),
     ),
   ),
-  123 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -22259,7 +22963,7 @@ return array (
       ),
     ),
   ),
-  124 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -22318,7 +23022,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22468,10 +23172,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -22489,7 +23195,7 @@ return array (
       ),
     ),
   ),
-  125 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -22559,7 +23265,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -22723,10 +23429,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -22738,7 +23446,7 @@ return array (
       ),
     ),
   ),
-  126 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -22867,7 +23575,7 @@ return array (
       ),
     ),
   ),
-  127 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -22979,7 +23687,7 @@ return array (
       ),
     ),
   ),
-  128 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -23080,7 +23788,7 @@ return array (
       ),
     ),
   ),
-  129 => 
+  131 => 
   array (
     'meta' => 
     array (
@@ -23139,7 +23847,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23272,7 +23980,7 @@ return array (
       ),
     ),
   ),
-  130 => 
+  132 => 
   array (
     'meta' => 
     array (
@@ -23384,7 +24092,7 @@ return array (
       ),
     ),
   ),
-  131 => 
+  133 => 
   array (
     'meta' => 
     array (
@@ -23421,7 +24129,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:38";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:08:58";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23446,8 +24154,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -23480,7 +24188,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -23524,7 +24232,7 @@ return array (
       ),
     ),
   ),
-  132 => 
+  134 => 
   array (
     'meta' => 
     array (
@@ -23656,7 +24364,7 @@ return array (
       ),
     ),
   ),
-  133 => 
+  135 => 
   array (
     'meta' => 
     array (
@@ -23768,7 +24476,7 @@ return array (
       ),
     ),
   ),
-  134 => 
+  136 => 
   array (
     'meta' => 
     array (
@@ -23827,7 +24535,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -23990,13 +24698,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  135 => 
+  137 => 
   array (
     'meta' => 
     array (
@@ -24033,7 +24784,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:52:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24058,8 +24809,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -24092,7 +24843,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -24136,7 +24887,7 @@ return array (
       ),
     ),
   ),
-  136 => 
+  138 => 
   array (
     'meta' => 
     array (
@@ -24195,7 +24946,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24328,7 +25079,7 @@ return array (
       ),
     ),
   ),
-  137 => 
+  139 => 
   array (
     'meta' => 
     array (
@@ -24460,7 +25211,7 @@ return array (
       ),
     ),
   ),
-  138 => 
+  140 => 
   array (
     'meta' => 
     array (
@@ -24592,7 +25343,7 @@ return array (
       ),
     ),
   ),
-  139 => 
+  141 => 
   array (
     'meta' => 
     array (
@@ -24704,7 +25455,7 @@ return array (
       ),
     ),
   ),
-  140 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -24816,7 +25567,7 @@ return array (
       ),
     ),
   ),
-  141 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -24864,7 +25615,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -24967,10 +25718,10 @@ return array (
           <td>fragments</td>
           <td>имя шаблона, по которому выводится виджет</td>
         </tr><tr>
-          <td>page</td>
-          <td>ICmsPage</td>
+          <td>index</td>
+          <td>string|SearchIndex</td>
           <td></td>
-          <td>страница, которая попала в результат поиска</td>
+          <td>поисковый индекс или его GUID</td>
         </tr><tr>
           <td>query</td>
           <td>string</td>
@@ -25003,13 +25754,15 @@ return array (
       <tbody><tr>
           <td>string</td>
           <td>$query</td><td>поисковый запрос </td></tr><tr>
+          <td>string</td>
+          <td>$encodedQuery</td><td>URL-закодированный поисковый запрос </td></tr><tr>
           <td>umicms\\project\\module\\search\\model\\highlight\\Fragmenter</td>
           <td>$fragmenter</td><td>фрагментатор текста по найденным в нем словам </td></tr></tbody>
           </table>',
       ),
     ),
   ),
-  142 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -25068,7 +25821,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25218,10 +25971,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -25239,7 +25994,7 @@ return array (
       ),
     ),
   ),
-  143 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -25298,7 +26053,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25431,7 +26186,7 @@ return array (
       ),
     ),
   ),
-  144 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -25501,7 +26256,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25663,10 +26418,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -25678,7 +26435,7 @@ return array (
       ),
     ),
   ),
-  145 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -25748,7 +26505,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -25903,13 +26660,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  146 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -25957,7 +26757,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26094,7 +26894,7 @@ return array (
       ),
     ),
   ),
-  147 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -26164,7 +26964,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -26328,10 +27128,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -26343,7 +27145,7 @@ return array (
       ),
     ),
   ),
-  148 => 
+  150 => 
   array (
     'meta' => 
     array (
@@ -26472,7 +27274,7 @@ return array (
       ),
     ),
   ),
-  149 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -26584,7 +27386,7 @@ return array (
       ),
     ),
   ),
-  150 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -26685,7 +27487,7 @@ return array (
       ),
     ),
   ),
-  151 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -26852,7 +27654,7 @@ return array (
       ),
     ),
   ),
-  152 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -26911,7 +27713,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27075,10 +27877,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -27090,7 +27894,7 @@ return array (
       ),
     ),
   ),
-  153 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -27191,7 +27995,7 @@ return array (
       ),
     ),
   ),
-  154 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -27250,7 +28054,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27383,7 +28187,7 @@ return array (
       ),
     ),
   ),
-  155 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -27515,7 +28319,7 @@ return array (
       ),
     ),
   ),
-  156 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -27585,7 +28389,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27749,10 +28553,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -27764,7 +28570,7 @@ return array (
       ),
     ),
   ),
-  157 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -27834,7 +28640,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -27998,10 +28804,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -28013,7 +28821,7 @@ return array (
       ),
     ),
   ),
-  158 => 
+  160 => 
   array (
     'meta' => 
     array (
@@ -28083,7 +28891,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28216,7 +29024,7 @@ return array (
       ),
     ),
   ),
-  159 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -28356,7 +29164,7 @@ return array (
       ),
     ),
   ),
-  160 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -28534,7 +29342,7 @@ return array (
       ),
     ),
   ),
-  161 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -28604,7 +29412,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -28768,10 +29576,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -28783,7 +29593,7 @@ return array (
       ),
     ),
   ),
-  162 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -28842,7 +29652,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29020,17 +29830,19 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>IObjectSet</td>
           <td>$posts</td><td>категория поста </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  163 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -29100,7 +29912,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29243,7 +30055,7 @@ return array (
       ),
     ),
   ),
-  164 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -29375,7 +30187,7 @@ return array (
       ),
     ),
   ),
-  165 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -29445,7 +30257,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29600,13 +30412,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  166 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -29665,7 +30520,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -29813,7 +30668,7 @@ return array (
       ),
     ),
   ),
-  167 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -29883,7 +30738,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30038,13 +30893,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  168 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -30211,7 +31109,7 @@ return array (
       ),
     ),
   ),
-  169 => 
+  171 => 
   array (
     'meta' => 
     array (
@@ -30351,7 +31249,7 @@ return array (
       ),
     ),
   ),
-  170 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -30410,7 +31308,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30570,13 +31468,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  171 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -30688,7 +31629,7 @@ return array (
       ),
     ),
   ),
-  172 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -30747,7 +31688,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -30918,7 +31859,7 @@ return array (
       ),
     ),
   ),
-  173 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -30977,7 +31918,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31128,7 +32069,7 @@ return array (
       ),
     ),
   ),
-  174 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -31187,7 +32128,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31369,7 +32310,7 @@ return array (
       ),
     ),
   ),
-  175 => 
+  177 => 
   array (
     'meta' => 
     array (
@@ -31501,7 +32442,7 @@ return array (
       ),
     ),
   ),
-  176 => 
+  178 => 
   array (
     'meta' => 
     array (
@@ -31560,7 +32501,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -31710,10 +32651,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -31731,7 +32674,7 @@ return array (
       ),
     ),
   ),
-  177 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -31832,7 +32775,7 @@ return array (
       ),
     ),
   ),
-  178 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -31964,7 +32907,7 @@ return array (
       ),
     ),
   ),
-  179 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -32034,7 +32977,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32194,13 +33137,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  180 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -32340,7 +33326,7 @@ return array (
       ),
     ),
   ),
-  181 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -32399,7 +33385,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32537,7 +33523,7 @@ return array (
       ),
     ),
   ),
-  182 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -32596,7 +33582,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -32782,7 +33768,7 @@ return array (
       ),
     ),
   ),
-  183 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -32914,7 +33900,7 @@ return array (
       ),
     ),
   ),
-  184 => 
+  186 => 
   array (
     'meta' => 
     array (
@@ -33026,7 +34012,7 @@ return array (
       ),
     ),
   ),
-  185 => 
+  187 => 
   array (
     'meta' => 
     array (
@@ -33085,7 +34071,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -33241,7 +34227,7 @@ return array (
       ),
     ),
   ),
-  186 => 
+  188 => 
   array (
     'meta' => 
     array (
@@ -33410,7 +34396,7 @@ return array (
       ),
     ),
   ),
-  187 => 
+  189 => 
   array (
     'meta' => 
     array (
@@ -33550,7 +34536,7 @@ return array (
       ),
     ),
   ),
-  188 => 
+  190 => 
   array (
     'meta' => 
     array (
@@ -33679,7 +34665,7 @@ return array (
       ),
     ),
   ),
-  189 => 
+  191 => 
   array (
     'meta' => 
     array (
@@ -33857,7 +34843,7 @@ return array (
       ),
     ),
   ),
-  190 => 
+  192 => 
   array (
     'meta' => 
     array (
@@ -33969,7 +34955,7 @@ return array (
       ),
     ),
   ),
-  191 => 
+  193 => 
   array (
     'meta' => 
     array (
@@ -34006,7 +34992,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:24";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-17 14:52:06";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34039,12 +35025,12 @@ return array (
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Как добавить свое поле?',
       ),
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Как добавить свое поле?',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -34059,7 +35045,97 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Статья в разработке..</p>
+        1 => '<p>В младших редакциях UMI.CMS отсутствует модуль &quot;Модели данных&quot;, но вы всегда можете расширить объекты собственными свойствами через конфигурационные файлы. Каждый объект, характеризуется определенным набором свойств, описанных для его типа в метаданных его коллекции.&nbsp; Чтобы у объекта появилось новое свойство, в локальных конфигурационных файлах необходимо расширить метаданные коллекции, в которую добавляется поле, и соответсвующую схему таблицы базы данных.</p>
+
+<p>Для примера, добавим строчное поле &quot;Дополнительный заголовок&quot; в простую контентную страницу, в базе данных значение этого поле будет также хранится как строка. Чтобы сделать это вручную, в папке расширяемого проекта создадим или отредактируем существующие конфигурационные файлы.</p>
+
+<p>Сначала опишем свойство в метаданных коллекции и добавим его к нужному типу данных в файле <strong>~/project/module/structure/configuration/structure/metadata.config.php:</strong></p>
+
+<pre>
+&lt;?php
+use umi\\orm\\metadata\\field\\IField;
+
+return
+    [
+        &#39;fields&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; [
+                &#39;type&#39; =&gt; IField::TYPE_STRING,
+                &#39;columnName&#39; =&gt; &#39;additional_title&#39;
+            ]
+        ],
+        &#39;types&#39; =&gt; [
+            &#39;static&#39; =&gt; [
+                &#39;fields&#39; =&gt; [
+                    &#39;additionalTitle&#39; =&gt; []
+                ]
+            ]
+        ]
+    ];</pre>
+
+<p>Затем отредактируем схему таблицы базы данных в файле <strong>~/project/module/structure/configuration/structure/scheme.config.php</strong>, чтобы обеспечить хранение значения свойства.</p>
+
+<pre>
+&lt;?php
+
+use Doctrine\\DBAL\\Types\\Type;
+
+return
+    [
+    &#39;columns&#39;     =&gt;  [
+        &#39;additional_title&#39; =&gt; [
+            &#39;type&#39; =&gt; Type::STRING
+        ]
+    ]
+];
+</pre>
+
+<p>После редактирования схемы таблицы базы данных необходимо запустить миграцию через консольное приложение:</p>
+
+<pre>
+php ./bin/umi sync:project-scheme [http://домен_проекта]</pre>
+
+<p>После успешного выполнения синхронизации схем база примет вид, соответствующий конфигурационным файлам - все новые описанные таблицы и колонки будут добавлены, все неописанные в конфигурационных файлах колонки таблиц будут удалены.</p>
+
+<p>Если необходимо редактировать значение добавленного свойства объекта в административной панели, потребуется также расширить конфигурации форм для редактирования и/или создания объекта. Расширим форму создания страницы полем &quot;Дополнительный заголовок&quot; в файле <strong>~/project/module/structure/cofiguration/structure/form/static.create.config.php</strong>. Добавим поле, например, в группу&nbsp; &quot;Контент&quot;:</p>
+
+<pre>
+&lt;?php
+
+use umi\\form\\element\\Text;
+
+return [
+
+    &#39;elements&#39; =&gt; [
+        &#39;contents&#39; =&gt; [
+            &#39;elements&#39; =&gt; [
+                &#39;additionalTitle&#39; =&gt; [
+                    &#39;type&#39; =&gt; Text::TYPE_NAME,
+                    &#39;label&#39; =&gt; &#39;additionalTitle&#39;,
+                    &#39;options&#39; =&gt; [
+                        &#39;dataSource&#39; =&gt; &#39;additionalTitle&#39;
+                    ]
+                ]
+            ]
+        ]
+    ]
+];</pre>
+
+<p>Таким образом, мы добавили в форму создания контентной страницы простое поле для ввода строки, значение которого будет сохранено в свойство &quot;Дополнительный заголовок&quot;.</p>
+
+<p>Не имея перевода для своего лейбла, это поле будет отображаться в формах создания страниц во всех доступных языках административной панели как additionalTitle. Для перевода расширим конфигурационный файл словаря коллекции страниц <strong>~/project/module/structure/configuration/structure/i18n/dictionary.config.php</strong>:</p>
+
+<pre>
+&lt;?php
+
+return [
+        &#39;en-US&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; &#39;Additional title&#39;
+        ],
+
+        &#39;ru-RU&#39; =&gt; [
+            &#39;additionalTitle&#39; =&gt; &#39;Дополнительный заголовок&#39;
+        ]
+    ];</pre>
 ',
       ),
       'active#ru-RU' => 
@@ -34109,7 +35185,7 @@ return array (
       ),
     ),
   ),
-  192 => 
+  194 => 
   array (
     'meta' => 
     array (
@@ -34168,7 +35244,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34318,10 +35394,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -34339,7 +35417,7 @@ return array (
       ),
     ),
   ),
-  193 => 
+  195 => 
   array (
     'meta' => 
     array (
@@ -34398,7 +35476,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -34564,10 +35642,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table><a name="RegisteredUser"></a><h4>RegisteredUser</h4><p>Зарегистрированный пользователь.</p><table class="table">
@@ -34622,7 +35702,7 @@ return array (
       ),
     ),
   ),
-  194 => 
+  196 => 
   array (
     'meta' => 
     array (
@@ -34734,7 +35814,7 @@ return array (
       ),
     ),
   ),
-  195 => 
+  197 => 
   array (
     'meta' => 
     array (
@@ -34866,7 +35946,7 @@ return array (
       ),
     ),
   ),
-  196 => 
+  198 => 
   array (
     'meta' => 
     array (
@@ -34925,7 +36005,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35075,10 +36155,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -35096,7 +36178,7 @@ return array (
       ),
     ),
   ),
-  197 => 
+  199 => 
   array (
     'meta' => 
     array (
@@ -35208,7 +36290,7 @@ return array (
       ),
     ),
   ),
-  198 => 
+  200 => 
   array (
     'meta' => 
     array (
@@ -35337,7 +36419,7 @@ return array (
       ),
     ),
   ),
-  199 => 
+  201 => 
   array (
     'meta' => 
     array (
@@ -35385,7 +36467,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 13:46:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35410,8 +36492,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -35438,7 +36520,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -35477,7 +36559,7 @@ return array (
       ),
     ),
   ),
-  200 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -35617,7 +36699,7 @@ return array (
       ),
     ),
   ),
-  201 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -35687,7 +36769,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35871,19 +36953,21 @@ return array (
           <td>$tags</td><td>теги, к которым относится пост </td></tr><tr>
           <td>DateTime</td>
           <td>$publishTime</td><td>дата публикации поста </td></tr><tr>
-          <td>string</td>
-          <td>$publishStatus</td><td>статус публикации поста </td></tr><tr>
+          <td>PostStatus</td>
+          <td>$status</td><td>статус публикации поста </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr><tr>
           <td>int</td>
           <td>$commentsCount</td><td>количество комментариев к посту </td></tr><tr>
           <td>string</td>
-          <td>$oldUrl</td><td>старый URL поста </td></tr><tr>
+          <td>$source</td><td>источник поста </td></tr><tr>
           <td>string</td>
-          <td>$source</td><td>источник поста </td></tr></tbody>
+          <td>$image</td><td>ссылка на картинку </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  202 => 
+  204 => 
   array (
     'meta' => 
     array (
@@ -35909,7 +36993,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:43:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:37:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -35934,8 +37018,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -35947,7 +37031,7 @@ return array (
       'metaDescription#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => 'Документация для разработчиков сайтов и сервисов на платформе UMI',
       ),
       'metaKeywords#ru-RU' => 
       array (
@@ -35966,17 +37050,17 @@ return array (
 
 <p>Данная документация описывает UMI.CMS 3.0 и предназначена для разработчиков сайтов на основе базовой функциональности, а также для разработки новых виджетов, компонентов и модулей.</p>
 
-<p>Предполагается, что знакомство с администрированием системы уже состоялось (иначе рекомендуется сначала обратить внимание на <a href="http://umi-cms.ru/help" target="_blank">оользовательскую документацию</a>).</p>
+<p>Предполагается, что знакомство с <a href="http://help.umi-cms.ru" target="_blank">администрированием системы</a> уже состоялось. <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/trebovaniya_k_serveru/" target="_blank">Требования к серверу</a> и <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/ustanovka_sistemy1/" target="_blank">процесс установки</a>&nbsp;UMI.CMS 3.0 описаны&nbsp;там же.&nbsp;</p>
 
 <h3>Глоссарий по 3.0</h3>
 
 <ul>
 	<li>MVC&nbsp;&mdash; концепция Model-View-Controller, заложенная в архитектуру UMI.CMS 3. Подробнее на&nbsp;<a href="http://ru.wikipedia.org/wiki/Model-View-Controller">Википедии</a>.</li>
 	<li>Компонент &mdash;&nbsp;MVC-триада.</li>
-	<li>Виджет &mdash;&nbsp;служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
-	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
-	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем созавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
 	<li>Проект &mdash;&nbsp;компонент, состоящий из модулей.</li>
+	<li>Модуль &mdash;&nbsp;это общее понятие для компонентов административной панели и/или компонентов сайтовой части, и/или компонентов для редактирования настроек, и некоторого публичного API, в котором содержится вся основная бизнес-логика модуля.</li>
+	<li>Контроллер&nbsp;&mdash; обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями. Мы не рекомендуем создавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</li>
+	<li><strong>Виджет</strong> служит для связи представления с моделью, в отличие от контроллера не может выполнять запросы на модификацию данных.</li>
 </ul>
 ',
       ),
@@ -36027,7 +37111,7 @@ return array (
       ),
     ),
   ),
-  203 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -36139,7 +37223,7 @@ return array (
       ),
     ),
   ),
-  204 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -36279,7 +37363,7 @@ return array (
       ),
     ),
   ),
-  205 => 
+  207 => 
   array (
     'meta' => 
     array (
@@ -36349,7 +37433,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36487,7 +37571,7 @@ return array (
       ),
     ),
   ),
-  206 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -36513,7 +37597,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 18:22:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:08:20";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36538,8 +37622,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -36645,7 +37729,7 @@ return array (
       ),
     ),
   ),
-  207 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -36715,7 +37799,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -36848,7 +37932,7 @@ return array (
       ),
     ),
   ),
-  208 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -36988,7 +38072,7 @@ return array (
       ),
     ),
   ),
-  209 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -37100,7 +38184,7 @@ return array (
       ),
     ),
   ),
-  210 => 
+  212 => 
   array (
     'meta' => 
     array (
@@ -37159,7 +38243,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37297,7 +38381,7 @@ return array (
       ),
     ),
   ),
-  211 => 
+  213 => 
   array (
     'meta' => 
     array (
@@ -37367,7 +38451,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37469,7 +38553,7 @@ return array (
           <td>array</td>
           <td>$errors</td><td>список ошибок, возникших при обработке данных формы (не ошибки валидации). Не передается, если ошибок не было </td></tr><tr>
           <td>string|bool</td>
-          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderate - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
+          <td>$added</td><td>флаг, указывающий на статус добавленного комментария: published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен </td></tr><tr>
           <td><a href="#SystemPage">SystemPage</a></td>
           <td>$page</td><td>текущая страница добавления комментария </td></tr></tbody>
           </table><a name="SystemPage"></a><h4>SystemPage</h4><p>Системная страница UMI.CMS.</p><table class="table">
@@ -37531,10 +38615,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>bool</td>
           <td>$skipInBreadcrumbs</td><td>пропускать ли системную страницу при выводе хлебных крошек </td></tr></tbody>
               </table>',
@@ -37546,7 +38632,7 @@ return array (
       ),
     ),
   ),
-  212 => 
+  214 => 
   array (
     'meta' => 
     array (
@@ -37686,7 +38772,7 @@ return array (
       ),
     ),
   ),
-  213 => 
+  215 => 
   array (
     'meta' => 
     array (
@@ -37745,7 +38831,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -37905,13 +38991,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  214 => 
+  216 => 
   array (
     'meta' => 
     array (
@@ -38089,7 +39218,7 @@ return array (
       ),
     ),
   ),
-  215 => 
+  217 => 
   array (
     'meta' => 
     array (
@@ -38256,7 +39385,7 @@ return array (
       ),
     ),
   ),
-  216 => 
+  218 => 
   array (
     'meta' => 
     array (
@@ -38315,7 +39444,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38453,7 +39582,7 @@ return array (
       ),
     ),
   ),
-  217 => 
+  219 => 
   array (
     'meta' => 
     array (
@@ -38501,7 +39630,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38629,7 +39758,7 @@ return array (
       ),
     ),
   ),
-  218 => 
+  220 => 
   array (
     'meta' => 
     array (
@@ -38688,7 +39817,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -38821,7 +39950,7 @@ return array (
       ),
     ),
   ),
-  219 => 
+  221 => 
   array (
     'meta' => 
     array (
@@ -38961,7 +40090,7 @@ return array (
       ),
     ),
   ),
-  220 => 
+  222 => 
   array (
     'meta' => 
     array (
@@ -39073,7 +40202,7 @@ return array (
       ),
     ),
   ),
-  221 => 
+  223 => 
   array (
     'meta' => 
     array (
@@ -39121,7 +40250,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39271,10 +40400,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -39292,7 +40423,7 @@ return array (
       ),
     ),
   ),
-  222 => 
+  224 => 
   array (
     'meta' => 
     array (
@@ -39404,7 +40535,7 @@ return array (
       ),
     ),
   ),
-  223 => 
+  225 => 
   array (
     'meta' => 
     array (
@@ -39430,7 +40561,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 20:32:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39455,8 +40586,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -39522,7 +40653,7 @@ return array (
       ),
     ),
   ),
-  224 => 
+  226 => 
   array (
     'meta' => 
     array (
@@ -39700,7 +40831,7 @@ return array (
       ),
     ),
   ),
-  225 => 
+  227 => 
   array (
     'meta' => 
     array (
@@ -39840,14 +40971,14 @@ return array (
       ),
     ),
   ),
-  226 => 
+  228 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
       'guid' => 'f39fde62-1177-4db3-b7f7-fac9655f90fc',
-      'displayName' => 'Структура директорий',
+      'displayName' => 'Описание файлов и директорий',
       'branch' => 
       array (
         'meta' => 
@@ -39878,7 +41009,7 @@ return array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Структура директорий',
+        1 => 'Описание файлов и директорий',
       ),
       'created' => 
       array (
@@ -39888,7 +41019,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:53:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -39913,8 +41044,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -39936,7 +41067,7 @@ return array (
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Структура директорий',
+        1 => 'Описание файлов и директорий',
       ),
       'contents#ru-RU' => 
       array (
@@ -39947,7 +41078,7 @@ return array (
       'active#ru-RU' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'active#en-US' => 
       array (
@@ -39991,7 +41122,7 @@ return array (
       ),
     ),
   ),
-  227 => 
+  229 => 
   array (
     'meta' => 
     array (
@@ -40092,7 +41223,7 @@ return array (
       ),
     ),
   ),
-  228 => 
+  230 => 
   array (
     'meta' => 
     array (
@@ -40137,7 +41268,26 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
       'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -40271,10 +41421,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -40292,7 +41444,7 @@ return array (
       ),
     ),
   ),
-  229 => 
+  231 => 
   array (
     'meta' => 
     array (
@@ -40362,7 +41514,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40543,12 +41695,14 @@ return array (
           <td>DateTime</td>
           <td>$lastActivity</td><td>дата последней активности </td></tr><tr>
           <td>IObjectSet</td>
-          <td>$posts</td><td>посты автора </td></tr></tbody>
+          <td>$posts</td><td>посты автора </td></tr><tr>
+          <td>IObjectSet</td>
+          <td>$comments</td><td>комментарии </td></tr></tbody>
               </table>',
       ),
     ),
   ),
-  230 => 
+  232 => 
   array (
     'meta' => 
     array (
@@ -40618,7 +41772,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:36:51";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -40773,13 +41927,56 @@ return array (
       <tbody><tr>
           <td>array|umi\\orm\\selector\\ISelector</td>
           <td>$list</td><td>список объектов </td></tr><tr>
-          <td>umicms\\pagination\\CmsPaginator</td>
+          <td><a href="#CmsPaginator">CmsPaginator</a></td>
           <td>$paginator</td><td>постраничная навигация, если была сформирована </td></tr></tbody>
-          </table>',
+          </table><a name="CmsPaginator"></a><h4>CmsPaginator</h4><p>Класс постраничной навигации.</p><table class="table">
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Параметр</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          <tbody><tr>
+          <td>int</td>
+          <td>$firstPage</td><td>первая страница </td></tr><tr>
+          <td>string</td>
+          <td>$firstPageUrl</td><td>URL первой страницы </td></tr><tr>
+          <td>int</td>
+          <td>$lastPage</td><td>последняя страница </td></tr><tr>
+          <td>string</td>
+          <td>$lastPageUrl</td><td>URL последней страницы </td></tr><tr>
+          <td>int</td>
+          <td>$currentPage</td><td>текущая страница </td></tr><tr>
+          <td>string</td>
+          <td>$currentPageUrl</td><td>URL текущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$previousPage</td><td>предыдущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$previousPageUrl</td><td>URL предыдущей страницы </td></tr><tr>
+          <td>int|null</td>
+          <td>$nextPage</td><td>следущая страница </td></tr><tr>
+          <td>string|null</td>
+          <td>$nextPageUrl</td><td>URL следующей страницы </td></tr><tr>
+          <td>array</td>
+          <td>$pagesRange</td><td>список страниц для отображения в соответствии с заданным типом </td></tr><tr>
+          <td>array</td>
+          <td>$rangeUrls</td><td>список ссылок на страницы в ряду, ключами массива являются номера страниц </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCountInRange</td><td>количество страниц в ряду </td></tr><tr>
+          <td>int</td>
+          <td>$pagesCount</td><td>общее количество страниц </td></tr><tr>
+          <td>int</td>
+          <td>$itemsCount</td><td>общее количество элементов </td></tr><tr>
+          <td>int</td>
+          <td>$itemsPerPage</td><td>количество элементов, выводимых на странице </td></tr><tr>
+          <td>array|\\Traversable</td>
+          <td>$pageItems</td><td>набор элементов на странице </td></tr></tbody>
+              </table>',
       ),
     ),
   ),
-  231 => 
+  233 => 
   array (
     'meta' => 
     array (
@@ -40908,7 +42105,7 @@ return array (
       ),
     ),
   ),
-  232 => 
+  234 => 
   array (
     'meta' => 
     array (
@@ -40967,7 +42164,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41117,10 +42314,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41138,7 +42337,7 @@ return array (
       ),
     ),
   ),
-  233 => 
+  235 => 
   array (
     'meta' => 
     array (
@@ -41208,7 +42407,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41358,10 +42557,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41379,7 +42580,7 @@ return array (
       ),
     ),
   ),
-  234 => 
+  236 => 
   array (
     'meta' => 
     array (
@@ -41449,7 +42650,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41599,10 +42800,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -41620,7 +42823,7 @@ return array (
       ),
     ),
   ),
-  235 => 
+  237 => 
   array (
     'meta' => 
     array (
@@ -41646,7 +42849,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-03 05:38:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -41671,8 +42874,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -41680,6 +42883,31 @@ return array (
       array (
         0 => 'string',
         1 => 'Контроллеры',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Контроллер обрабатывает входные данные (Request) и формирует ответ (Response), используя API, предоставляемое модулями.</p>
+
+<p>Мы не рекомендуем создавать контроллеры, которые содержат бизнес-логику, так как это лишает возможности повторного использования кода. Для таких целей существует возможность расширять API модулей.</p>
+
+<p>&nbsp;</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -41721,9 +42949,14 @@ return array (
         0 => 'integer',
         1 => 0,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
-  236 => 
+  238 => 
   array (
     'meta' => 
     array (
@@ -41855,7 +43088,7 @@ return array (
       ),
     ),
   ),
-  237 => 
+  239 => 
   array (
     'meta' => 
     array (
@@ -41995,7 +43228,7 @@ return array (
       ),
     ),
   ),
-  238 => 
+  240 => 
   array (
     'meta' => 
     array (
@@ -42107,7 +43340,7 @@ return array (
       ),
     ),
   ),
-  239 => 
+  241 => 
   array (
     'meta' => 
     array (
@@ -42166,7 +43399,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-18 20:07:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 01:07:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -42316,10 +43549,12 @@ return array (
           <td>$order</td><td>порядок следования в иерархии </td></tr><tr>
           <td>CmsHierarchicObject|null</td>
           <td>$parent</td><td>родительский элемент </td></tr><tr>
-          <td>int</td>
-          <td>$childCount</td><td>количество дочерних элементов </td></tr><tr>
           <td>IObjectSet</td>
           <td>$children</td><td>дочерние элементы </td></tr><tr>
+          <td>int</td>
+          <td>$siteChildCount</td><td>количество дочерних элементов, отображаемых на сайте </td></tr><tr>
+          <td>int</td>
+          <td>$adminChildCount</td><td>количество дочерних элементов, отображаемых в административной панели </td></tr><tr>
           <td>string</td>
           <td>$componentPath</td><td>путь до компонента-обработчика </td></tr><tr>
           <td>string</td>
@@ -42337,7 +43572,7 @@ return array (
       ),
     ),
   ),
-  240 => 
+  242 => 
   array (
     'meta' => 
     array (

@@ -96,6 +96,12 @@ define(['App', 'toolbar'], function(UMI) {
                 this.set('iScroll', contentScroll);
                 var self = this;
 
+                //
+                $('html').on('toggled.umi.divider', function() {
+                    setTimeout(function() {
+                        contentScroll.refresh();
+                    }, 100);
+                });
                 // Раскрытие ноды имеющую потомков
                 var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];
@@ -505,15 +511,17 @@ define(['App', 'toolbar'], function(UMI) {
 
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
+
             classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
+
             elementView: Ember.View.extend(UMI.ToolbarElement, {
                 splitButtonView: function() {
-                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
+                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent,
+                        UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');
                     var behaviour = {};
                     var splitButtonBehaviour;
-                    var i;
-                    var action;
+
                     if (behaviourName) {
                         splitButtonBehaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                         for (var key in splitButtonBehaviour) {
@@ -522,28 +530,20 @@ define(['App', 'toolbar'], function(UMI) {
                             }
                         }
                     }
-                    var choices = this.get('context.behaviour.choices');
-                    if (behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array') {
-                        for (i = 0; i < choices.length; i++) {
-                            var behaviourAction = Ember.get(UMI.splitButtonBehaviour, choices[i].behaviour.name);
-                            if (behaviourAction) {
-                                action = behaviourAction.actions[choices[i].behaviour.name];
-                                if (action) {
-                                    if (Ember.typeOf(behaviour.actions) !== 'object') {
-                                        behaviour.actions = {};
-                                    }
-                                    behaviour.actions[choices[i].behaviour.name] = action;
-                                }
-                            }
-                        }
-                    }
+
+                    behaviour.extendButton = behaviour.extendButton = {};
+                    behaviour.extendButton.classNames = ['tiny white square'];
+                    behaviour.extendButton.label = null;
+                    behaviour.extendButton.dataOptions = function() {
+                        return 'align: right; checkPositionRegardingElement: .umi-tree-wrapper;' +
+                            ' maxWidthLikeElement: .umi-tree-wrapper;';
+                    }.property();
+                    behaviour.actions = behaviour.actions || {};
                     behaviour.actions.sendActionForBehaviour = function(contextBehaviour) {
                         var object = this.get('controller.model');
                         this.send(contextBehaviour.name, {behaviour: contextBehaviour, object: object});
                     };
-                    behaviour.classNames = ['tiny white square'];
-                    behaviour.label = null;
-                    behaviour.iconClass = '';
+
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

@@ -1,132 +1,131 @@
-//
-// Custom dropdown
-//
-.f-dropdown{
-    top: auto;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.2s linear;
-    margin-top: 10px;
-    left: 0;
-    color: #44474d;
-    font-size: rem-calc(13);
-    white-space: nowrap;
+/* Foundation Dropdown extends
+   - exclude triangle
+   - exclude .content
+   - toggle visibility instead negative left(right) position
+*/
+
+.f-dropdown {
+    @include dropdown-container(list, $triangle:false);
     width: auto;
-    min-width: 100%;
-    margin-bottom: 0;
+    left: auto;
+    visibility: hidden;
+    opacity: .6;
+    transition: opacity 0.1s linear;
+    white-space: nowrap;
     border: none;
-    box-shadow: 0 0 5px 1px #AFB4BB;
-    &.right{
-        right: 0;
-        left: auto;
-    }
-    &:before{
-        display: none;
-    }
-    &:after{
-        display: none;
-    }
-    li{
-        text-align: left;
-        cursor: default;
-        a{
-            display: inline-block;
-            font-size: 13px;
-            font-weight: normal;
-            &:hover, &.hover{
-                text-decoration: underline;
-            }
+    box-shadow: 0 0 4px 1px #939699;
+
+    li {
+        @include dropdown-style;
+
+        &.hover{
+            background: $f-dropdown-list-hover-bg;
         }
     }
-    &.composite{
+
+    // You can also put custom content in these dropdowns
+    &.content {
+        padding: 10px;
+
+        .f-dropdown-content-header{
+            font-weight: bold;
+            margin-bottom: rem-calc(10);
+        }
+
         li{
-            padding: $f-dropdown-list-padding;
-            a{
-                padding: 0;
+            cursor: default;
+            &:hover{
+                background: transparent;
             }
-            .split-default-button{
-                position: absolute;
-                right: rem-calc(10);
-                margin-top: 0;
-            }
-            &.has-default-button{
-                position: relative;
-                padding-right: rem-calc(40);
-            }
-            .umi-dropdown-item-link{
-                div{
-                    margin-left: rem-calc(5);
-                    display: inline-block;
+        }
+
+        .row{
+            padding: rem-calc(8);
+        }
+
+        .s-scroll-wrap{
+            max-height: 200px;
+            height: auto;
+            border: 1px solid #D1D1D1;
+        }
+
+        table{
+            min-width: rem-calc(300);
+            border-collapse: collapse;
+
+            tr{
+                &:nth-child(odd){
+                    background: #EEF7FC;
                 }
-                &:hover{
-                    text-decoration: none;
-                    div{
-                        text-decoration: underline;
+
+                &.selectable{
+                    &:hover, &.hover{
+                        cursor: pointer;
+                        background: #C5E2F7;
                     }
                 }
             }
-        }
-    }
-}
-
-.dropdown{
-    &.open{
-        > .f-dropdown{
-            opacity: 1;
-            visibility: visible;
-            margin-top: 0;
-        }
-    }
-    &-hover{
-        &:hover{
-            > .f-dropdown{
-                opacity: 1;
-                visibility: visible;
-                margin-top: 0;
+            td{
+                padding: rem-calc(8) rem-calc(15);
+                line-height: rem-calc(22);
             }
         }
+
+        form, .form-loading{
+            min-width: rem-calc(300);
+        }
+
+        .form-loading{
+            padding: rem-calc(10) 0;
+        }
     }
 
-    &-double-columns{
+    // Sizes
+    &.tiny    { max-width: 200px; }
+    &.small   { max-width: 300px; }
+    &.medium  { max-width: 500px; }
+    &.large   { max-width: 800px; }
+
+    &.open{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    //UMI extends
+
+    //double columns
+    &-double{
         width: rem-calc(460);
+
         > li{
             width: 50%;
             float: left;
         }
     }
-}
 
-.umi-dropup{
-    position: absolute;
-    bottom: 100%;
-}
+    &-composite{
+        li{
+            a{
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                vertical-align: top;
+                padding-right: rem-calc(30);
+                box-sizing: border-box;
 
-.dropdown.coupled{
-    position: relative;
-    > .button{
-        position: relative;
-    }
-    &.open{
-        > .button{
-            &:before, &:after{
-                display: block;
+                div{
+                    margin-left: rem-calc(5);
+                    display: inline;
+                }
             }
-            &.white{
-                background: #fff;
+
+            .split-default-button{
+                position: absolute;
+                right: rem-calc(10);
+                margin-top: 0;
             }
         }
-    }
-    .f-dropdown{
-        width: auto;
-        min-width: 340px;
-        .button.flat{
-            border-color: transparent !important;
-        }
-    }
-}
-
-.dropdown.dropup{
-    .f-dropdown{
-        bottom: 100%;
     }
 }

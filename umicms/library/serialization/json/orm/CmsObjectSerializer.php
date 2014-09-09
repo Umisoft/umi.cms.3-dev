@@ -13,16 +13,16 @@ use umi\orm\metadata\field\IField;
 use umi\orm\object\property\IProperty;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
+class CmsObjectSerializer extends BaseSerializer implements IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     /**
      * Сериализует ICmsObject в JSON.

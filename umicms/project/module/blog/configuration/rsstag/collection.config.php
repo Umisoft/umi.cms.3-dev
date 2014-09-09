@@ -16,6 +16,6 @@ return [
         'admin' => 'blog.rsstag'
     ],
     'dictionaries' => [
-        'collection.rssBlogTag', 'collection'
+        'collection.rssBlogTag' => 'collection.rssBlogTag', 'collection' => 'collection'
     ],
 ];

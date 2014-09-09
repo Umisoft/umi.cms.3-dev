@@ -33,18 +33,18 @@ abstract class BaseBlogComment extends CmsHierarchicObject implements IRecyclabl
 
     /**
      * Изменяет пост комментария.
-     * @param BlogPost|null $value пост
+     * @param BaseBlogPost|null $value пост
      * @return $this
      */
     public function setPost($value)
     {
-        if ($this->post instanceof BlogPost) {
+        if ($this->post instanceof BaseBlogPost) {
             $this->post->recalculateCommentsCount();
         }
 
         $this->getProperty(self::FIELD_POST)->setValue($value);
 
-        if ($value instanceof BlogPost) {
+        if ($value instanceof BaseBlogPost) {
             $value->recalculateCommentsCount();
         }
 

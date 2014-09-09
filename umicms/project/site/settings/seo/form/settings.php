@@ -9,42 +9,42 @@
  */
 
 use umi\form\element\Text;
-use umicms\project\site\SiteApplication;
+use umicms\project\IProjectSettingsAware;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site'
+            'project.admin.rest.settings.site' => 'project.admin.rest.settings.site'
         ]
     ],
 
     'elements' => [
-        SiteApplication::SETTING_DEFAULT_DESCRIPTION => [
+        IProjectSettingsAware::SETTING_DEFAULT_DESCRIPTION => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_DESCRIPTION,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_DESCRIPTION,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_DESCRIPTION
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_DESCRIPTION
             ]
         ],
-        SiteApplication::SETTING_DEFAULT_KEYWORDS => [
+        IProjectSettingsAware::SETTING_DEFAULT_KEYWORDS => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_KEYWORDS,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_KEYWORDS,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_KEYWORDS
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_KEYWORDS
             ]
         ],
-        SiteApplication::SETTING_DEFAULT_TITLE => [
+        IProjectSettingsAware::SETTING_DEFAULT_TITLE => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_TITLE,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_TITLE,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_TITLE
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_TITLE
             ]
         ],
-        SiteApplication::SETTING_TITLE_PREFIX => [
+        IProjectSettingsAware::SETTING_TITLE_PREFIX => [
             'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_TITLE_PREFIX,
+            'label' => IProjectSettingsAware::SETTING_TITLE_PREFIX,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_TITLE_PREFIX
+                'dataSource' => IProjectSettingsAware::SETTING_TITLE_PREFIX
             ]
         ]
     ]

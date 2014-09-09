@@ -1,8 +1,20 @@
 <nav class="umi-top-bar">
     <ul class="umi-top-bar-list left">
         <li>
-            {{view view.moduleDropdownView tagName="span" class="button tiny flat dropdown without-arrow
-            umi-top-bar-button"}}
+            <span class="button tiny flat dropdown without-arrow umi-top-bar-button" data-dropdown
+                  data-options="selectorById: false;">
+                <i class="icon icon-butterfly"></i>
+            </span>
+            <ul class="f-dropdown f-dropdown-double" data-dropdown-content>
+                {{#each view.modules}}
+                    <li>
+                        {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
+                            <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
+                            <span>{{displayName}}</span>
+                        {{/link-to}}
+                    </li>
+                {{/each}}
+            </ul>
         </li>
         <li>
             <span class="umi-top-bar-label">{{view.activeProject}}</span>
@@ -19,12 +31,21 @@
             {{i18n "Loading"}}...
         </span>
 
-    <div class="umi-overlay"></div>
+        <div class="umi-overlay"></div>
     {{/if}}
 
     <ul class="umi-top-bar-list right">
         <li>
-            {{view view.dropdownView tagName="span" class="button tiny flat dropdown umi-top-bar-button"}}
+            <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown data-options="selectorById: false;">
+                {{view.userName}}
+            </span>
+            <ul class="f-dropdown" data-dropdown-content>
+                <li>
+                    <a href="javascript:void(0)" {{action "logout"}}>
+                        <i class="icon icon-exit"></i> {{i18n "Logout"}}
+                    </a>
+                </li>
+            </ul>
         </li>
         {{view "notificationList"}}
     </ul>

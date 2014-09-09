@@ -1,48 +1,40 @@
 define(['App', 'moment'], function(UMI, moment) {
-        "use strict";
+        'use strict';
 
         return function() {
             UMI.DropdownButtonView = Ember.View.extend({
                 templateName: 'partials/dropdownButton',
 
-                tagName: 'a',
+                dropdownId: function() {
+                    return Foundation.utils.random_str();
+                }.property(),
 
-                classNameBindings: 'meta.attributes.class',
+                dropdownClassName: null,
 
-                attributeBindings: ['title'],
+                _button: {
+                    classNameBindings: 'meta.attributes.class',
 
-                title: Ember.computed.alias('meta.attributes.title'),
+                    attributeBindings: ['dataDropdown:data-dropdown', 'title', 'dataOptions:data-options'],
 
-                iconClass: function() {
-                    return 'icon-' + this.get('meta.behaviour.name');
-                }.property('meta.behaviour.name'),
+                    dataDropdown: function() {
+                        return this.get('parentView.dropdownId');
+                    }.property(),
 
-                didInsertElement: function() {
-                    var $el = this.$();
-                    $el.on('click.umi.dropdown', function(event) {
-                        if (!$(event.target).closest('.f-dropdown').length) {
-                            event.stopPropagation();
-                            var $button = $(this);
-                            $button.toggleClass('open');
-                            setTimeout(function() {
-                                if ($button.hasClass('open')) {
-                                    $('body').on('click.umi.dropdown.close', function(bodyEvent) {
-                                        bodyEvent.stopPropagation();
-                                        var $buttonDropdown = $(bodyEvent.target).closest('.dropdown');
-                                        if (!$buttonDropdown.length || $buttonDropdown[0].getAttribute('id') !== $button[0].getAttribute('id')) {
-                                            $('body').off('click.umi.dropdown.close');
-                                            $button.removeClass('open');
-                                        }
-                                    });
-                                }
-                            }, 0);
-                        }
-                    });
+                    title: Ember.computed.alias('meta.attributes.title'),
+
+                    iconClass: function() {
+                        return 'icon-' + this.get('meta.behaviour.name');
+                    }.property('meta.behaviour.name')
                 },
-                willDestroyElement: function() {
-                    var $el = this.$();
-                    $el.off('click.umi.dropdown');
-                },
+
+                extendButton: {},
+
+                buttonView: function() {
+                    var buttonView = Ember.View.extend(this.get('_button'));
+                    buttonView.reopen(this.get('extendButton'));
+                    return buttonView;
+                }.property(),
+
                 actions: {
                     sendActionForBehaviour: function(behaviour) {
                         this.send(behaviour.name, {behaviour: behaviour});
@@ -50,31 +42,40 @@ define(['App', 'moment'], function(UMI, moment) {
                 }
             });
 
-            function DropdownButtonBehaviour() {
-            }
+            function DropdownButtonBehaviour() {}
 
             DropdownButtonBehaviour.prototype = Object.create(UMI.globalBehaviour);
+
             DropdownButtonBehaviour.prototype.backupList = {
-                classNames: ['coupled'],
-                classNameBindings: ['isOpen:open'],
-                isOpen: false,
-                iScroll: null,
-                tagName: 'div',
                 templateName: 'partials/dropdownButton/backupList',
 
+                iScroll: null,
+
+                dropdownClassName: 'content',
+
                 noBackupsLabel: null,
+
+                extendButton: {
+                    dataOptions: function() {
+                        return 'fastSelectHoverSelector: tr; fastSelectTarget: tr;';
+                    }.property()
+                },
+
+                isLazyDropdown: true,
 
                 getBackupList: function() {
                     var backupList;
                     var self = this;
                     var object = self.get('controller.object');
                     var settings = self.get('controller.settings');
-                    var getBackupListAction = UMI.Utils.replacePlaceholder(object, settings.actions.getBackupList.source);
+                    var getBackupListAction = UMI.Utils.replacePlaceholder(object,
+                        settings.actions.getBackupList.source);
                     var date = object.get('updated');
+
                     try {
                         date = JSON.parse(date);
-                    } catch (error) {
-                    }
+                    } catch (error) {}
+
                     var currentVersion = {
                         objectId: object.get('id'),
                         id: 'current',
@@ -112,104 +113,132 @@ define(['App', 'moment'], function(UMI, moment) {
                                 }
                             }
 
-                            Ember.set(currentVersion, 'created', {date: UMI.i18n.getTranslate('Current version', 'form.backupList')});
+                            Ember.set(currentVersion, 'created', {date: UMI.i18n.getTranslate('Current version',
+                                'form.backupList')});
                             results.push(currentVersion);
+
                             if (Ember.typeOf(serviceBackupList) === 'array') {
                                 for (var i = 0; i < serviceBackupList.length; i++) {
                                     user = users.findBy('id', serviceBackupList[i].owner);
                                     serviceBackupList[i].user = user.displayName;
-                                    Ember.set(serviceBackupList[i], 'created.date', moment(Ember.get(serviceBackupList[i], 'created.date')).format('DD.MM.YYYY h:mm:ss'));
+                                    Ember.set(serviceBackupList[i], 'created.date',
+                                        moment(Ember.get(serviceBackupList[i], 'created.date'))
+                                            .format('DD.MM.YYYY h:mm:ss'));
                                 }
+
                                 results = results.concat(serviceBackupList);
                             }
+
                             return results;
                         })
                     });
 
-                    backupList = Ember.ArrayProxy.create({
+                    promiseArray.then(function() {
+                        var iScroll = self.get('iScroll');
+                        if (iScroll) {
+                            setTimeout(function() {
+                                iScroll.refresh();
+                            }, 150);
+                        }
+                    });
+
+                    var ArrayProxy = Ember.ArrayProxy.extend({
+                        isLoaded: function() {
+                            return this.get('content.isFulfilled');
+                        }.property('content.isFulfilled')
+                    });
+
+                    backupList = ArrayProxy.create({
                         content: promiseArray
                     });
+
                     return backupList;
                 },
 
                 backupList: null,
 
                 actions: {
-                    open: function() {
-                        var self = this;
-                        var el = this.$();
-                        this.toggleProperty('isOpen');
-                        if (this.get('isOpen')) {
-                            setTimeout(function() {
-                                $('body').on('click.umi.controlDropUp', function(event) {
-                                    var targetElement = $(event.target).closest('.umi-dropup');
-                                    if (!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')) {
-                                        $('body').off('click.umi.controlDropUp');
-                                        self.set('isOpen', false);
-                                    }
-                                });
-                                if (self.get('iScroll')) {
-                                    self.get('iScroll').refresh();
-                                }
-                            }, 0);
-                        }
-                    },
                     applyBackup: function(backup) {
                         if (backup.isActive) {
                             return;
                         }
+
                         var self = this;
                         var object = this.get('controller.object');
                         var list = self.get('backupList');
+                        var backupObjectAction;
+
                         var current = list.findBy('id', backup.id);
                         var setCurrent = function() {
                             list.setEach('isActive', false);
                             Ember.set(current, 'isActive', true);
                         };
-                        var backupObjectAction;
+
                         if (backup.current) {
                             object.rollback();
                             setCurrent();
                         } else {
-                            backupObjectAction = UMI.Utils.replacePlaceholder(current, Ember.get(self.get('controller.settings'), 'actions.getBackup.source'));
+                            backupObjectAction = UMI.Utils.replacePlaceholder(current,
+                                Ember.get(self.get('controller.settings'), 'actions.getBackup.source'));
+
                             $.get(backupObjectAction).then(function(data) {
                                 object.rollback();
+
                                 delete data.result.getBackup.version;
                                 delete data.result.getBackup.id;
+
                                 // При обновлении свойств не вызываются методы desialize для атрибутов модели
-                                self.get('controller.store').modelFor(object.constructor.typeKey).eachTransformedAttribute(function(name, type) {
-                                    if (type === 'CustomDateTime' && data.result.getBackup.hasOwnProperty(name) && Ember.typeOf(data.result.getBackup[name]) === 'object') {
-                                        Ember.set(data.result.getBackup[name], 'date', moment(data.result.getBackup[name].date).format('DD.MM.YYYY h:mm:ss'));
-                                        data.result.getBackup[name] = JSON.stringify(data.result.getBackup[name]);
+                                self.get('controller.store').modelFor(object.constructor.typeKey)
+                                    .eachTransformedAttribute(function(name, type) {
+                                    var property = Ember.get(data, 'result.getBackup.' + name);
+
+                                    if (type === 'CustomDateTime' && Ember.typeOf(property) === 'object') {
+                                        Ember.set(property, 'date',
+                                            moment(property.date).format('DD.MM.YYYY h:mm:ss'));
+
+                                        Ember.set(data, 'result.getBackup.' + name, JSON.stringify(property));
                                     }
                                 });
-                                object.setProperties(data.result.getBackup);
+                                object.setProperties(Ember.get(data, 'result.getBackup'));
                                 setCurrent();
                             });
                         }
                     }
                 },
+
                 didInsertElement: function() {
-                    var el = this.$();
+                    var self = this;
+                    var $el = this.$();
                     var scroll;
-                    var scrollElement = el.find('.s-scroll-wrap');
+
+                    var scrollElement = $el.find('.s-scroll-wrap');
                     if (scrollElement.length) {
                         scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
                     }
                     this.set('iScroll', scroll);
-                    var self = this;
-                    self.set('backupList', self.getBackupList());
+
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('backupList', self.getBackupList());
+                            }
+                        });
+                    }
+
                     self.get('controller.object').off('didUpdate');
                     self.get('controller.object').on('didUpdate', function() {
-                        self.set('backupList', self.getBackupList());
+                        Ember.run.once(self, function() {
+                            this.set('backupList', this.getBackupList());
+                        });
                     });
 
-                    self.get('controller').addObserver('object', function() {//TODO: check event
-                        if (self.get('controller.control.name') === 'editForm') {
-                            self.set('backupList', self.getBackupList());
-                        }
+                    self.get('controller').addObserver('object', function() {
+                        isFirstLoad = true;
                     });
                 },
+
                 willDestroyElement: function() {
                     this.get('controller').removeObserver('object');
                     this.get('controller.object').off('didUpdate');
@@ -218,38 +247,17 @@ define(['App', 'moment'], function(UMI, moment) {
 
 
             DropdownButtonBehaviour.prototype.form = {
-                classNames: ['coupled'],
-
-                classNameBindings: ['isOpen:open'],
-
-                isOpen: false,
-
-                tagName: 'div',
-
                 templateName: 'partials/dropdownButton/form',
 
-                iconClass: function() {
-                    return 'icon-edit'; //+ this.get('meta.behaviour.name');
-                }.property('meta.behaviour.name'),
+                dropdownClassName: 'content',
 
-                actions: {
-                    open: function() {
-                        var self = this;
-                        var el = this.$();
-                        this.toggleProperty('isOpen');
-                        if (this.get('isOpen')) {
-                            setTimeout(function() {
-                                $('body').on('click.umi.controlDropDown.form', function(event) {
-                                    var targetElement = $(event.target).closest('.umi-dropdown');
-                                    if (!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')) {
-                                        $('body').off('click.umi.controlDropDown.form');
-                                        self.set('isOpen', false);
-                                    }
-                                });
-                            }, 0);
-                        }
-                    }
+                extendButton: {
+                    dataOptions: function() {
+                        return 'fastSelect: false;';
+                    }.property()
                 },
+
+                isLazyDropdown: true,
 
                 formView: Ember.View.extend({
                     tagName: 'form',
@@ -271,6 +279,16 @@ define(['App', 'moment'], function(UMI, moment) {
                         var object = contextObject.toJSON({includeId: true});
                         return object;
                     }.property('controller.object'),
+
+                    fieldView: function() {
+                        return UMI.FieldBaseView.extend({
+                            actions: {
+                                submit: function() {
+                                    this.get('parentView').send('submit', this.$());
+                                }
+                            }
+                        });
+                    }.property('object'),
 
                     actions: {
                         submit: function(handler) {
@@ -296,26 +314,42 @@ define(['App', 'moment'], function(UMI, moment) {
                             var serializeObject = JSON.stringify(object);
                             $.ajax({
                                 url: self.get('action'),
-                                type: "POST",
+                                type: 'POST',
                                 data: serializeObject,
                                 contentType: 'application/json; charset=UTF-8'
                             }).then(function(results) {
-                                var result = Ember.get(results, 'result');
-                                var actionName;
-                                for (var key in result) {
-                                    if (result.hasOwnProperty(key)) {
-                                        actionName = key;
-                                        break;
+                                var result = Ember.get(results, 'result') || '';
+                                if (!result) {
+                                    Ember.run.later(self, function() {
+                                        var error = new Error(UMI.i18n.getTranslate('Unknown error') + '.');
+                                        self.get('controller').send('backgroundError', error);
+                                    }, 100);
+                                } else {
+                                    var actionName = '';
+                                    for (var key in result) {
+                                        if (result.hasOwnProperty(key)) {
+                                            actionName = key;
+                                            break;
+                                        }
                                     }
+                                    var data = Ember.get(result, actionName);
+                                    delete data.updated;
+                                    delete data.created;
+                                    store.update(collectionName, data);
+                                    var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
+                                    UMI.notification.create(params);
                                 }
-                                var data = Ember.get(result, actionName);
-                                delete data.updated;
-                                delete data.created;
-                                store.update(collectionName, data);
-                                self.get('parentView').set('isOpen', false);
-                                $('body').off('click.umi.controlDropDown.form');
                             });
                         }
+                    },
+
+                    didInsertElement: function() {
+                        var self = this;
+                        var $el = self.$();
+                        self.$().on('submit', function() {
+                            self.send('submit', $el.find('.button'));
+                            return false;
+                        });
                     }
                 }),
 
@@ -324,25 +358,42 @@ define(['App', 'moment'], function(UMI, moment) {
                 getForm: function() {
                     var self = this;
                     var meta = self.get('meta');
-                    if (self.get('isDestroying') || self.get('isDestroyed')) {
-                        return;
-                    }
-                    var action = Ember.get(self.get('controller.settings'), 'actions.' + Ember.get(meta, 'behaviour.action') + '.source');
-                    return $.get(action).then(function(results) {
-                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
-                        self.set('form', form);
+
+                    var action = Ember.get(self.get('controller.settings'), 'actions.' +
+                        Ember.get(meta, 'behaviour.action') + '.source');
+                    var promise = $.get(action);
+
+                    var proxy = Ember.ObjectProxy.create({
+                        content: null,
+                        isLoaded: false
                     });
+
+                    promise.then(function(results) {
+                        var form = Ember.get(results, 'result.' + Ember.get(meta, 'behaviour.action'));
+                        form = UMI.FormHelper.fillMeta(form, self.get('controller.object'));
+                        proxy.set('content', form);
+                        proxy.set('isLoaded', true);
+                    });
+
+                    return proxy;
                 },
 
                 didInsertElement: function() {
                     var self = this;
+                    var $el = this.$();
 
-                    self.set('form', self.getForm());
-
-                    self.addObserver('controller.object', function() {//TODO: check event
-                        Ember.run.next(self, function() {
-                            this.set('form', self.getForm());
+                    if (this.get('isLazyDropdown')) {
+                        var isFirstLoad = true;
+                        $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
+                            if (isFirstLoad) {
+                                isFirstLoad = false;
+                                self.set('form', self.getForm());
+                            }
                         });
+                    }
+
+                    self.addObserver('controller.object', function() {
+                        isFirstLoad = true;
                     });
                 },
 

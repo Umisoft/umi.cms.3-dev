@@ -1,17 +1,19 @@
-{{#if view.meta.attributes.icon}}
-<i class="{{unbound view.meta.attributes.icon.class}}"></i>
-{{/if}}
+{{#view view.buttonView meta=view.meta}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.iconClass"}}></i>
+    {{/if}}
 
-{{#if view.meta.attributes.label}}
-<b class="umi-button-label">
-    {{unbound view.meta.attributes.label}}
-</b>
-{{/if}}
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
+{{/view}}
 
-<ul class="f-dropdown">
+<ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
     {{#each view.meta.choices}}
-    <span {{action 'sendActionForBehaviour' behaviour target="view"}}>
-    {{attributes.label}}
-    </span>
+        <li>
+            <a href="javascript:void(0);" {{action 'sendActionForBehaviour' behaviour target="view"}}>
+                {{attributes.label}}
+            </a>
+        </li>
     {{/each}}
 </ul>

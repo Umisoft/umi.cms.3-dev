@@ -21,16 +21,16 @@ use umicms\hmvc\component\BaseCmsComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseCmsComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
+class SiteComponent extends BaseCmsComponent implements IPageCallStackAware, IProjectSettingsAware, IConfigAliasResolverAware
 {
     use TPageCallStackAware;
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
     use TConfigAliasResolverAware;
 
     /**

@@ -130,6 +130,8 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'Waiting' => $this->translate('Waiting'),
             'Saved' => $this->translate('Saved'),
             'Close' => $this->translate('Close'),
+            'All' => $this->translate('All'),
+            'Of' => $this->translate('Of'),
             'Not valid' => $this->translate('Not valid'),
             'For' => $this->translate('For'),
             'Modules are not available' => $this->translate('Modules are not available'),
@@ -149,6 +151,7 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'Stay on the page' => $this->translate('Stay on the page'),
             'Continue without saving' => $this->translate('Continue without saving'),
             'Internal Server Error' => $this->translate('Internal Server Error'),
+            'Unknown error' => $this->translate('Unknown error'),
         ];
     }
 
