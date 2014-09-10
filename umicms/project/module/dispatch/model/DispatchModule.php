@@ -23,6 +23,7 @@ use umicms\project\module\dispatch\model\collection\TemplateMailCollection;
 use umicms\project\module\dispatch\model\object\Dispatches;
 use umicms\project\module\dispatch\model\object\Reason;
 use umicms\project\module\dispatch\model\object\Release;
+use umicms\project\module\dispatch\model\object\BaseSubscriber;
 use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\object\TemplateMail;
 use umi\authentication\IAuthenticationAware;
@@ -34,6 +35,7 @@ use umi\authentication\TAuthenticationAware;
 class DispatchModule extends BaseModule implements IAuthenticationAware
 {
     use TAuthenticationAware;
+
     /**
      * Возвращает репозиторий для работы с подписчиками.
      * @return SubscriberCollection
@@ -44,6 +46,15 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
+     * Возвращает репозиторий для работы с рассылками.
+     * @return DispatchCollection
+     */
+    public function dispatch()
+    {
+        return $this->getCollection('dispatch');
+    }
+
+    /**
      * Проверяет, авторизован ли пользователь в системе.
      * @return bool
      */
@@ -51,5 +62,19 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     {
         return $this->getDefaultAuthManager()
             ->isAuthenticated();
+    }
+
+    /**
+     * Производит попытку подписания пользователя на рассылку.
+     * @param string $email логин пользователя
+     * @param Subscriber $subscriber логин пользователя
+     * @return bool результат авторизации
+     */
+    public function subscribe($email, Subscriber $subscriber)
+    {
+        $subscriber->getProperty(BaseSubscriber::FIELD_DISPLAY_NAME)->setValue($email);
+        $subscriber->getProperty(BaseSubscriber::FIELD_EMAIL)->setValue($email);
+
+        return $subscriber;
     }
 }

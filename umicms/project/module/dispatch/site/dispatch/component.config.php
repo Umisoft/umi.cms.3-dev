@@ -17,7 +17,7 @@ use umicms\hmvc\component\site\SiteComponent;
 return [
 
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
-    SiteComponent::OPTION_COLLECTION_NAME => 'dispatch',
+    //SiteComponent::OPTION_COLLECTION_NAME => 'dispatch',
 
     SiteComponent::OPTION_WIDGET => [
         //'dispatch' => __NAMESPACE__ . '\widget\DispatchSubscriberWidget',
@@ -25,5 +25,14 @@ return [
 
     SiteComponent::OPTION_VIEW => [
         'directories' => ['module/dispatch/dispatch']
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => []
+        ]
     ]
 ];

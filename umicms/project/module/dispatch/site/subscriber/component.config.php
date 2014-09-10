@@ -54,14 +54,5 @@ return [
                 'controller' => 'subscriber'
             ]
         ]
-    ],
-
-    SiteComponent::OPTION_ROUTES      => [
-        'subscriber' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'subscriber'
-            ]
-        ]
     ]
 ];

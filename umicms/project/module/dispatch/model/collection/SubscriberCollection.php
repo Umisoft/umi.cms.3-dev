@@ -27,17 +27,15 @@ class SubscriberCollection extends CmsCollection
 
     /**
      * Проверяет уникальность e-mail пользователя.
-     * @param $email
+     * @param Subscriber $subscriber
      * @return bool
      */
-    public function checkEmailUniqueness($email)
+    public function checkEmailUniqueness(Subscriber $subscriber)
     {
         $subscribers = $this->getInternalSelector()
             ->fields([BaseSubscriber::FIELD_IDENTIFY])
             ->where(BaseSubscriber::FIELD_EMAIL)
-            ->equals($email)
-            /*->where(BaseSubscriber::FIELD_IDENTIFY)
-            ->notEquals($user->getId())*/
+            ->equals($subscriber->email)
             ->getResult();
 
         return !count($subscribers);
