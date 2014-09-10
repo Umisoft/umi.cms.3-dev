@@ -10,6 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
+use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\GuestBlogComment;
@@ -44,10 +45,5 @@ return [
     ],
     'dictionaries' => [
         'collection.blogComment' => 'collection.blogComment', 'collection' => 'collection'
-    ],
-    BlogCommentCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogComment::FIELD_AUTHOR => [],
-        BlogComment::FIELD_PUBLISH_TIME => [],
-        BlogComment::FIELD_STATUS => []
     ]
 ];
