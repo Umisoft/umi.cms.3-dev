@@ -60,7 +60,7 @@ class SubscriberController extends BaseSitePageController
         $type = $this->getRouteVar('type', Subscriber::TYPE_NAME);
         $this->subscriber = $this->module->subscriber()->add($type);
 
-        return $this->module->subscriber()->getForm(Subscriber::FORM_SUBSCRIBE_SITE, $type, $this->subscriber);
+        return $this->module->subscriber()->getSubscribeForm($this->subscriber, $this->module->isAuthenticated());
     }
 
     /**

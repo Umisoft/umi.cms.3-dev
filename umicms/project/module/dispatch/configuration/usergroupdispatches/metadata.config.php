@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of UMI.CMS.
+ *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -8,34 +9,33 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\dispatch\model\object\Reason;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'dispatch_reason'
+            'sourceName' => 'dispatch_usergroup_dis'
         ],
-        'fields'      => [
-            Reason::FIELD_RELEASE => [
+        'fields' => [
+            'dispatch' => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'release_id',
-                'target' => 'release'
+                'columnName' => 'dispatch_id',
+                'target' => 'dispatch'
             ],
-            Reason::FIELD_SUBSCRIBER => [
+            'userGroup' => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'subscriber_id',
-                'target' => 'subscriber'
-            ],
-        ],
-        'types'  => [
-            'base' => [
-                'objectClass' => 'umicms\project\module\dispatch\model\object\Reason',
-                'fields'      => [
-                    Reason::FIELD_RELEASE => [],
-                    Reason::FIELD_SUBSCRIBER => [],
-                ]
+                'columnName' => 'usergroup_id',
+                'target' => 'userGroup'
             ]
         ],
+        'types' => [
+            'base' => [
+                'objectClass' => 'umicms\orm\object\CmsLinkObject',
+                'fields' => [
+                    'dispatch'  => [],
+                    'userGroup'  => []
+                ]
+            ]
+        ]
     ]
 );

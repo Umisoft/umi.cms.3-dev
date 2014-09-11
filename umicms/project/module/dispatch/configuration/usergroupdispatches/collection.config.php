@@ -8,14 +8,11 @@
  * file that was distributed with this source code.
  */
 
+use umi\orm\collection\ICollectionFactory;
+
 return [
-
-    'en-US' => [
-        'action:create:subscriber' => 'Add subscriber'
-    ],
-
-    'ru-RU' => [
-        'action:create:subscriber' => 'Добавить подписчика'
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'handlers' => [
+        'admin' => 'dispatch.usergroupdispatches'
     ]
-
 ];

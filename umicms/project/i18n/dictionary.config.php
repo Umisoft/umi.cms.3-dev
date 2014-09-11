@@ -267,6 +267,7 @@ return [
 	'collection.dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/i18n/dictionary.config.php}',
 	'collection.subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/i18n/dictionary.config.php}',
 	'collection.templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/i18n/dictionary.config.php}',
+	'collection.reason' => '{#lazy:~/project/module/dispatch/configuration/reason/i18n/dictionary.config.php}',
 
     //'collection.robots' => '{#lazy:~/project/module/structure/configuration/robots/i18n/dictionary.config.php}',
     'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',

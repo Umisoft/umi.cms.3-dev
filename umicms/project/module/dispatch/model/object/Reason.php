@@ -20,9 +20,19 @@ use umicms\orm\object\CmsObject;
 class Reason extends CmsObject
 {
     /**
-     *  Имя поля для хранения рассылок
+     *  Имя поля для хранения выпуск рассылки
      */
-    const FIELD_DISPATCH = 'dispatch';
+    const FIELD_RELEASE = 'release';
+
+    /**
+     *  Имя поля для хранения подписчика
+     */
+    const FIELD_SUBSCRIBER = 'subscriber';
+
+    /**
+     *  Имя поля для хранения даты отписки
+     */
+    const FIELD_DATE_UNSUBSCIBE = 'date_unsubscribe';
 
 
 }

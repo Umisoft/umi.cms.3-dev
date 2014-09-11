@@ -7,8 +7,9 @@
  * file that was distributed with this source code.
  */
 
-use umi\filter\IFilterFactory;
+use umi\orm\metadata\IObjectType;
 use umi\orm\metadata\field\IField;
+use umi\filter\IFilterFactory;
 use umi\validation\IValidatorFactory;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
 use umicms\project\module\dispatch\model\object\Subscriber;
@@ -48,13 +49,13 @@ return array_replace_recursive(
                     IValidatorFactory::TYPE_REQUIRED	=> [],
                 ]
             ],
-			BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => [
-                'type' => IField::TYPE_MANY_TO_MANY,
-                'target' => 'dispatch',
-                'bridge' => 'unsubscribeDispatches',
-                'relatedField' => 'subscriber',
-                'targetField' => 'dispatch'
-            ],
+//			BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => [
+//                'type' => IField::TYPE_MANY_TO_MANY,
+//                'target' => 'dispatch',
+//                'bridge' => 'unsubscribeDispatches',
+//                'relatedField' => 'subscriber',
+//                'targetField' => 'dispatch'
+//            ],
 			BaseSubscriber::FIELD_PROFILE => [
 				'type' => IField::TYPE_BELONGS_TO,
 				'columnName' => 'profile_id',
@@ -62,13 +63,13 @@ return array_replace_recursive(
 			],
         ],
         'types'	=> [
-            'base'	=> [
+            IObjectType::BASE	=> [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\BaseSubscriber',
                 'fields'      => [
 					BaseSubscriber::FIELD_EMAIL		=>	[],
 					BaseSubscriber::FIELD_SEX			=>	[],
 					BaseSubscriber::FIELD_DISPATCH	=>	[],
-					BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES	=>	[],
+					//BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES	=>	[],
 				]
             ],
 			Subscriber::TYPE_NAME => [

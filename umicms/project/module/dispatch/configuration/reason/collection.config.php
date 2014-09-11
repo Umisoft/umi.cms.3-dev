@@ -20,12 +20,12 @@ return [
         'admin' => 'dispatch.reason',
         //'site' => 'dispatch.dispatch'
     ],
-    /* 'forms' => [
+    'forms' => [
         'base' => [
-            DispatchesCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.edit.config.php}',
-            DispatchesCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/dispatch/form/base.create.config.php}'
+            ReasonCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/reason/form/base.edit.config.php}',
+            ReasonCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/reason/form/base.create.config.php}'
         ]
-    ], */
+    ],
     'dictionaries' => [
         'collection.reason', 'collection'
     ]

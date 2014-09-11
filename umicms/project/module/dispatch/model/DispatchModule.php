@@ -66,14 +66,11 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Производит попытку подписания пользователя на рассылку.
-     * @param string $email логин пользователя
      * @param Subscriber $subscriber логин пользователя
      * @return bool результат авторизации
      */
-    public function subscribe($email, Subscriber $subscriber)
+    public function subscribe(Subscriber $subscriber)
     {
-        $subscriber->getProperty(BaseSubscriber::FIELD_DISPLAY_NAME)->setValue($email);
-        $subscriber->getProperty(BaseSubscriber::FIELD_EMAIL)->setValue($email);
 
         return $subscriber;
     }

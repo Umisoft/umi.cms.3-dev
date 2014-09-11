@@ -13,9 +13,9 @@ use Doctrine\DBAL\Types\Type;
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'dispatch_reason',
+        'name' => 'dispatch_unsubscribe_dis',
         'columns' => [
-            'release_id' => [
+            'dispatch_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -26,15 +26,12 @@ return array_replace_recursive(
                 'options' => [
                     'unsigned' => true
                 ]
-            ],
-            'date_unsubscribe' => [
-                'type' => Type::DATETIME
-            ],
+            ]
         ],
         'indexes' => [
-            'release' => [
+            'dispatch' => [
                 'columns' => [
-                    'release_id' => []
+                    'dispatch_id' => []
                 ]
             ],
             'subscriber' => [
@@ -44,17 +41,17 @@ return array_replace_recursive(
             ]
         ],
         'constraints' => [
-            'reason_to_release' => [
-                'foreignTable' => 'dispatch_release',
+            'dis_to_unsubscribe' => [
+                'foreignTable' => 'dispatch',
                 'columns' => [
-                    'release_id' => []
+                    'dispatch_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
                 ]
             ],
-            'subscriber_to_release' => [
+            'unsubscribe_to_dis' => [
                 'foreignTable' => 'dispatch_subscriber',
                 'columns' => [
                     'subscriber_id' => []

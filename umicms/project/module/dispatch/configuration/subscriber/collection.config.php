@@ -11,6 +11,7 @@
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\project\module\dispatch\model\collection\SubscriberCollection;
+use umicms\project\module\dispatch\model\object\SubscriberUser;
 use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
 
@@ -22,17 +23,11 @@ return [
         'site' => 'dispatch.subscriber'
     ],
     'forms' => [
-		/* IObjectType::BASE => [
-            SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.edit.config.php}'
-            SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.create.config.php}'
-        ], */
-        IObjectType::BASE => [
-            SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.edit.config.php}',
-            SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.create.config.php}'
-        ],
         Subscriber::TYPE_NAME => [
+            SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.edit.config.php}',
+            SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/base.create.config.php}',
             Subscriber::FORM_SUBSCRIBE_SITE => '{#lazy:~/project/module/dispatch/configuration/subscriber/form/subscriber.site.config.php}'
-        ],
+        ]
     ],
     'dictionaries' => [
         'collection.subscriber', 'collection'

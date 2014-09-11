@@ -24,7 +24,8 @@ return [
         'reason' => '{#lazy:~/project/module/dispatch/admin/reason/component.config.php}',
         'templatemail' => '{#lazy:~/project/module/dispatch/admin/templatemail/component.config.php}',
         'subscribersdispatches' => '{#lazy:~/project/module/dispatch/admin/subscribersdispatches/component.config.php}',
-        'unsubscribedispatches' => '{#lazy:~/project/module/dispatch/admin/unsubscribe/component.config.php}'
+        'unsubscribedispatches' => '{#lazy:~/project/module/dispatch/admin/unsubscribedispatches/component.config.php}',
+        'usergroupdispatches' => '{#lazy:~/project/module/dispatch/admin/usergroupdispatches/component.config.php}'
     ],
 
     AdminComponent::OPTION_ROUTES      => [

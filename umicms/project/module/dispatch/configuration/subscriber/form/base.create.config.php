@@ -89,14 +89,14 @@ return [
                         'lazy' => true
                     ]
                 ],
-				BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES,
-                    'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES,
-                        'lazy' => true
-                    ]
-                ],
+//				BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => [
+//                    'type' => MultiSelect::TYPE_NAME,
+//                    'label' => BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES,
+//                    'options' => [
+//                        'dataSource' => BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES,
+//                        'lazy' => true
+//                    ]
+//                ],
                 BaseSubscriber::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_PROFILE,

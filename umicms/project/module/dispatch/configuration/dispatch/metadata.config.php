@@ -22,7 +22,12 @@ return array_replace_recursive(
 				'columnName' => 'news_lent',
 				'target' => 'newsLent'
 			], */
-			Dispatch::FIELD_SUBSCRIBER => [
+			/*Dispatch::FIELD_GROUP_USER => [
+                'type'         => IField::TYPE_HAS_MANY,
+                'target'       => Dispatch::FIELD_GROUP_USER,
+                'targetField'  => 'userGroup'
+            ],*/
+            Dispatch::FIELD_SUBSCRIBER => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'subscriber',
                 'bridge' => 'subscribersDispatches',
@@ -34,7 +39,9 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\Dispatch',
                 'fields'      => [
-					//Dispatch::FIELD_SUBSCRIBER => []
+					Dispatch::FIELD_SUBSCRIBER => [],
+                    //Dispatch::FIELD_GROUP_USER => []
+                    //Dispatch::FIELD_UN_SUBSCRIBER => []
 				]
             ]
         ],

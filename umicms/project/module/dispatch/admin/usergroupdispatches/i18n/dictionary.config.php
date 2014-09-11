@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'action:create:subscriber' => 'Add subscriber'
+        'role:editor:displayName' => 'Manage relation'
     ],
 
     'ru-RU' => [
-        'action:create:subscriber' => 'Добавить подписчика'
+        'role:editor:displayName' => 'Управление связью'
     ]
 
 ];

@@ -25,12 +25,6 @@ return array_replace_recursive(
 			'date_last_sending'	=> [
                 'type' => Type::DATETIME
             ],
-			'news_lent' => [
-                'type' => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true
-                ]
-            ],
         ],
     ]
 );

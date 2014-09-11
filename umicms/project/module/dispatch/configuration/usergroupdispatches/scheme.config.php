@@ -13,7 +13,7 @@ use Doctrine\DBAL\Types\Type;
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'dispatch_unsubscribe_dis',
+        'name' => 'dispatch_usergroup_dis',
         'columns' => [
             'dispatch_id' => [
                 'type' => Type::BIGINT,
@@ -21,7 +21,7 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'subscriber_id' => [
+            'usergroup_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -36,12 +36,12 @@ return array_replace_recursive(
             ],
             'subscriber' => [
                 'columns' => [
-                    'subscriber_id' => []
+                    'usergroup_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'dis_to_subscribe' => [
+            'dis_to_usergroup' => [
                 'foreignTable' => 'dispatch',
                 'columns' => [
                     'dispatch_id' => []
@@ -51,10 +51,10 @@ return array_replace_recursive(
                     'onDelete' => 'SET NULL'
                 ]
             ],
-            'subscribe_to_dis' => [
-                'foreignTable' => 'dispatch_subscriber',
+            'usergroup_to_dis' => [
+                'foreignTable' => 'users_group',
                 'columns' => [
-                    'subscriber_id' => []
+                    'usergroup_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

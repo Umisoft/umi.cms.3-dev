@@ -39,4 +39,14 @@ class Dispatch extends CmsObject
      */
     const FIELD_SUBSCRIBER = 'subscriber';
 
+	/**
+     * Имя поля для хранения отписанных подписчиков
+     */
+    const FIELD_UN_SUBSCRIBER = 'unsubscriber';
+
+	/**
+     * Имя поля для хранения группа пользовтелей
+     */
+    const FIELD_GROUP_USER = 'userGroup';
+
 }
