@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\BlogModule;
@@ -63,7 +62,7 @@ class IndexController extends BaseSitePageController
 
         return $this->module->author()->getForm(
             BlogAuthor::FORM_EDIT_PROFILE,
-            IObjectType::BASE,
+            $blogAuthor->getTypeName(),
             $blogAuthor
         );
     }

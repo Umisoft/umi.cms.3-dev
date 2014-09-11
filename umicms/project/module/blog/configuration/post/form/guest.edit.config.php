@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\filter\IFilterFactory;
 use umi\form\element\html5\DateTime;
 use umi\form\element\MultiSelect;
 use umi\form\element\Select;

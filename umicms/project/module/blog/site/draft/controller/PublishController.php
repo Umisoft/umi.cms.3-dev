@@ -12,7 +12,6 @@ namespace umicms\project\module\blog\site\draft\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -58,7 +57,7 @@ class PublishController extends BaseCmsController
             );
         }
 
-        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, $this->blogDraft->getTypeName());
     }
 
     /**

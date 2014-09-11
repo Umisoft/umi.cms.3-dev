@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\moderate\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -78,7 +77,7 @@ class RejectFormWidget extends BaseFormWidget
 
         $form = $this->module->post()->getForm(
             BaseBlogPost::FORM_REJECT_POST,
-            IObjectType::BASE,
+            $this->blogPost->getTypeName(),
             $this->blogPost
         );
 
