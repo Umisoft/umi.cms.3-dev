@@ -115,7 +115,7 @@ class BlogPost extends BaseBlogPost
 
         if ($publishStatusProperty->getIsModified()) {
             if ($this->author instanceof BlogAuthor) {
-                $this->author->recalculateCommentsCount();
+                $this->author->recalculatePostsCount();
             }
         }
 
@@ -136,7 +136,7 @@ class BlogPost extends BaseBlogPost
         $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
 
         if ($value instanceof BlogAuthor) {
-            $value->recalculateCommentsCount();
+            $value->recalculatePostsCount();
         }
 
         return $this;
