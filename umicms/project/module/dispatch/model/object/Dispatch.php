@@ -19,34 +19,39 @@ use umicms\orm\object\CmsObject;
  */
 class Dispatch extends CmsObject
 {
-	/**
+    /**
      * Имя поля для хранения описания рассылки
      */
     const FIELD_DESCRIPTION = 'description';
-	
-	/**
+
+    /**
      * Имя поля для хранения даты последней отправки писем
      */
     const FIELD_DATE_LAST_SENDING = 'date_last_sending';
-	
-	/**
+
+    /**
      * Имя поля для хранения ленту новости
      */
     const FIELD_NEWS_LENT = 'date_last_sending';
-	
-	/**
+
+    /**
      * Имя поля для хранения подписчиков
      */
     const FIELD_SUBSCRIBER = 'subscriber';
 
-	/**
+    /**
      * Имя поля для хранения отписанных подписчиков
      */
-    const FIELD_UN_SUBSCRIBER = 'unsubscriber';
+    const FIELD_UNSUBSCRIBER = 'unsubscriber';
 
-	/**
+    /**
      * Имя поля для хранения группа пользовтелей
      */
-    const FIELD_GROUP_USER = 'userGroup';
+    const FIELD_GROUP_USER = 'usergroup';
+
+    /**
+     * Имя поля для хранения выпуски рассылок
+     */
+    const FIELD_RELEASE = 'release';
 
 }

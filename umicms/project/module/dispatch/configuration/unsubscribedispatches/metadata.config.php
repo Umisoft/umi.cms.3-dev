@@ -22,9 +22,9 @@ return array_replace_recursive(
                 'columnName' => 'dispatch_id',
                 'target' => 'dispatch'
             ],
-            'subscriber' => [
+            'unsubscriber' => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'subscriber_id',
+                'columnName' => 'unsubscriber_id',
                 'target' => 'subscriber'
             ]
         ],
@@ -33,7 +33,7 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\orm\object\CmsLinkObject',
                 'fields' => [
                     'dispatch'  => [],
-                    'subscriber'  => []
+                    'unsubscriber'  => []
                 ]
             ]
         ]

@@ -16,14 +16,20 @@ return array_replace_recursive(
     [
         'name' => 'dispatch',
         'columns'     =>  [
-            'description'		=> [
+            'description' => [
                 'type' => Type::TEXT,
                 'options' => [
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
             ],
-			'date_last_sending'	=> [
+            'date_last_sending' => [
                 'type' => Type::DATETIME
+            ],
+            'release_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
             ],
         ],
     ]

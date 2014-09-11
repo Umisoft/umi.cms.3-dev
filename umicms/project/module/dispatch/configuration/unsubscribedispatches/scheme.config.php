@@ -21,7 +21,7 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'subscriber_id' => [
+            'unsubscriber_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -34,9 +34,9 @@ return array_replace_recursive(
                     'dispatch_id' => []
                 ]
             ],
-            'subscriber' => [
+            'unsubscriber' => [
                 'columns' => [
-                    'subscriber_id' => []
+                    'unsubscriber_id' => []
                 ]
             ]
         ],
@@ -54,7 +54,7 @@ return array_replace_recursive(
             'unsubscribe_to_dis' => [
                 'foreignTable' => 'dispatch_subscriber',
                 'columns' => [
-                    'subscriber_id' => []
+                    'unsubscriber_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

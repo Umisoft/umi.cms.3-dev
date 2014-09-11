@@ -16,17 +16,14 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatch'
         ],
-		'fields' => [
-		/* 	Dispatch::FIELD_NEWS_LENT => [
-				'type' => IField::TYPE_BELONGS_TO,
-				'columnName' => 'news_lent',
-				'target' => 'newsLent'
-			], */
-			/*Dispatch::FIELD_GROUP_USER => [
-                'type'         => IField::TYPE_HAS_MANY,
-                'target'       => Dispatch::FIELD_GROUP_USER,
-                'targetField'  => 'userGroup'
-            ],*/
+        'fields' => [
+            Dispatch::FIELD_GROUP_USER => [
+                'type' => IField::TYPE_MANY_TO_MANY,
+                'target' => 'userGroup',
+                'bridge' => 'userGroupDispatches',
+                'relatedField' => 'dispatch',
+                'targetField' => 'userGroup'
+            ],
             Dispatch::FIELD_SUBSCRIBER => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'subscriber',
@@ -34,15 +31,28 @@ return array_replace_recursive(
                 'relatedField' => 'dispatch',
                 'targetField' => 'subscriber'
             ],
+            /*Dispatch::FIELD_UNSUBSCRIBER => [
+                'type' => IField::TYPE_MANY_TO_MANY,
+                'target' => 'subscriber',
+                'bridge' => 'unSubscribeDispatches',
+                'relatedField' => 'dispatch',
+                'targetField' => 'unsubscriber'
+            ],*/
+            Dispatch::FIELD_RELEASE => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'release_id',
+                'target' => 'release'
+            ],
         ],
         'types'  => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\Dispatch',
                 'fields'      => [
-					Dispatch::FIELD_SUBSCRIBER => [],
-                    //Dispatch::FIELD_GROUP_USER => []
-                    //Dispatch::FIELD_UN_SUBSCRIBER => []
-				]
+                    Dispatch::FIELD_RELEASE => [],
+                    Dispatch::FIELD_SUBSCRIBER => [],
+                    Dispatch::FIELD_GROUP_USER => [],
+                    //Dispatch::FIELD_UNSUBSCRIBER => []
+                ]
             ]
         ],
     ]

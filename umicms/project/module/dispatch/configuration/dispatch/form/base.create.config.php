@@ -39,7 +39,6 @@ return [
                 ]
             ]
         ],
-
         'contents' => [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'contents',
@@ -51,26 +50,42 @@ return [
                         'dataSource' => Dispatch::FIELD_DESCRIPTION
                     ]
                 ],
-				Dispatch::FIELD_DATE_LAST_SENDING => [
+                Dispatch::FIELD_DATE_LAST_SENDING => [
                     'type' => DateTime::TYPE_NAME,
                     'label' => Dispatch::FIELD_DATE_LAST_SENDING,
                     'options' => [
                         'dataSource' => Dispatch::FIELD_DATE_LAST_SENDING
                     ]
                 ],
-				/*Dispatch::FIELD_GROUP_USER => [
-                    'type' => Select::TYPE_NAME,
+                Dispatch::FIELD_GROUP_USER => [
+                    'type' => MultiSelect::TYPE_NAME,
                     'label' => Dispatch::FIELD_GROUP_USER,
                     'options' => [
                         'dataSource' => Dispatch::FIELD_GROUP_USER,
                         'lazy' => true
                     ]
-                ],*/
-				Dispatch::FIELD_SUBSCRIBER => [
+                ],
+                Dispatch::FIELD_SUBSCRIBER => [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => Dispatch::FIELD_SUBSCRIBER,
                     'options' => [
                         'dataSource' => Dispatch::FIELD_SUBSCRIBER,
+                        'lazy' => true
+                    ]
+                ],
+                /*Dispatch::FIELD_UNSUBSCRIBER => [
+                    'type' => MultiSelect::TYPE_NAME,
+                    'label' => Dispatch::FIELD_UNSUBSCRIBER,
+                    'options' => [
+                        'dataSource' => Dispatch::FIELD_UNSUBSCRIBER,
+                        'lazy' => true
+                    ]
+                ],*/
+                Dispatch::FIELD_RELEASE => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => Dispatch::FIELD_RELEASE,
+                    'options' => [
+                        'dataSource' => Dispatch::FIELD_RELEASE,
                         'lazy' => true
                     ]
                 ],

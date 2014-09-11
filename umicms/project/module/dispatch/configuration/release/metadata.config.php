@@ -9,6 +9,7 @@
 
 use umi\orm\metadata\field\IField;
 use umicms\project\module\dispatch\model\object\Release;
+use umicms\project\module\dispatch\model\object\Dispatch;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
@@ -33,6 +34,11 @@ return array_replace_recursive(
                 'formula'      => 'calculatePercentViews',
                 'readOnly'     => true,
             ],
+            Release::FIELD_DISPATCHES => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'release',
+                'targetField' => Dispatch::FIELD_RELEASE
+            ]
         ],
         'types'  => [
             'base' => [
