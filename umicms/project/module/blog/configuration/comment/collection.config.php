@@ -10,7 +10,6 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
-use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\GuestBlogComment;
