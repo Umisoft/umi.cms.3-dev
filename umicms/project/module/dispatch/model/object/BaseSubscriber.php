@@ -23,38 +23,45 @@ class BaseSubscriber extends CmsObject
      * Имя поля для хранения E-mail'a
      */
     const FIELD_EMAIL = 'email';
-	
-	 /**
+
+    /**
      * Имя поля для хранения имени подписчика
      */
     const FIELD_FIRST_NAME = 'firstName';
+
     /**
      * Имя поля для хранения фамилии подписчика
      */
     const FIELD_LAST_NAME = 'lastName';
+
     /**
      * Имя поля для хранения отчества подписчика
      */
     const FIELD_MIDDLE_NAME = 'middleName';
-	
-	/**
+
+    /**
      * Имя поля для хранения пола подписчика
      */
     const FIELD_SEX = 'sex';
-	
-	/**
+
+    /**
      * Имя поля для хранения рассылок
      */
     const FIELD_DISPATCH = 'dispatch';
-	
-	/**
+
+    /**
      * Имя поля для хранения отписанных рассылок
      */
     const FIELD_UNSUBSCRIBE_DISPATCHES = 'unsubscribe_dispatch';
 
-	/**
+    /**
      * Имя поля для хранения профиля подписчика
      */
-	const FIELD_PROFILE = 'profile';
+    const FIELD_PROFILE = 'profile';
+
+    /**
+     * Имя поля для хранения причины отписки
+     */
+    const FIELD_REASON = 'reason';
 
 }

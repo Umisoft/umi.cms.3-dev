@@ -79,6 +79,11 @@ class Release extends CmsObject
      */
     const FIELD_PERCENT_READS = 'percent_reads';
 
+    /**
+     *  Имя поля для хранения причин отписок
+     */
+    const FIELD_REASON = 'reason';
+
     public function calculatePercentViews(){
         $countSendMessageValue = $this->getProperty(self::FIELD_COUNT_SEND_MESSAGE)->getValue();
 

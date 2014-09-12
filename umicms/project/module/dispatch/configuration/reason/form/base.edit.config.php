@@ -47,14 +47,16 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => Reason::FIELD_RELEASE,
                     'options' => [
-                        'dataSource' => Reason::FIELD_RELEASE
+                        'dataSource' => Reason::FIELD_RELEASE,
+                        'lazy' => true
                     ]
                 ],
                 Reason::FIELD_SUBSCRIBER => [
                     'type' => Select::TYPE_NAME,
                     'label' => Reason::FIELD_SUBSCRIBER,
                     'options' => [
-                        'dataSource' => Reason::FIELD_SUBSCRIBER
+                        'dataSource' => Reason::FIELD_SUBSCRIBER,
+                        'lazy' => true
                     ]
                 ],
                 Reason::FIELD_DATE_UNSUBSCIBE => [

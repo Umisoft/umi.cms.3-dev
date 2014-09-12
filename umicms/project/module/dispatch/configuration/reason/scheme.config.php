@@ -32,11 +32,6 @@ return array_replace_recursive(
             ],
         ],
         'indexes' => [
-            'release' => [
-                'columns' => [
-                    'release_id' => []
-                ]
-            ],
             'subscriber' => [
                 'columns' => [
                     'subscriber_id' => []
@@ -44,16 +39,6 @@ return array_replace_recursive(
             ]
         ],
         'constraints' => [
-            'reason_to_release' => [
-                'foreignTable' => 'dispatch_release',
-                'columns' => [
-                    'release_id' => []
-                ],
-                'options' => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
-                ]
-            ],
             'subscriber_to_release' => [
                 'foreignTable' => 'dispatch_subscriber',
                 'columns' => [
