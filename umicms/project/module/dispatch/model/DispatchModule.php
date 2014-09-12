@@ -20,7 +20,7 @@ use umicms\project\module\dispatch\model\collection\ReasonCollection;
 use umicms\project\module\dispatch\model\collection\ReleaseCollection;
 use umicms\project\module\dispatch\model\collection\SubscriberCollection;
 use umicms\project\module\dispatch\model\collection\TemplateMailCollection;
-use umicms\project\module\dispatch\model\object\Dispatches;
+use umicms\project\module\dispatch\model\object\Dispatch;
 use umicms\project\module\dispatch\model\object\Reason;
 use umicms\project\module\dispatch\model\object\Release;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
@@ -73,5 +73,17 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     {
 
         return $subscriber;
+    }
+
+    /**
+     * Возвращает селектор для выборки новостей.
+     * @return CmsSelector|dispatch[]
+     */
+    public function getDispatch()
+    {
+        $dispatch = $this->dispatch()->select()
+            ->orderBy(Dispatch::FIELD_IDENTIFY, CmsSelector::ORDER_DESC)->end();
+
+        return $dispatch;
     }
 }

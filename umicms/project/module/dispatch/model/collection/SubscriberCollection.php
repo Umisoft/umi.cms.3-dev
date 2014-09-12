@@ -17,9 +17,12 @@ use umicms\orm\collection\CmsCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
+use umicms\project\module\dispatch\model\object\Dispatch;
 use umicms\exception\NonexistentEntityException;
 use umi\filter\IFilterFactory;
 use umi\validation\IValidatorFactory;
+use umi\form\element\Checkbox;
+use umi\form\element\Text;
 
 /**
  * Коллекция для работы с подписчиками.
@@ -75,9 +78,10 @@ class SubscriberCollection extends CmsCollection
      * Получить форму на подписку
      * @param Subscriber $subscriber логин пользователя
      * @param bool $isAuth
+     * @param $dispatch
      * @return \umi\form\IForm
      */
-    public function getSubscribeForm(Subscriber $subscriber, $isAuth = false)
+    public function getSubscribeForm(Subscriber $subscriber, $isAuth = false, $dispatch = array())
     {
         /**
          * @var array $config
@@ -94,9 +98,21 @@ class SubscriberCollection extends CmsCollection
             'elements' => []
         ];
 
+        if(!empty($dispatch)){
+            /**
+             * @var Dispatch $dispatchItem
+             */
+            foreach($dispatch as $dispatchItem){
+                $config['elements'][$dispatchItem->getTypePath()] = [
+                    'type' => Checkbox::TYPE_NAME,
+                    'label' => $dispatchItem->getProperty(Dispatch::FIELD_DISPLAY_NAME)->getValue()
+                ];
+            }
+        }
+
         if(!$isAuth){
             $config['elements'][BaseSubscriber::FIELD_EMAIL] = [
-                'type' => 'text',
+                'type' => Text::TYPE_NAME,
                 'label' => BaseSubscriber::FIELD_EMAIL,
                 'options' => [
                     'filters' => [

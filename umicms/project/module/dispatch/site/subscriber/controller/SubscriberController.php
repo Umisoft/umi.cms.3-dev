@@ -59,8 +59,9 @@ class SubscriberController extends BaseSitePageController
     {
         $type = $this->getRouteVar('type', Subscriber::TYPE_NAME);
         $this->subscriber = $this->module->subscriber()->add($type);
+        $dispatch = $this->module->getDispatch();
 
-        return $this->module->subscriber()->getSubscribeForm($this->subscriber, $this->module->isAuthenticated());
+        return $this->module->subscriber()->getSubscribeForm($this->subscriber, $this->module->isAuthenticated(), $dispatch);
     }
 
     /**
@@ -68,11 +69,6 @@ class SubscriberController extends BaseSitePageController
      */
     protected function processForm(IForm $form)
     {
-        /**
-         * @var IFormElement $emailInput
-         */
-        $emailInput = $form->get(Subscriber::FIELD_EMAIL);
-        $this->module->subscribe($emailInput->getValue(), $this->subscriber);
         $this->commit();
 
         //$this->errors[] = $this->translate('Error subscribe');
