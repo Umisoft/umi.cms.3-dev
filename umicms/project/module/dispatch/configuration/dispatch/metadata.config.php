@@ -48,7 +48,7 @@ return array_replace_recursive(
                 'columnName' => 'date_last_sending',
             ],
             Dispatch::FIELD_DESCRIPTION => [
-                'type' => IField::TYPE_DATE_TIME,
+                'type' => IField::TYPE_TEXT,
                 'columnName' => 'description',
             ],
         ],
