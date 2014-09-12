@@ -15,10 +15,10 @@ return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
         'name' => 'dispatch_templatemail',
-		'columns'     =>  [
+        'columns' => [
             'path_to_template' => [
                 'type' => Type::STRING
             ]
-		]
+        ]
     ]
 );

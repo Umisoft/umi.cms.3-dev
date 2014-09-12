@@ -31,24 +31,5 @@ return array_replace_recursive(
                 'type' => Type::DATETIME
             ],
         ],
-        'indexes' => [
-            'subscriber' => [
-                'columns' => [
-                    'subscriber_id' => []
-                ]
-            ]
-        ],
-        'constraints' => [
-            'subscriber_to_release' => [
-                'foreignTable' => 'dispatch_subscriber',
-                'columns' => [
-                    'subscriber_id' => []
-                ],
-                'options' => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
-                ]
-            ]
-        ]
     ]
 );

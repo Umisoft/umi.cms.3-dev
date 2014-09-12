@@ -27,6 +27,10 @@ return array_replace_recursive(
                 'columnName' => 'subscriber_id',
                 'target' => 'subscriber'
             ],
+            Reason::FIELD_DATE_UNSUBSCIBE => [
+                'type' => IField::TYPE_DATE_TIME,
+                'columnName' => 'date_unsubscribe',
+            ],
         ],
         'types'  => [
             'base' => [
@@ -34,6 +38,7 @@ return array_replace_recursive(
                 'fields'      => [
                     Reason::FIELD_RELEASE => [],
                     Reason::FIELD_SUBSCRIBER => [],
+                    Reason::FIELD_DATE_UNSUBSCIBE => [],
                 ]
             ]
         ],

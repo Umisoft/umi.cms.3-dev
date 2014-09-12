@@ -22,7 +22,7 @@ return array_replace_recursive(
             'token' => [
                 'type' => Type::STRING
             ],
-			'profile_id' => [
+            'profile_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -38,17 +38,17 @@ return array_replace_recursive(
                 'type' => Type::STRING
             ],
             'sex_id'        => [
-				'type'    => Type::BIGINT
-			],
+                'type'    => Type::BIGINT
+            ],
         ],
         'indexes' => [
-			'profile' => [
+            'profile' => [
                 'columns' => [
                     'profile_id' => []
                 ]
             ]
         ],
-		'constraints' => [
+        'constraints' => [
             'profile_to_subscriber' => [
                 'foreignTable' => 'users_user',
                 'columns' => [

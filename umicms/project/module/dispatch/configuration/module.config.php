@@ -8,8 +8,8 @@ return [
         'release' => '~/project/module/dispatch/configuration/release',
         'reason' => '~/project/module/dispatch/configuration/reason',
         'templatemail' => '~/project/module/dispatch/configuration/templatemail',
-		'subscribersdispatches' => '~/project/module/dispatch/configuration/subscribersdispatches',
-		'unsubscribedispatches' => '~/project/module/dispatch/configuration/unsubscribedispatches',
-		'usergroupdispatches' => '~/project/module/dispatch/configuration/usergroupdispatches',
+        'subscribersdispatches' => '~/project/module/dispatch/configuration/subscribersdispatches',
+        'unsubscribedispatches' => '~/project/module/dispatch/configuration/unsubscribedispatches',
+        'usergroupdispatches' => '~/project/module/dispatch/configuration/usergroupdispatches',
     ]
 ];

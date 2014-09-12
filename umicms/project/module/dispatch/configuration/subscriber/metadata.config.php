@@ -34,6 +34,18 @@ return array_replace_recursive(
                     IValidatorFactory::TYPE_EMAIL => [],
                 ]
             ],
+            BaseSubscriber::FIELD_FIRST_NAME => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'first_name',
+            ],
+            BaseSubscriber::FIELD_MIDDLE_NAME => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'middle_name',
+            ],
+            BaseSubscriber::FIELD_LAST_NAME => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'last_name',
+            ],
             BaseSubscriber::FIELD_SEX => [
                 'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'sex_id',
@@ -67,6 +79,9 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\dispatch\model\object\BaseSubscriber',
                 'fields'      => [
                     BaseSubscriber::FIELD_EMAIL => [],
+                    BaseSubscriber::FIELD_FIRST_NAME => [],
+                    BaseSubscriber::FIELD_MIDDLE_NAME => [],
+                    BaseSubscriber::FIELD_LAST_NAME => [],
                     BaseSubscriber::FIELD_SEX => [],
                     BaseSubscriber::FIELD_DISPATCH => [],
                     //BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => [],

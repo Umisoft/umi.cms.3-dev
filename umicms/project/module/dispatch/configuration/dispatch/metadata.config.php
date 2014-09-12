@@ -43,6 +43,14 @@ return array_replace_recursive(
                 'columnName' => 'release_id',
                 'target' => 'release'
             ],
+            Dispatch::FIELD_DATE_LAST_SENDING => [
+                'type' => IField::TYPE_DATE_TIME,
+                'columnName' => 'date_last_sending',
+            ],
+            Dispatch::FIELD_DESCRIPTION => [
+                'type' => IField::TYPE_DATE_TIME,
+                'columnName' => 'description',
+            ],
         ],
         'types'  => [
             'base' => [
@@ -51,7 +59,9 @@ return array_replace_recursive(
                     Dispatch::FIELD_RELEASE => [],
                     Dispatch::FIELD_SUBSCRIBER => [],
                     Dispatch::FIELD_GROUP_USER => [],
-                    //Dispatch::FIELD_UNSUBSCRIBER => []
+                    //Dispatch::FIELD_UNSUBSCRIBER => [],
+                    Dispatch::FIELD_DATE_LAST_SENDING => [],
+                    Dispatch::FIELD_DESCRIPTION => [],
                 ]
             ]
         ],

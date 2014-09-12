@@ -16,8 +16,8 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatch_templatemail'
         ],
-		'fields'	=> [
-            TemplateMail::FIELD_PATHTEMPLATE	=> [
+        'fields' => [
+            TemplateMail::FIELD_PATHTEMPLATE => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'path_to_template'
             ],
@@ -26,8 +26,8 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatch\model\object\TemplateMail',
                 'fields'      => [
-				    TemplateMail::FIELD_PATHTEMPLATE => []
-				]
+                    TemplateMail::FIELD_PATHTEMPLATE => []
+                ]
             ]
         ],
     ]
