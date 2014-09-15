@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\dispatch\model\collection;
 
+use umi\form\element\Hidden;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
@@ -21,8 +22,10 @@ use umicms\project\module\dispatch\model\object\Dispatch;
 use umicms\exception\NonexistentEntityException;
 use umi\filter\IFilterFactory;
 use umi\validation\IValidatorFactory;
-use umi\form\element\Checkbox;
+use umi\form\element\CheckboxGroup;
+use umi\form\element\CSRF;
 use umi\form\element\Text;
+use umicms\form\element\Captcha;
 
 /**
  * Коллекция для работы с подписчиками.
@@ -76,12 +79,12 @@ class SubscriberCollection extends CmsCollection
 
     /**
      * Получить форму на подписку
-     * @param Subscriber $subscriber логин пользователя
-     * @param bool $isAuth
-     * @param $dispatch
+     * @param Subscriber $subscriber подписчик
+     * @param bool $isAuth - авторизован или нет
+     * @param $dispatch - рассылки
      * @return \umi\form\IForm
      */
-    public function getSubscribeForm(Subscriber $subscriber, $isAuth = false, $dispatch = array())
+    public function getSubscribeForm(Subscriber $subscriber, $isAuth = false, $dispatch)
     {
         /**
          * @var array $config
@@ -102,12 +105,21 @@ class SubscriberCollection extends CmsCollection
             /**
              * @var Dispatch $dispatchItem
              */
+            $config['elements'][BaseSubscriber::FIELD_DISPATCH] = [
+                'type' => CheckboxGroup::TYPE_NAME,
+                'options' => [
+                    'choices' => []
+                ]
+            ];
+            /**
+             * @var array $arrayTemp
+            */
+            $arrayTemp = [];
             foreach($dispatch as $dispatchItem){
-                $config['elements'][$dispatchItem->getTypePath()] = [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => $dispatchItem->getProperty(Dispatch::FIELD_DISPLAY_NAME)->getValue()
-                ];
-            }
+                $arrayTemp[$dispatchItem->getId()] = $dispatchItem->getProperty(Dispatch::FIELD_DISPLAY_NAME)->getValue();
+            };
+            $config['elements'][BaseSubscriber::FIELD_DISPATCH]['options']['choices'] = $arrayTemp;
+            unset($arrayTemp);
         }
 
         if(!$isAuth){
@@ -115,16 +127,19 @@ class SubscriberCollection extends CmsCollection
                 'type' => Text::TYPE_NAME,
                 'label' => BaseSubscriber::FIELD_EMAIL,
                 'options' => [
-                    'filters' => [
-                        IFilterFactory::TYPE_STRING_TRIM => []
-                    ],
-                    'validators' => [
-                        IValidatorFactory::TYPE_REQUIRED => [],
-                        IValidatorFactory::TYPE_EMAIL => []
+                    'options' => [
+                        'dataSource' => BaseSubscriber::FIELD_EMAIL
                     ]
                 ]
             ];
         }
+
+        $config['elements']['captcha'] = [
+            'type' => Captcha::TYPE_NAME
+        ];
+        $config['elements']['csrf'] = [
+            'type' => CSRF::TYPE_NAME
+        ];
 
         $config['elements']['submit'] = [
             'type' => 'submit',

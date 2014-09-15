@@ -17,6 +17,7 @@ use umicms\project\module\dispatch\model\object\Subscriber;
 use umicms\project\module\dispatch\model\DispatchModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\dispatch\model\object\SubscriberUser;
 
 /**
  * Контроллер авторизации пользователя
@@ -33,7 +34,7 @@ class SubscriberController extends BaseSitePageController
     /**
      * @var Subscriber $subscriber подписчик
      */
-    protected $subscriber;
+    private $subscriber;
 
     /**
      * Конструктор.
@@ -69,9 +70,8 @@ class SubscriberController extends BaseSitePageController
      */
     protected function processForm(IForm $form)
     {
+        $this->module->subscriber($this->subscriber);
         $this->commit();
-
-        //$this->errors[] = $this->translate('Error subscribe');
 
         return $this->buildRedirectResponse();
     }

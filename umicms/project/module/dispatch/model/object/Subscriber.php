@@ -14,6 +14,7 @@ use umicms\project\module\dispatch\model\collection\SubscriberCollection;
 /**
  * Подписчики.
  *
+ * @property string $email e-mail
  */
 class Subscriber extends BaseSubscriber
 {
@@ -49,5 +50,27 @@ class Subscriber extends BaseSubscriber
         }
 
         return $result;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
+     * @return bool
+     */
+    protected function generateDisplayName($localeId = null)
+    {
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $displayName = $this->getValue(self::FIELD_DISPLAY_NAME, $this->getCurrentLocale()) ?: $this->email;
+            $this->setValue(self::FIELD_DISPLAY_NAME, $displayName, $localeId);
+        }
     }
 }

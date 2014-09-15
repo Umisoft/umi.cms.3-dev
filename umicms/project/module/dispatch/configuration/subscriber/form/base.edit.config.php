@@ -39,35 +39,35 @@ return [
                         'dataSource' => BaseSubscriber::FIELD_DISPLAY_NAME
                     ],
                 ],
-				BaseSubscriber::FIELD_EMAIL => [
+                BaseSubscriber::FIELD_EMAIL => [
                     'type' => Text::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_EMAIL,
                     'options' => [
                         'dataSource' => BaseSubscriber::FIELD_EMAIL
                     ],
                 ],
-				BaseSubscriber::FIELD_FIRST_NAME => [
+                BaseSubscriber::FIELD_FIRST_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_FIRST_NAME,
                     'options' => [
                         'dataSource' => BaseSubscriber::FIELD_FIRST_NAME
                     ],
                 ],
-				BaseSubscriber::FIELD_LAST_NAME => [
+                BaseSubscriber::FIELD_LAST_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_LAST_NAME,
                     'options' => [
                         'dataSource' => BaseSubscriber::FIELD_LAST_NAME
                     ],
                 ],
-				BaseSubscriber::FIELD_MIDDLE_NAME => [
+                BaseSubscriber::FIELD_MIDDLE_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_MIDDLE_NAME,
                     'options' => [
                         'dataSource' => BaseSubscriber::FIELD_MIDDLE_NAME
                     ],
                 ],
-				BaseSubscriber::FIELD_SEX => [
+                BaseSubscriber::FIELD_SEX => [
                     'type' => Select::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_SEX,
                     'options' => [
@@ -81,7 +81,7 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'additional',
             'elements' => [
-				BaseSubscriber::FIELD_DISPATCH => [
+                BaseSubscriber::FIELD_DISPATCH => [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_DISPATCH,
                     'options' => [
@@ -97,7 +97,7 @@ return [
 //                        'lazy' => true
 //                    ]
 //                ],
-				BaseSubscriber::FIELD_PROFILE => [
+                BaseSubscriber::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
                     'label' => BaseSubscriber::FIELD_PROFILE,
                     'options' => [

@@ -25,9 +25,13 @@ use umicms\project\module\dispatch\model\object\Reason;
 use umicms\project\module\dispatch\model\object\Release;
 use umicms\project\module\dispatch\model\object\BaseSubscriber;
 use umicms\project\module\dispatch\model\object\Subscriber;
+use umicms\project\module\dispatch\model\object\SubscriberUser;
 use umicms\project\module\dispatch\model\object\TemplateMail;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\TAuthenticationAware;
+use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\users\model\object\RegisteredUser;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Модуль "Рассылки".
@@ -66,23 +70,56 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Производит попытку подписания пользователя на рассылку.
-     * @param Subscriber $subscriber логин пользователя
-     * @return bool результат авторизации
+     * @param Subscriber $subscriber подписчик
+     * @return Subscriber|SubscriberUser
      */
     public function subscribe(Subscriber $subscriber)
     {
+        /**
+         * @var Subscriber $subscriberTemp
+         */
+        if($subscriberTemp = $this->subscriber()->getSubscriberByEmail($subscriber->email)){
+            $subscriber = $subscriberTemp;
+        };
+        if($this->isAuthenticated()){
 
+        };
         return $subscriber;
     }
 
     /**
-     * Возвращает селектор для выборки новостей.
+     * Возвращает селектор для выборки рассылки.
      * @return CmsSelector|dispatch[]
      */
     public function getDispatch()
     {
         $dispatch = $this->dispatch()->select()
-            ->orderBy(Dispatch::FIELD_IDENTIFY, CmsSelector::ORDER_DESC)->end();
+            ->orderBy(Dispatch::FIELD_IDENTIFY, CmsSelector::ORDER_ASC);
+
+        return $dispatch;
+    }
+
+    /**
+     * Возвращает селектор для выборки рассылки по группам пользователей.
+     * @return CmsSelector|dispatch[]
+     */
+    public function getDispatchFilterGroup()
+    {
+        /**
+         * @var UsersModule $usersModule
+         * @var RegisteredUser|Guest $currentUser
+         * @var array $groups
+         */
+        $usersModule = $this->getApi(UsersModule::className());
+        $currentUser = $this->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
+
+        $dispatch = $this->getDispatch();
+
+        if($groups = $currentUser->getProperty(BaseUser::FIELD_GROUPS)->getValue()){
+           foreach($groups as $group){
+               $dispatch->where(Dispatch::FIELD_GROUP_USER)->equals($group);
+           };
+        }
 
         return $dispatch;
     }

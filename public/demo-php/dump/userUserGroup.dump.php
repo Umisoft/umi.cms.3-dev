@@ -111,6 +111,136 @@ return array (
     array (
       'collection' => 'userUserGroup',
       'type' => 'base',
+      'guid' => '7797e658-d4c1-40a4-bc87-be68d37b77e7',
+      'displayName' => 'Гость:Farit:Зaрегистрированные пользователи:ru-RU',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Гость:Farit:Зaрегистрированные пользователи:ru-RU',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 15:56:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'guest',
+            'guid' => '552802d2-278c-46c2-9525-cd464bbed63e',
+            'displayName' => 'Гость',
+          ),
+        ),
+      ),
+      'user' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered',
+            'guid' => 'e62476f5-0c32-474f-9b4b-6c47010352d2',
+            'displayName' => 'Farit',
+          ),
+        ),
+      ),
+      'userGroup' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'userGroup',
+            'type' => 'base',
+            'guid' => 'daabebf8-f3b3-4f62-a23d-522eff9b7f68',
+            'displayName' => 'Зaрегистрированные пользователи',
+          ),
+        ),
+      ),
+    ),
+  ),
+  3 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'userUserGroup',
+      'type' => 'base',
+      'guid' => 'b5b1f921-7ee3-40a8-b317-8d0cdfa96c7d',
+      'displayName' => 'Гость:Farit:Посетители:ru-RU',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Гость:Farit:Посетители:ru-RU',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 15:56:11";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'guest',
+            'guid' => '552802d2-278c-46c2-9525-cd464bbed63e',
+            'displayName' => 'Гость',
+          ),
+        ),
+      ),
+      'user' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered',
+            'guid' => 'e62476f5-0c32-474f-9b4b-6c47010352d2',
+            'displayName' => 'Farit',
+          ),
+        ),
+      ),
+      'userGroup' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'userGroup',
+            'type' => 'base',
+            'guid' => 'bedcbbac-7dd1-4b60-979a-f7d944ecb08a',
+            'displayName' => 'Посетители',
+          ),
+        ),
+      ),
+    ),
+  ),
+  4 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'userUserGroup',
+      'type' => 'base',
       'guid' => 'c480f095-74ad-49d2-a9c6-cc87a6d49d07',
       'displayName' => 'Супервайзер:Администратор:Посетители:ru-RU',
     ),
@@ -156,7 +286,7 @@ return array (
       ),
     ),
   ),
-  3 => 
+  5 => 
   array (
     'meta' => 
     array (
@@ -207,7 +337,7 @@ return array (
       ),
     ),
   ),
-  4 => 
+  6 => 
   array (
     'meta' => 
     array (

@@ -64,4 +64,9 @@ class BaseSubscriber extends CmsObject
      */
     const FIELD_REASON = 'reason';
 
+    /**
+     * Имя поля для хранения token'а
+     */
+    const FIELD_TOKEN = 'token';
+
 }
