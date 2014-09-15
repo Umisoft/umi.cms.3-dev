@@ -159,7 +159,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:34:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 12:57:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -170,8 +170,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -1253,7 +1253,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:31:14";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 12:57:42";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -1264,8 +1264,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -1292,22 +1292,17 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>UMI.CMS 3&nbsp;- иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов.</p>
+        1 => '<p>UMI.CMS 3&nbsp;- система управления контентом сайта, основанная на UMI.Framework. Архитектурно UMI.CMS 3 представляет собой иерархическое приложение, состоящее из набора слабо связанных MVC-компонентов.</p>
+
+<p><strong>Компонент </strong>- это минимальная функциональная единица, объединяющая в себе <strong>модель</strong>, <strong>представление </strong>и <strong>поведение </strong>(MVC). <strong>Модель </strong>компонента - это классы, предоставляющие доступ к данным и описывающие бизнес-логику этих данных. <strong>Представление </strong>компонента - это его шаблонизатор и шаблоны. <strong>Поведение </strong>компонента - это его <strong>контроллеры</strong>, контроллеры обрабатывают запросы пользователя, обращаясь к модели для получения и изменения данных, связывают между собой модель и представление.</p>
+
+<p>Для связи модели и представления компонента также используются <strong>виджеты</strong> - специальные части компонента, служащие для отображения небольших контентных блоков, дополняющих основное представление.&nbsp;</p>
+
+<p>Компоненты объединены по тематике выполняемого функционала в <strong>модули</strong>. Внутри модуля компоненты разделяются на относящиеся к сайтовой и административной частям приложения, а внутри административной части может быть отдельно выделена группа компонентов, отвечающая за настройки модуля. Каждая из этих частей также является компонентом.</p>
+
+<p><strong>Модуль </strong>является совокупным понятием для набора компонентов и предоставляемого публичного API.</p>
 
 <p><img alt="" src="/umi_docs/asset/images/database/structure-1.png" style="height:230px; width:605px" /></p>
-
-<h2>Отличия от UMI.CMS 2</h2>
-
-<ul>
-	<li>Вся бизнес-логика вынесена в модели, что позволяет повторно использовать код. В двойке практически вся логика находилась в теле метода, выполняющего роль контроллера.</li>
-	<li>Контроллеры не выполняют и не запускает логику шаблонизации (rendering), задачей контроллера является только обработка запроса (Request), запуск необходимой бизнес-логики через модели и формирования параметризованного ответа (Response). Ответ может идти или не идти на шаблонизацию или сериализацию. Ответ может включать в себя переменные, которые используются для шаблонизации и сериализации, а также имя шаблона для шаблонизации. Контроллеры должны быть &ldquo;тонкими&rdquo; и не должны содержать бизнес-логики.</li>
-	<li>Результат работы любого контроллера, написанного по правилам, можно получить в сериализованном виде в форматах json и xml. Таким образом, можно легко запостить форму ajax&rsquo;ом и получить удобный для разбора ответ об успехе или список ошибок.</li>
-	<li>Виджеты являются аналогами макросов в двойке, но виджеты не могут совершать никаких действий по изменению данных, они служат исключительно для визуализации запрашиваемой информации.</li>
-	<li>Полное разделение запросов на чтение и модификацию данных. Все запросы каким-либо образом меняющие состояние системы выполняются методом POST. Все входные данные контролируются через формы. Запрещено заполнять свойства объектов из произвольного массива POST из соображений безопасности. Для защиты от CSRF-атак в формах должно присутствовать поле csrf. Можно обойтись без формы, но необходимо жестко контролировать входные данные, не забывая про CSRF и XSS уязвимости.</li>
-	<li>Минимизированы запросы к базе, так как все настройки и конфигурации содержатся в файлах, а так же появилась возможность выборок по связанным полям, а так же возможность выбирать объект со нужными связями (см. ISelector)</li>
-	<li>Нет единой иерархии страниц, отображаемых на сайте. Каждый компонент для иерархических типов страниц имеет свою иерархию, для неиерархических типов - не имеет вообще.</li>
-	<li>Все данные разделены по отдельным коллекциям, которые связаны с &ldquo;плоскими&rdquo; таблицами, что увеличивает производительность выборок, позволяет настроить индексы и практически полностью избавляет от тяжелых JOIN в запросах.</li>
-</ul>
 ',
       ),
       'active#ru-RU' => 
@@ -1349,6 +1344,11 @@ return array (
       array (
         0 => 'integer',
         1 => 2,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
@@ -1487,6 +1487,283 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
+      'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
+      'displayName' => 'Пользователи',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+          'displayName' => 'Виджеты',
+          'branch' => NULL,
+          'slug' => 'widgets',
+        ),
+      ),
+      'slug' => 'users',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Пользователи',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:21:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  13 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '87da0559-9773-4215-807f-bd239fc80f2e',
+      'displayName' => 'Быстрый старт',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
+          'branch' => NULL,
+          'slug' => 'about-umi-cms',
+        ),
+      ),
+      'slug' => 'quick-start',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Быстрый старт',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:11:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 10:40:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Быстрый старт',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<h2>Get started!</h2>
+
+<p>Установите UMI.CMS 3 всего за 5 минут и начните пользоваться самой современной системой управления контентом прямо сейчас! Эта глава проведет вас через основные концепты и особенности разработки сайта на UMI.CMS 3 на примере простых готовых демо-сайтов.</p>
+
+<h3>Установка и демо-сайт</h3>
+
+<p>Перед <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/ustanovka_sistemy1/">установкой системы</a> убедитесь, что ваш сервер соответствует <a href="http://help.umi-cms.ru/vvedenie/ustanovka_i_nastrojka/trebovaniya_k_serveru/">системным требованиям</a>. В процессе установке вам будет предложено выбрать один из готовых демо-сайтов, каждый из которых выполнен на своем шаблонизаторе.</p>
+
+<p>Простой и понятный без документации PHP-шаблонизатор, современный и безопасный <a href="http://twig.sensiolabs.org/">Twig</a>, привычный и гибкий <a href="http://www.w3schools.com/xsl/">XSLT</a> - это только ваш выбор. Вы в любой момент можете изменить шаблонизатор, выбранный для сайта по умолчанию, или использовать для отдельных частей сайта свой шаблонизатор.</p>
+
+<p>После установки системы вы имеете полностью готовый к использованию сайт с демо-контентом и шаблонами.</p>
+
+<h2>Основы</h2>
+
+<p>Не секрет, что одной из важнейших задач системы является вывод HTML-страниц. За вывод страниц в UMI.CMS 3 отвечают <strong>контроллеры</strong>, специальные PHP-классы, обрабатывающие запрос пользователя и формирующие ответ. Контроллер, отвечающий за вывод конкретной страницы, определяется в процессе <a href="/about-umi-cms/architecture/request-scheduling">диспетчеризации запроса пользователя</a>.</p>
+
+<h3>Шаблоны</h3>
+
+<p>Внешний вид страницы состоит из двух частей - <strong>контентной области</strong> и того, что ее окружает, т.е. <strong>сетки</strong>.</p>
+
+<p>Сетка отображается по шаблону, указанному в настройках страницы. Если у страницы не указан шаблон, то сеткой становится первый шаблон, найденнный в стеке вызова страниц, или шаблон, указанный в настройках системы как шаблон по умолчанию. Сетка помогает определить общие блоки для отображения на страницах (например, хэдер, футер, меню), а также выделить блок для отображения содержимого конкретной страницы.&nbsp;</p>
+
+<p>Содержимое конкретной страницы, т.е. ее контентная область, зависит от данных, определенных контроллером в ответ на запрос пользователя. Для Twig и PHP-шаблонизатора эти данные шаблонизируются по шаблону, определенному контроллером, в момент вывода контентной области в сетке. Для XSLT-шаблонизатора шаблон контроллера игнорируется, данные контроллера сериализуются в XML и доступны в сетке для дальнейшей обработки.</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  14 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
       'guid' => '32f0b62d-5f0a-4e1c-bcd6-70e386a79c53',
       'displayName' => 'Разные окружения',
       'branch' => 
@@ -1518,7 +1795,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:35:50";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-10 12:59:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -1529,8 +1806,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -1635,7 +1912,265 @@ return array (
       ),
     ),
   ),
-  13 => 
+  15 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '536cf214-548c-4573-96c1-07f53282f765',
+      'displayName' => 'Новости',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+          'displayName' => 'Виджеты',
+          'branch' => NULL,
+          'slug' => 'widgets',
+        ),
+      ),
+      'slug' => 'news',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новости',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  16 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
+      'displayName' => 'Новости',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+          'displayName' => 'Контроллеры',
+          'branch' => NULL,
+          'slug' => 'controllers',
+        ),
+      ),
+      'slug' => 'news',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Новости',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:52:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  17 => 
   array (
     'meta' => 
     array (
@@ -1672,7 +2207,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:36:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-10 12:59:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -1683,8 +2218,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -2023,14 +2558,143 @@ return array (
       ),
     ),
   ),
-  14 => 
+  18 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'cff4d557-f007-48a0-8bff-024950b88a03',
-      'displayName' => 'Новости',
+      'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+      'displayName' => 'Блог',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+          'displayName' => 'Виджеты',
+          'branch' => NULL,
+          'slug' => 'widgets',
+        ),
+      ),
+      'slug' => 'blog',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Блог',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  19 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+      'displayName' => 'Блог',
       'branch' => 
       array (
         'meta' => 
@@ -2043,14 +2707,14 @@ return array (
           'slug' => 'controllers',
         ),
       ),
-      'slug' => 'news',
+      'slug' => 'blog',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Новости',
+        1 => 'Блог',
       ),
       'created' => 
       array (
@@ -2152,14 +2816,14 @@ return array (
       ),
     ),
   ),
-  15 => 
+  20 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '82c11e27-8b5e-4d0a-9444-3055c57633a1',
-      'displayName' => 'Пользователи',
+      'guid' => '0035d042-0d55-462e-99f8-20904599b568',
+      'displayName' => 'Поиск',
       'branch' => 
       array (
         'meta' => 
@@ -2172,14 +2836,14 @@ return array (
           'slug' => 'widgets',
         ),
       ),
-      'slug' => 'users',
+      'slug' => 'search',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Пользователи',
+        1 => 'Поиск',
       ),
       'created' => 
       array (
@@ -2189,7 +2853,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:21:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -2214,8 +2878,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
       ),
@@ -2281,7 +2945,136 @@ return array (
       ),
     ),
   ),
-  16 => 
+  21 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '995fa1d9-748b-40d0-ad6c-63f7ede8f51a',
+      'displayName' => 'Поиск',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+          'displayName' => 'Контроллеры',
+          'branch' => NULL,
+          'slug' => 'controllers',
+        ),
+      ),
+      'slug' => 'search',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Поиск',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:52:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  22 => 
   array (
     'meta' => 
     array (
@@ -2318,7 +3111,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:36:14";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-10 12:59:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -2329,8 +3122,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -2492,136 +3285,7 @@ return [
       ),
     ),
   ),
-  17 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-      'displayName' => 'Блог',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-          'displayName' => 'Контроллеры',
-          'branch' => NULL,
-          'slug' => 'controllers',
-        ),
-      ),
-      'slug' => 'blog',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Блог',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:52:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  18 => 
+  23 => 
   array (
     'meta' => 
     array (
@@ -2658,7 +3322,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:36:25";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-10 12:59:02";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -2669,8 +3333,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -2934,58 +3598,44 @@ return [
       ),
     ),
   ),
-  19 => 
+  24 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '536cf214-548c-4573-96c1-07f53282f765',
-      'displayName' => 'Новости',
+      'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+      'displayName' => 'Шаблонизация',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-          'displayName' => 'Виджеты',
+          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+          'displayName' => 'Описание системы',
           'branch' => NULL,
-          'slug' => 'widgets',
+          'slug' => 'about-umi-cms',
         ),
       ),
-      'slug' => 'news',
+      'slug' => 'template-engines',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Новости',
+        1 => 'Шаблонизация',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:16:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 13:32:55";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -2996,8 +3646,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -3020,6 +3670,55 @@ return [
       array (
         0 => 'string',
         1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Шаблонизатор позволяет разделить логику представления (отображения) данных от бизнес-логики приложения. С помощью шаблонов шаблонизатор преобразовывает данные в конечные html-страницы.</p>
+
+<p>На данный момент в UMI.CMS 3 представлено 3 шаблонизатора:</p>
+
+<ul>
+	<li>PHP</li>
+	<li>Twig</li>
+	<li>XSLT</li>
+</ul>
+
+<h2>Настройки шаблонизации</h2>
+
+<p>Общие настройки шаблонизации задаются в секции &quot;Шаблонизация&quot; компонента &quot;Настройки сайта&quot; в модуле &quot;Настройки&quot;.</p>
+
+<p><img alt="" src="images/php-settings.PNG" style="height:304px; width:1015px" /></p>
+
+<p>В настройках шаблонизации указываются следующие параметры:</p>
+
+<ul>
+	<li><strong>Тип шаблонизатора по умолчанию</strong> - шаблонизатор, который используется для обработки шаблонов компонентов, если в настройках компонента не указано иное.</li>
+	<li><strong>Директория с шаблонами</strong> - символьное имя корневой директории файлов шаблонов, где <strong>~project</strong> означает публичную директорию текущего проекта.</li>
+	<li><strong>Расширение файлов шаблонов по умолчнию </strong>- параметр, указывающий шаблонизатору, с киким расширением необходимо осуществлять поиск шаблона.</li>
+	<li><strong>Директория с общими шаблонами</strong> - символьное имя директории, шаблоны из которой доступны для всех компонентов,&nbsp;где <strong>~project</strong> означает публичную директорию текущего проекта. Не используется для проектов на XSLT-шаблонизаторе.</li>
+</ul>
+
+<h2>Общая информация о PHP-подобных шаблонизаторах (PHP и Twig)</h2>
+
+<p><img alt="" src="images/php-files.PNG" style="float:left; height:501px; margin-right:10px; width:306px" /></p>
+
+<h3>Файловая структура</h3>
+
+<p>По умолчанию шаблоны для PHP-шаблонизаторы имеют жестко заданную структуру файлов. Все шаблоны лежат в одной директории, заданной в настройках. Для готовых демо-сайтов это папка <strong>templates </strong>в публичной директории проекта.</p>
+
+<p>В корне директории <strong>templates </strong>находятся шаблоны страниц (сетки).</p>
+
+<p>В директории <strong>templates/error</strong> находятся шаблоны для вывода ошибок.</p>
+
+<p>В директории <strong>templates/module</strong> находятся шаблоны виджетов и контроллеров. Структура папки повторяет иерархию компонентов. Каждому компоненту системы соответствует своя папка с шаблонами.</p>
+
+<h3>Определение шаблона</h3>
+
+<p>Когда шаблонизатор получает от контроллера или виджета название шаблона, по которому необходимо отрендерить контент, он пытается найти файл с именем шаблона и с расширением, указанным в настройках проекта. Поиск изначально происходит в папке компонента, которому принадлежит контроллер или виджет, а затем в общей папке, если такая задана в настройках.</p>
+
+<p>Так как контроллеры и виджеты разных компонентов, выводящие аналогичные данные, используют одни и те же названия шаблонов, то использование шаблонов в общей папке позволяет не дублировать код и переопределять код для конкретных компонентов. Так, например, виджеты вывода форм в большинстве случаев используют шаблон с названием &quot;form&quot;. Такой шаблон удобно положить в общую директорию, чтобы все формы на сайте выглядели одинаково. При этом, если какая-то форма нуждается в индивидуальном дизайне, то для нее может быть сверстан отдельный шаблон &quot;form&quot;, находящийся в папке соответствующего компонента.</p>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -3061,9 +3760,14 @@ return [
         0 => 'integer',
         1 => 2,
       ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
     ),
   ),
-  20 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3100,7 +3804,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-12 14:26:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -3125,8 +3829,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -3205,675 +3909,6 @@ return [
       array (
         0 => 'integer',
         1 => 0,
-      ),
-    ),
-  ),
-  21 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-      'displayName' => 'Блог',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-          'displayName' => 'Виджеты',
-          'branch' => NULL,
-          'slug' => 'widgets',
-        ),
-      ),
-      'slug' => 'blog',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Блог',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  22 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '0035d042-0d55-462e-99f8-20904599b568',
-      'displayName' => 'Поиск',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-          'displayName' => 'Виджеты',
-          'branch' => NULL,
-          'slug' => 'widgets',
-        ),
-      ),
-      'slug' => 'search',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Поиск',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  23 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '87da0559-9773-4215-807f-bd239fc80f2e',
-      'displayName' => 'Быстрый старт',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
-          'displayName' => 'Описание системы',
-          'branch' => NULL,
-          'slug' => 'about-umi-cms',
-        ),
-      ),
-      'slug' => 'quick-start',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Быстрый старт',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:11:28";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Быстрый старт',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Статья в разработке..</p>
-',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'secondContents' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  24 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '995fa1d9-748b-40d0-ad6c-63f7ede8f51a',
-      'displayName' => 'Поиск',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-          'displayName' => 'Контроллеры',
-          'branch' => NULL,
-          'slug' => 'controllers',
-        ),
-      ),
-      'slug' => 'search',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Поиск',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:52:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  25 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
-      'displayName' => 'Шаблонизаторы',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
-          'displayName' => 'Описание системы',
-          'branch' => NULL,
-          'slug' => 'about-umi-cms',
-        ),
-      ),
-      'slug' => 'template-engines',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Шаблонизаторы',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:16:01";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Шаблонизатор позволяет разделить логику представления (отображения) данных от бизнес-логики приложения. С помощью шаблонов шаблонизатор преобразовывает данные в конечные html-страницы.</p>
-
-<p>В UMI.CMS 3.* конечные html-страницы формируются в зависимости от иерархии компонентов, сформированной во время диспетчеризации запроса пользователя. Диспетчеризация останавливается и иерархия считается сформированной, когда запрос пользователя достигает конкретного контроллера. Контроллер формирует данные для ответа и выбирает шаблон, по которому они должны быть отображены. Далее, когда ответ контроллера поднимается вверх по иерархии компонентов, каждый компонент может наложить на ответ свой шаблон, называемый сеткой шаблона. Вместе с иерархией компонентов при диспетчеризации также по методу LIFO формируется стек вызова контентных страниц. Стек страниц определяет, какая сетка шаблона будет наложена последней. Стек страниц обходится на предмет проверки указания конкретного шаблона у страниц. Как только находится страница с явно заданным шаблоном, этот шаблон становится последней накладываемой сеткой. Если стек страниц пустой, или ни у одной страницы не задан шаблон, последней сеткой накладывается шаблон, указанный в настройках системы как шаблон по умолчанию. Таким образом шаблоны вкладываются друг в друга как матрешки, где самой маленькой матрешкой является шаблон, определенный контроллером, а самой большой - шаблон конкретной страницы.</p>
-',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'secondContents' => 
-      array (
-        0 => 'string',
-        1 => '',
       ),
     ),
   ),
@@ -4023,6 +4058,277 @@ return [
     array (
       'collection' => 'structure',
       'type' => 'static',
+      'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
+      'displayName' => 'Компонент "Посты"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+          'displayName' => 'Блог',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'blog',
+        ),
+      ),
+      'slug' => 'post',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Посты"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:13:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  28 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '1f28ca78-3388-4eb7-b882-04def7d5ad21',
+      'displayName' => 'Система прав',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'access-control-list',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Система прав',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:30:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Система прав',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  29 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
       'guid' => '275244d7-2053-4f14-8137-ae820f8c3fff',
       'displayName' => 'structure.menu',
       'branch' => 
@@ -4137,7 +4443,7 @@ return [
       ),
     ),
   ),
-  28 => 
+  30 => 
   array (
     'meta' => 
     array (
@@ -4420,7 +4726,7 @@ return [
       ),
     ),
   ),
-  29 => 
+  31 => 
   array (
     'meta' => 
     array (
@@ -4769,7 +5075,7 @@ return [
       ),
     ),
   ),
-  30 => 
+  32 => 
   array (
     'meta' => 
     array (
@@ -4909,7 +5215,7 @@ return [
       ),
     ),
   ),
-  31 => 
+  33 => 
   array (
     'meta' => 
     array (
@@ -5049,7 +5355,7 @@ return [
       ),
     ),
   ),
-  32 => 
+  34 => 
   array (
     'meta' => 
     array (
@@ -5199,7 +5505,7 @@ return [
       ),
     ),
   ),
-  33 => 
+  35 => 
   array (
     'meta' => 
     array (
@@ -5339,7 +5645,7 @@ return [
       ),
     ),
   ),
-  34 => 
+  36 => 
   array (
     'meta' => 
     array (
@@ -5354,7 +5660,7 @@ return [
           'collection' => 'structure',
           'type' => 'static',
           'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
-          'displayName' => 'Шаблонизаторы',
+          'displayName' => 'Шаблонизация',
           'branch' => 
           array (
             'meta' => 
@@ -5479,7 +5785,7 @@ return [
       ),
     ),
   ),
-  35 => 
+  37 => 
   array (
     'meta' => 
     array (
@@ -5619,7 +5925,7 @@ return [
       ),
     ),
   ),
-  36 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -5759,14 +6065,14 @@ return [
       ),
     ),
   ),
-  37 => 
+  39 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '1f28ca78-3388-4eb7-b882-04def7d5ad21',
-      'displayName' => 'Система прав',
+      'guid' => '4200ab42-65cb-4e86-81c2-9b594fdafc02',
+      'displayName' => 'Диспетчеризация запроса',
       'branch' => 
       array (
         'meta' => 
@@ -5790,26 +6096,26 @@ return [
           'slug' => 'architecture',
         ),
       ),
-      'slug' => 'access-control-list',
+      'slug' => 'request-scheduling',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Система прав',
+        1 => 'Диспетчеризация запроса',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:30:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:19:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-01 00:54:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:35:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'owner' => 
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -5818,10 +6124,146 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
           ),
         ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Диспетчеризация запроса UMI.CMS 3',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<h3>Как все работает</h3>
+
+<ul>
+	<li>запуск index.php: определение базовых директорий и настройка окружения</li>
+	<li>загрузка приложения UMI.CMS:
+	<ul>
+		<li>базовая настройка сервисов, необходимых для старта системы</li>
+		<li>разбор запроса и определение текущего проекта</li>
+		<li>регистрация конфигурации проекта (~/project)</li>
+		<li>регистрация и конфигурация сервисов, используемых в проекте</li>
+		<li>диспетчеризация до конкретного контроллера одного из компонентов</li>
+		<li>выполнение контроллера, формирование View для шаблонизации</li>
+		<li>шаблонизация / сериализация</li>
+		<li>вывод ответа</li>
+	</ul>
+	</li>
+</ul>
+
+<p><img alt="" src="/umi_docs/asset/images/database/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  40 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '4e9798d4-7072-4000-a931-075dfd948734',
+      'displayName' => 'PHP',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+          'displayName' => 'Шаблонизация',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'template-engines',
+        ),
+      ),
+      'slug' => 'php',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'PHP',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-12 12:02:40";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 13:30:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -5855,7 +6297,140 @@ return [
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Система прав',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Язык PHP в первую очередь был создан как интерпретатор шаблонов, поэтому шаблонизация собственно является изначальным предназначением языка. Таким образом, PHP является простым, быстрым и очень гибким решением для шаблонизации. Синтаксис верстки для PHP-шаблонизатора полностью повторяет синтаксис языка PHP.</p>
+
+<h3>Внимание</h3>
+
+<p>PHP-шаблонизатор рассчитан на опытных разработчиков, которые знакомы с XSS-уязвимостями. Все данные в шаблоне доступны в &quot;сыром&quot; виде, для обеспечения максимальной производительности и простоты шаблонизатора. Разработчик самостоятельно должен заботиться об экранировании данных, которые поступают от пользователей сайта на этапе вывода в шаблоне. Для этого необходимо задуматься, поступают ли выводимые данные с пользовательских форм на сайте или доступны для редактирования только через административный интерфейс. Cуществуют escape*-помошники, которые позволяют корректно экранировать данные разного типа.</p>
+
+<p>Если вы не уверены в своих способностях или не хотите об этом думать, мы рекомендуем использовать Twig или XSLT-шаблонизатор, где все выводимые переменные в шаблоне по умолчанию экранированы.</p>
+
+<h2>Возможности</h2>
+
+<p>О файловой структуре шаблонов и о способах нахождения шаблона написано в статье <a href="/about-umi-cms/template-engines">&quot;Шаблонизация&quot;</a>.</p>
+
+<p>Переменные, передаваемые в шаблон, доступны в нем как обычные PHP-переменные:</p>
+
+<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+ * @var umicms\\project\\module\\structure\\model\\object\\StaticPage $page
+&nbsp;*/
+?&gt;
+&lt;?= $string ?&gt;
+&lt;?= $page-&gt;contents ?&gt;</pre>
+
+<p>PHP-шаблонизатор поддерживает разделение шаблонов на части и подключение таких частей. Для этого в шаблоне доступен метод <strong>$this-&gt;render($template, array $context = [])</strong>, позволяющий подключить шаблон с заданными переменными, передаваемыми в контексте. Например:</p>
+
+<pre>
+&lt;?php
+/**
+&nbsp;* @var array $params
+&nbsp;*/
+&lt;?= $this-&gt;render(&#39;template.phtml&#39;, $params) ?&gt;</pre>
+
+<p>В каждом шаблоне контроллера и виджета присутствует переменная <strong>$scope</strong>, представляющая из себя массив всех переменных, переданных в шаблон. Таким образом, при подключении части шаблона можно передать весь контекст, доступный в текущем шаблоне:</p>
+
+<pre>
+&lt;?php
+/**
+&nbsp;* @var array $scope
+&nbsp;*/
+&lt;?= $this-&gt;render(&#39;template.phtml&#39;, $scope) ?&gt;</pre>
+
+<h2>Помощники</h2>
+
+<p>Помощник - это функция, доступная в шаблоне, предназначенная для удобного форматирования данных либо для получения дополнительных данных в шаблоне. Для PHP существуют следующие помощники, которые доступны в шаблоне как его собственные методы:</p>
+
+<ul>
+	<li>
+	<p><strong>&nbsp;escape </strong>- помощник для экранирования HTML-кода</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;escape($string) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;escapeJs </strong>- помощник для экранирования JavaScript-кода</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;escapeJs($string) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;escapeCss </strong>- помощник для экранирования CSS-кода</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;escapeCss($string) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;escapeUrl </strong>- помощник для экранирования URL</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;escapeUrl($string) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;purifyHtml </strong>- помощник для очистки HTML-кода от вредоносных, не валидных или запрещенных тэгов и атрибутов, позволяет защитить от&nbsp; XSS-атак</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var string $string
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;purifyHtml($string) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;widget </strong>- помощник для вызова виджета</p>
+
+	<pre>
+&lt;?php
+/**
+&nbsp;* @var array $params
+&nbsp;*/
+?&gt;
+&lt;?= $this-&gt;widget(&#39;path.to.widget&#39;, $params) ?&gt; </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;translate </strong>- помощник для перевода лейблов</p>
+
+	<pre>
+&lt;?= $this-&gt;translate(&#39;Hello, {name}&#39;, [&#39;name&#39; =&gt; &#39;World&#39;]) ?&gt;</pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;isAllowedResource </strong>- помощник для проверки прав на ресурс. В шаблоне можно проверить, есть ли у текущего пользователя права просматривать виджет или исполнять контроллер, и в соответствии с этим подстроить под него отображение.</p>
+
+	<pre>
+&nbsp;&lt;?php if ($this-&gt;isAllowedResource(&#39;path.to.component&#39;, &#39;resourceType:resourceName&#39;)) : ?&gt;
+&nbsp;&nbsp;&nbsp; ...
+ &lt;?php endif ?&gt;&nbsp;  </pre>
+	</li>
+</ul>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -5870,7 +6445,7 @@ return [
       'trashed' => 
       array (
         0 => 'boolean',
-        1 => true,
+        1 => false,
       ),
       'locked' => 
       array (
@@ -5899,7 +6474,7 @@ return [
       ),
     ),
   ),
-  38 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -6019,7 +6594,7 @@ return [
       ),
     ),
   ),
-  39 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -6159,7 +6734,138 @@ return [
       ),
     ),
   ),
-  40 => 
+  43 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
+      'displayName' => 'Компонент "Авторы"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+          'displayName' => 'Блог',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'blog',
+        ),
+      ),
+      'slug' => 'author',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Авторы"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  44 => 
   array (
     'meta' => 
     array (
@@ -6419,7 +7125,147 @@ return [
       ),
     ),
   ),
-  41 => 
+  45 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
+      'displayName' => 'Компонент "Авторы"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+          'displayName' => 'Блог',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'blog',
+        ),
+      ),
+      'slug' => 'author',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Авторы"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:59:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  46 => 
   array (
     'meta' => 
     array (
@@ -6559,7 +7405,7 @@ return [
       ),
     ),
   ),
-  42 => 
+  47 => 
   array (
     'meta' => 
     array (
@@ -6699,7 +7545,7 @@ return [
       ),
     ),
   ),
-  43 => 
+  48 => 
   array (
     'meta' => 
     array (
@@ -6849,14 +7695,14 @@ return [
       ),
     ),
   ),
-  44 => 
+  49 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '1dbe65b6-0eae-4e6c-b64f-814b792bdf77',
-      'displayName' => 'Компонент "Посты"',
+      'guid' => '0d4dca62-1e8a-41a1-a009-227c283a3e12',
+      'displayName' => 'Компонент "Комментарии"',
       'branch' => 
       array (
         'meta' => 
@@ -6880,14 +7726,14 @@ return [
           'slug' => 'blog',
         ),
       ),
-      'slug' => 'post',
+      'slug' => 'comment',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Компонент "Посты"',
+        1 => 'Компонент "Комментарии"',
       ),
       'created' => 
       array (
@@ -6897,7 +7743,7 @@ return [
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:13:16";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -6980,157 +7826,7 @@ return [
       ),
     ),
   ),
-  45 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '4200ab42-65cb-4e86-81c2-9b594fdafc02',
-      'displayName' => 'Диспетчеризация запроса',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
-          'displayName' => 'Архитектура UMI.CMS 3',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
-              'displayName' => 'Описание системы',
-              'branch' => NULL,
-              'slug' => 'about-umi-cms',
-            ),
-          ),
-          'slug' => 'architecture',
-        ),
-      ),
-      'slug' => 'request-scheduling',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Диспетчеризация запроса',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:19:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:35:27";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Диспетчеризация запроса UMI.CMS 3',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<h3>Как все работает</h3>
-
-<ul>
-	<li>запуск index.php: определение базовых директорий и настройка окружения</li>
-	<li>загрузка приложения UMI.CMS:
-	<ul>
-		<li>базовая настройка сервисов, необходимых для старта системы</li>
-		<li>разбор запроса и определение текущего проекта</li>
-		<li>регистрация конфигурации проекта (~/project)</li>
-		<li>регистрация и конфигурация сервисов, используемых в проекте</li>
-		<li>диспетчеризация до конкретного контроллера одного из компонентов</li>
-		<li>выполнение контроллера, формирование View для шаблонизации</li>
-		<li>шаблонизация / сериализация</li>
-		<li>вывод ответа</li>
-	</ul>
-	</li>
-</ul>
-
-<p><img alt="" src="/umi_docs/asset/images/database/logika_pol_zovatel_skogo_zaprosa_v_umi_cms_3_0_1.png" style="height:600px; width:960px" /></p>
-',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-    ),
-  ),
-  46 => 
+  50 => 
   array (
     'meta' => 
     array (
@@ -7280,7 +7976,7 @@ return [
       ),
     ),
   ),
-  47 => 
+  51 => 
   array (
     'meta' => 
     array (
@@ -7420,7 +8116,199 @@ return [
       ),
     ),
   ),
-  48 => 
+  52 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '802e3868-066f-47ae-a9ec-aacb8a57bf59',
+      'displayName' => 'Twig',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+          'displayName' => 'Шаблонизация',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'template-engines',
+        ),
+      ),
+      'slug' => 'twig',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Twig',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-12 12:12:03";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-12 14:25:43";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Twig &mdash; компилирующий обработчик шаблонов с открытым исходным кодом, написанный на языке программирования PHP. Armin Ronacher написал Twig в 2008 году для платформы блогов Chyrp. Но больше не возвращался к разработке и больше занимался разработкой на Python. Синтаксис языка шаблонов Twig берёт начало от движков шаблонов Jinja и Django, также созданных им. Идею данного шаблонизатора развивает и поддерживает Fabien Potencier, ведущий разработчик и идеолог фреймворка Symfony, в котором Twig используется по умолчанию.</p>
+
+<p>Twig имеет богатые возможности для расширения. Его можно расширить с помощью собственных глобальных переменных, функций, тегов, фильтров, операторов и тестов.</p>
+
+<p>Подробнее прочитать про Twig и ознакомиться с его документацией можно на <a href="http://twig.sensiolabs.org/">официальном сайте</a>, а также на сайте <a href="http://x-twig.ru/">русскоязычной документации</a>.</p>
+
+<h2>Возможности</h2>
+
+<p>О файловой структуре шаблонов и о способах нахождения шаблона написано в статье <a href="/about-umi-cms/template-engines">&quot;Шаблонизация&quot;</a>.</p>
+
+<p>Переменные, передаваемые в шаблон, доступны в нем как простые переменные шаблона:</p>
+
+<pre>
+{{ string }}
+{{ page.contents | raw}}
+</pre>
+
+<p>По умолчанию все выводимые в Twig-шаблоне переменные экранированы, чтобы получить данные &quot;как есть&quot;, необходимо использовать фильтр <a href="http://twig.sensiolabs.org/doc/filters/raw.html">raw</a>. Этот фильтр помечает данные как безопасные, и при выводе они не экранируются.</p>
+
+<p>В Twig есть встроенная возможность подключения части шаблона через функцию <a href="http://twig.sensiolabs.org/doc/functions/include.html">include</a>. При этом в подключаемом шаблоне по умолчанию доступны все переменные начального шаблона.</p>
+
+<pre>
+{{ include(&#39;template.twig&#39;) }}</pre>
+
+<h2>Помощники</h2>
+
+<p>Помимо стандартных функций Twig в шаблонах как функции доступны помощники - функции, предназначенные для удобного форматирования данных либо для получения дополнительных данных в шаблоне. Помощников для Twig немного меньше, чем для PHP-шаблонизатора, так как Twig обладает множеством встроенных фильтров.</p>
+
+<ul>
+	<li>
+	<p><strong>&nbsp;purifyHtml </strong>- помощник для очистки HTML-кода от вредоносных, не валидных или запрещенных тэгов и атрибутов, позволяет защитить от XSS-атак</p>
+
+	<pre>
+{{ purifyHtml(string) }} </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;widget</strong> - помощник для вызова виджета</p>
+
+	<pre>
+{{ widget(&#39;path.to.widget&#39;, params) }} </pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;translate </strong>- помощник для перевода лейблов</p>
+
+	<pre>
+{{ translate(&#39;Hello, {name}&#39;, {&#39;name&#39; : &#39;World&#39;}) }}</pre>
+	</li>
+	<li>
+	<p><strong>&nbsp;isAllowedResource </strong>- помощник для проверки прав на ресурс. В шаблоне можно проверить, есть ли у текущего пользователя права просматривать виджет или исполнять контроллер, и в соответствии с этим подстроить под него отображение.</p>
+
+	<pre>
+&nbsp;{% (isAllowedResource(&#39;path.to.component&#39;, &#39;resourceType:resourceName&#39;)) %}
+&nbsp;&nbsp;&nbsp; ...
+ {% endif %}&nbsp;  </pre>
+	</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  53 => 
   array (
     'meta' => 
     array (
@@ -7640,7 +8528,162 @@ return [
       ),
     ),
   ),
-  49 => 
+  54 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'c108b63e-2d2a-41ae-b74e-d492de025453',
+      'displayName' => 'Схема базы данных',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'db-structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Схема базы данных',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:26:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:35:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Схема базы данных UMI.CMS 3',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Схема базы данных',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>UMI.CMS 3 имеет классическую и интуитивно понятную схему базы данных и связей между ними, что позволяет делать простые низкоуровневые запросы на выборку без использования ORM.</p>
+
+<p>Все таблицы в БД имеют префикс, который соответсвует имени вашего проекта (по умолчанию <strong>default_</strong>). Это позволяет использовать одну и ту же базу данных для нескольких проектов на UMI.CMS 3, а так же разрешает проблему конфликтов с существующими в БД таблицами.</p>
+
+<p>Для примера, приводим UML-схему таблиц для модуля <strong>Новости</strong>:<br />
+<img alt="Схема таблиц UMI.CMS" src="/umi_docs/asset/images/database/db.diagram.svg" /></p>
+
+<h2>Прямые запросы к БД и денормализация данных</h2>
+
+<p>Мы не запрещаем использовать прямые запросы к БД для ускорения некоторых выборок в вашем проекте, но не рекомендуем делать прямые запросы в &quot;коробочных&quot; решениях.</p>
+
+<p>Если есть необходимость изменять данные прямыми запросами, то нужно понимать, что UMI.CMS 3 вычисляет некоторые поля для более быстрых выборок и избавления от лишних JOIN-запросов (<a href="http://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" target="_blank">денормализация данных</a>), поэтому необходимо обновлять эти данные так же.</p>
+
+<p>Для примера, рассмотрим таблицу <strong>default_news_rubric</strong>:</p>
+
+<p><img alt="Схема таблицы default_news_rubric" src="/umi_docs/asset/images/database/db.table.rubric.jpg" style="height:567px; width:600px" /></p>
+
+<p>Эта таблица служит иcточником данных для типичной иерархической коллекции новостных рубрик и определяет следующие поля для денормализации:</p>
+
+<ul>
+	<li><strong>uri</strong> - служит для быстрой выборки по <strong>uri</strong> рубрики и вычисляется исходя из поля <strong>slug</strong> рубрики и ее родителей. Автоматически пересчитывается ORM для рубрики и ее детей при изменении <strong>slug</strong>, перемещении в другую рубрику.</li>
+	<li><strong>mpath и level</strong> - служат для быстрых выборок по иерархии на произвольную глубину. Так же автоматически пересчитывается при меремещении у рубрики и ее детей.</li>
+	<li><strong>site_child_count</strong> и <strong>admin_child_count</strong> - содержит количество дочерних рубрик, отображаемых в административной панели и на сайте. Эти поля пересчитываются с учетом активности и удаленности рубрики.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  55 => 
   array (
     'meta' => 
     array (
@@ -7780,7 +8823,7 @@ return [
       ),
     ),
   ),
-  50 => 
+  56 => 
   array (
     'meta' => 
     array (
@@ -7920,7 +8963,7 @@ return [
       ),
     ),
   ),
-  51 => 
+  57 => 
   array (
     'meta' => 
     array (
@@ -8190,7 +9233,147 @@ return [
       ),
     ),
   ),
-  52 => 
+  58 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
+      'displayName' => 'Компонент "Комментарии"',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
+          'displayName' => 'Блог',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
+              'displayName' => 'Виджеты',
+              'branch' => NULL,
+              'slug' => 'widgets',
+            ),
+          ),
+          'slug' => 'blog',
+        ),
+      ),
+      'slug' => 'comment',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Компонент "Комментарии"',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:59:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  59 => 
   array (
     'meta' => 
     array (
@@ -8438,55 +9621,55 @@ return [
       ),
     ),
   ),
-  53 => 
+  60 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '8697d6de-1a4c-4cb8-9a80-bc2d4bbf0e61',
-      'displayName' => 'Компонент "Авторы"',
+      'guid' => '75b68bd5-023b-4239-aed5-301bd1e573ad',
+      'displayName' => 'XSLT',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'Блог',
+          'guid' => '8cf0168b-3554-4318-8fb6-08cd847248be',
+          'displayName' => 'Шаблонизация',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
               'branch' => NULL,
-              'slug' => 'controllers',
+              'slug' => 'about-umi-cms',
             ),
           ),
-          'slug' => 'blog',
+          'slug' => 'template-engines',
         ),
       ),
-      'slug' => 'author',
+      'slug' => 'xslt',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Компонент "Авторы"',
+        1 => 'XSLT',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-12 12:13:29";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 13:30:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -8497,8 +9680,8 @@ return [
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -8525,7 +9708,41 @@ return [
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '',
+        1 => '<p>Язык XSLT - это декларативный язык преобразования XML-документов. Шаблонизация происходит за счет XSL-трансформации сериализованных в XML переменных, передаваемых в шаблон, в HTML.&nbsp;Спецификация XSLT входит в состав XSL и является рекомендацией W3C. Эта технология не зависит от языка реализации бизнес-логики, поэтому знания можно применять не только в рамках UMI.CMS.</p>
+
+<p>О процессе трансформации можно прочитать в <a href="https://ru.wikipedia.org/wiki/XSLT">Википедии</a>, с синтаксисом языка можно ознакомиться на сайте <a href="http://www.w3schools.com/XSL/default.asp">w3schools.com</a>.</p>
+
+<p>Удобство XSLT состоит в том, что для написания шаблонов нужно гораздо меньше знаний о том, какие переменные возвращают в шаблон виджеты и контроллеры. Чтобы узнать, какие данные возвращает контроллер, достаточно к URL соответствующей страницы добать <strong>.xml</strong>. Результат работы виджета также можно увидеть сразу в XML-формате, запросив в браузере http://имя_домена/widget/path.to.widget.xml?param1=value&amp;param2=value.</p>
+
+<p>По сути верстальщик работает с REST-ресурсами, доступными в XSLT через протоколы, как с черным ящиком. Он запрашивает в браузере ресурс, получает в ответе XML, понятный человеку, и описывает его в XSLT-шаблоне, вызывая аналогичный ресурс через протокол.</p>
+
+<p>XSLT-шаблонизатор не накладывает ограничения на расположения шаблонов контроллеров и виджетов.</p>
+
+<p>Основными недостатками разработки сайтов на XSLT являются строгость к ошибкам в шаблонах, многословность и сложность отладки.</p>
+
+<h2>Протоколы</h2>
+
+<ul>
+	<li>
+	<p><strong>template </strong>- протокол для подключения частичных файлов шаблона. Для подключения частичных файлов после названия протокола указывается путь к шаблону, относительно общей директории с шаблонами, указанной в настройках сайта, без расширения.</p>
+
+	<pre>
+&lt;xsl:include href=&quot;template://path/to/template&quot;/&gt;</pre>
+	</li>
+	<li>
+	<p><strong>widget</strong> - протокол для вызова виджета. Для вызова виджета после названия протокола указывается путь до виджета, параметры вызова виджета указываются как параметры запроса.</p>
+
+	<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://path.to.widget?param1=value&amp;amp;param2=value&#39;)&quot; /&gt;</pre>
+	</li>
+	<li>
+	<p><strong>translate </strong>- протокол для перевода лейблов. Для получения перевода лейбла после названия протокола первым параметром необходимо указать путь до компонента, словарь которого используется, и вторым параметром - переводимый лейбл.</p>
+
+	<pre>
+&lt;xsl:value-of select=&quot;document(&#39;translate://path.to.component/Label&#39;)/result&quot;/&gt;</pre>
+	</li>
+</ul>
+',
       ),
       'active#ru-RU' => 
       array (
@@ -8565,18 +9782,23 @@ return [
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 2,
+        1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
     ),
   ),
-  54 => 
+  61 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'a51ed22f-4728-4197-bd81-47dbd2294717',
-      'displayName' => 'Компонент "Авторы"',
+      'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
+      'displayName' => 'Компонент "Теги"',
       'branch' => 
       array (
         'meta' => 
@@ -8600,14 +9822,14 @@ return [
           'slug' => 'blog',
         ),
       ),
-      'slug' => 'author',
+      'slug' => 'tag',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Компонент "Авторы"',
+        1 => 'Компонент "Теги"',
       ),
       'created' => 
       array (
@@ -8709,55 +9931,55 @@ return [
       ),
     ),
   ),
-  55 => 
+  62 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'c108b63e-2d2a-41ae-b74e-d492de025453',
-      'displayName' => 'Схема базы данных',
+      'guid' => '9c739f74-beb9-4e2f-ab6c-2884985b153f',
+      'displayName' => 'Компонент "Категории"',
       'branch' => 
       array (
         'meta' => 
         array (
           'collection' => 'structure',
           'type' => 'static',
-          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
-          'displayName' => 'Архитектура UMI.CMS 3',
+          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+          'displayName' => 'Блог',
           'branch' => 
           array (
             'meta' => 
             array (
               'collection' => 'structure',
               'type' => 'static',
-              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
-              'displayName' => 'Описание системы',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
               'branch' => NULL,
-              'slug' => 'about-umi-cms',
+              'slug' => 'controllers',
             ),
           ),
-          'slug' => 'architecture',
+          'slug' => 'blog',
         ),
       ),
-      'slug' => 'db-structure',
+      'slug' => 'category',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Схема базы данных',
+        1 => 'Компонент "Категории"',
       ),
       'created' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:26:09";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:35:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -8776,7 +9998,7 @@ return [
       'metaTitle#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Схема базы данных UMI.CMS 3',
+        1 => '',
       ),
       'metaDescription#ru-RU' => 
       array (
@@ -8791,36 +10013,12 @@ return [
       'h1#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Схема базы данных',
+        1 => '',
       ),
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>UMI.CMS 3 имеет классическую и интуитивно понятную схему базы данных и связей между ними, что позволяет делать простые низкоуровневые запросы на выборку без использования ORM.</p>
-
-<p>Все таблицы в БД имеют префикс, который соответсвует имени вашего проекта (по умолчанию <strong>default_</strong>). Это позволяет использовать одну и ту же базу данных для нескольких проектов на UMI.CMS 3, а так же разрешает проблему конфликтов с существующими в БД таблицами.</p>
-
-<p>Для примера, приводим UML-схему таблиц для модуля <strong>Новости</strong>:<br />
-<img alt="Схема таблиц UMI.CMS" src="/umi_docs/asset/images/database/db.diagram.svg" /></p>
-
-<h2>Прямые запросы к БД и денормализация данных</h2>
-
-<p>Мы не запрещаем использовать прямые запросы к БД для ускорения некоторых выборок в вашем проекте, но не рекомендуем делать прямые запросы в &quot;коробочных&quot; решениях.</p>
-
-<p>Если есть необходимость изменять данные прямыми запросами, то нужно понимать, что UMI.CMS 3 вычисляет некоторые поля для более быстрых выборок и избавления от лишних JOIN-запросов (<a href="http://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" target="_blank">денормализация данных</a>), поэтому необходимо обновлять эти данные так же.</p>
-
-<p>Для примера, рассмотрим таблицу <strong>default_news_rubric</strong>:</p>
-
-<p><img alt="Схема таблицы default_news_rubric" src="/umi_docs/asset/images/database/db.table.rubric.jpg" style="height:567px; width:600px" /></p>
-
-<p>Эта таблица служит иcточником данных для типичной иерархической коллекции новостных рубрик и определяет следующие поля для денормализации:</p>
-
-<ul>
-	<li><strong>uri</strong> - служит для быстрой выборки по <strong>uri</strong> рубрики и вычисляется исходя из поля <strong>slug</strong> рубрики и ее родителей. Автоматически пересчитывается ORM для рубрики и ее детей при изменении <strong>slug</strong>, перемещении в другую рубрику.</li>
-	<li><strong>mpath и level</strong> - служат для быстрых выборок по иерархии на произвольную глубину. Так же автоматически пересчитывается при меремещении у рубрики и ее детей.</li>
-	<li><strong>site_child_count</strong> и <strong>admin_child_count</strong> - содержит количество дочерних рубрик, отображаемых в административной панели и на сайте. Эти поля пересчитываются с учетом активности и удаленности рубрики.</li>
-</ul>
-',
+        1 => '',
       ),
       'active#ru-RU' => 
       array (
@@ -8860,11 +10058,11 @@ return [
       'submenuState' => 
       array (
         0 => 'integer',
-        1 => 0,
+        1 => 2,
       ),
     ),
   ),
-  56 => 
+  63 => 
   array (
     'meta' => 
     array (
@@ -9004,7 +10202,7 @@ return [
       ),
     ),
   ),
-  57 => 
+  64 => 
   array (
     'meta' => 
     array (
@@ -9231,7 +10429,7 @@ return [
       ),
     ),
   ),
-  58 => 
+  65 => 
   array (
     'meta' => 
     array (
@@ -9514,14 +10712,323 @@ return [
       ),
     ),
   ),
-  59 => 
+  66 => 
   array (
     'meta' => 
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => '0d4dca62-1e8a-41a1-a009-227c283a3e12',
-      'displayName' => 'Компонент "Комментарии"',
+      'guid' => 'f39fde62-1177-4db3-b7f7-fac9655f90fc',
+      'displayName' => 'Описание файлов и директорий',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Описание файлов и директорий',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:25:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-15 13:49:33";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Описание файлов и директорий',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Все HTTP-запросы к UMI.CMS по умолчанию перенаправляются в папку <strong>/public</strong>. Статичные файлы (js/css/images) отдаются напрямую веб-сервером, все остальные запросы отправляются на фронт-контроллер <strong>/public/index.php</strong>. Конфигурация веб-серверов Apache и nginx по умолчанию настроена так, что php исполняется только для файла <strong>/public/index.php</strong>, это сделано для обеспечения максимальной безопасности проекта. Таким образом, <strong>/public/index.php</strong> - единая точка входа для обработки любого HTTP-запроса пользователя.</p>
+
+<p>Для корректного обновления системы изменять файлы можно только в публичной директории проекта <strong>/public/default</strong>.</p>
+
+<p>После установки UMI.CMS 3 имеет следующую файловую структуру:</p>
+
+<table align="left" border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td colspan="2">
+			<h2>Корневая директория</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/root.PNG" style="height:182px; width:379px" /></td>
+			<td>
+			<p><strong>Корневая директория</strong> содержит директории и файлы:</p>
+
+			<ul>
+				<li><strong>/bin</strong> - директория для консольных приложений</li>
+				<li><strong>/configuration</strong> - директория с общими настройками для всех проектов и настройками окружения</li>
+				<li><strong>/public - </strong>публичная директория проектов</li>
+				<li><strong>/umicms</strong> - директория ядра UMI.CMS и конфигурационных файлов модулей, используется по умолчанию в console- и development-окружениях</li>
+				<li><strong>/vendor - </strong>директория сторонних библиотек</li>
+				<li><strong>/.htaccess </strong>- файл конфигурации веб-сервера Apache</li>
+				<li><strong>/LICENSE </strong>- лицензионный договор на использование UMI.CMS</li>
+				<li><strong>/umi.nginx.conf</strong> - файл конфигурации веб-сервера nginx</li>
+				<li><strong>/umicms.phar </strong>- запакованное в phar-архив ядро и конфигурация UMI.CMS, используется по умолчанию в production-окружении</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/bin</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/bin.PNG" style="height:42px; width:382px" /></td>
+			<td>Директория <strong>/bin</strong> содержит файл <strong>/umi</strong> - консольное приложение UMI.CMS. Для получения информации о доступных командах и их параметрах в директории <strong>/bin</strong> запустите из консоли команду:
+			<pre>
+php ./umi</pre>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/configuration</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/configuration-1.PNG" style="height:83px; width:378px" /></td>
+			<td>
+			<p>Директория <strong>/configuration</strong> содержит следующие файлы:</p>
+
+			<ul>
+				<li><strong>/core.php</strong> - подключает ядро UMI.CMS с конфигурацией необходимого окружения</li>
+				<li><strong>/environment.config.php</strong> - настройки окружений</li>
+				<li><strong>/projects.config.php</strong> - конфигурационный файл со списком проектов в виде массива, где ключами являются имена проектов, а значениями конфигурации проектов</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/public</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/public.PNG" style="height:123px; width:384px" /></td>
+			<td>
+			<p>Директория <strong>/public</strong> содержит следующие директории и файлы:</p>
+
+			<ul>
+				<li><strong>/default</strong> - директория конкретного проекта</li>
+				<li><strong>/umi-admin</strong> - директория фронтенд-части административного интерфейса</li>
+				<li><strong>/.htaccess</strong> - дополнительный файл конфигурации веб-сервера Apache</li>
+				<li><strong>/favicon.ico</strong> - файл иконки сайта</li>
+				<li><strong>/index.php</strong> - фронт-контроллер</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/public/default</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/public-default.PNG" style="height:161px; width:385px" /></td>
+			<td>
+			<p>Директория <strong>/public/default</strong> названа по имени проекта, установленного по умолчанию. Файлы в директории проекта доступны на изменение, они расширяют и дополняют настройки системы по умолчанию, а также содержат пользовательские классы:</p>
+
+			<ul>
+				<li><strong>/asset</strong> - директория с изображениями, каскадными таблицами стилей и JavaScript-кодом проекта</li>
+				<li><strong>/configuration - </strong>директория с общими конфигурационными файлами проекта</li>
+				<li><strong>/dump - </strong>директория с дампами объектов коллекций, используемых в проекте</li>
+				<li><strong>/i18n - </strong>директория для расширения словарей системы</li>
+				<li><strong>/module - </strong>директория для расширения настроек и классов модулей</li>
+				<li><strong>/site</strong> - директория с настройками сайта</li>
+				<li><strong>/template</strong> - директория шаблонов проекта</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/public/default/configuration</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/public-default-configuration.PNG" style="height:103px; width:386px" /></td>
+			<td>
+			<p>Директория <strong>/public/default/configuration</strong> содержит файлы с общими настройками системы:</p>
+
+			<ul>
+				<li><strong>/db.config.php</strong> - натройки подключения баз данных</li>
+				<li><strong>/locales.config.php</strong> - настройки используемых в проекте локалей</li>
+				<li><strong>/project.config.php</strong> - настройки маршрутизации до проекта и общие настройки проекта</li>
+				<li><strong>/tools.settings.config.php</strong> - настройки наборов инструментов и их сервисов</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/public/default/module</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/public-default-module.PNG" style="height:258px; width:388px" /></td>
+			<td>Директория <strong>/public/default/module</strong> - &nbsp;директория для расширения настроек и классов модулей. Структура этой директории аналогична структуре директории <strong>/umicms/project/module</strong>, которая содержит настройки по умолчанию. Здесь можно расширить и переопределить конфигурации словарей, метаданных, схем таблиц базы данных, форм для создания и редактирования объектов.</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/umicms</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/umicms.PNG" style="height:164px; width:387px" /></td>
+			<td>
+			<p>Директория <strong>/umicms</strong> содержит следующие файлы и директории:</p>
+
+			<ul>
+				<li><strong>/error</strong> - директория с шаблонами неперехваченных ошибок</li>
+				<li><strong>/library</strong> - директория ядра системы</li>
+				<li><strong>/project</strong> - системная директория проекта</li>
+				<li><strong>/boot.config.php</strong> - начальная конфигурация наборов инструментов</li>
+				<li><strong>/bootstrap.php</strong></li>
+				<li><strong>/LICENSE.md</strong></li>
+				<li><strong>/version.php</strong></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<h2>/umicms/project</h2>
+			</td>
+		</tr>
+		<tr>
+			<td><img alt="" src="images/files-structure/umicms-project-1.PNG" style="height:160px; width:384px" /></td>
+			<td>
+			<p>Системная директория проекта <strong>/umicms/project</strong> содержит следующие файлы и директории:</p>
+
+			<ul>
+				<li><strong>/admin</strong> - директория конфигураций и классов административного интерфейса</li>
+				<li><strong>/configuration</strong> - директория с общими конфигурационными файлами проекта</li>
+				<li><strong>/i18n</strong> - директория словарей проекта</li>
+				<li><strong>/module -</strong> директория настроек и классов модулей</li>
+				<li><strong>/site - </strong>директория<strong> </strong>с настройками сайта</li>
+				<li><strong>/Bootstrap.php</strong> - класс-загрузчик проектов</li>
+				<li><strong>/Environment.php</strong> класс-контейнер настроек окружения</li>
+			</ul>
+
+			<p>Большинство конфигураций заданных в файлах директории <strong>/umicms/project </strong>могут быть расширены и переопределены в соответствующих файлах конкретного проекта (<strong>/public/default</strong>)</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  67 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '1af0a13c-3dca-4c80-91c0-ae3394e5a414',
+      'displayName' => 'Компонент "Теги"',
       'branch' => 
       array (
         'meta' => 
@@ -9545,14 +11052,14 @@ return [
           'slug' => 'blog',
         ),
       ),
-      'slug' => 'comment',
+      'slug' => 'tag',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Компонент "Комментарии"',
+        1 => 'Компонент "Теги"',
       ),
       'created' => 
       array (
@@ -9645,438 +11152,7 @@ return [
       ),
     ),
   ),
-  60 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'f39fde62-1177-4db3-b7f7-fac9655f90fc',
-      'displayName' => 'Описание файлов и директорий',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
-          'displayName' => 'Архитектура UMI.CMS 3',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
-              'displayName' => 'Описание системы',
-              'branch' => NULL,
-              'slug' => 'about-umi-cms',
-            ),
-          ),
-          'slug' => 'architecture',
-        ),
-      ),
-      'slug' => 'structure',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Описание файлов и директорий',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-29 12:25:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-04 06:09:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Описание файлов и директорий',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Статья в разработке..</p>
-',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'secondContents' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-    ),
-  ),
-  61 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'fdd02e06-672f-4631-93b2-5c1bc0332966',
-      'displayName' => 'Компонент "Комментарии"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'Блог',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'blog',
-        ),
-      ),
-      'slug' => 'comment',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Комментарии"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:59:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  62 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '7c5a427b-f748-4620-a18b-eafbf320d789',
-      'displayName' => 'Компонент "Теги"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'c396c995-cd0a-4d6f-ae0b-5eb15dc35aac',
-          'displayName' => 'Блог',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'd7dda227-cac7-474d-ab0d-d361d0bc16a3',
-              'displayName' => 'Виджеты',
-              'branch' => NULL,
-              'slug' => 'widgets',
-            ),
-          ),
-          'slug' => 'blog',
-        ),
-      ),
-      'slug' => 'tag',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Теги"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:59:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  63 => 
+  68 => 
   array (
     'meta' => 
     array (
@@ -10226,409 +11302,7 @@ return [
       ),
     ),
   ),
-  64 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '9c739f74-beb9-4e2f-ab6c-2884985b153f',
-      'displayName' => 'Компонент "Категории"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'Блог',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'blog',
-        ),
-      ),
-      'slug' => 'category',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Категории"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  65 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '1af0a13c-3dca-4c80-91c0-ae3394e5a414',
-      'displayName' => 'Компонент "Теги"',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'Блог',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'blog',
-        ),
-      ),
-      'slug' => 'tag',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Компонент "Теги"',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  66 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => 'fee13476-00be-4bd4-a519-88886b2af20e',
-      'displayName' => 'Структура',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
-          'displayName' => 'Пользователи',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'users',
-        ),
-      ),
-      'slug' => 'structure',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Структура',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:10:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  67 => 
+  69 => 
   array (
     'meta' => 
     array (
@@ -10768,7 +11442,138 @@ return [
       ),
     ),
   ),
-  68 => 
+  70 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'e10867c2-10fd-40b1-bfdc-a65c9246b5fc',
+      'displayName' => 'Отличия от UMI.CMS 2.*',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '6edaf548-7790-4333-a5c6-05dbcfeac323',
+          'displayName' => 'Архитектура UMI.CMS 3',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'f10a0fb0-36da-4671-acdc-0525907f3b74',
+              'displayName' => 'Описание системы',
+              'branch' => NULL,
+              'slug' => 'about-umi-cms',
+            ),
+          ),
+          'slug' => 'architecture',
+        ),
+      ),
+      'slug' => 'distinctions',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отличия от UMI.CMS 2.*',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-03 14:03:26";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отличия от UMI.CMS 2.*',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отличия от UMI.CMS 2.*',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<ul>
+	<li>Вся бизнес-логика вынесена в модели, что позволяет повторно использовать код. В двойке практически вся логика находилась в теле метода, выполняющего роль контроллера.</li>
+	<li>Контроллеры не выполняют и не запускает логику шаблонизации (rendering), задачей контроллера является только обработка запроса (Request), запуск необходимой бизнес-логики через модели и формирования параметризованного ответа (Response). Ответ может идти или не идти на шаблонизацию или сериализацию. Ответ может включать в себя переменные, которые используются для шаблонизации и сериализации, а также имя шаблона для шаблонизации. Контроллеры должны быть &ldquo;тонкими&rdquo; и не должны содержать бизнес-логики.</li>
+	<li>Результат работы любого контроллера, написанного по правилам, можно получить в сериализованном виде в форматах json и xml. Таким образом, можно легко запостить форму ajax&rsquo;ом и получить удобный для разбора ответ об успехе или список ошибок.</li>
+	<li>Виджеты являются аналогами макросов в двойке, но виджеты не могут совершать никаких действий по изменению данных, они служат исключительно для визуализации запрашиваемой информации.</li>
+	<li>Полное разделение запросов на чтение и модификацию данных. Все запросы каким-либо образом меняющие состояние системы выполняются методом POST. Все входные данные контролируются через формы. Запрещено заполнять свойства объектов из произвольного массива POST из соображений безопасности. Для защиты от CSRF-атак в формах должно присутствовать поле csrf. Можно обойтись без формы, но необходимо жестко контролировать входные данные, не забывая про CSRF и XSS уязвимости.</li>
+	<li>Минимизированы запросы к базе, так как все настройки и конфигурации содержатся в файлах, а так же появилась возможность выборок по связанным полям, а так же возможность выбирать объект со нужными связями (см. ISelector)</li>
+	<li>Нет единой иерархии страниц, отображаемых на сайте. Каждый компонент для иерархических типов страниц имеет свою иерархию, для неиерархических типов - не имеет вообще.</li>
+	<li>Все данные разделены по отдельным коллекциям, которые связаны с &ldquo;плоскими&rdquo; таблицами, что увеличивает производительность выборок, позволяет настроить индексы и практически полностью избавляет от тяжелых JOIN в запросах.</li>
+</ul>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  71 => 
   array (
     'meta' => 
     array (
@@ -11024,7 +11829,7 @@ return [
       ),
     ),
   ),
-  69 => 
+  72 => 
   array (
     'meta' => 
     array (
@@ -11164,7 +11969,147 @@ return [
       ),
     ),
   ),
-  70 => 
+  73 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => 'fee13476-00be-4bd4-a519-88886b2af20e',
+      'displayName' => 'Структура',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => '0c2a4f46-d9a7-41dc-9e2b-0c11a3c5e555',
+          'displayName' => 'Пользователи',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'users',
+        ),
+      ),
+      'slug' => 'structure',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Структура',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:10:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  74 => 
   array (
     'meta' => 
     array (
@@ -11304,7 +12249,7 @@ return [
       ),
     ),
   ),
-  71 => 
+  75 => 
   array (
     'meta' => 
     array (
@@ -11435,7 +12380,138 @@ return [
       ),
     ),
   ),
-  72 => 
+  76 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
+      'displayName' => 'Модерация',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'static',
+          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
+          'displayName' => 'Блог',
+          'branch' => 
+          array (
+            'meta' => 
+            array (
+              'collection' => 'structure',
+              'type' => 'static',
+              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
+              'displayName' => 'Контроллеры',
+              'branch' => NULL,
+              'slug' => 'controllers',
+            ),
+          ),
+          'slug' => 'blog',
+        ),
+      ),
+      'slug' => 'moderate',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Модерация',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
+            'displayName' => 'sedrak',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 2,
+      ),
+    ),
+  ),
+  77 => 
   array (
     'meta' => 
     array (
@@ -11585,138 +12661,7 @@ return [
       ),
     ),
   ),
-  73 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'static',
-      'guid' => '494dbe93-d587-46a2-a18a-fa7bdfd62f42',
-      'displayName' => 'Модерация',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'static',
-          'guid' => 'fa0e9b8d-79b8-4ae5-89f0-36dbea625e75',
-          'displayName' => 'Блог',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'static',
-              'guid' => 'fda552a8-846a-431d-87bf-ed719cdd884b',
-              'displayName' => 'Контроллеры',
-              'branch' => NULL,
-              'slug' => 'controllers',
-            ),
-          ),
-          'slug' => 'blog',
-        ),
-      ),
-      'slug' => 'moderate',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Модерация',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-17 19:23:45";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 15:14:35";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'structure',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 2,
-      ),
-    ),
-  ),
-  74 => 
+  78 => 
   array (
     'meta' => 
     array (
@@ -11847,7 +12792,7 @@ return [
       ),
     ),
   ),
-  75 => 
+  79 => 
   array (
     'meta' => 
     array (
@@ -12068,7 +13013,7 @@ return [
       ),
     ),
   ),
-  76 => 
+  80 => 
   array (
     'meta' => 
     array (
@@ -12368,7 +13313,7 @@ return [
       ),
     ),
   ),
-  77 => 
+  81 => 
   array (
     'meta' => 
     array (
@@ -12515,7 +13460,7 @@ return [
       ),
     ),
   ),
-  78 => 
+  82 => 
   array (
     'meta' => 
     array (
@@ -12627,7 +13572,7 @@ return [
       ),
     ),
   ),
-  79 => 
+  83 => 
   array (
     'meta' => 
     array (
@@ -12846,7 +13791,7 @@ return [
       ),
     ),
   ),
-  80 => 
+  84 => 
   array (
     'meta' => 
     array (
@@ -13060,7 +14005,7 @@ return [
       ),
     ),
   ),
-  81 => 
+  85 => 
   array (
     'meta' => 
     array (
@@ -13274,7 +14219,7 @@ return [
       ),
     ),
   ),
-  82 => 
+  86 => 
   array (
     'meta' => 
     array (
@@ -13497,7 +14442,7 @@ return [
       ),
     ),
   ),
-  83 => 
+  87 => 
   array (
     'meta' => 
     array (
@@ -13653,7 +14598,7 @@ return [
       ),
     ),
   ),
-  84 => 
+  88 => 
   array (
     'meta' => 
     array (
@@ -13966,7 +14911,7 @@ return [
       ),
     ),
   ),
-  85 => 
+  89 => 
   array (
     'meta' => 
     array (
@@ -14288,7 +15233,7 @@ return [
       ),
     ),
   ),
-  86 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -14495,7 +15440,7 @@ return [
       ),
     ),
   ),
-  87 => 
+  91 => 
   array (
     'meta' => 
     array (
@@ -14607,7 +15552,7 @@ return [
       ),
     ),
   ),
-  88 => 
+  92 => 
   array (
     'meta' => 
     array (
@@ -14763,7 +15708,7 @@ return [
       ),
     ),
   ),
-  89 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -14979,7 +15924,7 @@ return [
       ),
     ),
   ),
-  90 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -15291,7 +16236,7 @@ return [
       ),
     ),
   ),
-  91 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -15602,7 +16547,7 @@ return [
       ),
     ),
   ),
-  92 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -15883,7 +16828,7 @@ return [
       ),
     ),
   ),
-  93 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -16139,7 +17084,7 @@ return [
       ),
     ),
   ),
-  94 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -16251,7 +17196,7 @@ return [
       ),
     ),
   ),
-  95 => 
+  99 => 
   array (
     'meta' => 
     array (
@@ -16481,7 +17426,7 @@ return [
       ),
     ),
   ),
-  96 => 
+  100 => 
   array (
     'meta' => 
     array (
@@ -16593,7 +17538,7 @@ return [
       ),
     ),
   ),
-  97 => 
+  101 => 
   array (
     'meta' => 
     array (
@@ -16817,7 +17762,7 @@ return [
       ),
     ),
   ),
-  98 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -16929,7 +17874,7 @@ return [
       ),
     ),
   ),
-  99 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -17041,7 +17986,7 @@ return [
       ),
     ),
   ),
-  100 => 
+  104 => 
   array (
     'meta' => 
     array (
@@ -17232,7 +18177,7 @@ return [
       ),
     ),
   ),
-  101 => 
+  105 => 
   array (
     'meta' => 
     array (
@@ -17374,7 +18319,7 @@ return [
       ),
     ),
   ),
-  102 => 
+  106 => 
   array (
     'meta' => 
     array (
@@ -17486,7 +18431,7 @@ return [
       ),
     ),
   ),
-  103 => 
+  107 => 
   array (
     'meta' => 
     array (
@@ -17598,7 +18543,7 @@ return [
       ),
     ),
   ),
-  104 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -17855,7 +18800,7 @@ return [
       ),
     ),
   ),
-  105 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -17997,7 +18942,7 @@ return [
       ),
     ),
   ),
-  106 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -18144,7 +19089,7 @@ return [
       ),
     ),
   ),
-  107 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -18305,7 +19250,7 @@ return [
       ),
     ),
   ),
-  108 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -18461,7 +19406,7 @@ return [
       ),
     ),
   ),
-  109 => 
+  113 => 
   array (
     'meta' => 
     array (
@@ -18680,7 +19625,7 @@ return [
       ),
     ),
   ),
-  110 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -18836,7 +19781,7 @@ return [
       ),
     ),
   ),
-  111 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -19150,7 +20095,7 @@ return [
       ),
     ),
   ),
-  112 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -19370,7 +20315,7 @@ return [
       ),
     ),
   ),
-  113 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -19607,7 +20552,7 @@ return [
       ),
     ),
   ),
-  114 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -19826,7 +20771,7 @@ return [
       ),
     ),
   ),
-  115 => 
+  119 => 
   array (
     'meta' => 
     array (
@@ -20147,7 +21092,7 @@ return [
       ),
     ),
   ),
-  116 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -20419,7 +21364,7 @@ return [
       ),
     ),
   ),
-  117 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -20590,7 +21535,7 @@ return [
       ),
     ),
   ),
-  118 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -20874,7 +21819,7 @@ return [
       ),
     ),
   ),
-  119 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -21096,7 +22041,7 @@ return [
       ),
     ),
   ),
-  120 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -21296,7 +22241,7 @@ return [
       ),
     ),
   ),
-  121 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -21438,7 +22383,7 @@ return [
       ),
     ),
   ),
-  122 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -21599,7 +22544,7 @@ return [
       ),
     ),
   ),
-  123 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -21814,7 +22759,7 @@ return [
       ),
     ),
   ),
-  124 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -22197,7 +23142,7 @@ return [
       ),
     ),
   ),
-  125 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -22411,7 +23356,7 @@ return [
       ),
     ),
   ),
-  126 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -22567,7 +23512,7 @@ return [
       ),
     ),
   ),
-  127 => 
+  131 => 
   array (
     'meta' => 
     array (
@@ -22723,7 +23668,7 @@ return [
       ),
     ),
   ),
-  128 => 
+  132 => 
   array (
     'meta' => 
     array (
@@ -22835,7 +23780,7 @@ return [
       ),
     ),
   ),
-  129 => 
+  133 => 
   array (
     'meta' => 
     array (
@@ -22947,7 +23892,7 @@ return [
       ),
     ),
   ),
-  130 => 
+  134 => 
   array (
     'meta' => 
     array (
@@ -23229,7 +24174,7 @@ return [
       ),
     ),
   ),
-  131 => 
+  135 => 
   array (
     'meta' => 
     array (
@@ -23446,7 +24391,7 @@ return [
       ),
     ),
   ),
-  132 => 
+  136 => 
   array (
     'meta' => 
     array (
@@ -23666,7 +24611,7 @@ return [
       ),
     ),
   ),
-  133 => 
+  137 => 
   array (
     'meta' => 
     array (
@@ -23964,7 +24909,7 @@ return [
       ),
     ),
   ),
-  134 => 
+  138 => 
   array (
     'meta' => 
     array (
@@ -24125,7 +25070,7 @@ return [
       ),
     ),
   ),
-  135 => 
+  139 => 
   array (
     'meta' => 
     array (
@@ -24390,7 +25335,7 @@ return [
       ),
     ),
   ),
-  136 => 
+  140 => 
   array (
     'meta' => 
     array (
@@ -24654,7 +25599,7 @@ return [
       ),
     ),
   ),
-  137 => 
+  141 => 
   array (
     'meta' => 
     array (
@@ -24985,7 +25930,7 @@ return [
       ),
     ),
   ),
-  138 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -25146,7 +26091,7 @@ return [
       ),
     ),
   ),
-  139 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -25302,7 +26247,7 @@ return [
       ),
     ),
   ),
-  140 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -25561,7 +26506,7 @@ return [
       ),
     ),
   ),
-  141 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -25703,7 +26648,7 @@ return [
       ),
     ),
   ),
-  142 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -25815,7 +26760,7 @@ return [
       ),
     ),
   ),
-  143 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -26038,7 +26983,7 @@ return [
       ),
     ),
   ),
-  144 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -26194,7 +27139,7 @@ return [
       ),
     ),
   ),
-  145 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -26341,7 +27286,7 @@ return [
       ),
     ),
   ),
-  146 => 
+  150 => 
   array (
     'meta' => 
     array (
@@ -26562,7 +27507,7 @@ return [
       ),
     ),
   ),
-  147 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -26801,7 +27746,7 @@ return [
       ),
     ),
   ),
-  148 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -27066,7 +28011,7 @@ return [
       ),
     ),
   ),
-  149 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -27381,7 +28326,7 @@ return [
       ),
     ),
   ),
-  150 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -27523,7 +28468,7 @@ return [
       ),
     ),
   ),
-  151 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -27738,7 +28683,7 @@ return [
       ),
     ),
   ),
-  152 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -27894,7 +28839,7 @@ return [
       ),
     ),
   ),
-  153 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -28108,7 +29053,7 @@ return [
       ),
     ),
   ),
-  154 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -28420,7 +29365,7 @@ return [
       ),
     ),
   ),
-  155 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -28686,7 +29631,7 @@ return [
       ),
     ),
   ),
-  156 => 
+  160 => 
   array (
     'meta' => 
     array (
@@ -28842,7 +29787,7 @@ return [
       ),
     ),
   ),
-  157 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -29134,7 +30079,7 @@ return [
       ),
     ),
   ),
-  158 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -29290,7 +30235,7 @@ return [
       ),
     ),
   ),
-  159 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -29432,7 +30377,7 @@ return [
       ),
     ),
   ),
-  160 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -29697,7 +30642,7 @@ return [
       ),
     ),
   ),
-  161 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -29919,7 +30864,7 @@ return [
       ),
     ),
   ),
-  162 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -30133,7 +31078,7 @@ return [
       ),
     ),
   ),
-  163 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -30275,7 +31220,7 @@ return [
       ),
     ),
   ),
-  164 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -30447,7 +31392,7 @@ return [
       ),
     ),
   ),
-  165 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -30700,7 +31645,7 @@ return [
       ),
     ),
   ),
-  166 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -30919,7 +31864,7 @@ return [
       ),
     ),
   ),
-  167 => 
+  171 => 
   array (
     'meta' => 
     array (
@@ -31138,7 +32083,7 @@ return [
       ),
     ),
   ),
-  168 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -31378,7 +32323,7 @@ return [
       ),
     ),
   ),
-  169 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -31693,7 +32638,7 @@ return [
       ),
     ),
   ),
-  170 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -31805,7 +32750,7 @@ return [
       ),
     ),
   ),
-  171 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -31917,7 +32862,7 @@ return [
       ),
     ),
   ),
-  172 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -32133,7 +33078,7 @@ return [
       ),
     ),
   ),
-  173 => 
+  177 => 
   array (
     'meta' => 
     array (
@@ -32422,7 +33367,7 @@ return [
       ),
     ),
   ),
-  174 => 
+  178 => 
   array (
     'meta' => 
     array (
@@ -32674,7 +33619,7 @@ return [
       ),
     ),
   ),
-  175 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -32830,7 +33775,7 @@ return [
       ),
     ),
   ),
-  176 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -33085,7 +34030,7 @@ return [
       ),
     ),
   ),
-  177 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -33307,7 +34252,7 @@ return [
       ),
     ),
   ),
-  178 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -33544,7 +34489,7 @@ return [
       ),
     ),
   ),
-  179 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -33656,7 +34601,7 @@ return [
       ),
     ),
   ),
-  180 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -33798,7 +34743,7 @@ return [
       ),
     ),
   ),
-  181 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -34017,7 +34962,7 @@ return [
       ),
     ),
   ),
-  182 => 
+  186 => 
   array (
     'meta' => 
     array (
@@ -34173,7 +35118,7 @@ return [
       ),
     ),
   ),
-  183 => 
+  187 => 
   array (
     'meta' => 
     array (
@@ -34447,7 +35392,7 @@ return [
       ),
     ),
   ),
-  184 => 
+  188 => 
   array (
     'meta' => 
     array (
@@ -34603,7 +35548,7 @@ return [
       ),
     ),
   ),
-  185 => 
+  189 => 
   array (
     'meta' => 
     array (
@@ -34822,7 +35767,7 @@ return [
       ),
     ),
   ),
-  186 => 
+  190 => 
   array (
     'meta' => 
     array (
@@ -34934,7 +35879,7 @@ return [
       ),
     ),
   ),
-  187 => 
+  191 => 
   array (
     'meta' => 
     array (
@@ -35255,7 +36200,7 @@ return [
       ),
     ),
   ),
-  188 => 
+  192 => 
   array (
     'meta' => 
     array (
@@ -35411,7 +36356,7 @@ return [
       ),
     ),
   ),
-  189 => 
+  193 => 
   array (
     'meta' => 
     array (
@@ -35558,7 +36503,7 @@ return [
       ),
     ),
   ),
-  190 => 
+  194 => 
   array (
     'meta' => 
     array (
@@ -35777,7 +36722,7 @@ return [
       ),
     ),
   ),
-  191 => 
+  195 => 
   array (
     'meta' => 
     array (
@@ -36042,7 +36987,7 @@ return [
       ),
     ),
   ),
-  192 => 
+  196 => 
   array (
     'meta' => 
     array (
@@ -36154,7 +37099,7 @@ return [
       ),
     ),
   ),
-  193 => 
+  197 => 
   array (
     'meta' => 
     array (
@@ -36418,7 +37363,7 @@ return [
       ),
     ),
   ),
-  194 => 
+  198 => 
   array (
     'meta' => 
     array (
@@ -36650,7 +37595,7 @@ return [
       ),
     ),
   ),
-  195 => 
+  199 => 
   array (
     'meta' => 
     array (
@@ -36880,7 +37825,7 @@ return [
       ),
     ),
   ),
-  196 => 
+  200 => 
   array (
     'meta' => 
     array (
@@ -37198,7 +38143,7 @@ return [
       ),
     ),
   ),
-  197 => 
+  201 => 
   array (
     'meta' => 
     array (
@@ -37425,7 +38370,7 @@ return [
       ),
     ),
   ),
-  198 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -37781,7 +38726,7 @@ return [
       ),
     ),
   ),
-  199 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -38007,7 +38952,7 @@ return [
       ),
     ),
   ),
-  200 => 
+  204 => 
   array (
     'meta' => 
     array (
@@ -38239,7 +39184,7 @@ return [
       ),
     ),
   ),
-  201 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -38447,7 +39392,7 @@ return [
       ),
     ),
   ),
-  202 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -38767,7 +39712,7 @@ return [
       ),
     ),
   ),
-  203 => 
+  207 => 
   array (
     'meta' => 
     array (
@@ -39043,7 +39988,7 @@ return [
       ),
     ),
   ),
-  204 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -39378,7 +40323,7 @@ return [
       ),
     ),
   ),
-  205 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -39596,7 +40541,7 @@ return [
       ),
     ),
   ),
-  206 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -39826,7 +40771,7 @@ return [
       ),
     ),
   ),
-  207 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -40137,7 +41082,7 @@ return [
       ),
     ),
   ),
-  208 => 
+  212 => 
   array (
     'meta' => 
     array (
@@ -40403,7 +41348,7 @@ return [
       ),
     ),
   ),
-  209 => 
+  213 => 
   array (
     'meta' => 
     array (
@@ -40635,7 +41580,7 @@ return [
       ),
     ),
   ),
-  210 => 
+  214 => 
   array (
     'meta' => 
     array (
@@ -41012,7 +41957,7 @@ return [
       ),
     ),
   ),
-  211 => 
+  215 => 
   array (
     'meta' => 
     array (
@@ -41244,7 +42189,7 @@ return [
       ),
     ),
   ),
-  212 => 
+  216 => 
   array (
     'meta' => 
     array (
@@ -41529,7 +42474,7 @@ return [
       ),
     ),
   ),
-  213 => 
+  217 => 
   array (
     'meta' => 
     array (
@@ -41851,7 +42796,7 @@ return [
       ),
     ),
   ),
-  214 => 
+  218 => 
   array (
     'meta' => 
     array (
@@ -42147,7 +43092,7 @@ return [
       ),
     ),
   ),
-  215 => 
+  219 => 
   array (
     'meta' => 
     array (
@@ -42443,7 +43388,7 @@ return [
       ),
     ),
   ),
-  216 => 
+  220 => 
   array (
     'meta' => 
     array (
@@ -42739,7 +43684,7 @@ return [
       ),
     ),
   ),
-  217 => 
+  221 => 
   array (
     'meta' => 
     array (
@@ -42922,7 +43867,7 @@ return [
       ),
     ),
   ),
-  218 => 
+  222 => 
   array (
     'meta' => 
     array (
@@ -43218,7 +44163,7 @@ return [
       ),
     ),
   ),
-  219 => 
+  223 => 
   array (
     'meta' => 
     array (
@@ -43454,7 +44399,7 @@ return [
       ),
     ),
   ),
-  220 => 
+  224 => 
   array (
     'meta' => 
     array (
@@ -43782,7 +44727,7 @@ return [
       ),
     ),
   ),
-  221 => 
+  225 => 
   array (
     'meta' => 
     array (
@@ -44014,7 +44959,7 @@ return [
       ),
     ),
   ),
-  222 => 
+  226 => 
   array (
     'meta' => 
     array (
@@ -44236,7 +45181,7 @@ return [
       ),
     ),
   ),
-  223 => 
+  227 => 
   array (
     'meta' => 
     array (
@@ -44515,7 +45460,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  224 => 
+  228 => 
   array (
     'meta' => 
     array (
@@ -44745,7 +45690,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  225 => 
+  229 => 
   array (
     'meta' => 
     array (
@@ -44972,7 +45917,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  226 => 
+  230 => 
   array (
     'meta' => 
     array (
@@ -45289,7 +46234,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  227 => 
+  231 => 
   array (
     'meta' => 
     array (
@@ -45497,7 +46442,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  228 => 
+  232 => 
   array (
     'meta' => 
     array (
@@ -45771,7 +46716,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  229 => 
+  233 => 
   array (
     'meta' => 
     array (
@@ -46003,7 +46948,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  230 => 
+  234 => 
   array (
     'meta' => 
     array (
@@ -46294,7 +47239,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  231 => 
+  235 => 
   array (
     'meta' => 
     array (
@@ -46519,7 +47464,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  232 => 
+  236 => 
   array (
     'meta' => 
     array (
@@ -46836,7 +47781,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  233 => 
+  237 => 
   array (
     'meta' => 
     array (
@@ -47159,7 +48104,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  234 => 
+  238 => 
   array (
     'meta' => 
     array (
@@ -47404,7 +48349,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  235 => 
+  239 => 
   array (
     'meta' => 
     array (
@@ -47636,7 +48581,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  236 => 
+  240 => 
   array (
     'meta' => 
     array (
@@ -47884,7 +48829,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  237 => 
+  241 => 
   array (
     'meta' => 
     array (
@@ -48150,7 +49095,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  238 => 
+  242 => 
   array (
     'meta' => 
     array (
@@ -48472,7 +49417,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  239 => 
+  243 => 
   array (
     'meta' => 
     array (
@@ -48794,7 +49739,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  240 => 
+  244 => 
   array (
     'meta' => 
     array (
@@ -49067,7 +50012,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  241 => 
+  245 => 
   array (
     'meta' => 
     array (
@@ -49365,7 +50310,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  242 => 
+  246 => 
   array (
     'meta' => 
     array (
