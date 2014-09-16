@@ -8,11 +8,12 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
-
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'handlers' => [
-        'admin' => 'dispatches.usergroupdispatch'
-    ]
-];
+        'en-US' => [
+            'collection:dispatchReleaseStatus:displayName' => 'Dispatch release statuses',
+        ],
+
+        'ru-RU' => [
+            'collection:dispatchReleaseStatus:displayName' => 'Статусы выпусков рассылки',
+        ]
+    ];

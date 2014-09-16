@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
+use umi\orm\collection\ICollectionFactory;
+
 return [
-
-    'en-US' => [
-        'role:editor:displayName' => 'Manage relation'
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'handlers' => [
+        'admin' => 'dispatches.releasestatus'
     ],
-
-    'ru-RU' => [
-        'role:editor:displayName' => 'Управление связью'
-    ]
-
+    'dictionaries' => [
+        'collection.dispatchReleaseStatus', 'collection'
+    ],
 ];

@@ -16,76 +16,79 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatches_release'
         ],
-        'fields'      => [
-            Release::FIELD_DISPATCHES => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'dispatch'
+        'fields'     => [
+            Release::FIELD_DISPATCH             => [
+                'type'       => IField::TYPE_BELONGS_TO,
+                'columnName' => 'dispatch_id',
+                'target'     => 'dispatch'
             ],
-            Release::FIELD_SUBJECT => [
-                'type' => IField::TYPE_STRING,
+            Release::FIELD_SUBJECT              => [
+                'type'       => IField::TYPE_STRING,
                 'columnName' => 'subject'
             ],
-            Release::FIELD_MESSAGE_HEADER => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'message_header'
+            Release::FIELD_HEADER               => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'header'
             ],
-            Release::FIELD_MESSAGE => [
-                'type' => IField::TYPE_TEXT,
+            Release::FIELD_MESSAGE              => [
+                'type'       => IField::TYPE_TEXT,
                 'columnName' => 'message'
             ],
-            Release::FIELD_TEMPLATE_MESSAGE => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'template_message'
+            Release::FIELD_TEMPLATE             => [
+                'type'       => IField::TYPE_BELONGS_TO,
+                'columnName' => 'template_id',
+                'target'     => 'dispatchTemplate'
             ],
-            Release::FIELD_SENDING_STATUS => [
-                'type' => IField::TYPE_STRING,
-                'columnName' => 'sending_status'
+            Release::FIELD_STATUS               => [
+                'type'       => IField::TYPE_BELONGS_TO,
+                'columnName' => 'status_id',
+                'target'     => 'dispatchReleaseStatus'
             ],
-            Release::FIELD_DATE_START => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'date_start'
+            Release::FIELD_START_TIME           => [
+                'type'       => IField::TYPE_DATE_TIME,
+                'columnName' => 'start_time'
             ],
-            Release::FIELD_DATE_FINISH => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'date_finish'
+            Release::FIELD_FINISH_TIME          => [
+                'type'       => IField::TYPE_DATE_TIME,
+                'columnName' => 'finish_time'
             ],
-            Release::FIELD_COUNT_SEND_MESSAGE => [
-                'type' => IField::TYPE_INTEGER,
-                'columnName' => 'count_send_message'
+            Release::FIELD_SENT_MESSAGE_COUNT   => [
+                'type'       => IField::TYPE_INTEGER,
+                'columnName' => 'sent_message_count'
             ],
-            Release::FIELD_COUNT_VIEWS => [
-                'type' => IField::TYPE_INTEGER,
-                'columnName' => 'count_views'
+            Release::FIELD_VIEWED_MESSAGE_COUNT => [
+                'type'       => IField::TYPE_INTEGER,
+                'columnName' => 'viewed_message_count'
             ],
-            Release::FIELD_COUNT_UNSUBSCRIBE => [
-                'type' => IField::TYPE_INTEGER,
-                'columnName' => 'count_unsubscribe'
+            Release::FIELD_UNSUBSCRIPTION_COUNT => [
+                'type'       => IField::TYPE_INTEGER,
+                'columnName' => 'unsubscription_count'
             ],
-            Release::FIELD_PERCENT_READS => [
-                'type' => IField::TYPE_DELAYED,
-                'columnName' => 'percent_reads',
+            Release::FIELD_VIEW_PERCENT         => [
+                'type'         => IField::TYPE_DELAYED,
+                'columnName'   => 'view_percent',
                 'defaultValue' => 0,
-                'dataType'     => 'integer',
-                'formula'      => 'calculatePercentViews',
+                'dataType'     => 'integer', // TODO: bug cms-918
+                'formula'      => 'calculateViewPercent',
                 'readOnly'     => true,
             ],
         ],
-        'types'  => [
+        'types'      => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatches\model\object\Release',
                 'fields'      => [
-                    Release::FIELD_DISPATCHES => [],
-                    Release::FIELD_SUBJECT => [],
-                    Release::FIELD_MESSAGE_HEADER => [],
-                    Release::FIELD_MESSAGE => [],
-                    Release::FIELD_TEMPLATE_MESSAGE => [],
-                    Release::FIELD_SENDING_STATUS => [],
-                    Release::FIELD_DATE_START => [],
-                    Release::FIELD_DATE_FINISH => [],
-                    Release::FIELD_COUNT_SEND_MESSAGE => [],
-                    Release::FIELD_COUNT_VIEWS => [],
-                    Release::FIELD_COUNT_UNSUBSCRIBE => [],
-                    Release::FIELD_PERCENT_READS => [],
+                    Release::FIELD_DISPATCH             => [],
+                    Release::FIELD_SUBJECT              => [],
+                    Release::FIELD_HEADER               => [],
+                    Release::FIELD_MESSAGE              => [],
+                    Release::FIELD_TEMPLATE             => [],
+                    Release::FIELD_STATUS               => [],
+                    Release::FIELD_START_TIME           => [],
+                    Release::FIELD_FINISH_TIME          => [],
+                    Release::FIELD_SENT_MESSAGE_COUNT   => [],
+                    Release::FIELD_VIEWED_MESSAGE_COUNT => [],
+                    Release::FIELD_UNSUBSCRIPTION_COUNT => [],
+                    Release::FIELD_VIEW_PERCENT         => [],
                 ]
             ]
         ],

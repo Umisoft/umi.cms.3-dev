@@ -14,6 +14,7 @@ use umicms\orm\object\CmsObject;
 
 /**
  * Рассылка.
+ *
  * @property string $description описание
  * @property Release|null $lastRelease последний выпуск рассылки
  * @property IManyToManyObjectSet|BaseSubscriber[] $subscribers подписчики на рассылку

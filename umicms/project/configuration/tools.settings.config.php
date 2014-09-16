@@ -155,12 +155,11 @@ return [
             'dispatchUnsubscriptionReason' => '{#lazy:~/project/module/dispatches/configuration/reason/metadata.config.php}',
             'dispatchRelease'              => '{#lazy:~/project/module/dispatches/configuration/release/metadata.config.php}',
             'dispatchSubscriber'           => '{#lazy:~/project/module/dispatches/configuration/subscriber/metadata.config.php}',
-            'dispatchTemplate'                     => '{#lazy:~/project/module/dispatches/configuration/template/metadata.config.php}',
-            'dispatchSubscription'                 => '{#lazy:~/project/module/dispatches/configuration/subscription/metadata.config.php}',
-            'dispatchUnsubscription'               => '{#lazy:~/project/module/dispatches/configuration/unsubscription/metadata.config.php}',
-            'dispatchUserGroup'            => '{#lazy:~/project/module/dispatches/configuration/usergroupdispatch/metadata.config.php}',
+            'dispatchTemplate'             => '{#lazy:~/project/module/dispatches/configuration/template/metadata.config.php}',
+            'dispatchSubscription'         => '{#lazy:~/project/module/dispatches/configuration/subscription/metadata.config.php}',
+            'dispatchUnsubscription'       => '{#lazy:~/project/module/dispatches/configuration/unsubscription/metadata.config.php}',
+            'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/metadata.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
-
         ],
         'collections' => [
             'structure'                    => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
@@ -192,10 +191,10 @@ return [
             'dispatchUnsubscriptionReason' => '{#lazy:~/project/module/dispatches/configuration/reason/collection.config.php}',
             'dispatchRelease'              => '{#lazy:~/project/module/dispatches/configuration/release/collection.config.php}',
             'dispatchSubscriber'           => '{#lazy:~/project/module/dispatches/configuration/subscriber/collection.config.php}',
-            'dispatchTemplate'                     => '{#lazy:~/project/module/dispatches/configuration/template/collection.config.php}',
-            'dispatchSubscription'                 => '{#lazy:~/project/module/dispatches/configuration/subscription/collection.config.php}',
-            'dispatchUnsubscription'               => '{#lazy:~/project/module/dispatches/configuration/unsubscription/collection.config.php}',
-            'dispatchUserGroup'            => '{#lazy:~/project/module/dispatches/configuration/usergroupdispatch/collection.config.php}',
+            'dispatchTemplate'             => '{#lazy:~/project/module/dispatches/configuration/template/collection.config.php}',
+            'dispatchSubscription'         => '{#lazy:~/project/module/dispatches/configuration/subscription/collection.config.php}',
+            'dispatchUnsubscription'       => '{#lazy:~/project/module/dispatches/configuration/unsubscription/collection.config.php}',
+            'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/collection.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
 
         ]

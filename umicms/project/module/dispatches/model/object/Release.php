@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -10,89 +9,87 @@
 
 namespace umicms\project\module\dispatches\model\object;
 
-use umi\orm\objectset\IObjectSet;
+use DateTime;
 use umicms\orm\object\CmsObject;
 
 /**
  * Выпуски рассылок.
  *
+ * @property Dispatch $dispatch рассылка
+ * @property string $subject тема письма
+ * @property string $header заголовок письма
+ * @property string $message текст письма
+ * @property Template $template шаблон письма
+ * @property ReleaseStatus $status статус отправки
+ * @property DateTime $startTime время начала отправки писем
+ * @property DateTime $finishTime время окончания отправки писем
+ * @property int $sentMessageCount количество отправленных писем
+ * @property int $viewedMessageCount количество открытых писем
+ * @property int $unsubscriptionCount количество отписок
+ * @property int $viewPercent процент прочтений
  */
 class Release extends CmsObject
 {
     /**
      *  Имя поля для хранения рассылок
      */
-    const FIELD_DISPATCHES = 'dispatch';
-
+    const FIELD_DISPATCH = 'dispatch';
     /**
-     *  Имя поля для хранения темы рассылок
+     *  Имя поля для хранения темы выпуска
      */
     const FIELD_SUBJECT = 'subject';
-
     /**
-     *  Имя поля для хранения заголовок письма
+     *  Имя поля для хранения заголовка письма
      */
-    const FIELD_MESSAGE_HEADER = 'message_header';
-
+    const FIELD_HEADER = 'header';
     /**
      *  Имя поля для хранения текста письма
      */
     const FIELD_MESSAGE = 'message';
-
     /**
      *  Имя поля для хранения шаблона письма
      */
-    const FIELD_TEMPLATE_MESSAGE = 'template_message';
-
+    const FIELD_TEMPLATE = 'template';
     /**
-     *  Имя поля для хранения статус отправки
+     *  Имя поля для хранения статуса отправки
      */
-    const FIELD_SENDING_STATUS = 'sending_status';
-
+    const FIELD_STATUS = 'status';
     /**
-     *  Имя поля для хранения даты запуска
+     *  Имя поля для хранения времени начала отправки писем
      */
-    const FIELD_DATE_START = 'date_start';
-
+    const FIELD_START_TIME = 'startTime';
     /**
-     *  Имя поля для хранения даты завершения
+     *  Имя поля для хранения времени окончания отправки писем
      */
-    const FIELD_DATE_FINISH = 'date_finish';
-
+    const FIELD_FINISH_TIME = 'finishTime';
     /**
      *  Имя поля для хранения количества отправленных писем
      */
-    const FIELD_COUNT_SEND_MESSAGE = 'count_send_message';
-
+    const FIELD_SENT_MESSAGE_COUNT = 'sentMessageCount';
     /**
-     *  Имя поля для хранения количества просмотров
+     *  Имя поля для хранения количества открытых писем
      */
-    const FIELD_COUNT_VIEWS = 'count_views';
-
+    const FIELD_VIEWED_MESSAGE_COUNT = 'viewedMessageCount';
     /**
      *  Имя поля для хранения количества отписок
      */
-    const FIELD_COUNT_UNSUBSCRIBE = 'count_unsubscribe';
+    const FIELD_UNSUBSCRIPTION_COUNT = 'unsubscriptionCount';
+    /**
+     *  Имя поля для хранения процента прочтений
+     */
+    const FIELD_VIEW_PERCENT = 'viewPercent';
 
     /**
-     *  Имя поля для хранения процент прочтений
+     * Вычисляет процент прочтений писем выпуска.
+     * @return float
      */
-    const FIELD_PERCENT_READS = 'percent_reads';
+    public function calculateViewPercent()
+    {
+        if (!$this->sentMessageCount) {
+            return 0;
+        }
 
-    /**
-     *  Имя поля для хранения причин отписок
-     */
-    const FIELD_REASON = 'reason';
-
-    public function calculatePercentViews(){
-        $countSendMessageValue = $this->getProperty(self::FIELD_COUNT_SEND_MESSAGE)->getValue();
-
-        if($countSendMessageValue){
-            $countViewsFieldValue = $this->getProperty(self::FIELD_COUNT_VIEWS)->getValue();
-            $percentReads = ($countViewsFieldValue/$countSendMessageValue) * 100;
-        } else $percentReads = 0;
-
-        return $percentReads;
+        return ($this->viewedMessageCount / $this->sentMessageCount) * 100;
     }
 
 }

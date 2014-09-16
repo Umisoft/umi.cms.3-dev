@@ -12,11 +12,13 @@ namespace umicms\project\module\dispatches\model\collection;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\CmsCollection;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\module\dispatches\model\object\Dispatch;
 
 /**
  * Коллекция для работы с расслыками.
  *
+ * @method CmsSelector|Dispatch[] select() Возвращает селектор для выбора рассылок.
  * @method Dispatch get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рассылку по ее GUID.
  * @method Dispatch getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рассылку по ее id.
  * @method Dispatch add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает рассылку.

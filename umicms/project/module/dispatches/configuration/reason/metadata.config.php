@@ -16,29 +16,29 @@ return array_replace_recursive(
         'dataSource' => [
             'sourceName' => 'dispatches_reason'
         ],
-        'fields'      => [
-            Reason::FIELD_RELEASE => [
-                'type' => IField::TYPE_BELONGS_TO,
+        'fields'     => [
+            Reason::FIELD_RELEASE    => [
+                'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'release_id',
-                'target' => 'dispatchRelease'
+                'target'     => 'dispatchRelease'
             ],
             Reason::FIELD_SUBSCRIBER => [
-                'type' => IField::TYPE_BELONGS_TO,
+                'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'subscriber_id',
-                'target' => 'dispatchSubscriber'
+                'target'     => 'dispatchSubscriber'
             ],
-            Reason::FIELD_DATE_UNSUBSCIBE => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'date_unsubscribe',
+            Reason::FIELD_DATE       => [
+                'type'       => IField::TYPE_DATE_TIME,
+                'columnName' => 'date',
             ],
         ],
-        'types'  => [
+        'types'      => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatches\model\object\Reason',
                 'fields'      => [
-                    Reason::FIELD_RELEASE => [],
+                    Reason::FIELD_RELEASE    => [],
                     Reason::FIELD_SUBSCRIBER => [],
-                    Reason::FIELD_DATE_UNSUBSCIBE => [],
+                    Reason::FIELD_DATE       => [],
                 ]
             ]
         ],

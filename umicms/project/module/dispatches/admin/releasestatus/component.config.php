@@ -12,6 +12,6 @@ use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
     CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
-    CollectionComponent::OPTION_COLLECTION_NAME => 'dispatchUserGroup',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'dispatchReleaseStatus',
     CollectionComponent::OPTION_SKIP_IN_DOCK => true
 ];
