@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -14,26 +13,26 @@ return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'dispatches_subscribe_dis'
+            'sourceName' => 'dispatches_subscription'
         ],
-        'fields' => [
-            'dispatch' => [
-                'type' => IField::TYPE_BELONGS_TO,
+        'fields'     => [
+            'dispatch'   => [
+                'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'dispatch_id',
-                'target' => 'dispatch'
+                'target'     => 'dispatch'
             ],
             'subscriber' => [
-                'type' => IField::TYPE_BELONGS_TO,
+                'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'subscriber_id',
-                'target' => 'dispatchSubscriber'
+                'target'     => 'dispatchSubscriber'
             ]
         ],
-        'types' => [
+        'types'      => [
             'base' => [
                 'objectClass' => 'umicms\orm\object\CmsLinkObject',
-                'fields' => [
-                    'dispatch'  => [],
-                    'subscriber'  => []
+                'fields'      => [
+                    'dispatch'   => [],
+                    'subscriber' => []
                 ]
             ]
         ]

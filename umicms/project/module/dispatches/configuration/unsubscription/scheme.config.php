@@ -13,7 +13,7 @@ use Doctrine\DBAL\Types\Type;
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'dispatches_unsubscribe_dis',
+        'name' => 'dispatches_unsubscription',
         'columns' => [
             'dispatch_id' => [
                 'type' => Type::BIGINT,
@@ -21,7 +21,7 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'unsubscriber_id' => [
+            'subscriber_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -34,31 +34,31 @@ return array_replace_recursive(
                     'dispatch_id' => []
                 ]
             ],
-            'unsubscriber' => [
+            'subscriber' => [
                 'columns' => [
-                    'unsubscriber_id' => []
+                    'subscriber_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'dis_to_unsubscribe' => [
+            'unsubscription_to_dispatch' => [
                 'foreignTable' => 'dispatch',
                 'columns' => [
                     'dispatch_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
+                    'onDelete' => 'CASCADE'
                 ]
             ],
-            'unsubscribe_to_dis' => [
+            'unsubscription_to_subscriber' => [
                 'foreignTable' => 'dispatches_subscriber',
                 'columns' => [
-                    'unsubscriber_id' => []
+                    'subscriber_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
+                    'onDelete' => 'CASCADE'
                 ]
             ]
         ]

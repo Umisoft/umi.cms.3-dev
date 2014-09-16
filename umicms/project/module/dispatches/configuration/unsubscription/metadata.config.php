@@ -14,7 +14,7 @@ return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'dispatches_unsubscribe_dis'
+            'sourceName' => 'dispatches_unsubscription'
         ],
         'fields' => [
             'dispatch' => [
@@ -22,9 +22,9 @@ return array_replace_recursive(
                 'columnName' => 'dispatch_id',
                 'target' => 'dispatch'
             ],
-            'unsubscriber' => [
+            'subscriber' => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'unsubscriber_id',
+                'columnName' => 'subscriber_id',
                 'target' => 'dispatchSubscriber'
             ]
         ],
@@ -33,7 +33,7 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\orm\object\CmsLinkObject',
                 'fields' => [
                     'dispatch'  => [],
-                    'unsubscriber'  => []
+                    'subscriber'  => []
                 ]
             ]
         ]

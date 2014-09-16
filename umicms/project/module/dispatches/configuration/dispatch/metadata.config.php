@@ -29,7 +29,7 @@ return array_replace_recursive(
                 'target' => 'dispatchSubscriber',
                 'bridge' => 'dispatchUnsubscription',
                 'relatedField' => 'dispatch',
-                'targetField' => 'unsubscribed'
+                'targetField' => 'subscriber'
             ],*/
             Dispatch::FIELD_LAST_RELEASE => [
                 'type' => IField::TYPE_BELONGS_TO,
