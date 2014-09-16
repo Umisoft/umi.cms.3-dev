@@ -24,7 +24,6 @@ use umicms\project\module\dispatches\model\object\Subscriber;
 
 /**
  * Коллекция для работы с подписчиками.
- *
  * @method CmsSelector|BaseSubscriber[] select() Возвращает селектор для выбора подписчиков.
  * @method BaseSubscriber get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает подписчика по GUID.
  * @method BaseSubscriber getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает подписчика по id.

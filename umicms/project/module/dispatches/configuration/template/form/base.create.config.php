@@ -32,11 +32,11 @@ return [
                         'dataSource' => Template::FIELD_DISPLAY_NAME
                     ],
                 ],
-                Template::FIELD_PATHTEMPLATE => [
+                Template::FIELD_FILE_NAME    => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => Template::FIELD_PATHTEMPLATE,
+                    'label'   => Template::FIELD_FILE_NAME,
                     'options' => [
-                        'dataSource' => Template::FIELD_PATHTEMPLATE
+                        'dataSource' => Template::FIELD_FILE_NAME
                     ],
                 ]
             ]

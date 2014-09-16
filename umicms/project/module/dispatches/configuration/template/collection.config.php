@@ -14,7 +14,7 @@ return [
     'type'         => ICollectionFactory::TYPE_SIMPLE,
     'class'        => 'umicms\project\module\dispatches\model\collection\TemplateCollection',
     'handlers'     => [
-        'admin' => 'dispatches.template',
+        'admin' => 'dispatches.template'
     ],
     'forms'        => [
         'base' => [

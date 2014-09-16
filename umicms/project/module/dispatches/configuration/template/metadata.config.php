@@ -17,16 +17,16 @@ return array_replace_recursive(
             'sourceName' => 'dispatches_template'
         ],
         'fields' => [
-            Template::FIELD_PATHTEMPLATE => [
+            Template::FIELD_FILE_NAME => [
                 'type'       => IField::TYPE_STRING,
-                'columnName' => 'path_to_template'
+                'columnName' => 'filename'
             ],
         ],
         'types'  => [
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatches\model\object\Template',
                 'fields'      => [
-                    Template::FIELD_PATHTEMPLATE => []
+                    Template::FIELD_FILE_NAME => []
                 ]
             ]
         ],
