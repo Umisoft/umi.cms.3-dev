@@ -2,20 +2,6 @@
 
 return [
 
-    'locales' => [
-        'site' => [
-            'ru-RU' => [
-                'route' => 'default'
-            ],
-            'en-US' => [
-                'route' => 'en-US'
-            ]
-        ],
-        'admin' => [
-            'ru-RU' => [],
-            'en-US' => []
-        ]
-    ],
     'routes' => [
         'en-US' => [
             'type' => 'ProjectHostRoute',
@@ -32,7 +18,6 @@ return [
                 'locale' => 'ru-RU'
             ]
         ]
-    ],
-    'defaultLocale' => 'ru-RU'
+    ]
 
 ];
