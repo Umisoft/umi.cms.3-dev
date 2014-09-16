@@ -9,7 +9,6 @@ return [
         'reason' => '~/project/module/dispatches/configuration/reason',
         'template' => '~/project/module/dispatches/configuration/template',
         'subscription' => '~/project/module/dispatches/configuration/subscription',
-        'unsubscription' => '~/project/module/dispatches/configuration/unsubscription',
-        'usergroupdispatch' => '~/project/module/dispatches/configuration/usergroupdispatch',
+        'unsubscription' => '~/project/module/dispatches/configuration/unsubscription'
     ]
 ];

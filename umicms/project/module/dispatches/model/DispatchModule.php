@@ -69,31 +69,4 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
         return $dispatch;
     }
 
-    /**
-     * Возвращает селектор для выборки рассылки по группам пользователей.
-     * @return CmsSelector|Dispatch[]
-     */
-    public function getDispatchFilterGroup()
-    {
-        /**
-         * @var UsersModule $usersModule
-         * @var RegisteredUser|Guest $currentUser
-         * @var array $groups
-         */
-        $usersModule = $this->getApi(UsersModule::className());
-        $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
-
-        $dispatches = $this->getDispatches();
-
-        if ($groups = $currentUser->getProperty(BaseUser::FIELD_GROUPS)
-            ->getValue()
-        ) {
-            foreach ($groups as $group) {
-                $dispatches->where(Dispatch::FIELD_GROUP_USER)
-                    ->equals($group);
-            };
-        }
-
-        return $dispatches;
-    }
 }
