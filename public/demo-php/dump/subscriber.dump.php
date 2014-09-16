@@ -7,7 +7,7 @@ return array (
   array (
     'meta' => 
     array (
-      'collection' => 'subscriber',
+      'collection' => 'dispatchSubscriber',
       'type' => 'subscriber',
       'guid' => '297534d5-5458-4b08-bc6a-0aebc7f7533e',
       'displayName' => 'mail@faritka.com',
@@ -49,7 +49,7 @@ return array (
   array (
     'meta' => 
     array (
-      'collection' => 'subscriber',
+      'collection' => 'dispatchSubscriber',
       'type' => 'base',
       'guid' => '8ecad5b6-50a1-43d1-ba18-e0b520ee044e',
       'displayName' => 'mail@mail.ru',

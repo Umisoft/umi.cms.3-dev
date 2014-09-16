@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -28,9 +27,9 @@ use umicms\form\element\Image;
 use umicms\form\element\ObjectRelation;
 use umicms\form\element\PageRelation;
 use umicms\form\element\PasswordWithConfirmation;
+use umicms\form\element\Permissions;
 use umicms\form\element\SingleCollectionObjectRelation;
 use umicms\form\element\Wysiwyg;
-use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
@@ -51,10 +50,10 @@ return [
                     'cmsAuthStorage' => 'umicms\authentication\CmsAuthStorage'
                 ],
                 'defaultAdapter' => [
-                    'type' => 'cmsUserAdapter',
+                    'type'    => 'cmsUserAdapter',
                     'options' => [
-                        ORMAdapter::OPTION_COLLECTION => 'user',
-                        ORMAdapter::OPTION_LOGIN_FIELDS => ['login', 'email'],
+                        ORMAdapter::OPTION_COLLECTION     => 'user',
+                        ORMAdapter::OPTION_LOGIN_FIELDS   => ['login', 'email'],
                         ORMAdapter::OPTION_PASSWORD_FIELD => 'password'
                     ]
                 ],
@@ -64,11 +63,10 @@ return [
             ]
         ]
     ],
-
-    TemplatingTools::NAME => [
+    TemplatingTools::NAME     => [
         'factories' => [
             'engine' => [
-                'engineClasses' => [
+                'engineClasses'  => [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
                 ],
@@ -82,19 +80,18 @@ return [
             ]
         ]
     ],
-
-    FormTools::NAME => [
+    FormTools::NAME           => [
         'factories' => [
             'entity' => [
-                'elementTypes' => [
-                    Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
-                    File::TYPE_NAME => 'umicms\form\element\File',
-                    Image::TYPE_NAME => 'umicms\form\element\Image',
-                    Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
-                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
-                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions',
-                    ObjectRelation::TYPE_NAME => 'umicms\form\element\ObjectRelation',
-                    PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation',
+                'elementTypes'          => [
+                    Wysiwyg::TYPE_NAME                        => 'umicms\form\element\Wysiwyg',
+                    File::TYPE_NAME                           => 'umicms\form\element\File',
+                    Image::TYPE_NAME                          => 'umicms\form\element\Image',
+                    Captcha::TYPE_NAME                        => 'umicms\form\element\Captcha',
+                    PasswordWithConfirmation::TYPE_NAME       => 'umicms\form\element\PasswordWithConfirmation',
+                    Permissions::TYPE_NAME                    => 'umicms\form\element\Permissions',
+                    ObjectRelation::TYPE_NAME                 => 'umicms\form\element\ObjectRelation',
+                    PageRelation::TYPE_NAME                   => 'umicms\form\element\PageRelation',
                     SingleCollectionObjectRelation::TYPE_NAME => 'umicms\form\element\SingleCollectionObjectRelation'
                 ],
                 'elementDefaultOptions' => [
@@ -103,142 +100,121 @@ return [
             ]
         ]
     ],
-
-    ModuleTools::NAME => [
+    ModuleTools::NAME         => [
         'modules' => '{#lazy:~/project/module/modules.config.php}'
     ],
-
-    OrmTools::NAME => [
-        'factories' => [
-            'object' => [
-                'defaultObjectClass' => 'umicms\orm\object\CmsObject',
+    OrmTools::NAME            => [
+        'factories'   => [
+            'object'           => [
+                'defaultObjectClass'           => 'umicms\orm\object\CmsObject',
                 'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsHierarchicObject'
             ],
             'objectCollection' => [
-                'defaultSimpleCollectionClass' => 'umicms\orm\collection\CmsCollection',
+                'defaultSimpleCollectionClass'     => 'umicms\orm\collection\CmsCollection',
                 'defaultHierarchicCollectionClass' => 'umicms\orm\collection\CmsHierarchicCollection'
             ],
-            'selector' => [
+            'selector'         => [
                 'selectorClass' => 'umicms\orm\selector\CmsSelector'
             ],
-            'metadata' => [
+            'metadata'         => [
                 'fieldTypes' => [
-                    IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
+                    IField::TYPE_BELONGS_TO      => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
                     CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
-                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
-                    SerializedArrayField::TYPE => 'umicms\orm\metadata\field\SerializedArrayField'
+                    CmsPageRelationField::TYPE   => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
+                    SerializedArrayField::TYPE   => 'umicms\orm\metadata\field\SerializedArrayField'
                 ]
             ]
         ],
         'metadata'    => [
-            'structure' => '{#lazy:~/project/module/structure/configuration/structure/metadata.config.php}',
-            'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
-            'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
-            'menu' => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
-
-            'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
-            'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
-            'newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
-            'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
-            'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
-            'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
-
-            'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
-            'blogPost' => '{#lazy:~/project/module/blog/configuration/post/metadata.config.php}',
-            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/metadata.config.php}',
-            'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/metadata.config.php}',
-            'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
-            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/metadata.config.php}',
-            'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
-            'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
-            'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
-            'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/metadata.config.php}',
-
-            'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
-            'userGroup' => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
-            'userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/metadata.config.php}',
-
-            'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
-
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
-			
-			'dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/metadata.config.php}',
-            'reason' => '{#lazy:~/project/module/dispatch/configuration/reason/metadata.config.php}',
-            'release' => '{#lazy:~/project/module/dispatch/configuration/release/metadata.config.php}',
-            'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/metadata.config.php}',
-            'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/metadata.config.php}',
-			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/metadata.config.php}',
-			'unSubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribedispatches/metadata.config.php}',
-			'userGroupDispatches' => '{#lazy:~/project/module/dispatch/configuration/usergroupdispatches/metadata.config.php}',
-
-            'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
+            'structure'                    => '{#lazy:~/project/module/structure/configuration/structure/metadata.config.php}',
+            'layout'                       => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
+            'infoblock'                    => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
+            'menu'                         => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
+            'newsRubric'                   => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
+            'newsItem'                     => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
+            'newsRssImportScenario'        => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
+            'newsItemSubject'              => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
+            'rssScenarioSubject'           => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
+            'newsSubject'                  => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
+            'blogCategory'                 => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
+            'blogPost'                     => '{#lazy:~/project/module/blog/configuration/post/metadata.config.php}',
+            'blogPostStatus'               => '{#lazy:~/project/module/blog/configuration/poststatus/metadata.config.php}',
+            'blogAuthor'                   => '{#lazy:~/project/module/blog/configuration/author/metadata.config.php}',
+            'blogComment'                  => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
+            'blogCommentStatus'            => '{#lazy:~/project/module/blog/configuration/commentstatus/metadata.config.php}',
+            'blogTag'                      => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
+            'blogPostTag'                  => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
+            'blogRssImportScenario'        => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
+            'rssBlogTag'                   => '{#lazy:~/project/module/blog/configuration/rsstag/metadata.config.php}',
+            'user'                         => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
+            'userGroup'                    => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
+            'userUserGroup'                => '{#lazy:~/project/module/users/configuration/usergroup/metadata.config.php}',
+            'searchIndex'                  => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
+            'serviceBackup'                => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+            'dispatch'                     => '{#lazy:~/project/module/dispatches/configuration/dispatch/metadata.config.php}',
+            'dispatchUnsubscriptionReason' => '{#lazy:~/project/module/dispatches/configuration/reason/metadata.config.php}',
+            'dispatchRelease'              => '{#lazy:~/project/module/dispatches/configuration/release/metadata.config.php}',
+            'dispatchSubscriber'           => '{#lazy:~/project/module/dispatches/configuration/subscriber/metadata.config.php}',
+            'dispatchTemplate'                     => '{#lazy:~/project/module/dispatches/configuration/template/metadata.config.php}',
+            'dispatchSubscription'                 => '{#lazy:~/project/module/dispatches/configuration/subscription/metadata.config.php}',
+            'dispatchUnsubscription'               => '{#lazy:~/project/module/dispatches/configuration/unsubscription/metadata.config.php}',
+            'dispatchUserGroup'            => '{#lazy:~/project/module/dispatches/configuration/usergroupdispatch/metadata.config.php}',
+            'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
 
         ],
-
         'collections' => [
-            'structure'     => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
-            'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
-            'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
-            'menu'     => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
-
-            'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
-            'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
-            'newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
-            'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
-            'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
-            'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',
-
-            'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
-            'blogPost' => '{#lazy:~/project/module/blog/configuration/post/collection.config.php}',
-            'blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/collection.config.php}',
-            'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/collection.config.php}',
-            'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
-            'blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/collection.config.php}',
-            'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
-            'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
-            'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
-            'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/collection.config.php}',
-
-            'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
-            'userGroup' => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',
-            'userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/collection.config.php}',
-
-            'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
-
-            'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
-
-
-            'dispatch' => '{#lazy:~/project/module/dispatch/configuration/dispatch/collection.config.php}',
-            'reason' => '{#lazy:~/project/module/dispatch/configuration/reason/collection.config.php}',
-            'release' => '{#lazy:~/project/module/dispatch/configuration/release/collection.config.php}',
-            'subscriber' => '{#lazy:~/project/module/dispatch/configuration/subscriber/collection.config.php}',
-            'templatemail' => '{#lazy:~/project/module/dispatch/configuration/templatemail/collection.config.php}',
-			'subscribersDispatches' => '{#lazy:~/project/module/dispatch/configuration/subscribersdispatches/collection.config.php}',
-			'unSubscribeDispatches' => '{#lazy:~/project/module/dispatch/configuration/unsubscribedispatches/collection.config.php}',
-			'userGroupDispatches' => '{#lazy:~/project/module/dispatch/configuration/usergroupdispatches/collection.config.php}',
-			
-            'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
+            'structure'                    => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
+            'layout'                       => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
+            'infoblock'                    => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
+            'menu'                         => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
+            'newsRubric'                   => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
+            'newsItem'                     => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
+            'newsRssImportScenario'        => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
+            'newsItemSubject'              => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
+            'rssScenarioSubject'           => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
+            'newsSubject'                  => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',
+            'blogCategory'                 => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
+            'blogPost'                     => '{#lazy:~/project/module/blog/configuration/post/collection.config.php}',
+            'blogPostStatus'               => '{#lazy:~/project/module/blog/configuration/poststatus/collection.config.php}',
+            'blogAuthor'                   => '{#lazy:~/project/module/blog/configuration/author/collection.config.php}',
+            'blogComment'                  => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
+            'blogCommentStatus'            => '{#lazy:~/project/module/blog/configuration/commentstatus/collection.config.php}',
+            'blogTag'                      => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
+            'blogPostTag'                  => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
+            'blogRssImportScenario'        => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
+            'rssBlogTag'                   => '{#lazy:~/project/module/blog/configuration/rsstag/collection.config.php}',
+            'user'                         => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
+            'userGroup'                    => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',
+            'userUserGroup'                => '{#lazy:~/project/module/users/configuration/usergroup/collection.config.php}',
+            'searchIndex'                  => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
+            'serviceBackup'                => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
+            'dispatch'                     => '{#lazy:~/project/module/dispatches/configuration/dispatch/collection.config.php}',
+            'dispatchUnsubscriptionReason' => '{#lazy:~/project/module/dispatches/configuration/reason/collection.config.php}',
+            'dispatchRelease'              => '{#lazy:~/project/module/dispatches/configuration/release/collection.config.php}',
+            'dispatchSubscriber'           => '{#lazy:~/project/module/dispatches/configuration/subscriber/collection.config.php}',
+            'dispatchTemplate'                     => '{#lazy:~/project/module/dispatches/configuration/template/collection.config.php}',
+            'dispatchSubscription'                 => '{#lazy:~/project/module/dispatches/configuration/subscription/collection.config.php}',
+            'dispatchUnsubscription'               => '{#lazy:~/project/module/dispatches/configuration/unsubscription/collection.config.php}',
+            'dispatchUserGroup'            => '{#lazy:~/project/module/dispatches/configuration/usergroupdispatch/collection.config.php}',
+            'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
 
         ]
     ],
-
-    I18nTools::NAME => [
-        'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
+    I18nTools::NAME           => [
+        'localesServiceClass'    => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
     ],
-
-    FilterTools::NAME => [
+    FilterTools::NAME         => [
         'factories' => [
             'filter' => [
                 'types' => [
                     HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
-                    Slug::TYPE => 'umicms\filter\Slug'
+                    Slug::TYPE         => 'umicms\filter\Slug'
                 ]
             ]
         ]
     ],
-
-    ValidationTools::NAME => [
+    ValidationTools::NAME     => [
         'factories' => [
             'validator' => [
                 'types' => [
@@ -247,17 +223,14 @@ return [
             ]
         ]
     ],
-
-    PaginationTools::NAME => [
+    PaginationTools::NAME     => [
         'factories' => [
             'paginator' => [
                 'paginatorClass' => 'umicms\pagination\CmsPaginator'
             ]
         ]
     ],
-
-    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',
-
-    MessagesTools::NAME => '{#lazy:~/project/configuration/messagesTools.config.php}'
+    SlugGeneratorTools::NAME  => '{#lazy:~/project/configuration/slugGenerator.config.php}',
+    MessagesTools::NAME       => '{#lazy:~/project/configuration/messagesTools.config.php}'
 
 ];

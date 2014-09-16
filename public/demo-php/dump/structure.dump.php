@@ -2089,7 +2089,7 @@ return array (
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'dispatch.subscriber',
+        1 => 'dispatches.subscriber',
       ),
       'inMenu' => 
       array (
@@ -4632,7 +4632,7 @@ return array (
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'dispatch.subscriber.form',
+        1 => 'dispatches.subscriber.form',
       ),
       'inMenu' => 
       array (
