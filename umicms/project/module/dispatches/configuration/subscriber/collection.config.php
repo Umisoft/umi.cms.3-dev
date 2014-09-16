@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -9,31 +8,26 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umi\orm\metadata\IObjectType;
 use umicms\project\module\dispatches\model\collection\SubscriberCollection;
-use umicms\project\module\dispatches\model\object\SubscriberUser;
-use umicms\project\module\dispatches\model\object\Subscriber;
-use umicms\project\module\dispatches\model\object\BaseSubscriber;
+use umicms\project\module\dispatches\model\object\GuestSubscriber;
+use umicms\project\module\dispatches\model\object\RegisteredSubscriber;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\dispatches\model\collection\SubscriberCollection',
-    'handlers' => [
-        'admin' => 'dispatches.subscriber',
-        'site' => 'dispatches.subscriber'
+    'type'         => ICollectionFactory::TYPE_SIMPLE,
+    'class'        => 'umicms\project\module\dispatches\model\collection\SubscriberCollection',
+    'handlers'     => [
+        'admin' => 'dispatches.subscriber'
     ],
-    'forms' => [
-        Subscriber::TYPE_NAME => [
-            SubscriberCollection::FORM_EDIT => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.edit.config.php}',
-            SubscriberCollection::FORM_CREATE => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.create.config.php}',
-            Subscriber::FORM_SUBSCRIBE_SITE => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/subscriber.site.config.php}'
+    'forms'        => [
+        GuestSubscriber::TYPE_NAME      => [
+            SubscriberCollection::FORM_EDIT   => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.edit.config.php}',
+        ],
+        RegisteredSubscriber::TYPE_NAME => [
+            SubscriberCollection::FORM_EDIT   => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.edit.config.php}',
         ]
     ],
     'dictionaries' => [
-        'collection.dispatchSubscriber', 'collection'
-    ],
-	SubscriberCollection::IGNORED_TABLE_FILTER_FIELDS => [
-        BaseSubscriber::FIELD_DISPATCH => [],
-        BaseSubscriber::FIELD_UNSUBSCRIBE_DISPATCHES => []
-    ],
+        'collection.dispatchSubscriber',
+        'collection'
+    ]
 ];

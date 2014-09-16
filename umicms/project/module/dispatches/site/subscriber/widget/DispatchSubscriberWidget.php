@@ -13,7 +13,7 @@ namespace umicms\project\module\dispatches\site\subscriber\widget;
 use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\dispatches\model\DispatchModule;
-use umicms\project\module\dispatches\model\object\Subscriber;
+use umicms\project\module\dispatches\model\object\GuestSubscriber;
 
 /**
  * Виджет вывода выпуска.
@@ -45,7 +45,7 @@ class DispatchSubscriberWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        return $this->module->subscriber()->getForm(Subscriber::FORM_SUBSCRIBE_SITE, Subscriber::TYPE_NAME)
+        return $this->module->subscriber()->getForm(GuestSubscriber::FORM_SUBSCRIBE_SITE, GuestSubscriber::TYPE_NAME)
             ->setAction($this->getUrl('subscriber'));
     }
 }

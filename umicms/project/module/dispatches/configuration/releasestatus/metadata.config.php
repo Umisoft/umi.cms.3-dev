@@ -12,7 +12,7 @@ return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'dispatch_release_status'
+            'sourceName' => 'dispatches_release_status'
         ],
         'types' => [
             'base' => [

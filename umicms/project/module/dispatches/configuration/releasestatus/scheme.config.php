@@ -11,6 +11,6 @@
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'dispatch_release_status'
+        'name' => 'dispatches_release_status'
     ]
 );

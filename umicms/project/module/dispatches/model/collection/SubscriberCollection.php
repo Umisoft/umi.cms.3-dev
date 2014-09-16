@@ -20,10 +20,10 @@ use umicms\orm\collection\CmsCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\dispatches\model\object\BaseSubscriber;
 use umicms\project\module\dispatches\model\object\Dispatch;
-use umicms\project\module\dispatches\model\object\Subscriber;
 
 /**
  * Коллекция для работы с подписчиками.
+ *
  * @method CmsSelector|BaseSubscriber[] select() Возвращает селектор для выбора подписчиков.
  * @method BaseSubscriber get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает подписчика по GUID.
  * @method BaseSubscriber getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает подписчика по id.
@@ -34,10 +34,10 @@ class SubscriberCollection extends CmsCollection
 
     /**
      * Проверяет уникальность e-mail пользователя.
-     * @param Subscriber $subscriber
+     * @param BaseSubscriber $subscriber
      * @return bool
      */
-    public function checkEmailUniqueness(Subscriber $subscriber)
+    public function checkEmailUniqueness(BaseSubscriber $subscriber)
     {
         $subscribers = $this->getInternalSelector()
             ->fields([BaseSubscriber::FIELD_IDENTIFY])
@@ -52,7 +52,7 @@ class SubscriberCollection extends CmsCollection
      * Возвращает подписчика по email
      * @param string $email email
      * @throws NonexistentEntityException если не существует подписчика с таким email
-     * @return Subscriber $subscriber
+     * @return BaseSubscriber $subscriber
      */
     public function getSubscriberByEmail($email)
     {
@@ -64,7 +64,7 @@ class SubscriberCollection extends CmsCollection
             ->getResult()
             ->fetch();
 
-        if (!$subscriber instanceof Subscriber) {
+        if (!$subscriber instanceof BaseSubscriber) {
             throw new NonexistentEntityException(
                 $this->translate('Cannot find subscriber by email.')
             );
@@ -98,7 +98,7 @@ class SubscriberCollection extends CmsCollection
         ];
 
         if (count($dispatches)) {
-            $config['elements'][BaseSubscriber::FIELD_DISPATCH] = [
+            $config['elements'][BaseSubscriber::FIELD_DISPATCHES] = [
                 'type'    => CheckboxGroup::TYPE_NAME,
                 'options' => [
                     'choices' => []
@@ -112,7 +112,7 @@ class SubscriberCollection extends CmsCollection
                 $arrayTemp[$dispatchItem->getId()] = $dispatchItem->getProperty(Dispatch::FIELD_DISPLAY_NAME)
                     ->getValue();
             };
-            $config['elements'][BaseSubscriber::FIELD_DISPATCH]['options']['choices'] = $arrayTemp;
+            $config['elements'][BaseSubscriber::FIELD_DISPATCHES]['options']['choices'] = $arrayTemp;
             unset($arrayTemp);
         }
 

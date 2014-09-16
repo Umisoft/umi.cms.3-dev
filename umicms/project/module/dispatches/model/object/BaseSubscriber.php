@@ -10,63 +10,94 @@
 
 namespace umicms\project\module\dispatches\model\object;
 
-use umi\orm\objectset\IObjectSet;
+use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
+use umicms\project\module\dispatches\model\collection\SubscriberCollection;
 
 /**
- * Базовый класс Подписчиков.
+ * Базовый класс подписчика.
  *
+ * @property string $email email
+ * @property string $firstName имя
+ * @property string $lastName фамилия
+ * @property string $middleName отчество
+ * @property IManyToManyObjectSet|Dispatch[] $dispatches рассылки, на которые подписан подписчик
+ * @property IManyToManyObjectSet|Dispatch[] $unsubscribedDispatches рассылки, от которых отписался подписчик
+ * @property string $token токен для управления подписками
  */
-class BaseSubscriber extends CmsObject
+abstract class BaseSubscriber extends CmsObject
 {
     /**
-     * Имя поля для хранения E-mail'a
+     * Имя поля для хранения email
      */
     const FIELD_EMAIL = 'email';
-
     /**
      * Имя поля для хранения имени подписчика
      */
     const FIELD_FIRST_NAME = 'firstName';
-
     /**
      * Имя поля для хранения фамилии подписчика
      */
     const FIELD_LAST_NAME = 'lastName';
-
     /**
      * Имя поля для хранения отчества подписчика
      */
     const FIELD_MIDDLE_NAME = 'middleName';
-
-    /**
-     * Имя поля для хранения пола подписчика
-     */
-    const FIELD_SEX = 'sex';
-
     /**
      * Имя поля для хранения рассылок
      */
-    const FIELD_DISPATCH = 'dispatch';
-
+    const FIELD_DISPATCHES = 'dispatches';
     /**
      * Имя поля для хранения отписанных рассылок
      */
-    const FIELD_UNSUBSCRIBE_DISPATCHES = 'unsubscribe_dispatch';
-
-    /**
-     * Имя поля для хранения профиля подписчика
-     */
-    const FIELD_PROFILE = 'profile';
-
-    /**
-     * Имя поля для хранения причины отписки
-     */
-    const FIELD_REASON = 'reason';
-
+    const FIELD_UNSUBSCRIBED_DISPATCHES = 'unsubscribedDispatches';
     /**
      * Имя поля для хранения token'а
      */
     const FIELD_TOKEN = 'token';
 
+    /**
+     * Проверяет валидность email.
+     * @return bool
+     */
+    public function validateEmail()
+    {
+        $result = true;
+
+        /**
+         * @var SubscriberCollection $collection
+         */
+        $collection = $this->getCollection();
+
+        if (!$collection->checkEmailUniqueness($this)) {
+            $result = false;
+            $this->getProperty(BaseSubscriber::FIELD_EMAIL)
+                ->addValidationErrors(
+                    [$this->translate('Email is not unique')]
+                );
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
+     * @return bool
+     */
+    protected function generateDisplayName($localeId = null)
+    {
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $displayName = $this->getValue(self::FIELD_DISPLAY_NAME, $this->getCurrentLocale()) ? : $this->email;
+            $this->setValue(self::FIELD_DISPLAY_NAME, $displayName, $localeId);
+        }
+    }
 }

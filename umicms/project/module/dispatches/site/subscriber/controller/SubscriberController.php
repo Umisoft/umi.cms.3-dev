@@ -11,7 +11,7 @@
 namespace umicms\project\module\dispatches\site\subscriber\controller;
 
 use umi\form\IForm;
-use umicms\project\module\dispatches\model\object\Subscriber;
+use umicms\project\module\dispatches\model\object\GuestSubscriber;
 use umicms\project\module\dispatches\model\DispatchModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
@@ -29,7 +29,7 @@ class SubscriberController extends BaseSitePageController
     protected $module;
 
     /**
-     * @var Subscriber $subscriber подписчик
+     * @var GuestSubscriber $subscriber подписчик
      */
     private $subscriber;
 
@@ -55,7 +55,7 @@ class SubscriberController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $type = $this->getRouteVar('type', Subscriber::TYPE_NAME);
+        $type = $this->getRouteVar('type', GuestSubscriber::TYPE_NAME);
         $this->subscriber = $this->module->subscriber()->add($type);
 
         return $this->module->subscriber()->getSubscribeForm(
