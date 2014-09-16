@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -10,12 +9,15 @@
 
 namespace umicms\project\module\dispatches\model\object;
 
-use umi\orm\objectset\IObjectSet;
+use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 
 /**
- * Рассылки.
- *
+ * Рассылка.
+ * @property string $description описание
+ * @property Release|null $lastRelease последний выпуск рассылки
+ * @property IManyToManyObjectSet|BaseSubscriber[] $subscribers подписчики на рассылку
+ * @property IManyToManyObjectSet|BaseSubscriber[] $unsubscribed отписавшиеся подписчики
  */
 class Dispatch extends CmsObject
 {
@@ -23,35 +25,17 @@ class Dispatch extends CmsObject
      * Имя поля для хранения описания рассылки
      */
     const FIELD_DESCRIPTION = 'description';
-
     /**
-     * Имя поля для хранения даты последней отправки писем
+     * Имя поля для хранения последнего выпуска рассылки
      */
-    const FIELD_DATE_LAST_SENDING = 'date_last_sending';
-
-    /**
-     * Имя поля для хранения ленту новости
-     */
-    const FIELD_NEWS_LENT = 'date_last_sending';
-
+    const FIELD_LAST_RELEASE = 'lastRelease';
     /**
      * Имя поля для хранения подписчиков
      */
-    const FIELD_SUBSCRIBER = 'subscriber';
-
+    const FIELD_SUBSCRIBERS = 'subscribers';
     /**
-     * Имя поля для хранения отписанных подписчиков
+     * Имя поля для хранения отписавшихся подписчиков
      */
-    const FIELD_UNSUBSCRIBER = 'unsubscriber';
-
-    /**
-     * Имя поля для хранения группа пользовтелей
-     */
-    const FIELD_GROUP_USER = 'usergroup';
-
-    /**
-     * Имя поля для хранения выпуски рассылок
-     */
-    const FIELD_RELEASE = 'release';
+    const FIELD_UNSUBSCRIBED = 'unsubscribed';
 
 }

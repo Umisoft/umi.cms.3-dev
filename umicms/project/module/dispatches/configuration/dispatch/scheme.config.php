@@ -22,10 +22,7 @@ return array_replace_recursive(
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
             ],
-            'date_last_sending' => [
-                'type' => Type::DATETIME
-            ],
-            'release_id' => [
+            'last_release_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true

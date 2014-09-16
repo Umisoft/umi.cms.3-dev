@@ -17,35 +17,24 @@ return array_replace_recursive(
             'sourceName' => 'dispatch'
         ],
         'fields' => [
-            Dispatch::FIELD_GROUP_USER => [
-                'type' => IField::TYPE_MANY_TO_MANY,
-                'target' => 'userGroup',
-                'bridge' => 'dispatchUserGroup',
-                'relatedField' => 'dispatch',
-                'targetField' => 'userGroup'
-            ],
-            Dispatch::FIELD_SUBSCRIBER => [
+            Dispatch::FIELD_SUBSCRIBERS => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'dispatchSubscriber',
                 'bridge' => 'dispatchSubscription',
                 'relatedField' => 'dispatch',
                 'targetField' => 'subscriber'
             ],
-            /*Dispatch::FIELD_UNSUBSCRIBER => [
+            /*Dispatch::FIELD_UNSUBSCRIBED => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'dispatchSubscriber',
                 'bridge' => 'dispatchUnsubscription',
                 'relatedField' => 'dispatch',
-                'targetField' => 'unsubscriber'
+                'targetField' => 'unsubscribed'
             ],*/
-            Dispatch::FIELD_RELEASE => [
+            Dispatch::FIELD_LAST_RELEASE => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'release_id',
+                'columnName' => 'last_release_id',
                 'target' => 'dispatchRelease'
-            ],
-            Dispatch::FIELD_DATE_LAST_SENDING => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'date_last_sending',
             ],
             Dispatch::FIELD_DESCRIPTION => [
                 'type' => IField::TYPE_TEXT,
@@ -56,11 +45,9 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\dispatches\model\object\Dispatch',
                 'fields'      => [
-                    Dispatch::FIELD_RELEASE => [],
-                    Dispatch::FIELD_SUBSCRIBER => [],
-                    Dispatch::FIELD_GROUP_USER => [],
-                    //Dispatch::FIELD_UNSUBSCRIBER => [],
-                    Dispatch::FIELD_DATE_LAST_SENDING => [],
+                    Dispatch::FIELD_SUBSCRIBERS => [],
+                    //Dispatch::FIELD_UNSUBSCRIBED => [],
+                    Dispatch::FIELD_LAST_RELEASE => [],
                     Dispatch::FIELD_DESCRIPTION => [],
                 ]
             ]
