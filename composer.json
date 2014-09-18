@@ -15,8 +15,6 @@
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
 
-    "minimum-stability": "dev",
-
     "replace" : {
         "umisoft/umi.cms.3": "self.version"
     },
