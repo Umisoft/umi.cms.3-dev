@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\surveys\site\survey\widget;
 
-use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\surveys\model\object\Survey;
@@ -68,19 +67,7 @@ class VoteFormWidget extends BaseFormWidget
             );
         }
 
-        if (!$this->isAllowed($this->survey)) {
-            throw new ResourceAccessForbiddenException(
-                $this->survey,
-                $this->translate('Access denied')
-            );
-        }
-
-        $form = $this->module->survey()->getForm(
-            Survey::FORM_VOTE,
-            $this->survey->getTypeName(),
-            $this->survey
-        );
-
+        $form = $this->module->survey()->getVoteForm($this->survey);
         $form->setAction($this->getUrl('page', ['uri' => $this->survey->slug]));
 
         return $form;

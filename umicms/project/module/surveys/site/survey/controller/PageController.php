@@ -10,10 +10,13 @@
 
 namespace umicms\project\module\surveys\site\survey\controller;
 
+use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
+use umi\orm\object\property\calculable\ICounterProperty;
+use umicms\exception\NotAllowedOperationException;
 use umicms\hmvc\component\site\SitePageController;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\surveys\model\object\Answer;
 use umicms\project\module\surveys\model\object\Survey;
 use umicms\project\module\surveys\model\SurveyModule;
 
@@ -33,7 +36,7 @@ class PageController extends SitePageController
      */
     protected $survey;
     /**
-     * @var bool $voted флаг, указывающий на то, голосовал ли текущий пользователь или нет
+     * @var bool $voted флаг принятия текущего пользователя участия в опросе
      */
     private $voted = false;
 
@@ -63,18 +66,7 @@ class PageController extends SitePageController
         $this->survey = $this->getPage($uri);
         $this->pushCurrentPage($this->survey);
 
-        if (!$this->isAllowed($this->survey)) {
-            throw new ResourceAccessForbiddenException(
-                $this->survey,
-                $this->translate('Access denied')
-            );
-        }
-
-        return $this->module->survey()->getForm(
-            Survey::FORM_VOTE,
-            $this->survey->getTypeName(),
-            $this->survey
-        );
+        return $this->module->survey()->getVoteForm($this->survey);
     }
 
     /**
@@ -82,13 +74,31 @@ class PageController extends SitePageController
      */
     protected function processForm(IForm $form)
     {
+        if ($this->module->checkIfVoted($this->survey)) {
+            throw new NotAllowedOperationException(
+                $this->translate('You have already voted.')
+            );
+        }
+
+        /**
+         * @var IFormElement $answersElement
+         */
+        $answersElement = $form->get(Survey::FIELD_ANSWERS);
+        $answers = (array) $answersElement->getValue();
+
+        foreach ($answers as $guid) {
+            $answer = $this->module->answer()->get($guid);
+            /**
+             * @var ICounterProperty $voteNumberProperty
+             */
+            $voteNumberProperty = $answer->getProperty(Answer::FIELD_COUNTER);
+            $voteNumberProperty->increment();
+        }
+
+        $this->voted = true;
         $this->commit();
 
-        if ($this->module->checkIfVoted($this->survey)) {
-            $this->voted = false;
-        } else {
-            $this->voted = true;
-        }
+        return $this->buildRedirectResponse();
     }
 
     /**
@@ -102,8 +112,22 @@ class PageController extends SitePageController
     protected function buildResponseContent()
     {
         return [
-            'voted' => $this->voted,
+            'voted' => $this->voted || $this->module->checkIfVoted($this->survey),
             'page' => $this->survey
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createHttpResponse()
+    {
+        $response = parent::createHttpResponse();
+
+        if ($this->voted) {
+            $this->module->markAsVoted($this->survey, $response);
+        }
+
+        return $response;
     }
 }

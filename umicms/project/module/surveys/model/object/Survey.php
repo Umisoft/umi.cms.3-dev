@@ -20,7 +20,7 @@ use umi\orm\objectset;
  * Опрос.
  *
  * @property IObjectSet $answers ответы опроса
- * @property boolean $multipleChoice возможность множественного выбора
+ * @property bool $multipleChoice возможность множественного выбора
  */
 class Survey extends CmsObject implements ICmsPage
 {
@@ -34,9 +34,5 @@ class Survey extends CmsObject implements ICmsPage
      * Имя поля для указания возможности множественного выбора ответов
      */
     const FIELD_MULTIPLE_CHOICE = 'multipleChoice';
-    /**
-     * Форма голосования
-     */
-    const FORM_VOTE = 'vote';
 
 }

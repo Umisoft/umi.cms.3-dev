@@ -10,7 +10,9 @@
 
 namespace umicms\project\module\surveys\model;
 
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\http\IHttpAware;
+use umi\http\Response;
 use umi\http\THttpAware;
 use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
@@ -87,10 +89,15 @@ class SurveyModule extends BaseModule implements IHttpAware
     /**
      * Помечает текущего пользователя как проголововавшего
      * @param Survey $survey
+     * @param Response $response
      */
-    public function markAsVoted(Survey $survey)
+    public function markAsVoted(Survey $survey, Response $response)
     {
-        $this->getHttpRequest()->cookies->set($survey->guid, true);
-        //TODO: mark with statistic module. Now it's unavailable.
+        $cookie = new Cookie(
+            $survey->guid,
+            true,
+            new \DateTime('+5 year')
+        );
+        $response->headers->setCookie($cookie);
     }
 }
