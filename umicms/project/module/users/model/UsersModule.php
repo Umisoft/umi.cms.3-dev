@@ -14,6 +14,8 @@ use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
+use umi\http\IHttpAware;
+use umi\http\THttpAware;
 use umicms\module\BaseModule;
 use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\collection\UserGroupCollection;
@@ -26,9 +28,10 @@ use umicms\Utils;
 /**
  * Модуль для работы с пользователями.
  */
-class UsersModule extends BaseModule implements IAuthenticationAware
+class UsersModule extends BaseModule implements IAuthenticationAware, IHttpAware
 {
     use TAuthenticationAware;
+    use THttpAware;
 
     /**
      * Настройка отправителя писем
@@ -117,6 +120,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         }
 
         $user->registrationDate = new \DateTime();
+        $user->getProperty(RegisteredUser::FIELD_IP)->setValue($this->getHttpRequest()->server->get('REMOTE_ADDR'));
 
         return $user;
     }

@@ -17,6 +17,7 @@ use umicms\Utils;
 /**
  * Зарегистрированный пользователь.
  *
+ * @property string $ip IP
  * @property string $login логин
  * @property string $email e-mail
  * @property string $firstName имя
@@ -31,6 +32,10 @@ class RegisteredUser extends BaseUser
      */
     const TYPE_NAME = 'registered';
 
+    /**
+     * Имя поля для хранения ip
+     */
+    const FIELD_IP = 'ip';
     /**
      * Имя поля для хранения логина
      */
