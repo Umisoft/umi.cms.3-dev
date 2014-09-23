@@ -28,6 +28,7 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\users\model\object\Visitor;
 use umicms\Utils;
 
 /**
@@ -134,6 +135,31 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
         }
 
         return $user;
+    }
+
+    /**
+     * Находит посетителя по токену.
+     * @param string $token
+     * @throws NonexistentEntityException если не существует посетителя с таким токеном
+     * @return Visitor
+     */
+    public function getVisitorByToken($token)
+    {
+        $visitor = $this->select()
+            ->types([Visitor::TYPE_NAME . '*'])
+            ->where(Visitor::FIELD_TOKEN)
+            ->equals($token)
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if (!$visitor instanceof Visitor) {
+            throw new NonexistentEntityException(
+                $this->translate('Cannot find visitor by token.')
+            );
+        }
+
+        return $visitor;
     }
 
     /**

@@ -10,6 +10,8 @@
 
 namespace umicms\project\module\users\model\object;
 
+use umicms\Utils;
+
 /**
  * Посетитель.
  *
@@ -31,5 +33,16 @@ class Visitor extends Guest
      * Имя поля для хранения авторизационного токена
      */
     const FIELD_TOKEN = 'token';
+
+    /**
+     * Обновляет авторизационный токен посетителя.
+     * @return $this
+     */
+    public function updateToken()
+    {
+        $this->getProperty(self::FIELD_TOKEN)->setValue(Utils::generateGUID());
+
+        return $this;
+    }
 }
  

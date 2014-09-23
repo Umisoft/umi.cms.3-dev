@@ -34,7 +34,6 @@ return [
     FormTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/form/toolbox/config.php'),
     FilterTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/filter/toolbox/config.php'),
     ValidationTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/validation/toolbox/config.php'),
-    AuthenticationTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
     StemmingTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
     AclTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
     RssTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),

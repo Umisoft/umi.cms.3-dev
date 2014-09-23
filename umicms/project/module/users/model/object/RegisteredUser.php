@@ -135,8 +135,7 @@ class RegisteredUser extends BaseUser
 
         $password = trim($password);
 
-        $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
-        if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
+        if ($this->checkPassword($password)) {
             return $this;
         }
 
@@ -168,9 +167,20 @@ class RegisteredUser extends BaseUser
      */
     public function updateActivationCode()
     {
-        $this->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
+        $this->getProperty(self::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
 
         return $this;
+    }
+
+    /**
+     * Проверяет валидность пароля для пользователя.
+     * @param string $password пароль
+     * @return bool
+     */
+    public function checkPassword($password) {
+        $passwordHash = crypt($password, $this->getProperty(RegisteredUser::FIELD_PASSWORD_SALT)->getValue());
+
+        return $this->getProperty(self::FIELD_PASSWORD)->getValue() === $passwordHash;
     }
 
     /**

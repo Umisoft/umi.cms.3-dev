@@ -69,7 +69,7 @@ class IndexController extends BaseSitePageController
         $this->commit();
 
         if ($this->user->active) {
-            $this->module->setCurrentUser($this->user);
+            $this->module->setAuthenticatedUser($this->user);
         }
 
         $this->sendNotifications();
