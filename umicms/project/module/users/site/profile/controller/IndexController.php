@@ -54,10 +54,12 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $user = $this->module->getCurrentUser();
+
         return $this->module->user()->getForm(
             RegisteredUser::FORM_EDIT_PROFILE,
-            RegisteredUser::TYPE_NAME,
-            $this->module->getCurrentUser()
+            $user->getTypeName(),
+            $user
         );
     }
 
