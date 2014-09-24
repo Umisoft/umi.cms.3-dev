@@ -330,6 +330,7 @@ define([], function() {
 
             manyToManyRelation: function(params, field) {
                 params.async = true;
+                params.inverse = null;
                 return DS.hasMany(field.targetCollection, params);
             }
         };
