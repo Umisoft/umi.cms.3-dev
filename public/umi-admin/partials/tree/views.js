@@ -91,7 +91,8 @@ define(['App', 'toolbar'], function(UMI) {
              */
             didInsertElement: function() {
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
-                var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
+                var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                var contentScroll = new IScroll(scrollContainer, iScrollConfiguration);
 
                 this.set('iScroll', contentScroll);
                 var self = this;
