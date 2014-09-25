@@ -13,6 +13,7 @@ namespace umicms\project\module\blog\site\comment\add;
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SiteComponent;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
@@ -50,10 +51,11 @@ return [
     SiteComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{parent:integer}',
+            'route' => '/{type:string}/{parent:integer}',
             'defaults' => [
                 'controller' => 'add',
-                'parent' => null
+                'parent' => null,
+                'type' => BlogComment::TYPE_NAME
             ]
         ]
     ]

@@ -75,7 +75,7 @@ class ToDraftFormWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, BlogPost::TYPE, $this->blogPost);
+        $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, BlogPost::TYPE_NAME, $this->blogPost);
 
         $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
 

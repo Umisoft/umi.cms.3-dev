@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\post\add;
 
 use umi\acl\IAclFactory;
+use umi\orm\metadata\IObjectType;
 use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SiteComponent;
 
@@ -44,8 +45,9 @@ return [
     SiteComponent::OPTION_ROUTES => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{id:integer}',
+            'route' => '/{type:string}/{id:integer}',
             'defaults' => [
+                'type' => IObjectType::BASE,
                 'id' => null,
                 'controller' => 'index'
             ]

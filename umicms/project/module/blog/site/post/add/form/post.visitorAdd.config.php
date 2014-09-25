@@ -12,33 +12,51 @@ use umi\filter\IFilterFactory;
 use umi\form\element\MultiSelect;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umi\form\fieldset\FieldSet;
 use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\model\object\GuestBlogPost;
+use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogTag;
 
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogPost', 'collection', 'form'
+            'collection.blogPost'=> 'collection.blogPost', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
     'attributes' => [
         'method' => 'post'
     ],
     'elements' => [
-        GuestBlogPost::FIELD_DISPLAY_NAME => [
+
+        BlogPost::FIELD_AUTHOR => [
+            'type' => FieldSet::TYPE_NAME,
+            'label' => BlogPost::FIELD_AUTHOR,
+            'elements' => [
+
+                BlogAuthor::FIELD_DISPLAY_NAME => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_DISPLAY_NAME,
+                    'options' => [
+                        'dataSource' => BlogPost::FIELD_AUTHOR . '.' . BlogAuthor::FIELD_DISPLAY_NAME
+                    ],
+                ],
+            ]
+        ],
+
+        BlogPost::FIELD_DISPLAY_NAME => [
             'type' => Text::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_DISPLAY_NAME,
+            'label' => BlogPost::FIELD_DISPLAY_NAME,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_DISPLAY_NAME
+                'dataSource' => BlogPost::FIELD_DISPLAY_NAME
             ],
         ],
-        GuestBlogPost::FIELD_PAGE_H1 => [
+        BlogPost::FIELD_PAGE_H1 => [
             'type' => Text::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_PAGE_H1,
+            'label' => BlogPost::FIELD_PAGE_H1,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_PAGE_H1,
+                'dataSource' => BlogPost::FIELD_PAGE_H1,
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
                     IFilterFactory::TYPE_STRIP_TAGS => []
@@ -48,54 +66,40 @@ return [
                 ]
             ],
         ],
-        GuestBlogPost::FIELD_PAGE_SLUG => [
+        BlogPost::FIELD_PAGE_SLUG => [
             'type' => Text::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_PAGE_SLUG,
+            'label' => BlogPost::FIELD_PAGE_SLUG,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_PAGE_SLUG,
+                'dataSource' => BlogPost::FIELD_PAGE_SLUG,
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
         ],
-        GuestBlogPost::FIELD_ANNOUNCEMENT => [
+        BlogPost::FIELD_ANNOUNCEMENT => [
             'type' => Wysiwyg::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_ANNOUNCEMENT,
+            'label' => BlogPost::FIELD_ANNOUNCEMENT,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_ANNOUNCEMENT
+                'dataSource' => BlogPost::FIELD_ANNOUNCEMENT
             ]
         ],
-        GuestBlogPost::FIELD_PAGE_CONTENTS => [
+        BlogPost::FIELD_PAGE_CONTENTS => [
             'type' => Wysiwyg::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_PAGE_CONTENTS,
+            'label' => BlogPost::FIELD_PAGE_CONTENTS,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_PAGE_CONTENTS
+                'dataSource' => BlogPost::FIELD_PAGE_CONTENTS
             ]
         ],
-        GuestBlogPost::FIELD_TAGS=> [
+        BlogPost::FIELD_TAGS=> [
             'type' => MultiSelect::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_TAGS,
+            'label' => BlogPost::FIELD_TAGS,
             'options' => [
-                'dataSource' => GuestBlogPost::FIELD_TAGS,
+                'dataSource' => BlogPost::FIELD_TAGS,
                 'choicesSource' => [
                     'value' => BlogTag::FIELD_IDENTIFY,
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
             ]
-        ],
-        GuestBlogPost::FIELD_AUTHOR => [
-            'type' => Text::TYPE_NAME,
-            'label' => GuestBlogPost::FIELD_AUTHOR,
-            'options' => [
-                'dataSource' => GuestBlogPost::FIELD_AUTHOR,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ],
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
-                ]
-            ],
         ],
         'submit' => [
             'type' => Submit::TYPE_NAME,

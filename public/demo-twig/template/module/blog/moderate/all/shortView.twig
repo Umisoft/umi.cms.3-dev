@@ -7,10 +7,8 @@
         </time>
         {% endif %}
 
-        {% if blogPost.author.getPageUrl() %}
+        {% if blogPost.author %}
             {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
-        {% else %}
-            {{ translate('Author') }}: {{ blogPost.authorGuest }}
         {% endif %}
 
         {{ widget('blog.moderate.edit.editLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}

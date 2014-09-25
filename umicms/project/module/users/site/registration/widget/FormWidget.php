@@ -50,7 +50,7 @@ class FormWidget extends BaseFormWidget
         $user = $this->module->user()->add($this->type);
 
         return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $this->type, $user)
-            ->setAction($this->getUrl('index'));
+            ->setAction($this->getUrl('index', ['type' => $this->type]));
     }
 }
  

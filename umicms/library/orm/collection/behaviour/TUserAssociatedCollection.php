@@ -10,7 +10,9 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umi\orm\object\IObject;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\RuntimeException;
 use umicms\orm\object\behaviour\IUserAssociatedObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\model\object\BaseUser;
@@ -29,6 +31,10 @@ trait TUserAssociatedCollection
      * @see ICmsCollection::getName()
      */
     abstract public function getName();
+    /**
+     * @see ICmsCollection::contains()
+     */
+    abstract public function contains(IObject $object);
 
     /**
      * @see ILocalizable::translate()
@@ -40,8 +46,17 @@ trait TUserAssociatedCollection
      */
     public function fillFromUser(BaseUser $user, IUserAssociatedObject $object)
     {
-        if ($object->user) {
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Cannot fill object from user. Object from collection "{objectCollection}" does not belong to "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
 
+        if ($object->user) {
             return $object;
         }
 

@@ -13,6 +13,7 @@ use Doctrine\DBAL\Types\Type;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/userAssociated.config.php',
     [
         'name' => 'blog_author',
         'columns' => [
@@ -26,12 +27,6 @@ return array_replace_recursive(
                 'type' => Type::TEXT,
                 'options' => [
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
-                ]
-            ],
-            'profile_id' => [
-                'type' => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true
                 ]
             ],
             'comments_count' => [
@@ -56,25 +51,6 @@ return array_replace_recursive(
                     'unsigned' => true,
                     'notnull' => true,
                     'default' => 0
-                ]
-            ]
-        ],
-        'indexes' => [
-            'profile' => [
-                'columns' => [
-                    'profile_id' => []
-                ]
-            ]
-        ],
-        'constraints' => [
-            'profile_to_author' => [
-                'foreignTable' => 'users_user',
-                'columns' => [
-                    'profile_id' => []
-                ],
-                'options' => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
                 ]
             ]
         ]

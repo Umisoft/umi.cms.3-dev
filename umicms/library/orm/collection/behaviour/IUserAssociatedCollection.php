@@ -11,6 +11,7 @@
 namespace umicms\orm\collection\behaviour;
 
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\behaviour\IUserAssociatedObject;
 use umicms\project\module\users\model\object\BaseUser;
@@ -25,6 +26,7 @@ interface IUserAssociatedCollection extends ICmsCollection
      * Заполняет объект, связанный с пользователем, значениями свойств пользователя
      * @param BaseUser $user связанный пользователь
      * @param IUserAssociatedObject $object заполняемый объект
+     * @throws RuntimeException если объект не принадлежит коллекции
      * @return IUserAssociatedObject
      */
     public function fillFromUser(BaseUser $user, IUserAssociatedObject $object);
