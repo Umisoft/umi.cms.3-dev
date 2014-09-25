@@ -1,5 +1,5 @@
 define(['App'], function(UMI) {
-    "use strict";
+    'use strict';
 
     return function() {
         UMI.TableControlMixin = Ember.Mixin.create(UMI.i18nInterface, {
@@ -378,7 +378,34 @@ define(['App'], function(UMI) {
 
             objectChange: function() {
                 Ember.run.once(this, 'updateObjectDeleted');
-            }.observes('objects.@each.isDeleted')
+            }.observes('objects.@each.isDeleted'),
+
+            popupParams: function() {
+                var columns = this.get('control.meta.form.elements');
+                return {
+                    templateParams: {
+                        defaultFields: null,
+
+                        columns: columns
+                    },
+
+                    viewParams: {
+                        title: 'Select columns',
+
+                        popupType: 'tableControlConfig',
+
+                        width: 'auto',
+
+                        height: 'auto'
+                    }
+                };
+            }.property(),
+
+            actions: {
+                openColumnConfiguration: function() {
+                    this.get('controllers.component').send('showPopup', this.get('popupParams'));
+                }
+            }
         });
 
         UMI.TableControlContextToolbarItemController = Ember.ObjectController.extend({
