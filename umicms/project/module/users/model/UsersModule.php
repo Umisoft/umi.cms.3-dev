@@ -386,6 +386,23 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
     }
 
     /**
+     * Возвращает пользователя для регистрации
+     * @param $typeName
+     * @return BaseUser
+     */
+    public function getUserForRegistration($typeName)
+    {
+        if (!$this->isVisitor()) {
+            return $this->user()->add($typeName);
+        }
+
+        $visitor = $this->getVisitor();
+        $visitor->changeType($typeName);
+
+        return $visitor;
+    }
+
+    /**
      * Создает нового посетителя или отдает текущего.
      * @return Visitor
      */
