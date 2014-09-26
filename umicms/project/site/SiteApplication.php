@@ -159,12 +159,11 @@ class SiteApplication extends SiteComponent
          * @var UsersModule $usersModule
          */
         $usersModule = $this->getModuleByClass(UsersModule::className());
-        if ($usersModule->isVisitor()) {
-            $visitor = $usersModule->getVisitor();
+        if ($usersModule->isVisitor() && $usersModule->getVisitor()->token) {
 
             $cookie = new Cookie(
                 UsersModule::VISITOR_TOKEN_COOKIE_NAME,
-                $visitor->token,
+                $usersModule->getVisitor()->token,
                 new \DateTime('+5 year')
             );
             $response->headers->setCookie($cookie);

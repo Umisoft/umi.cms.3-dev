@@ -46,34 +46,5 @@ class Visitor extends Guest
         return $this;
     }
 
-    /**
-     * Меняет тип.
-     * @param string $typeName новое имя типа
-     */
-    public function changeType($typeName)
-    {
-        if ($typeName === $this->getTypeName()) {
-            return;
-        }
-
-        $type = $this->getCollection()->getMetadata()->getType($typeName);
-
-        $this->fullyLoad(ILocalesService::LOCALE_ALL);
-
-        $initialValues = $this->getInitialValues();
-        if (isset($initialValues[self::FIELD_TYPE])) {
-            unset($initialValues[self::FIELD_TYPE]);
-        }
-
-        $this->properties = [];
-        $this->initialValues = [];
-
-        $this->type = $type;
-        $this->typeName = $typeName;
-        $this->setInitialValues($initialValues);
-
-        $this->getProperty(self::FIELD_TYPE)->setValue($this->getTypePath());
-
-    }
 }
  

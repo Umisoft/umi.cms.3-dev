@@ -253,4 +253,36 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
         return  $groupGuids;
     }
 
+    /**
+     * Изменяет тип для посетителя.
+     * @param Visitor $visitor посетитель
+     * @param string $typeName имя нового типа
+     * @return BaseUser
+     */
+    public function changeVisitorType(Visitor $visitor, $typeName)
+    {
+        if ($typeName === $visitor->getTypeName()) {
+            return $visitor;
+        }
+
+        $type = $this->getMetadata()->getType($typeName);
+        $visitor->fullyLoad(ILocalesService::LOCALE_ALL);
+
+        $initialValues = $visitor->getInitialValues();
+        $visitor->unload();
+
+        $newVisitor = $this->getObjectManager()->registerLoadedObject(
+            $this,
+            $type,
+            $initialValues[Visitor::FIELD_IDENTIFY],
+            $initialValues[Visitor::FIELD_GUID]
+        );
+
+        $newVisitor->setInitialValues($initialValues);
+        $newVisitor->getProperty(Visitor::FIELD_TYPE)->setValue($newVisitor->getTypePath());
+
+        return $newVisitor;
+
+    }
+
 }

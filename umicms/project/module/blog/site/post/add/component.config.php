@@ -45,7 +45,7 @@ return [
     SiteComponent::OPTION_ROUTES => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{type:string}/{id:integer}',
+            'route' => '/{id:integer}/{type:string}',
             'defaults' => [
                 'type' => IObjectType::BASE,
                 'id' => null,

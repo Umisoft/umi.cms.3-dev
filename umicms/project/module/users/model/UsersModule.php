@@ -396,8 +396,8 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
             return $this->user()->add($typeName);
         }
 
-        $visitor = $this->getVisitor();
-        $visitor->changeType($typeName);
+        $visitor = $this->user()->changeVisitorType($this->getVisitor(), $typeName);
+        $this->visitor = $visitor;
 
         return $visitor;
     }
