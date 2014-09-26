@@ -19,7 +19,7 @@ use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\blog\model\object\BaseBlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
 
@@ -55,7 +55,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }
@@ -72,7 +72,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }
@@ -89,7 +89,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }

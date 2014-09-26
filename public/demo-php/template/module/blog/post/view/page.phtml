@@ -1,6 +1,6 @@
 <?php
 /**
- * @var umicms\project\module\blog\model\object\BlogPost|umicms\project\module\blog\model\object\GuestBlogPost $page
+ * @var umicms\project\module\blog\model\object\BlogPost $page
  */
 use umicms\project\module\blog\model\object\BlogAuthor;
 
@@ -18,8 +18,6 @@ use umicms\project\module\blog\model\object\BlogAuthor;
         <?php endif; ?>
         <?php if ($page->author instanceof BlogAuthor) : ?>
             <?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a>
-        <?php else : ?>
-            <?=$this->translate('Author')?>: <?=$page->authorGuest?>
         <?php endif; ?>
         <?=$this->widget('blog.post.edit.editLink', ['blogPost' => $page, 'template' => 'editPostLink'])?>
     </p>

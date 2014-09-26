@@ -19,8 +19,6 @@ use umicms\project\module\blog\model\object\CommentStatus;
             <?php endif; ?>
             <?php if ($blogComment->author instanceof BlogAuthor) : ?>
                 <?=$this->translate('Author')?>: <a href="<?=$blogComment->author->getPageUrl()?>"><?=$blogComment->author->displayName?></a>
-            <?php else : ?>
-                <?=$this->translate('Author')?>: <?=$blogComment->authorGuest?>
             <?php endif; ?>
         </p>
 

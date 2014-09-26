@@ -56,7 +56,7 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $user = $this->module->getCurrentUser();
+        $user = $this->module->getAuthenticatedUser();
         $form = $this->module->user()->getForm(RegisteredUser::FORM_CHANGE_PASSWORD, $user->getTypeName(), $user);
 
         /**

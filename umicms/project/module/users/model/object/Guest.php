@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\model\object;
 
 /**
- * Незарегистрированный пользователь.
+ * Гость.
  */
 class Guest extends BaseUser
 {

@@ -51,7 +51,7 @@ class IndexController extends BaseSitePageController
 
             $user = $this->module->activate($this->getRouteVar('activationCode'));
             $this->commit();
-            $this->module->setCurrentUser($user);
+            $this->module->setAuthenticatedUser($user);
 
             return $this->createViewResponse(
                 $this->template,

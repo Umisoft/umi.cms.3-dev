@@ -14,24 +14,23 @@ use DateTime;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\object\property\calculable\ICalculableProperty;
 use umi\orm\objectset\IObjectSet;
+use umicms\orm\object\behaviour\IUserAssociatedObject;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
-use umicms\project\module\users\model\object\RegisteredUser;
 
 /**
  * Автор поста.
-
- * @property RegisteredUser $profile профиль автора
+ *
  * @property int $postsCount количество постов автора
  * @property int $commentsCount количество постов автора
  * @property DateTime $lastActivity дата последней активности
  * @property IObjectSet $posts посты автора
  * @property IObjectSet $comments комментарии
  */
-class BlogAuthor extends CmsObject implements ICmsPage
+class BlogAuthor extends CmsObject implements ICmsPage, IUserAssociatedObject
 {
     use TCmsPage;
 
@@ -39,10 +38,6 @@ class BlogAuthor extends CmsObject implements ICmsPage
      * Имя поля для хранения необработанного контента
      */
     const FIELD_PAGE_CONTENTS_RAW = 'contentsRaw';
-    /**
-     * Имя поля для хранения профиля автора
-     */
-    const FIELD_PROFILE = 'profile';
     /**
      * Имя поля для хранения количества постов автора
      */
@@ -117,7 +112,7 @@ class BlogAuthor extends CmsObject implements ICmsPage
 
         return $commentCollection->getInternalSelector()
             ->fields([BlogComment::FIELD_IDENTIFY])
-            ->types([BlogComment::TYPE . '*'])
+            ->types([BlogComment::TYPE_NAME . '*'])
             ->where(BlogComment::FIELD_AUTHOR)
                 ->equals($this)
             ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
