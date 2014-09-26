@@ -81,7 +81,7 @@ class AddController extends BaseSitePageController
         }
 
         return $this->module->comment()->getForm(
-            $this->module->isGuestAuthor() ? BlogComment::FORM_ADD_VISITOR_COMMENT : BlogComment::FORM_ADD_COMMENT,
+            $this->module->isAuthorRegistered() ? BlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_VISITOR_COMMENT,
             $type,
             $this->comment
         );

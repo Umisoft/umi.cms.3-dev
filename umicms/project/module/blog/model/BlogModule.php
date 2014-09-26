@@ -38,6 +38,7 @@ use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
 use umicms\project\module\blog\model\object\CommentStatus;
 use umicms\project\module\blog\model\object\PostStatus;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Visitor;
 use umicms\project\module\users\model\UsersModule;
 
@@ -467,12 +468,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Проверяет, является ли текущий автор гостём.
+     * Проверяет, является ли текущий автор зарегистрированным пользователем.
      * @return bool
      */
-    public function isGuestAuthor()
+    public function isAuthorRegistered()
     {
-        return (!$this->currentAuthor || $this->currentAuthor->user instanceof Visitor);
+        return ($this->currentAuthor && $this->currentAuthor->user instanceof RegisteredUser);
     }
 
     /**

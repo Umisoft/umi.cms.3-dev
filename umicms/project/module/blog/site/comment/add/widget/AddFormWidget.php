@@ -95,7 +95,7 @@ class AddFormWidget extends BaseFormWidget
         $comment = $this->module->addComment($this->type, $this->blogPost, $this->blogComment);
 
         $form = $this->module->comment()->getForm(
-            $this->module->isGuestAuthor() ? BlogComment::FORM_ADD_VISITOR_COMMENT : BlogComment::FORM_ADD_COMMENT,
+            $this->module->isAuthorRegistered() ? BlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_VISITOR_COMMENT,
             $comment->getTypeName(),
             $comment
         );
