@@ -20,6 +20,8 @@ define(['App'], function(UMI) {
 
             contentOverflow: ['overflow', 'hidden'],
 
+            hasScroll: false,
+
             blur: true,
 
             fade: false,
@@ -52,8 +54,12 @@ define(['App'], function(UMI) {
                     this.allowResize();
                 }
 
-                if (this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array') {// TODO: WTF?
+                if (this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array') {
                     $('.umi-popup-content').css(this.get('contentOverflow')[0], this.get('contentOverflow')[1]);
+                }
+
+                if (this.get('hasScroll')) {
+                    this.initScroll();
                 }
 
                 this.setSize();
@@ -198,6 +204,13 @@ define(['App'], function(UMI) {
                         });
                     }
                 });
+            },
+
+            initScroll: function() {
+                var $el = this.$();
+                var $popupContent = $el.find('.s-scroll-wrap');
+                var scrollContent = new IScroll($popupContent[0], UMI.config.iScroll);
+                this.set('iScroll', scrollContent);
             },
 
             init: function() {
