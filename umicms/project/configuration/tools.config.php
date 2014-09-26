@@ -9,7 +9,6 @@
  */
 
 use umi\acl\toolbox\AclTools;
-use umi\authentication\toolbox\AuthenticationTools;
 use umi\dbal\toolbox\DbalTools;
 use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;

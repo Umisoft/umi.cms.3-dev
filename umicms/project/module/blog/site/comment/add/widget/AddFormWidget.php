@@ -92,13 +92,7 @@ class AddFormWidget extends BaseFormWidget
             );
         }
 
-        $comment = $this->module->comment()->add(
-            null,
-            $this->type,
-            $this->blogComment
-        );
-
-        $comment->post = $this->blogPost;
+        $comment = $this->module->addComment($this->type, $this->blogPost, $this->blogComment);
 
         $form = $this->module->comment()->getForm(
             $this->module->isGuestAuthor() ? BlogComment::FORM_ADD_VISITOR_COMMENT : BlogComment::FORM_ADD_COMMENT,
@@ -106,8 +100,14 @@ class AddFormWidget extends BaseFormWidget
             $comment
         );
 
-        $parent = isset($this->blogComment) ? $this->blogComment->getId() : null;
-        $form->setAction($this->getUrl('add', ['parent' => $parent, 'type' => $this->type]));
+        $routeParams = [
+            'type' => $this->type
+        ];
+
+        if (isset($this->blogComment)) {
+            $routeParams['parent'] = $this->blogComment->getId();
+        }
+        $form->setAction($this->getUrl('add', $routeParams));
 
         return $form;
 

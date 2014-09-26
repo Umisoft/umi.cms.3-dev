@@ -51,7 +51,7 @@ return [
     SiteComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{type:string}/{parent:integer}',
+            'route' => '/{parent:integer}/{type:string}',
             'defaults' => [
                 'controller' => 'add',
                 'parent' => null,
