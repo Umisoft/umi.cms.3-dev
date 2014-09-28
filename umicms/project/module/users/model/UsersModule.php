@@ -10,25 +10,44 @@
 
 namespace umicms\project\module\users\model;
 
-use umi\authentication\exception\RuntimeException;
-use umi\authentication\IAuthenticationAware;
-use umi\authentication\IAuthenticationFactory;
-use umi\authentication\TAuthenticationAware;
+use umi\http\IHttpAware;
+use umi\http\THttpAware;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
+use umicms\exception\NonexistentEntityException;
+use umicms\exception\RuntimeException;
 use umicms\module\BaseModule;
+use umicms\project\Bootstrap;
 use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\collection\UserGroupCollection;
+use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
 use umicms\project\module\users\model\object\UserGroup;
+use umicms\project\module\users\model\object\Visitor;
 use umicms\Utils;
 
 /**
  * Модуль для работы с пользователями.
  */
-class UsersModule extends BaseModule implements IAuthenticationAware
+class UsersModule extends BaseModule implements IHttpAware, ISessionAware
 {
-    use TAuthenticationAware;
+    use THttpAware;
+    use TSessionAware;
+
+    /**
+     * Имя куки, для токена посетителя.
+     */
+    const VISITOR_TOKEN_COOKIE_NAME = 'umiVisitorToken';
+    /**
+     * Название аттрибута в сессии для хранения идентификатора авторизованного пользователя
+     */
+    const IDENTITY_ATTRIBUTE_NAME = 'identity';
+    /**
+     * Имя контейнера сессии.
+     */
+    const SESSION_NAMESPACE = 'authentication';
 
     /**
      * Настройка отправителя писем
@@ -47,6 +66,11 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      * @var string $supervisorGuid GUID супервайзера
      */
     public $supervisorGuid = '68347a1d-c6ea-49c0-9ec3-b7406e42b01e';
+
+    /**
+     * @var Visitor $visitor посетитель
+     */
+    private $visitor;
 
     /**
      * Возвращает репозиторий для работы с пользователями.
@@ -78,14 +102,19 @@ class UsersModule extends BaseModule implements IAuthenticationAware
             return false;
         }
 
-        $provider = $this->createAuthProvider(
-            IAuthenticationFactory::PROVIDER_SIMPLE,
-            [$login, $password]
-        );
+        try {
+            $user = $this->user()->getUserByLoginOrEmail($login);
+        } catch (NonexistentEntityException $e) {
+            return false;
+        }
 
-        return $this->getDefaultAuthManager()
-            ->authenticate($provider)
-            ->isSuccessful();
+        $success = $user->checkPassword($password);
+
+        if ($success) {
+            $this->setAuthenticatedUser($user);
+        }
+
+        return $success;
     }
 
     /**
@@ -117,6 +146,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         }
 
         $user->registrationDate = new \DateTime();
+        $user->getProperty(RegisteredUser::FIELD_IP)->setValue($this->getHttpRequest()->server->get('REMOTE_ADDR'));
 
         return $user;
     }
@@ -177,14 +207,25 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Возвращает авторизованного пользователя.
-     * @throws RuntimeException если пользователь не был авторизован
-     * @return RegisteredUser авторизованный пользователь.
+     * @param bool $forceVisitorCreation необходимость создавать посетителя, если текущий пользователь не определен
+     * @return BaseUser|RegisteredUser|Visitor|Guest
      */
-    public function getCurrentUser()
+    public function getCurrentUser($forceVisitorCreation = false)
     {
-        return $this->getDefaultAuthManager()
-            ->getStorage()
-            ->getIdentity();
+        if ($this->isAuthenticated()) {
+            return $this->getAuthenticatedUser();
+        }
+
+        if ($this->isVisitor()) {
+            return $this->getVisitor();
+        }
+
+        if ($forceVisitorCreation) {
+            return $this->createVisitor();
+        }
+
+        return $this->getGuest();
+
     }
 
     /**
@@ -192,13 +233,86 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      * @param RegisteredUser $user
      * @return $this
      */
-    public function setCurrentUser(RegisteredUser $user)
+    public function setAuthenticatedUser(RegisteredUser $user)
     {
-        $this->getDefaultAuthManager()
-            ->getStorage()
-            ->setIdentity($user->getId());
+        $this->setSessionVar(self::IDENTITY_ATTRIBUTE_NAME, $user->getId());
 
         return $this;
+    }
+
+    /**
+     * Возвращает текущего посетителя.
+     * @throws RuntimeException
+     * @return Visitor
+     */
+    public function getVisitor()
+    {
+        if ($this->visitor) {
+            return $this->visitor;
+        }
+
+        $visitorToken = $this->getHttpRequest()->cookies->get(self::VISITOR_TOKEN_COOKIE_NAME);
+
+        if (is_null($visitorToken)) {
+            throw new RuntimeException(
+                'Authentication token does not exist.'
+            );
+        }
+
+        return $this->user()->getVisitorByToken($visitorToken);
+
+    }
+
+    /**
+     * Устанавливает текущего посетителя.
+     * @param Visitor $visitor
+     * @return $this
+     */
+    public function setVisitor(Visitor $visitor)
+    {
+        $this->visitor = $visitor;
+
+        return $this;
+    }
+
+    /**
+     * Проверяет, является ли пользователь посетителем
+     * @return bool
+     */
+    public function isVisitor()
+    {
+        if ($this->visitor) {
+            return true;
+        }
+
+        if ($this->getHttpRequest()->cookies->has(self::VISITOR_TOKEN_COOKIE_NAME)) {
+
+            try {
+                $this->getVisitor();
+
+                return true;
+            } catch (\Exception $e) {}
+        }
+
+        return false;
+    }
+
+    /**
+     * Возвращает текущего авторизованного пользователя.
+     * @throws RuntimeException если пользователь не авторизован
+     * @return RegisteredUser
+     */
+    public function getAuthenticatedUser()
+    {
+        $userId = $this->getSessionVar(self::IDENTITY_ATTRIBUTE_NAME);
+
+        if (is_null($userId)) {
+            throw new RuntimeException(
+                'Authentication identity does not exist.'
+            );
+        }
+
+        return $this->user()->getById($userId);
     }
 
     /**
@@ -207,17 +321,32 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      */
     public function isAuthenticated()
     {
-        return $this->getDefaultAuthManager()
-            ->isAuthenticated();
+        if (!$this->getHttpRequest()->cookies->has(Bootstrap::SESSION_COOKIE_NAME)) {
+            return false;
+        }
+
+        if ($this->hasSessionVar(self::IDENTITY_ATTRIBUTE_NAME)) {
+            try {
+                $this->getAuthenticatedUser();
+
+                return true;
+            } catch (\Exception $e) {
+                $this->logout();
+            }
+        }
+
+        return false;
     }
 
     /**
      * Уничтожает данные текущей авторизации.
+     * @return $this
      */
     public function logout()
     {
-        $this->getDefaultAuthManager()
-            ->forget();
+        $this->removeSessionVar(self::IDENTITY_ATTRIBUTE_NAME);
+
+        return $this;
     }
 
     /**
@@ -254,6 +383,60 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     public function getNotificationRecipients()
     {
         return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_NOTIFICATION_RECIPIENTS));
+    }
+
+    /**
+     * Возвращает пользователя для регистрации
+     * @param $typeName
+     * @return BaseUser
+     */
+    public function getUserForRegistration($typeName)
+    {
+        if (!$this->isVisitor()) {
+            return $this->user()->add($typeName);
+        }
+
+        $visitor = $this->user()->changeVisitorType($this->getVisitor(), $typeName);
+        $this->visitor = $visitor;
+
+        return $visitor;
+    }
+
+    /**
+     * Создает нового посетителя или отдает текущего.
+     * @return Visitor
+     */
+    protected function createVisitor()
+    {
+        if ($this->visitor) {
+            return $this->visitor;
+        }
+
+        /**
+         * @var Visitor $visitor
+         */
+        $visitor = $this->user()->add(Visitor::TYPE_NAME);
+        $visitor->displayName = $this->user()->translate('Visitor');
+
+        foreach ($this->getGuest()->groups as $group) {
+            $visitor->groups->attach($group);
+        }
+
+        $visitor->getProperty(Visitor::FIELD_IP)->setValue($this->getHttpRequest()->server->get('REMOTE_ADDR'));
+        $visitor->updateToken();
+        $visitor->active = true;
+
+        $this->setVisitor($visitor);
+
+        return $visitor;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSessionNamespacePath()
+    {
+        return self::SESSION_NAMESPACE;
     }
 
 }

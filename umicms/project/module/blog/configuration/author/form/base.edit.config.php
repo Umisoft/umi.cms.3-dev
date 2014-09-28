@@ -22,12 +22,12 @@ return array_replace_recursive(
         'elements' => [
             'contents' => [
                 'elements' => [
-                    BlogAuthor::FIELD_PROFILE => [
+                    BlogAuthor::FIELD_USER => [
                         'type' => Select::TYPE_NAME,
-                        'label' => BlogAuthor::FIELD_PROFILE,
+                        'label' => BlogAuthor::FIELD_USER,
                         'options' => [
                             'lazy' => true,
-                            'dataSource' => BlogAuthor::FIELD_PROFILE
+                            'dataSource' => BlogAuthor::FIELD_USER
                         ]
                     ],
                     BlogAuthor::FIELD_PAGE_CONTENTS => [

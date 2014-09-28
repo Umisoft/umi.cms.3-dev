@@ -10,14 +10,14 @@ return array (
       'collection' => 'userUserGroup',
       'type' => 'base',
       'guid' => '1cee5ec5-c864-4ffa-8fd5-684f733c11ea',
-      'displayName' => 'Супервайзер:Зарегистрированный пользователь:Посетители:ru-RU',
+      'displayName' => 'Супервайзер:Посетители:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Зарегистрированный пользователь:Посетители:ru-RU',
+        1 => 'Супервайзер:Посетители:ru-RU',
       ),
       'created' => 
       array (
@@ -61,14 +61,14 @@ return array (
       'collection' => 'userUserGroup',
       'type' => 'base',
       'guid' => '46152853-577a-4118-9331-e5bc15ec68d1',
-      'displayName' => 'Супервайзер:Зарегистрированный пользователь:Зaрегистрированные пользователи:ru-RU',
+      'displayName' => 'Супервайзер:Зaрегистрированные пользователи:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Зарегистрированный пользователь:Зaрегистрированные пользователи:ru-RU',
+        1 => 'Супервайзер:Зaрегистрированные пользователи:ru-RU',
       ),
       'created' => 
       array (
@@ -112,14 +112,14 @@ return array (
       'collection' => 'userUserGroup',
       'type' => 'base',
       'guid' => 'c480f095-74ad-49d2-a9c6-cc87a6d49d07',
-      'displayName' => 'Супервайзер:Администратор:Посетители:ru-RU',
+      'displayName' => 'Супервайзер:Посетители:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Администратор:Посетители:ru-RU',
+        1 => 'Супервайзер:Посетители:ru-RU',
       ),
       'created' => 
       array (
@@ -163,14 +163,14 @@ return array (
       'collection' => 'userUserGroup',
       'type' => 'base',
       'guid' => 'ea514028-c9c2-4fc6-912f-b55f379265bd',
-      'displayName' => 'Супервайзер:Администратор:Зaрегистрированные пользователи:ru-RU',
+      'displayName' => 'Супервайзер:Зaрегистрированные пользователи:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Администратор:Зaрегистрированные пользователи:ru-RU',
+        1 => 'Супервайзер:Зaрегистрированные пользователи:ru-RU',
       ),
       'created' => 
       array (

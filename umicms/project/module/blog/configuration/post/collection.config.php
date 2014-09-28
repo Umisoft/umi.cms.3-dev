@@ -11,9 +11,7 @@
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
-use umicms\project\module\blog\model\object\BaseBlogPost;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\module\blog\model\object\GuestBlogPost;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
@@ -30,26 +28,15 @@ return array_replace_recursive(
         ],
         'forms' => [
             IObjectType::BASE => [
-                BaseBlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
-                BaseBlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',
-            ],
-            BlogPost::TYPE => [
                 BlogPostCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/post.edit.config.php}',
                 BlogPostCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/post.create.config.php}',
                 BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/post.add.config.php}',
+                BlogPost::FORM_ADD_VISITOR_POST => '{#lazy:~/project/module/blog/site/post/add/form/post.visitorAdd.config.php}',
                 BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
                 BlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
                 BlogPost::FORM_MODERATE_POST => '{#lazy:~/project/module/blog/site/form/base.moderate.config.php}',
                 BlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',
                 BlogPost::FORM_DRAFT_POST => '{#lazy:~/project/module/blog/site/form/base.draft.config.php}',
-            ],
-            GuestBlogPost::TYPE => [
-                BlogPostCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/guest.edit.config.php}',
-                BlogPostCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/guest.create.config.php}',
-                GuestBlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/guest.add.config.php}',
-                GuestBlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
-                GuestBlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
-                GuestBlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',
             ]
         ],
         'dictionaries' => [

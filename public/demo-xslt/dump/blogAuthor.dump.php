@@ -74,7 +74,7 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'profile' => 
+      'user' =>
       array (
         0 => 'relation',
         1 => 
