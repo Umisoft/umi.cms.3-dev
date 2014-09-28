@@ -44,9 +44,6 @@ class BlogAuthorCollection extends CmsPageCollection implements IUserAssociatedC
         $author = $this->add($type, $guid);
         $this->fillFromUser($user, $author);
 
-        $author->slug = $author->guid;
-        $author->active = true;
-
         return $author;
 
     }
