@@ -24,7 +24,7 @@ use umicms\project\module\news\model\object\NewsRubric;
  * @method NewsRubric get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рубрику по ее GUID.
  * @method NewsRubric getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рубрику по ее id
  * @method NewsRubric getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новостую рубрику по ее URI
- * @method NewsRubric add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает рубрику
+ * @method NewsRubric add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает рубрику
  */
 class NewsRubricCollection extends CmsHierarchicPageCollection
 {
