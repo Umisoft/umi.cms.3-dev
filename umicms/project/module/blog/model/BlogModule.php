@@ -323,7 +323,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
         $comment->post = $post;
-        $comment->slug = $comment->getGUID();
 
         if (!$this->isGuestAuthor()) {
             $comment->author = $this->getCurrentAuthor();
@@ -686,40 +685,27 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает ветку комментариев к посту.
-     * @param BaseBlogPost $blogPost
-     * @return CmsSelector|BlogComment[]
-     */
-    protected function getBranchCommentByPost(BaseBlogPost $blogPost)
-    {
-        $branchComments = $this->getComments()
-            ->types([BlogBranchComment::TYPE])
-            ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->limit(1)
-            ->result()
-            ->fetch();
-
-        return $branchComments;
-    }
-
-    /**
      * Возвращает корень ветки комментариев к посту.
      * @param BaseBlogPost $post
      * @return BlogComment
      */
     protected function getBranchComment(BaseBlogPost $post)
     {
-        $branchComment = $this->getBranchCommentByPost($post);
+        $branchComment = $this->getComments()
+            ->types([BlogBranchComment::TYPE])
+            ->where(BlogComment::FIELD_POST)->equals($post)
+            ->limit(1)
+            ->result()
+            ->fetch();
 
         if ($branchComment instanceof BlogBranchComment) {
             return $branchComment;
         }
 
-        $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
-        $comment->displayName = $post->displayName;
-        $comment->post = $post;
-        $comment->slug = $comment->getGUID();
+        $branchComment = $this->comment()->add(null, BlogBranchComment::TYPE);
+        $branchComment->displayName = $post->displayName;
+        $branchComment->post = $post;
 
-        return $comment;
+        return $branchComment;
     }
 }
