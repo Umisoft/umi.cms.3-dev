@@ -339,6 +339,7 @@ define([], function() {
 
             switch (typeName) {
                 case 'integer':
+                case 'float':
                     baseType = 'number';
                     break;
             }

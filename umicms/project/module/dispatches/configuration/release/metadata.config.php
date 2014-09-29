@@ -68,7 +68,7 @@ return array_replace_recursive(
                 'type'         => IField::TYPE_DELAYED,
                 'columnName'   => 'view_percent',
                 'defaultValue' => 0,
-                'dataType'     => 'integer', // TODO: bug cms-918
+                'dataType'     => 'float', // TODO: bug cms-918
                 'formula'      => 'calculateViewPercent',
                 'readOnly'     => true,
             ],
