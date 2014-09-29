@@ -5,6 +5,7 @@
 /vendor
 /public/umi-admin/node_modules
 /public/umi-admin/vendor
+/public/umi-admin/development
 /Vagrantfile
 /.vagrant
 *.pp
