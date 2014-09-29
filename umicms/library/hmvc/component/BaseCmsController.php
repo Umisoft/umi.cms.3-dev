@@ -162,7 +162,7 @@ abstract class BaseCmsController extends BaseController
         $usersModule = $this->getModuleByClass(UsersModule::className());
         $searchModule = $this->getModuleByClass(SearchModule::className());
 
-        $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
+        $currentUser = $usersModule->getCurrentUser();
         $searchIndexApi = $searchModule->getSearchIndexApi();
 
         $persister = $this->getObjectPersister();

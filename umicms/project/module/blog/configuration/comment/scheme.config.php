@@ -23,9 +23,6 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'guest_author' => [
-                'type' => Type::STRING
-            ],
             'post_id' => [
                 'type' => Type::BIGINT,
                 'options' => [

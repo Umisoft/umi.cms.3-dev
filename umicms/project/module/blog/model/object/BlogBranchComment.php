@@ -18,5 +18,5 @@ class BlogBranchComment extends BaseBlogComment
     /**
      * Тип объекта
      */
-    const TYPE = 'branchComment';
+    const TYPE_NAME = 'branchComment';
 }

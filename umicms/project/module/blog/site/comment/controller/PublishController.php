@@ -43,7 +43,7 @@ class PublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE_NAME);
     }
 
     /**

@@ -43,7 +43,7 @@ class UnpublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE_NAME);
     }
 
     /**
