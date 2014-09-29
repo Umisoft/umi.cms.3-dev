@@ -315,8 +315,9 @@ define([], function() {
                 params.async = true;
                 //TODO: инверсия избыточна, но DS почему то без нее не может
                 if (field.targetCollection === collection.name) {
-                    params.inverse = 'children';
+                    params.inverse = null;
                 }
+
                 params.readOnly = false;
                 return DS.belongsTo(field.targetCollection, params);
             },
