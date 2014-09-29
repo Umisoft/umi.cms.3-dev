@@ -77,7 +77,7 @@ class RejectFormWidget extends BaseFormWidget
 
         $form = $this->module->comment()->getForm(
             BlogComment::FORM_REJECT_COMMENT,
-            BlogComment::TYPE,
+            BlogComment::TYPE_NAME,
             $this->blogComment
         );
 

@@ -14,7 +14,7 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BaseBlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет для вывода URL на редактирование поста.
@@ -26,7 +26,7 @@ class EditLinkWidget extends BaseLinkWidget
      */
     public $template = 'editPostLink';
     /**
-     * @var string|BaseBlogPost $blogPost пост или GUID редактируемого поста
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
     /**
@@ -52,13 +52,13 @@ class EditLinkWidget extends BaseLinkWidget
             $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BaseBlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BaseBlogPost::className()
+                        'class' => BlogPost::className()
                     ]
                 )
             );
