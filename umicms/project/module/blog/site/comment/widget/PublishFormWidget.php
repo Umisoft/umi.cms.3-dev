@@ -77,7 +77,7 @@ class PublishFormWidget extends BaseFormWidget
 
         $form = $this->module->comment()->getForm(
             BlogComment::FORM_PUBLISH_COMMENT,
-            BlogComment::TYPE,
+            BlogComment::TYPE_NAME,
             $this->blogComment
         );
 

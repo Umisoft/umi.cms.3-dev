@@ -1,14 +1,13 @@
 <?php
 /**
  * This file is part of UMI.CMS.
+ *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-use umi\authentication\adapter\ORMAdapter;
-use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
@@ -40,30 +39,8 @@ use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
 
 return [
-    AuthenticationTools::NAME => [
-        'factories' => [
-            'authentication' => [
-                'adapterClasses' => [
-                    'cmsUserAdapter' => 'umicms\authentication\CmsUserAdapter'
-                ],
-                'storageClasses' => [
-                    'cmsAuthStorage' => 'umicms\authentication\CmsAuthStorage'
-                ],
-                'defaultAdapter' => [
-                    'type'    => 'cmsUserAdapter',
-                    'options' => [
-                        ORMAdapter::OPTION_COLLECTION     => 'user',
-                        ORMAdapter::OPTION_LOGIN_FIELDS   => ['login', 'email'],
-                        ORMAdapter::OPTION_PASSWORD_FIELD => 'password'
-                    ]
-                ],
-                'defaultStorage' => [
-                    'type' => 'cmsAuthStorage'
-                ]
-            ]
-        ]
-    ],
-    TemplatingTools::NAME     => [
+
+    TemplatingTools::NAME => [
         'factories' => [
             'engine' => [
                 'engineClasses'  => [
@@ -161,6 +138,7 @@ return [
             'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/metadata.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
         ],
+
         'collections' => [
             'structure'                    => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
             'layout'                       => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
@@ -196,7 +174,6 @@ return [
             'dispatchUnsubscription'       => '{#lazy:~/project/module/dispatches/configuration/unsubscription/collection.config.php}',
             'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/collection.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
-
         ]
     ],
     I18nTools::NAME           => [

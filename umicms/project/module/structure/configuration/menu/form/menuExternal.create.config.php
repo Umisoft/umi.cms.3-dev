@@ -32,13 +32,6 @@ return [
                     'options' => [
                         'dataSource' => MenuExternalItem::FIELD_DISPLAY_NAME
                     ],
-                ],
-                MenuExternalItem::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => MenuExternalItem::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => MenuExternalItem::FIELD_SLUG
-                    ],
                 ]
             ]
         ],

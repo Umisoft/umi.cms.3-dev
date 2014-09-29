@@ -58,11 +58,13 @@ return [
             'Drafts author' => 'Drafts author',
             'Author' => 'Author',
             'Comments' => 'Comments',
+            'Add comment' => 'Add comment',
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
             'Edit profile author' => 'Edit profile author',
-            'Post has been unpublish.' => 'Post has been unpublish.'
+            'Post has been unpublished.' => 'Post has been unpublished.',
+            'Add comment' => 'Add comment',
         ],
         'ru-RU' => [
             'Create post' => 'Добавить пост',
@@ -71,11 +73,13 @@ return [
             'Drafts author' => 'Черновики автора',
             'Author' => 'Автор',
             'Comments' => 'Комментарии',
+            'Add comment' => 'Добавить комментарий',
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранен.',
             'Profile has been saved.' => 'Профиль сохранен.',
             'Edit profile author' => 'Редактировать автора',
-            'Post has been unpublish.' => 'Пост был снят с публикации'
+            'Post has been unpublished.' => 'Пост был снят с публикации',
+            'Add comment' => 'Добавить комментарий',
         ]
     ],
 

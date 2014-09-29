@@ -54,10 +54,12 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $user = $this->module->getAuthenticatedUser();
+
         return $this->module->user()->getForm(
             RegisteredUser::FORM_EDIT_PROFILE,
-            RegisteredUser::TYPE_NAME,
-            $this->module->getCurrentUser()
+            $user->getTypeName(),
+            $user
         );
     }
 
@@ -82,7 +84,7 @@ class IndexController extends BaseSitePageController
     protected function buildResponseContent()
     {
         return [
-            'user' => $this->module->getCurrentUser(),
+            'user' => $this->module->getAuthenticatedUser(),
             'page' => $this->getCurrentPage(),
             'success' => $this->success
         ];

@@ -2,6 +2,8 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogPost $blogPost
  */
+use umicms\project\module\blog\model\object\BlogAuthor;
+
 ?>
 <div class="blog-post">
     <h1><?= $blogPost->displayName ?></h1>
@@ -11,7 +13,10 @@
             <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?php if ($blogPost->author instanceof BlogAuthor) : ?>
+            <?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a>
+        <?php endif; ?>
+
         <?=$this->widget('blog.moderate.edit.editLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 
@@ -20,8 +25,10 @@
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('ReadMore')?></a>
 
     <div class="btn-toolbar">
+
         <?=$this->widget('blog.moderate.publishForm', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
         <?=$this->widget('blog.moderate.rejectForm', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
         <?=$this->widget('blog.moderate.toDraftForm', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+
     </div>
 </div>

@@ -39,13 +39,6 @@ return [
                     'options' => [
                         'dataSource' => Menu::FIELD_NAME
                     ],
-                ],
-                Menu::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => Menu::FIELD_SLUG
-                    ],
                 ]
             ]
         ]

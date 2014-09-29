@@ -14,12 +14,11 @@ use DateTime;
 use umi\hmvc\acl\ComponentRoleProvider;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\object\property\calculable\ICalculableProperty;
-use umi\orm\collection\ICollection;
-use umi\orm\metadata\IObjectType;
-use umi\orm\object\property\IPropertyFactory;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
 use umicms\exception\RuntimeException;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -30,10 +29,9 @@ use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
- * Пост блога.
-
+ * Базовый тип поста блога.
+ *
  * @property string $contentsRaw необработанный контент поста
- * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
  * @property IManyToManyObjectSet $tags теги, к которым относится пост
@@ -43,19 +41,17 @@ use umicms\project\module\users\model\UsersModule;
  * @property int $commentsCount количество комментариев к посту
  * @property string $source источник поста
  * @property string $image ссылка на картинку
+ * @property BlogAuthor $author автор поста
  */
-class BlogPost extends CmsObject implements ICmsPage
+class BlogPost extends CmsObject implements ICmsPage, IModuleAware
 {
     use TCmsPage;
+    use TModuleAware;
 
     /**
      * Имя поля для хранения необработанного контента поста
      */
     const FIELD_PAGE_CONTENTS_RAW = 'contentsRaw';
-    /**
-     * Имя поля для хранения автора поста
-     */
-    const FIELD_AUTHOR = 'author';
     /**
      * Имя поля для хранения анонса поста
      */
@@ -93,9 +89,26 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const FIELD_IMAGE = 'image';
     /**
-     * Форма добавления поста
+     * Имя поля для хранения автора поста
+     */
+    const FIELD_AUTHOR = 'author';
+
+    /**
+     * Форма отправки поста на модерацию
+     */
+    const FORM_MODERATE_POST = 'moderate';
+    /**
+     * Форма помещения поста в черновики
+     */
+    const FORM_DRAFT_POST = 'draft';
+    /**
+     * Форма добавления поста зарегистрированным пользователем
      */
     const FORM_ADD_POST = 'addPost';
+    /**
+     * Форма добавления поста незарегистрированным посетителем
+     */
+    const FORM_ADD_VISITOR_POST = 'addVisitorPost';
     /**
      * Форма редактирования поста
      */
@@ -105,52 +118,9 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const FORM_PUBLISH_POST = 'publish';
     /**
-     * Форма отправки поста на модерацию
-     */
-    const FORM_MODERATE_POST = 'moderate';
-    /**
      * Форма отклонения поста для публикации
      */
     const FORM_REJECT_POST = 'reject';
-    /**
-     * Форма помещения поста в черновики
-     */
-    const FORM_DRAFT_POST = 'draft';
-    /**
-     * @var UsersModule $usersModule модуль "Пользователи"
-     */
-    private $usersModule;
-
-    /**
-     * Конструктор.
-     * @param ICollection $collection
-     * @param IObjectType $objectType
-     * @param IPropertyFactory $propertyFactory
-     * @param UsersModule $usersModule
-     */
-    public function __construct(ICollection $collection, IObjectType $objectType, IPropertyFactory $propertyFactory, UsersModule $usersModule)
-    {
-        parent::__construct($collection, $objectType, $propertyFactory);
-
-        $this->usersModule = $usersModule;
-    }
-
-    /**
-     * Мутатор для контентного поля.
-     * @param string $contents контент поста
-     * @param string $locale локаль
-     * @return $this
-     */
-    public function setContents($contents, $locale)
-    {
-        $this->getProperty(self::FIELD_PAGE_CONTENTS, $locale)
-            ->setValue($contents);
-
-        $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
-            ->setValue($contents);
-
-        return $this;
-    }
 
     /**
      * Возвращает URL поста.
@@ -179,7 +149,13 @@ class BlogPost extends CmsObject implements ICmsPage
                 break;
             }
             case PostStatus::GUID_NEED_MODERATION : {
-                if ($this->usersModule->getCurrentUser() === $this->author->profile) {
+
+                /**
+                 * @var UsersModule $usersModule
+                 */
+                $usersModule = $this->getModuleByClass(UsersModule::className());
+
+                if ($this->author instanceof BlogAuthor && $usersModule->getCurrentUser() === $this->author->user) {
                     $handler = BlogPostCollection::HANDLER_MODERATE_OWN;
                 } else {
                     $handler = BlogPostCollection::HANDLER_MODERATE_ALL;
@@ -187,11 +163,67 @@ class BlogPost extends CmsObject implements ICmsPage
                 break;
             }
             default : {
-                $handler = ICmsCollection::HANDLER_SITE;
+            $handler = ICmsCollection::HANDLER_SITE;
             }
         }
 
         return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute, $handler);
+    }
+
+    /**
+     * Изменяет статус публикации.
+     * @param string|null $value статус публикации
+     * @return $this
+     */
+    public function setStatus($value)
+    {
+        $publishStatusProperty = $this->getProperty(self::FIELD_STATUS);
+        $publishStatusProperty->setValue($value);
+
+        if ($publishStatusProperty->getIsModified()) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->recalculatePostsCount();
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Изменяет автора комментария.
+     * @param BlogAuthor|null $value автор
+     * @return $this
+     */
+    public function setAuthor($value)
+    {
+        if ($this->author instanceof BlogAuthor) {
+            $this->author->recalculateCommentsCount();
+        }
+
+        $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
+
+        if ($value instanceof BlogAuthor) {
+            $value->recalculatePostsCount();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Мутатор для контентного поля.
+     * @param string $contents контент поста
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_PAGE_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
     }
 
     /**
@@ -241,45 +273,6 @@ class BlogPost extends CmsObject implements ICmsPage
     }
 
     /**
-     * Изменяет статус публикации.
-     * @param string|null $value статус публикации
-     * @return $this
-     */
-    public function setStatus($value)
-    {
-        $publishStatusProperty = $this->getProperty(self::FIELD_STATUS);
-        $publishStatusProperty->setValue($value);
-
-        if ($publishStatusProperty->getIsModified()) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->recalculateCommentsCount();
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Изменяет автора комментария.
-     * @param BlogAuthor|null $value автор
-     * @return $this
-     */
-    public function setAuthor($value)
-    {
-        if ($this->author instanceof BlogAuthor) {
-            $this->author->recalculateCommentsCount();
-        }
-
-        $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
-
-        if ($value instanceof BlogAuthor) {
-            $value->recalculateCommentsCount();
-        }
-
-        return $this;
-    }
-
-    /**
      * Помечает количество комментариев для пересчета.
      * @return $this
      */
@@ -311,7 +304,6 @@ class BlogPost extends CmsObject implements ICmsPage
 
         return $commentCollection->getInternalSelector()
             ->fields([BlogComment::FIELD_IDENTIFY])
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($this)
             ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
                 ->equals(CommentStatus::GUID_PUBLISHED)
