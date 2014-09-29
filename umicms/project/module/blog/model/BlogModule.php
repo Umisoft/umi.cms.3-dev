@@ -472,7 +472,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function isAuthorRegistered()
     {
-        return ($this->currentAuthor && $this->currentAuthor->user instanceof RegisteredUser);
+        return ($this->hasCurrentAuthor() && $this->currentAuthor->user instanceof RegisteredUser);
     }
 
     /**
