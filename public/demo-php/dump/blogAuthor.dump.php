@@ -128,7 +128,7 @@ return array (
         0 => 'string',
         1 => '',
       ),
-      'profile' => 
+      'user' =>
       array (
         0 => 'relation',
         1 => 
