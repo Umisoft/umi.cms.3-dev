@@ -36,14 +36,14 @@ define(['App'], function(UMI) {
         hasButtons: Ember.computed.any('model.confirm', 'model.reject'),
         showDialog: function() {
             if (this.get('model')) {
-                $('body').append('<div class="umi-blur umi-ff-fix" />');
+                $('body').append('<div class="s-blur" />');
                 setTimeout(function() {
-                    $('.umi-main-view').addClass('umi-blur');
+                    $('.umi-main-view').addClass('s-blur');
                 }, 50);
                 this.append();
             } else if (this.isVisible) {
-                $('.umi-blur.umi-ff-fix').remove();
-                $('.umi-main-view').removeClass('umi-blur');
+                $('.s-blur').remove();
+                $('.umi-main-view').removeClass('s-blur');
                 this.remove();
             }
         }.observes('model'),

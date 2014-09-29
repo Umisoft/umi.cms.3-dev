@@ -22,7 +22,7 @@ define(['App'], function(UMI) {
 
             hasScroll: false,
 
-            blur: true,
+            blur: false,
 
             fade: false,
 
