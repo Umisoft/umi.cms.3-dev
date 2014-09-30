@@ -23,7 +23,6 @@ use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\Process;
 use umi\hmvc\IMvcEntityFactory;
 use umi\hmvc\widget\IWidget;
 use umi\orm\collection\ICollectionManager;
@@ -105,6 +104,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         $this->commit();
     }
 
+    /**
+     * Создает структуру старниц для виджетов и контроллеров
+     */
     protected function buildDocsStructure()
     {
         $iterator = Finder::create()
@@ -155,6 +157,12 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
     }
 
+    /**
+     * Создает структуру страниц компонента для определенного типа
+     * @param SiteComponent $component компонент
+     * @param StaticPage $parentPage страница компонента
+     * @param string $type widgets|controllers
+     */
     protected function buildComponentStructure(SiteComponent $component, StaticPage $parentPage, $type)
     {
         $this->output->write('.');
@@ -201,6 +209,12 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
     }
 
+    /**
+     * Создает или обновляет страницу контроллера
+     * @param BaseCmsController $controller контроллер
+     * @param SiteComponent $component компонент контроллера
+     * @param StaticPage $parentPage страница компонента
+     */
     protected function buildControllerPage(BaseCmsController $controller, SiteComponent $component, StaticPage $parentPage)
     {
         $className = get_class($controller);
@@ -249,6 +263,11 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
     }
 
+    /**
+     * Строит описание передаваемых контроллером или виджетом переменных в шаблон
+     * @param ClassReflection $class обертка класса виджета или контроллера
+     * @return string
+     */
     protected function getReturnValue(ClassReflection $class)
     {
         $methods = $class->getMethods(true);
@@ -320,6 +339,11 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return '';
     }
 
+    /**
+     * Генерирует дополнительное описание для переменной, передаваемой в шаблон
+     * @param array $templateParam информация о переменной
+     * @return string
+     */
     protected function getAdditionalDescription(array &$templateParam)
     {
 
@@ -340,6 +364,11 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return $result;
     }
 
+    /**
+     * Генерирует дополнительное описание для типа переменной, передаваемой в шаблон
+     * @param string $type
+     * @return array тип и описание
+     */
     protected function buildTypeDescription($type)
     {
         $description = '';
@@ -374,6 +403,12 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return [$type, $description];
     }
 
+    /**
+     * Создает или обновляет страницу виджета
+     * @param IWidget $widget виджет
+     * @param SiteComponent $component компонент виджета
+     * @param StaticPage $parentPage страница компонента
+     */
     protected function buildWidgetPage(IWidget $widget, SiteComponent $component, StaticPage $parentPage)
     {
         $className = get_class($widget);
@@ -423,6 +458,12 @@ class UpdateDocumentationCommand extends BaseProjectCommand
 
     }
 
+    /**
+     * Размечает и возвращает код шаблонов с подсветкой синтаксиса
+     * @param string $source путь к файлу шаблона
+     * @param string $language язык шаблона
+     * @return string
+     */
     protected function getHighlightedCode($source, $language)
     {
         $geshi = new \GeSHi(file_get_contents($source), $language);
@@ -433,6 +474,11 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return $geshi->parse_code();
     }
 
+    /**
+     * Генерирует описание свойств класса, заданных в аннотации класса
+     * @param ClassReflection $class обертка класса
+     * @return string
+     */
     protected function buildAnnotationPropertiesDescriptionTable(ClassReflection $class)
     {
         $properties = [];
@@ -500,7 +546,13 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         return '';
     }
 
-
+    /**
+     * Генерирует описание публичных свойств класса
+     * @param ClassReflection $class обертка класса
+     * @param object $instance экземпляр класса
+     * @throws RuntimeException в случае ошибки в описании
+     * @return string
+     */
     protected function buildPublicPropertiesDescriptionTable(ClassReflection $class, $instance)
     {
         $parameters = '';
@@ -691,18 +743,4 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         }
 
     }
-
-    private function commitDump($projectDirectory)
-    {
-        $process = new Process('git commit -m \'Update documentation dump.\'', $projectDirectory);
-        if ($process->run() != 0) {
-            throw new \RuntimeException('Cannot commit documentation changes.');
-        }
-
-        $process = new Process('git push', $projectDirectory);
-        if ($process->run() != 0) {
-            throw new \RuntimeException('Cannot push documentation changes.');
-        }
-    }
-
 }
