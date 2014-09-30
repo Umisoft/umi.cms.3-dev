@@ -1,5 +1,5 @@
 define(['App'], function(UMI) {
-    "use strict";
+    'use strict';
 
     return function() {
         UMI.ObjectRelationElementView = Ember.View.extend(UMI.SerializedValue, {
@@ -49,7 +49,7 @@ define(['App'], function(UMI) {
             },
 
             inputView: Ember.View.extend(UMI.InputValidate, {
-                type: "text",
+                type: 'text',
 
                 classNames: ['umi-element-text'],
 
@@ -74,6 +74,16 @@ define(['App'], function(UMI) {
 
             selectedCollection: null,
 
+            getCollectionPropertyLabel: function(propertyName, collections, store) {
+                if (Ember.typeOf(collections) === 'array') {
+                    var collectionName = Ember.get(collections[0], 'id');
+                    var model = store.modelFor(collectionName);
+                    return Ember.get(model.metaForProperty('displayName'), 'options.' + propertyName);
+                } else {
+                    Ember.warn('Wrong argument type. Expected array.');
+                }
+            },
+
             tableControlSettings: function() {
                 var self = this;
                 var selectedCollectionId = self.get('selectedCollection.id');
@@ -81,6 +91,7 @@ define(['App'], function(UMI) {
                 var meta = self.get('model.meta');
                 var property = object.get(Ember.get(meta, 'dataSource'));
                 var activeObjectGuid;
+
                 if (property) {
                     try {
                         property = JSON.parse(property);
@@ -90,29 +101,31 @@ define(['App'], function(UMI) {
                     }
                 }
 
+                var displayName = this.getCollectionPropertyLabel('displayName', self.get('collections'), self.get('store'));
+
                 return {
                     control: {
                         collectionName: selectedCollectionId,
                         meta: {
                             defaultFields: [
-                                "displayName"
+                                'displayName'
                             ],
                             activeObjectGuid: activeObjectGuid,
                             form: {
                                 elements: [
                                     {
-                                        type: "text",
-                                        tag: "input",
-                                        id: "displayName",
-                                        label: "Имя отображения",//TODO: localize
+                                        type: 'text',
+                                        tag: 'input',
+                                        id: 'displayName',
+                                        label: displayName,
                                         attributes: {
-                                            name: "displayName",
-                                            type: "text",
+                                            name: 'displayName',
+                                            type: 'text',
                                             value: null
                                         },
                                         valid: true,
                                         errors: [],
-                                        dataSource: "displayName",
+                                        dataSource: 'displayName',
                                         value: null,
                                         validators: [],
                                         filters: []
