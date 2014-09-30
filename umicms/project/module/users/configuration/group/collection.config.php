@@ -25,7 +25,7 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection.userGroup', 'collection'
+        'collection.userGroup' => 'collection.userGroup', 'collection' => 'collection'
     ],
     UserGroupCollection::IGNORED_TABLE_FILTER_FIELDS => [
         UserGroup::FIELD_ROLES => []

@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseFormWidget;
 return [
     'options' => [
         'dictionaries' => [
-            'project.site.blog.post'
+            'project.site.blog.post' => 'project.site.blog.post'
         ]
     ],
     'attributes' => [

@@ -9,30 +9,30 @@
  */
 
 use umicms\form\element\SingleCollectionObjectRelation;
-use umicms\project\site\SiteApplication;
+use umicms\project\IProjectSettingsAware;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site'
+            'project.admin.rest.settings.site' => 'project.admin.rest.settings.site'
         ]
     ],
 
     'elements' => [
-        SiteApplication::SETTING_DEFAULT_PAGE_GUID => [
+        IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID => [
             'type' => SingleCollectionObjectRelation::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_PAGE_GUID,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID,
             'options' => [
                 'collection' => 'structure',
-                'dataSource' => SiteApplication::SETTING_DEFAULT_PAGE_GUID
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID
             ]
         ],
-        SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => [
+        IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID => [
             'type' => SingleCollectionObjectRelation::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID,
             'options' => [
                 'collection' => 'layout',
-                'dataSource' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID
             ]
         ]
     ]

@@ -48,8 +48,6 @@ return [
         ]
     ],
 
-    SiteApplication::OPTION_SETTINGS => '{#lazy:~/project/site/configuration/settings.config.php}',
-
     SiteApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',
         'news' => '{#lazy:~/project/module/news/site/module.config.php}',

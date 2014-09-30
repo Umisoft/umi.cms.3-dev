@@ -21,20 +21,21 @@ return [
         'site' => 'blog.comment'
     ],
     'forms' => [
-        BlogComment::TYPE => [
+        BlogComment::TYPE_NAME => [
             BlogCommentCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/comment.edit.config.php}',
             BlogCommentCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/comment.create.config.php}',
-            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/comment.addComment.config.php}',
+            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/comment.add.config.php}',
+            BlogComment::FORM_ADD_VISITOR_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/comment.visitorAdd.config.php}',
             BlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
             BlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
             BlogComment::FORM_UNPUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.unpublish.config.php}',
         ],
-        BlogBranchComment::TYPE => [
+        BlogBranchComment::TYPE_NAME => [
             BlogCommentCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/branchComment.edit.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection.blogComment', 'collection'
+        'collection.blogComment' => 'collection.blogComment', 'collection' => 'collection'
     ],
     BlogCommentCollection::DEFAULT_TABLE_FILTER_FIELDS => [
         BlogComment::FIELD_AUTHOR => [],

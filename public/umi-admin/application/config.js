@@ -14,7 +14,7 @@ define([], function() {
                 keyBindings: true,
                 interactiveScrollbars: true,
                 fadeScrollbars: true,
-                disableMouse: true
+                disableMouse: false
             },
 
             elFinder: {
@@ -70,8 +70,13 @@ define([], function() {
             config.removeDialogTabs = 'image:advanced;link:advanced';
 
             var locale = Ember.get(window, 'UmiSettings.locale') || '';
-
-            config.language = locale.split('-')[0];
+            locale = locale.split('-')[0];
+            var allowedLocale = ['en', 'ru', 'de', 'es', 'it', 'uk'];
+            if (allowedLocale.contains(locale)) {
+                config.language = locale;
+            } else {
+                config.language = 'en';
+            }
 
             config.height = '450px';
 

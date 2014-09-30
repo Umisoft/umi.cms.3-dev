@@ -8,7 +8,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'project.site.search'
+            'project.site.search' => 'project.site.search'
         ],
     ],
     'attributes' => [

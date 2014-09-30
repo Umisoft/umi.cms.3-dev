@@ -91,11 +91,18 @@ define(['App', 'toolbar'], function(UMI) {
              */
             didInsertElement: function() {
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
-                var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
+                var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                var contentScroll = new IScroll(scrollContainer, iScrollConfiguration);
 
                 this.set('iScroll', contentScroll);
                 var self = this;
 
+                //
+                $('html').on('toggled.umi.divider', function() {
+                    setTimeout(function() {
+                        contentScroll.refresh();
+                    }, 100);
+                });
                 // Раскрытие ноды имеющую потомков
                 var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];

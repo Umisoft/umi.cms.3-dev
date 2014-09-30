@@ -31,6 +31,7 @@ define(['App'], function(UMI) {
                     $el.on('mousedown.umi.divider.toggle', '.umi-divider-left-toggle', function() {
                         $sidebar.toggleClass('hide');
                         $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
+                        $('html').trigger('toggled.umi.divider');
                     });
 
 

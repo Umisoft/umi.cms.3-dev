@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -44,7 +43,9 @@ class PublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
+
+        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, $blogPost->getTypeName());
     }
 
     /**

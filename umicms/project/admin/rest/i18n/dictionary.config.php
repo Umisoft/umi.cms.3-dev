@@ -42,6 +42,8 @@ return [
         'Remember my choice' => 'Remember my choice',
         'Nothing found' => 'Nothing found',
         'Loading' => 'Loading',
+        'All' => 'All',
+        'Of' => 'Of',
         'Current version' => 'Current version',
         'No backups' => 'No backups',
         'Select file' => 'Select file',
@@ -79,6 +81,7 @@ return [
         'Continue without saving' => 'Continue without saving',
 
         'Internal Server Error' => 'Internal Server Error',
+        'Unknown error' => 'Unknown error',
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
@@ -133,6 +136,8 @@ return [
         'Remember my choice' => 'Запомнить мой выбор',
         'Nothing found' => 'Ничего не найдено',
         'Loading' => 'Загрузка',
+        'All' => 'Все',
+        'Of' => 'Из',
         'Current version' => 'Текущая версия',
         'No backups' => 'Нет резервных копий',
         'Select file' => 'Выберите файл',
@@ -170,6 +175,7 @@ return [
         'Continue without saving' => 'Продолжить без сохранения',
 
         'Internal Server Error' => 'Внутренняя ошибка сервера',
+        'Unknown error' => 'Неизвестная ошибка',
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',

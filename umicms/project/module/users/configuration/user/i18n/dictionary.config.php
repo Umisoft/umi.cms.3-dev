@@ -27,11 +27,17 @@ return [
 
             'type:base:displayName' => 'User',
             'type:guest:displayName' => 'Guest',
+            'type:visitor:displayName' => 'Visitor',
+
             'type:registered:displayName' => 'Registered user',
             'type:registered.supervisor:displayName' => 'Supervisor',
             'type:registered.supervisor:createLabel' => 'supervisor',
 
-            'locale' => 'Language'
+            'locale' => 'Language',
+
+            'Log in' => 'Log in',
+
+            'Visitor' => 'Visitor',
         ],
 
         'ru-RU' => [
@@ -50,11 +56,16 @@ return [
 
             'type:base:displayName' => 'Пользователь',
             'type:guest:displayName' => 'Гость',
+            'type:visitor:displayName' => 'Посетитель',
             'type:registered:displayName' => 'Зарегистрированный пользователь',
             'type:registered:createLabel' => 'Добавить пользователя',
             'type:registered.supervisor:displayName' => 'Супервайзер',
             'type:registered.supervisor:createLabel' => 'Добавить супервайзера',
 
-            'locale' => 'Язык'
+            'locale' => 'Язык',
+
+            'Log in' => 'Войти',
+
+            'Visitor' => 'Посетитель',
         ]
     ];

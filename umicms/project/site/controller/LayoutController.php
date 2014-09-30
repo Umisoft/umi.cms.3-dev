@@ -21,15 +21,15 @@ use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends BaseCmsController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
+class LayoutController extends BaseCmsController implements IProjectSettingsAware, IPageCallStackAware, ILocalesAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
     use TPageCallStackAware;
 
     /**
@@ -77,6 +77,7 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
         $variables['locales'] = $this->getLocales();
         $variables['projectUrl'] = $this->getProjectUrls();
         $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
+        $variables['url'] = $this->getUrlManager()->getCurrentUrl();
 
         $variables['contents'] = $this->response->getContent();
 

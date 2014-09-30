@@ -12,19 +12,37 @@ use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
+use umi\form\fieldset\FieldSet;
 use umicms\hmvc\widget\BaseFormWidget;
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogComment', 'collection', 'form'
+            'collection.blogComment' => 'collection.blogComment', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
     'attributes' => [
         'method' => 'post'
     ],
     'elements' => [
+
+        BlogComment::FIELD_AUTHOR => [
+            'type' => FieldSet::TYPE_NAME,
+            'label' => BlogComment::FIELD_AUTHOR,
+            'elements' => [
+
+                BlogAuthor::FIELD_DISPLAY_NAME => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => BlogAuthor::FIELD_DISPLAY_NAME,
+                    'options' => [
+                        'dataSource' => BlogComment::FIELD_AUTHOR . '.' . BlogAuthor::FIELD_DISPLAY_NAME
+                    ],
+                ],
+            ]
+        ],
+
         BlogComment::FIELD_POST => [
             'type' => Hidden::TYPE_NAME,
             'label' => BlogComment::FIELD_POST,

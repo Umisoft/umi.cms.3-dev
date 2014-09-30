@@ -8,12 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umi\authentication\adapter\ORMAdapter;
-use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
+use umi\messages\toolbox\MessagesTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\pagination\toolbox\PaginationTools;
@@ -40,29 +39,6 @@ use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\validation\Range;
 
 return [
-    AuthenticationTools::NAME => [
-        'factories' => [
-            'authentication' => [
-                'adapterClasses' => [
-                    'cmsUserAdapter' => 'umicms\authentication\CmsUserAdapter'
-                ],
-                'storageClasses' => [
-                    'cmsAuthStorage' => 'umicms\authentication\CmsAuthStorage'
-                ],
-                'defaultAdapter' => [
-                    'type' => 'cmsUserAdapter',
-                    'options' => [
-                        ORMAdapter::OPTION_COLLECTION => 'user',
-                        ORMAdapter::OPTION_LOGIN_FIELDS => ['login', 'email'],
-                        ORMAdapter::OPTION_PASSWORD_FIELD => 'password'
-                    ]
-                ],
-                'defaultStorage' => [
-                    'type' => 'cmsAuthStorage'
-                ]
-            ]
-        ]
-    ],
 
     TemplatingTools::NAME => [
         'factories' => [
@@ -234,6 +210,8 @@ return [
         ]
     ],
 
-    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',
+
+    MessagesTools::NAME => '{#lazy:~/project/configuration/messagesTools.config.php}'
 
 ];

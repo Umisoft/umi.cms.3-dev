@@ -25,8 +25,8 @@
         "ext-mbstring": "*",
         "ext-pdo": "*",
 
-        "umisoft/umi.framework": "1.0.*",
-        "umisoft/extension-twig": "1.0.*",
+        "umisoft/umi.framework": "dev-master",
+        "umisoft/extension-twig": "dev-master",
 
         "guzzlehttp/guzzle": "4.1.*",
         "gregwar/captcha": "1.0.*",

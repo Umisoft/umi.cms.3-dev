@@ -17,6 +17,12 @@ return array_replace_recursive(
     [
         'name' => 'users_user',
         'columns'     =>  [
+            'ip' => [
+                'type' => Type::STRING
+            ],
+            'token' => [
+                'type' => Type::STRING
+            ],
             'login' => [
                 'type' => Type::STRING
             ],
@@ -56,6 +62,12 @@ return array_replace_recursive(
                 'type' => 'unique',
                 'columns' => [
                     'email' => []
+                ]
+            ],
+            'token' => [
+                'type' => 'unique',
+                'columns' => [
+                    'token' => []
                 ]
             ]
         ]

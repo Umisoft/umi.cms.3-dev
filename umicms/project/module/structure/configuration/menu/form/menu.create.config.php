@@ -16,7 +16,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.menu', 'collection', 'form'
+            'collection.menu' => 'collection.menu', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
@@ -38,13 +38,6 @@ return [
                     'label' => Menu::FIELD_NAME,
                     'options' => [
                         'dataSource' => Menu::FIELD_NAME
-                    ],
-                ],
-                Menu::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => Menu::FIELD_SLUG
                     ],
                 ]
             ]

@@ -10,7 +10,7 @@
 
 namespace umicms\orm\object;
 
-use umi\orm\metadata\field\special\FormulaField;
+use umi\orm\metadata\field\special\DelayedField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
@@ -25,9 +25,7 @@ use umicms\serialization\xml\BaseSerializer;
 trait TCmsObject
 {
     use TUrlManagerAware;
-    use TSerializerConfigurator {
-        TSerializerConfigurator::configureSerializer as protected configureSerializerInternal;
-    }
+    use TSerializerConfigurator;
 
     /**
      * @var string $traitEditLink ссылка на редактирование объекта
@@ -116,7 +114,9 @@ trait TCmsObject
             }
         );
 
-        $this->configureSerializerInternal($serializer);
+        foreach ($this->configurators as $configurator) {
+            $configurator($serializer);
+        }
     }
 
     /**
@@ -238,7 +238,7 @@ trait TCmsObject
 
         if ($currentLocaleId !== $defaultLocaleId) {
             foreach ($this->getModifiedProperties() as $property) {
-                if ($property->getField() instanceof FormulaField) {
+                if ($property->getField() instanceof DelayedField) {
                     continue;
                 }
                 if ($property->getLocaleId()) {

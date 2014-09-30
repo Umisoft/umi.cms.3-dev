@@ -59,18 +59,19 @@ define(['App'], function(UMI) {
         notificationId: 0,
         closeAll: false,
         itemCount: function() {
-            if (this.get('content.length') > 1 && !this.get('closeAll')) {
+            var content = this.get('content');
+            if (content.get('length') > 1 && !this.get('closeAll')) {
                 this.set('closeAll', true);
-                this.get('content').pushObject(Ember.Object.create({
+                content.pushObject(Ember.Object.create({
                     id: 'closeAll',
                     type: 'secondary',
                     kind: 'closeAll',
-                    content: 'Закрыть все'
+                    content: UMI.i18n.getTranslate('Close') + ' ' + (UMI.i18n.getTranslate('All') || '').toLowerCase()
                 }));
             }
-            if (this.get('content.length') <= 2 && this.get('closeAll')) {
-                var object = this.get('content').findBy('id', 'closeAll');
-                this.get('content').removeObject(object);
+            if (content.get('length') <= 2 && this.get('closeAll')) {
+                var object = content.findBy('id', 'closeAll');
+                content.removeObject(object);
                 this.set('closeAll', false);
             }
         }.observes('content.length')

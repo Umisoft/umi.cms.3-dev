@@ -11,7 +11,6 @@
 namespace umicms\project\site\settings\mail\controller;
 
 use umi\config\entity\IConfig;
-use umi\messages\toolbox\MessagesTools;
 use umicms\hmvc\component\admin\settings\LayoutController as SettingsLayoutController;
 
 /**
@@ -26,7 +25,7 @@ class LayoutController extends SettingsLayoutController
     {
         $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
 
-        $sendersInfo = $config->get(MessagesTools::NAME . '.mailerOptions.sender_address');
+        $sendersInfo = $config->get('mailerOptions.sender_address');
         $sendersInfo = ($sendersInfo instanceof IConfig) ? $sendersInfo->toArray() : [];
 
         $from = [];

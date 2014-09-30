@@ -95,6 +95,8 @@ define(['App'], function(UMI) {
                 },
 
                 backToFilter: {
+                    classNames: ['wide-medium', 'umi-toolbar-button-border'],
+
                     actions: {
                         backToFilter: function() {
                             this.get('controller').send('backToFilter');
@@ -240,17 +242,12 @@ define(['App'], function(UMI) {
                     },
 
                     checkIsAllowedRobots: function() {
-                        if (this.get('isDestroying') || this.get('isDestroyed')) {
-                            return;
-                        }
                         var self = this;
                         var object = this.get('controller.object');
                         var componentController = this.get('container').lookup('controller:component');
                         var isAllowedRobotsSource;
-                        var serializeObject;
 
                         if (componentController) {
-                            serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                             isAllowedRobotsSource = componentController.get('settings.actions.isAllowedRobots.source');
                             return $.get(isAllowedRobotsSource + '?id=' + object.get('id')).then(function(results) {
                                 results = results || {};
@@ -259,17 +256,8 @@ define(['App'], function(UMI) {
                         }
                     },
 
-                    checkIsAllowedRobotsChange: function() {
-                        Ember.run.once(this, 'checkIsAllowedRobots');
-                    }.observes('controller.object').on('didInsertElement'),
-
                     willDestroyElement: function() {
-                        this.removeObserver('controller.object');
                         this.removeObserver('label');
-                    },
-
-                    willClearRender: function() {
-                        this.removeObserver('controller.object');
                     },
 
                     labelChange: function() {
@@ -277,7 +265,12 @@ define(['App'], function(UMI) {
                         if ($el && $el.attr('title')) {
                             $el.attr('title', this.get('label'));
                         }
-                    }.observes('label').on('didInsertElement')
+                    }.observes('label').on('didInsertElement'),
+
+                    init: function() {
+                        this._super();
+                        Ember.run.once(this, 'checkIsAllowedRobots');
+                    }
                 }
             };
 

@@ -10,7 +10,7 @@
 
 namespace umicms\project\site;
 
-use umi\config\entity\IConfig;
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\IHttpAware;
@@ -23,9 +23,10 @@ use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\exception\InvalidLicenseException;
-use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
@@ -36,8 +37,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
 use umicms\hmvc\component\site\SiteComponent;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\module\users\model\UsersModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -46,55 +46,15 @@ use umicms\serialization\TSerializationAware;
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware, IModuleAware
 {
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
-    use TSiteSettingsAware;
     use TSessionAware;
+    use TModuleAware;
 
-    /**
-     * Имя настройки для задания guid главной страницы
-     */
-    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
-    /**
-     * Имя настройки для задания guid шаблона по умолчанию
-     */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
-    /**
-     * Имя настройки для задания title страниц по умолчанию
-     */
-    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
-    /**
-     * Имя настройки для задания префикса title страниц
-     */
-    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
-    /**
-     * Имя настройки для задания keywords страниц по умолчанию
-     */
-    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
-    /**
-     * Имя настройки для задания description страниц по умолчанию
-     */
-    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
-    /**
-     * Имя настройки для задания шаблонизатора по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
-    /**
-     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
-    /**
-     * Имя настройки для задания директории общих шаблонов
-     */
-    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
-    /**
-     * Имя настройки для задания директории шаблонов
-     */
-    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -108,16 +68,6 @@ class SiteApplication extends SiteComponent
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        parent::__construct($name, $path, $options);
-
-        $this->registerSiteSettings();
-    }
 
     /**
      * {@inheritdoc}
@@ -205,6 +155,20 @@ class SiteApplication extends SiteComponent
 
         }
 
+        /**
+         * @var UsersModule $usersModule
+         */
+        $usersModule = $this->getModuleByClass(UsersModule::className());
+        if ($usersModule->isVisitor() && $usersModule->getVisitor()->token) {
+
+            $cookie = new Cookie(
+                UsersModule::VISITOR_TOKEN_COOKIE_NAME,
+                $usersModule->getVisitor()->token,
+                new \DateTime('+5 year')
+            );
+            $response->headers->setCookie($cookie);
+        }
+
         return $response;
     }
 
@@ -239,15 +203,6 @@ class SiteApplication extends SiteComponent
             return null;
         }
         return null;
-    }
-
-    /**
-     * Возвращает настройки сайта.
-     * @throws RequiredDependencyException если настройки не были установлены
-     * @return IConfig
-     */
-    protected function getSiteSettings() {
-        return $this->getSettings();
     }
 
     /**
@@ -333,23 +288,6 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Регистрирует сервисы для работы сайта.
-     */
-    protected function registerSiteSettings()
-    {
-        $this->setSiteSettings($this->getSettings());
-
-        $this->getToolkit()->registerAwareInterface(
-            'umicms\project\site\config\ISiteSettingsAware',
-            function ($object) {
-                if ($object instanceof ISiteSettingsAware) {
-                    $object->setSiteSettings($this->getSettings());
-                }
-            }
-        );
-    }
-
-    /**
      * Регистрирует иницициализотор для всех селекторов.
      */
     protected function registerSelectorInitializer()
@@ -377,7 +315,7 @@ class SiteApplication extends SiteComponent
     /** @noinspection PhpUnusedPrivateMethodInspection */
     private function checkLicense(Request $request)
     {
-        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $domainKey = $this->getProjectSettings()->get('domainKey');
         $defaultDomain = $this->getDefaultDomain();
 
         if (empty($domainKey)) {
@@ -395,14 +333,14 @@ class SiteApplication extends SiteComponent
                 'Invalid domain key for domain.'
             ));
         }
-        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $licenseType = $this->getProjectSettings()->get('licenseType');
         if (empty($licenseType)) {
             throw new InvalidLicenseException($this->translate(
                 'Wrong license type.'
             ));
         }
         if (strstr($licenseType, base64_decode('dHJpYWw='))) {
-            $deactivation = $this->getSiteSettings()->get('deactivation');
+            $deactivation = $this->getProjectSettings()->get('deactivation');
             if (empty($deactivation) || base64_decode($deactivation) < time()) {
                 throw new InvalidLicenseException($this->translate(
                     'License has expired.'
@@ -437,7 +375,7 @@ class SiteApplication extends SiteComponent
      */
     private function getDefaultDomain()
     {
-        $defaultDomain = $this->getSiteSettings()->get('defaultDomain');
+        $defaultDomain = $this->getProjectSettings()->get('defaultDomain');
         if (mb_strrpos($defaultDomain, 'www.') === 0) {
             $defaultDomain = mb_substr($defaultDomain, 4);
         }
@@ -467,8 +405,8 @@ class SiteApplication extends SiteComponent
      */
     private function checkDomainKey(Request $request)
     {
-        $domainKey = $this->getSiteSettings()->get('domainKey');
-        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $domainKey = $this->getProjectSettings()->get('domainKey');
+        $licenseType = $this->getProjectSettings()->get('licenseType');
         $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
 
         return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);

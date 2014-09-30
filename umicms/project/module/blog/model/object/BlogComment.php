@@ -11,9 +11,9 @@
 namespace umicms\project\module\blog\model\object;
 
 /**
- * Комментарий к посту.
+ * Комментарий к посту от зарегистрированного пользователя.
  *
- * @property BlogAuthor $author автор поста
+ * @property BlogAuthor $author автор комментария
  * @property string $contents комментарий
  * @property CommentStatus $status статус публикации комментария
  */
@@ -22,7 +22,7 @@ class BlogComment extends BaseBlogComment
     /**
      * Тип объекта
      */
-    const TYPE = 'comment';
+    const TYPE_NAME = 'comment';
     /**
      * Имя поля для хранения автора поста
      */
@@ -40,9 +40,13 @@ class BlogComment extends BaseBlogComment
      */
     const FIELD_STATUS = 'status';
     /**
-     * Форма добавления комментария
+     * Форма добавления комментария зарегистрированного пользователя
      */
     const FORM_ADD_COMMENT = 'addComment';
+    /**
+     * Форма добавления комментария незарегистрированного посетителя
+     */
+    const FORM_ADD_VISITOR_COMMENT = 'addVisitorComment';
     /**
      * Форма публикации комментария
      */
