@@ -313,7 +313,7 @@ define([], function() {
 
             belongsToRelation: function(params, field, collection) {
                 params.async = true;
-                //TODO: инверсия избыточна, но DS почему то без нее не может
+
                 if (field.targetCollection === collection.name) {
                     params.inverse = null;
                 }

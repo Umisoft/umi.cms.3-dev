@@ -123,13 +123,13 @@ class SiteApplication extends SiteComponent
             $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
         }
 
-        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
+        $possibleRedirect = ($currentPath !== $this->getUrlManager()->getProjectUrl() && $request->server->get('REQUEST_METHOD') !== 'POST');
 
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+        if ($possibleRedirect && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
+        if ($possibleRedirect && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
             return $redirectResponse;
         }
 
