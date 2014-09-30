@@ -44,9 +44,10 @@ return array_replace_recursive(
         ],
 
         BlogPostCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-            BaseBlogPost::FIELD_CATEGORY => [],
-            BaseBlogPost::FIELD_PUBLISH_TIME => [],
-            BaseBlogPost::FIELD_STATUS => []
+            BlogPost::FIELD_CATEGORY => [],
+            BlogPost::FIELD_AUTHOR => [],
+            BlogPost::FIELD_PUBLISH_TIME => [],
+            BlogPost::FIELD_STATUS => []
         ]
     ]
 );
