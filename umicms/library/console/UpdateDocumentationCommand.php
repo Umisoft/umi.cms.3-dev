@@ -193,7 +193,7 @@ class UpdateDocumentationCommand extends BaseProjectCommand
         /**
          * @var StructureElementCollection $pageCollection
          */
-        $pageCollection = $parentPage->getCollection();
+        $pageCollection = $page->getCollection();
 
         if ($type === 'widgets') {
             $widgetNames = $component->getWidgetNames();
@@ -202,12 +202,19 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
             }
 
-            $children = $pageCollection->selectChildren($parentPage)->types([WidgetPage::TYPE]);
+            $children = $pageCollection->selectChildren($page)->types([WidgetPage::TYPE]);
             /**
              * @var WidgetPage $child
              */
             foreach ($children as $child) {
-                if (!in_array($child->slug, $widgetNames)) {
+
+                $nameParts = explode('.', $child->path);
+                $name = array_pop($nameParts);
+
+                if (!in_array($name, $widgetNames)) {
+
+                    var_dump($component->getPath(), $name, $widgetNames);
+
                     $pageCollection->delete($child);
                 }
             }
@@ -221,19 +228,19 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $this->buildControllerPage($component->getController($controllerName), $component, $page);
             }
 
-            $children = $pageCollection->selectChildren($parentPage)->types([ControllerPage::TYPE]);
+            $children = $pageCollection->selectChildren($page)->types([ControllerPage::TYPE]);
             /**
              * @var ControllerPage $child
              */
             foreach ($children as $child) {
-                if (!in_array($child->slug, $controllerNames)) {
+                $nameParts = explode('.', $child->path);
+                $name = array_pop($nameParts);
+
+                if (!in_array($name, $controllerNames)) {
                     $pageCollection->delete($child);
                 }
             }
-
-
         }
-
     }
 
     /**
