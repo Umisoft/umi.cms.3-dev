@@ -19,7 +19,6 @@ use umicms\hmvc\component\site\SiteComponent;
 use umicms\project\IProjectSettingsAware;
 use umicms\project\TProjectSettingsAware;
 use umicms\project\module\structure\model\StructureModule;
-use umicms\project\module\structure\model\object\StructureElement;
 
 /**
  * Правила маршрутизации статичных страниц для сайта.
@@ -54,6 +53,7 @@ class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
         } else {
             $matched = $this->matchPage($url);
         }
+
         return $matched;
     }
 
@@ -65,7 +65,6 @@ class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
         throw new RuntimeException('Cannot assemble url. Use IUrlManager for url generation.');
     }
 
-
     /**
      * Производит маршрутизацию до главной страницы
      * @return bool|int
@@ -75,16 +74,14 @@ class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
         try {
             $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
 
-            if (!$element->active || $element->trashed) {
-                return false;
+            if ($element instanceof StaticPage && $element->active && !$element->trashed) {
+                $this->setRouteParams($element);
+
+                return 1;
             }
+        } catch(NonexistentEntityException $e) {}
 
-            $this->setRouteParams($element);
-
-            return 1;
-        } catch(NonexistentEntityException $e) {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -103,24 +100,21 @@ class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
             ->result()
             ->fetch();
 
-        if ($element instanceof StructureElement) {
-            if (!$element->active || $element->trashed) {
-                return false;
-            }
-
+        if ($element instanceof StaticPage && $element->active && !$element->trashed) {
             $this->setRouteParams($element);
 
             return strlen($element->getURL()) + 1;
         } else {
+
             return false;
         }
     }
 
     /**
      * Устанавливает элемент в качестве текущего
-     * @param StructureElement $element
+     * @param StaticPage $element
      */
-    protected function setRouteParams(StructureElement $element)
+    protected function setRouteParams(StaticPage $element)
     {
         $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentName;
         $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
