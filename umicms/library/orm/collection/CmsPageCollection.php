@@ -127,7 +127,7 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
      */
     public function changeSlug(ICmsPage $object, $slug)
     {
-        $this->checkIfChangeSlugPossible($object, $this, $slug);
+        $this->checkIfChangeSlugPossible($object, $slug);
         $object->getProperty(ICmsPage::FIELD_PAGE_SLUG)->setValue($slug);
         $this->getObjectPersister()->commit();
 

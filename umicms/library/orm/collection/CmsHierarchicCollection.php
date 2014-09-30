@@ -29,7 +29,7 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     /**
      * {@inheritdoc}
      */
-    public function add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
+    public function add($slug  = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
     {
         if ($branch) {
             $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);

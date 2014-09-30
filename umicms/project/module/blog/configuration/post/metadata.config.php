@@ -8,8 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -20,6 +22,20 @@ return array_replace_recursive(
             'sourceName' => 'blog_post'
         ],
         'fields' => [
+            BlogPost::FIELD_PAGE_H1 => [
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ]
+                    ]
+                ]
+            ],
             BlogPost::FIELD_PUBLISH_TIME => [
                 'type' => IField::TYPE_DATE_TIME,
                 'columnName' => 'publish_time'
@@ -37,13 +53,38 @@ return array_replace_recursive(
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'announcement',
                 'localizations' => [
-                    'ru-RU' => ['columnName' => 'announcement'],
-                    'en-US' => ['columnName' => 'announcement_en']
+                    'ru-RU' => [
+                        'columnName' => 'announcement',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'columnName' => 'announcement_en',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
                 ]
             ],
             BlogPost::FIELD_SOURCE => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'source'
+            ],
+            BlogPost::FIELD_PAGE_CONTENTS => [
+                'mutator' => 'setContents',
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
+                ]
             ],
             BlogPost::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,

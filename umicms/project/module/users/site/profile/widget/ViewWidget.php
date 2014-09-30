@@ -52,7 +52,7 @@ class ViewWidget extends BaseCmsWidget
     public function __invoke()
     {
         try {
-            $user = $this->module->getCurrentUser();
+            $user = $this->module->getAuthenticatedUser();
         } catch (RuntimeException $e) {
             return $this->invokeForbidden(new ResourceAccessForbiddenException($this, $e->getMessage()));
         }

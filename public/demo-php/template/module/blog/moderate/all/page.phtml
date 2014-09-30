@@ -2,6 +2,7 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogPost $page
  */
+use umicms\project\module\blog\model\object\BlogAuthor;
 ?>
 
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
@@ -14,7 +15,9 @@
             <?= $page->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($page->author) : ?><?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
+        <?php if ($page->author instanceof BlogAuthor) : ?>
+            <?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a>
+        <?php endif; ?>
     </p>
 
     <?= $page->contents ?>

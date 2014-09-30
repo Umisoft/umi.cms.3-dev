@@ -18,8 +18,8 @@ use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\PostStatus;
 
 /**
@@ -36,6 +36,7 @@ class BlogPostCollection extends CmsPageCollection
     const HANDLER_MODERATE_OWN = 'moderateOwn';
     const HANDLER_MODERATE_ALL = 'moderateAll';
     const HANDLER_REJECT = 'reject';
+
     /**
      * Возвращает пост по его источнику.
      * @param string $source
