@@ -19,7 +19,7 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'search' => 'umicms\project\module\search\site\controller\SearchController'
+        'index' => 'umicms\project\module\search\site\controller\IndexController'
     ],
     SiteComponent::OPTION_WIDGET => [
         'form' => __NAMESPACE__ . '\widget\FormWidget',
@@ -38,7 +38,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:search' => [],
+                'controller:index' => [],
                 'widget:form' => [],
                 'widget:results' => [],
                 'widget:fragments' => [],
@@ -52,10 +52,10 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-        'search' => [
+        'index' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => 'search'
+                'controller' => 'index'
             ]
         ]
     ]

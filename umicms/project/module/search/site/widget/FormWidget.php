@@ -34,7 +34,7 @@ class FormWidget extends BaseCmsWidget
     public function __invoke()
     {
         $form = $this->getComponent()->getForm('search');
-        $form->setAction($this->getUrl('search'));
+        $form->setAction($this->getUrl('index'));
 
         return $this->createResult(
             $this->template,

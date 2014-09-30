@@ -54,7 +54,7 @@ class LogoutController extends BaseCmsController
         }
 
         return $this->createRedirectResponse(
-            $this->getUrl('login', [], true)
+            $this->getUrl('index', [], true)
         );
     }
 }
