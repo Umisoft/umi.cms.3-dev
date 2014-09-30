@@ -190,12 +190,28 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             $this->buildComponentStructure($childComponent, $page, $type);
         }
 
+        /**
+         * @var StructureElementCollection $pageCollection
+         */
+        $pageCollection = $parentPage->getCollection();
+
         if ($type === 'widgets') {
             $widgetNames = $component->getWidgetNames();
             foreach ($widgetNames as $widgetName) {
                 $this->output->write('.');
                 $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
             }
+
+            $children = $pageCollection->selectChildren($parentPage)->types([WidgetPage::TYPE]);
+            /**
+             * @var WidgetPage $child
+             */
+            foreach ($children as $child) {
+                if (!in_array($child->slug, $widgetNames)) {
+                    $pageCollection->delete($child);
+                }
+            }
+
         }
 
         if ($type === 'controllers') {
@@ -204,6 +220,17 @@ class UpdateDocumentationCommand extends BaseProjectCommand
                 $this->output->write('.');
                 $this->buildControllerPage($component->getController($controllerName), $component, $page);
             }
+
+            $children = $pageCollection->selectChildren($parentPage)->types([ControllerPage::TYPE]);
+            /**
+             * @var ControllerPage $child
+             */
+            foreach ($children as $child) {
+                if (!in_array($child->slug, $controllerNames)) {
+                    $pageCollection->delete($child);
+                }
+            }
+
 
         }
 
