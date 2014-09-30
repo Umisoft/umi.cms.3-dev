@@ -65,13 +65,13 @@ return array_replace_recursive(
                 'relatedField' => 'subscriber',
                 'targetField' => 'dispatch'
             ],
-            /*BaseSubscriber::FIELD_UNSUBSCRIBED_DISPATCHES => [
+            BaseSubscriber::FIELD_UNSUBSCRIBED_DISPATCHES => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'dispatch',
                 'bridge' => 'dispatchUnsubscription',
                 'relatedField' => 'subscriber',
                 'targetField' => 'dispatch'
-            ],*/
+            ],
             RegisteredSubscriber::FIELD_PROFILE => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'profile_id',
@@ -87,7 +87,7 @@ return array_replace_recursive(
                     BaseSubscriber::FIELD_MIDDLE_NAME => [],
                     BaseSubscriber::FIELD_LAST_NAME => [],
                     BaseSubscriber::FIELD_DISPATCHES => [],
-                    //BaseSubscriber::FIELD_UNSUBSCRIBED_DISPATCHES => [],
+                    BaseSubscriber::FIELD_UNSUBSCRIBED_DISPATCHES => [],
                 ]
             ],
             GuestSubscriber::TYPE_NAME => [

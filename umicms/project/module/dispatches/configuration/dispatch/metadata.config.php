@@ -24,13 +24,13 @@ return array_replace_recursive(
                 'relatedField' => 'dispatch',
                 'targetField' => 'subscriber'
             ],
-            /*Dispatch::FIELD_UNSUBSCRIBED => [
+            Dispatch::FIELD_UNSUBSCRIBED => [
                 'type' => IField::TYPE_MANY_TO_MANY,
                 'target' => 'dispatchSubscriber',
                 'bridge' => 'dispatchUnsubscription',
                 'relatedField' => 'dispatch',
                 'targetField' => 'subscriber'
-            ],*/
+            ],
             Dispatch::FIELD_LAST_RELEASE => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'last_release_id',
@@ -46,7 +46,7 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\dispatches\model\object\Dispatch',
                 'fields'      => [
                     Dispatch::FIELD_SUBSCRIBERS => [],
-                    //Dispatch::FIELD_UNSUBSCRIBED => [],
+                    Dispatch::FIELD_UNSUBSCRIBED => [],
                     Dispatch::FIELD_LAST_RELEASE => [],
                     Dispatch::FIELD_DESCRIPTION => [],
                 ]
