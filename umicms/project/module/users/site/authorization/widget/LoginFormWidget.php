@@ -48,7 +48,7 @@ class LoginFormWidget extends BaseFormWidget
     protected function getForm()
     {
         return $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_SITE, RegisteredUser::TYPE_NAME)
-            ->setAction($this->getUrl('login'));
+            ->setAction($this->getUrl('index'));
     }
 }
  

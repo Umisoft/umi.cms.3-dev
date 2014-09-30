@@ -27,7 +27,7 @@ class LoginLinkWidget extends BaseLinkWidget
      */
     protected function getLinkUrl()
     {
-        return $this->getUrl('login', [], $this->absolute);
+        return $this->getUrl('index', [], $this->absolute);
     }
 }
  

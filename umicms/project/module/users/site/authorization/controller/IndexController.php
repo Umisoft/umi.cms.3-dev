@@ -18,9 +18,9 @@ use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер авторизации пользователя
+ * Контроллер авторизации пользователя.
  */
-class LoginController extends BaseSitePageController
+class IndexController extends BaseSitePageController
 {
     use TFormController;
 
