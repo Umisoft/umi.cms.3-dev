@@ -207,14 +207,9 @@ class UpdateDocumentationCommand extends BaseProjectCommand
              * @var WidgetPage $child
              */
             foreach ($children as $child) {
-
                 $nameParts = explode('.', $child->path);
                 $name = array_pop($nameParts);
-
                 if (!in_array($name, $widgetNames)) {
-
-                    var_dump($component->getPath(), $name, $widgetNames);
-
                     $pageCollection->delete($child);
                 }
             }
@@ -235,7 +230,6 @@ class UpdateDocumentationCommand extends BaseProjectCommand
             foreach ($children as $child) {
                 $nameParts = explode('.', $child->path);
                 $name = array_pop($nameParts);
-
                 if (!in_array($name, $controllerNames)) {
                     $pageCollection->delete($child);
                 }
