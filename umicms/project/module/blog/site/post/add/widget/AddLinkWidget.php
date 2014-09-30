@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\post\add\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -28,6 +29,10 @@ class AddLinkWidget extends BaseLinkWidget
      * @var string|BlogCategory $blogCategory категория или GUID в которую добавляется пост
      */
     public $blogCategory;
+    /**
+     * @var string $type тип добавляемого поста
+     */
+    public $type = IObjectType::BASE;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -63,7 +68,7 @@ class AddLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('index', ['id' => $this->blogCategory->getId(), $this->absolute]);
+        return $this->getUrl('index', ['id' => $this->blogCategory->getId(), 'type' => $this->type, $this->absolute]);
     }
 }
  
