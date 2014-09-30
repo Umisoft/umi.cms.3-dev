@@ -36,10 +36,5 @@ return [
     ],
     'dictionaries' => [
         'collection.blogComment' => 'collection.blogComment', 'collection' => 'collection'
-    ],
-    BlogCommentCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogComment::FIELD_AUTHOR => [],
-        BlogComment::FIELD_PUBLISH_TIME => [],
-        BlogComment::FIELD_STATUS => []
     ]
 ];
