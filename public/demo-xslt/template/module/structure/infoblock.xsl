@@ -16,7 +16,7 @@
         />
 
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
-        <xsl:value-of select="infoBlock/property[@name='logo']/value" disable-output-escaping="yes"/>
+        <img src="{infoBlock/property[@name='logo']/value}" alt=""/>
     </xsl:template>
 
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="footer">
