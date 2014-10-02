@@ -10,29 +10,89 @@
 
 namespace umicms\project\module\blog\model\object;
 
-use umi\orm\collection\ICollection;
-use umi\orm\metadata\IObjectType;
-use umi\orm\object\property\IPropertyFactory;
+use DateTime;
+use umi\hmvc\acl\ComponentRoleProvider;
+use umi\orm\metadata\field\relation\HasManyRelationField;
+use umi\orm\object\property\calculable\ICalculableProperty;
+use umi\orm\objectset\IManyToManyObjectSet;
+use umi\orm\objectset\IObjectSet;
 use umicms\exception\RuntimeException;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsPage;
+use umicms\orm\object\TCmsPage;
+use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
- * Пост блога от зарегистрированного пользователя.
+ * Базовый тип поста блога.
  *
+ * @property string $contentsRaw необработанный контент поста
+ * @property string $announcement анонс
+ * @property BlogCategory|null $category категория поста
+ * @property IManyToManyObjectSet $tags теги, к которым относится пост
+ * @property DateTime $publishTime дата публикации поста
+ * @property PostStatus $status статус публикации поста
+ * @property IObjectSet $comments комментарии
+ * @property int $commentsCount количество комментариев к посту
+ * @property string $source источник поста
+ * @property string $image ссылка на картинку
  * @property BlogAuthor $author автор поста
  */
-class BlogPost extends BaseBlogPost
+class BlogPost extends CmsObject implements ICmsPage, IModuleAware
 {
+    use TCmsPage;
+    use TModuleAware;
+
     /**
-     * Тип поста блога
+     * Имя поля для хранения необработанного контента поста
      */
-    const TYPE = 'blogPost';
+    const FIELD_PAGE_CONTENTS_RAW = 'contentsRaw';
+    /**
+     * Имя поля для хранения анонса поста
+     */
+    const FIELD_ANNOUNCEMENT = 'announcement';
+    /**
+     * Имя поля для хранения названия категории, к которой относится пост
+     */
+    const FIELD_CATEGORY = 'category';
+    /**
+     * Имя поля для хранения тэгов, относящихся к посту
+     */
+    const FIELD_TAGS = 'tags';
+    /**
+     * Имя поля для хранения даты и времени публикации поста
+     */
+    const FIELD_PUBLISH_TIME = 'publishTime';
+    /**
+     * Имя поля для хранения статуса публикации поста
+     */
+    const FIELD_STATUS = 'status';
+    /**
+     * Имя поля для хранения количества комментариев к посту
+     */
+    const FIELD_COMMENTS_COUNT = 'commentsCount';
+    /**
+     * Имя поля для хранения комментариев к посту
+     */
+    const FIELD_COMMENTS = 'comments';
+    /**
+     * Имя поля для хранения источника поста
+     */
+    const FIELD_SOURCE = 'source';
+    /**
+     * Имя поля для хранения картинки
+     */
+    const FIELD_IMAGE = 'image';
     /**
      * Имя поля для хранения автора поста
      */
     const FIELD_AUTHOR = 'author';
+
     /**
      * Форма отправки поста на модерацию
      */
@@ -41,25 +101,26 @@ class BlogPost extends BaseBlogPost
      * Форма помещения поста в черновики
      */
     const FORM_DRAFT_POST = 'draft';
-
     /**
-     * @var UsersModule $usersModule модуль "Пользователи"
+     * Форма добавления поста зарегистрированным пользователем
      */
-    private $usersModule;
-
+    const FORM_ADD_POST = 'addPost';
     /**
-     * Конструктор.
-     * @param ICollection $collection
-     * @param IObjectType $objectType
-     * @param IPropertyFactory $propertyFactory
-     * @param UsersModule $usersModule
+     * Форма добавления поста незарегистрированным посетителем
      */
-    public function __construct(ICollection $collection, IObjectType $objectType, IPropertyFactory $propertyFactory, UsersModule $usersModule)
-    {
-        parent::__construct($collection, $objectType, $propertyFactory);
-
-        $this->usersModule = $usersModule;
-    }
+    const FORM_ADD_VISITOR_POST = 'addVisitorPost';
+    /**
+     * Форма редактирования поста
+     */
+    const FORM_EDIT_POST = 'editPost';
+    /**
+     * Форма публикации поста
+     */
+    const FORM_PUBLISH_POST = 'publish';
+    /**
+     * Форма отклонения поста для публикации
+     */
+    const FORM_REJECT_POST = 'reject';
 
     /**
      * Возвращает URL поста.
@@ -88,7 +149,13 @@ class BlogPost extends BaseBlogPost
                 break;
             }
             case PostStatus::GUID_NEED_MODERATION : {
-                if ($this->author instanceof BlogAuthor && $this->usersModule->getCurrentUser() === $this->author->profile) {
+
+                /**
+                 * @var UsersModule $usersModule
+                 */
+                $usersModule = $this->getModuleByClass(UsersModule::className());
+
+                if ($this->author instanceof BlogAuthor && $usersModule->getCurrentUser() === $this->author->user) {
                     $handler = BlogPostCollection::HANDLER_MODERATE_OWN;
                 } else {
                     $handler = BlogPostCollection::HANDLER_MODERATE_ALL;
@@ -96,7 +163,7 @@ class BlogPost extends BaseBlogPost
                 break;
             }
             default : {
-                $handler = ICmsCollection::HANDLER_SITE;
+            $handler = ICmsCollection::HANDLER_SITE;
             }
         }
 
@@ -115,7 +182,7 @@ class BlogPost extends BaseBlogPost
 
         if ($publishStatusProperty->getIsModified()) {
             if ($this->author instanceof BlogAuthor) {
-                $this->author->recalculateCommentsCount();
+                $this->author->recalculatePostsCount();
             }
         }
 
@@ -136,9 +203,111 @@ class BlogPost extends BaseBlogPost
         $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
 
         if ($value instanceof BlogAuthor) {
-            $value->recalculateCommentsCount();
+            $value->recalculatePostsCount();
         }
 
         return $this;
+    }
+
+    /**
+     * Мутатор для контентного поля.
+     * @param string $contents контент поста
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_PAGE_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'model:blogPost';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        if (!$role instanceof ComponentRoleProvider || !$role->getIdentity() instanceof RegisteredUser) {
+            return false;
+        }
+
+        /**
+         * @var RegisteredUser $user
+         */
+        $user = $role->getIdentity();
+        $result = true;
+
+        foreach ($assertions as $assertion) {
+            switch($assertion) {
+                case 'own': {
+                    $result = $result && ($this->author->profile === $user);
+                    break;
+                }
+                default: {
+                return false;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isInIndex()
+    {
+        return $this->status && ($this->status->guid === PostStatus::GUID_PUBLISHED) && $this->active && !$this->trashed;
+    }
+
+    /**
+     * Помечает количество комментариев для пересчета.
+     * @return $this
+     */
+    public function recalculateCommentsCount()
+    {
+        /**
+         * @var ICalculableProperty $commentsCountProperty
+         */
+        $commentsCountProperty = $this->getProperty(self::FIELD_COMMENTS_COUNT);
+        $commentsCountProperty->recalculate();
+
+        return $this;
+    }
+
+    /**
+     * Вычисляет количество опубликованных комментариев автора.
+     * @return int
+     */
+    public function calculateCommentsCount()
+    {
+        /**
+         * @var HasManyRelationField $commentsField
+         */
+        $commentsField = $this->getProperty(self::FIELD_COMMENTS)->getField();
+        /**
+         * @var BlogCommentCollection $commentCollection
+         */
+        $commentCollection = $commentsField->getTargetCollection();
+
+        return $commentCollection->getInternalSelector()
+            ->fields([BlogComment::FIELD_IDENTIFY])
+            ->where(BlogComment::FIELD_POST)->equals($this)
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)
+                ->equals(CommentStatus::GUID_PUBLISHED)
+            ->where(BlogComment::FIELD_TRASHED)->equals(false)
+            ->getTotal();
     }
 }

@@ -17,8 +17,6 @@ use umicms\project\module\blog\model\object\BlogAuthor;
         <?php endif; ?>
         <?php if ($page->author instanceof BlogAuthor) : ?>
             <?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a>
-        <?php else : ?>
-            <?=$this->translate('Author')?>: <?=$page->authorGuest?>
         <?php endif; ?>
     </p>
 

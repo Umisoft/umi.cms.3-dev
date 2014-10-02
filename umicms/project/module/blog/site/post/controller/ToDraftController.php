@@ -12,7 +12,6 @@ namespace umicms\project\module\blog\site\post\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -21,6 +20,11 @@ use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер помещения поста блога в черновики.
+ *
+ * Контроллер обрабатывает POST-запрос на перемещение опубликованного поста в черновики и не имеет шаблонизируемого ответа.
+ * В случае успешного выполнения операции контроллер производит редирект на URL, указанный в запросе, или на реферер.
+ * Если нет возможности выполнить редирект, контроллер возвращает простое текстовое сообщение об успехе.
+ * Если операцию выполнить не удалось, выбрасывается исключение.
  */
 class ToDraftController extends BaseCmsController
 {
@@ -58,7 +62,7 @@ class ToDraftController extends BaseCmsController
             );
         }
 
-        return $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, $this->blogPost->getTypeName());
     }
 
     /**
