@@ -1,3 +1,5 @@
+@import "../../umi/components/icons";
+
 .elfinder{
     &-dialog-resize {
         overflow: hidden;
@@ -45,7 +47,7 @@
 
         &-hline, &-vline {
             position:absolute;
-            background-image:url("#{$images-path}elfinder/img/crop.gif");
+            background-image:url($umi-icons-img);
         }
 
         &-hline {
