@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <!-- Контент -->
-                <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="col-xs-12">
                     <xsl:apply-templates select="document('widget://news.rubric.list?options%5Bfields%5D=contents')" mode="news.content.list" />
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 </div>
 
                 <!-- Контент -->
-                <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="col-xs-12">
                     <xsl:apply-templates select="document('widget://news.subject.list?options%5Bfields%5D=contents')" mode="news.content.list" />
                 </div>
             </div>

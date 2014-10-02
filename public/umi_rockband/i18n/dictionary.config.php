@@ -71,6 +71,7 @@ return [
             'Drafts author' => 'Drafts author',
             'Author' => 'Author',
             'Comments' => 'Comments',
+            'Add comment' => 'Add comment',
             'Title' => 'Title',
             'Reply' => 'Reply',
             'Moderation queue' => 'Moderation queue',
@@ -87,6 +88,7 @@ return [
             'Drafts author' => 'Черновики автора',
             'Author' => 'Автор',
             'Comments' => 'Комментариев',
+            'Add comment' => 'Добавить комментарий',
             'Title' => 'Заголовок',
             'Reply' => 'Ответить',
             'Moderation queue' => 'Очередь модерации',
@@ -94,6 +96,19 @@ return [
             'Profile has been saved.' => 'Профиль сохранён.',
             'Edit profile author' => 'Редактировать автора',
             'RecentBlogPosts' => 'Последние статьи из блога'
+        ]
+    ],
+
+    'project.site.users' => [
+        'en-US' => [
+            'Login' => 'Login',
+            'Registration' => 'Registration',
+            'Confirm password' => 'Password again',
+        ],
+        'ru-RU' => [
+            'Login' => 'Вход',
+            'Registration' => 'Регистрация',
+            'Confirm password' => 'Повторите пароль',
         ]
     ],
 

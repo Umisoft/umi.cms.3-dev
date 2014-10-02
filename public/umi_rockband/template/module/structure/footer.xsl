@@ -23,12 +23,11 @@
                         </p>
 
                         <!-- Стрелка "Подняться вверх" -->
-                        <a href="#top" class="top-scroll"><img src="images/top-scroll.png" alt=""/></a>
+                        <a href="{$anchor}top" class="top-scroll"><img src="images/top-scroll.png" alt=""/></a>
                     </div>
                 </div>
             </div>
         </footer>
     </xsl:template>
-
 
 </xsl:stylesheet>

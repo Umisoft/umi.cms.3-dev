@@ -21,19 +21,7 @@
                 <!-- Контент -->
                 <div class="col-md-offset-3 col-md-6 text-center">
                     <p class="text-center"><xsl:value-of select="document('translate://project.site.search/No%20results')/result"/></p>
-                    <form class="form-search">
-                        <xsl:apply-templates select="form/attributes/@*" mode="form"/>
-                        <div class="input-group">
-                            <xsl:apply-templates select="form/elements/item[id='query']" mode="form">
-                                <xsl:with-param name="class">form-control</xsl:with-param>
-                            </xsl:apply-templates>
-                            <div class="input-group-btn">
-                                <xsl:apply-templates select="form/elements/item[type='submit']" mode="form">
-                                    <xsl:with-param name="class">btn btn-default-font btn-primary</xsl:with-param>
-                                </xsl:apply-templates>
-                            </div>
-                        </div>
-                    </form>
+                    <xsl:apply-templates select="form" mode="search.form"  />
                 </div>
                 <hr class="col-md-12" />
                 <div class="col-md-12">

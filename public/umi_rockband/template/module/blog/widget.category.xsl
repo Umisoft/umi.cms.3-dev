@@ -39,7 +39,7 @@
             <!-- Кнопка Rss -->
             <xsl:apply-templates select="document(concat('widget://blog.category.rssLink?category=', @guid))" mode="blog.sidebar.rss"/>
             <!-- Рекурсивный вызов -->
-            <xsl:apply-templates select="document(concat('widget://blog.category.list?parentCategory=', @guid))" mode="blog.sidebar.rss" />
+            <xsl:apply-templates select="document(concat('widget://blog.category.list?parentCategory=', @guid))" mode="blog.sidebar.list" />
         </li>
     </xsl:template>
     <!-- Вывод каждой категории и рекурсивный вызов для вывода дочерних категорий <Конец> -->

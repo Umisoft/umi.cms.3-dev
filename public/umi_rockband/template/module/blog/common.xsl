@@ -32,16 +32,19 @@
     </xsl:template>
 
     <xsl:template name="blog.sidebar">
-        <div class="sidebar">
-            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Categories')/result" /></a></h3>
-            <xsl:apply-templates select="document('widget://blog.category.list')" mode="blog.sidebar.list" />
-
-            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Authors')/result" /></a></h3>
-            <xsl:apply-templates select="document('widget://blog.author.view.list')" mode="blog.sidebar.list" />
-
-            <h3><a href="#"><xsl:value-of select="document('translate://project.site/Tags')/result" /></a></h3>
-            <xsl:apply-templates select="document('widget://blog.tag.list')" mode="blog.sidebar.list" />
-
+        <div class="sidebar container-fluid">
+            <div class="col-xs-12 col-sm-4 col-md-12">
+                <h3><a href="#"><xsl:value-of select="document('translate://project.site/Categories')/result" /></a></h3>
+                <xsl:apply-templates select="document('widget://blog.category.list')" mode="blog.sidebar.list" />
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-12">
+                <h3><a href="#"><xsl:value-of select="document('translate://project.site/Authors')/result" /></a></h3>
+                <xsl:apply-templates select="document('widget://blog.author.view.list')" mode="blog.sidebar.list" />
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-12">
+                <h3><a href="#"><xsl:value-of select="document('translate://project.site/Tags')/result" /></a></h3>
+                <xsl:apply-templates select="document('widget://blog.tag.list')" mode="blog.sidebar.list" />
+            </div>
         </div>
     </xsl:template>
     <!-- Определяем часто используемые блоки <Конец> -->

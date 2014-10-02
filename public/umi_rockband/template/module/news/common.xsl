@@ -33,12 +33,15 @@
     </xsl:template>
 
     <xsl:template name="news.sidebar">
-        <div class="sidebar">
-            <h3><xsl:value-of select="document('translate://project.site.blog/Rubrics')/result" /></h3>
-            <xsl:apply-templates select="document('widget://news.rubric.list?depth=2')" mode="news.sidebar.rss" />
-            <h3><xsl:value-of select="document('translate://project.site.blog/Subjects')/result" /></h3>
-            <xsl:apply-templates select="document('widget://news.subject.list?depth=2')" mode="news.sidebar.list" />
-            <div class="clear"></div>
+        <div class="sidebar container-fluid">
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <h3><xsl:value-of select="document('translate://project.site.blog/Rubrics')/result" /></h3>
+                <xsl:apply-templates select="document('widget://news.rubric.list?depth=2')" mode="news.sidebar.list" />
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <h3><xsl:value-of select="document('translate://project.site.blog/Subjects')/result" /></h3>
+                <xsl:apply-templates select="document('widget://news.subject.list?depth=2')" mode="news.sidebar.list" />
+            </div>
         </div>
     </xsl:template>
     <!-- Определяем часто используемые блоки <Конец> -->

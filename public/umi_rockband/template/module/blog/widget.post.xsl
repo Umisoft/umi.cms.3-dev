@@ -74,7 +74,7 @@
     <xsl:template match="blogPost" mode="blog.main.row">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
             <a href="{@url}">
-                <img src="{property[@name='imageMain']/value}" class="img" alt=""/>
+                <img src="{property[@name='imageMain']/value}" class="img" alt="{@h1}"/>
             </a>
             <div class="bottom">
                 <h4>
@@ -82,7 +82,7 @@
                         <xsl:value-of select="@h1"/>
                     </a>
                 </h4>
-                <div class="desc">
+                <div class="announce">
                     <xsl:value-of select="property[@name='announcement']/value" disable-output-escaping="yes"/>
                 </div>
 
@@ -93,7 +93,7 @@
                             <xsl:with-param name="stringTime" select="property[@name='publishTime']/value/date"/>
                         </xsl:call-template>
                     </li>
-                    <li class="cat">
+                    <li class="cut">
                         <xsl:value-of select="property[@name='category']/value/@displayName"/>
                         <xsl:text> | </xsl:text>
                         <xsl:value-of select="document('translate://project.site.blog/Comments')"/>

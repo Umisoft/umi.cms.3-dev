@@ -1,54 +1,118 @@
-$(document).ready(function() {
-    $('.carousel').carousel();
-    $(document).click(function(event) {
-        if ($(event.target).closest(".h-search-form").length)
-            return;
-        event.stopPropagation();
-        if ($('.h-search-form').hasClass('active')) {
-            $('.h-search-form').removeClass('active').animate({'width': '12px'}, 200);
-            $('.h-search-form').find('.input-group').css({'border': 'none'});
-        }
+jQuery(document).ready(function() {
+    jQuery('.carousel').carousel();
 
+	var searchForm = jQuery('.h-search-form').click(function() {
+		jQuery('.form-control', this).focus();
+	});
+    jQuery('.form-control', searchForm).focus(function(){
+		searchForm.addClass('active');
+	}).blur(function() {
+		searchForm.removeClass('active');
+	});
+
+	var headerY = jQuery('.header-height'),
+		header = jQuery('header'),
+		setHeader = function() {
+			headerY.height(header.height() + 20 );
+		};
+
+	setHeader();
+    jQuery(window).resize(function() {
+		setHeader();
     });
-    $('.h-search-form').click(function() {
-        if (!$(this).hasClass('active')) {
-            $('.h-search-form').addClass('active').delay(200).animate({'width': '200px'}, 400);
-            $('.h-search-form').find('.input-group').css({'border': '1px solid #fff'});
-        }
-    });
-    $('.list-blog .item').hover(function() {
-        $(this).find('.desc').show(200);
-    }, function() {
-        $(this).find('.desc').hide(200);
-    });
-    $('.header-height').height($('header').height());
-    $(window).resize(function() {
-        $('.header-height').height($('header').height());
-    });
-    $(window).scroll(function() {
-        if ($(document).scrollTop() >= $('header').height()) {
-            $('header').addClass('fixed');
+    jQuery(window).scroll(function() {
+        if (jQuery(document).scrollTop() <= headerY.height()) {
+			header.filter('.fixed').each(function() {
+				jQuery(this).removeClass('fixed');
+				setHeader();
+			});
         } else {
-            $('header').removeClass('fixed');
+			header.addClass('fixed');
         }
     });
-    $('.top-scroll').click(function() {
-        $('body').animate({scrollTop: 0}, 300);
+    jQuery('.top-scroll').click(function() {
+		jQuery('html, body').animate({scrollTop: 0}, 300);
         return false;
     });
-    $('.radio').click(function() {
-        $(this).toggleClass('active');
+    jQuery('.radio').click(function() {
+        jQuery(this).toggleClass('active');
         return false;
-    });
-    $('div.settings a.account').click(function() {
-        $(this).next('.submenu').fadeToggle();
     });
 
-	$('button[name^="re:"]').on('click', function() {
-		var form = $(this).closest('.comment').find('form');
+	jQuery('button[name^="re:"]').on('click', function() {
+		var form = jQuery(this).closest('#comments').find('form');
 		form.attr('action', this.value);
-		$('input[name="displayName"]', form).val(this.name);
-		$('textarea', form).focus();
+		jQuery('input[name="displayName"]', form).val(this.name);
+		var target = jQuery('textarea', form);
+		jQuery('html, body').animate({scrollTop: jQuery(target).offset().top - 200}, 500, function() {
+			target.focus();
+		});
+	});
+
+	var comments = jQuery('.comment');
+	if(comments) {
+		for(var i = 0; i < comments.length; i = i+2) {
+			jQuery(comments[i]).addClass('even')
+		}
+	}
+
+	jQuery(".modal-content form[action]").submit(function() {
+		var self = this;
+			$.ajax({
+				type: self.method,
+				data: $('input:not([name="redirectUrl"]), textarea', self).serialize(),
+				url: self.action + '.json'
+			}).done(function( data ) {
+					var user = data.layout.contents.user;
+					if(user) {
+						jQuery(self).html('<h4>Регистрация успешно завершена.</h4>');
+					} else {
+						jQuery(self).html('<h4>Вы успешно авторизовались.</h4>');
+						jQuery('header#top .login').remove();
+					}
+			}).fail(function( data ) {
+					var errors = data.responseJSON.layout.contents.form.errors,
+						elements = data.responseJSON.layout.contents.form.elements;
+
+					//Clear old messages
+					jQuery('.hint', self).remove();
+					jQuery('.form-group', self).removeClass('input-group-error');
+
+					//Add new error messages
+					for(var prop in errors) {
+						var badField = jQuery('input[name^="' + prop + '"]', self).eq(0);
+						badField.closest('.form-group').addClass('input-group-error');
+
+						var error = '<div class="hint"><ul>';
+						for (var i = 0; i < errors[prop].length; i++) {
+							error += '<li>' + errors[prop][i] + '</li>';
+						}
+						error += '</ul></div>';
+
+						badField.before(error);
+					}
+
+					//Refresh CSRF token
+					var csrf = jQuery('input[name="csrf"]', self);
+					if(csrf[0]) {
+						for (var i = 0; i < elements.length; i++) {
+							if (elements[i].type == 'csrf')
+								csrf.value = elements[i].attributes.value;
+						}
+					}
+
+					//Refresh captha data
+					var captcha = jQuery('input[name="captcha"]', self);
+					if(captcha[0]) {
+						for (var i = 0; i < elements.length; i++) {
+							if (elements[i].type == 'captcha' && elements[i].isHuman != true) {
+								var captchaImg = captcha.parent().find('span > img').eq(0);
+								captchaImg.attr('src', elements[i].url + '?' + Math.random());
+							}
+						}
+					}
+			});
+		return false;
 	});
 
 });

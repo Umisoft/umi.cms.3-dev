@@ -29,12 +29,11 @@
                 </title>
                 <base href="{$assets}" />
 
-                <link rel="stylesheet" href="css/reset.css"/>
-                <link rel="stylesheet" href="css/bootstrap.css"/>
-                <link rel="stylesheet" href="css/bootstrap-theme.css"/>
-                <link rel="stylesheet" href="css/style.css"/>
-                <link rel="stylesheet" href="css/bootstrap-class.css"/>
-                <link rel="shortcut icon" href="images/favicon.ico"/>
+                <link rel="stylesheet" href="css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+                <link rel="stylesheet" href="css/template.css"/>
+
+                <link rel="shortcut icon" href="/favicon.ico"/>
                 <script src="js/jquery-1.11.0.min.js"></script>
                 <script src="js/bootstrap.min.js"></script>
                 <script src="js/scripts.js"></script>
@@ -42,8 +41,6 @@
             <body>
                 <!-- Хедер сайта -->
                 <xsl:call-template name="header"/>
-
-                <div class="header-height"></div>
 
                 <!-- Основное содержание -->
                 <xsl:apply-templates select="contents"/>
@@ -53,6 +50,41 @@
 
                 <!-- Админ тулбар -->
                 <xsl:apply-templates select="document('widget://topBar')" />
+
+                <!-- Pop-up окнка -->
+                <div role="dialog" tabindex="-1" class="modal fade" id="auth" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title"><xsl:value-of select="document('translate://project.site.users/Login')/result"/></h4>
+                            </div>
+                            <div class="modal-body">
+                                <xsl:apply-templates select="document('widget://users.authorization.loginForm')/result/form" mode="default.form">
+                                    <xsl:with-param name="css.class">col-sm-12 col-md-12</xsl:with-param>
+                                </xsl:apply-templates>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="dialog" tabindex="-1" class="modal fade" id="reg" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title"><xsl:value-of select="document('translate://project.site.users/Registration')/result"/></h4>
+                            </div>
+                            <div class="modal-body">
+                                <xsl:apply-templates select="document('widget://users.registration.form')/result/form" mode="default.form">
+                                    <xsl:with-param name="css.class">col-sm-12 col-md-12</xsl:with-param>
+                                </xsl:apply-templates>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </body>
         </html>
 

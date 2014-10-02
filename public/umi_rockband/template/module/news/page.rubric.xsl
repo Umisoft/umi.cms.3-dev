@@ -21,21 +21,20 @@
                 </div>
 
                 <!-- Контент -->
-                <div class="col-xs-12">
+                <div>
                     <xsl:value-of select="//property[@name='contents']/value" disable-output-escaping="yes" />
                 </div>
 
+                <!-- Сайдбар -->
+                <xsl:call-template name="news.sidebar"/>
+
                 <!-- Список новостей -->
-                <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="itemslist">
                     <xsl:apply-templates select="document(concat('widget://news.rubric.newsList?rubrics%5B%5D=', page/@guid,
                         '&amp;pagination%5BpageParam%5D=p&amp;pagination%5Btype%5D=elastic&amp;pagination%5BpagesCount%5D=5&amp;limit=5'
                     ))" mode="news.content.list" />
                 </div>
 
-                <!-- Сайдбар -->
-                <div class="col-xs-6 col-md-4">
-                    <xsl:call-template name="news.sidebar"/>
-                </div>
             </div>
         </div>
     </xsl:template>
