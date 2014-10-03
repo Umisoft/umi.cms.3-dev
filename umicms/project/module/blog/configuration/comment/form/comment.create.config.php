@@ -34,13 +34,6 @@ return [
                     'options' => [
                         'dataSource' => BlogComment::FIELD_DISPLAY_NAME
                     ],
-                ],
-                BlogComment::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => BlogComment::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => BlogComment::FIELD_SLUG
-                    ],
                 ]
             ]
         ],

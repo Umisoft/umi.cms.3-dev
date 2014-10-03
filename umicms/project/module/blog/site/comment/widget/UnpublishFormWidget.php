@@ -78,7 +78,7 @@ class UnpublishFormWidget extends BaseFormWidget
 
         $form = $this->model->comment()->getForm(
             BlogComment::FORM_UNPUBLISH_COMMENT,
-            BlogComment::TYPE,
+            BlogComment::TYPE_NAME,
             $this->blogComment
         );
 

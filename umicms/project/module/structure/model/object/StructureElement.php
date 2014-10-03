@@ -14,6 +14,8 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Базовый элемент структуры.
@@ -23,9 +25,13 @@ use umicms\orm\object\TCmsPage;
  * @property bool $inMenu признак включения в меню
  * @property int $submenuState состояние дочернего меню
  */
-abstract class StructureElement extends CmsHierarchicObject implements ICmsPage, ILockedAccessibleObject
+abstract class StructureElement extends CmsHierarchicObject implements ICmsPage, ILockedAccessibleObject, IProjectSettingsAware
 {
-    use TCmsPage;
+    use TProjectSettingsAware;
+
+    use TCmsPage {
+        TCmsPage::getPageUrl as protected getPageUrlInternal;
+    }
 
     /**
      *  Имя поля для хранения пути компонента-обработчика
@@ -55,4 +61,25 @@ abstract class StructureElement extends CmsHierarchicObject implements ICmsPage,
      * Подменю всегда развернуто
      */
     const SUBMENU_ALWAYS_SHOWN = 2;
+
+    /**
+     * Проверяет, явяляется ли страница страницей по умолчанию
+     * @return bool
+     */
+    public function getIsDefault()
+    {
+        return $this->getSiteDefaultPageGuid() === $this->guid;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPageUrl($isAbsolute = false)
+    {
+        if ($this->getIsDefault()) {
+            return $this->geturlManager()->getProjectUrl($isAbsolute);
+        }
+
+        return $this->getPageUrlInternal($isAbsolute);
+    }
 }
