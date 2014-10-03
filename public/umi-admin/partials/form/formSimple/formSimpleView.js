@@ -4,7 +4,7 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
+            UMI.FormSimpleElementsMixin = Ember.Mixin.create(UMI.FormElementsMixin, {
                 /**
                  * Фабрика элементов
                  * @property elementFactory
@@ -15,14 +15,16 @@ define(
 
                         singleCollectionObjectRelation: 'FormSingleCollectionObjectRelationElement'
                     });
-                }.property(),
+                }.property()
+            });
 
+            UMI.FormSimpleView = Ember.View.extend(UMI.FormViewMixin, UMI.FormSimpleElementsMixin, {
                 /**
                  * Шаблон формы
                  * @property layout
                  * @type String
                  */
-                layoutName: 'partials/form',
+                layoutName: 'partials/formSimple',
 
                 /**
                  * Классы view

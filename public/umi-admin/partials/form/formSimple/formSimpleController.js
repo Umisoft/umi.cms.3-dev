@@ -4,7 +4,7 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
+            UMI.FormSimpleController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 formElementsBinding: 'control.meta.elements'
             });
         };

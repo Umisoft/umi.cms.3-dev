@@ -4,7 +4,7 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormViewMixin = Ember.Mixin.create(UMI.FormElementsMixin, {
+            UMI.FormViewMixin = Ember.Mixin.create({
                 /**
                  * Тип DOM элемента
                  * @property tagName

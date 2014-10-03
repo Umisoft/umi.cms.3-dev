@@ -3,12 +3,10 @@ define(
         'App',
         'partials/form/partial/magellan/main',
         'partials/form/partial/submitToolbar/main',
-        './form.controller.mixin',
-        './form.controller',
-        './form.view.mixin',
-        './form.view'
+        './formSimpleController',
+        './formSimpleView'
     ],
-    function(UMI, magellan, submitToolbar, formControllerMixin, formController, formViewMixin, formView) {
+    function(UMI, magellan, submitToolbar, formSimpleController, formSimpleView) {
         'use strict';
 
         /**
@@ -18,15 +16,11 @@ define(
          *  {{render 'formBase' model}}
          */
         return function() {
-
             magellan();
             submitToolbar();
 
-            formControllerMixin();
-            formController();
-
-            formViewMixin();
-            formView();
+            formSimpleController();
+            formSimpleView();
         };
     }
 );

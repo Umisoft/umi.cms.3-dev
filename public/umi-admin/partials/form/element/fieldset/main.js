@@ -5,7 +5,7 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormFieldsetElementMixin = Ember.Mixin.create(UMI.FormElementsMixin, {
+            UMI.FormFieldsetElementMixin = Ember.Mixin.create(UMI.FormBaseElementsMixin, {
                 tagName: 'fieldset',
 
                 classNameBindings: ['elementClass'],
@@ -26,11 +26,14 @@ define(
                 }.property('meta.id'),
 
                 actions: {
-                    expand: function(){
+                    expand: function() {
                         this.toggleProperty('isExpanded');
                     }
                 }
             });
+
+            UMI.FormFieldsetCollectionElementMixin = Ember.Mixin.create(UMI.FormFieldsetElementMixin,
+                UMI.FormControlElementsMixin, {});
         };
     }
 );

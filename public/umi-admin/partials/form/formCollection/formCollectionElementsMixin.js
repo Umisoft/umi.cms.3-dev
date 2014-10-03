@@ -4,7 +4,7 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {
+            UMI.FormCollectionElementsMixin = Ember.Mixin.create(UMI.FormElementsMixin, {
                 /**
                  * Фабрика элементов
                  * @property elementFactory
@@ -12,6 +12,8 @@ define(
                 elementFactory: function() {
                     return UMI.FormElementFactory.create({
                         container: this.container,
+
+                        fieldset: 'FormFieldsetCollectionElement',
 
                         wysiwyg: 'FormHtmlEditorCollectionElement',
 
@@ -27,20 +29,7 @@ define(
 
                         pageRelation: 'FormObjectRelationElement'
                     });
-                }.property(),
-
-                /**
-                 * Шаблон формы
-                 * @property layout
-                 * @type String
-                 */
-                layoutName: 'partials/formControl',
-
-                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
-
-                willDestroyElement: function() {
-                    this.get('controller').removeObserver('object.validErrors.@each');
-                }
+                }.property()
             });
         };
     }

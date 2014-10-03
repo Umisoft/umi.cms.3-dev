@@ -1,7 +1,7 @@
 define(
     [
         'App',
-        'partials/form/element/mixins', 'partials/form/element/form.element.mixin',
+        'partials/form/element/mixins',
         'partials/form/element/wysiwyg/main', 'partials/form/element/select/main',
         'partials/form/element/multi-select/main', 'partials/form/element/checkbox/main',
         'partials/form/element/radio/main', 'partials/form/element/text/main', 'partials/form/element/number/main',
@@ -14,7 +14,7 @@ define(
         'partials/form/element/passwordWithConfirmation/main', 'partials/form/element/hidden/main',
         'partials/form/element/fieldset/main', 'partials/form/element/submit/main'
     ],
-    function(UMI, mixins, formElementMixin, wysiwygElement, selectElement, multiSelectElement, checkboxElement,
+    function(UMI, mixins, wysiwygElement, selectElement, multiSelectElement, checkboxElement,
         radioElement, textElement, numberElement, emailElement, passwordElement, timeElement, dateElement,
         datetimeElement, fileElement, imageElement, textareaElement, checkboxGroupElement, colorElement, permissions,
         objectRelationElement, singleCollectionObjectRelation, passwordWithConfirmationElement, hiddenElement,
@@ -23,7 +23,6 @@ define(
 
         return function() {
             mixins();
-            formElementMixin();
 
             wysiwygElement();
             selectElement();
