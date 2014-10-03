@@ -181,63 +181,67 @@ define(['App'], function(UMI) {
                 }
             },
 
-            mouseDown: function(e) {
-                e.preventDefault();
+            didInsertElement: function() {
                 var self = this;
                 var $el = self.$();
                 var $dock = self.$().closest('.dock');
                 var $body = $(document.body);
-                var curPos = e.pageX;
-                var elPos = $el.position().left;
-                var elStartPos = elPos;
-                var elIndex = 0;
                 var $empty = $('<li class="umi-dock-button-empty">');
-                var moved = false;
 
-                $body.on('mousemove.sort.umi.dock', function(e) {
-                    elPos = elPos + e.pageX - curPos;
+                $el.children('a').on('mousedown.umi.dock.button', function(e) {
+                    e.preventDefault();
+                    var curPos = e.pageX;
+                    var elPos = $el.position().left;
+                    var elStartPos = elPos;
+                    var elIndex = 0;
+                    var moved = false;
 
-                    if (!moved) {
-                        self.set('parentView.isBlocked', true);
-                        $el.addClass('umi-dock-button-dragging').after($empty);
-                        moved = true;
-                    }
+                    $body.on('mousemove.sort.umi.dock', function(e) {
+                        elPos = elPos + e.pageX - curPos;
 
-                    var tmpIndex = Math.round((elPos - elStartPos) / 120); // 120 - width of the element in the dock
-                    var $newEl;
-                    if (tmpIndex > elIndex) {
-                        $newEl = $empty.nextAll('li:not(.umi-dock-button-dragging):first');
-                        if ($newEl.length) {
-                            $newEl.after($empty);
-                            elIndex++;
+                        if (!moved) {
+                            self.set('parentView.isBlocked', true);
+                            $el.addClass('umi-dock-button-dragging').after($empty);
+                            $dock.addClass('sorting');
+                            moved = true;
                         }
-                    }
-                    if (tmpIndex < elIndex) {
-                        $newEl = $empty.prevAll('li:not(.umi-dock-button-dragging):first');
-                        if ($newEl.length) {
-                            $newEl.before($empty);
-                            elIndex--;
+
+                        var tmpIndex = Math.round((elPos - elStartPos) / 120); // 120 - width of the element in the dock
+                        var $newEl;
+                        if (tmpIndex > elIndex) {
+                            $newEl = $empty.nextAll('li:not(.umi-dock-button-dragging):first');
+                            if ($newEl.length) {
+                                $newEl.after($empty);
+                                elIndex++;
+                            }
                         }
-                    }
-                    $el.css({left: elPos});
-                    curPos = e.pageX;
-                }).on('mouseup.sort.umi.dock', function(e) {
-                    $body.off('.sort.umi.dock');
+                        if (tmpIndex < elIndex) {
+                            $newEl = $empty.prevAll('li:not(.umi-dock-button-dragging):first');
+                            if ($newEl.length) {
+                                $newEl.before($empty);
+                                elIndex--;
+                            }
+                        }
+                        $el.css({left: elPos});
+                        curPos = e.pageX;
+                    }).on('mouseup.sort.umi.dock', function(e) {
+                        $body.off('.sort.umi.dock');
 
-                    if (!moved) {
-                        return;
-                    }
+                        if (!moved) {
+                            return;
+                        }
 
-                    $empty.after($el.removeClass('umi-dock-button-dragging').css({left: ''})).remove();
+                        $empty.after($el.removeClass('umi-dock-button-dragging').css({left: ''})).remove();
 
-                    self.set('parentView.isBlocked', false);
-                    self.get('parentView').leaveDock();
+                        self.set('parentView.isBlocked', false);
+                        self.get('parentView').leaveDock();
 
-                    var mass = [];
-                    $dock.children('li').each(function() {
-                        mass.push($(this).data('name'));
+                        var mass = [];
+                        $dock.removeClass('sorting').children('li').each(function() {
+                            mass.push($(this).data('name'));
+                        });
+                        UMI.Utils.LS.set('dock', mass);
                     });
-                    UMI.Utils.LS.set('dock', mass);
                 });
             }
         });

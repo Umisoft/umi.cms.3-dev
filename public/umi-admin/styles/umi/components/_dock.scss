@@ -76,6 +76,14 @@ $umi-dock-wrapper-height: rem-calc(48);
                 }
             }
         }
+
+        &.sorting,
+        &.sorting > li > a {
+            cursor: move;
+        }
+        &.sorting ul {
+            display: none;
+        }
     }
 
     .umi-dock-button{
@@ -141,14 +149,6 @@ $umi-dock-wrapper-height: rem-calc(48);
         &-dragging {
             position: absolute;
             z-index: 2;
-
-            & a {
-                cursor: move;
-            }
-
-            & ul {
-                display: none;
-            }
         }
 
         &-empty {
