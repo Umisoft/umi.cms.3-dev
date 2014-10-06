@@ -38,6 +38,9 @@ define(['App'], function(UMI) {
 
             didInsertElement: function() {
                 var self = this;
+
+                self.addOverlay();
+
                 if (self.get('blur')) {
                     self.addBlur();
                 }
@@ -82,6 +85,7 @@ define(['App'], function(UMI) {
                 closePopup: function() {
                     this.beforeClose();
                     this.removeBlur();
+                    this.removeOverlay();
                     this.get('controller').send('removePopupLayout');
                     this.afterClose();
                 }
@@ -112,16 +116,22 @@ define(['App'], function(UMI) {
                 });
             },
 
+            addOverlay: function() {
+                $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+            },
+
+            removeOverlay: function() {
+                $('.umi-popup-invisible-overlay').remove();
+            },
+
             addBlur: function() {
                 $('.umi-header').addClass('s-blur');
                 $('.umi-content').addClass('s-blur');
-                $('body').append('<div class="umi-popup-invisible-overlay"></div>');
             },
 
             removeBlur: function() {
                 $('.umi-header').removeClass('s-blur');
                 $('.umi-content').removeClass('s-blur');
-                $('.umi-popup-invisible-overlay').remove();
                 $('.umi-popup-visible-overlay').remove();
             },
 
