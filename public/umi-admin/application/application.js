@@ -162,21 +162,22 @@ define(
                     var dataSource;
                     var collectionName = Ember.get(relatedModel, 'type.typeKey');
 
-                    if (relatedModel.kind === 'belongsTo' || relatedModel.kind === 'hasMany' ||
-                        relatedModel.kind === 'manyToMany') {
-                        for (i = 0; i < fields.length; i++) {
-                            dataSource = fields[i];
+                    for (i = 0; i < fields.length; i++) {
+                        dataSource = fields[i];
 
-                            if (dataSource === name) {
-                                fieldsList[collectionName] = fieldsList[collectionName] || [];
-                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
-                                fieldsList[collectionName] = fieldsList[collectionName] || [];
-                                fieldsList[collectionName].push(dataSource.slice(name.length + 1));
-                            }
+                        if (dataSource === name) {
+                            fieldsList[collectionName] = fieldsList[collectionName] || [];
+                        } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                            fieldsList[collectionName] = fieldsList[collectionName] || [];
+                            fieldsList[collectionName].push(dataSource.slice(name.length + 1));
                         }
+                    }
 
-                        if (fieldsList[collectionName]) {//TODO: parametrize properties list
-                            fieldsList[collectionName] = fieldsList[collectionName].join(',') || 'displayName';
+                    if (fieldsList[collectionName]) {
+                        if (Ember.typeOf(fieldsList[collectionName]) === 'array' && fieldsList[collectionName].length) {
+                            fieldsList[collectionName] = fieldsList[collectionName].join(',');
+                        } else {
+                            fieldsList[collectionName] = 'displayName';
                         }
                     }
                 });
