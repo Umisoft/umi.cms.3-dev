@@ -1998,12 +1998,12 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '';
-  data.buffer.push(" <div class=\"row collapse\"> <div class=\"large-12 columns\"> ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.fieldView", {hash:{
+  data.buffer.push(" <div class=\"row collapse\"> ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.elementView", {hash:{
     'metaBinding': ("formElement"),
     'objectBinding': ("view.object")
   },hashTypes:{'metaBinding': "STRING",'objectBinding': "STRING"},hashContexts:{'metaBinding': depth0,'objectBinding': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" </div> </div> ");
+  data.buffer.push(" </div> ");
   return buffer;
   }
 
