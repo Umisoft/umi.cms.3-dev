@@ -127,11 +127,12 @@ define(['App'], function(UMI) {
             },
 
             didInsertElement: function() {
+                var config = UMI.config.CkEditor();
+                var el = this.$().children('textarea');
+                el.css({'height': config.height});
+
                 Ember.run.next(this, function() {
                     var self = this;
-                    var config = UMI.config.CkEditor();
-                    var el = this.$().children('textarea');
-                    el.css({'height': config.height});
                     var editor = CKEDITOR.replace(el[0].id, config);
                     self.set('ckeditor', editor);
 

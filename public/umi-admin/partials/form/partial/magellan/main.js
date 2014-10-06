@@ -7,12 +7,6 @@ define(['App'], function(UMI) {
 
             focusId: null,
 
-            elementView: Ember.View.extend({
-                isFieldset: function() {
-                    return this.get('content.type') === 'fieldset';
-                }.property()
-            }),
-
             buttonView: Ember.View.extend({
                 tagName: 'a',
 
@@ -25,9 +19,8 @@ define(['App'], function(UMI) {
                 click: function() {
                     var self = this;
                     var fieldset = document.querySelector('.umi-fieldset-' + this.get('model.id'));
-                    $(fieldset).closest('.magellan-content').animate({'scrollTop': fieldset.parentNode.offsetTop -
+                    $(fieldset).closest('.magellan-content').animate({'scrollTop': fieldset.offsetTop -
                     parseFloat(getComputedStyle(fieldset).marginTop)}, 0);
-
                     setTimeout(function() {
                         if (self.get('parentView.focusId') !== self.get('model.id')) {
                             self.get('parentView').set('focusId', self.get('model.id'));
@@ -37,29 +30,32 @@ define(['App'], function(UMI) {
             }),
 
             init: function() {
+                this._super();
                 var elements = this.get('elements');
-                elements = elements.filter(function(item) {
-                    return item.type === 'fieldset';
-                });
                 this.set('focusId', elements.get('firstObject.id'));
             },
 
             didInsertElement: function() {
                 var self = this;
-                var scrollArea = $('.magellan-menu').parent().find('.magellan-content');//TODO: По хорошему нужно выбирать элемент через this.$()
+                var scrollArea = this.$().parent().find('.magellan-content');
+
                 if (!scrollArea.length) {
                     return;
                 }
+
                 var fieldset = scrollArea.find('fieldset');
+
                 Ember.run.next(self, function() {
                     var lastFieldset = fieldset[fieldset.length - 1];
                     var placeholderFieldset;
                     var lastFieldsetHeight = lastFieldset.offsetHeight;
                     var scrollAreaHeight = scrollArea[0].offsetHeight;
+
                     var setPlaceholderHeight = function(placeholder) {
                         lastFieldsetHeight = lastFieldset.offsetHeight;
                         scrollAreaHeight = scrollArea[0].offsetHeight;
-                        placeholder.style.height = scrollAreaHeight - lastFieldsetHeight - 10 - parseInt($(lastFieldset).css('marginBottom')) + 'px';
+                        placeholder.style.height = scrollAreaHeight - lastFieldsetHeight - 10 -
+                        parseInt($(lastFieldset).css('marginBottom')) + 'px';
                     };
 
                     if (scrollAreaHeight > lastFieldsetHeight) {
@@ -76,12 +72,15 @@ define(['App'], function(UMI) {
                         var scrollOffset = $(this).scrollTop();
                         var focusField;
                         var scrollElement;
+
                         for (var i = 0; i < fieldset.length; i++) {
-                            scrollElement = fieldset[i].parentNode.offsetTop;
-                            if (scrollElement - parseFloat(getComputedStyle(fieldset[i]).marginTop) <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight) {
+                            scrollElement = fieldset[i].offsetTop;
+                            if (scrollElement - parseFloat(getComputedStyle(fieldset[i]).marginTop) <= scrollOffset &&
+                                scrollOffset <= scrollElement + fieldset[i].offsetHeight) {
                                 focusField = fieldset[i];
                             }
                         }
+
                         if (focusField) {
                             self.set('focusId', focusField.className.replace(/umi-fieldset-|ember-view|\s/g, ''));
                         }
