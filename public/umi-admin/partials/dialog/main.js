@@ -42,8 +42,8 @@ define(['App'], function(UMI) {
                 }, 50);
                 this.append();
             } else if (this.isVisible) {
-                $('.s-blur').remove();
                 $('.umi-main-view').removeClass('s-blur');
+                $('.s-blur').remove();
                 this.remove();
             }
         }.observes('model'),
