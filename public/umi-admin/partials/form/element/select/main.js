@@ -38,8 +38,10 @@ define(['App'], function(UMI) {
 
             init: function() {
                 this._super();
-                this.set('selection', this.get('object.choices').findBy('value', this.get('object.value')));
-                this.set('content', this.get('object.choices'));
+                var object = this.get('object');
+                var choices = Ember.get(object, 'choices') || [];
+                this.set('selection', choices.findBy('value', Ember.get(object, 'value')));
+                this.set('content', choices);
             },
 
             didInsertElement: function() {

@@ -18,7 +18,7 @@ define(
 
                 template: Ember.Handlebars.compile('<div {{bind-attr class="view.isExpanded::hide"}}>' +
                     '{{#each formElement in view.meta.elements}}' +
-                    '{{view view.elementView metaBinding="formElement" objectBinding="view.object"}}' +
+                    '{{view view.elementView metaBinding="formElement" objectBinding="formElement"}}' +
                     '{{/each}}</div>'),
 
                 elementClass: function() {
@@ -33,7 +33,12 @@ define(
             });
 
             UMI.FormFieldsetCollectionElementMixin = Ember.Mixin.create(UMI.FormFieldsetElementMixin,
-                UMI.FormCollectionElementsMixin);
+                UMI.FormCollectionElementsMixin, {
+                    template: Ember.Handlebars.compile('<div {{bind-attr class="view.isExpanded::hide"}}>' +
+                    '{{#each formElement in view.meta.elements}}' +
+                    '{{view view.elementView metaBinding="formElement" objectBinding="view.object"}}' +
+                    '{{/each}}</div>')
+                });
         };
     }
 );
