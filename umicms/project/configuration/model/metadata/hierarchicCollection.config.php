@@ -11,7 +11,6 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\object\IHierarchicObject;
-use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
 use umicms\orm\object\CmsHierarchicObject;
 
@@ -41,9 +40,6 @@ return array_replace_recursive(
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
                     Slug::TYPE => []
-                ],
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
             IHierarchicObject::FIELD_URI                   => [

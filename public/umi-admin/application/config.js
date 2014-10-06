@@ -14,7 +14,7 @@ define([], function() {
                 keyBindings: true,
                 interactiveScrollbars: true,
                 fadeScrollbars: true,
-                disableMouse: true
+                disableMouse: false
             },
 
             elFinder: {

@@ -9,10 +9,8 @@
         </time>
         {% endif %}
 
-        {% if page.author.getPageUrl() %}
+        {% if page.author %}
             {{ translate('Author') }}: <a href="{{ page.author.getPageUrl() }}">{{ page.author.displayName }}</a>
-        {% else %}
-            {{ translate('Author') }}: {{ page.authorGuest }}
         {% endif %}
 
     </p>

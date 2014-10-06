@@ -9,140 +9,6 @@ return array (
     array (
       'collection' => 'newsRubric',
       'type' => 'base',
-      'guid' => '26b591f8-bc98-4ca7-a2b7-fd0afc9beb37',
-      'displayName' => 'Концерты',
-      'branch' => NULL,
-      'slug' => 'concerts',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Концерты',
-      ),
-      'displayName#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Concerts',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:30:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'metaTitle#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Концерты - наша жизнь',
-      ),
-      'metaTitle#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Concerts',
-      ),
-      'metaDescription#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Узнайте первыми о концерте легендарной группы UMI.Rock Band',
-      ),
-      'metaDescription#en-US' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'metaKeywords#en-US' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'h1#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Концерты',
-      ),
-      'h1#en-US' => 
-      array (
-        0 => 'string',
-        1 => 'Concerts',
-      ),
-      'contents#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '<p>Хотите первыми узнавать о приезде UMI.Rock Band в ваш город?! Тогда чаще заходите на наш сайт. В рубрике &ldquo;Новости&rdquo; вы обязательно найдете информацию о том, где и когда будут проходить наши концерты. Кроме того, на нашем сайте &nbsp;вы всегда можете узнать стоимость билетов на мероприятия с нашим участием, а также заказать их онлайн.</p>
-
-<p>И конечно, обязательно делитесь с друзьями в соцсетях анонсами наших будущих концертов. Ну а после наших выступлений обязательно рассказывайте нам о своих &nbsp;впечатлениях, обсуждайте концерты прямо на сайте. Кстати, это очень удобно делать, если авторизоваться через Facebook &nbsp;или &ldquo;ВКонтакте&rdquo;.&nbsp;</p>
-',
-      ),
-      'contents#en-US' => 
-      array (
-        0 => 'string',
-        1 => '<p>Do you want to be the first to know about UMI. Rock Band&rsquo;s concert in your town?! If yes &ndash; please check our website. In the &ldquo;News&rdquo; segment you will find the information about the time and venue of our concerts. Moreover, you can always learn about the ticket prices of our events on our website, and you can order the tickets online.</p>
-
-<p>Do not forget to share our concert announcements with your friends in the social networks. After our performance please also share your impressions, discuss the concerts right now on our website. By the way, it is very convenient to leave the comments by logging with Facebook or VKontakte.</p>
-',
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  1 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'newsRubric',
-      'type' => 'base',
       'guid' => '7d2cfe63-ed2c-4b57-8955-6351a2f9ba52',
       'displayName' => 'Хобби',
       'branch' => NULL,
@@ -256,6 +122,140 @@ return array (
 <p>We want to share with you our brightest feelings and that is why we are starting our new segment, where we will tell you about our achievements and interests, which have no direct connections with our music activities.</p>
 
 <p>Do you know how to find your very own hobby? It is a fact, that some people aim to follow the trends and, as a result, they are being left with something not really exciting and interesting. We guess that in this case we should talk not about hobbies but about interests. As for us, we can proudly say that every single member of the UMI. Rock Band has its own interests, and that helps all of us to get involved in different activities besides music. One more important thing &ndash; our hobbies not only bring us a joy but also help to fight a stress that is so common among creative minds.</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  1 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'newsRubric',
+      'type' => 'base',
+      'guid' => '26b591f8-bc98-4ca7-a2b7-fd0afc9beb37',
+      'displayName' => 'Концерты',
+      'branch' => NULL,
+      'slug' => 'concerts',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Концерты',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Concerts',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-16 18:30:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-24 12:58:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Концерты - наша жизнь',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Concerts',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Узнайте первыми о концерте легендарной группы UMI.Rock Band',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Концерты',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Concerts',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Хотите первыми узнавать о приезде UMI.Rock Band в ваш город?! Тогда чаще заходите на наш сайт. В рубрике &ldquo;Новости&rdquo; вы обязательно найдете информацию о том, где и когда будут проходить наши концерты. Кроме того, на нашем сайте &nbsp;вы всегда можете узнать стоимость билетов на мероприятия с нашим участием, а также заказать их онлайн.</p>
+
+<p>И конечно, обязательно делитесь с друзьями в соцсетях анонсами наших будущих концертов. Ну а после наших выступлений обязательно рассказывайте нам о своих &nbsp;впечатлениях, обсуждайте концерты прямо на сайте. Кстати, это очень удобно делать, если авторизоваться через Facebook &nbsp;или &ldquo;ВКонтакте&rdquo;.&nbsp;</p>
+',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '<p>Do you want to be the first to know about UMI. Rock Band&rsquo;s concert in your town?! If yes &ndash; please check our website. In the &ldquo;News&rdquo; segment you will find the information about the time and venue of our concerts. Moreover, you can always learn about the ticket prices of our events on our website, and you can order the tickets online.</p>
+
+<p>Do not forget to share our concert announcements with your friends in the social networks. After our performance please also share your impressions, discuss the concerts right now on our website. By the way, it is very convenient to leave the comments by logging with Facebook or VKontakte.</p>
 ',
       ),
       'active#ru-RU' => 
