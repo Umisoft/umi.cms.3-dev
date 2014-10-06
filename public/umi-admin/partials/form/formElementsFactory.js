@@ -27,7 +27,7 @@ define(
 
                 date: 'FormDateElement',
 
-                dateTime: 'FormDateTimeElement',
+                datetime: 'FormDateTimeElement',
 
                 email: 'FormEmailElement',
 

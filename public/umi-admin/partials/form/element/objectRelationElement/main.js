@@ -5,7 +5,7 @@ define(['App'], function(UMI) {
         UMI.FormObjectRelationElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
             classNames: ['small-12', 'large-4'],
 
-            template: Ember.Handlebars.compile('{{view "numberElement" object=view.object meta=view.meta}}')
+            template: Ember.Handlebars.compile('{{view "objectRelationElement" object=view.object meta=view.meta}}')
         });
 
         UMI.ObjectRelationElementView = Ember.View.extend(UMI.SerializedValue, {
