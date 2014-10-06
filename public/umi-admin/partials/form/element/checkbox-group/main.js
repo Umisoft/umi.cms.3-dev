@@ -3,10 +3,14 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormCheckboxGroupElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "checkboxGroupElement" object=view.object meta=view.meta}}')
         });
 
         UMI.FormCheckboxGroupElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}')
         });
 

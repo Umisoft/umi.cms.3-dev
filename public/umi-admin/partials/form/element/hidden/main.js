@@ -3,6 +3,7 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormHiddenElementMixin = Ember.Mixin.create({
+            classNames: ['hide'],
             template: Ember.Handlebars.compile('{{view "hiddenElement" object=view.object meta=view.meta}}')
         });
 

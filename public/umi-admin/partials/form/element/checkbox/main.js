@@ -3,6 +3,8 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormCheckboxElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             layout: Ember.Handlebars.compile('<div class="umi-form-element-without-label">{{yield}}{{view.isRequired}}</div>'),
 
             template: Ember.Handlebars.compile('{{view "checkboxElement" object=view.object meta=view.meta}}')

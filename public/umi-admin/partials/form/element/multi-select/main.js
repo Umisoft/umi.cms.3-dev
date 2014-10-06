@@ -32,6 +32,8 @@ define(['App'], function(UMI) {
         };
 
         UMI.FormMultiSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "multiSelect" object=view.object meta=view.meta name=view.meta.attributes.name}}')
         });
 

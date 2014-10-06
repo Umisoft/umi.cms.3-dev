@@ -3,6 +3,8 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormPermissionsElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12'],
+
             template: Ember.Handlebars.compile('{{view "permissions" object=view.object meta=view.meta}}')
         });
 

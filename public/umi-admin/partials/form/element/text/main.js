@@ -3,6 +3,8 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormTextElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "textElement" object=view.object meta=view.meta}}')
         });
 

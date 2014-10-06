@@ -5,6 +5,8 @@ define(
 
         return function() {
             UMI.FormCollectionElementValidateMixin = Ember.Mixin.create({
+                classNameBindings: ['isError:error'],
+
                 isError: function() {
                     var dataSource = this.get('meta.dataSource');
                     var isValid = !!this.get('object.validErrors.' + dataSource);

@@ -3,6 +3,8 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormColorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "colorElement" object=view.object meta=view.meta}}')
         });
 

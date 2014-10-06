@@ -4,6 +4,8 @@ define(['App'], function(UMI) {
     return function() {
 
         UMI.FormDateTimeElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+            
             template: Ember.Handlebars.compile('{{view "dateTimeElement" object=view.object meta=view.meta}}')
         });
 

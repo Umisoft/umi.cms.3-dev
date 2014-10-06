@@ -3,6 +3,8 @@ define(['App'], function(UMI) {
 
     return function() {
         UMI.FormSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}')
         });
 
@@ -56,6 +58,8 @@ define(['App'], function(UMI) {
         });
 
         UMI.FormSelectCollectionElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: ['small-12', 'large-4'],
+
             template: Ember.Handlebars.compile('{{view "selectCollection" object=view.object meta=view.meta}}')
         });
 

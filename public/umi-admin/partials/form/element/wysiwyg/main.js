@@ -61,6 +61,8 @@ define(['App'], function(UMI) {
         });
 
         UMI.FormHtmlEditorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: 'small-12',
+
             template: Ember.Handlebars.compile('{{view "htmlEditor" object=view.object meta=view.meta}}')
         });
 
@@ -89,6 +91,8 @@ define(['App'], function(UMI) {
         });
 
         UMI.FormHtmlEditorCollectionElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+            classNames: 'small-12',
+
             template: Ember.Handlebars.compile('{{view "htmlEditorCollection" object=view.object meta=view.meta}}')
         });
 
