@@ -182,6 +182,9 @@ define(['App'], function(UMI) {
             },
 
             didInsertElement: function() {
+                if (Modernizr.touch) {
+                    return;
+                }
                 var self = this;
                 var $el = self.$();
                 var $dock = self.$().closest('.dock');
@@ -224,7 +227,7 @@ define(['App'], function(UMI) {
                         }
                         $el.css({left: elPos});
                         curPos = e.pageX;
-                    }).on('mouseup.sort.umi.dock', function(e) {
+                    }).on('mouseup.sort.umi.dock', function() {
                         $body.off('.sort.umi.dock');
 
                         if (!moved) {
