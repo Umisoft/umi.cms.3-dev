@@ -22,6 +22,7 @@ $button-border-color-secondary: #A8ADB1;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
     padding-bottom: $button-med;
+    height: 2rem;
 
     &.secondary{
         border: 1px solid #A8ADB1;
@@ -70,6 +71,8 @@ $button-border-color-secondary: #A8ADB1;
 
     &.tiny{
         padding-bottom: rem-calc(6);
+        height: 1.5rem;
+        padding-top: 0.3rem;
 
         > .icon{
             margin-top: -3px;
@@ -85,6 +88,8 @@ $button-border-color-secondary: #A8ADB1;
     }
 
     &.small{
+        height: 2.55rem;
+
         .icon{
             margin-top: -7px;
             margin-bottom: -6px;
@@ -94,6 +99,14 @@ $button-border-color-secondary: #A8ADB1;
             padding-left: $button-tny;
             padding-right: $button-tny;
         }
+    }
+
+    &.large {
+        height: 3.42rem;
+    }
+
+    &.medium {
+      height: 3rem;
     }
 
     .icon{
