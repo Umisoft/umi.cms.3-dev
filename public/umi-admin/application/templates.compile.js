@@ -1205,6 +1205,12 @@ function program6(depth0,data) {
 
 function program8(depth0,data) {
   
+  
+  data.buffer.push(" <br /> ");
+  }
+
+function program10(depth0,data) {
+  
   var buffer = '';
   data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.elementView", {hash:{
@@ -1215,7 +1221,7 @@ function program8(depth0,data) {
   return buffer;
   }
 
-function program10(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = '';
   data.buffer.push(" ");
@@ -1232,10 +1238,13 @@ function program10(depth0,data) {
   stack1 = helpers['if'].call(depth0, "view.hasFieldset", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <div class=\"row s-full-height collapse\"> <div class=\"columns small-12 magellan-content\"> ");
-  stack1 = helpers.each.call(depth0, "formElement", "in", "formElements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.unless.call(depth0, "view.hasFieldset", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  stack1 = helpers.each.call(depth0, "formElement", "in", "formElements", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </div> </div> </div> ");
-  stack1 = helpers['if'].call(depth0, "model.control.submitToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "model.control.submitToolbar", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   return buffer;
   

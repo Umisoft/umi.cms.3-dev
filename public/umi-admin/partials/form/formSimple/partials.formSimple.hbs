@@ -17,6 +17,9 @@
 
     <div class="row s-full-height collapse">
         <div class="columns small-12 magellan-content">
+            {{#unless view.hasFieldset}}
+                <br />
+            {{/unless}}
             {{#each formElement in formElements}}
                 {{view view.elementView metaBinding="formElement" objectBinding="formElement"}}
             {{/each}}
