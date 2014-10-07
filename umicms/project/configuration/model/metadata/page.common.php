@@ -10,7 +10,6 @@
 
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
-use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
 use umicms\orm\object\ICmsPage;
 
@@ -26,9 +25,6 @@ return [
                 IFilterFactory::TYPE_STRING_TRIM => [],
                 Slug::TYPE => []
             ],
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
-            ]
         ],
         ICmsPage::FIELD_PAGE_META_TITLE       => [
             'type' => IField::TYPE_STRING,

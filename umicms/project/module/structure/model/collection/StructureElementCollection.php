@@ -32,7 +32,7 @@ use umicms\project\TProjectSettingsAware;
  * @method StructureElement get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по GUID.
  * @method StructureElement getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по id.
  * @method StructureElement getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по URI.
- * @method StructureElement add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Добавляет элемент.
+ * @method StructureElement add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Добавляет элемент.
  */
 class StructureElementCollection extends CmsHierarchicPageCollection implements ILockedAccessibleCollection, IProjectSettingsAware
 {

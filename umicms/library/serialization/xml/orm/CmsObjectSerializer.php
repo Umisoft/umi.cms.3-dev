@@ -15,18 +15,14 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IProperty;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\IProjectSettingsAware;
-use umicms\project\TProjectSettingsAware;
+use umicms\project\module\structure\model\object\StructureElement;
 use umicms\serialization\xml\BaseSerializer;
 
 /**
  * XML-сериализатор для CmsObject.
  */
-class CmsObjectSerializer extends BaseSerializer implements IProjectSettingsAware
+class CmsObjectSerializer extends BaseSerializer
 {
-
-    use TProjectSettingsAware;
-
     /**
      * Сериализует CmsObject в XML.
      * @param ICmsObject $object
@@ -111,8 +107,9 @@ class CmsObjectSerializer extends BaseSerializer implements IProjectSettingsAwar
         if ($object instanceof ICmsPage) {
             $this->writeAttribute('url', $object->getPageUrl());
             $this->writeAttribute('header', $object->getHeader());
-            if ($this->getSiteDefaultPageGuid() === $object->guid) {
-                $this->writeAttribute('isDefault', true);
+
+            if ($object instanceof StructureElement) {
+                $this->writeAttribute('isDefault', $object->getIsDefault());
             }
         }
     }

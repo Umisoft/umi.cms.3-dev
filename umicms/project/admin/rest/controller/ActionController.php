@@ -134,7 +134,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function getAuthUserInfo()
     {
-        $user = $this->module->getCurrentUser();
+        $user = $this->module->getAuthenticatedUser();
 
         if (!$user->isComponentResourceAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(

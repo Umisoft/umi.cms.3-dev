@@ -14,7 +14,7 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BaseBlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет публикации поста, требующего модерации.
@@ -30,7 +30,7 @@ class PublishFormWidget extends BaseFormWidget
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BaseBlogPost $blogPost пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
     /**
@@ -56,13 +56,13 @@ class PublishFormWidget extends BaseFormWidget
             $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BaseBlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BaseBlogPost::className()
+                        'class' => BlogPost::className()
                     ]
                 )
             );
@@ -76,7 +76,7 @@ class PublishFormWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BaseBlogPost::FORM_PUBLISH_POST,
+            BlogPost::FORM_PUBLISH_POST,
             $this->blogPost->getTypeName(),
             $this->blogPost
         );

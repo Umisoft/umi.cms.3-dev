@@ -10,6 +10,7 @@
 
 namespace umicms\project\site;
 
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\IHttpAware;
@@ -24,6 +25,8 @@ use umi\toolkit\TToolkitAware;
 use umicms\exception\InvalidLicenseException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
@@ -34,6 +37,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
 use umicms\hmvc\component\site\SiteComponent;
+use umicms\project\module\users\model\UsersModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -42,13 +46,14 @@ use umicms\serialization\TSerializationAware;
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware, IModuleAware
 {
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
     use TSessionAware;
+    use TModuleAware;
 
     /**
      * Опция для задания сериализаторов приложения
@@ -118,13 +123,13 @@ class SiteApplication extends SiteComponent
             $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
         }
 
-        $isRootPath = $currentPath === $this->getUrlManager()->getProjectUrl();
+        $possibleRedirect = ($currentPath !== $this->getUrlManager()->getProjectUrl() && $request->server->get('REQUEST_METHOD') !== 'POST');
 
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+        if ($possibleRedirect && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
+        if ($possibleRedirect && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
             return $redirectResponse;
         }
 
@@ -148,6 +153,20 @@ class SiteApplication extends SiteComponent
             );
             $response->setContent($result);
 
+        }
+
+        /**
+         * @var UsersModule $usersModule
+         */
+        $usersModule = $this->getModuleByClass(UsersModule::className());
+        if ($usersModule->isVisitor() && $usersModule->getVisitor()->token) {
+
+            $cookie = new Cookie(
+                UsersModule::VISITOR_TOKEN_COOKIE_NAME,
+                $usersModule->getVisitor()->token,
+                new \DateTime('+5 year')
+            );
+            $response->headers->setCookie($cookie);
         }
 
         return $response;

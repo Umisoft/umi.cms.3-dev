@@ -33,13 +33,6 @@ return [
                     'options' => [
                         'dataSource' => MenuInternalItem::FIELD_DISPLAY_NAME
                     ],
-                ],
-                MenuInternalItem::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => MenuInternalItem::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => MenuInternalItem::FIELD_SLUG
-                    ],
                 ]
             ]
         ],
