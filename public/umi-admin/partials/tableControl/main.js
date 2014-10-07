@@ -1,8 +1,11 @@
-define([
-    './controllers', './view', 'App'
-], function(controllers, view) {
-    'use strict';
+define(
+    [
+        'App', './controllers', './view', './partials/popup/main'
+    ], function(UMI, controllers, view, popup) {
+        'use strict';
 
-    controllers();
-    view();
-});
+        controllers();
+        view();
+        popup();
+    }
+);

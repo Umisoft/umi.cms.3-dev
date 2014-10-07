@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\users\model\object;
 
-use umi\i18n\ILocalesService;
+use umicms\serialization\ISerializer;
 use umicms\Utils;
 
 /**
@@ -34,6 +34,20 @@ class Visitor extends Guest
      * Имя поля для хранения авторизационного токена
      */
     const FIELD_TOKEN = 'token';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSerializer(ISerializer $serializer)
+    {
+        $this->addSerializerConfigurator(
+            function(ISerializer $serializer) {
+                $serializer->setExcludes([self::FIELD_TOKEN]);
+            }
+        );
+
+        return parent::configureSerializer($serializer);
+    }
 
     /**
      * Обновляет авторизационный токен посетителя.
