@@ -13,9 +13,10 @@ define(['App'], function(UMI) {
                     modules = modules.slice();
                     for (var i = 0, l = userSettings.length; i < l; i++) {
                         for (var j = 0, l2 = modules.length; j < l2; j++) {
-                            if (modules[j] && modules[j].name === userSettings[i]) {
+                            if (modules[j].name === userSettings[i]) {
                                 sortedModules.push(modules[j]);
                                 modules.splice(j, 1);
+                                l2--;
                             }
                         }
                     }
