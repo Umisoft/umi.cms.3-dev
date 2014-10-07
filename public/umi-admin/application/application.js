@@ -67,6 +67,7 @@ define(
         UMI.OrmHelper = {
             /**
              * @method buildRequest
+             * @public
              */
             buildRequest: function(object, fields) {
                 var store = object.get('store');
