@@ -178,6 +178,10 @@ return [
         'Unknown error' => 'Неизвестная ошибка',
 
         'Rows on page' => 'Строк на странице',
+        'Selected fields' => 'Выбранные поля',
+        'Apply' => 'Применить',
+        'Default' => 'По умолчанию',
+
         'No data' => 'Нет данных',
         'Nothing is selected' => 'Ничего не выбрано',
 

@@ -13,7 +13,6 @@ use umicms\project\module\users\model\object\UserGroup;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
-    require CMS_PROJECT_DIR . '/configuration/model/metadata/active.config.php',
     require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
