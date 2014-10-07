@@ -1,0 +1,12 @@
+.umi-list{
+    &.striped{
+        .umi-list-item{
+            padding: rem-calc(5) rem-calc(10);
+            background: #F5F6F7;
+
+            &:nth-child(odd){
+                background: #E9F1F7;
+            }
+        }
+    }
+}
