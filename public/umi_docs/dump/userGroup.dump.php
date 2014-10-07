@@ -38,16 +38,6 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
       'locked' => 
       array (
         0 => 'boolean',
@@ -94,16 +84,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
       ),
       'locked' => 
       array (

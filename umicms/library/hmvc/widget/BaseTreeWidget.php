@@ -33,13 +33,11 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public $template = 'tree';
     /**
-     * Если не указано, строится полное дерево
-     * @var CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды
+     * @var string|CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды. Если не указано, строится полное дерево
      */
     public $parentNode;
     /**
-     * Если не указано, строится на всю глубину вложенности
-     * @var int $depth глубина вложения
+     * @var int $depth глубина вложения. Если не указано, строится на всю глубину вложенности
      */
     public $depth;
     /**
