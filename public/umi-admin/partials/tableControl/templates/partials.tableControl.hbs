@@ -5,10 +5,6 @@
                 {{view.counter}}
             </span>
 
-<div class="right pagination-limit">
-    <span class="pagination-label show-for-large-up">{{i18n "Rows on page" "tableControl"}}:</span>
-    {{view view.limitView}}
-</div>
             {{#view view.prevButtonView}}
                 <i class="icon black icon-left-thin"></i>
             {{/view}}
@@ -19,7 +15,7 @@
         </div>
 
         <div class="right pagination-limit">
-            <span class="pagination-label">{{i18n "Rows on page" "tableControl"}}:</span>
+            <span class="pagination-label show-for-large-up">{{i18n "Rows on page" "tableControl"}}:</span>
             {{view view.limitView}}
         </div>
     {{/view}}
