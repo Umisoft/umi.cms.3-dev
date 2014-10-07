@@ -8,7 +8,7 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "textElement" object=view.object meta=view.meta}}')
         });
 
-        UMI.TextElementView = Ember.View.extend(UMI.InputValidate, {
+        UMI.TextElementView = Ember.View.extend(UMI.ElementValidateMixin, {
             type: 'text',
 
             classNames: ['umi-element-text'],

@@ -54,8 +54,8 @@ define(['App'], function(UMI) {
                 }
             },
 
-            inputView: Ember.View.extend(UMI.InputValidate, {
-                type: "text",
+            inputView: Ember.View.extend(UMI.ElementValidateMixin, {
+                type: 'text',
 
                 classNames: ['umi-element-text'],
 

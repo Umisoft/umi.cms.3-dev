@@ -71,7 +71,7 @@ define(['App'], function(UMI) {
                         var validate = this.validateErrorsTemplate();
                         return Ember.Handlebars.compile(textarea + validate);
                     }.property();
-                    return Ember.View.extend(UMI.InputValidate, viewParams);
+                    return Ember.View.extend(UMI.ElementValidateMixin, viewParams);
                 } else {
                     viewParams.template = function() {
                         var textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.attributes.value}}';

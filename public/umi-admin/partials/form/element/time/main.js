@@ -9,7 +9,7 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "timeElement" object=view.object meta=view.meta}}')
         });
 
-        UMI.TimeElementView = Ember.View.extend(UMI.InputValidate, {
+        UMI.TimeElementView = Ember.View.extend(UMI.ElementValidateMixin, {
             templateName: 'partials/timeElement',
             classNames: ['row', 'collapse'],
 

@@ -96,7 +96,7 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "htmlEditorCollection" object=view.object meta=view.meta}}')
         });
 
-        UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.InputValidate, {
+        UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.ElementValidateMixin, {
             classNames: ['ckeditor-row'],
 
             ckeditor: null,
