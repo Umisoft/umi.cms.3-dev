@@ -324,7 +324,7 @@ define(['App'], function(UMI) {
                     var relatedModelDataSource;
                     if (relatedModel.kind === 'belongsTo') {
                         for (i = 0; i < visibleFields.length; i++) {
-                            relatedModelDataSource = visibleFields[i].dataSource;
+                            relatedModelDataSource = Ember.get(visibleFields[i], 'dataSource');
                             if (relatedModelDataSource === name) {
                                 relatedFieldsList[name] = relatedFieldsList[name] || [];
                             } else if (relatedModelDataSource.indexOf(name + '.', 0) === 0) {
@@ -354,7 +354,7 @@ define(['App'], function(UMI) {
 
                 var i;
                 for (i = 0; i < allFields.length; i++) {
-                    if (defaultFields.contains(allFields[i].dataSource)) {
+                    if (defaultFields.contains(Ember.get(allFields[i], 'dataSource'))) {
                         visibleFields.push(allFields[i]);
                     }
                 }
@@ -372,7 +372,7 @@ define(['App'], function(UMI) {
                     var relatedModelDataSource;
                     if (relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany') {
                         for (var i = 0; i < fieldsList.length; i++) {
-                            relatedModelDataSource = fieldsList[i].dataSource;
+                            relatedModelDataSource = Ember.get(fieldsList[i], 'dataSource');
                             if (relatedModelDataSource === name || relatedModelDataSource.indexOf(name + '.', 0) === 0) {
                                 Ember.warn('Поля с типом hasMany и manyToMany недопустимы в фильтре.');
                                 fieldsList.splice(i, 1);

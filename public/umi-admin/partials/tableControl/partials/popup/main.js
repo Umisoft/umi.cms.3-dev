@@ -13,7 +13,7 @@ define(['App'], function(UMI) {
                 for (var i = 0; i < allFields.length; i++) {
                     fieldsList.push(allFields[i]);
                     fieldsList[fieldsList.length - 1].value =
-                        visibleFields.findBy('dataSource', allFields[i].dataSource) ? 1 : 0;
+                        visibleFields.findBy('dataSource', Ember.get(allFields[i], 'dataSource')) ? 1 : 0;
                 }
 
                 return fieldsList;
@@ -32,7 +32,7 @@ define(['App'], function(UMI) {
                     ++isDirty;
                 } else {
                     for (var i = 0; i < selectedFields.length; i++) {
-                        if (!visibleFields.findBy('dataSource', selectedFields[i].dataSource)) {
+                        if (!visibleFields.findBy('dataSource', Ember.get(selectedFields[i], 'dataSource'))) {
                             ++isDirty;
                             break;
                         }
@@ -50,8 +50,8 @@ define(['App'], function(UMI) {
 
                     for (var i = 0; i < allFields.length; i++) {
                         fieldsList.push(allFields[i]);
-                        fieldsList[fieldsList.length - 1].value = defaultFields.contains(allFields[i].dataSource) ?
-                            1 : 0;
+                        fieldsList[fieldsList.length - 1].value =
+                            defaultFields.contains(Ember.get(allFields[i], 'dataSource')) ? 1 : 0;
                     }
 
                     this.set('fieldsList', fieldsList);
@@ -67,7 +67,7 @@ define(['App'], function(UMI) {
                     var fields = [];
                     var field;
                     for (var i = 0; i < selectedFields.length; i++) {
-                        field = allFields.findBy('dataSource', selectedFields[i].dataSource);
+                        field = allFields.findBy('dataSource', Ember.get(selectedFields[i], 'dataSource'));
                         if (field) {
                             fields.push(field);
                         }
