@@ -35,6 +35,8 @@ return [
         RegisteredUser::TYPE_NAME => [
             UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
             UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+            UserCollection::FORM_CHANGE_PASSWORD_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/registered.changePassword.config.php}',
+
             RegisteredUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/login.config.php}',
             RegisteredUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/logout.config.php}',
             RegisteredUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/profile.edit.config.php}',

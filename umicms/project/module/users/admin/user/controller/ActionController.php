@@ -41,7 +41,7 @@ class ActionController extends CollectionActionController
      */
     protected function actionGetChangePasswordForm()
     {
-        $form = $this->getCollection()->getForm(UserCollection::FORM_CHANGE_PASSWORD, RegisteredUser::TYPE_NAME);
+        $form = $this->getCollection()->getForm(UserCollection::FORM_CHANGE_PASSWORD_ADMIN, RegisteredUser::TYPE_NAME);
         $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl(
                 $this->getComponent(), UserCollection::ACTION_CHANGE_PASSWORD)
         );
@@ -51,42 +51,72 @@ class ActionController extends CollectionActionController
 
     /**
      * Изменяет пароль пользователя.
-     * @throws \umi\hmvc\exception\http\HttpException
+     * @throws HttpException
      * @return RegisteredUser
      */
     protected function actionChangePassword()
     {
         $data = $this->getIncomingData();
-        $object = $this->getEditedObject($data);
+        $user = $this->getEditedObject($data);
 
-        if (!isset($data[RegisteredUser::FIELD_PASSWORD])) {
+        if (!$user instanceof RegisteredUser) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
-                $this->translate('Cannot change password. Password is required.')
+                $this->translate(
+                    'Cannot change password.' .
+                    'Object should be instance of "umicms\project\module\users\model\object\RegisteredUser".' .
+                    'Object of class "{class}" given.',
+                    ['class' => get_class($user)]
+                )
             );
         }
 
-        if (!isset($data['newPassword'])) {
+        $currentPassword = isset($data[RegisteredUser::FIELD_PASSWORD]) ? trim($data[RegisteredUser::FIELD_PASSWORD]) : '';
+
+        if ($currentPassword === '') {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
-                $this->translate('Cannot change password. Password confirm is required.')
+                $this->translate('Cannot change password. Current password is required.')
             );
         }
 
-        if ($data[RegisteredUser::FIELD_PASSWORD] !== $data['newPassword']) {
+        if (!$user->checkPassword($data[RegisteredUser::FIELD_PASSWORD])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
-                $this->translate('Cannot change password. Password is not unique.')
+                $this->translate('Current password is not valid.')
             );
         }
 
-        if ($object instanceof RegisteredUser) {
-            $object->setPassword($data[RegisteredUser::FIELD_PASSWORD]);
+        $newPassword = isset($data['newPassword'][0]) ? trim($data['newPassword'][0]) : '';
+
+        if ($newPassword === '') {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Cannot change password. New password is required.')
+            );
         }
+
+        $newPasswordConfirmation = isset($data['newPassword'][1]) ? trim($data['newPassword'][1]) : '';
+
+        if ($newPasswordConfirmation === '') {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Cannot change password. New password confirmation is required.')
+            );
+        }
+
+        if ($newPassword !== $newPasswordConfirmation) {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Cannot change password. Passwords are not equal.')
+            );
+        }
+
+        $user->setPassword($newPassword);
 
         $this->commit();
 
-        return $object;
+        return $user;
     }
 }
  

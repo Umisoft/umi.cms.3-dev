@@ -47,9 +47,9 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
     }
 
     /**
-     * Форма смены пароля пользователя
+     * Форма смены пароля пользователя в административной панели
      */
-    const FORM_CHANGE_PASSWORD = 'changePassword';
+    const FORM_CHANGE_PASSWORD_ADMIN = 'changePasswordAdmin';
     /**
      * Действие для изменения пароля пользователя
      */
