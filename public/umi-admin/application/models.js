@@ -313,10 +313,11 @@ define([], function() {
 
             belongsToRelation: function(params, field, collection) {
                 params.async = true;
-                //TODO: инверсия избыточна, но DS почему то без нее не может
+
                 if (field.targetCollection === collection.name) {
-                    params.inverse = 'children';
+                    params.inverse = null;
                 }
+
                 params.readOnly = false;
                 return DS.belongsTo(field.targetCollection, params);
             },
@@ -330,6 +331,7 @@ define([], function() {
 
             manyToManyRelation: function(params, field) {
                 params.async = true;
+                params.inverse = null;
                 return DS.hasMany(field.targetCollection, params);
             }
         };

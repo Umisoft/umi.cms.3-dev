@@ -19,7 +19,7 @@ use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\blog\model\object\BaseBlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
 
@@ -29,7 +29,7 @@ use umicms\project\module\blog\model\object\BlogComment;
  * @method CmsSelector|BlogComment[] select() Возвращает селектор для выбора комментария блога.
  * @method BlogComment get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его GUID.
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
- * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает комментарий блога
+ * @method BlogComment add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает комментарий блога
  */
 class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {
@@ -55,7 +55,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }
@@ -72,7 +72,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }
@@ -89,7 +89,7 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IRecyclab
             if ($object->author instanceof BlogAuthor) {
                 $object->author->recalculateCommentsCount();
             }
-            if ($object->post instanceof BaseBlogPost) {
+            if ($object->post instanceof BlogPost) {
                 $object->post->recalculateCommentsCount();
             }
         }

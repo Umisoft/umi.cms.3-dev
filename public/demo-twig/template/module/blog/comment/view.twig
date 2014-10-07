@@ -7,10 +7,8 @@
             <time datetime="{{ blogComment.publishTime.format('c') }}">
                 {{ blogComment.publishTime.format('d.m.Y | H:i') }}
             </time>
-            {% if blogComment.author.getPageUrl() %}
+            {% if blogComment.author %}
                 {{ translate('Author') }}: <a href="{{ blogComment.author.getPageUrl() }}">{{ blogComment.author.displayName }}</a>
-            {% else %}
-                {{ translate('Author') }}: {{ blogComment.authorGuest }}
             {% endif %}
         </p>
 

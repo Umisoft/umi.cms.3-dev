@@ -42,6 +42,9 @@ class TableControl extends CollectionControl
     {
         $this->labels['Rows on page'] = $this->component->translate('Rows on page');
         $this->labels['No data'] = $this->component->translate('No data');
+        $this->labels['Selected fields'] = $this->component->translate('Selected fields');
+        $this->labels['Apply'] = $this->component->translate('Apply');
+        $this->labels['Default'] = $this->component->translate('Default');
     }
 }
  
