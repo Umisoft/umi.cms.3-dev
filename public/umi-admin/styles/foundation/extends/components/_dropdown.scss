@@ -25,7 +25,7 @@
 
     // You can also put custom content in these dropdowns
     &.content {
-        padding: 10px;
+        padding: rem-calc(15);
 
         .f-dropdown-content-header{
             font-weight: bold;
@@ -37,10 +37,6 @@
             &:hover{
                 background: transparent;
             }
-        }
-
-        .row{
-            padding: rem-calc(8);
         }
 
         .s-scroll-wrap{

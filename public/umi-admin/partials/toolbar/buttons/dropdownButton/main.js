@@ -289,6 +289,7 @@ define(['App', 'moment'], function(UMI, moment) {
                             var collection = store.all(collectionName);
                             object = collection.findBy('id', object.get('id'));
                             object = object.toJSON({includeId: true});
+
                             if (handler) {
                                 handler.addClass('loading');
                             }
@@ -298,7 +299,16 @@ define(['App', 'moment'], function(UMI, moment) {
                             for (var i = 0; i < data.length; i++) {
                                 name = data[i].name;
                                 if (name) {
-                                    object[name] = data[i].value;
+                                    if (/\[]$/.test(name)) {
+                                        name = name.replace(/\[\]$/g, '');
+                                        if (Ember.typeOf(object[name]) !== 'array') {
+                                            object[name] = [];
+                                        }
+                                        object[name].push(data[i].value);
+                                    } else {
+                                        object[name] = data[i].value;
+                                    }
+
                                 }
                             }
                             var serializeObject = JSON.stringify(object);
@@ -340,7 +350,13 @@ define(['App', 'moment'], function(UMI, moment) {
                                 elementView.reopen({
                                     init: function() {
                                         this._super();
-                                        this.set('classNames', ['columns', 'large-12']);
+                                        var classNames = this.get('classNames') || [];
+                                        var index = classNames.indexOf('large-4');
+                                        if (index !== -1) {
+                                            classNames = classNames.removeAt(index);
+                                            classNames.push('large-12');
+                                            this.set('classNames', classNames);
+                                        }
                                     }
                                 });
                                 return elementView;

@@ -37,6 +37,8 @@ define(
 
                 hidden: 'FormHiddenElement',
 
+                csrf: 'FormHiddenElement',
+
                 image: 'FormImageElement',
 
                 multiSelect: 'FormMultiSelectElement',

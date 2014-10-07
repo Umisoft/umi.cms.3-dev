@@ -5,8 +5,10 @@ define(
 
         return function() {
             UMI.FormSubmitElementMixin = Ember.Mixin.create({
+                classNames: ['umi-columns', 'small-12'],
+
                 layout: Ember.Handlebars.compile('<span class="button right" ' +
-                '{{action "submit" target="view"}}>{{view.meta.label}}</span>'),
+                    '{{action "submit" target="view"}}>{{view.meta.label}}</span>'),
 
                 actions: {
                     submit: function() {
