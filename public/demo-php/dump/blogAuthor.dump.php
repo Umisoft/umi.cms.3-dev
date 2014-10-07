@@ -123,12 +123,7 @@ return array (
         0 => 'boolean',
         1 => false,
       ),
-      'contentsRaw#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => '',
-      ),
-      'user' =>
+      'user' => 
       array (
         0 => 'relation',
         1 => 
@@ -141,6 +136,11 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
+      ),
+      'contentsRaw#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
       ),
       'avatar' => 
       array (

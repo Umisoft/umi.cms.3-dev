@@ -1122,16 +1122,21 @@ return array (
       'collection' => 'structure',
       'type' => 'system',
       'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
-      'displayName' => 'Рассылка',
+      'displayName' => 'Рассылки',
       'branch' => NULL,
-      'slug' => 'dispatch',
+      'slug' => 'dispatches',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Рассылка',
+        1 => 'Рассылки',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Dispatches',
       ),
       'created' => 
       array (
@@ -1141,7 +1146,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-14 13:18:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:38:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1171,6 +1176,26 @@ return array (
           ),
         ),
       ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Рассылки',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Dispatches',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Рассылки',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Dispatches',
+      ),
       'active#ru-RU' => 
       array (
         0 => 'boolean',
@@ -1194,12 +1219,12 @@ return array (
       'componentName' => 
       array (
         0 => 'string',
-        1 => 'dispatch',
+        1 => 'dispatches',
       ),
       'componentPath' => 
       array (
         0 => 'string',
-        1 => 'dispatch',
+        1 => 'dispatches',
       ),
       'inMenu' => 
       array (
@@ -1219,6 +1244,191 @@ return array (
     ),
   ),
   8 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
+      'guid' => '0a183252-7985-445a-97df-80e583250ae1',
+      'displayName' => 'Подписки',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
+          'displayName' => 'Рассылки',
+          'branch' => NULL,
+          'slug' => 'dispatches',
+        ),
+      ),
+      'slug' => '44',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подписки',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Subscriptions',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:31:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:38:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подписки',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Subscriptions',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Подписки',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Subscriptions',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'subscription',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'dispatches.subscription',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  9 => 
   array (
     'meta' => 
     array (
@@ -1377,7 +1587,7 @@ return array (
       ),
     ),
   ),
-  9 => 
+  10 => 
   array (
     'meta' => 
     array (
@@ -1536,7 +1746,7 @@ return array (
       ),
     ),
   ),
-  10 => 
+  11 => 
   array (
     'meta' => 
     array (
@@ -1695,7 +1905,7 @@ return array (
       ),
     ),
   ),
-  11 => 
+  12 => 
   array (
     'meta' => 
     array (
@@ -1854,7 +2064,7 @@ return array (
       ),
     ),
   ),
-  12 => 
+  13 => 
   array (
     'meta' => 
     array (
@@ -1995,101 +2205,6 @@ return array (
       array (
         0 => 'string',
         1 => 'blog.moderate',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  13 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '3c893167-63dc-43ab-92bf-a7c517d3e1a8',
-      'displayName' => 'Подписчики',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
-          'displayName' => 'Рассылка',
-          'branch' => NULL,
-          'slug' => 'dispatch',
-        ),
-      ),
-      'slug' => 'subscriber',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Подписчики',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-14 13:18:15";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'subscriber',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'dispatches.subscriber',
       ),
       'inMenu' => 
       array (
@@ -2432,6 +2547,191 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
+      'guid' => '8557b3fe-e79c-49cc-88c5-7628ec42ad93',
+      'displayName' => 'Отписки',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
+          'displayName' => 'Рассылки',
+          'branch' => NULL,
+          'slug' => 'dispatches',
+        ),
+      ),
+      'slug' => '45',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отписки',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Unsubscriptions',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:32:08";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:38:07";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отписки',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Unsubscriptions',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Отписки',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Unsubscriptions',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'unsubscription',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'dispatches.unsubscription',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  17 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
       'guid' => '9ee6745f-f40d-46d8-8043-d95959462822',
       'displayName' => 'Новостной сюжет',
       'branch' => 
@@ -2585,7 +2885,7 @@ return array (
       ),
     ),
   ),
-  17 => 
+  18 => 
   array (
     'meta' => 
     array (
@@ -2744,7 +3044,7 @@ return array (
       ),
     ),
   ),
-  18 => 
+  19 => 
   array (
     'meta' => 
     array (
@@ -2903,7 +3203,7 @@ return array (
       ),
     ),
   ),
-  19 => 
+  20 => 
   array (
     'meta' => 
     array (
@@ -3062,7 +3362,7 @@ return array (
       ),
     ),
   ),
-  20 => 
+  21 => 
   array (
     'meta' => 
     array (
@@ -3221,7 +3521,7 @@ return array (
       ),
     ),
   ),
-  21 => 
+  22 => 
   array (
     'meta' => 
     array (
@@ -3380,7 +3680,7 @@ return array (
       ),
     ),
   ),
-  22 => 
+  23 => 
   array (
     'meta' => 
     array (
@@ -3539,7 +3839,7 @@ return array (
       ),
     ),
   ),
-  23 => 
+  24 => 
   array (
     'meta' => 
     array (
@@ -3698,7 +3998,7 @@ return array (
       ),
     ),
   ),
-  24 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3857,7 +4157,7 @@ return array (
       ),
     ),
   ),
-  25 => 
+  26 => 
   array (
     'meta' => 
     array (
@@ -4016,7 +4316,7 @@ return array (
       ),
     ),
   ),
-  26 => 
+  27 => 
   array (
     'meta' => 
     array (
@@ -4186,7 +4486,7 @@ return array (
       ),
     ),
   ),
-  27 => 
+  28 => 
   array (
     'meta' => 
     array (
@@ -4356,7 +4656,7 @@ return array (
       ),
     ),
   ),
-  28 => 
+  29 => 
   array (
     'meta' => 
     array (
@@ -4508,131 +4808,6 @@ return array (
       array (
         0 => 'string',
         1 => 'blog.reject.view',
-      ),
-      'inMenu' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'submenuState' => 
-      array (
-        0 => 'integer',
-        1 => 0,
-      ),
-      'skipInBreadcrumbs' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-    ),
-  ),
-  29 => 
-  array (
-    'meta' => 
-    array (
-      'collection' => 'structure',
-      'type' => 'system',
-      'guid' => '7303c804-2d9c-4209-a9f1-9fd9cf3470ff',
-      'displayName' => 'Форма подписки',
-      'branch' => 
-      array (
-        'meta' => 
-        array (
-          'collection' => 'structure',
-          'type' => 'system',
-          'guid' => '3c893167-63dc-43ab-92bf-a7c517d3e1a8',
-          'displayName' => 'Подписчики',
-          'branch' => 
-          array (
-            'meta' => 
-            array (
-              'collection' => 'structure',
-              'type' => 'system',
-              'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
-              'displayName' => 'Рассылка',
-              'branch' => NULL,
-              'slug' => 'dispatch',
-            ),
-          ),
-          'slug' => 'subscriber',
-        ),
-      ),
-      'slug' => 'form',
-    ),
-    'data' => 
-    array (
-      'displayName#ru-RU' => 
-      array (
-        0 => 'string',
-        1 => 'Форма подписки',
-      ),
-      'created' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-14 13:12:47";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'updated' => 
-      array (
-        0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-08-14 13:12:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
-      ),
-      'owner' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'editor' => 
-      array (
-        0 => 'relation',
-        1 => 
-        array (
-          'meta' => 
-          array (
-            'collection' => 'user',
-            'type' => 'registered.supervisor',
-            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
-            'displayName' => 'Супервайзер',
-          ),
-        ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'trashed' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'locked' => 
-      array (
-        0 => 'boolean',
-        1 => false,
-      ),
-      'componentName' => 
-      array (
-        0 => 'string',
-        1 => 'form',
-      ),
-      'componentPath' => 
-      array (
-        0 => 'string',
-        1 => 'dispatches.subscriber.form',
       ),
       'inMenu' => 
       array (
