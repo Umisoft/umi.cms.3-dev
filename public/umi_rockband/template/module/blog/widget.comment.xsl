@@ -48,15 +48,15 @@
     <!-- Кнопка "ответить" на комментарий <Конец> -->
 
     <!-- Список комментариев <Начало> -->
-    <xsl:template match="result[@widget = 'blog.comment.tree']/tree" mode="blog.comments.list">
+    <xsl:template match="result[@widget = 'blog.comment.tree']/tree" mode="blog.comments.tree">
         <xsl:param name="postGuid"/>
-        <xsl:apply-templates select="item" mode="blog.comments.list">
+        <xsl:apply-templates select="item" mode="blog.comments.tree">
             <xsl:with-param name="postGuid" select="$postGuid"/>
             <xsl:with-param name="parents" select="0"/>
         </xsl:apply-templates>
     </xsl:template>
 
-    <xsl:template match="item" mode="blog.comments.list">
+    <xsl:template match="item" mode="blog.comments.tree">
         <xsl:param name="postGuid"/>
         <xsl:param name="parents"/>
         <div class="com">
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <xsl:apply-templates select="item" mode="blog.comments.list">
+        <xsl:apply-templates select="item" mode="blog.comments.tree">
             <xsl:with-param name="postGuid" select="$postGuid"/>
             <xsl:with-param name="parents" select="$parents + 1"/>
         </xsl:apply-templates>
