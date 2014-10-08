@@ -1734,7 +1734,7 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   var buffer = '', stack1, helper, options;
-  data.buffer.push(" <div class=\"right pagination-controls\"> <span class=\"pagination-counter\"> ");
+  data.buffer.push(" <div class=\"right pagination-controls\"> <span class=\"pagination-counter show-for-large-up\"> ");
   stack1 = helpers._triageMustache.call(depth0, "view.counter", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </span> ");
@@ -1743,7 +1743,7 @@ function program2(depth0,data) {
   data.buffer.push(" ");
   stack1 = helpers.view.call(depth0, "view.nextButtonView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </div> <div class=\"right pagination-limit\"> <span class=\"pagination-label show-for-large-up\">");
+  data.buffer.push(" </div> <div class=\"right pagination-limit show-for-large-up\"> <span class=\"pagination-label\">");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Rows on page", "tableControl", options) : helperMissing.call(depth0, "i18n", "Rows on page", "tableControl", options))));
   data.buffer.push(":</span> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "view.limitView", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));

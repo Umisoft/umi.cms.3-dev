@@ -1,7 +1,7 @@
 {{#view 'toolbar' toolbar=toolbar}}
     {{#view view.parentView.paginationView}}
         <div class="right pagination-controls">
-            <span class="pagination-counter">
+            <span class="pagination-counter show-for-large-up">
                 {{view.counter}}
             </span>
 
@@ -14,8 +14,8 @@
             {{/view}}
         </div>
 
-        <div class="right pagination-limit">
-            <span class="pagination-label show-for-large-up">{{i18n "Rows on page" "tableControl"}}:</span>
+        <div class="right pagination-limit show-for-large-up">
+            <span class="pagination-label">{{i18n "Rows on page" "tableControl"}}:</span>
             {{view view.limitView}}
         </div>
     {{/view}}

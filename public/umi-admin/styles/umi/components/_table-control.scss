@@ -464,7 +464,8 @@ $table-control-row-bg-hover: #C8DEEE;
     .pagination-limit{
 
     }
-    .pagination-label{
+    .pagination-label,
+    .pagination-counter {
         float: left;
         margin-right: 15px;
         line-height: 24px;
