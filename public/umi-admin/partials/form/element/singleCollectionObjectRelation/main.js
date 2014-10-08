@@ -32,6 +32,7 @@ define(['App'], function(UMI) {
                 clearValue: function() {
                     var self = this;
                     self.set('value', '');
+                    Ember.set(self.get('meta'), 'value', '');
                 },
 
                 showPopup: function(params) {

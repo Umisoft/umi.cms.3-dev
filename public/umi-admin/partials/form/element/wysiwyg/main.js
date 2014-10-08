@@ -96,7 +96,7 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "htmlEditorCollection" object=view.object meta=view.meta}}')
         });
 
-        UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.ElementValidateMixin, {
+        UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.FormElementValidatable, {
             classNames: ['ckeditor-row'],
 
             ckeditor: null,
@@ -104,6 +104,14 @@ define(['App'], function(UMI) {
             textareaId: function() {
                 return 'textarea-' + this.get('elementId');
             }.property(),
+
+            focusOut: function() {
+                this.checkValidate();
+            },
+
+            focusIn: function() {
+                this.clearValidate();
+            },
 
             template: function() {
                 var textarea = '<textarea id="{{unbound view.textareaId}}" placeholder="{{unbound view.meta.placeholder}}" name="{{unbound view.meta.attributes.name}}">{{unbound view.object.' + this.get('meta.dataSource') + '}}</textarea>';

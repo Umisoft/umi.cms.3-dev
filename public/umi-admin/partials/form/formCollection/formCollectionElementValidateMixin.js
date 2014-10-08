@@ -4,10 +4,8 @@ define(
         'use strict';
 
         return function() {
-            UMI.FormCollectionElementValidateMixin = Ember.Mixin.create({
-                classNameBindings: ['isError:error'],
-
-                isError: function() {
+            UMI.FormCollectionElementValidateMixin = Ember.Mixin.create(UMI.FormElementValidateMixin, {
+                validateErrors: function() {
                     var dataSource = this.get('meta.dataSource');
                     var isValid = !!this.get('object.validErrors.' + dataSource);
                     return isValid;

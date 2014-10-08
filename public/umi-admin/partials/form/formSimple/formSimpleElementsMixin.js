@@ -28,7 +28,7 @@ define(
                         init: function() {
                             var type = this.get('meta.type');
                             var elementMixin = elementFactory.elementMixinForType(type) || {};
-                            this.reopen(elementMixin, UMI.FormSimpleElementValidateMixin);
+                            this.reopen(elementMixin, UMI.FormElementValidateMixin);
                             this._super();
                         }
                     });

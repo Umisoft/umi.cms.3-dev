@@ -5,13 +5,15 @@ define(
 
         return function() {
             UMI.FormElementValidateMixin = Ember.Mixin.create({
-                classNameBindings: ['isError:error'],
+                classNameBindings: ['validateErrors:error'],
 
                 /**
-                 * @property isError
+                 * Вычисляемое свойство возвращает сообщение ошибок валидации
+                 * @property validateErrors
                  * @hook
+                 * @return {String|Null}
                  */
-                isError: function() {
+                validateErrors: function() {
                     var errors = this.get('meta.errors');
                     if (Ember.typeOf(errors) === 'array' && errors.length) {
                         return errors.join('. ');
@@ -30,7 +32,7 @@ define(
                 }.property('meta.validators')
             });
 
-            UMI.ElementValidateMixin = Ember.Mixin.create({
+            UMI.FormElementValidatable = Ember.Mixin.create({
                 /**
                  * Определяет тип валидатора
                  * @property validatorType
@@ -40,25 +42,49 @@ define(
 
                 /**
                  * Метод вызывается при необходимости валидации поля
-                 * @method sendValidate
-                 * @optional
+                 * @method checkValidate
                  */
-                checkValidate: function() {},
-
-                focusOut: function() {//TODO: Вынести тригеры из миксина. Удобнее будет управлять валидацией непосредственно из элемента
-                    this.validate();
+                checkValidate: function() {
+                    this._validate();
                 },
 
                 /**
                  * Метод вызывается для отмены валидатора
+                 * @method clearValidate
                  */
-                clearValidate: function() {},
-
-                focusIn: function() {
-                    this.clearValidateError();
+                clearValidate: function() {
+                    this._clearValidateError();
                 },
 
-                validate: function() {
+                /**
+                 * Метод возвращает шаблон ошибок валидации для поля объекта
+                 * @method validateErrorsTemplate
+                 * @return {String} template
+                 */
+                validateErrorsTemplate: function() {
+                    var validatorType = this.get('validatorType');
+                    var template;
+                    var propertyName;
+
+                    if (validatorType === 'collection') {
+                        propertyName = this.get('meta.dataSource');
+                        template = '{{#if view.object.validErrors.' + propertyName + '}}' +
+                        '<small class="error">{{view.object.validErrors.' + propertyName + '}}</small>' +
+                        '{{/if}}';
+                    } else {
+                        template = '{{#if view.parentView.validateErrors}}' +
+                        '<small class="error">{{view.parentView.validateErrors}}</small>{{/if}}';
+                    }
+
+                    return template;
+                },
+
+                /**
+                 * Валидирует поле
+                 * @method validate
+                 * @private
+                 */
+                _validate: function() {
                     var self = this;
                     var validatorType = this.get('validatorType');
                     var property;
@@ -78,7 +104,12 @@ define(
                     }
                 },
 
-                clearValidateError: function() {
+                /**
+                 * Метод очищает ошибки валидации для данного поля
+                 * @method clearValidateError
+                 * @private
+                 */
+                _clearValidateError: function() {
                     var self = this;
                     var meta = self.get('meta');
                     var dataSource = Ember.get(meta, 'dataSource');
@@ -89,23 +120,6 @@ define(
                     } else {
                         Ember.set(meta, 'errors', []);
                     }
-                },
-
-                validateErrorsTemplate: function() {
-                    var validatorType = this.get('validatorType');
-                    var template;
-                    var propertyName;
-
-                    if (validatorType === 'collection') {
-                        propertyName = this.get('meta.dataSource');
-                        template = '{{#if view.object.validErrors.' + propertyName + '}}' +
-                        '<small class="error">{{view.object.validErrors.' + propertyName + '}}</small>' +
-                        '{{/if}}';
-                    } else {
-                        template = '{{#if view.parentView.isError}}<small class="error">{{view.parentView.isError}}</small>{{/if}}';
-                    }
-
-                    return template;
                 }
             });
         };

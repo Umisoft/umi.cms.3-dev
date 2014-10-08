@@ -8,7 +8,15 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}')
         });
 
-        UMI.SelectView = Ember.Select.extend(UMI.ElementValidateMixin, {
+        UMI.SelectView = Ember.Select.extend(UMI.FormElementValidatable, {
+            focusOut: function() {
+                this.checkValidate();
+            },
+
+            focusIn: function() {
+                this.clearValidate();
+            },
+
             attributeBindings: ['meta.dataSource:name'],
 
             optionLabelPath: function() {
@@ -63,7 +71,15 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "selectCollection" object=view.object meta=view.meta}}')
         });
 
-        UMI.SelectCollectionView = Ember.Select.extend(UMI.ElementValidateMixin, {
+        UMI.SelectCollectionView = Ember.Select.extend(UMI.FormElementValidatable, {
+            focusOut: function() {
+                this.checkValidate();
+            },
+
+            focusIn: function() {
+                this.clearValidate();
+            },
+
             attributeBindings: ['meta.dataSource:name'],
 
             isLazy: false,
