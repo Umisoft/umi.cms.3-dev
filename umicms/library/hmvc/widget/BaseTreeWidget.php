@@ -43,8 +43,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     /**
      * @var array $options настройки выборки
      * <ul>
-     * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов,</li>
-     * <li>orderBy - настройки сортировки объектов в списке, заданные массивом, где ключами являются пути к полям, по которым выполняется сортировка, а значениями - направление сортировки,</li>
+     * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов</li>
      * </ul>
      */
     public $options = [];
@@ -111,10 +110,6 @@ abstract class BaseTreeWidget extends BaseCmsWidget
                 $fields = $fields . ',' . $this->options['fields'];
             }
             $this->applySelectorSelectedFields($selector, $fields);
-        }
-
-        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
-            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
         }
 
         return $selector;
