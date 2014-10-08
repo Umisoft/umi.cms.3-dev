@@ -195,12 +195,32 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
     &-logo{
         opacity: 0.8;
     }
+
+    &.badBrowser {
+        & .small-centered {
+            position: absolute;
+            left: 50%;
+            margin-left: -230px;
+        }
+    }
 }
 
 @media #{$medium-only}{
     .auth-layout{
         .bubbles-front, .bubbles{
             background-size: 100%;
+        }
+    }
+}
+
+.no-svg {
+    .auth-layout.badBrowser {
+        .panel {
+            background: #f2f2f2;
+        }
+
+        .auth-layout-logo {
+            display: none;
         }
     }
 }

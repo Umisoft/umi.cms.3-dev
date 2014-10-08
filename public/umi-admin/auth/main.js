@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], function(templates) {
+define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templates) {
     'use strict';
 
     /**
@@ -203,36 +203,41 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], fu
                  */
                 templates(self);
 
-                // Проверяем, поддерживается ли браузер
+                this.getForm('form').then(function() {
+                    var currentLocale = self.cookie.get('auth-locale');
+                    var options;
+                    var currentLocaleLabel;
 
-                var checkBrowser = function() {
-                    return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage);
-                };
-
-                // Проверяем есть ли шаблон и если нет то собираем его
-
-                var initTemplates = function(isBadBrowser) {
-                    var currentTemplate;
-                    if (!isBadBrowser) {
-                        currentTemplate = self.TEMPLATES.index(
-                            {
-                                accessError: self.accessError,
-                                form: self.forms.form,
-                                currentLocale: self.currentLocaleLabel
-                            }
-                        );
-                    } else {
-                        currentTemplate = self.TEMPLATES.badBrowser();
+                    if (!currentLocale && window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
+                        currentLocale = window.UmiSettings.locale;
                     }
 
+                    try {
+                        options = self.forms.form.elements[2].choices;
+                        currentLocale = currentLocale || options[0].value;
+
+                        for (var i = 0; i < options.length; i++) {
+                            if (options[i].value === currentLocale) {
+                                options[i].active = 'true';
+                                currentLocaleLabel = options[i].label || options[i].value;
+                            }
+                        }
+                    } catch (error) {
+                        console.warn(error);
+                    }
+
+                    // Проверяем есть ли шаблон и если нет то собираем его
                     if (!document.querySelector('.auth-layout')) {
-                        var helper = document.createElement('div');
-                        helper.innerHTML = self.TEMPLATES.app({
+                        document.body.insertAdjacentHTML('beforeend', self.TEMPLATES.app({
                             assetsUrl: assetsUrl,
-                            outlet: currentTemplate
-                        });
-                        helper = document.body.appendChild(helper);
-                        $(helper.firstElementChild).unwrap();
+                            outlet: self.TEMPLATES.index(
+                                {
+                                    accessError: self.accessError,
+                                    form: self.forms.form,
+                                    currentLocale: currentLocaleLabel
+                                }
+                            )
+                        }));
                     }
                     $('body').removeClass('loading');
 
@@ -262,38 +267,6 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], fu
                         }
                         parallax(event);
                     };
-                };
-
-                // Получаем и собираем
-
-                if (!checkBrowser()) {
-                    initTemplates(true);
-                    return;
-                }
-
-                this.getForm('form').then(function() {
-                    var currentLocale = self.cookie.get('auth-locale');
-                    var options;
-
-                    if (!currentLocale && window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
-                        currentLocale = window.UmiSettings.locale;
-                    }
-
-                    try {
-                        options = self.forms.form.elements[2].choices;
-                        currentLocale = currentLocale || options[0].value;
-
-                        for (var i = 0; i < options.length; i++) {
-                            if (options[i].value === currentLocale) {
-                                options[i].active = 'true';
-                                self.currentLocaleLabel = options[i].label || options[i].value;
-                            }
-                        }
-                    } catch (error) {
-                        console.warn(error);
-                    }
-
-                    initTemplates(false);
 
                     $(document).on('click.umi.auth', '.locale-select', function(event) {
                         event.preventDefault();
@@ -406,7 +379,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], fu
                     document.cookie = updatedCookie;
                 },
 
-                delete: function(name) {
+                'delete': function(name) {
                     Auth.cookie.set(name, '', { expires: -1 });
                 }
             }
