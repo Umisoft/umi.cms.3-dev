@@ -1,0 +1,19 @@
+<div class="umi-popup-content-with-bottom">
+    <div class="s-scroll-wrap">
+        <ul class="no-bullet umi-list striped">
+            {{#each fieldsList}}
+                <li class="umi-list-item">
+                    {{view "checkboxElement" object=this meta=this objectNeedChange=true}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="umi-popup-bottom">
+    <div class="right">
+        <span class="button secondary" {{action "setDefault"}}>{{i18n "Default" "tableControl"}}</span>
+
+        <span {{bind-attr class=":button isDirty::disabled"}} {{action "apply"}}>{{i18n "Apply" "tableControl"}}</span>
+    </div>
+</div>

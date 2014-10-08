@@ -30,12 +30,12 @@ define(['App'], function(UMI) {
             var showFileManager = function() {
                 editor._.filebrowserSe = this;
                 var $dialog = $('.cke_dialog');
-                $dialog.addClass('umi-blur');
+                $dialog.addClass('s-blur');
                 var $dialogCover = $('.cke_dialog_background_cover');
                 $dialogCover.addClass('hide');
 
                 var showDialogCK = function() {
-                    $dialog.removeClass('umi-blur');
+                    $dialog.removeClass('s-blur');
                     $dialogCover.removeClass('hide');
                 };
                 popupParams.viewParams.beforeClose = showDialogCK;

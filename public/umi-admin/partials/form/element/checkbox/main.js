@@ -52,6 +52,10 @@ define(['App'], function(UMI) {
                     var checkbox = $el.find('input[type="checkbox"]')[0];
                     checkbox.checked = !checkbox.checked;
                     $(checkbox).trigger("change");
+
+                    if (this.get('objectNeedChange')) {
+                        Ember.set(this.get('meta'), 'value', checkbox.checked ? 1 : 0);
+                    }
                 }
             }
         });
