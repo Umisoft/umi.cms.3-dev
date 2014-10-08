@@ -64,7 +64,7 @@
                 <div class="comment">
                     <div class="com-title"><xsl:value-of select="document('translate://project.site.blog/Comments')/result" /> - <xsl:value-of select="//property[@name='commentsCount']/value" /></div>
                     <xsl:apply-templates select="document(concat('widget://blog.comment.add.addForm?blogPost=', page/@guid))" mode="blog.comments.form" />
-                    <xsl:apply-templates select="document(concat('widget://blog.comment.list?blogPost=', page/@guid, '&amp;options%5Bfields%5D=contents,publishTime'))" mode="blog.comments.list">
+                    <xsl:apply-templates select="document(concat('widget://blog.comment.tree?blogPost=', page/@guid, '&amp;options%5Bfields%5D=contents,publishTime'))" mode="blog.comments.list">
                         <xsl:with-param name="postGuid" select="page/@guid" />
                     </xsl:apply-templates>
 

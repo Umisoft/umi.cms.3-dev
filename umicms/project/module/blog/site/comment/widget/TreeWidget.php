@@ -21,12 +21,8 @@ use umicms\project\module\blog\model\object\CommentStatus;
 /**
  * Виджет для вывода списка комментариев.
  */
-class ListWidget extends BaseTreeWidget
+class TreeWidget extends BaseTreeWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
     /**
      * @var string $orderBy имя поля, по которому происходит сортировка потомков одного уровня
      */
