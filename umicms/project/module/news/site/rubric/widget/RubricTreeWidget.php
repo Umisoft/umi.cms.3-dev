@@ -30,19 +30,19 @@ class RubricTreeWidget extends BaseTreeWidget
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi модуль "Новости"
+     * @param NewsModule $module модуль "Новости"
      */
-    public function __construct(NewsModule $newsApi)
+    public function __construct(NewsModule $module)
     {
-        $this->module = $newsApi;
+        $this->module = $module;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getSelector()
+    protected function getCollection()
     {
-        return $this->module->rubric()->select();
+        return $this->module->rubric();
     }
 }
  

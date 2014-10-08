@@ -41,6 +41,14 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public $depth;
     /**
+     * @var string $orderBy имя поля, по которому происходит сортировка потомков одного уровня
+     */
+    public $orderBy = CmsHierarchicObject::FIELD_ORDER;
+    /**
+     * @var string $direction направление, по которому происходит сортировка потомков одного уровня
+     */
+    public $direction = CmsSelector::ORDER_ASC;
+    /**
      * @var array $options настройки выборки
      * <ul>
      * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов</li>
@@ -54,10 +62,10 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     public $fullyLoad;
 
     /**
-     * Возвращает выборку для построения дерева.
-     * @return CmsSelector
+     * Возвращает коллекцию, для которой строится дерево.
+     * @return CmsHierarchicCollection
      */
-    abstract protected function getSelector();
+    abstract protected function getCollection();
 
     /**
      * Формирует результат работы виджета.
@@ -70,9 +78,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $selector = $this->getSelector();
-
-        $collection = $selector->getCollection();
+        $collection = $this->getCollection();
 
         if (!$collection instanceof CmsHierarchicCollection) {
             throw new RuntimeException($this->translate(
@@ -81,20 +87,24 @@ abstract class BaseTreeWidget extends BaseCmsWidget
         }
 
         $parentNode = $this->getParentNode($collection);
+        /**
+         * @var CmsSelector $selector
+         */
+        $selector = $collection->selectDescendants($parentNode, $this->depth, $this->orderBy, $this->direction);
 
-        if ($parentNode instanceof CmsHierarchicObject) {
-            $selector = $collection->selectDescendants($parentNode);
-
-            if ($this->depth) {
-                $selector = $collection->selectDescendants($parentNode, $this->depth);
-            }
-        } else if ($this->depth) {
-            $selector = $collection->selectDescendants(null, $this->depth);
-        }
-
+        $this->configureSelector($selector);
         $this->applySelectorConditions($selector);
 
         return $this->createTreeResult($this->template, $selector);
+    }
+
+    /**
+     * Расширяет выборку потомков дополнительными условиями.
+     * @param CmsSelector $selector
+     */
+    protected function configureSelector(CmsSelector $selector)
+    {
+
     }
 
     /**
