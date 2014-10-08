@@ -10,9 +10,7 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
-use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
-use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\StructureModule;
 
 /**
@@ -24,11 +22,6 @@ class CustomMenuWidget extends BaseTreeWidget
      * @var string $template имя шаблона, по которому выводится виджет.
      */
     public $template = 'customMenu';
-
-    /**
-     * @var string $menuName имя выводимого меню.
-     */
-    public $menuName;
 
     /**
      * @var StructureModule $module
@@ -47,27 +40,8 @@ class CustomMenuWidget extends BaseTreeWidget
     /**
      * {@inheritdoc}
      */
-    protected function getSelector()
+    protected function getCollection()
     {
-        $menu = $this->module->menu()->select()
-            ->where(Menu::FIELD_NAME)->equals($this->menuName)
-            ->result()
-            ->fetch();
-
-        if (!$menu instanceof Menu) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Widget parameter "{param}" should be instance of "{class}".',
-                    [
-                        'param' => 'menuName',
-                        'class' => Menu::className()
-                    ]
-                )
-            );
-        }
-
-        $this->parentNode = $menu;
-
-        return $this->module->menu()->select();
+        return $this->module->menu();
     }
 }

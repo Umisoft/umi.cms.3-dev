@@ -12,8 +12,11 @@ namespace umicms\project\module\blog\site\comment\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Виджет для вывода списка комментариев.
@@ -25,6 +28,14 @@ class ListWidget extends BaseTreeWidget
      */
     public $template = 'list';
     /**
+     * @var string $orderBy имя поля, по которому происходит сортировка потомков одного уровня
+     */
+    public $orderBy = BlogComment::FIELD_PUBLISH_TIME;
+    /**
+     * @var string $direction направление, по которому происходит сортировка потомков одного уровня
+     */
+    public $direction = CmsSelector::ORDER_DESC;
+    /**
      * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
      */
     public $blogPost;
@@ -32,6 +43,7 @@ class ListWidget extends BaseTreeWidget
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
+
 
     /**
      * Конструктор.
@@ -45,7 +57,15 @@ class ListWidget extends BaseTreeWidget
     /**
      * {@inheritdoc}
      */
-    protected function getSelector()
+    protected function getCollection()
+    {
+        return $this->module->comment();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureSelector(CmsSelector $selector)
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->module->post()->get($this->blogPost);
@@ -63,12 +83,25 @@ class ListWidget extends BaseTreeWidget
             );
         }
 
-        if ($this->isAllowed($this->module->comment(), 'getCommentsWithNeedModeration')) {
-            return $this->module->getCommentByPostWithNeedModeration($this->blogPost);
+        $selector->where(BlogComment::FIELD_POST)->equals($this->blogPost);
+
+        if ($this->isAllowed($selector->getCollection(), 'getCommentsWithNeedModeration')) {
+            $statusGuids = [
+                CommentStatus::GUID_PUBLISHED,
+                CommentStatus::GUID_NEED_MODERATION,
+                CommentStatus::GUID_UNPUBLISHED
+            ];
+
         } else {
-            return $this->module->getCommentsByPost($this->blogPost);
+            $statusGuids = [
+                CommentStatus::GUID_PUBLISHED,
+                CommentStatus::GUID_UNPUBLISHED
+            ];
         }
 
+        $selector->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in($statusGuids);
+
     }
+
 }
  
