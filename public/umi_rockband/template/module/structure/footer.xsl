@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- Меню в футере <Начало>-->
-                    <xsl:apply-templates select="document('widget://structure.menu.custom?parentNode=104be372-0550-469d-9a63-f36a361139a5&amp;depth=2')" mode="footer.content.root"/>
+                    <xsl:apply-templates select="document('widget://structure.menu.custom?branch=104be372-0550-469d-9a63-f36a361139a5&amp;depth=2')" mode="footer.content.root"/>
 
                     <div class="col-md-12 text-center">
                         <!-- Значки социальных сетей -->

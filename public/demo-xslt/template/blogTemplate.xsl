@@ -95,7 +95,7 @@
 
                 <footer class="blog-footer">
 
-                    <xsl:apply-templates select="document('widget://structure.menu.custom?parentNode=104be372-0550-469d-9a63-f36a361139a5')/result" mode="bottomMenu"/>
+                    <xsl:apply-templates select="document('widget://structure.menu.custom?branch=104be372-0550-469d-9a63-f36a361139a5')/result" mode="bottomMenu"/>
 
                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="footer"/>
                     <p>
