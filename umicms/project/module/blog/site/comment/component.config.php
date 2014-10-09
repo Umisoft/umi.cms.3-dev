@@ -46,7 +46,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
-                'widget:list' => []
+                'widget:tree' => []
             ],
             'moderator' => [
                 'widget:rejectForm' => [],
