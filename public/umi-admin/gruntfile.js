@@ -150,7 +150,7 @@ module.exports = function(grunt) {
                     'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
                     'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
                     'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js', 'vendorExtend/elFinder.js',
-                    'vendor/iscroll/build/iscroll.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
+                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
                 ],
                 dest: 'development'
             },
