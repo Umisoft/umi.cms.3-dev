@@ -57,7 +57,7 @@ require.config({
 require(['Modernizr'], function() {
     'use strict';
     var checkBrowser = function() {
-        return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage);
+        return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage && !('opera' in window));
     };
 
     if (!checkBrowser()) {
