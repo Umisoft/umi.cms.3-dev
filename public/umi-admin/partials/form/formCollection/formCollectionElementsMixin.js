@@ -42,7 +42,11 @@ define(
                         init: function() {
                             var type = this.get('meta.type');
                             var elementMixin = elementFactory.elementMixinForType(type) || {};
-                            this.reopen(elementMixin, UMI.FormCollectionElementValidateMixin);
+                            if (type !== 'fieldset') {
+                                this.reopen(elementMixin, UMI.FormCollectionElementValidateMixin);
+                            } else {
+                                this.reopen(elementMixin);
+                            }
                             this._super();
                         }
                     });

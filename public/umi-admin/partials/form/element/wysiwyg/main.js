@@ -115,6 +115,7 @@ define(['App'], function(UMI) {
 
             template: function() {
                 var textarea = '<textarea id="{{unbound view.textareaId}}" placeholder="{{unbound view.meta.placeholder}}" name="{{unbound view.meta.attributes.name}}">{{unbound view.object.' + this.get('meta.dataSource') + '}}</textarea>';
+                this.set('validatorType', 'collection');
                 var validate = this.validateErrorsTemplate();
                 return Ember.Handlebars.compile(textarea + validate);
             }.property(),

@@ -56,6 +56,8 @@ define(
                     this._clearValidateError();
                 },
 
+                isWrapperTemplate: false,
+
                 /**
                  * Метод возвращает шаблон ошибок валидации для поля объекта
                  * @method validateErrorsTemplate
@@ -72,8 +74,13 @@ define(
                         '<small class="error">{{view.object.validErrors.' + propertyName + '}}</small>' +
                         '{{/if}}';
                     } else {
-                        template = '{{#if view.parentView.validateErrors}}' +
-                        '<small class="error">{{view.parentView.validateErrors}}</small>{{/if}}';
+                        if (this.get('isWrapperTemplate')) {
+                            template = '{{#if view.validateErrors}}' +
+                            '<small class="error">{{view.validateErrors}}</small>{{/if}}';
+                        } else {
+                            template = '{{#if view.parentView.validateErrors}}' +
+                            '<small class="error">{{view.parentView.validateErrors}}</small>{{/if}}';
+                        }
                     }
 
                     return template;

@@ -2,19 +2,31 @@ define(['App'], function(UMI) {
     'use strict';
 
     return function() {
-        UMI.FormSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+        UMI.FormSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidatable, {
             classNames: ['small-12', 'large-4'],
 
-            template: Ember.Handlebars.compile('{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}')
+            template: function() {
+                var selectView = '{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}';
+                this.set('isWrapperTemplate', true);
+                var validate = this.validateErrorsTemplate();
+                var template = selectView + validate;
+                return Ember.Handlebars.compile(template);
+            }.property()
         });
 
-        UMI.SelectView = Ember.Select.extend(UMI.FormElementValidatable, {
+        UMI.SelectView = Ember.Select.extend({
             focusOut: function() {
-                this.checkValidate();
+                var parentView = this.get('parentView');
+                if (Ember.canInvoke(parentView, 'checkValidate')) {
+                    parentView.checkValidate();
+                }
             },
 
             focusIn: function() {
-                this.clearValidate();
+                var parentView = this.get('parentView');
+                if (Ember.canInvoke(parentView, 'clearValidate')) {
+                    parentView.clearValidate();
+                }
             },
 
             attributeBindings: ['meta.dataSource:name'],
@@ -65,19 +77,35 @@ define(['App'], function(UMI) {
             }
         });
 
-        UMI.FormSelectCollectionElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
+        UMI.FormSelectCollectionElementMixin = Ember.Mixin.create(UMI.FormCollectionElementMixin, UMI.FormElementValidatable, {
             classNames: ['small-12', 'large-4'],
 
-            template: Ember.Handlebars.compile('{{view "selectCollection" object=view.object meta=view.meta}}')
+            template: function() {
+                this.set('isWrapperTemplate', true);
+
+                if (this.get('meta.lazy')) {
+                    this.set('validatorType', 'collection');
+                }
+                var selectView = '{{view "selectCollection" object=view.object meta=view.meta}}';
+                var validate = this.validateErrorsTemplate();
+                var template = selectView + validate;
+                return Ember.Handlebars.compile(template);
+            }.property()
         });
 
-        UMI.SelectCollectionView = Ember.Select.extend(UMI.FormElementValidatable, {
+        UMI.SelectCollectionView = Ember.Select.extend({
             focusOut: function() {
-                this.checkValidate();
+                var parentView = this.get('parentView');
+                if (Ember.canInvoke(parentView, 'checkValidate')) {
+                    parentView.checkValidate();
+                }
             },
 
             focusIn: function() {
-                this.clearValidate();
+                var parentView = this.get('parentView');
+                if (Ember.canInvoke(parentView, 'clearValidate')) {
+                    parentView.clearValidate();
+                }
             },
 
             attributeBindings: ['meta.dataSource:name'],
@@ -130,11 +158,12 @@ define(['App'], function(UMI) {
             init: function() {
                 this._super();
                 var self = this;
-                var object = this.get('object');
-                var property = this.get('meta.dataSource');
-                this.set('isLazy', this.get('meta.lazy'));
+                var object = self.get('object');
+                var property = self.get('meta.dataSource');
+                self.set('isLazy', self.get('meta.lazy'));
+                self.set('validatorType', 'collection');
 
-                if (this.get('isLazy')) {
+                if (self.get('isLazy')) {
                     var store = self.get('controller.store');
                     var relatedCollectionName;
 
