@@ -10,7 +10,9 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
+use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\StructureModule;
 
 /**
@@ -43,5 +45,27 @@ class CustomMenuWidget extends BaseTreeWidget
     protected function getCollection()
     {
         return $this->module->menu();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getBranch($collection)
+    {
+        $branch = parent::getBranch($collection);
+
+        if (!$branch instanceof Menu) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'branch',
+                        'class' => Menu::className()
+                    ]
+                )
+            );
+        }
+
+        return $branch;
     }
 }

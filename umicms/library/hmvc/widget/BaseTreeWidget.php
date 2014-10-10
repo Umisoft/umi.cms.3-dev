@@ -132,7 +132,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      * @throws InvalidArgumentException в случае если бранч не иерархический объект
      * @return CmsHierarchicObject|null
      */
-    private function getBranch($collection)
+    protected function getBranch($collection)
     {
         $branch = $this->branch;
 
@@ -146,7 +146,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'branch',
-                        'class' => 'CmsHierarchicObject'
+                        'class' => 'umicms\orm\object\CmsHierarchicObject'
                     ]
                 )
             );
