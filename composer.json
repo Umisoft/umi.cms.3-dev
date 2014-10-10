@@ -35,6 +35,17 @@
 
         "symfony/finder": "~2.2",
         "symfony/process": "~2.1",
-        "symfony/console": "~2.1"
+        "symfony/console": "~2.1",
+
+        "behat/behat": "2.4.*@stable",
+        "behat/mink": "1.4.*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*"
+    },
+
+    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin/"
     }
 }

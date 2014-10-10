@@ -3,8 +3,3 @@
 /composer.lock
 /configuration/db.config.php
 /vendor
-/public/umi-admin/node_modules
-/public/umi-admin/vendor
-/Vagrantfile
-/.vagrant
-*.pp
