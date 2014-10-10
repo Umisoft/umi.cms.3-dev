@@ -17,7 +17,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 
 /**
- * Виджет вывода комментариев.
+ * Виджет вывода комментария.
  */
 class CommentWidget extends BaseCmsWidget
 {

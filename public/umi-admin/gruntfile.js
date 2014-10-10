@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*'],
+                files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*', 'library/**/*.*'],
                 tasks: ['emberTemplates', 'requirejs:development']
             }
         },
