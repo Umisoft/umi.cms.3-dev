@@ -54,15 +54,27 @@ define(['App'], function(UMI) {
                 }
             },
 
-            inputView: Ember.View.extend(UMI.InputValidate, {
-                type: "text",
+            inputView: Ember.View.extend(UMI.FormElementValidatable, {
+                focusOut: function() {
+                    this.checkValidate();
+                },
+
+                focusIn: function() {
+                    this.clearValidate();
+                },
+
+                type: 'text',
 
                 classNames: ['umi-element-text'],
+
+                objectBinding: 'parentView.object',
+
+                metaBinding: 'parentView.meta',
 
                 template: function() {
                     var template;
                     if (Ember.typeOf(this.get('object')) === 'instance') {
-                        this.set('validator', 'collection');
+                        this.set('validatorType', 'collection');
                         var input = '{{input type=view.type value=view.parentView.value placeholder=view.meta.placeholder name=view.meta.attributes.name disabled=true}}';
                         var validate = this.validateErrorsTemplate();
                         template = input + validate;

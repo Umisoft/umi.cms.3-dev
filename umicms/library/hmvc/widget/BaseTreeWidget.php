@@ -33,20 +33,17 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public $template = 'tree';
     /**
-     * Если не указано, строится полное дерево
-     * @var CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды
+     * @var string|CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды. Если не указано, строится полное дерево
      */
     public $parentNode;
     /**
-     * Если не указано, строится на всю глубину вложенности
-     * @var int $depth глубина вложения
+     * @var int $depth глубина вложения. Если не указано, строится на всю глубину вложенности
      */
     public $depth;
     /**
      * @var array $options настройки выборки
      * <ul>
-     * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов,</li>
-     * <li>orderBy - настройки сортировки объектов в списке, заданные массивом, где ключами являются пути к полям, по которым выполняется сортировка, а значениями - направление сортировки,</li>
+     * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов</li>
      * </ul>
      */
     public $options = [];
@@ -113,10 +110,6 @@ abstract class BaseTreeWidget extends BaseCmsWidget
                 $fields = $fields . ',' . $this->options['fields'];
             }
             $this->applySelectorSelectedFields($selector, $fields);
-        }
-
-        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
-            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
         }
 
         return $selector;

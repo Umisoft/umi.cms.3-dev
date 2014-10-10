@@ -5,11 +5,9 @@ define(
         'partials/form/partial/submitToolbar/main',
         './formSimpleController',
         './formSimpleElementsMixin',
-        './formSimpleElementValidateMixin',
         './formSimpleView'
     ],
-    function(UMI, magellan, submitToolbar, formSimpleController, formSimpleElementsMixin,
-        formSimpleElementValidateMixin, formSimpleView) {
+    function(UMI, magellan, submitToolbar, formSimpleController, formSimpleElementsMixin, formSimpleView) {
         'use strict';
 
         /**
@@ -24,7 +22,6 @@ define(
 
             formSimpleController();
             formSimpleElementsMixin();
-            formSimpleElementValidateMixin();
             formSimpleView();
         };
     }

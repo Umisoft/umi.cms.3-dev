@@ -28,7 +28,11 @@ define(
                         init: function() {
                             var type = this.get('meta.type');
                             var elementMixin = elementFactory.elementMixinForType(type) || {};
-                            this.reopen(elementMixin, UMI.FormSimpleElementValidateMixin);
+                            if (type !== 'fieldset') {
+                                this.reopen(elementMixin, UMI.FormElementValidateMixin);
+                            } else {
+                                this.reopen(elementMixin);
+                            }
                             this._super();
                         }
                     });

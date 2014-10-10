@@ -15,6 +15,14 @@ define(['App'], function(UMI) {
 
             textareaView: function() {
                 var viewParams = {
+                    focusOut: function() {
+                        this.checkValidate();
+                    },
+
+                    focusIn: function() {
+                        this.clearValidate();
+                    },
+
                     didInsertElement: function() {
                         this.allowResize();
                     },
@@ -65,20 +73,25 @@ define(['App'], function(UMI) {
                 };
 
                 if (Ember.typeOf(this.get('object')) === 'instance') {
+                    var textarea;
+                    var validate;
+
                     viewParams.template = function() {
+                        this.set('validatorType', 'collection');
                         var propertyName = this.get('parentView.meta.dataSource');
-                        var textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.object.' + propertyName + '}}';
-                        var validate = this.validateErrorsTemplate();
+                        textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.object.' + propertyName + '}}';
+                        validate = this.validateErrorsTemplate();
                         return Ember.Handlebars.compile(textarea + validate);
                     }.property();
-                    return Ember.View.extend(UMI.InputValidate, viewParams);
+
                 } else {
                     viewParams.template = function() {
-                        var textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.attributes.value}}';
-                        return Ember.Handlebars.compile(textarea);
+                        textarea = '{{textarea placeholder=view.parentView.attributes.placeholder name=view.parentView.meta.attributes.name value=view.parentView.attributes.value}}';
+                        validate = this.validateErrorsTemplate();
+                        return Ember.Handlebars.compile(textarea + validate);
                     }.property();
-                    return Ember.View.extend(viewParams);
                 }
+                return Ember.View.extend(UMI.FormElementValidatable, viewParams);
             }.property()
         });
     };

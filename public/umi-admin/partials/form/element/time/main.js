@@ -9,9 +9,18 @@ define(['App'], function(UMI) {
             template: Ember.Handlebars.compile('{{view "timeElement" object=view.object meta=view.meta}}')
         });
 
-        UMI.TimeElementView = Ember.View.extend(UMI.InputValidate, {
+        UMI.TimeElementView = Ember.View.extend(UMI.FormElementValidatable, {
             templateName: 'partials/timeElement',
+
             classNames: ['row', 'collapse'],
+
+            focusOut: function() {
+                this.checkValidate();
+            },
+
+            focusIn: function() {
+                this.clearValidate();
+            },
 
             didInsertElement: function() {
                 var el = this.$();
@@ -30,7 +39,7 @@ define(['App'], function(UMI) {
             inputView: Ember.View.extend({
                 template: function() {
                     var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validatorType="collection" name=meta.attributes.name}}');
+                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder name=meta.attributes.name}}');
                 }.property()
             })
         });
