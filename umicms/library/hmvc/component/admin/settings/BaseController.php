@@ -12,7 +12,6 @@ namespace umicms\hmvc\component\admin\settings;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
-use umi\form\IForm;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\admin\BaseController as BaseAdminController;
 
@@ -52,18 +51,5 @@ abstract class BaseController extends BaseAdminController implements IConfigIOAw
         return $component;
     }
 
-    /**
-     * Возвращает форму, связанную с конфигурацией
-     * @return IForm
-     */
-    protected function getConfigForm()
-    {
-        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
-
-        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
-        $form->setAction($this->getUrl('action', ['action' => 'save']));
-
-        return $form;
-    }
 }
  

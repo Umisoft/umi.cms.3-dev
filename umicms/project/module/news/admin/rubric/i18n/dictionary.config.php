@@ -15,11 +15,11 @@ return [
 
         'action:create:base' => 'Create subrubric',
 
-        'role:editor:displayName' => 'Managing rubrics'
+        'role:editor:displayName' => 'Manage rubrics'
     ],
 
     'ru-RU' => [
-        'component:rubric:displayName' => 'Новостные рубрики',
+        'component:rubric:displayName' => 'Рубрики',
 
         'action:create:base' => 'Добавить подрубрику',
 

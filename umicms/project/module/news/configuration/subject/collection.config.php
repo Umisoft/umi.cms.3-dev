@@ -11,20 +11,23 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
 
-return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\news\model\collection\NewsSubjectCollection',
-    'handlers' => [
-        'admin' => 'news.subject',
-        'site' => 'news.subject'
-    ],
-    'forms' => [
-        'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/subject/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/subject/form/base.create.config.php}'
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
+    [
+        'type' => ICollectionFactory::TYPE_SIMPLE,
+        'class' => 'umicms\project\module\news\model\collection\NewsSubjectCollection',
+        'handlers' => [
+            'admin' => 'news.subject',
+            'site' => 'news.subject'
+        ],
+        'forms' => [
+            'base' => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/subject/form/base.edit.config.php}',
+                ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/subject/form/base.create.config.php}'
+            ]
+        ],
+        'dictionaries' => [
+            'collection.newsSubject' => 'collection.newsSubject', 'collection' => 'collection'
         ]
-    ],
-    'dictionaries' => [
-        'collection.newsSubject', 'collection'
     ]
-];
+);

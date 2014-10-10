@@ -12,6 +12,7 @@ namespace umicms\project;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
+use umi\event\IEvent;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
@@ -39,7 +40,7 @@ use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
 /**
- * Загрузчик приложений UMI.CMS
+ * Загрузчик проектов на UMI.CMS
  */
 class Bootstrap
 {
@@ -60,11 +61,10 @@ class Bootstrap
     const OPTION_TOOLS_SETTINGS = 'settings';
 
     /**
-     * Тип контента в зависимости от формата запроса.
-     * @var array $contentTypes
+     * Список разрешенных форматов запроса.
+     * @var array $allowedRequestFormats
      */
-    public static $contentTypes = [
-        'html' => 'text/html; charset=utf8',
+    public $allowedRequestFormats = [
         'json' => 'application/json; charset=utf8',
         'xml' => 'text/xml; charset=utf8',
     ];
@@ -77,12 +77,25 @@ class Bootstrap
      * @var IConfig $config конфигурация текущего проекта
      */
     protected $projectConfig;
+    /**
+     * @var string $projectDestination директория текущего проекта
+     */
+    protected $projectDirectory = '.';
+    /**
+     * @var string $projectName имя текущего проекта
+     */
+    protected $projectName = '.';
+    /**
+     * @var string $projectDumpDirectory директория дампа данных проекта
+     */
+    protected $projectDumpDirectory = './dump';
 
     /**
      * Конструктор.
+     * @param Request|null $request запрос
      * @throws RuntimeException если не удалось сконфигурировать сервисы
      */
-    public function __construct()
+    public function __construct(Request $request = null)
     {
         try {
             $this->toolkit = $this->configureToolkit();
@@ -90,10 +103,16 @@ class Bootstrap
         } catch (\Exception $e) {
             throw new RuntimeException('Cannot configure Toolkit.', 0, $e);
         }
+
+        if ($request) {
+            $this->toolkit->overrideService('umi\http\Request', function() use ($request) {
+                return $request;
+            });
+        }
     }
 
     /**
-     * Выполняет загрузчик.
+     * Выполняет запрос
      */
     public function run()
     {
@@ -101,37 +120,46 @@ class Bootstrap
          * @var Request $request
          */
         $request = $this->toolkit->getService('umi\http\Request');
+
         $this->prepareRequest($request);
 
-        $routeResult = $this->routeProject($request);
-
+        $routeResult = $this->dispatchProject();
         $routeMatches = $routeResult->getMatches();
 
-        $project = $this->createProject();
-
         $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
+        $siteUrlPostfix = isset($routeMatches['postfix']) ? $routeMatches['postfix'] : null;
+        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
         $routePath = $routeResult->getUnmatchedUrl();
 
+        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
+            $format = $matches[1];
+
+            if ($format === $siteUrlPostfix || isset($this->allowedRequestFormats[$format])) {
+                $routePath = substr($routePath, 0, -strlen($format) - 1);
+
+                if ($format === $siteUrlPostfix) {
+                    $format = 'html';
+                    $this->allowedRequestFormats['html'] = 'text/html; charset=utf8';
+                }
+
+                $request->setRequestFormat($format);
+            }
+        }
+
+        $routePath = $routePath ?: '/';
+
+        $project = $this->createProject();
         /**
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
 
         $urlManager->setSchemeAndHttpHost($domainUrl);
-
         $urlManager->setUrlPrefix($projectPrefix);
-
+        $urlManager->setSiteUrlPostfix($siteUrlPostfix);
 
         $this->configureAdminUrls($project);
 
-        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
-            $format = $matches[1];
-            $routePath = substr($routePath, 0, -strlen($format) - 1);
-            $request->setRequestFormat($format);
-        }
-
-        $routePath = $routePath ?: '/';
         /**
          * @var CmsDispatcher $dispatcher
          */
@@ -145,76 +173,77 @@ class Bootstrap
     }
 
     /**
-     * Отправляет ответ.
-     * @param Response $response
-     * @param Request $request
+     * Возвращает тулкит.
+     * @return IToolkit
      */
-    protected function sendResponse(Response $response, Request $request)
+    public function getToolkit()
     {
-        $this->setUmiHeaders($response);
-
-        if (!$response->headers->has('content-type') && isset(static::$contentTypes[$request->getRequestFormat()])) {
-            $response->headers->set('content-type', static::$contentTypes[$request->getRequestFormat()]);
-        }
-
-        $response->prepare($request)
-            ->send();
+       return $this->toolkit;
     }
 
     /**
-     * Выставляет заголовки UMI.CMS.
-     * @param Response $response
+     * Возвращает директорию текущего проекта
+     * @return string
      */
-    private function setUmiHeaders(Response $response)
+    public function getProjectDirectory()
     {
-        global $umicmsStartTime;
-
-        $response->headers->set('X-Generated-By', 'UMI.CMS');
-        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
-        if ($umicmsStartTime > 0) {
-            $response->headers->set('X-Generation-Time', round(microtime(true) - $umicmsStartTime, 3));
-        }
+        return $this->projectDirectory;
     }
 
     /**
-     * Создает компонент проекта.
-     * @return IComponent
+     * Возвращает директорию дампа данных проекта
+     * @return string
      */
-    protected function createProject()
+    public function getProjectDumpDirectory()
     {
-        $config = $this->configToArray($this->projectConfig);
-
-        /**
-         * @var IMvcEntityFactory $mvcEntityFactory
-         */
-        $mvcEntityFactory = $this->toolkit->getService('umi\hmvc\IMvcEntityFactory');
-
-        return $mvcEntityFactory->createComponent('project', 'project', $config);
+        return $this->projectDumpDirectory;
     }
 
     /**
-     * Производит предварительную маршрутизацию для определения конфигурации проекта.
-     * @param Request $request
+     * Возвращает имя текущего проекта
+     * @return string
+     */
+    public function getProjectName()
+    {
+        return $this->projectName;
+    }
+
+    /**
+     * Возвращает конфигурацию текущего проекта
+     * @return array
+     */
+    public function getProjectConfig()
+    {
+        return $this->configToArray($this->projectConfig);
+    }
+
+    /**
+     * Производит предварительную маршрутизацию для определения текущего проекта.
      * @throws RuntimeException
      * @throws UnexpectedValueException
      * @return IRouteResult
      */
-    protected function routeProject(Request $request)
+    public function dispatchProject()
     {
-        if (!is_file(Environment::$projectsConfiguration)) {
+        /**
+         * @var Request $request
+         */
+        $request = $this->toolkit->getService('umi\http\Request');
+
+        $fileName = Environment::$directoryRoot . '/configuration/projects.config.php';
+        if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
-                Environment::$projectsConfiguration
+                $fileName
             ));
         }
 
-        $projectsConfig = $this->loadConfig(Environment::$projectsConfiguration);
+        $projectsConfig = $this->loadConfig($fileName);
         /**
          * @var IRouteFactory $routeFactory
          */
         $routeFactory = $this->toolkit->getService('umi\route\IRouteFactory');
 
-        $projectName = '';
         $routeResult = null;
         $router = null;
 
@@ -237,10 +266,12 @@ class Bootstrap
             $router = $routeFactory->createRouter($routes);
 
             $route = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();
+
             $routeResult = $router->match($route);
             $routeMatches = $routeResult->getMatches();
 
             if (!empty($routeMatches)) {
+                $this->projectName = $projectName;
                 break;
             }
         }
@@ -251,17 +282,7 @@ class Bootstrap
         }
 
         if (!isset($projectConfig['destination'])) {
-            throw new UnexpectedValueException(sprintf(
-                'Cannot route project "%s". Option "destination" required.',
-                $projectName
-            ));
-        }
-
-        if (!isset($projectConfig['config'])) {
-            throw new UnexpectedValueException(sprintf(
-                'Cannot route project "%s". Option "config" required.',
-                $projectName
-            ));
+            $projectConfig['destination'] = '~/' . $this->projectName;
         }
 
         /**
@@ -269,22 +290,118 @@ class Bootstrap
          */
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
 
-        $directories = $configIO->getFilesByAlias($projectConfig['destination']);
-        if (!isset($directories[1])) {
+        $destinationDir = $configIO->getFilesByAlias($projectConfig['destination']);
+        if (!isset($destinationDir[1])) {
             throw new UnexpectedValueException('Cannot resolve project destination.');
         }
+        $this->projectDirectory = $destinationDir[1];
+
 
         $configIO->registerAlias(
             '~/project',
-            Environment::$directoryCmsProject,
-            $directories[1]
+            __DIR__,
+            $destinationDir[1]
         );
 
-        $this->registerProjectConfiguration($projectConfig['config']);
+        if (!isset($projectConfig['dumpDestination'])) {
+            $projectConfig['dumpDestination'] = '~/project/dump';
+        }
+
+        $dumpDir = $configIO->getFilesByAlias($projectConfig['dumpDestination']);
+        if (!isset($dumpDir[1])) {
+            throw new UnexpectedValueException('Cannot resolve project dump destination.');
+        }
+        $this->projectDumpDirectory = $dumpDir[1];
+
+
+        if (!isset($projectConfig['componentConfig'])) {
+            $projectConfig['componentConfig'] = '~/project/configuration/component.config.php';
+        }
+
+        $this->registerProjectComponentConfiguration($projectConfig['componentConfig']);
         $this->registerProjectTools();
-        $this->configureLocalesService($projectName, $router, $routeMatches);
+        $this->configureLocalesService($router, $routeMatches);
+        $this->registerProjectEventHandlers();
+        $this->registerProjectAutoload();
+
+
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        if (!isset($projectConfig['assetsUrl'])) {
+            $projectConfig['assetsUrl'] = Environment::$baseUrl . '/' . $this->projectName . '/asset/';
+        }
+        $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
+
+        if (!isset($projectConfig['adminAssetsUrl'])) {
+            $projectConfig['adminAssetsUrl'] = Environment::$baseUrl . '/umi-admin/';
+        }
+
+        if (!isset($projectConfig['assetsDir'])) {
+            $projectConfig['assetsDir'] = '~/project/asset/';
+        }
+        $assetsDir = $configIO->getFilesByAlias($projectConfig['assetsDir']);
+        if (!isset($assetsDir[1])) {
+            throw new UnexpectedValueException('Cannot resolve project dump destination.');
+        }
+        Environment::$directoryAssets = $assetsDir[1];
+
+        $urlManager->setProjectAssetsUrl($projectConfig['assetsUrl']);
+
+        $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
         return $routeResult;
+    }
+
+    /**
+     * Отправляет ответ.
+     * @param Response $response
+     * @param Request $request
+     */
+    protected function sendResponse(Response $response, Request $request)
+    {
+        $this->setUmiHeaders($response);
+
+        if (!$response->headers->has('content-type') && isset($this->allowedRequestFormats[$request->getRequestFormat()])) {
+            $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
+        }
+
+        if (Environment::$browserCacheEnabled) {
+            $this->setBrowserCacheHeaders($request, $response);
+        }
+
+        $response->prepare($request)
+            ->send();
+
+
+    }
+
+    /**
+     * Устанавливает ETag для браузерного кэширования страниц.
+     * @param Request $request
+     * @param Response $response
+     */
+    protected function setBrowserCacheHeaders(Request $request, Response $response) {
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
+    }
+
+    /**
+     * Создает компонент проекта.
+     * @return IComponent
+     */
+    protected function createProject()
+    {
+        $config = $this->configToArray($this->projectConfig);
+
+        /**
+         * @var IMvcEntityFactory $mvcEntityFactory
+         */
+        $mvcEntityFactory = $this->toolkit->getService('umi\hmvc\IMvcEntityFactory');
+
+        return $mvcEntityFactory->createComponent('project', 'project', $config);
     }
 
     /**
@@ -300,24 +417,20 @@ class Bootstrap
 
         if (
             ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
-            (substr($requestedUri, -1, 1) == '?') && !$queryString)
+            ((substr($requestedUri, -1, 1) == '?') && !$queryString) ||
+            substr($request->getSchemeAndHttpHost(), -1, 1) == '.'
+            )
         {
 
             $url = rtrim($pathInfo, '/');
             if ($queryString) {
                 $url .= '?' . $queryString;
             }
-            $redirectLocation = $request->getSchemeAndHttpHost() . $url;
+            $host = rtrim($request->getSchemeAndHttpHost() , '.');
 
-            /**
-             * @var Response $response
-             */
-            $response = $this->toolkit->getService('umi\http\Response');
-            $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
-                ->headers->set('Location', $redirectLocation);
+            $redirectLocation = $host . $url;
 
-            $response->send();
-            exit();
+            $this->send301($redirectLocation);
         }
     }
 
@@ -330,14 +443,7 @@ class Bootstrap
     {
         $toolkit = new Toolkit();
 
-        if (!is_file(Environment::$bootConfigMaster)) {
-            throw new RuntimeException(sprintf(
-                'Boot configuration file "%s" does not exist.',
-                Environment::$bootConfigMaster
-            ));
-        }
-
-        $masterConfig = $this->loadConfig(Environment::$bootConfigMaster);
+        $masterConfig = $this->loadConfig(CMS_DIR . '/boot.config.php');
 
         if (isset($masterConfig[self::OPTION_TOOLS])) {
             $toolkit->registerToolboxes($masterConfig[self::OPTION_TOOLS]);
@@ -347,8 +453,8 @@ class Bootstrap
             $toolkit->setSettings($masterConfig[self::OPTION_TOOLS_SETTINGS]);
         }
 
-        if (is_file(Environment::$bootConfigLocal)) {
-            $localConfig = $this->loadConfig(Environment::$bootConfigLocal);
+        if (Environment::$bootConfig && is_file(Environment::$bootConfig)) {
+            $localConfig = $this->loadConfig(Environment::$bootConfig);
             if (isset($localConfig[self::OPTION_TOOLS])) {
                 $toolkit->registerToolboxes($localConfig[self::OPTION_TOOLS]);
             }
@@ -410,8 +516,14 @@ class Bootstrap
 
         $configIO->registerAlias(
             '~',
-            Environment::$directoryCms,
-            Environment::$directoryProjects
+            CMS_DIR,
+            Environment::$directoryPublic
+        );
+
+        $configIO->registerAlias(
+            '~/common',
+            CMS_DIR,
+            Environment::$directoryPublic . '/common'
         );
 
     }
@@ -421,7 +533,7 @@ class Bootstrap
      * @param string $configFileName имя файла
      * @return void
      */
-    protected function registerProjectConfiguration($configFileName)
+    protected function registerProjectComponentConfiguration($configFileName)
     {
         /**
          * @var IConfigIO $configIO
@@ -465,6 +577,21 @@ class Bootstrap
                 $this->projectConfig->get(self::OPTION_TOOLS_SETTINGS)
             );
         }
+
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
+        $projectSettings = $configIO->read('~/project/configuration/project.config.php');
+
+        $this->getToolkit()->registerAwareInterface(
+            'umicms\project\IProjectSettingsAware',
+            function ($object) use ($projectSettings) {
+                if ($object instanceof IProjectSettingsAware) {
+                    $object->setProjectSettings($projectSettings);
+                }
+            }
+        );
     }
 
     /**
@@ -478,6 +605,22 @@ class Bootstrap
         $response = $this->toolkit->getService('umi\http\Response');
         $response->setContent($content);
         $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        $response->send();
+        exit();
+    }
+
+    /**
+     * Выполняет редирект и завершает работу приложения.
+     */
+    protected function send301($redirectLocation)
+    {
+        /**
+         * @var Response $response
+         */
+        $response = $this->toolkit->getService('umi\http\Response');
+        $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
+            ->headers->set('Location', $redirectLocation);
+
         $response->send();
         exit();
     }
@@ -506,13 +649,37 @@ class Bootstrap
     }
 
     /**
+     * Выставляет заголовки UMI.CMS.
+     * @param Response $response
+     */
+    private function setUmiHeaders(Response $response)
+    {
+        $response->headers->set('X-Generated-By', 'UMI.CMS');
+        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
+        if (Environment::$startTime > 0) {
+            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
+        }
+    }
+
+    /**
+     * Подключает автолоадер для проекта, а так же регистрирует пространство имен project
+     */
+    private function registerProjectAutoload()
+    {
+        if (is_file($this->projectDirectory . '/autoload.php')) {
+            /** @noinspection PhpIncludeInspection */
+            require $this->projectDirectory . '/autoload.php';
+        }
+        Environment::$classLoader->addPsr4('project\\', $this->projectDirectory);
+    }
+
+    /**
      * Конфигурирует локали проекта
-     * @param string $projectName имя проекта
      * @param IRouter $router маршрутизатор проекта
      * @param array $routeMatches параметры маршрутизации до проекта
-     * @throws UnexpectedValueException если конфигурация локалей невалидная
+     * @throws \umicms\exception\UnexpectedValueException
      */
-    protected function configureLocalesService($projectName, IRouter $router, array $routeMatches)
+    protected function configureLocalesService(IRouter $router, array $routeMatches)
     {
         /**
          * @var CmsLocalesService $localesService
@@ -530,7 +697,7 @@ class Bootstrap
             if (!is_array($siteLocalesConfig)) {
                 throw new UnexpectedValueException(sprintf(
                     'Cannot configure site locales for project "%s". Locales configuration should be an array.',
-                    $projectName
+                    $this->projectName
                 ));
             }
 
@@ -541,7 +708,7 @@ class Bootstrap
                 if (!isset($localeConfig['route'])) {
                     throw new UnexpectedValueException(sprintf(
                         'Cannot configure site locales for project "%s". Locale "%s" configuration should contain "route" option.',
-                        $projectName,
+                        $this->projectName,
                         $localeId
                     ));
                 }
@@ -560,7 +727,7 @@ class Bootstrap
             if (!is_array($adminLocalesConfig)) {
                 throw new UnexpectedValueException(sprintf(
                     'Cannot configure admin locales for project "%s". Locales configuration should be an array.',
-                    $projectName
+                    $this->projectName
                 ));
             }
 
@@ -586,6 +753,40 @@ class Bootstrap
 
         if (isset($localesConfig['defaultAdminLocale'])) {
             $localesService->setDefaultAdminLocaleId($localesConfig['defaultAdminLocale']);
+        }
+    }
+
+    /**
+     * Регистрирует обработчики событий для проекта
+     * @throws UnexpectedValueException
+     */
+    protected function registerProjectEventHandlers()
+    {
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
+        $eventHandlers = $this->configToArray($configIO->read('~/project/configuration/eventHandlers.config.php'), true);
+
+        foreach ($eventHandlers as $handlerClass => $eventInfo) {
+            if (!isset($eventInfo['type'])) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure events for project "%s". Handler "%s" configuration should contain "type" option.',
+                    $this->projectName,
+                    $handlerClass
+                ));
+            }
+
+            $tags = (isset($eventInfo['tags']) && is_array($eventInfo['tags'])) ? $eventInfo['tags'] : null;
+
+            $this->toolkit->bindEvent($eventInfo['type'], function(IEvent $event) use ($handlerClass) {
+                if (!isset($handlerInstances[$handlerClass])) {
+                    $handler = $this->toolkit->getPrototype($handlerClass)->createSingleInstance();
+                    if (is_callable($handler)) {
+                        $handler($event);
+                    }
+                }
+            }, $tags);
         }
     }
 

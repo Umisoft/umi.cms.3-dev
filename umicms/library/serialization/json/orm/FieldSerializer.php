@@ -53,6 +53,7 @@ class FieldSerializer extends BaseSerializer implements IValidationAware
             'name' => $field->getName(),
             'displayName' => $this->translator->translate($dictionaries, $field->getName()),
             'type' => $field->getType(),
+            'dataType' => $field->getDataType(),
             'readOnly' => $field->getIsReadOnly(),
             'default' => $field->getDefaultValue()
         ];

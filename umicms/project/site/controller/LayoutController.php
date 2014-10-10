@@ -21,15 +21,15 @@ use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends BaseCmsController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
+class LayoutController extends BaseCmsController implements IProjectSettingsAware, IPageCallStackAware, ILocalesAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
     use TPageCallStackAware;
 
     /**
@@ -75,7 +75,9 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
         $variables['description'] = $this->getMetaDescription();
         $variables['keywords'] = $this->getMetaKeywords();
         $variables['locales'] = $this->getLocales();
-        $variables['projectUrl'] = $this->getUrlManager()->getProjectUrl();
+        $variables['projectUrl'] = $this->getProjectUrls();
+        $variables['assetsUrl'] = $this->getUrlManager()->getProjectAssetsUrl();
+        $variables['url'] = $this->getUrlManager()->getCurrentUrl();
 
         $variables['contents'] = $this->response->getContent();
 
@@ -88,8 +90,8 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
     }
 
     /**
-     * Возвращает список локалей сайта в формате [$localeId => $localeUrl, ...]
-     * @return array
+     * Возвращает представление текущего URL для всех локалей
+     * @return LocalesView
      */
     protected function getLocales()
     {
@@ -100,12 +102,43 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
 
         $locales = [];
         foreach ($localesService->getSiteLocales() as $locale) {
-            $url = $locale->getUrl() . $currentUrl;
+
             $localeId = $locale->getId();
+            $isCurrent = $localesService->getCurrentLocale() === $localeId;
+            $url = $locale->getUrl() . $currentUrl;
+            if (!$isCurrent && $urlManager->getSiteUrlPostfix()) {
+                $sitePostfix = $urlManager->getSiteUrlPostfix();
+                $url = substr($url, 0, -(strlen($sitePostfix) + 1));
+            }
+
             $locales[] = [
                 'id' => $localeId,
                 'url' => $url,
-                'current' => $localesService->getCurrentLocale() === $localeId
+                'current' => $isCurrent
+            ];
+        }
+
+        return new LocalesView($locales);
+    }
+
+    /**
+     * Возвращает представление URL проекта для всех локалей
+     * @return LocalesView
+     */
+    protected function getProjectUrls()
+    {
+        $localesService = $this->getLocalesService();
+
+        $locales = [];
+        foreach ($localesService->getSiteLocales() as $locale) {
+
+            $localeId = $locale->getId();
+            $isCurrent = $localesService->getCurrentLocale() === $localeId;
+
+            $locales[] = [
+                'id' => $localeId,
+                'url' => $locale->getUrl(),
+                'current' => $isCurrent
             ];
         }
 

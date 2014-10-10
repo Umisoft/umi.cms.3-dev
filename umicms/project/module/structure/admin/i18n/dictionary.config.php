@@ -13,10 +13,10 @@ return [
     'en-US' => [
         'component:structure:displayName' => 'Site structure',
 
-        'role:pageExecutor:displayName' => 'Page',
-        'role:layoutExecutor:displayName' => 'Layout',
-        'role:infoblockExecutor:displayName' => 'Information block',
-        'role:menuExecutor:displayName' => 'Menu'
+        'role:pageExecutor:displayName' => 'Pages',
+        'role:layoutExecutor:displayName' => 'Layouts',
+        'role:infoblockExecutor:displayName' => 'Information blocks',
+        'role:menuExecutor:displayName' => 'Menu',
     ],
 
     'ru-RU' => [
@@ -25,7 +25,7 @@ return [
         'role:pageExecutor:displayName' => 'Страницы',
         'role:layoutExecutor:displayName' => 'Шаблоны',
         'role:infoblockExecutor:displayName' => 'Информационные блоки',
-        'role:menuExecutor:displayName' => 'Меню'
+        'role:menuExecutor:displayName' => 'Меню',
     ]
 
 ];

@@ -1,0 +1,10 @@
+{% if (menu) %}
+    <ul class="nav nav-pills">
+        {% for pageInfo in menu %}
+            <li class="{{ pageInfo.active ? 'active' }}">
+                <a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <br />
+{% endif %}

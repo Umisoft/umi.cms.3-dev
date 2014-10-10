@@ -22,8 +22,7 @@ abstract class MenuItem extends BaseMenu
      */
     const TYPE = 'menuItem';
     /**
-     * Тип объекта
-     * @var string $itemType
+     * @var string $itemType тип элемента меню
      */
     protected $itemType = 'menuItem';
     /**

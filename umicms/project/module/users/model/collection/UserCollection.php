@@ -28,6 +28,7 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\users\model\object\Visitor;
 use umicms\Utils;
 
 /**
@@ -36,7 +37,7 @@ use umicms\Utils;
  * @method CmsSelector|BaseUser[] select() Возвращает селектор для выбора пользователей.
  * @method BaseUser get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает пользователя по GUID.
  * @method BaseUser getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пользователя по id.
- * @method BaseUser add($typeName = IObjectType::BASE) Создает и возвращает пользователя.
+ * @method BaseUser add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает пользователя.
  */
 class UserCollection extends CmsCollection implements IActiveAccessibleCollection, ILockedAccessibleCollection
 {
@@ -137,6 +138,31 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
     }
 
     /**
+     * Находит посетителя по токену.
+     * @param string $token
+     * @throws NonexistentEntityException если не существует посетителя с таким токеном
+     * @return Visitor
+     */
+    public function getVisitorByToken($token)
+    {
+        $visitor = $this->select()
+            ->types([Visitor::TYPE_NAME . '*'])
+            ->where(Visitor::FIELD_TOKEN)
+            ->equals($token)
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if (!$visitor instanceof Visitor) {
+            throw new NonexistentEntityException(
+                $this->translate('Cannot find visitor by token.')
+            );
+        }
+
+        return $visitor;
+    }
+
+    /**
      * Проверяет уникальность логина пользователя.
      * @param RegisteredUser $user
      * @return bool
@@ -178,7 +204,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
      */
     public function getIsRegistrationWithActivation()
     {
-        return (bool) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+        return (bool) $this->getSetting(self::SETTING_REGISTRATION_WITH_ACTIVATION);
     }
 
     /**
@@ -225,6 +251,38 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
         }
 
         return  $groupGuids;
+    }
+
+    /**
+     * Изменяет тип для посетителя.
+     * @param Visitor $visitor посетитель
+     * @param string $typeName имя нового типа
+     * @return BaseUser
+     */
+    public function changeVisitorType(Visitor $visitor, $typeName)
+    {
+        if ($typeName === $visitor->getTypeName()) {
+            return $visitor;
+        }
+
+        $type = $this->getMetadata()->getType($typeName);
+        $visitor->fullyLoad(ILocalesService::LOCALE_ALL);
+
+        $initialValues = $visitor->getInitialValues();
+        $visitor->unload();
+
+        $newVisitor = $this->getObjectManager()->registerLoadedObject(
+            $this,
+            $type,
+            $initialValues[Visitor::FIELD_IDENTIFY],
+            $initialValues[Visitor::FIELD_GUID]
+        );
+
+        $newVisitor->setInitialValues($initialValues);
+        $newVisitor->getProperty(Visitor::FIELD_TYPE)->setValue($newVisitor->getTypePath());
+
+        return $newVisitor;
+
     }
 
 }

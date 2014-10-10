@@ -26,7 +26,7 @@ class EditLinkWidget extends BaseLinkWidget
      */
     public $template = 'editPostLink';
     /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
     /**

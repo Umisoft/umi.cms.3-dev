@@ -1,0 +1,6 @@
+{{ include('breadcrumbs.twig') }}
+
+<h1>{{ page.getHeader() }}</h1>
+{{ page.contents | raw}}
+
+{{ widget('news.subject.newsList', {'subjects' : [page], 'template' : 'newsList'}) }}

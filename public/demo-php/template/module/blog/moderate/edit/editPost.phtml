@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var umi\form\FormEntityView $form
+ * @var bool $success
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->getHeader() ?></h1>
+
+<?php if($success) : ?>
+    <div class="alert alert-success">
+        <p class="bg-success text-success"><?=$this->translate('Moderated post has been saved!')?></p>
+    </div>
+<?php endif;?>
+
+<?=$this->render('form/form.phtml', ['form' => $form])?>

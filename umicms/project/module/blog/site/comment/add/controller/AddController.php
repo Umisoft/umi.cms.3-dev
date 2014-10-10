@@ -15,6 +15,7 @@ use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Контроллер добавления комментария.
@@ -27,11 +28,14 @@ class AddController extends BaseSitePageController
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
-
     /**
-     * @var string|null $added флаг указывающий на публикацию комментария
+     * @var string|bool $added флаг, указывающий на публикацию комментария
      */
-    private $added;
+    private $added = false;
+    /**
+     * @var BlogComment $comment
+     */
+    private $comment;
 
     /**
      * Конструктор.
@@ -47,7 +51,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -55,30 +59,31 @@ class AddController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $type = $this->getRouteVar('type', BlogComment::TYPE_NAME);
+
         $parentCommentId = $this->getRouteVar('parent');
         $parentComment = $parentCommentId ? $this->module->comment()->getById($parentCommentId) : null;
 
         $post = $this->module->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->module->addComment(
-            BlogComment::TYPE,
+        $this->comment = $this->module->addComment(
+            $type,
             $post,
             $parentComment
         );
 
+        $this->comment->publishTime = new \DateTime();
 
-        if ($this->isAllowed($comment, 'publish')) {
-            $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;
-            $comment->publish();
+        if ($this->isAllowed($this->comment, 'publish')) {
+            $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
         } else {
-            $this->added = BlogComment::COMMENT_STATUS_NEED_MODERATE;
-            $comment->needModerate();
+            $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
         return $this->module->comment()->getForm(
-            BlogComment::FORM_ADD_COMMENT,
-            BlogComment::TYPE,
-            $comment
+            $this->module->isAuthorRegistered() ? BlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_VISITOR_COMMENT,
+            $type,
+            $this->comment
         );
     }
 
@@ -89,11 +94,23 @@ class AddController extends BaseSitePageController
     {
         $this->commit();
 
+        if ($this->comment->status->guid === CommentStatus::GUID_PUBLISHED) {
+            $this->added = 'published';
+        } elseif ($this->comment->status->guid === CommentStatus::GUID_NEED_MODERATION) {
+            $this->added = 'moderation';
+        }
+
         return $this->buildRedirectResponse();
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam string|bool $added флаг, указывающий на статус добавленного комментария:
+     * published, если комментарий был добававлен и опубликован, moderation - если был добавлен и отправлен на модерацию, false, если комментарий не был добавлен
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления комментария
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

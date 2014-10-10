@@ -12,14 +12,18 @@ use umicms\project\module\news\model\object\NewsSubject;
 
 return [
         'en-US' => [
+            'collection:newsSubject:displayName' => 'News subjects',
+
             NewsSubject::FIELD_NEWS => 'News items',
 
             'type:base:displayName' => 'News subject'
         ],
 
         'ru-RU' => [
+            'collection:newsSubject:displayName' => 'Новостные сюжеты',
+
             NewsSubject::FIELD_NEWS => 'Новости',
 
-            'type:base:displayName' => 'Новостной сюжет'
+            'type:base:displayName' => 'Сюжет'
         ]
     ];

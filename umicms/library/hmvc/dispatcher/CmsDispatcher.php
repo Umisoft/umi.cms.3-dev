@@ -17,20 +17,23 @@ use umi\hmvc\component\IComponent;
 use umi\hmvc\dispatcher\Dispatcher;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
-use umicms\authentication\CmsAuthStorage;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * {@inheritdoc}
  */
-class CmsDispatcher extends Dispatcher implements IUrlManagerAware
+class CmsDispatcher extends Dispatcher implements IUrlManagerAware, IModuleAware
 {
     use TUrlManagerAware;
+    use TModuleAware;
 
     /**
      * Начальный путь компонентов сайта
@@ -59,24 +62,15 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
     public function executeWidgetByPath($widgetPath, array $params = [])
     {
         $widgetPathParts = explode(IComponent::PATH_SEPARATOR, $widgetPath);
-        if (count($widgetPathParts) < 2) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Cannot resolve widget path "{path}".',
-                    ['path' => $widgetPath]
-                )
-            );
+        if (count($widgetPathParts) > 1) {
+            $widgetName = array_pop($widgetPathParts);
+            $componentPageUrl = $this->getUrlManager()->getRawSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
+            $widgetUri = '/' . $componentPageUrl . '/' . $widgetName;
+        } else {
+            $widgetUri = '/' . $widgetPath;
         }
 
-        $widgetName = array_pop($widgetPathParts);
-        $componentPageUrl = $this->getUrlManager()->getSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
-
-        $projectUrl = $this->getUrlManager()->getProjectUrl();
-        if ($projectUrl != '/') {
-            $componentPageUrl = substr($componentPageUrl, strlen($projectUrl));
-        }
-
-        return $this->executeWidget($componentPageUrl . '/' . $widgetName, $params);
+        return $this->executeWidget($widgetUri, $params);
     }
 
     /**
@@ -115,27 +109,21 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
      */
     public function checkPermissions(IComponent $component, $resource, $operationName = IAclManager::OPERATION_ALL)
     {
-        $authManager = $this->getDefaultAuthManager();
+
         /**
-         * @var CmsAuthStorage $storage
+         * @var UsersModule $usersModule
          */
-        $storage = $authManager->getStorage();
+        $usersModule = $this->getModuleByClass(UsersModule::className());
+        $currentUser = $usersModule->getCurrentUser();
 
-        if ($authManager->isAuthenticated()) {
-            $identity = $storage->getIdentity();
-
-            if ($identity instanceof Supervisor) {
-                return true;
-            }
-
-        } else {
-            $identity = $storage->getGuestIdentity();
+        if ($currentUser instanceof Supervisor) {
+            return true;
         }
 
-        if (!$identity instanceof IComponentRoleResolver) {
+        if (!$currentUser instanceof IComponentRoleResolver) {
             return false;
         }
-        $roleProvider = new ComponentRoleProvider($component, $identity);
+        $roleProvider = new ComponentRoleProvider($component, $currentUser);
 
         $aclManager = $component->getAclManager();
 

@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \umicms\hmvc\view\CmsTreeView[] $tree
+ * @var \umicms\hmvc\view\CmsTreeNode $node
+ */
+?>
+<?php if (count($tree) > 0) : ?>
+    <ul class="bottomMenu">
+        <?php foreach ($tree as $node) : ?>
+            <li>
+                <a href="<?= $node->item->getItemUrl() ?: $this->anchor() ?>"
+                    <?php echo $node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
+                    <?=$node->item->displayName?>
+                </a>
+                <?= $this->render('customMenu.phtml', ['tree' => $node->children]); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

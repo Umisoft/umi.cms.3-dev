@@ -13,6 +13,7 @@ namespace umicms\project\module\files\admin\manager\controller;
 use elFinder;
 use elFinderConnector;
 use umicms\hmvc\component\BaseCmsController;
+use umicms\project\Environment;
 
 /**
  * Контроллер файлового менеджера.
@@ -28,10 +29,22 @@ class ConnectorController extends BaseCmsController
             'roots' => [
                 [
                     'driver'        => 'LocalFileSystem',
-                    'path'          => PUBLIC_DIR . '/files',
-                    'URL'           => '/files',
-                    'accessControl' => [$this, 'accessControl']
-                ]
+                    'path'          => Environment::$directoryAssets . 'images',
+                    'alias'         => $this->translate('Images'),
+                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl() . 'images',
+                    'accessControl' => [$this, 'accessControl'],
+                    'uploadDeny' => ['text/x-php'],
+                    'uploadOverwrite' => false
+                ],
+                [
+                    'driver'        => 'LocalFileSystem',
+                    'alias'         => $this->translate('Files'),
+                    'path'          => Environment::$directoryAssets . 'files',
+                    'URL'           => $this->getUrlManager()->getProjectAssetsUrl() . 'files',
+                    'accessControl' => [$this, 'accessControl'],
+                    'uploadDeny' => ['text/x-php'],
+                    'uploadOverwrite' => false
+                ],
             ]
         ];
 
@@ -49,9 +62,8 @@ class ConnectorController extends BaseCmsController
      */
     public function accessControl($attr, $path, $data, $volume)
     {
-        return strpos(basename($path), '.') === 0
-            ? !($attr == 'read' || $attr == 'write')
-            : null;
+        return strpos(basename($path), '.') === 0 ?
+            !($attr == 'read' || $attr == 'write') : null;
     }
 }
  

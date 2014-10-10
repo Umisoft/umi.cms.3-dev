@@ -19,6 +19,8 @@ use umicms\orm\object\CmsObject;
  * @property string $rssUrl URL RSS-ленты, которую необходимо импортировать
  * @property BlogCategory|null $category имя поля для хранения категории, к которой относятся импортируемые посты
  * @property ManyToManyObjectSet|BlogTag[] $tags список тэгов, к которым относятся импортируемые посты
+ * @property BlogCategory|null $author автор импортируемых постов
+ * @property PostStatus $postStatus статус публикации импортируемых постов
  */
 class BlogRssImportScenario extends CmsObject
 {
@@ -34,4 +36,12 @@ class BlogRssImportScenario extends CmsObject
      * Имя поля для хранения тэгов, к которым относятся импортируемые посты.
      */
     const FIELD_TAGS = 'tags';
+    /**
+     * Имя поля для хранения автора импортируемых постов.
+     */
+    const FIELD_AUTHOR = 'author';
+    /**
+     * Имя поля для хранения статуса публикации импортируемых постов.
+     */
+    const FIELD_POST_STATUS = 'postStatus';
 }

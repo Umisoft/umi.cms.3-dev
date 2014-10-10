@@ -1,0 +1,65 @@
+<div class="panel pretty radius shake-it">
+    <form name="auth" novalidate="novalidate" class="custom large umi-validator" method="post"
+          action="{{form.attributes.action}}">
+        <div class="errors-list">
+            {{#if accessError}}
+            <div class="alert-box alert visible">
+                <a href="#" class="close">×</a>
+                {{accessError}}
+            </div>
+            {{/if}}
+        </div>
+        {{#each form.elements}}
+        {{#ifCond type 'select'}}
+                <div class="auth-layout-lang">
+                    <span class="button dropdown without-arrow" data-dropdown
+                          data-options="selectorById: false; align: right;">
+                        {{../../currentLocaleLabel}}
+                    </span>
+                    <ul class="f-dropdown radius" data-dropdown-content>
+                        {{#each choices}}
+                        <li>
+                            {{#if active}}
+                                <a href="javascript: void(0);">
+                                    <i class="icon icon-accept"></i>
+                                    {{label}}
+                                </a>
+                            {{else}}
+                                <a href="javascript: void(0);" class="locale-select" data-locale="{{attributes.value}}">
+                                    <i class="icon white icon-accept"></i>
+                                    {{label}}
+                                </a>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <input name="{{attributes.name}}" value="{{../../currentLocale}}" type="hidden" class="auth-layout-lang-input"/>
+                </div>
+            {{else}}
+                {{#ifCond type 'submit'}}
+                    <div class="row">
+                        <div class="small-6 small-offset-6 columns">
+                            <input name="submit" class="button expand s-margin-clear" type="submit" value="{{label}}"/>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <i class="icon icon-{{attributes.name}} input-icon"></i>
+                            <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}"
+                                   required="required" autocomplete="off" value="">
+                            {{#if validators}}
+                                <span class="error">
+                                    {{#each validators}}
+                                        {{message}}
+                                    {{/each}}
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/ifCond}}
+            {{/ifCond}}
+        {{/each}}
+
+    </form>
+</div>

@@ -27,6 +27,10 @@ class IndexController extends BaseSitePageController
      * @var UsersModule $module модуль "Пользователи"
      */
     protected $module;
+    /**
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -42,7 +46,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -50,10 +54,12 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $user = $this->module->getAuthenticatedUser();
+
         return $this->module->user()->getForm(
             RegisteredUser::FORM_EDIT_PROFILE,
-            RegisteredUser::TYPE_NAME,
-            $this->module->getCurrentUser()
+            $user->getTypeName(),
+            $user
         );
     }
 
@@ -63,16 +69,24 @@ class IndexController extends BaseSitePageController
     protected function processForm(IForm $form)
     {
         $this->commit();
+        $this->success = true;
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница редактирования профиля пользователя
+     * @templateParam umicms\project\module\users\model\object\RegisteredUser $user текущий пользователь
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {
         return [
-            'user' => $this->module->getCurrentUser(),
-            'page' => $this->getCurrentPage()
+            'user' => $this->module->getAuthenticatedUser(),
+            'page' => $this->getCurrentPage(),
+            'success' => $this->success
         ];
     }
 }

@@ -11,13 +11,19 @@
 return [
 
     'en-US' => [
-        'action:create:comment' => 'Create comment',
+        'component:comment:displayName' => 'Comments',
 
-        'role:editor:displayName' => 'Managing comments'
+        'action:create:comment' => 'Create comment',
+        'action:create:guestComment' => 'Create comment from guest',
+
+        'role:editor:displayName' => 'Manage comments'
     ],
 
     'ru-RU' => [
-        'action:create:comment' => 'Создать комментарий',
+        'component:comment:displayName' => 'Комментарии',
+
+        'action:create:comment' => 'Добавить комментарий',
+        'action:create:guestComment' => 'Добавить комментарий от гостя',
 
         'role:editor:displayName' => 'Управление комментариями'
     ]

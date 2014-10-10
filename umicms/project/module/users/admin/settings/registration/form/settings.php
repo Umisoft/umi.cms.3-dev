@@ -10,14 +10,14 @@
 
 use umi\filter\IFilterFactory;
 use umi\form\element\Checkbox;
-use umi\form\element\CheckboxGroup;
 use umi\form\element\Text;
 use umicms\project\module\users\model\collection\UserCollection;
+use umicms\validation\Range;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.users'
+            'project.admin.rest.settings.users' => 'project.admin.rest.settings.users'
         ]
     ],
 
@@ -37,6 +37,11 @@ return [
                 'filters' => [
                     IFilterFactory::TYPE_INT => []
                 ],
+                'validators' => [
+                    Range::NAME => [
+                        'min' => 0
+                    ]
+                ],
                 'dataSource' => UserCollection::SETTING_MIN_PASSWORD_LENGTH
             ]
         ],
@@ -46,14 +51,14 @@ return [
             'options' => [
                 'dataSource' => UserCollection::SETTING_FORBID_PASSWORD_LOGIN_EQUALITY
             ]
-        ],
+        ]/*,
         UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => [
             'type' => CheckboxGroup::TYPE_NAME,
             'label' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS,
             'options' => [
                 //TODO специальное поле
-                //'dataSource' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS
+                'dataSource' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS
             ]
-        ],
+        ],*/
     ]
 ];

@@ -1,0 +1,131 @@
+/* Foundation Dropdown extends
+   - exclude triangle
+   - exclude .content
+   - toggle visibility instead negative left(right) position
+*/
+
+.f-dropdown {
+    @include dropdown-container(list, $triangle:false);
+    width: auto;
+    left: auto;
+    visibility: hidden;
+    opacity: .6;
+    transition: opacity 0.1s linear;
+    white-space: nowrap;
+    border: none;
+    box-shadow: 0 0 4px 1px #939699;
+
+    li {
+        @include dropdown-style;
+
+        &.hover{
+            background: $f-dropdown-list-hover-bg;
+        }
+    }
+
+    // You can also put custom content in these dropdowns
+    &.content {
+        padding: 10px;
+
+        .f-dropdown-content-header{
+            font-weight: bold;
+            margin-bottom: rem-calc(10);
+        }
+
+        li{
+            cursor: default;
+            &:hover{
+                background: transparent;
+            }
+        }
+
+        .row{
+            padding: rem-calc(8);
+        }
+
+        .s-scroll-wrap{
+            max-height: 200px;
+            height: auto;
+            border: 1px solid #D1D1D1;
+        }
+
+        table{
+            min-width: rem-calc(300);
+            border-collapse: collapse;
+
+            tr{
+                &:nth-child(odd){
+                    background: #EEF7FC;
+                }
+
+                &.selectable{
+                    &:hover, &.hover{
+                        cursor: pointer;
+                        background: #C5E2F7;
+                    }
+                }
+            }
+            td{
+                padding: rem-calc(8) rem-calc(15);
+                line-height: rem-calc(22);
+            }
+        }
+
+        form, .form-loading{
+            min-width: rem-calc(300);
+        }
+
+        .form-loading{
+            padding: rem-calc(10) 0;
+        }
+    }
+
+    // Sizes
+    &.tiny    { max-width: 200px; }
+    &.small   { max-width: 300px; }
+    &.medium  { max-width: 500px; }
+    &.large   { max-width: 800px; }
+
+    &.open{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    //UMI extends
+
+    //double columns
+    &-double{
+        width: rem-calc(460);
+
+        > li{
+            width: 50%;
+            float: left;
+        }
+    }
+
+    &-composite{
+        li{
+            a{
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                vertical-align: top;
+                padding-right: rem-calc(30);
+                box-sizing: border-box;
+
+                div{
+                    margin-left: rem-calc(5);
+                    display: inline;
+                }
+            }
+
+            .split-default-button{
+                position: absolute;
+                right: rem-calc(10);
+                margin-top: 0;
+            }
+        }
+    }
+}

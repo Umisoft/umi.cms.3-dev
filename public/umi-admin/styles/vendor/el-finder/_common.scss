@@ -1,0 +1,92 @@
+.elfinder{
+    padding: 0;
+    position: relative;
+    display: block;
+    line-height: 0;
+
+    &-rtl{
+        text-align:right;
+        direction:rtl;
+    }
+
+    &-workzone{
+        padding: 0;
+        position:relative;
+        overflow:hidden;
+        height: calc(100% - 70px)!important;
+    }
+
+    &-perms, &-symlink{
+        position:absolute;
+        width:16px;
+        height:16px;
+        background-image:url(#{$images-path}elfinder/img/toolbar.png);
+        background-repeat:no-repeat;
+        background-position:0 -528px;
+    }
+
+    &-na .elfinder-perms {
+        background-position:0 -96px;
+    }
+
+    &-ro .elfinder-perms {
+        background-position:0 -64px;
+    }
+
+    &-wo .elfinder-perms{
+        background-position:0 -80px;
+    }
+
+    &-drag-helper{
+        width:60px;
+        height:50px;
+        padding:0 0 0 25px;
+        z-index:100000;
+
+        &-icon-plus {
+            position:absolute;
+            width:16px;
+            height:16px;
+            left:43px;
+            top:55px;
+            background:url(#{$images-path}elfinder/img/toolbar.png) 0 -544px no-repeat;
+            display:none;
+        }
+
+        &-plus .elfinder-drag-helper-icon-plus {
+            display:block;
+        }
+
+        .elfinder-cwd-icon {
+            margin:0 0 0 -24px; float:left;
+        }
+    }
+
+    &-drag-num {
+        position:absolute;
+        top:0;
+        left:0;
+        width:16px;
+        height:14px;
+        text-align:center;
+        padding-top:2px;
+
+        font-weight:bold;
+        color:#fff;
+        background-color:red;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+    }
+
+    &-overlay {
+        opacity: 0;
+        filter:Alpha(Opacity=0);
+    }
+
+    .elfinder-panel {
+        position:relative;
+        background-image:none;
+        padding:7px 12px;
+    }
+}

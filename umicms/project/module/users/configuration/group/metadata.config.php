@@ -9,13 +9,11 @@
 
 use umi\orm\metadata\field\IField;
 use umicms\orm\metadata\field\SerializedArrayField;
-use umicms\project\Environment;
 use umicms\project\module\users\model\object\UserGroup;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'users_group'

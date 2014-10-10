@@ -4,13 +4,13 @@ return [
     'en-US' => [
         'component:service:displayName' => 'Service',
 
-        'role:backupExecutor:displayName' => 'Reserving'
+        'role:backupExecutor:displayName' => 'Backups'
     ],
 
     'ru-RU' => [
         'component:service:displayName' => 'Сервис',
 
-        'role:backupExecutor:displayName' => 'Резервирование'
+        'role:backupExecutor:displayName' => 'Резервные копии'
     ]
 ];
  

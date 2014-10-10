@@ -1,16 +1,19 @@
 <?php
 
-use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.profile', 'form'
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'project.site.users.profile' => 'project.site.users.profile',
+            'form' => 'form'
         ],
     ],
     'attributes' => [
@@ -23,11 +26,7 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_DISPLAY_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
             ]
         ],
 
@@ -36,9 +35,8 @@ return [
             'label' => RegisteredUser::FIELD_EMAIL,
             'options' => [
                 'dataSource' => RegisteredUser::FIELD_EMAIL,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ]
         ],
@@ -47,33 +45,21 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_FIRST_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_FIRST_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_FIRST_NAME
             ]
         ],
         RegisteredUser::FIELD_MIDDLE_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_MIDDLE_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_MIDDLE_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_MIDDLE_NAME
             ]
         ],
         RegisteredUser::FIELD_LAST_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_LAST_NAME,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_LAST_NAME,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
-                ]
+                'dataSource' => RegisteredUser::FIELD_LAST_NAME
             ]
         ],
 

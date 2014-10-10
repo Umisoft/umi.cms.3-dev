@@ -1,0 +1,297 @@
+//TODO Вынести цвета в переменные
+@import "../../settings";
+
+$umi-dock-z-index: 1;
+$dock-img-padding: 11px;
+$dock-z-index: 10;
+$dock-components-height: rem-calc(35);
+$umi-dock-height: rem-calc(85);
+$umi-dock-wrapper-height: rem-calc(48);
+
+.umi-dock{
+    border-top: 1px solid #5c6472;
+    padding: 0;
+
+    .dock-wrapper{
+        background-image: linear-gradient(#404959, #181b21);
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        height: $umi-dock-wrapper-height;
+    }
+
+    .dock-wrapper-bg{
+        background-image: linear-gradient(#404959, #181b21);
+    }
+
+    .dock{
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        left: 20%;
+        white-space: nowrap;
+        margin-left: 0;
+        margin-bottom: 0;
+        padding: 0 40px;
+        font-size: 0;
+        z-index: 2;
+        box-sizing: border-box;
+
+        &.active{
+            .umi-dock-button{
+                opacity: 1
+            }
+        }
+
+        &:hover, &.full{
+            .dock-module{
+                span{
+                    top: 56px;
+                    opacity: 1;
+                }
+            }
+        }
+
+        &.full{
+            + .dock-buffer{
+                display: block;
+            }
+        }
+
+        .f-dropdown{
+            top: 100% !important;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            li:nth-child(even){
+                background: #E8EDEF;
+            }
+
+            li:hover{
+                background: #24B3F8;
+
+                a{
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        &.sorting,
+        &.sorting > li > a {
+            cursor: move;
+        }
+        &.sorting ul {
+            display: none;
+        }
+    }
+
+    .umi-dock-button{
+        display: inline-block;
+        height: 100%;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        vertical-align: top;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        position: relative;
+
+        .dock-module{
+            display: block;
+            font-size: 0;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+
+            .umi-dock-module-icon{
+                min-width: 30px;
+                height: 30px;
+                margin: 9px $dock-img-padding 9px;
+                background-size: 100%;
+                background-position: center center;
+            }
+
+            span{
+                position: absolute;
+                display: block;
+                width: 100%;
+                text-align: center;
+                left: 0;
+                top: 56px;
+                opacity: 0;
+                color: #afb2b7;
+                font-size: 13px;
+            }
+        }
+
+        &:hover,
+        &-dragging {
+            margin-top: -1px;
+            border-top: 1px solid #6d7480;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            background-image: linear-gradient(#535c6a, #2b2d34);
+
+            span{
+                color: #FFF;
+            }
+        }
+
+        .dock-module.active{
+            position: relative;
+            margin-top: -1px;
+            border-top: 1px solid #3a404a;
+            border-left: 1px solid #44474B;
+            border-right: 1px solid #44474B;
+            background-image: linear-gradient(#282e38, #101217);
+        }
+
+        &-dragging {
+            position: absolute;
+            z-index: 2;
+
+            &:after { // prevent mouseup event
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        &-empty {
+            width: 122px;
+            height: 100%;
+            display: inline-block;
+        }
+    }
+    .f-dropdown{
+        width: 160%;
+        margin-left: -30%;
+        padding: 0;
+        box-shadow: 0 0 4px 1px #535353;
+        border: none;
+
+        li{
+            > span{
+                color: $body-font-color;
+                white-space: normal;
+            }
+
+            .active{
+                color: #fff;
+                background: $primary-color;
+            }
+
+            a{
+                display: block;
+                padding: 10px 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}
+
+.dock-buffer{
+    display: none;
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    z-index: 1;
+
+    &.active{
+        display: block;
+    }
+}
+
+.dock-components{
+    overflow: hidden;
+    position: relative;
+    background-color: #e7ebee;// Временный фикс для FF в OS X
+    background: linear-gradient(#FFFFFF, #E0E4E7);
+    border-bottom: 1px solid #98a0aa;
+    text-align: center;
+    height: $dock-components-height;
+    margin-top: $umi-dock-wrapper-height;
+
+    .components-nav{
+        display: inline-block;
+
+        a{
+            height: $dock-components-height;
+            line-height: $dock-components-height;
+            vertical-align: middle;
+            padding: 0 25px;
+            position: relative;
+            color: #AAADB4;
+            display: block;
+            float: left;
+            font-weight: bold;
+            text-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+
+            &:hover{
+                color: #575e6c;
+            }
+
+            &.active{
+                background: #FFFDFD;
+                color: #575e6c;
+                cursor: default;
+
+                &:before, &:after{
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 3px;
+                    height: 100%;
+                    top: 0;
+                    left: -1px;
+                    background: url($image-to-right-shadow);
+                }
+
+                &:after{
+                    left: auto;
+                    right: -3px;
+                    background: url($image-to-left-shadow);
+                }
+            }
+        }
+    }
+}
+
+
+//Временнные - на посмотреть
+.components-nav{
+    border: none;
+}
+
+.components-nav a{
+    font-family: arial, sans-serif;
+    font-size: 13px!important;
+    height: 24px!important;
+    margin: 6px 10px;
+    padding: 0 10px!important;
+    line-height: 24px!important;
+    border: none;
+    cursor: pointer;
+}
+
+.components-nav a.active{
+    border: none;
+    border-radius: 12px;
+    background: #EEEEEE;
+    box-shadow: 0 1px 1px 0 #F5F5F5, inset 0 1px 5px -1px #000000;
+}
+
+.dock-components .components-nav a.active:before, .dock-components .components-nav a.active:after{
+    content: none!important;
+}

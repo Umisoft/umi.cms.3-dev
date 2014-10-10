@@ -11,11 +11,12 @@
 use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umicms\project\module\service\model\collection\BackupCollection;
+use umicms\validation\Range;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.service.backup'
+            'project.admin.rest.settings.service.backup' => 'project.admin.rest.settings.service.backup'
         ]
     ],
 
@@ -26,6 +27,11 @@ return [
             'options' => [
                 'filters' => [
                     IFilterFactory::TYPE_INT => []
+                ],
+                'validators' => [
+                    Range::NAME => [
+                        'min' => 0
+                    ]
                 ],
                 'dataSource' => BackupCollection::SETTING_OBJECT_HISTORY_SIZE
             ]

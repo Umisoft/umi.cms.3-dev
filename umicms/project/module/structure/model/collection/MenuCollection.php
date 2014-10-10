@@ -23,7 +23,7 @@ use umicms\project\module\structure\model\object\BaseMenu;
  * @method CmsSelector|BaseMenu[] select() Возвращает селектор для выбора меню.
  * @method BaseMenu get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает меню по GUID.
  * @method BaseMenu getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает меню по id.
- * @method BaseMenu add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Добавляет меню.
+ * @method BaseMenu add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Добавляет меню.
  */
 class MenuCollection extends CmsHierarchicCollection
 {

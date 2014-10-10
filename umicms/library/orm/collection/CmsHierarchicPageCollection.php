@@ -16,7 +16,9 @@ use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecoverableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
+use umicms\orm\collection\behaviour\TRobotsAccessibleCollection;
 use umicms\orm\object\CmsHierarchicObject;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Коллекция иерархических объектов, которые имеют страницу на сайте.
@@ -26,6 +28,7 @@ class CmsHierarchicPageCollection extends CmsHierarchicCollection implements ICm
     use TRecoverableCollection;
     use TRecyclableCollection;
     use TActiveAccessibleCollection;
+    use TRobotsAccessibleCollection;
 
     /**
      * {@inheritdoc}
@@ -52,6 +55,30 @@ class CmsHierarchicPageCollection extends CmsHierarchicCollection implements ICm
         }
 
         return $object;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIndexablePropertyNames()
+    {
+        return [
+            ICmsPage::FIELD_DISPLAY_NAME,
+            ICmsPage::FIELD_PAGE_H1,
+            ICmsPage::FIELD_PAGE_META_TITLE,
+            ICmsPage::FIELD_PAGE_CONTENTS
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getForcedFieldsToLoad()
+    {
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsPage::FIELD_PAGE_H1] = $this->getRequiredField(ICmsPage::FIELD_PAGE_H1);
+
+        return $fields;
     }
 
 }

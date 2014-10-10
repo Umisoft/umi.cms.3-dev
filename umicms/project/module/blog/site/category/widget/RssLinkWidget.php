@@ -26,7 +26,7 @@ class RssLinkWidget extends BaseLinkWidget
     public $template = 'rssLink';
 
     /**
-     * @var BlogCategory|string|null $categories категория или GUID, URL на RSS которой генерировать.
+     * @var BlogCategory|string|null $category категория или GUID категории, URL на RSS которой генерировать.
      * Если не указана, генерируется URL на все посты.
      */
     public $category;

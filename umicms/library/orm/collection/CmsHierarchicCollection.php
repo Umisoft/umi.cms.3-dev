@@ -11,10 +11,13 @@
 namespace umicms\orm\collection;
 
 use umi\orm\collection\SimpleHierarchicCollection;
-use umi\orm\metadata\field\special\MaterializedPathField;
-use umicms\exception\InvalidArgumentException;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\IHierarchicObject;
+use umi\orm\object\IObject;
+use umi\orm\object\property\calculable\ICalculableProperty;
+use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\selector\CmsSelector;
+use umicms\orm\object\ICmsObject;
 
 /**
  * {@inheritdoc}
@@ -24,60 +27,104 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     use TCmsCollection;
 
     /**
-     * Возвращает селектор для выбора дочерних объектов для указанного.
-     * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
-     * @return CmsSelector
+     * {@inheritdoc}
      */
-    public function selectChildren(CmsHierarchicObject $object = null)
+    public function add($slug  = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
     {
-        return $this->select()
-            ->where(CmsHierarchicObject::FIELD_PARENT)->equals($object)
-            ->orderBy(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
-            ->orderBy(CmsHierarchicObject::FIELD_ORDER);
+        if ($branch) {
+            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                /**
+                 * @var ICalculableProperty $localizedSiteChildCount
+                 */
+                $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                $localizedSiteChildCount->recalculate();
+            }
+            /**
+             * @var ICalculableProperty $adminChildCount
+             */
+            $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+            $adminChildCount->recalculate();
+        }
+
+        return parent::add($slug, $typeName, $branch, $guid);
     }
 
     /**
-     * Возвращает селектор для выбора потомков указанного объекта, либо от корня.
-     * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
-     * @param int|null $depth глубина выбора потомков, по умолчанию выбираются на всю глубину
-     * @throws InvalidArgumentException если глубина указана не верно
-     * @return CmsSelector|CmsHierarchicObject[]
+     * {@inheritdoc}
      */
-    public function selectDescendants(CmsHierarchicObject $object = null, $depth = null)
+    public function delete(IObject $object)
     {
-        if (!is_null($depth) && !is_int($depth) && $depth < 0) {
-            throw new InvalidArgumentException($this->translate(
-                'Cannot select descendants. Invalid argument "depth" value.'
+        /**
+         * @var CmsHierarchicObject $object
+         */
+        if ($parent = $object->getParent()) {
+            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                /**
+                 * @var ICalculableProperty $localizedSiteChildCount
+                 */
+                $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                $localizedSiteChildCount->recalculate();
+            }
+            /**
+             * @var ICalculableProperty $adminChildCount
+             */
+            $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+            $adminChildCount->recalculate();
+        }
+
+        return parent::delete($object);
+    }
+
+    /**
+     * Разрешено ли использование slug.
+     * @param CmsHierarchicObject|ICmsObject $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае если пришел неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
+     * @return bool
+     */
+    public function isAllowedSlug(ICmsObject $object)
+    {
+        if (!$object instanceof CmsHierarchicObject) {
+            throw new RuntimeException($this->translate(
+                'Cannot check slug. Object should be instance of "{class}".',
+                [
+                    'class' => CmsHierarchicObject::className()
+                ]
             ));
         }
 
-        if (!is_null($object) && $depth === 1) {
-            return $this->selectChildren($object);
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Object from collection "{objectCollection}" does not belong to "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
         }
 
-        $selector = $this->select();
-
-        if ($object) {
-            $selector
-                ->where(CmsHierarchicObject::FIELD_MPATH)
-                ->like($object->getMaterializedPath() . MaterializedPathField::MPATH_SEPARATOR . '%');
+        if ($object->getIsNew() && $this->hasSlug($object)) {
+            return false;
+        } else {
+            return true;
         }
-
-        if ($depth) {
-            if ($object) {
-                $selector
-                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                    ->equalsOrLess($object->getLevel() + $depth);
-            } else {
-                $selector
-                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                    ->equalsOrLess($depth);
-            }
-        }
-
-        $selector->orderBy(CmsHierarchicObject::FIELD_ORDER);
-
-        return $selector;
     }
 
+    /**
+     * Проверяет используется ли slug, учитывая родителя объекта.
+     * @param CmsHierarchicObject $object объект, для которого необходимо проверить уникальность slug'а
+     * @return bool
+     */
+    protected function hasSlug(CmsHierarchicObject $object)
+    {
+        $select = $this->select()
+            ->fields([CmsHierarchicObject::FIELD_IDENTIFY])
+            ->where(CmsHierarchicObject::FIELD_SLUG)
+                ->equals($object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue())
+            ->where(CmsHierarchicObject::FIELD_PARENT)
+                ->equals($object->getParent());
+
+        return (bool) $select->getTotal();
+    }
 }

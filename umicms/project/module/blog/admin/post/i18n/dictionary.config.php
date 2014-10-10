@@ -11,13 +11,19 @@
 return [
 
     'en-US' => [
-        'action:create:base' => 'Create post',
+        'component:post:displayName' => 'Posts',
 
-        'role:editor:displayName' => 'Managing posts'
+        'action:create:blogPost' => 'Create post',
+        'action:create:guestBlogPost' => 'Create post from guest',
+
+        'role:editor:displayName' => 'Manage posts'
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Создать пост',
+        'component:post:displayName' => 'Посты',
+
+        'action:create:blogPost' => 'Добавить пост',
+        'action:create:guestBlogPost' => 'Добавить пост от гостя',
 
         'role:editor:displayName' => 'Управление постами'
     ]

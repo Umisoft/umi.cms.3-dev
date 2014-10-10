@@ -12,6 +12,8 @@ use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
     'en-US' => [
+        'collection:infoblock:displayName' => 'Information blocks',
+
         'type:infoblock:displayName' => 'Information block',
         InfoBlock::FIELD_INFOBLOCK_NAME => 'Information block name',
 
@@ -33,7 +35,10 @@ return [
     ],
 
     'ru-RU' => [
+        'collection:infoblock:displayName' => 'Информационные блоки',
+
         'type:infoblock:displayName' => 'Информационный блок',
+
         InfoBlock::FIELD_INFOBLOCK_NAME => 'Наименование информационного блока',
 
         InfoBlock::FIELD_PHONE_NUMBER => 'Номер телефона',
@@ -41,7 +46,7 @@ return [
         InfoBlock::FIELD_ADDRESS => 'Адрес',
         InfoBlock::FIELD_LOGO => 'Логотип',
         InfoBlock::FIELD_COPYRIGHT => 'Копирайт',
-        InfoBlock::FIELD_COUNTER => 'Счётчик',
+        InfoBlock::FIELD_COUNTER => 'Счетчик',
         InfoBlock::FIELD_WIDGET_VK => 'Виджет Vk',
         InfoBlock::FIELD_WIDGET_FACEBOOK => 'Виджет FaceBook',
         InfoBlock::FIELD_WIDGET_TWITTER => 'Виджет Twitter',

@@ -16,17 +16,16 @@ use umi\route\type\BaseRoute;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\hmvc\component\site\SiteComponent;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\IProjectSettingsAware;
+use umicms\project\TProjectSettingsAware;
 use umicms\project\module\structure\model\StructureModule;
-use umicms\project\module\structure\model\object\StructureElement;
 
 /**
  * Правила маршрутизации статичных страниц для сайта.
  */
-class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
+class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
 {
-    use TSiteSettingsAware;
+    use TProjectSettingsAware;
 
     /**
      * @var StructureModule $systemApi API работы со структурой
@@ -54,6 +53,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
         } else {
             $matched = $this->matchPage($url);
         }
+
         return $matched;
     }
 
@@ -65,7 +65,6 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
         throw new RuntimeException('Cannot assemble url. Use IUrlManager for url generation.');
     }
 
-
     /**
      * Производит маршрутизацию до главной страницы
      * @return bool|int
@@ -74,12 +73,15 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     {
         try {
             $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
-            $this->setRouteParams($element);
 
-            return 1;
-        } catch(NonexistentEntityException $e) {
-            return false;
-        }
+            if ($element instanceof StaticPage && $element->active && !$element->trashed) {
+                $this->setRouteParams($element);
+
+                return 1;
+            }
+        } catch(NonexistentEntityException $e) {}
+
+        return false;
     }
 
     /**
@@ -91,27 +93,28 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     {
         $element =
             $this->structureApi->element()->select()
-            ->types([StaticPage::TYPE])
+            ->types([StaticPage::TYPE . '*'])
             ->where(StaticPage::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)
             ->result()
             ->fetch();
 
-        if ($element instanceof StructureElement) {
+        if ($element instanceof StaticPage && $element->active && !$element->trashed) {
             $this->setRouteParams($element);
 
             return strlen($element->getURL()) + 1;
         } else {
+
             return false;
         }
     }
 
     /**
      * Устанавливает элемент в качестве текущего
-     * @param StructureElement $element
+     * @param StaticPage $element
      */
-    protected function setRouteParams(StructureElement $element)
+    protected function setRouteParams(StaticPage $element)
     {
         $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentName;
         $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;

@@ -10,21 +10,41 @@
 
 namespace umicms\hmvc\component\admin\collection;
 
-use umi\form\IForm;
+use umi\form\element\Checkbox;
+use umi\form\element\html5\DateTime;
+use umi\form\element\Select;
+use umi\form\element\Text;
+use umi\form\element\Textarea;
+use umi\form\IFormAware;
+use umi\form\IFormEntity;
+use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\collection\ISimpleHierarchicCollection;
+use umi\orm\metadata\field\datetime\DateTimeField;
+use umi\orm\metadata\field\IField;
+use umi\orm\metadata\field\IRelationField;
+use umi\orm\metadata\field\numeric\BoolField;
+use umi\orm\metadata\field\string\TextField;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\property\calculable\ICalculableProperty;
 use umicms\exception\RuntimeException;
+use umicms\form\element\Wysiwyg;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\collection\ICmsPageCollection;
+use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\behaviour\IRobotsAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -36,15 +56,31 @@ use umicms\slugify\TSlugGeneratorAware;
 /**
  * Контроллер действий над объектом.
  */
-class ActionController extends BaseController implements ISlugGeneratorAware
+class ActionController extends BaseController implements IFormAware, ISlugGeneratorAware
 {
     use TActionController;
     use TSlugGeneratorAware;
+    use TFormAware;
+
+    /**
+     * Возвращает форму смены slug.
+     * @throws HttpException
+     * @return \ArrayObject
+     */
+    protected function actionGetChangeSlugForm()
+    {
+        $form = $this->getCollection()->getForm(ICmsPageCollection::FORM_CHANGE_SLUG, IObjectType::BASE);
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl(
+            $this->getComponent(), CollectionComponent::ACTION_CHANGE_SLUG)
+        );
+
+        return $form->getView();
+    }
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
      * @throws HttpException
-     * @return IForm
+     * @return \ArrayObject
      */
     protected function actionGetEditForm()
     {
@@ -56,13 +92,133 @@ class ActionController extends BaseController implements ISlugGeneratorAware
     /**
      * Возвращает форму для создания объекта коллекции.
      * @throws HttpException
-     * @return IForm
+     * @return \ArrayObject
      */
     protected function actionGetCreateForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
+        $collection = $this->getCollection();
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView();
+        return [
+            'guid' => $collection->getGUIDField()->generateGUID(),
+            'form' => $collection->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView()
+        ];
+    }
+
+    /**
+     * Возвращает форму для фильтрации данных в коллекции.
+     * @return \ArrayObject
+     */
+    protected function actionGetFilter()
+    {
+        $elements = [];
+        $collection = $this->getCollection();
+        $ignoredFieldNames = $collection->getIgnoredTableFilterFieldNames();
+        foreach ($this->getCollection()->getMetadata()->getFields() as $field) {
+
+            if (
+                ($field instanceof IRelationField && !$field instanceof BelongsToRelationField)
+                || in_array($field->getName(), $ignoredFieldNames)
+            ) {
+                continue;
+            }
+
+            $fieldName = $field->getName();
+            $label = $collection->translate($fieldName);
+
+            $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
+
+
+            if ($field instanceof BelongsToRelationField) {
+                /**
+                 * @var ICmsCollection $targetCollection
+                 */
+                $targetCollection = $field->getTargetCollection();
+                $targetIgnoredFieldNames = $targetCollection->getIgnoredTableFilterFieldNames();
+                foreach ($targetCollection->getMetadata()->getFields() as $relatedField) {
+
+                    if (
+                        $relatedField instanceof IRelationField
+                        || in_array($relatedField->getName(), $targetIgnoredFieldNames)
+                    ) {
+                        continue;
+                    }
+
+                    $relatedFieldName = $relatedField->getName();
+                    $relatedDataSource = $relatedElementName = $fieldName . '.' . $relatedFieldName;
+                    $relatedLabel = $label . ': ' . $targetCollection->translate($relatedFieldName);
+
+                    $elements[] = $this->buildFormElement(
+                        $relatedField, $targetCollection, $relatedElementName, $relatedDataSource, $relatedLabel
+                    );
+                }
+
+            }
+        }
+
+        $form = $this->createForm([]);
+
+        foreach ($elements as $element) {
+            $form->add($element);
+        }
+
+        return ['defaultFields' => $collection->getDefaultTableFilterFieldNames(), 'form' => $form->getView()];
+    }
+
+    /**
+     * Формирует элемент формы на основе поля метаданных
+     * @param IField $field
+     * @param ICmsCollection $collection
+     * @param string $elementName имя элемента формы
+     * @param string $dataSource имя источника значения
+     * @param string $label лейбл
+     * @return IFormEntity
+     */
+    protected function buildFormElement(IField $field, ICmsCollection $collection, $elementName, $dataSource, $label)
+    {
+        $options = [
+            'dataSource' => $dataSource
+        ];
+
+        switch(true) {
+            case ($field->getName() === ICmsObject::FIELD_TYPE): {
+                $type = Select::TYPE_NAME;
+                $options['choices'] = [];
+                foreach ($collection->getMetadata()->getTypesList() as $typeName) {
+                    $options['choices'][$typeName] = $collection->translate('type:' . $typeName . ':displayName');
+                }
+                break;
+            }
+            case $field instanceof BelongsToRelationField: {
+                $type = Select::TYPE_NAME;
+                $options['lazy'] = true;
+                break;
+            }
+            case $field instanceof BoolField: {
+                $type = Checkbox::TYPE_NAME;
+                break;
+            }
+            case ($field instanceof TextField || $field instanceof Wysiwyg): {
+                $type = Textarea::TYPE_NAME;
+                break;
+            }
+            case ($field instanceof DateTimeField): {
+                $type = DateTime::TYPE_NAME;
+                break;
+            }
+            default: {
+                $type = Text::TYPE_NAME;
+            }
+        }
+
+        return $this->createFormEntity(
+            $elementName,
+            [
+                'type' => $type,
+                'label' => $label,
+                'options' => $options
+            ]
+        );
     }
 
     /**
@@ -71,12 +227,12 @@ class ActionController extends BaseController implements ISlugGeneratorAware
      * @throws HttpException если пришли неверные данные
      * @return ICmsPage
      */
-    protected function changeSlug()
+    protected function actionChangeSlug()
     {
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
 
-        if (isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
+        if (!isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot change object slug. Slug is required.')
@@ -112,6 +268,8 @@ class ActionController extends BaseController implements ISlugGeneratorAware
             );
         }
 
+        $this->commit();
+
         return $object;
     }
 
@@ -123,7 +281,7 @@ class ActionController extends BaseController implements ISlugGeneratorAware
     protected function actionActivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
@@ -152,7 +310,7 @@ class ActionController extends BaseController implements ISlugGeneratorAware
     protected function actionDeactivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
@@ -171,6 +329,89 @@ class ActionController extends BaseController implements ISlugGeneratorAware
         $this->commit();
 
         return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionAllowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->allow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionDisallowRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->disallow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Проверяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionIsAllowedRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot check object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        return $collection->isAllowedRobots($object);
     }
 
     /**
@@ -240,6 +481,9 @@ class ActionController extends BaseController implements ISlugGeneratorAware
     protected function actionGetBackupList()
     {
         $collection = $this->getCollection();
+        /**
+         * @var IRecoverableObject $object
+         */
         $object = $collection->getById($this->getRequiredQueryVar('id'));
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
@@ -250,11 +494,17 @@ class ActionController extends BaseController implements ISlugGeneratorAware
                 )
             );
         }
-        /**
-         * @var IRecoverableObject $object
-         */
-        return $collection->getBackupList($object)
-            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
+        $result = [
+            'i18n' => [
+                'Current version' => $this->translate('Current version'),
+                'No backups' => $this->translate('No backups'),
+            ],
+            'collection' => $collection->getBackupList($object)
+                    ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME])
+
+        ];
+
+        return $result;
     }
 
     /**
@@ -266,6 +516,7 @@ class ActionController extends BaseController implements ISlugGeneratorAware
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $backupId = $this->getRequiredQueryVar('backupId');
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
             throw new RuntimeException(
@@ -278,7 +529,7 @@ class ActionController extends BaseController implements ISlugGeneratorAware
         /**
          * @var IRecoverableObject $object
          */
-        return $collection->wakeUpBackup($object, $this->getRequiredQueryVar('backupId'));
+        return $collection->wakeUpBackup($object, $backupId);
     }
 
     /**
@@ -310,9 +561,19 @@ class ActionController extends BaseController implements ISlugGeneratorAware
         }
 
         /**
-         * @var CmsHierarchicObject $object
+         * @var CmsHierarchicObject|ILockedAccessibleObject $object
          */
         $object = $this->getEditedObject($data['object']);
+
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot move locked object with guid "{guid}" from collection "{collection}".',
+                    ['guid' => $object->getGUID(), 'collection' => $collection->getName()]
+                )
+            );
+        }
+
         /**
          * @var CmsHierarchicObject $branch
          */
@@ -323,6 +584,38 @@ class ActionController extends BaseController implements ISlugGeneratorAware
         $previousSibling = isset($data['sibling']) ? $this->getEditedObject($data['sibling']) : null;
 
         $collection->move($object, $branch, $previousSibling);
+
+        $parent = $object->getParent();
+
+        if ($parent !== $branch) {
+            if ($parent) {
+                $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    /**
+                     * @var ICalculableProperty $localizedSiteChildCount
+                     */
+                    $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                /**
+                 * @var ICalculableProperty $adminChildCount
+                 */
+                $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+            }
+
+            if ($branch) {
+                $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+                foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+                    $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+                    $localizedSiteChildCount->recalculate();
+                }
+                $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+                $adminChildCount->recalculate();
+            }
+        }
+
+        $this->commit();
 
         return '';
     }

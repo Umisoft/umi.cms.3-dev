@@ -11,13 +11,17 @@
 return [
 
     'en-US' => [
+        'component:category:displayName' => 'Categories',
+
         'action:create:base' => 'Create subcategory',
 
-        'role:editor:displayName' => 'Managing category'
+        'role:editor:displayName' => 'Manage categories'
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Создать подкатегорию',
+        'component:category:displayName' => 'Категории',
+
+        'action:create:base' => 'Добавить подкатегорию',
 
         'role:editor:displayName' => 'Управление категориями'
     ]

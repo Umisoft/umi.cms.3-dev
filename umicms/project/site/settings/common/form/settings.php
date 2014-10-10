@@ -8,37 +8,31 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
-use umi\form\element\Text;
-use umicms\project\site\SiteApplication;
+use umicms\form\element\SingleCollectionObjectRelation;
+use umicms\project\IProjectSettingsAware;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.site'
+            'project.admin.rest.settings.site' => 'project.admin.rest.settings.site'
         ]
     ],
 
     'elements' => [
-        SiteApplication::SETTING_DEFAULT_PAGE_GUID => [
-            'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_PAGE_GUID,
+        IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID => [
+            'type' => SingleCollectionObjectRelation::TYPE_NAME,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_PAGE_GUID
+                'collection' => 'structure',
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID
             ]
         ],
-        SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => [
-            'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID,
+        IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID => [
+            'type' => SingleCollectionObjectRelation::TYPE_NAME,
+            'label' => IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID,
             'options' => [
-                'dataSource' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID
-            ]
-        ],
-        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => [
-            'type' => Checkbox::TYPE_NAME,
-            'label' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED,
-            'options' => [
-                'dataSource' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED
+                'collection' => 'layout',
+                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID
             ]
         ]
     ]

@@ -9,10 +9,9 @@
  */
 
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
     [
         'name' => 'infoblock',
         'columns'     =>  [
@@ -41,10 +40,10 @@ return array_replace_recursive(
                 'type' => Type::TEXT
             ],
             'logo' => [
-                'type' => Type::TEXT
+                'type' => Type::STRING
             ],
             'logo_en' => [
-                'type' => Type::TEXT
+                'type' => Type::STRING
             ],
             'copyright' => [
                 'type' => Type::TEXT

@@ -17,6 +17,7 @@ use umicms\Utils;
 /**
  * Зарегистрированный пользователь.
  *
+ * @property string $ip IP
  * @property string $login логин
  * @property string $email e-mail
  * @property string $firstName имя
@@ -31,6 +32,10 @@ class RegisteredUser extends BaseUser
      */
     const TYPE_NAME = 'registered';
 
+    /**
+     * Имя поля для хранения ip
+     */
+    const FIELD_IP = 'ip';
     /**
      * Имя поля для хранения логина
      */
@@ -71,11 +76,11 @@ class RegisteredUser extends BaseUser
     /**
      * Форма авторизации пользователя на сайте
      */
-    const FORM_LOGIN_SITE = 'login.site';
+    const FORM_LOGIN_SITE = 'loginSite';
     /**
      * Форма разавторизации пользователя на сайте
      */
-    const FORM_LOGOUT_SITE = 'logout.site';
+    const FORM_LOGOUT_SITE = 'logoutSite';
     /**
      * Форма редактирования профиля пользователя
      */
@@ -92,10 +97,6 @@ class RegisteredUser extends BaseUser
      * Форма смены пароля
      */
     const FORM_CHANGE_PASSWORD = 'changePassword';
-    /**
-     * Форма авторизации пользователя в административной панели
-     */
-    const FORM_LOGIN_ADMIN = 'login.admin';
 
     /**
      * @var string $passwordSalt маска соли для хэширования паролей
@@ -134,8 +135,7 @@ class RegisteredUser extends BaseUser
 
         $password = trim($password);
 
-        $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
-        if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
+        if ($this->checkPassword($password)) {
             return $this;
         }
 
@@ -167,9 +167,20 @@ class RegisteredUser extends BaseUser
      */
     public function updateActivationCode()
     {
-        $this->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
+        $this->getProperty(self::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
 
         return $this;
+    }
+
+    /**
+     * Проверяет валидность пароля для пользователя.
+     * @param string $password пароль
+     * @return bool
+     */
+    public function checkPassword($password) {
+        $passwordHash = crypt($password, $this->getProperty(RegisteredUser::FIELD_PASSWORD_SALT)->getValue());
+
+        return $this->getProperty(self::FIELD_PASSWORD)->getValue() === $passwordHash;
     }
 
     /**
@@ -229,14 +240,6 @@ class RegisteredUser extends BaseUser
 
         $result = true;
 
-        if (!strlen(trim($this->rawPassword))) {
-            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
-                [$this->translate('Value is required.')]
-            );
-
-            $result = false;
-        }
-
         /**
          * @var UserCollection $collection
          */
@@ -267,6 +270,27 @@ class RegisteredUser extends BaseUser
         }
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function fillProperties()
+    {
+        $this->generateDisplayName($this->getCurrentDataLocale());
+    }
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
+     * @return bool
+     */
+    protected function generateDisplayName($localeId = null)
+    {
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $displayName = $this->getValue(self::FIELD_DISPLAY_NAME, $this->getCurrentLocale()) ?: $this->login;
+            $this->setValue(self::FIELD_DISPLAY_NAME, $displayName, $localeId);
+        }
     }
 
 }

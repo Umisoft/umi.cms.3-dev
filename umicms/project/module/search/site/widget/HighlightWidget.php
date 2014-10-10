@@ -10,9 +10,8 @@
 
 namespace umicms\project\module\search\site\widget;
 
-use umi\http\THttpAware;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Виджет, выделяющий подстроку с учетом морфологии в тексте
@@ -22,51 +21,45 @@ class HighlightWidget extends BaseCmsWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'search/highlight';
-
+    public $template = 'highlight';
     /**
-     * Текст, в котором требуется выделить фрагмент
-     * @var string $text
+     * @var string $text текст, в котором требуется выделить фрагмент
      */
     public $text;
     /**
-     * Фрагмент текста, который нужно выделить
-     * @var string $query
+     * @var string $query фрагмент текста, который нужно выделить
      */
     public $query;
     /**
-     * Настройка маркера начала подсветки найденных результатов
-     * @var string $searchHighlightStart
+     * @var string $highlightStart настройка маркера начала подсветки найденных результатов
      */
     public $highlightStart = '<mark>';
-
     /**
-     * Настройка маркера конца подсветки найденных результатов
-     * @var string $searchHighlightEnd
+     * @var string $highlightEnd настройка маркера конца подсветки найденных результатов
      */
     public $highlightEnd = '</mark>';
 
     /**
-     * @var SearchApi $api модуль "Поиск"
+     * @var SearchModule $api модуль "Поиск"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi API поиска
-     * @internal param \umi\http\Request $request
+     * @param SearchModule $module
      */
-    public function __construct(SearchApi $searchApi)
+    public function __construct(SearchModule $module)
     {
-        $this->api = $searchApi;
+        $this->module = $module;
     }
 
     /**
-     * {@inheritdoc}
+     * Возвращает размеченную строку.
+     * @return string
      */
     public function __invoke()
     {
-        return $this->api->highlightResult(
+        return $this->module->getSearchApi()->highlightResult(
             $this->query,
             $this->text,
             $this->highlightStart,

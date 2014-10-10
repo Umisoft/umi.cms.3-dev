@@ -9,7 +9,8 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\structure\model\collection\LayoutCollection;
+use umicms\project\module\structure\model\object\Layout;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -18,12 +19,16 @@ return [
         'admin' => 'structure.layout'
     ],
     'dictionaries' => [
-        'collection.layout', 'collection'
+        'collection.layout' => 'collection.layout', 'collection' => 'collection'
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/layout/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/layout/form/base.create.config.php}'
+            LayoutCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/layout/form/base.edit.config.php}',
+            LayoutCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/layout/form/base.create.config.php}'
         ]
+    ],
+
+    LayoutCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        Layout::FIELD_FILE_NAME => []
     ]
 ];

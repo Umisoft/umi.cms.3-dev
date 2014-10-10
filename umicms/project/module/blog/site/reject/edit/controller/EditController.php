@@ -12,25 +12,28 @@ namespace umicms\project\module\blog\site\reject\edit\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер редактирования отклонённого поста блога.
+ * Контроллер редактирования отклоненного поста блога.
  */
 class EditController extends BaseSitePageController
 {
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'editPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
     /**
-     * @var bool $success флаг указывающий на успешное сохранение изменений
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
      */
     private $success = false;
 
@@ -48,7 +51,7 @@ class EditController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'editPost';
+        return $this->template;
     }
 
     /**
@@ -67,7 +70,7 @@ class EditController extends BaseSitePageController
 
         return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
-            IObjectType::BASE,
+            $blogPost->getTypeName(),
             $blogPost
         );
     }
@@ -81,6 +84,14 @@ class EditController extends BaseSitePageController
         $this->success = true;
     }
 
+    /**
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница редактирования поста
+     *
+     * @return array
+     */
     protected function buildResponseContent()
     {
         return [

@@ -1,0 +1,19 @@
+{{#view view.buttonView meta=view.meta}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.iconClass"}}></i>
+    {{/if}}
+
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
+{{/view}}
+
+<ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
+    {{#each view.meta.choices}}
+        <li>
+            <a href="javascript:void(0);" {{action 'sendActionForBehaviour' behaviour target="view"}}>
+                {{attributes.label}}
+            </a>
+        </li>
+    {{/each}}
+</ul>

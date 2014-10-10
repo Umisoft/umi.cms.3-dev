@@ -1,0 +1,30 @@
+<div class="media-body">
+    {% if (blogComment.status.guid == constant('GUID_UNPUBLISHED', blogComment.status)) %}
+        {{ translate('Comment has been unpublished.') }}
+    {% else %}
+        <h1>{{ blogComment.displayName }}</h1>
+        <p class="blog-post-meta">
+            <time datetime="{{ blogComment.publishTime.format('c') }}">
+                {{ blogComment.publishTime.format('d.m.Y | H:i') }}
+            </time>
+            {% if blogComment.author %}
+                {{ translate('Author') }}: <a href="{{ blogComment.author.getPageUrl() }}">{{ blogComment.author.displayName }}</a>
+            {% endif %}
+        </p>
+
+        {{ blogComment.contents | raw }}
+
+        {% if (blogComment.status.guid == constant('GUID_NEED_MODERATION', blogComment.status)) %}
+            <div class="btn-toolbar">
+                {{ widget('blog.comment.publishForm', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
+                {{ widget('blog.comment.rejectForm', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
+            </div>
+        {% endif %}
+
+        {% if (blogComment.status.guid == constant('GUID_PUBLISHED', blogComment.status)) %}
+            <div class="btn-toolbar">
+                {{ widget('blog.comment.unpublishForm', {'blogComment' : blogComment, 'template' : 'unpublishForm'}) }}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

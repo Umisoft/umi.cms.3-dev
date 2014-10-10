@@ -1,0 +1,210 @@
+/* quicklook window */
+.elfinder-quicklook{
+    position: absolute;
+    background: #fff;
+    border: 1px solid #21252e;
+    display: none;
+    overflow: hidden;
+    padding: 0 0 20px 0;
+
+    .ui-resizable-se{
+        width: 14px;
+        height: 14px;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        cursor: se-resize;
+        background: url(#{$images-path}/elfinder/img/toolbar.png) 0 -496px no-repeat;
+    }
+
+    &-fullscreen{
+        border-radius: 0;
+        background-clip: padding-box;
+        padding: 0;
+        background: #FFF;
+        z-index: 90000;
+        display: block;
+
+        .elfinder-quicklook-titlebar{
+            display: none;
+        }
+
+        .elfinder-quicklook-preview{
+            border: 0 solid;
+        }
+
+        .elfinder-quicklook-navbar{
+            width: 188px;
+            margin-left: -94px;
+            padding: 5px;
+            border: 1px solid #eee;
+            background: #000;
+        }
+
+        .elfinder-quicklook-navbar-icon-close, .elfinder-quicklook-navbar-separator{
+            display: inline;
+        }
+    }
+
+    &-titlebar{
+        background: linear-gradient(#414a59, #21252e);
+        line-height: normal;
+        font-size: 16px;
+        padding: 9px 30px 9px 15px;
+        cursor: move;
+        color: #fff;
+        position: relative;
+
+        .ui-icon{
+            &.ui-icon-circle-close{
+                width: 20px;
+                height: 20px;
+                top: 50%;
+                right: 10px;
+                margin-top: -10px;
+                vertical-align: top;
+                position: absolute;
+                display: inline-block;
+                line-height: 20px;
+                background: url($umi-icons-img) no-repeat;
+                background-position: -240px -20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-title{
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    &-preview{
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+
+        img{
+            display: block;
+            margin: 0 auto;
+        }
+
+        &-text-wrapper{
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            color: #222;
+            overflow: auto;
+        }
+
+        &-html, &-pdf{
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 0 solid;
+            margin: 0;
+        }
+
+        &-flash{
+            width: 100%;
+            height: 100%;
+        }
+
+        &-audio{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        &-video{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-info{
+        padding: 0 12px 0 112px;
+
+        &-wrapper{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            margin-top: -50px;
+        }
+        &-data{
+            padding-bottom: .2em;
+        }
+
+        .elfinder-quicklook-info-data:first-child{
+            color: #fff;
+            font-weight: bold;
+            padding-bottom: .5em;
+        }
+    }
+
+    .elfinder-cwd-icon{
+        position: absolute;
+        left: 32px;
+        top: 50%;
+        margin-top: -20px;
+    }
+
+    &-navbar{
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        width: 140px;
+        height: 32px;
+        padding: 3px;
+        margin-left: -73px;
+        border: 1px solid transparent;
+        background: linear-gradient(#414a59, #21252e);
+
+        &-icon{
+            width: 32px;
+            height: 32px;
+            margin: 0 7px;
+            float: left;
+            cursor: pointer;
+            background: url(#{$images-path}/elfinder/img/quicklook-icons.png) 0 0 no-repeat;
+
+            &-fullscreen{
+                background-position: 0 -64px;
+
+                &-off{
+                    background-position: 0 -96px;
+                }
+            }
+
+            &-prev{
+                background-position: 0 0;
+            }
+
+            &-next{
+                background-position: 0 -32px;
+            }
+
+            &-close{
+                background-position: 0 -128px;
+                display: none;
+            }
+        }
+
+        &-separator{
+            width: 1px;
+            height: 32px;
+            float: left;
+            border-left: 1px solid #fff;
+            display: none;
+        }
+    }
+}
+
+/* audio preview using embed */
+embed.elfinder-quicklook-preview-audio{
+    height: 30px;
+    background: transparent;
+}

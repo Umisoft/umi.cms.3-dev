@@ -1,0 +1,14 @@
+{{ include('breadcrumbs.twig') }}
+
+<h1>{{ page.getHeader() }}</h1>
+{{ page.contents | raw }}
+
+{{ widget('news.subject.list', {
+    'template' : 'list',
+    'limit' : 3,
+    'pagination' : {
+        'pageParam' : 'p',
+        'type' : 'sliding',
+        'pagesCount' : 5
+    }
+}) }}

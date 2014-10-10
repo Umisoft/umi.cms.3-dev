@@ -10,13 +10,14 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\PageRelation;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.menu', 'collection', 'form'
+            'collection.menu' => 'collection.menu', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
@@ -32,13 +33,6 @@ return [
                     'options' => [
                         'dataSource' => MenuInternalItem::FIELD_DISPLAY_NAME
                     ],
-                ],
-                MenuInternalItem::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => MenuInternalItem::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => MenuInternalItem::FIELD_SLUG
-                    ],
                 ]
             ]
         ],
@@ -48,7 +42,7 @@ return [
             'label' => 'settings',
             'elements' => [
                 MenuInternalItem::FIELD_PAGE_RELATION => [
-                    'type' => Text::TYPE_NAME,
+                    'type' => PageRelation::TYPE_NAME,
                     'label' => MenuInternalItem::FIELD_PAGE_RELATION,
                     'options' => [
                         'dataSource' => MenuInternalItem::FIELD_PAGE_RELATION

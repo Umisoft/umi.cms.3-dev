@@ -13,11 +13,13 @@ use umi\form\element\html5\Color;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
+use umicms\validation\Range;
 
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.rest.settings.forms.captcha'
+            'project.admin.rest.settings.forms.captcha' => 'project.admin.rest.settings.forms.captcha'
         ]
     ],
 
@@ -30,6 +32,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => 'checkMode',
                     'options' => [
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
                         'choices' => [
                             'guest' => 'checkMode:guest',
                             'all' => 'checkMode:all',
@@ -44,6 +49,11 @@ return [
                     'options' => [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
+                        ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
                         ],
                         'dataSource' => 'humanTestsCount'
                     ]
@@ -61,6 +71,11 @@ return [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
                         ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
+                        ],
                         'dataSource' => 'width'
                     ]
                 ],
@@ -70,6 +85,11 @@ return [
                     'options' => [
                         'filters' => [
                             IFilterFactory::TYPE_INT => []
+                        ],
+                        'validators' => [
+                            Range::NAME => [
+                                'min' => 0
+                            ]
                         ],
                         'dataSource' => 'height'
                     ]

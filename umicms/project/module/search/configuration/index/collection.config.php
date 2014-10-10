@@ -11,5 +11,10 @@
 use umi\orm\collection\ICollectionFactory;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\search\model\collection\SearchIndexCollection',
+
+    'dictionaries' => [
+        'collection.searchIndex' => 'collection.searchIndex', 'collection' => 'collection'
+    ],
 ];

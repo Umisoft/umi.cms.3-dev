@@ -1,0 +1,21 @@
+{{#view view.buttonView meta=view.meta}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.iconClass"}}></i>
+    {{/if}}
+
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
+{{/view}}
+
+<ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
+    <li>
+        {{#if view.form.isLoaded}}
+            {{#if view.form}}
+                {{view view.formView form=view.form}}
+            {{/if}}
+        {{else}}
+            <div class="form-loading">{{i18n "Loading"}}..</div>
+        {{/if}}
+    </li>
+</ul>

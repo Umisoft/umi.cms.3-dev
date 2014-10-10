@@ -4,7 +4,7 @@ return [
     'en-US' => [
         'component:notifications:displayName' => 'Notifications',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

@@ -11,9 +11,14 @@
 namespace umicms\project\admin\rest\controller;
 
 use Symfony\Component\HttpFoundation\Cookie;
+use umi\filter\IFilterFactory;
+use umi\form\element\Password;
 use umi\form\element\Select;
-use umi\form\IEntityFactory;
+use umi\form\element\Submit;
+use umi\form\element\Text;
 use umi\form\IForm;
+use umi\form\IFormAware;
+use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
@@ -21,6 +26,7 @@ use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalesService;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
+use umi\validation\IValidatorFactory;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\TActionController;
@@ -33,19 +39,16 @@ use umicms\Utils;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ActionController extends BaseController implements ILocalesAware, ISessionAware
+class ActionController extends BaseController implements ILocalesAware, ISessionAware, IFormAware
 {
     use TSessionAware;
     use TActionController;
+    use TFormAware;
 
     /**
      * @var UsersModule $module
      */
     protected $module;
-    /**
-     * @var IEntityFactory $formEntityFactory фабрика сущностей формы
-     */
-    protected $formEntityFactory;
     /**
      * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
      */
@@ -54,12 +57,10 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     /**
      * Конструктор.
      * @param UsersModule $module
-     * @param IEntityFactory $formEntityFactory
      */
-    public function __construct(UsersModule $module, IEntityFactory $formEntityFactory)
+    public function __construct(UsersModule $module)
     {
         $this->module = $module;
-        $this->formEntityFactory = $formEntityFactory;
     }
 
     /**
@@ -105,9 +106,15 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             );
         }
 
+        $locale = $this->getPostVar('locale');
+        if ($locale) {
+            $this->getLocalesService()->setCurrentLocale($locale);
+        }
+
         $response = $this->createViewResponse('auth', $this->getAuthUserInfo());
 
-        if ($locale = $this->getPostVar('locale')) {
+        if ($locale) {
+            $this->getLocalesService()->setCurrentLocale($locale);
             $cookie = new Cookie(
                 AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
                 $locale,
@@ -127,7 +134,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function getAuthUserInfo()
     {
-        $user = $this->module->getCurrentUser();
+        $user = $this->module->getAuthenticatedUser();
 
         if (!$user->isComponentResourceAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(
@@ -160,7 +167,52 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function actionForm()
     {
-        $form = $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_ADMIN, RegisteredUser::TYPE_NAME);
+        $form = $this->createForm([
+            'options' => [
+                'dictionaries' => [
+                    'collection.user', 'collection'
+                ],
+            ],
+            'attributes' => [
+                'method' => 'post'
+            ]
+        ]);
+
+        $loginInput = $this->createFormEntity(
+            RegisteredUser::FIELD_LOGIN,
+            [
+                'type' => Text::TYPE_NAME,
+                'label' => RegisteredUser::FIELD_LOGIN,
+                'options' => [
+                    'filters' => [
+                        IFilterFactory::TYPE_STRING_TRIM => []
+                    ],
+                    'validators' => [
+                        IValidatorFactory::TYPE_REQUIRED => []
+                    ]
+                ]
+            ]
+        );
+
+        $form->add($loginInput);
+
+        $passwordInput = $this->createFormEntity(
+            RegisteredUser::FIELD_PASSWORD,
+            [
+                'type' => Password::TYPE_NAME,
+                'label' => RegisteredUser::FIELD_PASSWORD,
+                'options' => [
+                    'filters' => [
+                        IFilterFactory::TYPE_STRING_TRIM => []
+                    ],
+                    'validators' => [
+                        IValidatorFactory::TYPE_REQUIRED => []
+                    ]
+                ]
+            ]
+        );
+
+        $form->add($passwordInput);
 
         $adminLocales = $this->getLocalesService()->getAdminLocales();
         if (count($adminLocales) > 1) {
@@ -169,7 +221,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             foreach ($adminLocales as $adminLocale) {
                 $locales[$adminLocale->getId()] = $adminLocale->getId();
             }
-            $localeInput = $this->formEntityFactory->createFormEntity(
+            $localeInput = $this->createFormEntity(
                 'locale',
                 [
                     'type' => Select::TYPE_NAME,
@@ -181,6 +233,9 @@ class ActionController extends BaseController implements ILocalesAware, ISession
 
             $form->add($localeInput);
         }
+
+        $submit = $this->createFormEntity('submit', ['type' => Submit::TYPE_NAME, 'label' => 'Log in']);
+        $form->add($submit);
 
         $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl($this->getComponent(), 'login'));
 

@@ -1,0 +1,4 @@
+{{ include('breadcrumbs.twig') }}
+
+<h1>{{ translate('Moderation queue') }}</h1>
+{{ widget('blog.moderate.all.list', {'template' : 'list'})  }}

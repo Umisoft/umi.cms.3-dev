@@ -14,7 +14,10 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'project.site.users.profile.password', 'collection.user', 'collection', 'form'
+            'project.site.users.profile.password' => 'project.site.users.profile.password',
+            'collection.user' => 'collection.user',
+            'collection' => 'collection',
+            'form' => 'form'
         ],
     ],
     'attributes' => [

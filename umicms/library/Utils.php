@@ -10,6 +10,8 @@
 
 namespace umicms;
 
+use Symfony\Component\Process\Process;
+
 /**
  * Библиотека функций.
  */
@@ -70,6 +72,40 @@ class Utils
             }
         }
 
-        return $emailList;
+        return $emailList ? $emailList : null;
+    }
+
+    /**
+     * Возвращает информацию о текущей версии из git
+     * @throws \RuntimeException если не удалось определить версию
+     * @return array [$version, $versionDate]
+     */
+    public static function getCurrentGitVersion()
+    {
+        $cwd = dirname(dirname(__DIR__));
+
+        $process = new Process('git log --pretty="%H" -n1 HEAD', $cwd);
+        if ($process->run() != 0) {
+            throw new \RuntimeException('Cannot detect last version hash. Can\'t run git log..');
+        }
+
+        $version = trim($process->getOutput());
+
+        $process = new Process('git describe --tags HEAD', $cwd);
+        if ($process->run() == 0) {
+            $version = trim($process->getOutput());
+        }
+
+        $process = new Process('git log -n1 --pretty=%ci HEAD', $cwd);
+        if ($process->run() != 0) {
+            throw new \RuntimeException('Cannot detect last version date. Can\'t run git log.');
+        }
+
+        $date = new \DateTime(trim($process->getOutput()));
+        $date->setTimezone(new \DateTimeZone('UTC'));
+
+        $versionDate = $date->format('Y-m-d H:i:s');
+
+        return [$version, $versionDate];
     }
 }

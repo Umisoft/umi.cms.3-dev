@@ -47,12 +47,13 @@ return [
 
     'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
     'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+    'project.admin.rest.service.update' => '{#lazy:~/project/module/service/admin/update/i18n/dictionary.config.php}',
+    'project.admin.rest.service.recycle' => '{#lazy:~/project/module/service/admin/recycle/i18n/dictionary.config.php}',
 
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
     'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
-
-    'project.admin.rest.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
+    'project.admin.rest.seo.robots' => '{#lazy:~/project/module/seo/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
     'project.admin.rest.blog.category' => '{#lazy:~/project/module/blog/admin/category/i18n/dictionary.config.php}',
@@ -63,16 +64,17 @@ return [
     'project.admin.rest.blog.tag' => '{#lazy:~/project/module/blog/admin/tag/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rss' => '{#lazy:~/project/module/blog/admin/rss/i18n/dictionary.config.php}',
     'project.admin.rest.blog.rsstag' => '{#lazy:~/project/module/blog/admin/rsstag/i18n/dictionary.config.php}',
-
-    'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
-
+    'project.admin.rest.blog.poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/i18n/dictionary.config.php}',
+    'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
-    'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.license' => '{#lazy:~/project/site/settings/license/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.mail' => '{#lazy:~/project/site/settings/mail/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service' => '{#lazy:~/project/module/service/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service.backup' => '{#lazy:~/project/module/service/admin/settings/backup/i18n/dictionary.config.php}',
     'project.admin.rest.settings.seo' => '{#lazy:~/project/module/seo/admin/settings/i18n/dictionary.config.php}',
@@ -81,8 +83,8 @@ return [
     'project.admin.rest.settings.statistics' => '{#lazy:~/project/module/statistics/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/i18n/dictionary.config.php}',
     'project.admin.rest.settings.users' => '{#lazy:~/project/module/users/admin/settings/i18n/dictionary.config.php}',
-    'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
     'project.admin.rest.settings.users.registration' => '{#lazy:~/project/module/users/admin/settings/registration/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings.forms' => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.forms.captcha' => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
@@ -130,9 +132,14 @@ return [
     'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
+    'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+
     'collection' => [
 
         'en-US' => [
+            'en-US' => 'English',
+            'ru-RU' => 'Русский',
+
             ICmsObject::FIELD_CREATED => 'Creation date',
             ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
             ICmsObject::FIELD_UPDATED => 'Update date',
@@ -140,9 +147,14 @@ return [
             ICmsObject::FIELD_IDENTIFY => 'Identifier',
             ICmsObject::FIELD_TYPE => 'Type',
             ICmsObject::FIELD_VERSION => 'Version',
+            
+            IRecyclableObject::FIELD_TRASHED => 'Trashed',
+            ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
+            IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+
+            'Default or inherited layout' => 'Default or inherited layout',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Children',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Child count',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Hierarchy level',
             CmsHierarchicObject::FIELD_MPATH => 'Materialized path',
             CmsHierarchicObject::FIELD_ORDER => 'Hierarchy order',
@@ -155,16 +167,15 @@ return [
             ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
             ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-            ICmsPage::FIELD_PAGE_SLUG => 'Slug',
-
-            IRecyclableObject::FIELD_TRASHED => 'Trashed',
-            ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
-            IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+            ICmsPage::FIELD_PAGE_SLUG => 'Slug'
         ],
 
         'ru-RU' => [
+            'en-US' => 'English',
+            'ru-RU' => 'Русский',
+
             ICmsObject::FIELD_CREATED => 'Дата создания',
-            ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
+            ICmsObject::FIELD_DISPLAY_NAME => 'Название',
             ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
             ICmsObject::FIELD_GUID => 'GUID',
             ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
@@ -172,7 +183,6 @@ return [
             ICmsObject::FIELD_VERSION => 'Версия',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Дочерние сущности',
-            CmsHierarchicObject::FIELD_CHILD_COUNT => 'Количество дочерних сущностей',
             CmsHierarchicObject::FIELD_HIERARCHY_LEVEL => 'Уровень вложенности в иерархии',
             CmsHierarchicObject::FIELD_MPATH => 'Материализованный путь',
             CmsHierarchicObject::FIELD_ORDER => 'Порядок в иерархии',
@@ -190,6 +200,8 @@ return [
             IRecyclableObject::FIELD_TRASHED => 'В корзине',
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+            'Default or inherited layout' => 'По умолчанию или унаследованный',
         ]
     ],
 
@@ -202,6 +214,7 @@ return [
 
             'Save' => 'Save',
             'Add' => 'Add',
+            'Change' => 'Change',
             'Send request' => 'Send request',
         ],
         'ru-RU' => [
@@ -212,17 +225,21 @@ return [
 
             'Save' => 'Сохранить',
             'Add' => 'Добавить',
+            'Change' => 'Изменить',
             'Send request' => 'Отправить запрос',
         ]
     ],
 
     'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
     'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
+    'collection.userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/i18n/dictionary.config.php}',
 
     'collection.newsItem' => '{#lazy:~/project/module/news/configuration/item/i18n/dictionary.config.php}',
     'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
     'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
     'collection.newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
+    'collection.rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/i18n/dictionary.config.php}',
+    'collection.newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/i18n/dictionary.config.php}',
 
     'collection.blogCategory' => '{#lazy:~/project/module/blog/configuration/category/i18n/dictionary.config.php}',
     'collection.blogPost' => '{#lazy:~/project/module/blog/configuration/post/i18n/dictionary.config.php}',
@@ -230,9 +247,18 @@ return [
     'collection.blogComment' => '{#lazy:~/project/module/blog/configuration/comment/i18n/dictionary.config.php}',
     'collection.blogTag' => '{#lazy:~/project/module/blog/configuration/tag/i18n/dictionary.config.php}',
     'collection.blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/i18n/dictionary.config.php}',
+    'collection.blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/i18n/dictionary.config.php}',
+    'collection.rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/i18n/dictionary.config.php}',
+    'collection.blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/i18n/dictionary.config.php}',
+    'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+    'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
+
+    'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
+
+    'collection.serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/i18n/dictionary.config.php}',
 ];

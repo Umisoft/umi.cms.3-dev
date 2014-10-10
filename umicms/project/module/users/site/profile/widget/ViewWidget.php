@@ -12,7 +12,7 @@ namespace umicms\project\module\users\site\profile\widget;
 
 use umi\authentication\exception\RuntimeException;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\view\IView;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\users\model\UsersModule;
 
@@ -41,13 +41,18 @@ class ViewWidget extends BaseCmsWidget
     }
 
     /**
-     * Вызывает виджет.
-     * @return IView|string
+     * Формирует результат работы виджета.
+     * Для шаблонизации доступны следущие параметры:
+     *
+     * @templateParam umicms\project\module\users\model\object\RegisteredUser $user текущий пользователь
+     *
+     * @throws ResourceAccessForbiddenException
+     * @return CmsView
      */
     public function __invoke()
     {
         try {
-            $user = $this->module->getCurrentUser();
+            $user = $this->module->getAuthenticatedUser();
         } catch (RuntimeException $e) {
             return $this->invokeForbidden(new ResourceAccessForbiddenException($this, $e->getMessage()));
         }

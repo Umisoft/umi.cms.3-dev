@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\BlogModule;
@@ -25,11 +24,15 @@ class IndexController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'editProfile';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
     /**
-     * @var bool $success флаг указывающий на успешное сохранение изменений
+     * @var bool $success флаг, указывающий на успешное сохранение изменений
      */
     private $success = false;
 
@@ -47,7 +50,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'editProfile';
+        return $this->template;
     }
 
     /**
@@ -59,7 +62,7 @@ class IndexController extends BaseSitePageController
 
         return $this->module->author()->getForm(
             BlogAuthor::FORM_EDIT_PROFILE,
-            IObjectType::BASE,
+            $blogAuthor->getTypeName(),
             $blogAuthor
         );
     }
@@ -73,6 +76,14 @@ class IndexController extends BaseSitePageController
         $this->success = true;
     }
 
+    /**
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница редактирования профиля автора
+     *
+     * @return array
+     */
     protected function buildResponseContent()
     {
         return [

@@ -12,12 +12,16 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 
 return [
         'en-US' => [
-            BlogAuthor::FIELD_PROFILE => 'Profile user',
+            'collection:blogAuthor:displayName' => 'Authors',
+
+            BlogAuthor::FIELD_USER => 'User',
             'type:base:displayName' => 'Blog author'
         ],
 
         'ru-RU' => [
-            BlogAuthor::FIELD_PROFILE => 'Профиль пользователя',
+            'collection:blogAuthor:displayName' => 'Авторы',
+
+            BlogAuthor::FIELD_USER => 'Пользователь',
             'type:base:displayName' => 'Автор блога'
         ]
     ];

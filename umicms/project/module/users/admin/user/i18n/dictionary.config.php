@@ -16,13 +16,13 @@ return [
         'action:create:registered' => 'Registered',
         'action:create:registered.supervisor' => 'Create supervisor',
 
-        'role:editor:displayName' => 'Managing users'
+        'role:editor:displayName' => 'Manage users'
     ],
 
     'ru-RU' => [
         'component:user:displayName' => 'Пользователи',
         'button:create' => 'Создать пользователя',
-        'action:create:registered' => 'Зарегистрированного',
+        'action:create:registered' => 'Пользователя',
         'action:create:registered.supervisor' => 'Супервайзера',
 
         'role:editor:displayName' => 'Управление пользователями'

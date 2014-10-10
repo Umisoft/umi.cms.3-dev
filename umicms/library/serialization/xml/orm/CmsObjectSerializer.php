@@ -15,18 +15,14 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IProperty;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\module\structure\model\object\StructureElement;
 use umicms\serialization\xml\BaseSerializer;
 
 /**
  * XML-сериализатор для CmsObject.
  */
-class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
+class CmsObjectSerializer extends BaseSerializer
 {
-
-    use TSiteSettingsAware;
-
     /**
      * Сериализует CmsObject в XML.
      * @param ICmsObject $object
@@ -74,9 +70,9 @@ class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
         foreach ($properties as $name => $property) {
             $this->getXmlWriter()->startElement('property');
 
-           $this->getXmlWriter()->writeAttribute('name', $property->getName());
+            $this->getXmlWriter()->writeAttribute('name', $property->getName());
 
-           $this->delegate($property->getField());
+            $this->delegate($property->getField());
 
             $this->getXmlWriter()->startElement('value');
             $value = $object->getValue($name);
@@ -111,8 +107,9 @@ class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
         if ($object instanceof ICmsPage) {
             $this->writeAttribute('url', $object->getPageUrl());
             $this->writeAttribute('header', $object->getHeader());
-            if ($this->getSiteDefaultPageGuid() === $object->guid) {
-                $this->writeAttribute('isDefault', true);
+
+            if ($object instanceof StructureElement) {
+                $this->writeAttribute('isDefault', $object->getIsDefault());
             }
         }
     }

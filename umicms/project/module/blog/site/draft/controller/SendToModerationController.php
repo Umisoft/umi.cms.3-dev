@@ -12,14 +12,19 @@ namespace umicms\project\module\blog\site\draft\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
- * Контроллер отправки поста на модерацию.
+ * Контроллер отправки черновика на модерацию.
+ *
+ * Контроллер обрабатывает POST-запрос на отправление черновика на модерацию и не имеет шаблонизируемого ответа.
+ * В случае успешного выполнения операции контроллер производит редирект на URL, указанный в запросе, или на реферер.
+ * Если нет возможности выполнить редирект, контроллер возвращает простое текстовое сообщение об успехе.
+ * Если операцию выполнить не удалось, выбрасывается исключение.
  */
 class SendToModerationController extends BaseCmsController
 {
@@ -57,7 +62,7 @@ class SendToModerationController extends BaseCmsController
             );
         }
 
-        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, $this->blogDraft->getTypeName());
     }
 
     /**
@@ -65,7 +70,7 @@ class SendToModerationController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->needModeration();
+        $this->blogDraft->status = $this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION);
         $this->commit();
     }
 }

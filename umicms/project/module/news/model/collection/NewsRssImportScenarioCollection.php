@@ -22,7 +22,7 @@ use umicms\project\module\news\model\object\NewsRssImportScenario;
  * @method CmsSelector|NewsRssImportScenario[] select() Возвращает селектор для выбора сценариев импорта.
  * @method NewsRssImportScenario get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по GUID
  * @method NewsRssImportScenario getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по id
- * @method NewsRssImportScenario add($typeName = IObjectType::BASE) Создает и возвращает сценарий импорта
+ * @method NewsRssImportScenario add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает сценарий импорта
  *
  */
 class NewsRssImportScenarioCollection extends CmsCollection

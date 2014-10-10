@@ -10,90 +10,54 @@
 
 namespace umicms\project\module\search\model;
 
-use umi\dbal\builder\IExpressionGroup;
 use umi\dbal\builder\ISelectBuilder;
-use umi\event\IEventObservant;
-use umi\event\TEventObservant;
-use umi\orm\collection\TCollectionManagerAware;
-use umicms\orm\collection\ICmsCollection;
-use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\highlight\Fragmenter;
+use umicms\orm\selector\CmsSelector;
+use umicms\project\module\search\model\highlight\Fragmenter;
 use umicms\project\module\search\model\object\SearchIndex;
-use utest\event\TEventSupport;
 
 /**
  * Публичный интерфейс поиска по модулям CMS
  */
-class SearchApi extends BaseSearchApi implements IEventObservant
+class SearchApi extends BaseSearchApi
 {
-    use TEventObservant;
-
     /**
      * Минимальная длина слова в поисковом запросе.
      * Чем она больше, тем меньше нагрузка на поисковый движок.
      * @var int $minimumPhraseLength
      */
     public $minimumPhraseLength;
-    /**
-     * Минимальная длина пригодного к поиску корня слова.
-     * Чем она больше, тем меньше будет найдено нерелевантных (двусмысленных) результатов
-     * @var int $minimumWordRootLength
-     */
-    public $minimumWordRootLength;
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      * @param string $searchString
-     * @return array
+     * @return CmsSelector|SearchIndex[]
      */
     public function search($searchString)
     {
-        $this->fireEvent('search.before', ['query' => $searchString]);
         if (mb_strlen($searchString, 'utf-8') < $this->minimumPhraseLength) {
-            return [];
+            return $this->getSiteIndexCollection()->emptySelect();
         }
 
-        $searchCollection = $this->getSearchIndexCollection();
+        $selector = $this->getSiteIndexCollection()
+            ->select()
+            ->fields([SearchIndex::FIELD_REF_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
 
-        $collectionNameCol = $searchCollection->getMetadata()
-            ->getField(SearchIndex::FIELD_COLLECTION_NAME)
-            ->getColumnName();
-        $refGuidCol = $searchCollection->getMetadata()
-            ->getField(SearchIndex::FIELD_REF_GUID)
-            ->getColumnName();
-
-        $selectBuilder = $this->buildQueryCondition(
-            $this->normalizeSearchString($searchString),
-            $this->detectWordBases($searchString)
-        );
-        $result = [];
-        foreach ($selectBuilder->execute() as $searchResult) {
-            /** @var $searchResult ICmsObject */
-            $result[] = $this->getCollectionManager()
-                ->getCollection($searchResult[$collectionNameCol])
-                ->get($searchResult[$refGuidCol]);
-        }
-
-        $this->fireEvent(
-            'search.after',
-            [
-                'query' => $searchString,
-                'selectBuilder' => $selectBuilder,
-                'result' => $result
-            ]
+        $this->buildQueryCondition(
+            $selector,
+            $this->normalizeSearchString($searchString)
         );
 
-        return $result;
+        return $selector;
     }
 
     /**
      * Выделяет подстроку во всех возможных формах.
      * Возвращает текст с подстроками, выделенными сконфигурированными маркерами.
      *
-     * @param string $query Исходный запрос
-     * @param string $text Текст, в котором нужно выделить найденные подстроки
-     * @param string $highlightStart Маркер начала выделения подстроки
-     * @param string $highlightEnd Маркер окончания выделения подстроки
+     * @param string $query исходный запрос
+     * @param string $text текст, в котором нужно выделить найденные подстроки
+     * @param string $highlightStart маркер начала выделения подстроки
+     * @param string $highlightEnd маркер окончания выделения подстроки
      * @return string
      */
     public function highlightResult($query, $text, $highlightStart, $highlightEnd)
@@ -110,6 +74,7 @@ class SearchApi extends BaseSearchApi implements IEventObservant
             $highlightStart . '$1' . $highlightEnd,
             $text
         );
+
         return $highlight;
     }
 
@@ -126,6 +91,7 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     {
         $searchReParts = $this->extractSearchRegexpForms($query, $content, false);
         $wordsRegexp = '(' . implode("|", $searchReParts) . ')';
+
         return new Fragmenter($content, $wordsRegexp);
     }
 
@@ -212,86 +178,29 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     /**
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
-     * @param array $words искомые слова
-     * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
-     * @return ISelectBuilder
+     * @param CmsSelector $selector
+     * @param string $searchString искомые слова
      */
-    protected function buildQueryCondition($words, array $wordBases)
+    protected function buildQueryCondition(CmsSelector $selector, $searchString)
     {
-        $searchIndexCollection = $this->getSearchIndexCollection();
-        $searchMetadata = $searchIndexCollection->getMetadata();
-        $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)->getColumnName();
-        $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)->getColumnName();
-        $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
+        $searchMetadata = $selector->getCollection()->getMetadata();
 
-        $dataSource = $searchMetadata->getCollectionDataSource();
+        $selector->setSelectBuilderInitializer(
+            function(ISelectBuilder $selectBuilder) use ($searchMetadata, $searchString) {
 
-        /** @var $select ISelectBuilder */
-        $select = $dataSource
-            ->select([$collectionNameColumn, $refGuidColumn, [':searchMatchExpression', 'searchRelevance']])
-            ->distinct()
-            ->orderBy('searchRelevance', ISelectBuilder::ORDER_DESC);
+                $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName($this->getCurrentDataLocale());
 
-        $connection = $dataSource->getConnection();
+                $connection = $searchMetadata->getCollectionDataSource()->getConnection();
 
-        $select->where(IExpressionGroup::MODE_OR)
-            ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
-            ->bindExpression(
-                ':searchMatchExpression',
-                'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($words)
-                . '  WITH QUERY EXPANSION)'
-            )
-            ->bindInt(':minimumSearchRelevance', 0);
-
-        if (count($wordBases)) {
-            $select->begin(IExpressionGroup::MODE_OR)
-                ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
-                ->end()
-                ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
-        }
-
-        $this->fireEvent('search.buildCondition', ['selectBuilder' => $select]);
-
-        return $select;
-    }
-
-    /**
-     * Преобразует слова фразы к их базовым формам, например "масло" » "масл"
-     * Числа остаются без изменений, слишком короткие корни отбрасываются.
-     * @param string $phrase
-     * @return array
-     */
-    private function detectWordBases($phrase)
-    {
-        $bases = [];
-        $parts = preg_split('/[\s_-]+/u', $phrase);
-        foreach ($parts as &$part) {
-            $partBase = $this->getStemming()
-                ->getCommonRoot($part);
-            if (is_numeric($partBase) || (mb_strlen($partBase) > $this->minimumWordRootLength)) {
-                $bases[] = $partBase;
+                $selectBuilder->where()
+                    ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
+                    ->bindExpression(
+                        ':searchMatchExpression',
+                        'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($searchString)
+                        . ')'
+                    )
+                    ->bindInt(':minimumSearchRelevance', 0);
             }
-        }
-        return $bases;
-    }
-
-    /**
-     * Возвращает коллекцию объектов поискового индекса.
-     * @return ICmsCollection
-     */
-    public function getSearchIndexCollection()
-    {
-        return $this->getCollectionManager()
-            ->getCollection('searchIndex');
-    }
-
-    /**
-     * Собирает часть проверочного выражения LIKE
-     * @param array $wordBases
-     * @return string
-     */
-    protected function buildLikeQueryPart(array $wordBases)
-    {
-        return implode('%', $wordBases);
+        );
     }
 }

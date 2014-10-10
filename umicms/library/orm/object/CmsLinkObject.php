@@ -23,23 +23,19 @@ class CmsLinkObject extends CmsObject
     const DISPLAY_NAME_SEPARATOR = ':';
 
     /**
-     * Генерирует отображаемое имя, если оно не было установлено.
-     * @return bool
+     * {@inheritdoc}
      */
-    public function validateDisplayName()
+    protected function fillProperties()
     {
-        if (!$this->displayName) {
-            $this->displayName = $this->generateDisplayName();
-        }
-
-        return true;
+        $this->generateDisplayName($this->getCurrentDataLocale());
     }
 
     /**
      * Генерирует отображаемое имя, используя имена связанных объектов.
+     * @param string|null $localeId
      * @return string
      */
-    protected function generateDisplayName()
+    protected function generateDisplayName($localeId = null)
     {
         $result = [];
         foreach ($this->getAllProperties() as $property) {
@@ -51,7 +47,11 @@ class CmsLinkObject extends CmsObject
                 }
             }
         }
-        return implode(self::DISPLAY_NAME_SEPARATOR, $result);
+        if ($localeId) {
+            $result[] = $localeId;
+        }
+
+        $this->setValue(self::FIELD_DISPLAY_NAME, implode(self::DISPLAY_NAME_SEPARATOR, $result), $localeId);
     }
 }
  

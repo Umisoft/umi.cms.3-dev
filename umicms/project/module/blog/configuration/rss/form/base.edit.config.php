@@ -18,7 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.blogRssImportScenario', 'collection', 'form'
+            'collection.blogRssImportScenario' => 'collection.blogRssImportScenario', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
@@ -62,6 +62,22 @@ return [
                     'label' => BlogRssImportScenario::FIELD_TAGS,
                     'options' => [
                         'dataSource' => BlogRssImportScenario::FIELD_TAGS,
+                        'lazy' => true
+                    ]
+                ],
+                BlogRssImportScenario::FIELD_AUTHOR => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogRssImportScenario::FIELD_AUTHOR,
+                    'options' => [
+                        'dataSource' => BlogRssImportScenario::FIELD_AUTHOR,
+                        'lazy' => true
+                    ]
+                ],
+                BlogRssImportScenario::FIELD_POST_STATUS => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogRssImportScenario::FIELD_POST_STATUS,
+                    'options' => [
+                        'dataSource' => BlogRssImportScenario::FIELD_POST_STATUS,
                         'lazy' => true
                     ]
                 ]

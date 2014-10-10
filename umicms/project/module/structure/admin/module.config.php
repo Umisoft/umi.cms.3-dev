@@ -21,7 +21,7 @@ return [
         'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}',
         'layout' => '{#lazy:~/project/module/structure/admin/layout/component.config.php}',
         'infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/component.config.php}',
-        'menu' => '{#lazy:~/project/module/structure/admin/menu/component.config.php}',
+        'menu' => '{#lazy:~/project/module/structure/admin/menu/component.config.php}'
     ],
 
     AdminComponent::OPTION_ROUTES      => [

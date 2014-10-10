@@ -48,7 +48,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -56,8 +56,8 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $user = $this->module->getCurrentUser();
-        $form = $this->module->user()->getForm(RegisteredUser::FORM_CHANGE_PASSWORD, RegisteredUser::TYPE_NAME, $user);
+        $user = $this->module->getAuthenticatedUser();
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_CHANGE_PASSWORD, $user->getTypeName(), $user);
 
         /**
          * @var IFormElement $passwordInput
@@ -90,7 +90,12 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница изменения пароля пользователя
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

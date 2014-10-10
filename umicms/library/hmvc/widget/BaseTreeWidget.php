@@ -13,6 +13,7 @@ namespace umicms\hmvc\widget;
 use umi\orm\collection\ICollection;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\view\CmsView;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
@@ -32,17 +33,18 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public $template = 'tree';
     /**
-     * Если не указано, строится полное дерево
-     * @var CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды
+     * @var string|CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды. Если не указано, строится полное дерево
      */
     public $parentNode;
     /**
-     * Если не указано, строится на всю глубину вложенности
-     * @var int $depth глубина вложения
+     * @var int $depth глубина вложения. Если не указано, строится на всю глубину вложенности
      */
     public $depth;
     /**
-     * @var array $options настройки селектора
+     * @var array $options настройки выборки
+     * <ul>
+     * <li>fields - имена полей, указанные через запятую, которые будут загружены для объектов</li>
+     * </ul>
      */
     public $options = [];
     /**
@@ -58,7 +60,13 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     abstract protected function getSelector();
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\hmvc\view\CmsTreeView $tree представление дерева
+     *
+     * @throws RuntimeException
+     * @return CmsView
      */
     public function __invoke()
     {
@@ -102,10 +110,6 @@ abstract class BaseTreeWidget extends BaseCmsWidget
                 $fields = $fields . ',' . $this->options['fields'];
             }
             $this->applySelectorSelectedFields($selector, $fields);
-        }
-
-        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
-            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
         }
 
         return $selector;

@@ -10,10 +10,10 @@
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/userAssociated.config.php',
     [
         'name' => 'blog_author',
         'columns' => [
@@ -29,41 +29,28 @@ return array_replace_recursive(
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
             ],
-            'profile_id' => [
-                'type' => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true
-                ]
-            ],
             'comments_count' => [
-                'type' => Type::BIGINT,
+                'type'    => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ],
             'posts_count' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
-            ]
-        ],
-        'indexes' => [
-            'profile' => [
-                'columns' => [
-                    'profile_id' => []
-                ]
-            ]
-        ],
-        'constraints' => [
-            'profile_to_author' => [
-                'foreignTable' => 'users_user',
-                'columns' => [
-                    'profile_id' => []
-                ],
+            ],
+            'posts_count_en' => [
+                'type' => Type::BIGINT,
                 'options' => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
                 ]
             ]
         ]

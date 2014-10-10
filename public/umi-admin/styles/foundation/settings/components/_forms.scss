@@ -1,0 +1,36 @@
+@import "global";
+
+// We use this to set the base for lots of form spacing and positioning styles
+$form-spacing: rem-calc(13);
+
+// We use these to style the labels in different ways
+$form-label-font-size: rem-calc(13);
+$form-label-font-color: $body-font-color;
+
+$input-font-family: inherit !default;
+$input-font-color: $body-font-color;
+$input-border-color: #d9dcde;
+$input-focus-bg-color: #fff;
+$input-focus-border-color: #c6c6c6;
+$input-disabled-bg: #F1F1F1;
+
+// We use these to style the fieldset border and spacing.
+$fieldset-border-style: dotted;
+$fieldset-border-color:  #C0C8CF;
+$fieldset-padding: rem-calc(16 0 0);
+$fieldset-margin: rem-calc(10 4 0);
+
+// We use these to style the legends when you use them
+$legend-bg: none;
+
+// We use these to style the prefix and postfix input elements
+$input-prefix-bg: #f2f2f2;
+$input-prefix-border-color: #d9dcde;
+$input-prefix-font-color: $body-font-color;
+
+// We use these to style the error states for inputs and labels
+$input-error-message-font-style: normal;
+$input-error-message-font-color-alt: $body-font-color;
+
+// Select variables
+$select-bg-color: #fff;

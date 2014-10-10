@@ -9,7 +9,7 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\structure\model\collection\MenuCollection;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
@@ -24,19 +24,23 @@ return [
     ],
     'forms' => [
         Menu::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menu.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menu.create.config.php}'
+            MenuCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menu.edit.config.php}',
+            MenuCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menu.create.config.php}'
         ],
         MenuInternalItem::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.create.config.php}'
+            MenuCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.edit.config.php}',
+            MenuCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.create.config.php}'
         ],
         MenuExternalItem::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.create.config.php}'
+            MenuCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.edit.config.php}',
+            MenuCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.create.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection.menu', 'collection'
+        'collection.menu' => 'collection.menu', 'collection' => 'collection'
+    ],
+
+    MenuCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        MenuExternalItem::FIELD_RESOURCE_URL
     ]
 ];

@@ -11,6 +11,7 @@
 namespace umicms\orm\selector;
 
 use umi\orm\selector\condition\IFieldCondition;
+use umi\orm\selector\ISelector;
 use umicms\exception\OutOfBoundsException;
 use umicms\exception\UnexpectedValueException;
 
@@ -26,11 +27,11 @@ trait TSelectorConfigurator
 
     /**
      * Применяет сортировку.
-     * @param CmsSelector $selector
+     * @param ISelector $selector
      * @param array $orderBy
-     * @return CmsSelector
+     * @return ISelector
      */
-    protected function applySelectorOrderBy(CmsSelector $selector, array $orderBy)
+    protected function applySelectorOrderBy(ISelector $selector, array $orderBy)
     {
         foreach($orderBy as $fieldPath => $direction) {
             $fieldPath = $this->normalizeFieldPath($fieldPath);
@@ -42,11 +43,11 @@ trait TSelectorConfigurator
 
     /**
      * Применяет фильтр к связанным выбираемым полям.
-     * @param CmsSelector $selector
+     * @param ISelector $selector
      * @param array $with
-     * @return CmsSelector
+     * @return ISelector
      */
-    protected function applySelectorWith(CmsSelector $selector, array $with)
+    protected function applySelectorWith(ISelector $selector, array $with)
     {
         foreach ($with as $fieldPath => $fieldList) {
             $fieldPath = $this->normalizeFieldPath($fieldPath);
@@ -59,11 +60,11 @@ trait TSelectorConfigurator
 
     /**
      * Указывает поля для выборки.
-     * @param CmsSelector $selector
+     * @param ISelector $selector
      * @param string $fields
-     * @return CmsSelector
+     * @return ISelector
      */
-    protected function applySelectorSelectedFields(CmsSelector $selector, $fields)
+    protected function applySelectorSelectedFields(ISelector $selector, $fields)
     {
         $fieldNames = explode(',', $fields);
 
@@ -72,11 +73,11 @@ trait TSelectorConfigurator
 
     /**
      * Применяет фильтрацию по полям.
-     * @param CmsSelector $selector
+     * @param ISelector $selector
      * @param array $filters
-     * @return CmsSelector
+     * @return ISelector
      */
-    protected function applySelectorConditionFilters(CmsSelector $selector, array $filters)
+    protected function applySelectorConditionFilters(ISelector $selector, array $filters)
     {
         foreach($filters as $name => $value) {
             $name = $this->normalizeFieldPath($name);
@@ -92,13 +93,13 @@ trait TSelectorConfigurator
 
     /**
      * Применяет фильтр поля.
-     * @param CmsSelector $selector
+     * @param ISelector $selector
      * @param string $name путь поля
      * @param string $value информация о фильтре
      * @throws OutOfBoundsException если не удалось определить тип фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
-    protected function applySelectorConditionFilter(CmsSelector $selector, $name, $value)
+    protected function applySelectorConditionFilter(ISelector $selector, $name, $value)
     {
         $condition = $selector->where($name);
         if (preg_match('|^(?P<expression>\w+)\((?P<value>.*)\)$|i', $value, $matches)) {
@@ -141,7 +142,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyEqualsFilter(IFieldCondition $condition, $value)
     {
@@ -152,7 +153,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "не равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyNotEqualsFilter(IFieldCondition $condition, $value)
     {
@@ -163,7 +164,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "больше".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyMoreFilter(IFieldCondition $condition, $value)
     {
@@ -174,7 +175,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "больше или равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyEqualsOrMoreFilter(IFieldCondition $condition, $value)
     {
@@ -185,7 +186,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "меньше".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyLessFilter(IFieldCondition $condition, $value)
     {
@@ -196,7 +197,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "меньше или равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyEqualsOrLessFilter(IFieldCondition $condition, $value)
     {
@@ -208,7 +209,7 @@ trait TSelectorConfigurator
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
      * @throws UnexpectedValueException если невозможно определить границы фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyBetweenFilter(IFieldCondition $condition, $value)
     {
@@ -230,7 +231,7 @@ trait TSelectorConfigurator
      * Применяет фильтр "похоже".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return CmsSelector
+     * @return ISelector
      */
     protected function applyLikeFilter(IFieldCondition $condition, $value)
     {
@@ -244,7 +245,7 @@ trait TSelectorConfigurator
      */
     private function normalizeFieldPath($path)
     {
-        return str_replace('_', CmsSelector::FIELD_SEPARATOR, $path);
+        return str_replace('_', ISelector::FIELD_SEPARATOR, $path);
     }
 }
  

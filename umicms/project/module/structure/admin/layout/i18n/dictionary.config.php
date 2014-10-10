@@ -15,7 +15,7 @@ return [
 
         'action:create:base' => 'Create template',
 
-        'role:editor:displayName' => 'Managing layout'
+        'role:editor:displayName' => 'Manage layouts'
     ],
 
     'ru-RU' => [

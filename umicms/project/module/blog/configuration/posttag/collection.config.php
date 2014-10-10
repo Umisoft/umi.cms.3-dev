@@ -14,5 +14,9 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'blog.posttag'
-    ]
+    ],
+
+    'dictionaries' => [
+        'collection.blogPostTag' => 'collection.blogPostTag', 'collection' => 'collection'
+    ],
 ];

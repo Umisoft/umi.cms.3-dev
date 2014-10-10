@@ -12,6 +12,8 @@ use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
         'en-US' => [
+            'collection:blogRssImportScenario:displayName' => 'Post RSS import scenarios',
+
             BlogRssImportScenario::FIELD_RSS_URL => 'RSS feed URL',
             BlogRssImportScenario::FIELD_TAGS => 'Tags',
             BlogRssImportScenario::FIELD_CATEGORY => 'Category',
@@ -20,8 +22,10 @@ return [
         ],
 
         'ru-RU' => [
+            'collection:blogRssImportScenario:displayName' => 'Сценарии импорта постов блога в RSS',
+
             BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
-            BlogRssImportScenario::FIELD_TAGS => 'Тэги',
+            BlogRssImportScenario::FIELD_TAGS => 'Теги',
             BlogRssImportScenario::FIELD_CATEGORY => 'Категория',
             'type:base:displayName' => 'Управление импортом RSS-лент'
         ]

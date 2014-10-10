@@ -9,54 +9,34 @@
  */
 
 use umi\form\element\Select;
-use umi\form\element\Text;
-use umi\form\fieldset\FieldSet;
-use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogAuthor;
 
-return [
-
-    'options' => [
-        'dictionaries' => [
-            'collection.blogAuthor', 'collection', 'form'
-        ]
-    ],
-    'elements' => [
-
-        'common' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'common',
-            'elements' => [
-                BlogAuthor::FIELD_DISPLAY_NAME => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => BlogAuthor::FIELD_DISPLAY_NAME,
-                    'options' => [
-                        'dataSource' => BlogAuthor::FIELD_DISPLAY_NAME
-                    ],
-                ]
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/form/page.base.edit.config.php',
+    [
+        'options' => [
+            'dictionaries' => [
+                'collection.blogAuthor' => 'collection.blogAuthor'
             ]
         ],
-        'contents' => [
-            'type' => FieldSet::TYPE_NAME,
-            'label' => 'contents',
-            'elements' => [
-                BlogAuthor::FIELD_PROFILE => [
-                    'type' => Select::TYPE_NAME,
-                    'label' => BlogAuthor::FIELD_PROFILE,
-                    'options' => [
-                        'lazy' => true,
-                        'dataSource' => BlogAuthor::FIELD_PROFILE
+        'elements' => [
+            'contents' => [
+                'elements' => [
+                    BlogAuthor::FIELD_USER => [
+                        'type' => Select::TYPE_NAME,
+                        'label' => BlogAuthor::FIELD_USER,
+                        'options' => [
+                            'lazy' => true,
+                            'dataSource' => BlogAuthor::FIELD_USER
+                        ]
                     ],
-                ],
-                BlogAuthor::FIELD_PAGE_CONTENTS => [
-                    'type' => Wysiwyg::TYPE_NAME,
-                    'label' => BlogAuthor::FIELD_PAGE_CONTENTS,
-                    'options' => [
-                        'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS_RAW
+                    BlogAuthor::FIELD_PAGE_CONTENTS => [
+                        'options' => [
+                            'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS_RAW
+                        ]
                     ]
                 ]
-            ],
-
+            ]
         ]
     ]
-];
+);

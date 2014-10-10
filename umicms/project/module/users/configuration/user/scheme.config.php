@@ -9,15 +9,20 @@
  */
 
 use Doctrine\DBAL\Types\Type;
-use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/active.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/locked.config.php',
     [
         'name' => 'users_user',
         'columns'     =>  [
+            'ip' => [
+                'type' => Type::STRING
+            ],
+            'token' => [
+                'type' => Type::STRING
+            ],
             'login' => [
                 'type' => Type::STRING
             ],
@@ -57,6 +62,12 @@ return array_replace_recursive(
                 'type' => 'unique',
                 'columns' => [
                     'email' => []
+                ]
+            ],
+            'token' => [
+                'type' => 'unique',
+                'columns' => [
+                    'token' => []
                 ]
             ]
         ]

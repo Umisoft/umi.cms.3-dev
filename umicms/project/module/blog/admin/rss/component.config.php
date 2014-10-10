@@ -17,10 +17,11 @@ return [
     CollectionComponent::OPTION_COLLECTION_NAME => 'blogRssImportScenario',
 
     CollectionComponent::OPTION_CONTROLLERS => [
-        CollectionComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+        CollectionComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        CollectionComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
     ],
 
     CollectionComponent::OPTION_MODIFY_ACTIONS => [
-        'importFromRss'
+        'importFromRss' => []
     ]
 ];

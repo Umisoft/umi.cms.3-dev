@@ -18,6 +18,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Контроллер добавления поста
@@ -27,11 +28,15 @@ class AddController extends BaseSitePageController
     use TFormController;
 
     /**
+     * @var string $template имя шаблона, по которому выводится результат
+     */
+    public $template = 'addPost';
+    /**
      * @var BlogModule $module модуль "Блоги"
      */
     protected $module;
     /**
-     * @var bool $added флаг указывающий на статус добавление поста
+     * @var bool $added флаг, указывающий на статус добавление поста
      */
     private $added = false;
     /**
@@ -53,7 +58,7 @@ class AddController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'addPost';
+        return $this->template;
     }
 
     /**
@@ -63,6 +68,7 @@ class AddController extends BaseSitePageController
     {
         $blogCategory = null;
         $blogCategoryId = $this->getRouteVar('id');
+        $type = $this->getRouteVar('type', IObjectType::BASE);
 
         if (!is_null($blogCategoryId)) {
             $blogCategory = $this->module->category()->getById($blogCategoryId);
@@ -80,12 +86,14 @@ class AddController extends BaseSitePageController
             );
         }
 
-        $this->blogPost = $this->module->addPost();
+        $this->blogPost = $this->module->addPost($type);
         $this->blogPost->category = $blogCategory;
 
+        $this->blogPost->setStatus($this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION));
+
         return $this->module->post()->getForm(
-            BlogPost::FORM_ADD_POST,
-            IObjectType::BASE,
+            $this->module->isAuthorRegistered() ? BlogPost::FORM_ADD_POST : BlogPost::FORM_ADD_VISITOR_POST,
+            $type,
             $this->blogPost
         );
     }
@@ -100,7 +108,13 @@ class AddController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница добавления поста
+     * @templateParam umicms\project\module\blog\model\object\BlogPost $blogPost созданный пост блога. Передается только, если пост был успешно добавлен
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

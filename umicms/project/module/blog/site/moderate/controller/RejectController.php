@@ -11,14 +11,19 @@
 namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
- * Контроллер отправки отклонённого поста на модерацию.
+ * Контроллер отправки отклоненного поста на модерацию.
+ *
+ * Контроллер обрабатывает POST-запрос на отправление отклоненного поста на модерацию и не имеет шаблонизируемого ответа.
+ * В случае успешного выполнения операции контроллер производит редирект на URL, указанный в запросе, или на реферер.
+ * Если нет возможности выполнить редирект, контроллер возвращает простое текстовое сообщение об успехе.
+ * Если операцию выполнить не удалось, выбрасывается исключение.
  */
 class RejectController extends BaseCmsController
 {
@@ -43,7 +48,9 @@ class RejectController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
+
+        return $this->module->post()->getForm(BlogPost::FORM_REJECT_POST, $blogPost->getTypeName());
     }
 
     /**
@@ -52,7 +59,7 @@ class RejectController extends BaseCmsController
     protected function processForm(IForm $form)
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->reject();
+        $blogPost->status = $this->module->postStatus()->get(PostStatus::GUID_REJECTED);
 
         $this->commit();
     }

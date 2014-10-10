@@ -4,32 +4,37 @@
     "type": "library",
     "license": "proprietary",
     "homepage": "http://umi-cms.ru/",
-    "minimum-stability": "dev",
+
     "autoload": {
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "project\\" : "",
+            "umicms\\install\\": "install",
             "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
-    "replace": {
-        "umi/cms" : "self.version"
+
+    "replace" : {
+        "umisoft/umi.cms.3": "self.version"
     },
+
     "require": {
         "php": ">=5.4.0",
-        "umisoft/umi.framework-dev": "*",
-        "guzzlehttp/guzzle": "4.*",
-        "twig/twig": "1.*",
-        "gregwar/captcha": "dev-master",
-        "ezyang/htmlpurifier": "dev-master",
-        "jbroadway/urlify": "1.0.3"
-    },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "git@github.com:Umisoft/umi.framework-dev.git"
-        }
-    ]
+        "lib-pcre": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+
+        "umisoft/umi.framework": "dev-master",
+        "umisoft/extension-twig": "dev-master",
+
+        "guzzlehttp/guzzle": "4.1.*",
+        "gregwar/captcha": "1.0.*",
+        "ezyang/htmlpurifier": "4.6.*",
+        "jbroadway/urlify": "1.0.*",
+
+        "symfony/finder": "~2.2",
+        "symfony/process": "~2.1",
+        "symfony/console": "~2.1"
+    }
 }

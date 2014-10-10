@@ -10,10 +10,9 @@
 
 namespace umicms\project\site;
 
-use umi\config\entity\IConfig;
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
@@ -23,9 +22,11 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\exception\RequiredDependencyException;
+use umicms\exception\InvalidLicenseException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
@@ -36,8 +37,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
 use umicms\hmvc\component\site\SiteComponent;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
+use umicms\project\module\users\model\UsersModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -46,63 +46,15 @@ use umicms\serialization\TSerializationAware;
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware, IModuleAware
 {
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
-    use TSiteSettingsAware;
     use TSessionAware;
+    use TModuleAware;
 
-    /**
-     * Имя настройки для задания guid главной страницы
-     */
-    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
-    /**
-     * Имя настройки для задания guid шаблона по умолчанию
-     */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
-    /**
-     * Имя настройки для задания title страниц по умолчанию
-     */
-    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
-    /**
-     * Имя настройки для задания префикса title страниц
-     */
-    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
-    /**
-     * Имя настройки для задания keywords страниц по умолчанию
-     */
-    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
-    /**
-     * Имя настройки для задания description страниц по умолчанию
-     */
-    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
-    /**
-     * Имя настройки для задания постфикса всех URL
-     */
-    const SETTING_URL_POSTFIX = 'urlPostfix';
-    /**
-     * Имя настройки для задания шаблонизатора по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
-    /**
-     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
-     */
-    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
-    /**
-     * Имя настройки для задания директории общих шаблонов
-     */
-    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
-    /**
-     * Имя настройки для задания директории шаблонов
-     */
-    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
-    /**
-     * Имя настройки для включения/выключения кэширования страниц браузером
-     */
-    const SETTING_BROWSER_CACHE_ENABLED = 'browserCacheEnabled';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -120,24 +72,20 @@ class SiteApplication extends SiteComponent
     /**
      * {@inheritdoc}
      */
-    public function __construct($name, $path, array $options = [])
-    {
-        parent::__construct($name, $path, $options);
-
-        $this->registerSiteSettings();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        /*if ($response = $this->postRedirectGet($request)) {
-            return $response; //TODO разобраться, почему проблема в xslt
-        }*/
+        /**
+         * Do not delete this comment.
+         * License checker will appear here.
+         */
+        //$this->checkLicense($request);
 
         $this->registerSelectorInitializer();
         $this->registerSerializers();
+
+        if ($response = $this->postRedirectGet($request)) {
+            return $response;
+        }
 
         while (!$this->getPageCallStack()->isEmpty()) {
             $this->getPageCallStack()->pop();
@@ -167,24 +115,25 @@ class SiteApplication extends SiteComponent
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
         $request = $context->getDispatcher()->getCurrentRequest();
-        $routePath = $request->getPathInfo();
-        if ($suffix = $request->getRequestFormat(null)) {
-            $routePath = substr($routePath, 0, -strlen($suffix) - 1);
+
+        $currentPath = $request->getPathInfo();
+        $requestFormat = $request->getRequestFormat(null);
+
+        if ($requestFormat) {
+            $currentPath = substr($currentPath, 0, -strlen($requestFormat) - 1);
         }
 
-        $isRootPath = $routePath === $this->getUrlManager()->getProjectUrl();
+        $possibleRedirect = ($currentPath !== $this->getUrlManager()->getProjectUrl() && $request->server->get('REQUEST_METHOD') !== 'POST');
 
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+        if ($possibleRedirect && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
+        if ($possibleRedirect && $redirectResponse = $this->processDefaultPageRedirect($requestFormat)) {
             return $redirectResponse;
         }
 
-        $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
-
-        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if (!is_null($requestFormat) && $requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
@@ -204,8 +153,20 @@ class SiteApplication extends SiteComponent
             );
             $response->setContent($result);
 
-        } elseif ($this->getSiteBrowserCacheEnabled()) {
-            $this->setBrowserCacheHeaders($request, $response);
+        }
+
+        /**
+         * @var UsersModule $usersModule
+         */
+        $usersModule = $this->getModuleByClass(UsersModule::className());
+        if ($usersModule->isVisitor() && $usersModule->getVisitor()->token) {
+
+            $cookie = new Cookie(
+                UsersModule::VISITOR_TOKEN_COOKIE_NAME,
+                $usersModule->getVisitor()->token,
+                new \DateTime('+5 year')
+            );
+            $response->headers->setCookie($cookie);
         }
 
         return $response;
@@ -222,8 +183,7 @@ class SiteApplication extends SiteComponent
         $requestFormat = $request->getRequestFormat(null);
         if ($request->getMethod() === 'POST' &&
             empty($_FILES) &&
-            (is_null($requestFormat) || $requestFormat== self::DEFAULT_REQUEST_FORMAT))
-        {
+            (is_null($requestFormat) || $requestFormat== self::DEFAULT_REQUEST_FORMAT)) {
 
             $post = $request->request->all();
             $this->setSessionVar($prgKey, $post);
@@ -243,25 +203,6 @@ class SiteApplication extends SiteComponent
             return null;
         }
         return null;
-    }
-
-    /**
-     * Возвращает настройки сайта.
-     * @throws RequiredDependencyException если настройки не были установлены
-     * @return IConfig
-     */
-    protected function getSiteSettings() {
-        return $this->getSettings();
-    }
-    /**
-     * Устанавливает ETag для браузерного кэширования страниц.
-     * @param Request $request
-     * @param Response $response
-     */
-    protected function setBrowserCacheHeaders(Request $request, Response $response) {
-        $response->setETag(md5($response->getContent()));
-        $response->setPublic();
-        $response->isNotModified($request);
     }
 
     /**
@@ -295,28 +236,6 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Производит определение формата запроса по постфиксу
-     * @param string $postfix
-     * @throws HttpNotFound если постфикс запроса не поддерживается приложением
-     * @return string
-     */
-    protected function getRequestFormatByPostfix($postfix)
-    {
-        if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
-            return self::DEFAULT_REQUEST_FORMAT;
-        }
-
-        if (!in_array($postfix, $this->supportedRequestPostfixes)) {
-            throw new HttpNotFound($this->translate(
-                'Url postfix "{postfix}" is not supported.',
-                ['postfix' => $postfix]
-            ));
-        }
-
-        return $postfix;
-    }
-
-    /**
      * Производит редирект на url с постфиксом, если он задан в настройках
      * и запрос выполнен без его указания.
      * @param Request $request
@@ -324,7 +243,7 @@ class SiteApplication extends SiteComponent
      */
     protected function processUrlPostfixRedirect(Request $request)
     {
-        $postfix = $this->getSiteUrlPostfix();
+        $postfix = $this->getUrlManager()->getSiteUrlPostfix();
 
         if ($postfix && is_null($request->getRequestFormat(null))) {
             $redirectUrl = $request->getBaseUrl() . $request->getPathInfo() . '.' . $postfix;
@@ -347,13 +266,18 @@ class SiteApplication extends SiteComponent
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
+     * @param string|null $suffix
      * @return Response|null
      */
-    protected function processDefaultPageRedirect()
+    protected function processDefaultPageRedirect($suffix = null)
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
+            $location = $this->getUrlManager()->getProjectUrl();
+            if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
+                $location .= '.' . $suffix;
+            }
+            $response->headers->set('Location', $location);
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 
@@ -361,23 +285,6 @@ class SiteApplication extends SiteComponent
         }
 
         return null;
-    }
-
-    /**
-     * Регистрирует сервисы для работы сайта.
-     */
-    protected function registerSiteSettings()
-    {
-        $this->setSiteSettings($this->getSettings());
-
-        $this->getToolkit()->registerAwareInterface(
-            'umicms\project\site\config\ISiteSettingsAware',
-            function ($object) {
-                if ($object instanceof ISiteSettingsAware) {
-                    $object->setSiteSettings($this->getSettings());
-                }
-            }
-        );
     }
 
     /**
@@ -398,6 +305,111 @@ class SiteApplication extends SiteComponent
                 }
             }
         );
+    }
+
+    /**
+     * Проверяет лицензию.
+     * @param Request $request
+     * @throws InvalidLicenseException в случае если произошла ошибка связанная с лицензией
+     */
+    /** @noinspection PhpUnusedPrivateMethodInspection */
+    private function checkLicense(Request $request)
+    {
+        $domainKey = $this->getProjectSettings()->get('domainKey');
+        $defaultDomain = $this->getDefaultDomain();
+
+        if (empty($domainKey)) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+        if (empty($defaultDomain)) {
+            throw new InvalidLicenseException($this->translate(
+                'Do not set the default domain.'
+            ));
+        }
+        if ($this->getHostDomain($request) !== $defaultDomain) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key for domain.'
+            ));
+        }
+        $licenseType = $this->getProjectSettings()->get('licenseType');
+        if (empty($licenseType)) {
+            throw new InvalidLicenseException($this->translate(
+                'Wrong license type.'
+            ));
+        }
+        if (strstr($licenseType, base64_decode('dHJpYWw='))) {
+            $deactivation = $this->getProjectSettings()->get('deactivation');
+            if (empty($deactivation) || base64_decode($deactivation) < time()) {
+                throw new InvalidLicenseException($this->translate(
+                    'License has expired.'
+                ));
+            }
+        }
+        if (!$this->checkDomainKey($request)) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+    }
+
+    /**
+     * Формирует эталонный доменный ключ.
+     * @param Request $request
+     * @param string $license тип лицензии, для которой генерировать доменный ключ
+     * @return string
+     */
+    private function getSourceDomainKey(Request $request, $license) {
+        $serverAddress = $request->server->get('SERVER_ADDR');
+        $defaultDomain = $this->getDefaultDomain();
+
+        $licenseKeyCode = strtoupper(substr(md5($serverAddress), 0, 11) . "-" . substr(md5($defaultDomain . $license), 0, 11));
+
+        return $licenseKeyCode;
+    }
+
+    /**
+     * Возвращает домен по умолчанию.
+     * @return string
+     */
+    private function getDefaultDomain()
+    {
+        $defaultDomain = $this->getProjectSettings()->get('defaultDomain');
+        if (mb_strrpos($defaultDomain, 'www.') === 0) {
+            $defaultDomain = mb_substr($defaultDomain, 4);
+        }
+
+        return $defaultDomain;
+    }
+
+    /**
+     * Возвращает текущий домен.
+     * @param Request $request
+     * @return string
+     */
+    private function getHostDomain(Request $request)
+    {
+        $host = $request->getHost();
+        if (mb_strrpos($host, 'www.') === 0) {
+            $host = mb_substr($host, 4);
+        }
+
+        return $host;
+    }
+
+    /**
+     * Проверяет соответствие доменного ключа полученному.
+     * @param Request $request
+     * @return bool
+     */
+    private function checkDomainKey(Request $request)
+    {
+        $domainKey = $this->getProjectSettings()->get('domainKey');
+        $licenseType = $this->getProjectSettings()->get('licenseType');
+        $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
+
+        return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
     }
 
 }

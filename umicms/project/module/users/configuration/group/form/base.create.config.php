@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Permissions;
@@ -18,7 +17,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.userGroup', 'collection', 'form'
+            'collection.userGroup' => 'collection.userGroup', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
@@ -34,15 +33,7 @@ return [
                     'options' => [
                         'dataSource' => UserGroup::FIELD_DISPLAY_NAME
                     ]
-                ],
-                UserGroup::FIELD_USERS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => UserGroup::FIELD_USERS,
-                    'options' => [
-                        'lazy' => true,
-                        'dataSource' => UserGroup::FIELD_USERS
-                    ]
-                ],
+                ]
             ]
 
         ],

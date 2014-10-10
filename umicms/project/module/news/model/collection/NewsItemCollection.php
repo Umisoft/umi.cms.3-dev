@@ -25,7 +25,7 @@ use umicms\project\module\news\model\object\NewsSubject;
  * @method CmsSelector|NewsItem[] select() Возвращает селектор для выбора новостей.
  * @method NewsItem get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новость по ее GUID.
  * @method NewsItem getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новость по ее id.
- * @method NewsItem add($typeName = IObjectType::BASE) Создает и возвращает новость.
+ * @method NewsItem add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает новость.
  */
 class NewsItemCollection extends CmsPageCollection
 {
@@ -55,7 +55,7 @@ class NewsItemCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает новость по её источнику.
+     * Возвращает новость по ее источнику.
      * @param string $source
      * @throws NonexistentEntityException если новость не существует
      * @return NewsItem

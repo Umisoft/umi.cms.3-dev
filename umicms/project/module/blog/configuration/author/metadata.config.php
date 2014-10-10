@@ -9,23 +9,18 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/userAssociated.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_author'
         ],
         'fields' => [
-            BlogAuthor::FIELD_PROFILE => [
-                'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'profile_id',
-                'target' => 'user'
-            ],
-
             BlogAuthor::FIELD_POSTS => [
                 'type' => IField::TYPE_HAS_MANY,
                 'target' => 'blogPost',
@@ -33,12 +28,36 @@ return array_replace_recursive(
                 'readOnly' => true
             ],
             BlogAuthor::FIELD_COMMENTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
-                'columnName' => 'comments_count'
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'comments_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateCommentsCount',
+                'readOnly'     => true
+            ],
+            BlogAuthor::FIELD_COMMENTS => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'blogComment',
+                'targetField' => BlogComment::FIELD_AUTHOR,
+                'readOnly' => true
             ],
             BlogAuthor::FIELD_POSTS_COUNT => [
-                'type' => IField::TYPE_COUNTER,
-                'columnName' => 'posts_count'
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'posts_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculatePostsCount',
+                'readOnly'     => true,
+                'localizations' => [
+                    'ru-RU' => [
+                        'columnName' => 'posts_count',
+                        'defaultValue' => 0
+                    ],
+                    'en-US' => [
+                        'columnName' => 'posts_count_en',
+                        'defaultValue' => 0
+                    ]
+                ]
             ],
             BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
@@ -55,8 +74,8 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
                 'fields' => [
                     BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [],
-                    BlogAuthor::FIELD_PROFILE => [],
                     BlogAuthor::FIELD_POSTS => [],
+                    BlogAuthor::FIELD_COMMENTS => [],
                     BlogAuthor::FIELD_COMMENTS_COUNT => [],
                     BlogAuthor::FIELD_POSTS_COUNT => []
                 ]

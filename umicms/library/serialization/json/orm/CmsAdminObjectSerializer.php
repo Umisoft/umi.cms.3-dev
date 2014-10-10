@@ -9,21 +9,24 @@
  */
 
 namespace umicms\serialization\json\orm;
+use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
 use umi\orm\metadata\field\special\MaterializedPathField;
+use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManagerAware
+class CmsAdminObjectSerializer extends BaseSerializer implements IUrlManagerAware
 {
     use TUrlManagerAware;
 
@@ -112,7 +115,9 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManage
             $properties['links'] = $links;
         }
 
-        $meta = [];
+        $meta = [
+            'collectionName' => $object->getCollectionName()
+        ];
 
         try {
             $meta['editLink'] = $object->getEditLink();
@@ -122,9 +127,7 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManage
             $meta['pageUrl'] = $object->getPageUrl();
         }
 
-        if ($meta) {
-            $properties['meta'] = $meta;
-        }
+        $properties['meta'] = $meta;
 
         $this->delegate($properties, $options);
     }
@@ -163,6 +166,39 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManage
         );
 
         return $link;
+    }
+
+    /**
+     * Возвращает список свойств объекта для отображения
+     * @param ICmsObject $object
+     * @param IField[] $fields
+     * @return IProperty[]
+     */
+    protected function getUsedProperties(ICmsObject $object, array $fields = [])
+    {
+        if (!$fields) {
+            return $object->getAllProperties();
+        }
+
+        $fields = array_merge($fields, $object->getCollection()->getForcedFieldsToLoad());
+
+        /**
+         * @var IField $field
+         */
+        foreach ($object->getType()->getFields() as $field) {
+            if ($field instanceof HasManyRelationField || $field instanceof ManyToManyRelationField) {
+                $fields[$field->getName()] = $field;
+            }
+        }
+
+        $properties = [];
+        foreach($fields as $fieldName => $field) {
+            if ($object->hasProperty($fieldName)) {
+                $properties[$fieldName] = $object->getProperty($fieldName);
+            }
+        }
+
+        return $properties;
     }
 }
  

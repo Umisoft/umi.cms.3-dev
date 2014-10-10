@@ -11,13 +11,17 @@
 return [
 
     'en-US' => [
+        'component:tag:displayName' => 'Tags',
+
         'action:create:base' => 'Create tag',
 
-        'role:editor:displayName' => 'Managing tags'
+        'role:editor:displayName' => 'Manage tags'
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Создать тэг',
+        'component:tag:displayName' => 'Теги',
+
+        'action:create:base' => 'Добавить тег',
 
         'role:editor:displayName' => 'Управление тегами'
     ]

@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var umicms\project\module\blog\model\object\BlogPost $page
+ */
+use umicms\project\module\blog\model\object\BlogAuthor;
+
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<div class="blog-post">
+    <h1><?=$page->getHeader()?></h1>
+    <p class="blog-post-meta">
+        <?php if ($page->publishTime) : ?>
+        <time datetime="<?= $page->publishTime->format('c')?>">
+            <?= $page->publishTime->format('d.m.Y | H:i')?>
+        </time>
+        <?php endif; ?>
+        <?php if ($page->author instanceof BlogAuthor) : ?>
+            <?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a>
+        <?php endif; ?>
+        <?=$this->widget('blog.post.edit.editLink', ['blogPost' => $page, 'template' => 'editPostLink'])?>
+    </p>
+
+    <?= $page->contents ?>
+
+</div>
+
+<h1><?=$this->translate('Comments')?> (<?= $page->commentsCount?>):</h1>
+
+<?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
+
+<?= $this->widget('blog.comment.add.addForm', ['blogPost' => $page, 'template' => 'addComment']); ?>

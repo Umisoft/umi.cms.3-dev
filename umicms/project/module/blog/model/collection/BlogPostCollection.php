@@ -12,13 +12,15 @@ namespace umicms\project\module\blog\model\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umi\orm\object\IObject;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\PostStatus;
 
 /**
  * Коллекция постов блога.
@@ -26,7 +28,7 @@ use umicms\project\module\blog\model\object\BlogPost;
  * @method CmsSelector|BlogPost[] select() Возвращает селектор для выбора постов.
  * @method BlogPost get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по GUID
  * @method BlogPost getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по id
- * @method BlogPost add($typeName = IObjectType::BASE) Создает и возвращает пост
+ * @method BlogPost add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает пост
  */
 class BlogPostCollection extends CmsPageCollection
 {
@@ -34,6 +36,7 @@ class BlogPostCollection extends CmsPageCollection
     const HANDLER_MODERATE_OWN = 'moderateOwn';
     const HANDLER_MODERATE_ALL = 'moderateAll';
     const HANDLER_REJECT = 'reject';
+
     /**
      * Возвращает пост по его источнику.
      * @param string $source
@@ -61,7 +64,7 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает пост по URI, с учётом статуса публикации.
+     * Возвращает пост по URI, с учетом статуса публикации.
      * @param string $uri URI
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
@@ -73,7 +76,8 @@ class BlogPostCollection extends CmsPageCollection
         $selector = $this->select()
             ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)->equals($uri)
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED);
 
         $page = $selector->getResult()->fetch();
 
@@ -94,7 +98,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getDrafts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_DRAFT);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_DRAFT);
     }
 
     /**
@@ -181,7 +186,8 @@ class BlogPostCollection extends CmsPageCollection
     public function getNeedModeratePosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_NEED_MODERATE);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_NEED_MODERATION);
     }
 
     /**
@@ -262,19 +268,20 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает список отклонённых постов.
+     * Возвращает список отклоненных постов.
      * @return CmsSelector|BlogPost
      */
     public function getRejectedPosts()
     {
         return $this->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_REJECTED);
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+            ->equals(PostStatus::GUID_REJECTED);
     }
 
     /**
-     * Возвращает отклонённый пост по GUID
+     * Возвращает отклоненный пост по GUID
      * @param string $guid
-     * @throws NonexistentEntityException если не удалить получить отклонённый пост
+     * @throws NonexistentEntityException если не удалить получить отклоненный пост
      * @return null|BlogPost
      */
     public function getRejectedPost($guid)
@@ -297,9 +304,9 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает отклонённый пост по Id
+     * Возвращает отклоненный пост по Id
      * @param int $id
-     * @throws NonexistentEntityException если не удалось получить отклонённый пост
+     * @throws NonexistentEntityException если не удалось получить отклоненный пост
      * @return null|BlogPost
      */
     public function getRejectedPostById($id)
@@ -322,7 +329,7 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Возвращает отклонённый пост по URI
+     * Возвращает отклоненный пост по URI
      * @param string $uri URI
      * @param string $localization указание на локаль, в которой загружается объект.
      * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
@@ -353,21 +360,11 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function activate(IActiveAccessibleObject $object)
     {
-        if ($object->active) {
-            return $this;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
-        parent::activate($object);
-
-        if (
-            $object instanceof BlogPost &&
-            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $object->author instanceof BlogAuthor
-        ) {
-            $object->author->incrementPostCount();
-        }
-
-        return $this;
+        return parent::activate($object);
     }
 
     /**
@@ -375,21 +372,11 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function deactivate(IActiveAccessibleObject $object)
     {
-        if (!$object->active) {
-            return $this;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
-        parent::deactivate($object);
-
-        if (
-            $object instanceof BlogPost &&
-            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $object->author instanceof BlogAuthor
-        ) {
-            $object->author->decrementPostCount();
-        }
-
-        return $this;
+        return parent::deactivate($object);
     }
 
     /**
@@ -397,9 +384,8 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function trash(IRecyclableObject $object)
     {
-        if ($this->isActivePublishedPost($object)) {
-            /** @var $object BlogPost */
-            $object->author->decrementPostCount();
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
         return parent::trash($object);
@@ -410,24 +396,22 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function untrash(IRecyclableObject $object)
     {
-        if ($this->isActivePublishedPost($object)) {
-            /** @var $object BlogPost */
-            $object->author->incrementPostCount();
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
         }
 
         return parent::untrash($object);
     }
 
     /**
-     * Проверяет является ли пост активным, опубликованным и принадлежащим автору.
-     * @param IRecyclableObject|BlogPost $post проверяемый пост
-     * @return bool
+     * {@inheritdoc}
      */
-    private function isActivePublishedPost(IRecyclableObject $post)
+    public function delete(IObject $object)
     {
-        return $post instanceof BlogPost &&
-            $post->active &&
-            $post->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
-            $post->author instanceof BlogAuthor;
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+            $object->author->recalculatePostsCount();
+        }
+
+        return parent::delete($object);
     }
 }

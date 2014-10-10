@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\draft\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -76,7 +75,7 @@ class PublishFormWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE, $this->blogDraft);
+        $form = $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, $this->blogDraft->getTypeName(), $this->blogDraft);
 
         $form->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
 

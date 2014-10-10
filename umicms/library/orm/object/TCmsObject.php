@@ -10,9 +10,11 @@
 
 namespace umicms\orm\object;
 
+use umi\orm\metadata\field\special\DelayedField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\serialization\ISerializer;
 use umicms\serialization\TSerializerConfigurator;
 use umicms\serialization\xml\BaseSerializer;
@@ -23,9 +25,7 @@ use umicms\serialization\xml\BaseSerializer;
 trait TCmsObject
 {
     use TUrlManagerAware;
-    use TSerializerConfigurator {
-        TSerializerConfigurator::configureSerializer as protected configureSerializerInternal;
-    }
+    use TSerializerConfigurator;
 
     /**
      * @var string $traitEditLink ссылка на редактирование объекта
@@ -51,12 +51,35 @@ trait TCmsObject
      */
     abstract public function getAllProperties();
     /**
+     * @see ICmsObject::getModifiedProperties()
+     * @return IProperty[]
+     */
+    abstract public function getModifiedProperties();
+    /**
      * @see ICmsObject::getProperty()
      * @param string $propName
      * @param null|string $localeId
      * @return IProperty
      */
     abstract public function getProperty($propName, $localeId = null);
+
+    /**
+     * @see ICmsObject::setValue()
+     * @param string $propName
+     * @param mixed $value
+     * @param null|string $localeId
+     * @return self
+     */
+    abstract public function setValue($propName, $value, $localeId = null);
+    /**
+     * @see ICmsObject::getValue()
+     */
+    abstract public function getValue($propName, $localeId = null);
+
+    /**
+     * @see CmsObject::getLocalizedValue()
+     */
+    abstract protected function getLocalizedValue(IProperty $property, $localeId);
 
     /**
      * @see TLocalesAware::getDefaultDataLocale()
@@ -91,7 +114,9 @@ trait TCmsObject
             }
         );
 
-        $this->configureSerializerInternal($serializer);
+        foreach ($this->configurators as $configurator) {
+            $configurator($serializer);
+        }
     }
 
     /**
@@ -119,16 +144,24 @@ trait TCmsObject
             return true;
         }
 
+        $this->fillProperties();
+        $this->fillLocalizedProperties();
+
         $result = true;
 
         foreach ($this->getAllProperties() as $property) {
-
             $localeId = $property->getLocaleId();
-            if ($localeId && $localeId !== $this->getDefaultDataLocale() && $localeId !== $this->getCurrentDataLocale()) {
+            if ($localeId && $localeId !== $this->getCurrentDataLocale()) {
                 continue;
             }
 
-            if (!$property->validate()) {
+            if ($property->getField()->getIsLocalized()) {
+                $value = $this->getLocalizedValue($property, $localeId);
+            } else {
+                $value = $property->getValue();
+            }
+
+            if (!$property->validate($value)) {
                 /** @noinspection PhpUndefinedFieldInspection */
                 $this->validationErrors[$property->getFullName()] = $property->getValidationErrors();
                 $result = false;
@@ -175,6 +208,51 @@ trait TCmsObject
     public function isAllowed($role, $operationName, array $assertions)
     {
         return true;
+    }
+
+    /**
+     * Заполняет пустые значения свойств.
+     */
+    protected function fillProperties()
+    {
+
+    }
+
+    /**
+     * @see TLocalizable::getI18nDictionaryNames()
+     */
+    protected function getI18nDictionaryNames()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return array_merge(parent::getI18nDictionaryNames(), $this->getCollection()->getDictionaryNames());
+    }
+
+    /**
+     * Заполняет пустые значения дефолтной локали значениями из текущей.
+     */
+    private function fillLocalizedProperties()
+    {
+        $currentLocaleId = $this->getCurrentDataLocale();
+        $defaultLocaleId = $this->getDefaultDataLocale();
+
+        if ($currentLocaleId !== $defaultLocaleId) {
+            foreach ($this->getModifiedProperties() as $property) {
+                if ($property->getField() instanceof DelayedField) {
+                    continue;
+                }
+                if ($property->getLocaleId()) {
+                    $name = $property->getName();
+                    if ($name === IActiveAccessibleObject::FIELD_ACTIVE) {
+                        continue;
+                    }
+                    if ($this->getValue($name, $defaultLocaleId)) {
+                        continue;
+                    }
+                    $this->setValue($name, $this->getValue($name), $defaultLocaleId);
+                }
+            }
+        }
     }
 
 }

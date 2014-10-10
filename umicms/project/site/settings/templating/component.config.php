@@ -14,7 +14,7 @@ return [
 
     SettingsComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\settings\SettingsComponent',
 
-    SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/site/site.settings.config.php',
+    SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/configuration/project.config.php',
 
     SettingsComponent::OPTION_FORMS => [
         'settings' => '{#lazy:~/project/site/settings/templating/form/settings.php}'

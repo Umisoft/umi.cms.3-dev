@@ -14,7 +14,7 @@ use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\model\NewsModule;
 
 /**
- * Виджет для вывода списка новостей
+ * Виджет для вывода списка последних новостей
  */
 class NewsItemListWidget extends BaseListWidget
 {

@@ -25,7 +25,7 @@ use umicms\project\module\blog\model\object\BlogCategory;
  * @method BlogCategory get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее GUID.
  * @method BlogCategory getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее id
  * @method BlogCategory getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее URI
- * @method BlogCategory add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает категорию блога
+ * @method BlogCategory add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает категорию блога
  */
 class BlogCategoryCollection extends CmsHierarchicPageCollection
 {

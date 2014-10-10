@@ -16,9 +16,12 @@ return [
 
     SettingsGroupComponent::OPTION_COMPONENTS => [
         'common' => '{#lazy:~/project/site/settings/common/component.config.php}',
+        'mail' => '{#lazy:~/project/site/settings/mail/component.config.php}',
         'seo' => '{#lazy:~/project/site/settings/seo/component.config.php}',
         'templating' => '{#lazy:~/project/site/settings/templating/component.config.php}',
-        'slugify' => '{#lazy:~/project/site/settings/slugify/component.config.php}'
+        'slugify' => '{#lazy:~/project/site/settings/slugify/component.config.php}',
+        'license' => '{#lazy:~/project/site/settings/license/component.config.php}'
+
     ]
 
 ];

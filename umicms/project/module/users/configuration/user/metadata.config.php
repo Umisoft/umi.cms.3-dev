@@ -10,21 +10,31 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\Environment;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\object\Visitor;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/active.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'users_user'
         ],
         'fields'     => [
+            Visitor::FIELD_IP             => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'ip',
+                'readOnly'   => true
+            ],
+            Visitor::FIELD_TOKEN             => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'token',
+                'readOnly'   => true
+            ],
             BaseUser::FIELD_GROUPS                  => [
                 'type'         => IField::TYPE_MANY_TO_MANY,
                 'target'       => 'userGroup',
@@ -38,9 +48,6 @@ return array_replace_recursive(
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
                     IFilterFactory::TYPE_STRIP_TAGS => []
-                ],
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
             RegisteredUser::FIELD_EMAIL             => [
@@ -51,7 +58,6 @@ return array_replace_recursive(
                     IFilterFactory::TYPE_STRIP_TAGS => []
                 ],
                 'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => [],
                     IValidatorFactory::TYPE_EMAIL    => [],
                 ]
             ],
@@ -59,10 +65,7 @@ return array_replace_recursive(
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'password',
                 'mutator'    => 'setPassword',
-                'accessor'   => 'getPassword',
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
-                ]
+                'accessor'   => 'getPassword'
             ],
             RegisteredUser::FIELD_PASSWORD_SALT     => [
                 'type'       => IField::TYPE_STRING,
@@ -107,18 +110,24 @@ return array_replace_recursive(
         'types'      => [
             'base'                    => [
                 'objectClass' => 'umicms\project\module\users\model\object\BaseUser',
-                'fields'      => []
-            ],
-            Guest::TYPE_NAME          => [
-                'objectClass' => 'umicms\project\module\users\model\object\Guest',
                 'fields'      => [
                     Guest::FIELD_GROUPS => []
+                ]
+            ],
+            Guest::TYPE_NAME          => [
+                'objectClass' => 'umicms\project\module\users\model\object\Guest'
+            ],
+            Visitor::TYPE_NAME          => [
+                'objectClass' => 'umicms\project\module\users\model\object\Visitor',
+                'fields'      => [
+                    Visitor::FIELD_IP => [],
+                    Visitor::FIELD_TOKEN => [],
                 ]
             ],
             RegisteredUser::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\users\model\object\RegisteredUser',
                 'fields'      => [
-                    RegisteredUser::FIELD_GROUPS => [],
+                    RegisteredUser::FIELD_IP => [],
                     RegisteredUser::FIELD_LOGIN => [],
                     RegisteredUser::FIELD_EMAIL => [],
                     RegisteredUser::FIELD_PASSWORD => [],

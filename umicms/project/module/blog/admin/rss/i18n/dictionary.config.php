@@ -11,13 +11,18 @@
 return [
 
     'en-US' => [
-        'component:rss:displayName' => 'Import RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'component:rss:displayName' => 'Import RSS-feed',
+        'Import {count} posts.' => 'Import {count} posts.',
+        'action:importFromRss' => 'Import RSS-feed',
+
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [
-        'component:rss:displayName' => 'Управление импортом RSS-лент',
+        'component:rss:displayName' => 'Импорт RSS-лент',
+        'Import {count} posts.' => 'Импортированно {count} постов.',
+        'action:importFromRss' => 'Импортировать RSS-ленту',
 
         'role:editor:displayName' => 'Управление импортом'
     ]

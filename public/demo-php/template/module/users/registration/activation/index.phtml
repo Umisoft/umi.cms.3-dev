@@ -1,0 +1,35 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umi\form\FormEntityView $form
+ * @var bool $authenticated
+ */
+?>
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
+    <?=$page->contents?>
+
+    <?php if ($authenticated) : ?>
+
+        <div class="alert alert-success">
+            <p><?= $this->translate("You have successfully activated your account") ?>.</p>
+        </div>
+
+        <p>
+            <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
+        </p>
+        <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
+    <?php elseif (isset($errors)) : ?>
+
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+    <?php endif; ?>
+
+</div>

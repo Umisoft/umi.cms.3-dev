@@ -11,9 +11,9 @@
 namespace umicms\orm\collection;
 
 use umi\form\TFormAware;
-use umi\i18n\TLocalesAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IMetadata;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
@@ -22,7 +22,10 @@ use umicms\exception\NonexistentEntityException;
 use umicms\exception\NotAllowedOperationException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -34,7 +37,6 @@ trait TCmsCollection
     use TFormAware;
     use TConfigSupport;
     use TLocalizable;
-    use TLocalesAware;
 
     /**
      * @see ICmsCollection::getName()
@@ -45,6 +47,14 @@ trait TCmsCollection
      * @return IMetadata
      */
     abstract public function getMetadata();
+
+    /**
+     * Возвращает обязательное поле коллекции.
+     * @param $fieldName
+     * @throws NonexistentEntityException если поле не существует
+     * @return IField
+     */
+    abstract protected function getRequiredField($fieldName);
 
     /**
      * Возаращает имя класса коллекции.
@@ -73,6 +83,16 @@ trait TCmsCollection
         }
 
         return $selector;
+    }
+
+    /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
+     * @return CmsSelector|ICmsObject[]
+     */
+    public function getInternalSelector() {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::select();
     }
 
     /**
@@ -159,14 +179,6 @@ trait TCmsCollection
     }
 
     /**
-     * @see ICmsCollection::getHandlerList()
-     */
-    public function getHandlerList()
-    {
-        return (isset($this->traitGetConfig()['handlers'])) ? $this->traitGetConfig()['handlers'] : [];
-    }
-
-    /**
      * @see ICmsCollection::hasHandler()
      */
     public function hasHandler($applicationName)
@@ -191,10 +203,6 @@ trait TCmsCollection
     public function getCreateTypeList()
     {
         $result = [];
-
-        if ($this->getCurrentDataLocale() != $this->getDefaultDataLocale()) {
-            return $result;
-        }
 
         foreach ($this->getMetadata()->getTypesList() as $typeName) {
             if ($this->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
@@ -222,11 +230,60 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::getDefaultTableFilterFieldNames()
+     */
+    public function getDefaultTableFilterFieldNames()
+    {
+        $fieldNames = [
+            ICmsObject::FIELD_DISPLAY_NAME
+        ];
+
+        if ($this instanceof ICmsPageCollection) {
+            $fieldNames[] = ICmsPage::FIELD_PAGE_H1;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
+            $fieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
+        }
+
+        if (isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]))
+            );
+        }
+
+        return $fieldNames;
+    }
+
+    /**
+     * @see ICmsCollection::getIgnoredTableFilterFieldNames()
+     */
+    public function getIgnoredTableFilterFieldNames()
+    {
+        $fieldNames = [
+            ICmsObject::FIELD_VERSION,
+            CmsHierarchicObject::FIELD_MPATH,
+            CmsHierarchicObject::FIELD_URI,
+            IRecyclableObject::FIELD_TRASHED,
+            ILockedAccessibleObject::FIELD_LOCKED,
+            ICmsPage::FIELD_PAGE_CONTENTS
+        ];
+
+        if (isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS])) {
+            $fieldNames = array_merge(
+                $fieldNames,
+                array_keys($this->configToArray($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]))
+            );
+        }
+
+        return $fieldNames;
+    }
+
+    /**
      * @see IAclResource::getAclResourceName()
      */
     public function getAclResourceName()
     {
-        return "model:{$this->getName()}";
+        return 'model:' . $this->getName();
     }
 
     /**
@@ -252,13 +309,24 @@ trait TCmsCollection
     }
 
     /**
-     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector|ICmsObject[]
+     * {@inheritdoc}
      */
-    public function getInternalSelector() {
+    protected function getI18nDictionaryNames()
+    {
+        return $this->getDictionaryNames();
+    }
+
+    /**
+     * @see ICmsCollection::getForcedFieldsToLoad()
+     */
+    public function getForcedFieldsToLoad()
+    {
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
-        return parent::select();
+        $fields = parent::getForcedFieldsToLoad();
+        $fields[ICmsObject::FIELD_DISPLAY_NAME] = $this->getRequiredField(ICmsObject::FIELD_DISPLAY_NAME);
+
+        return $fields;
     }
 
     /**
@@ -270,4 +338,3 @@ trait TCmsCollection
        return isset($this->config) ? $this->config : [];
     }
 }
- 

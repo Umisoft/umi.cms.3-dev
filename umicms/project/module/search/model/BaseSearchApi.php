@@ -10,18 +10,22 @@
 
 namespace umicms\project\module\search\model;
 
+use umi\i18n\ILocalesAware;
+use umi\i18n\TLocalesAware;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
+use umicms\project\module\search\model\collection\SearchIndexCollection;
 
 /**
  * Базовый класс для API поиска, индексации и проч. бизнес-логики, связанной с поиском.
  */
-class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
+class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocalesAware
 {
     use TCollectionManagerAware;
     use TStemmingAware;
+    use TLocalesAware;
 
     /**
      * Приводит текст к виду, пригодному для передачи в поисковый запрос.
@@ -30,52 +34,37 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
      */
     public function normalizeSearchString($searchString)
     {
-        $stringOriginal = trim(mb_strtoupper($searchString, 'utf-8'));
-        $stringOriginal = $this->filterStopwords($stringOriginal);
-        preg_match_all('/[0-9A-ZА-Я_]+/u', $stringOriginal, $matches);
-        $foundWords = $matches[0];
+        $searchString = html_entity_decode(strip_tags($searchString));
+        $searchString = preg_replace('/\s+/u', ' ', $searchString);
+        $searchString = trim(mb_strtoupper($searchString, 'utf-8'));
+        $searchString = $this->filterStopWords($searchString);
 
-        $originalSearchPart = "(" . implode(' ', $foundWords) . ")";
-        $stringNormalized = $originalSearchPart;
-        $variationGroups = [];
-        foreach ($foundWords as $match) {
-            $baseForms = $this->getStemming()
-                ->getBaseForm($match);
-            if (($pos = array_search($match, $baseForms) !== false)) {
-                unset($baseForms[$pos]);
-            }
-            if ($baseForms) {
-                $variationGroups[] = $baseForms;
-            }
+        if (!preg_match_all('/[0-9A-ZА-Я_]+/u', $searchString, $matches)) {
+            return '';
         }
-        $stringVariations = '';
-        foreach ($variationGroups as $group) {
-            $stringVariations .= count($group) > 1 ? '(' . implode(' ', $group) . ') ' : $group[0] . ' ';
-        }
-        $stringVariations = trim($stringVariations);
-        if ($stringVariations !== $stringOriginal) {
-            $stringNormalized .= ' (' . $stringVariations . ')';
-        } else {
-            $stringNormalized = $stringOriginal;
+
+        $stemming = $this->getStemming();
+        $stringNormalized = '';
+
+        foreach ($matches[0] as $match) {
+            $partOfSpeech = $stemming->getPartOfSpeech($match);
+            if (empty($partOfSpeech) || array_intersect($partOfSpeech, ['С', 'П', 'Г'])) {
+                foreach ($stemming->getBaseForm($match) as $baseForm) {
+                    $stringNormalized .= ' ' . $baseForm;
+                }
+            }
         }
 
         return $stringNormalized;
     }
 
     /**
-     * Приводит текст к виду, пригодному для сохранения в поисковый индекс.
-     * @param string $string
-     * @return string
+     * Возвращает коллекцию для сайтовой индексации.
+     * @return SearchIndexCollection
      */
-    public function normalizeIndexString($string)
+    public function getSiteIndexCollection()
     {
-        $string = html_entity_decode(strip_tags($string));
-        $string = mb_strtoupper($string, 'utf-8');
-        $string = trim($this->filterStopwords($string));
-        $string = preg_replace('/\s+/u', ' ', $string);
-        $string = preg_replace('/[^0-9A-ZА-Я_ -]/u', '', $string);
-        $string = preg_replace('/\s+/u', ' ', $string);
-        return $this->filterStopwords($string);
+        return $this->getCollectionManager()->getCollection('searchIndex');
     }
 
     /**
@@ -83,7 +72,7 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
      * @param string $string
      * @return string
      */
-    protected function filterStopwords($string)
+    protected function filterStopWords($string)
     {
         return preg_replace('/\b[АОУИВСБЯК]\b/u', '', $string);
     }

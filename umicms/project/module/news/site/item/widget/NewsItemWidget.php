@@ -11,6 +11,7 @@
 namespace umicms\project\module\news\site\item\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\news\model\object\NewsItem;
@@ -44,7 +45,13 @@ class NewsItemWidget extends BaseCmsWidget
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы виджета.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umicms\project\module\news\model\object\NewsItem $newsItem новость
+     *
+     * @throws InvalidArgumentException
+     * @return CmsView
      */
     public function __invoke()
     {

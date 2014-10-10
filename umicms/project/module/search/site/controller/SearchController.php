@@ -10,46 +10,58 @@
 
 namespace umicms\project\module\search\site\controller;
 
+use umi\form\element\IFormElement;
+use umi\http\Response;
 use umicms\hmvc\component\site\BaseSitePageController;
-use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
- * Контроллер запроса и вывода результатов поиска
+ * Контроллер вывода страницы поиска.
  */
 class SearchController extends BaseSitePageController
 {
+    /**
+     * @var SearchModule $api модуль "Поиск"
+     */
+    protected $module;
 
     /**
-     * модуль "Поиск"
-     * @var SearchApi $api
+     * Конструктор.
+     * @param SearchModule $module
      */
-    protected $api;
-
-    /**
-     * Внедряет API поиска
-     * @param SearchApi $api
-     */
-    public function __construct(SearchApi $api)
+    public function __construct(SearchModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
-     * {@inheritdoc}
+     * Формирует результат работы контроллера.
+     *
+     * Для шаблонизации доступны следущие параметры:
+     * @templateParam umi\form\FormEntityView $form представление формы
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница поиска
+     * @templateParam string $query текущий поисковый запрос
+     * @templateParam string $encodedQuery URL-закодированный текущий поисковый запрос
+     *
+     * @return Response
      */
     public function __invoke()
     {
-        $query = $this->getQueryVar('query');
+        $form = $this->getComponent()->getForm('search');
+        $form->setData($this->getAllQueryVars());
+        /**
+         * @var IFormElement $queryInput
+         */
+        $queryInput = $form->get('query');
+        $query = $queryInput->getValue();
 
-        $resultSet = null;
-        if (!is_null($query)) {
-            $resultSet = $this->api->search($query);
-        }
         return $this->createViewResponse(
-            'search/results',
+            $this->template,
             [
-                'results' => $resultSet,
-                'query' => $query
+                'page' => $this->getCurrentPage(),
+                'form' => $form->getView(),
+                'query' => $query,
+                'encodedQuery' => urlencode($query)
             ]
         );
     }

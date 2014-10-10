@@ -26,5 +26,23 @@ class ServiceModule extends BaseModule
     {
         return $this->getCollection('backup');
     }
+
+    /**
+     * Возвращает API для работы с лицензией.
+     * @return LicenseApi
+     */
+    public function license()
+    {
+        return $this->getApi('umicms\project\module\service\model\LicenseApi');
+    }
+
+    /**
+     * Возвращает API для работы с обновлениями UMI.CMS.
+     * @return UpdateApi
+     */
+    public function update()
+    {
+        return $this->getApi('umicms\project\module\service\model\UpdateApi');
+    }
 }
  

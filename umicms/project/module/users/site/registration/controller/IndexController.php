@@ -46,7 +46,7 @@ class IndexController extends BaseSitePageController
      */
     protected function getTemplateName()
     {
-        return 'index';
+        return $this->template;
     }
 
     /**
@@ -55,7 +55,7 @@ class IndexController extends BaseSitePageController
     protected function buildForm()
     {
         $type = $this->getRouteVar('type', RegisteredUser::TYPE_NAME);
-        $this->user = $this->module->user()->add($type);
+        $this->user = $this->module->getUserForRegistration($type);
 
         return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $type, $this->user);
     }
@@ -69,7 +69,7 @@ class IndexController extends BaseSitePageController
         $this->commit();
 
         if ($this->user->active) {
-            $this->module->setCurrentUser($this->user);
+            $this->module->setAuthenticatedUser($this->user);
         }
 
         $this->sendNotifications();
@@ -78,7 +78,14 @@ class IndexController extends BaseSitePageController
     }
 
     /**
-     * {@inheritdoc}
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam bool $success флаг, указывающий на успешное сохранение изменений
+     * @templateParam bool $authenticated флаг, указывающий на то, авторизован пользователь или нет
+     * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница регистрации пользователя
+     * @templateParam umicms\project\module\users\model\object\RegisteredUser $user новый зарегистрированный пользователь текущая страница регистрации пользователя
+     *
+     * @return array
      */
     protected function buildResponseContent()
     {

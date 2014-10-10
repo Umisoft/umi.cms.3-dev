@@ -14,7 +14,6 @@ use umi\acl\IAclAssertionResolver;
 use umi\acl\IAclResource;
 use umi\form\IForm;
 use umi\form\IFormAware;
-use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalizable;
 use umi\orm\collection\ICollection;
 use umi\orm\collection\ICollectionManagerAware;
@@ -27,7 +26,7 @@ use umicms\orm\selector\CmsSelector;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware, IAclResource, IAclAssertionResolver
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, IAclResource, IAclAssertionResolver
 {
     /**
      * Имя формы для редактирования объектов по умолчанию
@@ -45,6 +44,14 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Компонент обработчик коллекций в административной части
      */
     const HANDLER_ADMIN = 'admin';
+    /**
+     * Констатнта для задания списка имен полей, выводимых в фильтре для таблицы по умолчанию
+     */
+    const DEFAULT_TABLE_FILTER_FIELDS = 'defaultTableFilterFields';
+    /**
+     * Констатнта для задания списка имен полей, игнорируемых в фильтре для таблицы
+     */
+    const IGNORED_TABLE_FILTER_FIELDS = 'ignoredTableFilterFields';
 
     /**
      * Возвращает тип коллекции.
@@ -79,12 +86,6 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
     public function getHandlerPath($applicationName);
 
     /**
-     * Возвращает список компонентов-обработчиков.
-     * @return array
-     */
-    public function getHandlerList();
-
-    /**
      * Проверяет, есть ли обработчик у коллекции для указанного приложения.
      * @param string $applicationName имя приложения
      * @return bool
@@ -110,8 +111,33 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
     public function getEditTypeList();
 
     /**
+     * Возвращает список имен полей, выводимых в фильтре для таблицы по умолчанию
+     * @internal
+     * @return array
+     */
+    public function getDefaultTableFilterFieldNames();
+
+    /**
+     * Возвращает список имен полей, игнорируемых в фильтре для таблицы
+     * @internal
+     * @return array
+     */
+    public function getIgnoredTableFilterFieldNames();
+
+    /**
      * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
      * @return CmsSelector|ICmsObject[]
      */
     public function getInternalSelector();
+
+    /**
+     * Возвращает сообщение коллекции, переведенное для текущей или указанной локали.
+     * Текст сообщения может содержать плейсхолдеры. Ex: File "{path}" not found
+     * Если идентификатор локали не указан, будет использована текущая локаль.
+     * @param string $message текст сообщения на языке разработки
+     * @param array $placeholders значения плейсхолдеров для сообщения. Ex: array('{path}' => '/path/to/file')
+     * @param string $localeId идентификатор локали в которую осуществляется перевод (ru, en_us)
+     * @return string
+     */
+    public function translate($message, array $placeholders = [], $localeId = null);
 }

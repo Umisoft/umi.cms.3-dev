@@ -16,7 +16,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет для вывода списка коментов.
+ * Виджет для вывода списка комментариев.
  */
 class ListWidget extends BaseTreeWidget
 {
@@ -25,7 +25,7 @@ class ListWidget extends BaseTreeWidget
      */
     public $template = 'list';
     /**
-     * * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
+     * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
      */
     public $blogPost;
     /**

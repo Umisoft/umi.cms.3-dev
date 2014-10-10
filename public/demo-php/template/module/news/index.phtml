@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->getHeader() ?></h1>
+<?= $page->contents ?>
+
+<h2><?=$this->translate('All news')?></h2>
+<?= $this->widget('news.item.list', ['limit' => '3', 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]) ?>

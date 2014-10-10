@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\reject\view\widget;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
- * Виджет для вывода ссылки на спискок отклонённых постов текущего автора.
+ * Виджет для вывода ссылки на спискок отклоненных постов текущего автора.
  */
 class LinkWidget extends BaseLinkWidget
 {

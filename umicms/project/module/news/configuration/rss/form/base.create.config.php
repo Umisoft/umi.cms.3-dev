@@ -18,7 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsRssImportScenario', 'collection', 'form'
+            'collection.newsRssImportScenario' => 'collection.newsRssImportScenario', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
 
@@ -61,6 +61,7 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsRssImportScenario::FIELD_SUBJECTS,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsRssImportScenario::FIELD_SUBJECTS
                     ]
                 ]

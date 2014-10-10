@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UMI.CMS</title>
-        <link rel="stylesheet" type="text/css" href="/resources/deploy/styles.css">
+        <link rel="stylesheet" type="text/css" href="<?= $assetsUrl ?>css/styles.css?version=<?= $version ?>">
         <script>
             // Ember settings
             ENV = {
@@ -14,12 +14,17 @@
                 "baseURL": '<?= $baseUrl ?>',
                 "baseApiURL": '<?= $baseApiUrl ?>',
                 "baseSiteURL": '<?= $baseSiteUrl ?>',
-                "authUrl": '<?= $authUrl ?>'
+                "authUrl": '<?= $authUrl ?>',
+                "assetsUrl" : '<?= $assetsUrl ?>',
+                "projectAssetsUrl" : '<?= $projectAssetsUrl ?>'
             }
         </script>
     </head>
-    <body id="body" style="background: #D6E0E9; background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzRDNjE3RCI+DQogIDxwYXRoIG9wYWNpdHk9Ii4yNSIgZD0iTTE2IDAgQTE2IDE2IDAgMCAwIDE2IDMyIEExNiAxNiAwIDAgMCAxNiAwIE0xNiA0IEExMiAxMiAwIDAgMSAxNiAyOCBBMTIgMTIgMCAwIDEgMTYgNCIvPg0KICA8cGF0aCBkPSJNMTYgMCBBMTYgMTYgMCAwIDEgMzIgMTYgTDI4IDE2IEExMiAxMiAwIDAgMCAxNiA0eiI+DQogICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgMTYgMTYiIHRvPSIzNjAgMTYgMTYiIGR1cj0iMC44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+DQogIDwvcGF0aD4NCjwvc3ZnPg==); background-repeat: no-repeat; background-position: center center; background-size: 10%">
-        <script data-main="/resources/main" src="/resources/libs/requirejs/require.js"></script>
+    <body id="body" class="loading">
+        <script
+            data-main="<?= $assetsUrl ?>main.js?version=<?= $version ?>"
+            src="<?= $assetsUrl ?>vendor/requirejs/require.js?version=<?= $version ?>">
+        </script>
 
         <noscript>
             <div class="auth-layout">
@@ -28,7 +33,7 @@
                 <div class="row vertical-center">
                     <div class="large-centered columns large-3">
                         <p class="text-center">
-                            <img src="/resources/deploy/img/auth-logo.png"/>
+                            <img src="<?= $assetsUrl ?>images/auth-logo.png?version=<?= $version ?>"/>
                         </p>
                         <div>
                             <div class="panel pretty radius shake-it">
@@ -40,5 +45,54 @@
             </div>
             <div class="auth-mask"></div>
         </noscript>
+
+        <div class="umi-loading-animation">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="#4C617D" id="svgSpinner">
+                <path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/>
+                <path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z" id="circleAnimateSvg">
+                    <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite" />
+                </path>
+                <script>
+                    (function() {
+                        'use strict';
+
+                        function detectIE() {
+                            var ua = window.navigator.userAgent;
+                            var msie = ua.indexOf('MSIE ');
+                            var trident = ua.indexOf('Trident/');
+                            if (msie > 0) {
+                                return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                            }
+                            if (trident > 0) {
+                                var rv = ua.indexOf('rv:');
+                                return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+                            }
+                            return false;
+                        }
+
+                        if(detectIE()) {
+                            window.onload = function() {
+                                var initialTheta = 0;
+                                var thetaDelta = 8;
+                                var mySquare = document.getElementById('circleAnimateSvg');
+                                var transformObject;
+
+                                function animateSvg() {
+                                    mySquare.transform.baseVal.getItem(0).setRotate(mySquare.currentTheta, 16, 16);
+                                    mySquare.currentTheta += thetaDelta;
+                                    requestAnimationFrame(animateSvg);
+                                }
+                                try{
+                                    mySquare.currentTheta = initialTheta;
+                                    transformObject = svgSpinner.createSVGTransform();
+                                    mySquare.transform.baseVal.appendItem(transformObject);
+                                    requestAnimationFrame(animateSvg);
+                                } catch(error){}
+                            }
+                        }
+                    }());
+                </script>
+            </svg>
+        </div>
     </body>
 </html>

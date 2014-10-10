@@ -21,6 +21,7 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\module\BaseModule;
+use umicms\orm\collection\CmsCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\collection\BlogAuthorCollection;
 use umicms\project\module\blog\model\collection\BlogCategoryCollection;
@@ -28,14 +29,17 @@ use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
 use umicms\project\module\blog\model\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\model\collection\BlogTagCollection;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogComment;
-use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
-use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\blog\model\object\CommentStatus;
+use umicms\project\module\blog\model\object\PostStatus;
+use umicms\project\module\users\model\object\RegisteredUser;
+use umicms\project\module\users\model\object\Visitor;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -65,6 +69,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     protected $usersModule;
 
+    /**
+     * Конструктор.
+     * @param UsersModule $usersModule
+     */
     public function __construct(UsersModule $usersModule)
     {
         $this->usersModule = $usersModule;
@@ -125,13 +133,33 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт пост от имени текущего автора.
+     * Возвращает коллекцию статусов постов.
+     * @return CmsCollection
+     */
+    public function postStatus()
+    {
+        return $this->getCollection('blogPostStatus');
+    }
+
+    /**
+     * Возвращает коллекцию статусов комментариев.
+     * @return CmsCollection
+     */
+    public function commentStatus()
+    {
+        return $this->getCollection('blogCommentStatus');
+    }
+
+    /**
+     * Создает пост от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @return BlogPost
      */
     public function addPost($typeName = IObjectType::BASE)
     {
         $post = $this->post()->add($typeName);
+        $post->active = true;
+        $post->publishTime = new \DateTime();
         $post->author = $this->getCurrentAuthor();
 
         return $post;
@@ -144,7 +172,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getPosts()
     {
         return $this->post()->select()
-            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED)
+            ->where(BlogPost::FIELD_STATUS . '.' . PostStatus::FIELD_GUID)
+                ->equals(PostStatus::GUID_PUBLISHED)
             ->orderBy(BlogPost::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
     }
 
@@ -277,13 +306,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Создаёт комментарий от имени текущего автора.
+     * Создает комментарий от имени текущего автора.
      * @param string $typeName имя дочернего типа
      * @param BlogPost $post пост, к которому добавляется комментарий
      * @param null|BlogComment $parentComment родительский комментарий
      * @return BlogComment
      */
-    public function addComment($typeName = BlogComment::TYPE, BlogPost $post, BlogComment $parentComment = null)
+    public function addComment($typeName = BlogComment::TYPE_NAME, BlogPost $post, BlogComment $parentComment = null)
     {
         if (is_null($parentComment)) {
             $parentComment = $this->getBranchComment($post);
@@ -291,11 +320,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
         $comment->post = $post;
-        $comment->slug = $comment->getGUID();
-
-        if ($this->hasCurrentAuthor()) {
-            $comment->author = $this->getCurrentAuthor();
-        }
+        $comment->author = $this->getCurrentAuthor();
 
         return $comment;
     }
@@ -321,12 +346,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getCommentsByPost(BlogPost $blogPost)
     {
         $comments = $this->getComments()
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
+                [
+                    CommentStatus::GUID_PUBLISHED,
+                    CommentStatus::GUID_UNPUBLISHED
+                ]
+            );
 
         return $comments;
     }
@@ -336,17 +362,17 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-
     public function getCommentByPostWithNeedModeration(BlogPost $blogPost)
     {
         $comments = $this->getComments()
-            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_STATUS . '.' . CommentStatus::FIELD_GUID)->in(
+                [
+                    CommentStatus::GUID_PUBLISHED,
+                    CommentStatus::GUID_NEED_MODERATION,
+                    CommentStatus::GUID_UNPUBLISHED
+                ]
+            );
 
         return $comments;
     }
@@ -393,11 +419,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
-        foreach ($rssFeed->getRssItems() as $item) {
+        $items = $rssFeed->getRssItems();
+
+        foreach ($items as $item) {
             $this->importRssPost($item, $blogRssImportScenario);
         }
 
-        return $this;
+        return count($items);
     }
 
     /**
@@ -426,39 +454,25 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * Если автора не существует - создаёт нового.
-     * @throws RuntimeException в случае, если текущий автор не установлен
+     * Если автора не существует - создает нового.
      * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
-        if ($this->currentAuthor) {
-            return $this->currentAuthor;
-        }
-
-        $this->currentAuthor = $this->author()->select()
-            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
-            ->getResult()
-            ->fetch();
-
-        if ($this->usersModule->isAuthenticated()) {
-            $this->currentAuthor = $this->createAuthor(
-                $this->usersModule->getCurrentUser()
-            );
-        }
-
-        if (!$this->currentAuthor instanceof BlogAuthor) {
-            throw new RuntimeException(
-                $this->translate(
-                    'Current author should be instance of "{class}".',
-                    [
-                        'class' => BlogAuthor::className()
-                    ]
-                )
-            );
+        if (!$this->hasCurrentAuthor()) {
+            $this->currentAuthor = $this->author()->createForUser($this->usersModule->getCurrentUser(true));
         }
 
         return $this->currentAuthor;
+    }
+
+    /**
+     * Проверяет, является ли текущий автор зарегистрированным пользователем.
+     * @return bool
+     */
+    public function isAuthorRegistered()
+    {
+        return ($this->hasCurrentAuthor() && $this->currentAuthor->user instanceof RegisteredUser);
     }
 
     /**
@@ -467,31 +481,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        if (!$this->currentAuthor && $this->usersModule->isAuthenticated()) {
-            $this->currentAuthor = $this->author()->select()
-                ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
-                ->getResult()
-                ->fetch();
-        }
+        try {
+            $this->currentAuthor = $this->author()->getByUser(
+                $this->usersModule->getCurrentUser()
+            );
+        } catch (NonexistentEntityException $e) {}
 
         return $this->currentAuthor instanceof BlogAuthor;
-    }
-
-    /**
-     * Создаёт автора на основе юзера.
-     * @param BaseUser $user
-     * @return BlogAuthor
-     */
-    public function createAuthor(BaseUser $user)
-    {
-        if ($this->hasCurrentAuthor()) {
-            return $this->getCurrentAuthor();
-        }
-
-        return $this->author()->add(IObjectType::BASE)
-            ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->login)
-            ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
-            ->setValue(BlogAuthor::FIELD_PROFILE, $user);
     }
 
     /**
@@ -523,7 +519,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает список отклонённых постов текущего пользователя.
+     * Возвращает список отклоненных постов текущего пользователя.
      * @return CmsSelector|BlogPost
      */
     public function getOwnRejected()
@@ -555,14 +551,16 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $blogPost->announcement = $item->getContent();
             }
             if ($item->getDate()) {
+                $blogPost->publishTime = new \DateTime();
                 $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());
-                $blogPost->publishTime->setTimezone($item->getDate()->getTimezone());
             }
             if ($item->getUrl()) {
                 $blogPost->source = $item->getUrl();
             }
             $blogPost->slug = $blogPost->guid;
             $blogPost->category = $blogRssImportScenario->category;
+            $blogPost->author = $blogRssImportScenario->author;
+            $blogPost->status = $blogRssImportScenario->postStatus;
 
             foreach ($blogRssImportScenario->tags as $subject) {
                 $blogPost->tags->attach($subject);
@@ -639,40 +637,27 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает ветку комментариев к посту.
-     * @param BlogPost $blogPost
-     * @return CmsSelector|BlogComment[]
-     */
-    protected function getBranchCommentByPost(BlogPost $blogPost)
-    {
-        $branchComments = $this->getComments()
-            ->types([BlogBranchComment::TYPE])
-            ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->limit(1)
-            ->result()
-            ->fetch();
-
-        return $branchComments;
-    }
-
-    /**
      * Возвращает корень ветки комментариев к посту.
      * @param BlogPost $post
      * @return BlogComment
      */
     protected function getBranchComment(BlogPost $post)
     {
-        $branchComment = $this->getBranchCommentByPost($post);
+        $branchComment = $this->getComments()
+            ->types([BlogBranchComment::TYPE_NAME])
+            ->where(BlogBranchComment::FIELD_POST)->equals($post)
+            ->limit(1)
+            ->result()
+            ->fetch();
 
         if ($branchComment instanceof BlogBranchComment) {
             return $branchComment;
         }
 
-        $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
-        $comment->displayName = $post->displayName;
-        $comment->post = $post;
-        $comment->slug = $comment->getGUID();
+        $branchComment = $this->comment()->add(null, BlogBranchComment::TYPE_NAME);
+        $branchComment->displayName = $post->displayName;
+        $branchComment->post = $post;
 
-        return $comment;
+        return $branchComment;
     }
 }

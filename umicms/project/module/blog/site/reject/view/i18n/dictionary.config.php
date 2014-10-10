@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'View rejected post'
+        'role:viewer:displayName' => 'View rejected posts'
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр отклонённого поста'
+        'role:viewer:displayName' => 'Просмотр отклоненного поста'
     ]
 
 ];

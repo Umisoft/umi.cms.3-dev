@@ -160,15 +160,11 @@ class ListController extends BaseController
      */
     private function createHierarchicObject(CmsHierarchicCollection $collection, array $data)
     {
-        if (!isset($data['slug'])) {
-            throw new RuntimeException(
-                $this->translate('Cannot create hierarchic object. Option "{option}" required.',
-                    ['option' => 'slug']
-                )
-            );
-        }
 
         $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
+        $slug = isset($data['slug']) ? $data['slug'] : null;
+        $guid = isset($data['guid']) ? $data['guid'] : null;
+
         $parent = null;
         if (isset($data['parent'])) {
             /**
@@ -177,7 +173,7 @@ class ListController extends BaseController
             $parent = $collection->getById($data['parent']);
         }
 
-        return $collection->add($data['slug'], $typeName, $parent);
+        return $collection->add($slug, $typeName, $parent, $guid);
 
     }
 
@@ -190,8 +186,9 @@ class ListController extends BaseController
     private function createObject(CmsCollection $collection, array $data)
     {
         $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
+        $guid = isset($data['guid']) ? $data['guid'] : null;
 
-        return $collection->add($typeName);
+        return $collection->add($typeName, $guid);
     }
 
 }

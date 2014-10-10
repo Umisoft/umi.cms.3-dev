@@ -1,0 +1,38 @@
+@import "../../../foundation/settings/components/buttons";
+
+.button-group {
+    left: auto;
+    white-space: nowrap;
+    letter-spacing: -0.3em;
+
+    > li{
+        float: none;
+        display: inline-block;
+        letter-spacing: normal;
+
+        > button, > .button, button, .button{
+            border-color: $button-border-color;
+
+            &.secondary{
+                border-color: $button-border-color-secondary;
+            }
+
+            &.white, &.flat{
+                border-color: transparent;
+            }
+        }
+
+        &:first-child{
+            button, .button{
+                border-#{$default-float}: 1px solid $button-border-color;
+                &.secondary{
+                    border-#{$default-float}-color: $button-border-color-secondary;
+                }
+
+                &.white, &.flat{
+                    border-#{$default-float}-color: transparent;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{{#view view.buttonView meta=view.meta}}
+    {{#if view.meta.attributes.hasIcon}}
+        <i {{bind-attr class=":icon view.iconClass"}}></i>
+    {{/if}}
+
+    {{#if view.label}}
+        <b class="umi-button-label">{{view.label}}</b>
+    {{/if}}
+{{/view}}
+
+<ul {{bind-attr id="view.dropdownId" class=":f-dropdown view.dropdownClassName"}} data-dropdown-content>
+    <li>
+        {{#if view.button.displayName}}
+            <div class="f-dropdown-content-header">{{view.button.displayName}}</div>
+        {{/if}}
+
+        <div class="s-scroll-wrap">
+            <table>
+                <tbody>
+                    {{#if view.backupList.isLoaded}}
+                        {{#each view.backupList}}
+                            <tr {{bind-attr class="isActive::selectable"}}
+                            {{action 'applyBackup' this target="view"}}>
+                                <td>
+                                    {{#if isActive}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-accept"></i>
+                                        </button>
+                                    {{else}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-renew"></i>
+                                        </button>
+                                    {{/if}}
+                                    {{created.date}}
+                                </td>
+
+                                <td>
+                                    {{#if user}}
+                                        {{user}}
+                                    {{else}}
+                                        {{i18n "User name" "toolbar:dropdownButton"}}
+                                    {{/if}}
+                                </td>
+                            </tr>
+                        {{else}}
+                            <tr>
+                                <td colspan="2">
+                                    {{view.noBackupsLabel}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    {{else}}
+                        <tr>
+                            <td colspan="2">{{i18n "Loading"}}..</td>
+                        </tr>
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul>

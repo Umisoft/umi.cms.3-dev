@@ -23,7 +23,7 @@ use umicms\project\module\blog\model\object\BlogTag;
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogPost', 'collection', 'form'
+            'collection.blogPost' => 'collection.blogPost', 'collection' => 'collection', 'form' => 'form'
         ]
     ],
     'attributes' => [
@@ -54,7 +54,8 @@ return [
             'options' => [
                 'dataSource' => BlogPost::FIELD_PAGE_H1,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []

@@ -14,5 +14,8 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'users.usergroup'
-    ]
+    ],
+    'dictionaries' => [
+        'collection.userUserGroup' => 'collection.userUserGroup', 'collection' => 'collection'
+    ],
 ];

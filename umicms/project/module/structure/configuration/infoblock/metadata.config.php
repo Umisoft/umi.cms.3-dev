@@ -11,12 +11,11 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\BaseInfoBlock;
 use umicms\project\module\structure\model\object\InfoBlock;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
             'sourceName' => 'infoblock'
@@ -69,7 +68,7 @@ return array_replace_recursive(
                 ]
             ],
             InfoBlock::FIELD_LOGO               => [
-                'type'          => IField::TYPE_TEXT,
+                'type'          => IField::TYPE_STRING,
                 'columnName'    => 'logo',
                 'localizations' => [
                     'ru-RU' => [

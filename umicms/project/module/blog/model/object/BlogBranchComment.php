@@ -13,10 +13,10 @@ namespace umicms\project\module\blog\model\object;
 /**
  * Класс ветки комментариев.
  */
-class BlogBranchComment extends BlogBaseComment
+class BlogBranchComment extends BaseBlogComment
 {
     /**
      * Тип объекта
      */
-    const TYPE = 'branchComment';
+    const TYPE_NAME = 'branchComment';
 }

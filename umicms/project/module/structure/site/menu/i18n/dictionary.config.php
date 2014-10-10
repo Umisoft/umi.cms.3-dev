@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer menu'
+        'role:viewer:displayName' => 'View menu'
     ],
 
     'ru-RU' => [

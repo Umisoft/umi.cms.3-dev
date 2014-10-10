@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Консольное приложение UMI.CMS
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+use umicms\console\ConsoleApplication;
+use umicms\console\InstallProjectCommand;
+use umicms\console\PackProjectCommand;
+use umicms\console\CreateProjectDumpCommand;
+use umicms\console\LoadProjectDumpCommand;
+use umicms\console\SyncProjectSchemeCommand;
+
+$environmentMode = 'console';
+require dirname(__DIR__) . '/configuration/core.php';
+
+$application = new ConsoleApplication('UMI.CMS Console application.', CMS_VERSION . ' ' . CMS_VERSION_DATE);
+
+
+$application->add(new PackProjectCommand());
+
+$application->add(new CreateProjectDumpCommand());
+$application->add(new LoadProjectDumpCommand());
+
+$application->add(new SyncProjectSchemeCommand());
+$application->add(new InstallProjectCommand());
+
+$application->run();
