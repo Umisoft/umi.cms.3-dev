@@ -7,7 +7,7 @@
 .f-dropdown {
     @include dropdown-container(list, $triangle:false);
     width: auto;
-    left: auto;
+    //left: auto;
     visibility: hidden;
     opacity: .6;
     transition: opacity 0.1s linear;
