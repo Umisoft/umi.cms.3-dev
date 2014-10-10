@@ -347,11 +347,23 @@ define(['App', 'moment'], function(UMI, moment) {
                         this.reopen(UMI.FormElementsMixin, {
                             elementView: function() {
                                 var elementView = this._super();
+                                var elementFactory = this.get('elementFactory');
+
                                 elementView.reopen({
                                     init: function() {
+                                        var type = this.get('meta.type');
+                                        var elementMixin = elementFactory.elementMixinForType(type) || {};
+
+                                        if (type !== 'fieldset') {
+                                            this.reopen(elementMixin, UMI.FormElementValidateMixin);
+                                        } else {
+                                            this.reopen(elementMixin);
+                                        }
+
                                         this._super();
                                         var classNames = this.get('classNames') || [];
                                         var index = classNames.indexOf('large-4');
+
                                         if (index !== -1) {
                                             classNames = classNames.removeAt(index);
                                             classNames.push('large-12');

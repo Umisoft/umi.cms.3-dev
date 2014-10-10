@@ -13,20 +13,17 @@ define(['App'], function(UMI) {
 
             type: 'text',
 
-            password: null,
-
             passwordConfirm: null,
 
             confirmLabel: 'Повторите новый пароль',
 
             template: function() {
                 var inputTemplate =
-                    '{{input typeBinding="view.type" value=view.password name=view.meta.attributes.name}}';
+                    '{{input typeBinding="view.type" value=view.meta.value name=view.meta.attributes.name}}';
                 var inputConfirmTemplate =
                     '<div><span class="umi-form-label">{{view.confirmLabel}}</span></div>' +
-                    '{{input typeBinding="view.type" value=view.passwordConfirm name=view.meta.attributes.name}}';
+                    '{{input typeBinding="view.type" value=view.passwordConfirm name=view.meta.attributes.name focusOut="validate"}}';
 
-                this.set('validatorType', null);
                 var validate = this.validateErrorsTemplate();
                 var template = inputTemplate + inputConfirmTemplate + validate;
 
