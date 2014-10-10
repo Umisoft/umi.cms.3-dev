@@ -47,8 +47,6 @@ define(
 
                 password: 'FormPasswordElement',
 
-                passwordWithConfirmation: 'FormPasswordWithConfirmationElement',
-
                 radio: 'FormRadioElement',
 
                 select: 'FormSelectElement',
