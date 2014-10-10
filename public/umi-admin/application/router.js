@@ -174,9 +174,7 @@ define([], function() {
 
                         if (parent && 'isFulfilled' in parent) {
                             return parent.then(function(parent) {
-                                parent.reload().then(function(parent) {
-                                    parent.trigger('needReloadHasMany', 'add', addObject);
-                                });
+                                parent.trigger('needReloadHasMany', 'add', addObject);
 
                                 return addObject;
                             });
