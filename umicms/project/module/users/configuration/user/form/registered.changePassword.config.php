@@ -4,7 +4,6 @@ use umi\filter\IFilterFactory;
 use umi\form\element\Password;
 use umi\form\element\Submit;
 use umi\validation\IValidatorFactory;
-use umicms\form\element\PasswordWithConfirmation;
 use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
@@ -36,8 +35,21 @@ return [
         ],
 
         'newPassword' => [
-            'type' => PasswordWithConfirmation::TYPE_NAME,
+            'type' => Password::TYPE_NAME,
             'label' => 'New password',
+            'options' => [
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ]
+            ]
+        ],
+
+        'passwordConfirmation' => [
+            'type' => Password::TYPE_NAME,
+            'label' => 'Password Confirmation',
             'options' => [
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []

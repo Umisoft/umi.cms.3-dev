@@ -87,7 +87,7 @@ class ActionController extends CollectionActionController
             );
         }
 
-        $newPassword = isset($data['newPassword'][0]) ? trim($data['newPassword'][0]) : '';
+        $newPassword = isset($data['newPassword']) ? trim($data['newPassword']) : '';
 
         if ($newPassword === '') {
             throw new HttpException(
@@ -96,16 +96,16 @@ class ActionController extends CollectionActionController
             );
         }
 
-        $newPasswordConfirmation = isset($data['newPassword'][1]) ? trim($data['newPassword'][1]) : '';
+        $passwordConfirmation = isset($data['passwordConfirmation']) ? trim($data['passwordConfirmation']) : '';
 
-        if ($newPasswordConfirmation === '') {
+        if ($passwordConfirmation === '') {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
-                $this->translate('Cannot change password. New password confirmation is required.')
+                $this->translate('Cannot change password. Password confirmation is required.')
             );
         }
 
-        if ($newPassword !== $newPasswordConfirmation) {
+        if ($newPassword !== $passwordConfirmation) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot change password. Passwords are not equal.')

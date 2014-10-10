@@ -38,7 +38,9 @@ return [
             'Log in' => 'Log in',
 
             'Visitor' => 'Visitor',
-            'New password' => 'New password'
+            'New password' => 'New password',
+            'Password Confirmation' => 'Password confirmation',
+
         ],
 
         'ru-RU' => [
@@ -68,6 +70,7 @@ return [
             'Log in' => 'Войти',
 
             'Visitor' => 'Посетитель',
-            'New password' => 'Новый пароль'
+            'New password' => 'Новый пароль',
+            'Password Confirmation' => 'Подтверждение пароля',
         ]
     ];
