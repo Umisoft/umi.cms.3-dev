@@ -496,10 +496,14 @@ define(['App', 'toolbar'], function(UMI) {
                     });
                 } else {
                     this.get('item').on('needReloadHasMany', function(event, object) {
-                        if (event === 'add') {
-                            self.get('childrenList').pushObject(object);
+                        if (self.get('isExpanded')) {
+                            if (event === 'add') {
+                                self.get('childrenList').pushObject(object);
+                            } else {
+                                self.get('childrenList').removeObject(object);
+                            }
                         } else {
-                            self.get('childrenList').removeObject(object);
+                            self.toggleProperty('isExpanded');
                         }
                     });
                 }
