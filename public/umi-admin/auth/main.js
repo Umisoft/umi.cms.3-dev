@@ -235,7 +235,8 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                                 {
                                     accessError: self.accessError,
                                     form: self.forms.form,
-                                    currentLocale: currentLocaleLabel
+                                    currentLocale: currentLocale,
+                                    currentLocaleLabel: currentLocaleLabel
                                 }
                             )
                         });
