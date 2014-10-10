@@ -1,8 +1,8 @@
 <div class="dock-wrapper">
     <div class="dock-wrapper-bg">
         <ul class="dock navigation">
-            {{#each module in modules}}
-                {{#view 'dockModuleButton' module=module}}
+            {{#each module in sortedModules}}
+                {{#view 'dockModuleButton' module=module }}
                     {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
             data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;"}}
                         <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
