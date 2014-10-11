@@ -274,6 +274,29 @@ define(['App', 'moment'], function(UMI, moment) {
                         return false;
                     },
 
+                    cleanForm: function() {
+                        var form = this.get('form');
+                        var cleanElementsValue = function(elements) {
+                            if (Ember.typeOf(elements) !== 'array') {
+                                Ember.warn('Incorrect argument type. Expected array.');
+                                elements = [];
+                            }
+
+                            elements.forEach(function(item) {
+                                if (Ember.typeOf(item) === 'object') {
+                                    if (item.hasOwnProperty('value')) {
+                                        Ember.set(item, 'value', '');
+                                    }
+                                    if (item.hasOwnProperty('elements')) {
+                                        cleanElementsValue(Ember.get(item, 'elements'));
+                                    }
+                                }
+                            });
+                        };
+
+                        cleanElementsValue(Ember.get(form, 'elements'));
+                    },
+
                     object: function() {
                         var contextObject = this.get('controller.object');
                         var object = contextObject.toJSON({includeId: true});
@@ -338,6 +361,7 @@ define(['App', 'moment'], function(UMI, moment) {
                                     store.update(collectionName, data);
                                     var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
                                     UMI.notification.create(params);
+                                    self.cleanForm();
                                 }
                             });
                         }
