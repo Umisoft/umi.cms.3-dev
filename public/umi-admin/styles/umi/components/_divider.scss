@@ -58,6 +58,6 @@
     background: #E0E4E7;
     border-left: 1px solid #ADB9C5;
     &:hover{
-        cursor: col-resize;
+        cursor: url($image-cursor-col-resize), col-resize;
     }
 }
