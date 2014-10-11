@@ -160,9 +160,11 @@
 
                 S(self.scope).on('click.fndtn.dropdown', self.selector(), function(e) {
                     var settings = self.getSettings(this);
-                    if (!settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
+                    if ((!settings.fastSelect && !settings.isHover) || Modernizr.touch) {
                         e.preventDefault();
                         self.toggle($(this), settings);
+                    } else if(settings.fastSelect || settings.isHover) {
+                        e.preventDefault();
                     }
                 });
             },
@@ -175,7 +177,7 @@
                 S(self.scope).on('mousedown.fndtn.dropdown', self.selector(), function(e) {
                     var settings = self.getSettings(this);
 
-                    if (settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
+                    if (settings.fastSelect && !settings.isHover) {
                         e.preventDefault();
                         var $targetButton = $(this);
                         var $dropdown = self.toggle($targetButton, settings);
@@ -289,7 +291,7 @@
                 var S = self.S;
                 var dropdownSelector = '[' + self.attr_name() + '-content]';
 
-                S(self.scope).on('click.fndtn.dropdown.miss', function(e) {
+                S(self.scope).on('click.fndtn.dropdown.miss', function(e) {//
                     var parent = S(e.target).closest(dropdownSelector);
 
                     if (S(e.target).data(self.dataAttr()) || S(e.target).parent().data(self.dataAttr())) {
