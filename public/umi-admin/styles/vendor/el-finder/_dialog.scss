@@ -250,3 +250,12 @@
 .std42-dialog .elfinder-info-title, .std42-dialog .elfinder-info-tb{
     line-height: normal;
 }
+
+.elfinder-dialog {
+   .elfinder-resize-uiresize,
+   .elfinder-resize-uicrop {
+      .elfinder-resize-label {
+        float: none;
+      }
+   }
+}
