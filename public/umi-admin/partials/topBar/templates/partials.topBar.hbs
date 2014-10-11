@@ -6,7 +6,7 @@
                 <i class="icon icon-butterfly"></i>
             </span>
             <ul class="f-dropdown f-dropdown-double" data-dropdown-content>
-                {{#each view.modules}}
+                {{#each modules}}
                     <li>
                         {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
                             <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
@@ -16,11 +16,9 @@
                 {{/each}}
             </ul>
         </li>
+
         <li>
-            <span class="umi-top-bar-label">{{view.activeProject}}</span>
-        </li>
-        <li>
-            <a href="{{unbound view.siteUrl}}" class="button tiny flat umi-top-bar-button">
+            <a href="{{unbound siteUrl}}" class="button tiny flat umi-top-bar-button">
                 <i class="icon white icon-viewOnSite"></i>
             </a>
         </li>
@@ -37,7 +35,19 @@
     <ul class="umi-top-bar-list right">
         <li>
             <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown data-options="selectorById: false;">
-                {{view.userName}}
+                {{localization.activeLocale.displayName}}
+            </span>
+            <ul class="f-dropdown" data-dropdown-content>
+                {{#each localization.list}}
+                    <li {{bind-attr class="isActive:active"}}>
+                        <a href="javascript:void(0)" {{action "changeLocale" this}}>{{displayName}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li>
+            <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown data-options="selectorById: false;">
+                {{userName}}
             </span>
             <ul class="f-dropdown" data-dropdown-content>
                 <li>
