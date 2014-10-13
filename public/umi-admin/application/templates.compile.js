@@ -415,21 +415,46 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers['if'].call(depth0, "view.parentView.isTouchDevice", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" <ul ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":f-dropdown view.parentView.isTouchDevice:is-touch-mode")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" data-dropdown-content> ");
+  stack1 = helpers.each.call(depth0, "component", "in", "module.components", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </ul> ");
+  return buffer;
+  }
+function program3(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <a href=\"javascript: void(0)\" class=\"dock-module dropdown\" data-dropdown=\"\" data-options=\"selectorById: false; isHover: true; buttonSelector: .dropdown;\"> <div class=\"umi-dock-module-icon umi-dock-module-");
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.module.name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\"></div> <span>");
+  stack1 = helpers._triageMustache.call(depth0, "module.displayName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</span> </a> ");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
   var buffer = '', stack1, helper, options;
   data.buffer.push(" ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'class': ("dock-module dropdown"),
     'data-dropdown': (""),
     'data-options': ("selectorById: false; isHover: true; buttonSelector: .dropdown;")
-  },hashTypes:{'class': "STRING",'data-dropdown': "STRING",'data-options': "STRING"},hashContexts:{'class': depth0,'data-dropdown': depth0,'data-options': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "module", "module.name", options) : helperMissing.call(depth0, "link-to", "module", "module.name", options));
+  },hashTypes:{'class': "STRING",'data-dropdown': "STRING",'data-options': "STRING"},hashContexts:{'class': depth0,'data-dropdown': depth0,'data-options': depth0},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "module", "module.name", options) : helperMissing.call(depth0, "link-to", "module", "module.name", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <ul class=\"f-dropdown\" data-dropdown-content> ");
-  stack1 = helpers.each.call(depth0, "component", "in", "module.components", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </ul> ");
+  data.buffer.push(" ");
   return buffer;
   }
-function program3(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" <div class=\"umi-dock-module-icon umi-dock-module-");
@@ -441,18 +466,18 @@ function program3(depth0,data) {
   return buffer;
   }
 
-function program5(depth0,data) {
+function program8(depth0,data) {
   
   var buffer = '', stack1, helper, options;
   data.buffer.push(" <li class=\"");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "component.name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push("\"> ");
-  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","ID"],data:data},helper ? helper.call(depth0, "component", "module.name", "component.name", options) : helperMissing.call(depth0, "link-to", "component", "module.name", "component.name", options));
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","ID"],data:data},helper ? helper.call(depth0, "component", "module.name", "component.name", options) : helperMissing.call(depth0, "link-to", "component", "module.name", "component.name", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </li> ");
   return buffer;
   }
-function program6(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
@@ -462,31 +487,31 @@ function program6(depth0,data) {
   return buffer;
   }
 
-function program8(depth0,data) {
+function program11(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers['with'].call(depth0, "activeModule", "as", "module", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers['with'].call(depth0, "activeModule", "as", "module", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-function program9(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.each.call(depth0, "component", "in", "module.components", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "component", "in", "module.components", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-function program10(depth0,data) {
+function program13(depth0,data) {
   
   var buffer = '', stack1, helper, options;
   data.buffer.push(" ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'class': ("component.name")
-  },hashTypes:{'class': "ID"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","ID"],data:data},helper ? helper.call(depth0, "component", "module.name", "component.name", options) : helperMissing.call(depth0, "link-to", "component", "module.name", "component.name", options));
+  },hashTypes:{'class': "ID"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["STRING","ID","ID"],data:data},helper ? helper.call(depth0, "component", "module.name", "component.name", options) : helperMissing.call(depth0, "link-to", "component", "module.name", "component.name", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
@@ -496,7 +521,7 @@ function program10(depth0,data) {
   stack1 = helpers.each.call(depth0, "module", "in", "sortedModules", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </ul> </div> </div> <div class=\"dock-components\"> <nav class=\"components-nav\"> ");
-  stack1 = helpers['if'].call(depth0, "activeModule", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "activeModule", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </nav> </div>");
   return buffer;
