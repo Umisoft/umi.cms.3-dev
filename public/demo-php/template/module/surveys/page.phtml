@@ -13,7 +13,9 @@
     <?=$page->contents?>
 
     <?php if ($voted) : ?>
-        <p><?= $this->translate("You have already voted") ?>.</p>
+
+        <?=$this->widget('surveys.voteResults', ['survey' => $page, 'forbiddenTemplate' => 'forbiddenResults'])?>
+
     <?php else : ?>
         <?php $errors = isset($errors) ? $errors : null ?>
         <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>

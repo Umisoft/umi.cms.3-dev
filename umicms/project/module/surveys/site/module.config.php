@@ -2,6 +2,7 @@
 
 namespace umicms\project\module\surveys\site;
 
+use umi\acl\IAclFactory;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -15,6 +16,21 @@ return [
 
     SitePageComponent::OPTION_WIDGET => [
         'voteForm' => __NAMESPACE__ . '\widget\VoteFormWidget',
+        'voteResults' => __NAMESPACE__ . '\widget\VoteResultsWidget',
+    ],
+
+    SitePageComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'resultsViewer' => [],
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => [
+                'widget:voteForm' => [],
+            ],
+            'resultsViewer' => [
+                'widget:voteResults' => [],
+            ]
+        ]
     ],
 
     SitePageComponent::OPTION_VIEW        => [

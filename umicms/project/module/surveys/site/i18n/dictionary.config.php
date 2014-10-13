@@ -11,13 +11,19 @@
 return [
 
     'en-US' => [
+        'role:resultsViewer:displayName' => 'View results',
+
         'Vote' => 'Vote',
         'You have already voted' => 'You have already voted',
+        'Total votes' => 'Total votes',
     ],
 
     'ru-RU' => [
+        'role:resultsViewer:displayName' => 'Просмотр результатов',
+
         'Vote' => 'Голосовать',
         'You have already voted' => 'Вы уже проголосовали',
+        'Total votes' => 'Всего голосов'
     ]
 
 ];

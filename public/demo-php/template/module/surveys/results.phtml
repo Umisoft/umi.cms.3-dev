@@ -1,0 +1,23 @@
+<?php
+/**
+ * @var array $answers
+ * @var array $answerInfo
+ * @var int $total
+ * @var umicms\project\module\surveys\model\object\Answer $answer
+ */
+?>
+<p><?= $this->translate("Total votes") ?>: <?= $total ?></p>
+
+<?php foreach ($answers as $answerInfo) : ?>
+
+    <?php $percentage = $answerInfo['percentage'] ?>
+    <?php $answer = $answerInfo['answer'] ?>
+
+    <span><?= $answer->displayName ?> - <?= $percentage ?>% (<?= $answerInfo['votes'] ?>)</span>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<?=round($percentage) ?>" aria-valuemin="0" aria-valuemax="100" <?= $percentage ? 'style="width:' . round($percentage) . '%"' : '' ?>>
+            <span class="sr-only"><?= $percentage?>%</span>
+        </div>
+    </div>
+
+<?php endforeach; ?>

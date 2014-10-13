@@ -5,7 +5,7 @@
     {{ page.contents | raw }}
 
     {% if (voted) %}
-        <p>{{ translate("You have already voted") }}.</p>
+        {{ widget('surveys.voteResults', {'survey' : page, 'forbiddenTemplate' : 'forbiddenResults'}) }}
     {% else %}
         {% set errors = errors ?: null %}
         {{ include('form/form.twig', {'form' : form, 'errors' : errors}) }}

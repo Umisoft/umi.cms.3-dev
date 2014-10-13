@@ -19,7 +19,7 @@ use umi\orm\objectset;
 /**
  * Опрос.
  *
- * @property IObjectSet $answers ответы опроса
+ * @property IObjectSet|Answer[] $answers ответы опроса
  * @property bool $multipleChoice возможность множественного выбора
  */
 class Survey extends CmsObject implements ICmsPage

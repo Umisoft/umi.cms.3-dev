@@ -4,7 +4,7 @@
     <p> {{ survey.getHeader() }} </p>
 
     {% if (voted) %}
-        <p>{{ translate("You have already voted") }}.</p>
+        {{ widget('surveys.voteResults', {'survey' : survey, 'forbiddenTemplate' : 'forbiddenResults'}) }}
     {% else %}
         {{ include('form/form.twig', {'form' : form}) }}
     {% endif %}

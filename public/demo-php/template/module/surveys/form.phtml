@@ -11,7 +11,9 @@
     <p><?=$survey->getHeader()?></p>
 
     <?php if ($voted) : ?>
-        <p><?= $this->translate("You have already voted") ?>.</p>
+
+        <?=$this->widget('surveys.voteResults', ['survey' => $survey, 'forbiddenTemplate' => 'forbiddenResults'])?>
+
     <?php else : ?>
         <?= $this->render('form/form.phtml', ['form' => $form]) ?>
     <?php endif; ?>
