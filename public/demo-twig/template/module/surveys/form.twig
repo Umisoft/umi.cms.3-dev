@@ -1,0 +1,12 @@
+
+<div class="sidebar-module sidebar-module-inset">
+
+    <p> {{ survey.getHeader() }} </p>
+
+    {% if (voted) %}
+        <p>{{ translate("You have already voted") }}.</p>
+    {% else %}
+        {{ include('form/form.twig', {'form' : form}) }}
+    {% endif %}
+
+</div>

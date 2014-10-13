@@ -1,20 +1,14 @@
+{{ include('breadcrumbs.twig') }}
 
 <div class="blog-post">
     <h2 class="blog-post-title">{{ page.getHeader() }} </h2>
     {{ page.contents | raw }}
 
-    {% if (authenticated) %}
-        {{ translate("You are already logged in")  }}.
-        <p>
-            {{ widget('users.profile.link', {'template' : 'link'}) }}
-        </p>
-        {{ widget('users.authorization.logoutForm', {'template' : 'logoutForm'}) }}
+    {% if (voted) %}
+        <p>{{ translate("You have already voted") }}.</p>
     {% else %}
-
         {% set errors = errors ?: null %}
-
         {{ include('form/form.twig', {'form' : form, 'errors' : errors}) }}
-
     {% endif %}
 
 </div>

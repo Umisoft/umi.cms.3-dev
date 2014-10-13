@@ -12,9 +12,10 @@
     {% endif %}
 
     {% for choice in element.choices %}
-        <div class="checkbox">
-            <label><input {{ choice.attributes | raw }} />{{ choice.label }}</label>
+        <div class="radio">
+            <label><input {{ choice.attributes | raw }}/>{{ choice.label }}</label>
         </div>
     {% endfor %}
 
 </div>
+
