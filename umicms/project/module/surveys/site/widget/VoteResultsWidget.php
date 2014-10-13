@@ -79,15 +79,15 @@ class VoteResultsWidget extends BaseCmsWidget
 
         $total = 0;
         foreach ($this->survey->answers as $answer) {
-            $total += $answer->counter;
+            $total += $answer->votes;
         }
 
         $answers = [];
         foreach ($this->survey->answers as $answer) {
             $answers[$answer->guid] = [
                 'answer' => $answer,
-                'percentage' => $total ? round($answer->counter/$total * 100, 2) : 0,
-                'votes' => $answer->counter
+                'percentage' => $total ? round($answer->votes/$total * 100, 2) : 0,
+                'votes' => $answer->votes
             ];
         }
 

@@ -31,6 +31,6 @@ return [
 
     ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS => [
         Answer::FIELD_SURVEY => [],
-        Answer::FIELD_COUNTER => [],
+        Answer::FIELD_VOTES => [],
     ]
 ];

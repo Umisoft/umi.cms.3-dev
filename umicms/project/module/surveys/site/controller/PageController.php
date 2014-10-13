@@ -89,10 +89,10 @@ class PageController extends SitePageController
         foreach ($answers as $guid) {
             $answer = $this->module->answer()->get($guid);
             /**
-             * @var ICounterProperty $voteNumberProperty
+             * @var ICounterProperty $votesProperty
              */
-            $voteNumberProperty = $answer->getProperty(Answer::FIELD_COUNTER);
-            $voteNumberProperty->increment();
+            $votesProperty = $answer->getProperty(Answer::FIELD_VOTES);
+            $votesProperty->increment();
         }
 
         $this->voted = true;

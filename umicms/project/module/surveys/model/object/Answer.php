@@ -16,7 +16,7 @@ use umicms\orm\object\CmsObject;
  * Вариант ответа для опроса.
  *
  * @property Survey|null $survey опрос
- * @property int $counter количество голосов
+ * @property int $votes количество голосов
  */
 class Answer extends CmsObject
 {
@@ -27,5 +27,5 @@ class Answer extends CmsObject
     /**
      * Имя поля для хранения количества голосов, отданных за данный ответ
      */
-    const FIELD_COUNTER = 'counter';
+    const FIELD_VOTES = 'votes';
 }

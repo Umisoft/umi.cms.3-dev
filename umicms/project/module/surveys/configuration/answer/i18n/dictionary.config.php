@@ -7,7 +7,7 @@ return [
             'collection:survey:displayName' => 'Answers',
 
             Answer::FIELD_SURVEY => 'Survey',
-            Answer::FIELD_COUNTER => 'Number of votes',
+            Answer::FIELD_VOTES => 'Number of votes',
 
             'type:base:displayName' => 'Answer',
         ],
@@ -16,7 +16,7 @@ return [
             'collection:survey:displayName' => 'Ответы',
 
             Answer::FIELD_SURVEY => 'Опрос',
-            Answer::FIELD_COUNTER => 'Количество голосов',
+            Answer::FIELD_VOTES => 'Количество голосов',
 
             'type:base:displayName' => 'Ответ'
         ]

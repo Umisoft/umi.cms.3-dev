@@ -11,6 +11,7 @@
 namespace umicms\project\module\surveys\model\collection;
 
 use umi\form\element\CheckboxGroup;
+use umi\form\element\CSRF;
 use umi\form\element\Radio;
 use umi\form\element\Submit;
 use umi\form\IForm;
@@ -79,6 +80,9 @@ class SurveyCollection extends CmsPageCollection implements IFormAware
 
         $captcha = $this->createFormEntity('captcha', ['type' => Captcha::TYPE_NAME, 'label' => 'Captcha']);
         $form->add($captcha);
+
+        $csrf = $this->createFormEntity('csrf', ['type' => CSRF::TYPE_NAME]);
+        $form->add($csrf);
 
         $submit = $this->createFormEntity('submit', ['type' => Submit::TYPE_NAME, 'label' => 'Vote']);
         $form->add($submit);

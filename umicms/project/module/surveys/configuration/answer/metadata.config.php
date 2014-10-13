@@ -23,9 +23,9 @@ return array_replace_recursive(
                 'columnName' => 'survey_id',
                 'target' => 'survey'
             ],
-            Answer::FIELD_COUNTER => [
+            Answer::FIELD_VOTES => [
                 'type' => IField::TYPE_COUNTER,
-                'columnName' => 'counter',
+                'columnName' => 'votes',
                 'defaultValue' => 0
             ]
         ],
@@ -34,7 +34,7 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\surveys\model\object\Answer',
                 'fields' => [
                     Answer::FIELD_SURVEY => [],
-                    Answer::FIELD_COUNTER => []
+                    Answer::FIELD_VOTES => []
                 ]
             ]
         ]

@@ -21,7 +21,7 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'counter' => [
+            'votes' => [
                 'type'    => Type::INTEGER,
                 'options' => [
                     'unsigned' => true,
