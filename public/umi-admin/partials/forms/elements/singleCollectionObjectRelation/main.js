@@ -41,30 +41,32 @@ define(['App'], function(UMI) {
                 var meta = self.get('model.meta');
                 var activeObjectGuid;
                 activeObjectGuid = Ember.get(meta, 'value');
+                var displayName = this.getCollectionPropertyLabel('displayName', self.get('collections'),
+                    self.get('store'));
 
                 return {
                     control: {
                         collectionName: selectedCollectionId,
                         meta: {
                             defaultFields: [
-                                "displayName"
+                                'displayName'
                             ],
                             activeObjectGuid: activeObjectGuid,
                             form: {
                                 elements: [
                                     {
-                                        type: "text",
-                                        tag: "input",
-                                        id: "displayName",
-                                        label: "Имя отображения",//TODO: localize
+                                        type: 'text',
+                                        tag: 'input',
+                                        id: 'displayName',
+                                        label: displayName,
                                         attributes: {
-                                            name: "displayName",
-                                            type: "text",
+                                            name: 'displayName',
+                                            type: 'text',
                                             value: null
                                         },
                                         valid: true,
                                         errors: [],
-                                        dataSource: "displayName",
+                                        dataSource: 'displayName',
                                         value: null,
                                         validators: [],
                                         filters: []
