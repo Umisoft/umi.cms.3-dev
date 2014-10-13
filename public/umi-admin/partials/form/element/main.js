@@ -9,14 +9,13 @@ define(
         'partials/form/element/image/main', 'partials/form/element/textarea/main',
         'partials/form/element/checkbox-group/main', 'partials/form/element/color/main',
         'partials/form/element/permissions/main', 'partials/form/element/objectRelationElement/main',
-        'partials/form/element/singleCollectionObjectRelation/main',
-        'partials/form/element/passwordWithConfirmation/main', 'partials/form/element/hidden/main',
+        'partials/form/element/singleCollectionObjectRelation/main', 'partials/form/element/hidden/main',
         'partials/form/element/fieldset/main', 'partials/form/element/submit/main'
     ],
     function(UMI, wysiwygElement, selectElement, multiSelectElement, checkboxElement, radioElement, textElement,
         numberElement, emailElement, passwordElement, timeElement, dateElement, datetimeElement, fileElement,
         imageElement, textareaElement, checkboxGroupElement, colorElement, permissions, objectRelationElement,
-        singleCollectionObjectRelation, passwordWithConfirmationElement, hiddenElement, fieldsetElement,
+        singleCollectionObjectRelation, hiddenElement, fieldsetElement,
         submitElement) {
         'use strict';
 
@@ -41,7 +40,6 @@ define(
             permissions();
             objectRelationElement();
             singleCollectionObjectRelation();
-            passwordWithConfirmationElement();
             hiddenElement();
             fieldsetElement();
             submitElement();
