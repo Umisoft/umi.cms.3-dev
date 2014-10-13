@@ -27,6 +27,8 @@ return [
         'role:blogExecutor:displayName' => 'Blog',
         'role:searchExecutor:displayName' => 'Search',
         'role:usersExecutor:displayName' => 'Users',
+        'role:surveysExecutor:displayName' => 'Surveys',
+
         'role:viewer:displayName' => 'View',
         'role:widgetExecutor:displayName' => 'View widget results via http',
         'role:topBarViewer:displayName' => 'View top bar',
@@ -46,6 +48,8 @@ return [
         'role:blogExecutor:displayName' => 'Блог',
         'role:searchExecutor:displayName' => 'Поиск',
         'role:usersExecutor:displayName' => 'Пользователи',
+        'role:surveysExecutor:displayName' => 'Опросы',
+
         'role:viewer:displayName' => 'Просмотр',
         'role:widgetExecutor:displayName' => 'Просмотр виджетов через http',
         'role:topBarViewer:displayName' => 'Просмотр верхней панели управления',
