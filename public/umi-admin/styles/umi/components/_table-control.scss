@@ -75,7 +75,7 @@ $table-control-row-bg-hover: #C8DEEE;
     position: relative;
 }
 
-.umi-table-control-column-resizer{
+.umi-table-control-column-resizer {
     position: absolute;
     right: 0;
     margin-right: -4px;
@@ -84,12 +84,17 @@ $table-control-row-bg-hover: #C8DEEE;
     height: 65px;
     top: 0;
     border: 0;
-    cursor: e-resize;
+    cursor: url($image-cursor-col-resize), col-resize;
     &:hover{
         background: #444444;
     }
     &.on-resize{
         background: #444444;
+    }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // hack for IE (not supports base64 and relative paths)
+    .umi-table-control-column-resizer {
+        cursor: col-resize;
     }
 }
 

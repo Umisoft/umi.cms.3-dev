@@ -49,7 +49,7 @@
     }
 }
 
-.umi-divider{
+.umi-divider {
     position: absolute;
     width: 4px;
     height: unquote("calc(100% + 1px)");
@@ -57,7 +57,11 @@
     right: 0;
     background: #E0E4E7;
     border-left: 1px solid #ADB9C5;
-    &:hover{
-        cursor: url($image-cursor-col-resize), col-resize;
+    cursor: url($image-cursor-col-resize), col-resize;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // hack for IE (not supports base64 and relative paths)
+    .umi-divider {
+        cursor: col-resize;
     }
 }
