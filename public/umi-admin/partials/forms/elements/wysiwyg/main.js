@@ -143,8 +143,12 @@ define(['App'], function(UMI) {
 
             willDestroyElement: function() {
                 var self = this;
+                var editor = self.get('ckeditor');
                 self.removeObserver('object.' + self.get('meta.dataSource'));
-                self.get('ckeditor').destroy();
+                if (typeof editor.commands.maximize !== 'undefined' && editor.commands.maximize.state === 1) {
+                    editor.execCommand('maximize');
+                }
+                editor.destroy();
             }
         });
     };
