@@ -278,14 +278,14 @@ return array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
       'guid' => '43a2efdc-1ceb-4d3d-848e-a610015071f8',
-      'displayName' => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Новости:ru-RU',
+      'displayName' => 'Супервайзер:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Новости:ru-RU',
+        1 => 'Супервайзер:ru-RU',
       ),
       'created' => 
       array (
@@ -315,14 +315,14 @@ return array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
       'guid' => '43fe24b0-c2d0-4c79-b986-b570fc1e0164',
-      'displayName' => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Бесплатно:ru-RU',
+      'displayName' => 'Супервайзер:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Бесплатно:ru-RU',
+        1 => 'Супервайзер:ru-RU',
       ),
       'created' => 
       array (
@@ -419,14 +419,14 @@ return array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
       'guid' => '84068da4-85dc-4031-8489-26fdd859f386',
-      'displayName' => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Популярное:ru-RU',
+      'displayName' => 'Супервайзер:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Ученые из ЕС создали возобновляемый керосин:Популярное:ru-RU',
+        1 => 'Супервайзер:ru-RU',
       ),
       'created' => 
       array (
@@ -523,14 +523,14 @@ return array (
       'collection' => 'newsItemSubject',
       'type' => 'base',
       'guid' => 'c631521d-0207-40bd-b983-948a66f2d800',
-      'displayName' => 'Супервайзер:Плавание:Спорт:ru-RU',
+      'displayName' => 'Супервайзер:Чукотка – Аляска 2014:Спорт:ru-RU',
     ),
     'data' => 
     array (
       'displayName#ru-RU' => 
       array (
         0 => 'string',
-        1 => 'Супервайзер:Плавание:Спорт:ru-RU',
+        1 => 'Супервайзер:Чукотка – Аляска 2014:Спорт:ru-RU',
       ),
       'created' => 
       array (

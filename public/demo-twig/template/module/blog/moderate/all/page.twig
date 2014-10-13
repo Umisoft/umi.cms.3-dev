@@ -8,7 +8,11 @@
             {{ page.publishTime.format('d.m.Y | H:i') }}
         </time>
         {% endif %}
-        {% if (page.author) %}{{ translate('Author') }}: <a href="{{ page.author.getPageUrl() }}">{{ page.author.displayName }}</a>{% endif %}
+
+        {% if page.author %}
+            {{ translate('Author') }}: <a href="{{ page.author.getPageUrl() }}">{{ page.author.displayName }}</a>
+        {% endif %}
+
     </p>
 
     {{ page.contents | raw }}

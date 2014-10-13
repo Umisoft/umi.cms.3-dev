@@ -110,11 +110,11 @@
 
                 <footer class="blog-footer">
 
-                    <xsl:apply-templates select="document('widget://structure.menu.custom?menuName=bottomMenu')/result" mode="bottomMenu"/>
+                    <xsl:apply-templates select="document('widget://structure.menu.custom?menuName=footer')/result" mode="bottomMenu"/>
 
                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="footer"/>
                     <p>
-                        <a href="#"><xsl:value-of select="document('translate://project.site/BackToTop')/result"/></a>
+                        <a href="{$anchor}"><xsl:value-of select="document('translate://project.site/BackToTop')/result"/></a>
                     </p>
                 </footer>
 

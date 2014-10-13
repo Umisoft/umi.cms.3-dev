@@ -10,11 +10,12 @@
 
 namespace umicms\templating\engine\php;
 
-use umi\hmvc\view\helper\IsAllowedHelper;
 use umi\templating\engine\php\IPhpExtension;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\hmvc\url\IUrlManager;
 use umicms\purifier\IPurifier;
+use umicms\templating\helper\AnchorHelper;
 
 /**
  * Расширение для подключения помощников вида в PHP-шаблонах.
@@ -25,10 +26,6 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $widgetFunctionName имя функции для вызова виджета
      */
     public $widgetFunctionName = 'widget';
-    /**
-     * @var string $isAllowedFunctionName имя функции для проверки прав
-     */
-    public $isAllowedFunctionName = 'isAllowed';
     /**
      * @var string $escapeHtmlFunctionName имя функции для экранирования html
      */
@@ -49,16 +46,15 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $purifyHtml имя функции для очистки контента от XSS
      */
     public $purifyHtmlFunctionName = 'purifyHtml';
+    /**
+     * @var string $anchorFunctionName имя функции для формирования якорной ссылки
+     */
+    public $anchorFunctionName = 'anchor';
 
     /**
      * @var IToolkit $toolkit набор инструментов
      */
     protected $toolkit;
-
-    /**
-     * @var IsAllowedHelper $isAllowedHelper
-     */
-    private $isAllowedHelper;
 
     /**
      * Конструктор.
@@ -84,27 +80,30 @@ class ViewPhpExtension implements IPhpExtension
     {
         return [
             $this->widgetFunctionName => $this->getWidgetHelper(),
-            $this->isAllowedFunctionName => $this->getIsAllowedHelper(),
             $this->escapeHtmlFunctionName => $this->getEscapeHtmlHelper(),
             $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
             $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
             $this->escapeUrlFunctionName => $this->getEscapeUrlHelper(),
-            $this->purifyHtmlFunctionName => $this->getPurifyHtml()
+            $this->purifyHtmlFunctionName => $this->getPurifyHtml(),
+            $this->anchorFunctionName => [$this->getAnchorHelper(), 'buildAnchorLink']
         ];
     }
 
     /**
-     * Возвращает помощник вида для проверки прав.
-     * @return callable
+     * Возвращает помощник для формирования якорных ссылок.
+     * @return AnchorHelper
      */
-    protected function getIsAllowedHelper()
+    protected function getAnchorHelper()
     {
-        if (!$this->isAllowedHelper) {
-            /** @var CmsDispatcher $dispatcher */
-            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-            $this->isAllowedHelper = new IsAllowedHelper($dispatcher);
+        static $helper;
+
+        if (!$helper) {
+            /** @var IUrlManager $urlManager */
+            $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+            $helper = new AnchorHelper($urlManager);
         }
-        return $this->isAllowedHelper;
+
+        return $helper;
     }
 
     /**

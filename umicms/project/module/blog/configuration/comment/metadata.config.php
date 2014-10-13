@@ -11,6 +11,7 @@
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BaseBlogComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -33,7 +34,6 @@ return array_replace_recursive(
                 'target' => 'blogPost',
                 'mutator' => 'setPost'
             ],
-
             BlogComment::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
@@ -45,8 +45,18 @@ return array_replace_recursive(
                 'columnName' => 'contents',
                 'mutator' => 'setContents',
                 'localizations' => [
-                    'ru-RU' => ['columnName' => 'contents'],
-                    'en-US' => ['columnName' => 'contents']
+                    'ru-RU' => [
+                        'columnName' => 'contents',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'columnName' => 'contents',
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
                 ]
             ],
             BlogComment::FIELD_CONTENTS_RAW => [
@@ -75,13 +85,13 @@ return array_replace_recursive(
                     BaseBlogComment::FIELD_POST => []
                 ]
             ],
-            BlogBranchComment::TYPE => [
+            BlogBranchComment::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogBranchComment',
                 'fields' => [
                     BlogBranchComment::FIELD_PUBLISH_TIME => []
                 ]
             ],
-            BlogComment::TYPE => [
+            BlogComment::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogComment',
                 'fields' => [
                     BlogComment::FIELD_AUTHOR => [],

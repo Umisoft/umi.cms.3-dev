@@ -91,7 +91,8 @@ define(['App', 'toolbar'], function(UMI) {
              */
             didInsertElement: function() {
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
-                var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
+                var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                var contentScroll = new IScroll(scrollContainer, iScrollConfiguration);
 
                 this.set('iScroll', contentScroll);
                 var self = this;
@@ -495,10 +496,14 @@ define(['App', 'toolbar'], function(UMI) {
                     });
                 } else {
                     this.get('item').on('needReloadHasMany', function(event, object) {
-                        if (event === 'add') {
-                            self.get('childrenList').pushObject(object);
+                        if (self.get('isExpanded')) {
+                            if (event === 'add') {
+                                self.get('childrenList').pushObject(object);
+                            } else {
+                                self.get('childrenList').removeObject(object);
+                            }
                         } else {
-                            self.get('childrenList').removeObject(object);
+                            self.toggleProperty('isExpanded');
                         }
                     });
                 }

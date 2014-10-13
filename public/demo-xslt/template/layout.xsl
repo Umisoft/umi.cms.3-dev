@@ -15,6 +15,8 @@
             doctype-system="about:legacy-compat"
             />
 
+    <xsl:variable name="anchor" select="concat(/layout/url, '/#')" />
+
     <xsl:include href="template://defaultTemplate" />
     <xsl:include href="template://common/common" />
     <xsl:include href="template://common/form" />

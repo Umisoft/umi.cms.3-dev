@@ -6,6 +6,12 @@ define(['App'],
         return function() {
 
             UMI.FormHelper = {
+                /**
+                 * Метод получает массив полей объекта, из метаданных формы
+                 * @param {Array} elements
+                 * @param {Array} ignoreTypes
+                 * @return {Array}
+                 */
                 getNestedProperties: function(elements, ignoreTypes) {
                     var propertyNames = [];
                     if (Ember.typeOf(elements) !== 'array') {
@@ -36,6 +42,11 @@ define(['App'],
                     return propertyNames;
                 },
 
+                /**
+                 * Метод получает список lazy полей объекта, из метаданных формы
+                 * @param {Array} elements
+                 * @return {Array}
+                 */
                 filterLazyProperties: function(elements) {
                     var lazyProperties = [];
 
@@ -60,6 +71,13 @@ define(['App'],
                     return lazyProperties;
                 },
 
+                /**
+                 * Метод заполняет метаданные формы, значением полей объекта
+                 * @method fillMeta
+                 * @param {Object} meta
+                 * @param {Object} object
+                 * @return {Object}
+                 */
                 fillMeta: function(meta, object) {
                     var _fillMeta = function(elements) {
                         var dataSource;

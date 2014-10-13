@@ -1,7 +1,14 @@
+{{ include('breadcrumbs.twig') }}
 {% if added %}
 <div class="alert alert-success">
     <p class="bg-success text-success">{{ translate('Post has been added.') }}</p>
-    <p class="bg-success text-success"><a href="{{ blogPost.getPageUrl() }}" class="alert-link">{{ translate('ReadMore') }}</a></p>
+    <p class="bg-success text-success">
+        {% if blogPost.author.getPageUrl() %}
+            <a href="{{ blogPost.getPageUrl() }}" class="alert-link">
+                {{ translate('ReadMore') }}
+            </a>
+        {% endif %}
+    </p>
 </div>
 {% else %}
 {{ include('form/form.twig', {'form' : form}) }}

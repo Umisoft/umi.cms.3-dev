@@ -14,7 +14,7 @@ define([], function() {
                 keyBindings: true,
                 interactiveScrollbars: true,
                 fadeScrollbars: true,
-                disableMouse: true
+                disableMouse: false
             },
 
             elFinder: {
@@ -57,10 +57,11 @@ define([], function() {
                 { name: 'document', groups: ['mode', 'document', 'doctools'] },
                 { name: 'others' },
                 '/',
-                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
                 { name: 'styles' },
-                { name: 'colors' }
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+                { name: 'colors' },
+                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] }
+
             ];
 
             config.removeButtons = 'Underline,Subscript,Superscript';

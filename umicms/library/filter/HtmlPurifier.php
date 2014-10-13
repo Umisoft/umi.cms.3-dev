@@ -14,6 +14,9 @@ use umi\filter\IFilter;
 use umicms\purifier\IPurifierAware;
 use umicms\purifier\TPurifierAware;
 
+/**
+ * Фильтр очищает контент от XSS.
+ */
 class HtmlPurifier implements IFilter, IPurifierAware
 {
     use TPurifierAware;

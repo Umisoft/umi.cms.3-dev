@@ -14,14 +14,14 @@ return [
         'en-US' => [
             'collection:blogAuthor:displayName' => 'Authors',
 
-            BlogAuthor::FIELD_PROFILE => 'Profile user',
+            BlogAuthor::FIELD_USER => 'User',
             'type:base:displayName' => 'Blog author'
         ],
 
         'ru-RU' => [
             'collection:blogAuthor:displayName' => 'Авторы',
 
-            BlogAuthor::FIELD_PROFILE => 'Профиль пользователя',
+            BlogAuthor::FIELD_USER => 'Пользователь',
             'type:base:displayName' => 'Автор блога'
         ]
     ];

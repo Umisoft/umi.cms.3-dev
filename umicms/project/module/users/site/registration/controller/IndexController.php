@@ -55,7 +55,7 @@ class IndexController extends BaseSitePageController
     protected function buildForm()
     {
         $type = $this->getRouteVar('type', RegisteredUser::TYPE_NAME);
-        $this->user = $this->module->user()->add($type);
+        $this->user = $this->module->getUserForRegistration($type);
 
         return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $type, $this->user);
     }
@@ -69,7 +69,7 @@ class IndexController extends BaseSitePageController
         $this->commit();
 
         if ($this->user->active) {
-            $this->module->setCurrentUser($this->user);
+            $this->module->setAuthenticatedUser($this->user);
         }
 
         $this->sendNotifications();

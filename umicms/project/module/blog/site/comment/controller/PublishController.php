@@ -19,6 +19,11 @@ use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Контроллер публикации комментария.
+ *
+ * Контроллер обрабатывает POST-запрос на публикацию комментария и не имеет шаблонизируемого ответа.
+ * В случае успешного выполнения операции контроллер производит редирект на URL, указанный в запросе, или на реферер.
+ * Если нет возможности выполнить редирект, контроллер возвращает простое текстовое сообщение об успехе.
+ * Если операцию выполнить не удалось, выбрасывается исключение.
  */
 class PublishController extends BaseCmsController
 {
@@ -43,7 +48,7 @@ class PublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE_NAME);
     }
 
     /**

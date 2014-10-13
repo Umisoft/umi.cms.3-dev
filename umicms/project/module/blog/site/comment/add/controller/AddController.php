@@ -59,13 +59,15 @@ class AddController extends BaseSitePageController
      */
     protected function buildForm()
     {
+        $type = $this->getRouteVar('type', BlogComment::TYPE_NAME);
+
         $parentCommentId = $this->getRouteVar('parent');
         $parentComment = $parentCommentId ? $this->module->comment()->getById($parentCommentId) : null;
 
         $post = $this->module->post()->getById($this->getPostVar('post'));
 
         $this->comment = $this->module->addComment(
-            BlogComment::TYPE,
+            $type,
             $post,
             $parentComment
         );
@@ -75,12 +77,12 @@ class AddController extends BaseSitePageController
         if ($this->isAllowed($this->comment, 'publish')) {
             $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_PUBLISHED);
         } else {
-            $$this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
+            $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
         return $this->module->comment()->getForm(
-            BlogComment::FORM_ADD_COMMENT,
-            BlogComment::TYPE,
+            $this->module->isAuthorRegistered() ? BlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_VISITOR_COMMENT,
+            $type,
             $this->comment
         );
     }

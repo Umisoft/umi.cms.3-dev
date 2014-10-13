@@ -76,6 +76,14 @@ $umi-dock-wrapper-height: rem-calc(48);
                 }
             }
         }
+
+        &.sorting,
+        &.sorting > li > a {
+            cursor: move;
+        }
+        &.sorting ul {
+            display: none;
+        }
     }
 
     .umi-dock-button{
@@ -116,7 +124,8 @@ $umi-dock-wrapper-height: rem-calc(48);
             }
         }
 
-        &:hover{
+        &:hover,
+        &-dragging {
             margin-top: -1px;
             border-top: 1px solid #6d7480;
             border-left: 1px solid transparent;
@@ -135,6 +144,26 @@ $umi-dock-wrapper-height: rem-calc(48);
             border-left: 1px solid #44474B;
             border-right: 1px solid #44474B;
             background-image: linear-gradient(#282e38, #101217);
+        }
+
+        &-dragging {
+            position: absolute;
+            z-index: 2;
+
+            &:after { // prevent mouseup event
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        &-empty {
+            width: 122px;
+            height: 100%;
+            display: inline-block;
         }
     }
     .f-dropdown{

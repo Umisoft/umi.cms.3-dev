@@ -13,17 +13,14 @@ use umi\orm\metadata\field\IField;
 use umi\orm\object\property\IProperty;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\IProjectSettingsAware;
-use umicms\project\TProjectSettingsAware;
+use umicms\project\module\structure\model\object\StructureElement;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsObjectSerializer extends BaseSerializer implements IProjectSettingsAware
+class CmsObjectSerializer extends BaseSerializer
 {
-    use TProjectSettingsAware;
-
     /**
      * Сериализует ICmsObject в JSON.
      * @param ICmsObject $object
@@ -57,10 +54,12 @@ class CmsObjectSerializer extends BaseSerializer implements IProjectSettingsAwar
                 'pageUrl' => $object->getPageUrl(),
                 'header' => $object->getHeader()
             ];
-            if ($this->getSiteDefaultPageGuid() === $object->guid) {
-                $properties['meta']['isDefault'] = true;
+
+            if ($object instanceof StructureElement) {
+                $properties['meta']['isDefault'] = $object->getIsDefault();
             }
         }
+
         $this->buildProperties($object, $properties);
 
         $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];

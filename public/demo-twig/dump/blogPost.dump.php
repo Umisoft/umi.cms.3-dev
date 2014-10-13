@@ -112,7 +112,7 @@ return array (
 
 <p>Первый выпуск, естественно, получился не совсем таким, как я его задумывал. С качеством не всё в порядке и... Короче говоря, первый блин комом :)</p>
 
-<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только!&nbsp;</p>
+<p>Надеюсь, потом будет интереснее, подписывайтесь! Здесь я буду рассказывать об интересных новинках и не только! </p>
 ',
       ),
       'contents#en-US' => 
@@ -357,17 +357,17 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Рок-музыка &nbsp;начала свое существование еще в далеких &nbsp;50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals. Музыка этих замечательных исполнителей стала олицетворением противоречивого диссонанса в настроении молодёжи, их постоянного конфликта с общепринятыми нормами морали и этики. Рок - это музыка протеста и любви. Рок многогранен и сложен. Вся глубина поэзии рока, в большинстве своем, остается непонятной толпе неформалов.</p>
+        1 => '<p>Рок-музыка  начала свое существование еще в далеких  50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals. Музыка этих замечательных исполнителей стала олицетворением противоречивого диссонанса в настроении молодёжи, их постоянного конфликта с общепринятыми нормами морали и этики. Рок - это музыка протеста и любви. Рок многогранен и сложен. Вся глубина поэзии рока, в большинстве своем, остается непонятной толпе неформалов.</p>
 
-<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и &laquo;прошлого&raquo; века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время? &nbsp;Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему?&nbsp;</p>
+<p>Можно очень долго изучать историю рок-музыки, постоянно слушая пластинки The Beatles, Pink Floyd и т.д., сравнивая тексты современности и «прошлого» века, но вряд ли это поможет достичь понимания - какой он, современный рок. Что конкретно изменилось за это время?  Прибавилось ли энергии, драйва, поэтической мощи? Или может всё осталось по-прежнему? </p>
 ',
       ),
       'contents#en-US' => 
       array (
         0 => 'string',
-        1 => '<p>The origins of rock music began in the distant 50s in America. The second major advance in the development of this trend occurred in the early sixties. The initiators were famous bands such as &laquo;The Rolling Stones&raquo;, &laquo;The Beatles&raquo;, &laquo;The Troggs&raquo;, &laquo;The Animals&raquo;. Rock music of these brilliant performers became the personification of the controversial dissonance in the mood of youth, of their constant conflict with the generally accepted standards of morality and ethics. Rock is the music of protest and love. Rock is multifaceted and complex. The whole depth of rock poetry, for the most part, remains unclear to a crowd of informals.</p>
+        1 => '<p>The origins of rock music began in the distant 50s in America. The second major advance in the development of this trend occurred in the early sixties. The initiators were famous bands such as «The Rolling Stones», «The Beatles», «The Troggs», «The Animals». Rock music of these brilliant performers became the personification of the controversial dissonance in the mood of youth, of their constant conflict with the generally accepted standards of morality and ethics. Rock is the music of protest and love. Rock is multifaceted and complex. The whole depth of rock poetry, for the most part, remains unclear to a crowd of informals.</p>
 
-<p>One can study the history of rock music for a long time, while all the time listening to records of Beatles, Pink Floyd, etc., comparing modern texts with those of the &quot;past&quot; century, but it is unlikely that it will help him achieve the understanding of what it modern rock. What exactly has changed in all that time? Is there more energy, drive, poetic power? Or maybe all this has remained at the same level?</p>
+<p>One can study the history of rock music for a long time, while all the time listening to records of Beatles, Pink Floyd, etc., comparing modern texts with those of the "past" century, but it is unlikely that it will help him achieve the understanding of what it modern rock. What exactly has changed in all that time? Is there more energy, drive, poetic power? Or maybe all this has remained at the same level?</p>
 ',
       ),
       'active#ru-RU' => 
@@ -388,7 +388,7 @@ return array (
       'announcement#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Рок-музыка начала свое существование еще в далеких &nbsp;50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals.</p>
+        1 => '<p>Рок-музыка начала свое существование еще в далеких  50-х в Америке. Второй вехой развития этого направления можно считать начало 60-ых. Инициаторами стали такие известные группы как The Rolling Stones, The Beatles, The Troggs, The Animals.</p>
 ',
       ),
       'announcement#en-US' => 
@@ -583,9 +583,9 @@ return array (
       'contents#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
+        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп  вы можете послушать у меня на страничке во “ВКонтакте”.</p>
 
-<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис &ldquo;Яндекс.Музыка&rdquo;, есть соцсеть MySpace, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - &laquo;Нашествие&raquo;, &laquo;Cubana&raquo;, &laquo;Чартова дюжина&raquo; и т.д. Я уверен, что рок будет жить всегда, и русский тоже!</p>
+<p>С приходом в нашу жизнь интернета музыку слушать и скачивать стало еще проще. В глобальной сети есть сервис “Яндекс.Музыка”, есть соцсеть MySpace, сообщества групп в популярных социальных сетях, кроме того есть специализированные социальные сети типа Last FM , онлайн-радио, подобные частные блоги. Кроме того, да вы и сами знаете, в России ежегодно проходят многочисленные фестивали - «Нашествие», «Cubana», «Чартова дюжина» и т.д. Я уверен, что рок будет жить всегда, и русский тоже!</p>
 ',
       ),
       'contents#en-US' => 
@@ -595,9 +595,9 @@ return array (
 
 <p>At the same time, foreign rock is also not deprived of my attention. You can also listen to favorite works of foreign rock bands that are dear to me.</p>
 
-<p>Russian rock has received broad support in the media. &quot;Radio Maximum&quot; and &quot;Nashe Radio&quot;, channel &quot;O2TV&rdquo;. I am very pleased that at &quot;Nashe Radio&quot;, rock remains the smain genre.</p>
+<p>Russian rock has received broad support in the media. "Radio Maximum" and "Nashe Radio", channel "O2TV”. I am very pleased that at "Nashe Radio", rock remains the smain genre.</p>
 
-<p>With the advent of the Internet in our lives, it became even easier to listen and to download music. There are many Internet radio stations in the global network, there is the service Яндекс.Музыка, many communities in social networks, in addition, there are specialized social networks, for example Last fm. Annually, there are many festivals - &quot;Invasion&quot;, &quot;Cubana&quot;, &quot;Baker&rsquo;s dozen&quot;, etc. Rock will live forever, and Russian rock too!</p>
+<p>With the advent of the Internet in our lives, it became even easier to listen and to download music. There are many Internet radio stations in the global network, there is the service Яндекс.Музыка, many communities in social networks, in addition, there are specialized social networks, for example Last fm. Annually, there are many festivals - "Invasion", "Cubana", "Baker’s dozen", etc. Rock will live forever, and Russian rock too!</p>
 ',
       ),
       'active#ru-RU' => 
@@ -618,7 +618,7 @@ return array (
       'announcement#ru-RU' => 
       array (
         0 => 'string',
-        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп &nbsp;вы можете послушать у меня на страничке во &ldquo;ВКонтакте&rdquo;.</p>
+        1 => '<p>Русский рок - это мое самое любимое направление в музыке. Даже сам не знаю, почему, видимо, он близок моему сердцу. В то же время и зарубежный рок не обделен моим вниманием. Если кому-то интересны мои музыкальные предпочтения, мои любимые композиции зарубежных рок-групп  вы можете послушать у меня на страничке во “ВКонтакте”.</p>
 ',
       ),
       'announcement#en-US' => 

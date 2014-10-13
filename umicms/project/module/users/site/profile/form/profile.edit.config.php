@@ -3,6 +3,7 @@
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
@@ -33,7 +34,10 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => RegisteredUser::FIELD_EMAIL,
             'options' => [
-                'dataSource' => RegisteredUser::FIELD_EMAIL
+                'dataSource' => RegisteredUser::FIELD_EMAIL,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ]
         ],
 
