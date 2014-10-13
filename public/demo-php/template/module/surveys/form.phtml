@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var umicms\project\module\surveys\model\object\Survey $survey
+ * @var umi\form\FormEntityView $form
+ * @var bool $voted
+ */
+?>
+
+<div class="sidebar-module sidebar-module-inset">
+
+    <p><?=$survey->getHeader()?></p>
+
+    <?php if ($voted) : ?>
+        <p><?= $this->translate("You have already voted") ?>.</p>
+    <?php else : ?>
+        <?= $this->render('form/form.phtml', ['form' => $form]) ?>
+    <?php endif; ?>
+
+</div>

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\surveys\site\survey\widget;
+namespace umicms\project\module\surveys\site\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -20,10 +20,6 @@ use umicms\project\module\surveys\model\SurveyModule;
  */
 class VoteFormWidget extends BaseFormWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'voteForm';
     /**
      * {@inheritdoc}
      */
@@ -71,6 +67,22 @@ class VoteFormWidget extends BaseFormWidget
         $form->setAction($this->getUrl('page', ['uri' => $this->survey->slug]));
 
         return $form;
+    }
+
+    /**
+     * Дополняет результат параметрами для шаблонизации.
+     *
+     * @templateParam umicms\project\module\surveys\model\object\Survey $survey опрос
+     * @templateParam bool $voted флаг, указывающий на то, голосовал ли текущий пользователь или нет
+     *
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [
+            'voted' => $this->module->checkIfVoted($this->survey),
+            'survey' => $this->survey,
+        ];
     }
 }
  

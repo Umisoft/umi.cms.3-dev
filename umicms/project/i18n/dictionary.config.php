@@ -139,6 +139,7 @@ return [
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
     'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+    'project.site.surveys' => '{#lazy:~/project/module/surveys/site/i18n/dictionary.config.php}',
 
     'collection' => [
 

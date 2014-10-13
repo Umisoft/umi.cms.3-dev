@@ -29,6 +29,11 @@ class SurveyModule extends BaseModule implements IHttpAware
     use THttpAware;
 
     /**
+     * @var Survey[] $voted список опросов, в которых текущий пользователь принял участие
+     */
+    private $voted = [];
+
+    /**
      * Возвращает коллекцию опросов.
      * @return SurveyCollection
      */
@@ -83,7 +88,7 @@ class SurveyModule extends BaseModule implements IHttpAware
      */
     public function checkIfVoted(Survey $survey)
     {
-        return $this->getHttpRequest()->cookies->has($survey->guid);
+        return $this->getHttpRequest()->cookies->has($survey->guid) || array_key_exists($survey->guid, $this->voted);
     }
 
     /**
@@ -93,6 +98,8 @@ class SurveyModule extends BaseModule implements IHttpAware
      */
     public function markAsVoted(Survey $survey, Response $response)
     {
+        $this->voted[$survey->guid] = $survey;
+
         $cookie = new Cookie(
             $survey->guid,
             true,

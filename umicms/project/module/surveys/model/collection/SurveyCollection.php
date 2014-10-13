@@ -46,7 +46,7 @@ class SurveyCollection extends CmsPageCollection implements IFormAware
         $form = $this->createForm([
                 'options' => [
                     'dictionaries' => [
-                        'collection.survey', 'collection', 'form'
+                        'collection.survey', 'project.site.surveys', 'collection', 'form'
                     ],
                 ],
                 'attributes' => [

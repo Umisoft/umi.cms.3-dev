@@ -11,21 +11,24 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
 
-return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\surveys\model\collection\SurveyCollection',
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
+    [
+        'type' => ICollectionFactory::TYPE_SIMPLE,
+        'class' => 'umicms\project\module\surveys\model\collection\SurveyCollection',
 
-    'handlers' => [
-        'admin' => 'surveys.survey',
-        'site' => 'surveys.survey'
-    ],
-    'forms' => [
-        'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/surveys/configuration/survey/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/surveys/configuration/survey/form/base.create.config.php}'
+        'handlers' => [
+            'admin' => 'surveys.survey',
+            'site' => 'surveys'
+        ],
+        'forms' => [
+            'base' => [
+                ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/surveys/configuration/survey/form/base.edit.config.php}',
+                ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/surveys/configuration/survey/form/base.create.config.php}'
+            ]
+        ],
+        'dictionaries' => [
+            'collection.survey' =>'collection.survey', 'collection' => 'collection'
         ]
-    ],
-    'dictionaries' => [
-        'collection.survey' =>'collection.survey', 'collection' => 'collection'
     ]
-];
+);

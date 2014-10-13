@@ -2,17 +2,22 @@
 
 namespace umicms\project\module\surveys\site;
 
-use umicms\hmvc\component\site\SiteGroupComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'survey',
 
-    SiteGroupComponent::OPTION_COMPONENTS => [
-        'survey' => '{#lazy:~/project/module/surveys/site/survey/component.config.php}'
+    SitePageComponent::OPTION_CONTROLLERS => [
+        'page' => __NAMESPACE__ . '\controller\PageController'
     ],
 
-    SiteGroupComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_WIDGET => [
+        'voteForm' => __NAMESPACE__ . '\widget\VoteFormWidget',
+    ],
+
+    SitePageComponent::OPTION_VIEW        => [
         'directories' => ['module/surveys']
-    ]
+    ],
 ];

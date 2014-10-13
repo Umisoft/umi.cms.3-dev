@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\surveys\site\survey\controller;
+namespace umicms\project\module\surveys\site\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
