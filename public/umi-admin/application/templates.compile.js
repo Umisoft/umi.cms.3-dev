@@ -2357,9 +2357,8 @@ function program7(depth0,data) {
   var buffer = '', stack1;
   data.buffer.push(" <a ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "sendActionForBehaviour", "behaviour", {hash:{
-    'target': ("view.parentView"),
-    'on': ("mouseUp")
-  },hashTypes:{'target': "STRING",'on': "STRING"},hashContexts:{'target': depth0,'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+    'target': ("view.parentView")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
   data.buffer.push("> <i ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': (":icon view.icon")
@@ -2374,9 +2373,8 @@ function program7(depth0,data) {
   data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleDefaultBehaviour", "view._parentView.contentIndex", {hash:{
     'target': ("view.parentView"),
-    'on': ("mouseUp"),
     'bubbles': (false)
-  },hashTypes:{'target': "STRING",'on': "STRING",'bubbles': "BOOLEAN"},hashContexts:{'target': depth0,'on': depth0,'bubbles': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  },hashTypes:{'target': "STRING",'bubbles': "BOOLEAN"},hashContexts:{'target': depth0,'bubbles': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
   data.buffer.push("></i> </a> ");
   return buffer;
   }
@@ -2519,9 +2517,8 @@ function program1(depth0,data) {
   var buffer = '', stack1;
   data.buffer.push(" <span ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "expanded", {hash:{
-    'on': ("mouseDown"),
     'target': ("view")
-  },hashTypes:{'on': "STRING",'target': "STRING"},hashContexts:{'on': depth0,'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': (":umi-expand")
