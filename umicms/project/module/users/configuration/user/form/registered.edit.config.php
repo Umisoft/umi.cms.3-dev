@@ -10,7 +10,6 @@
 
 use umi\form\element\html5\DateTime;
 use umi\form\element\MultiSelect;
-use umi\form\element\Password;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -41,13 +40,6 @@ return [
                     'label' => RegisteredUser::FIELD_LOGIN,
                     'options' => [
                         'dataSource' => RegisteredUser::FIELD_LOGIN
-                    ],
-                ],
-                RegisteredUser::FIELD_PASSWORD => [
-                    'type' => Password::TYPE_NAME,
-                    'label' => RegisteredUser::FIELD_PASSWORD,
-                    'options' => [
-                        'dataSource' => RegisteredUser::FIELD_PASSWORD
                     ],
                 ],
                 RegisteredUser::FIELD_EMAIL => [
