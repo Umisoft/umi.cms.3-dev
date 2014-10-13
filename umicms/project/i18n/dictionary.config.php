@@ -218,6 +218,7 @@ return [
             'meta' => 'Meta',
             'importSetting' => 'Import setting',
             'contents' => 'Contents',
+            'Captcha' => 'Captcha',
 
             'Save' => 'Save',
             'Add' => 'Add',
@@ -229,6 +230,7 @@ return [
             'meta' => 'Мета-информация',
             'importSetting' => 'Настройки импорта',
             'contents' => 'Контент',
+            'Captcha' => 'Введите код с картинки',
 
             'Save' => 'Сохранить',
             'Add' => 'Добавить',

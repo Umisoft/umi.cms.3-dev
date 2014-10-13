@@ -18,6 +18,7 @@ use umi\form\IFormAware;
 use umi\form\TFormAware;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umicms\form\element\Captcha;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\surveys\model\object\Answer;
@@ -75,6 +76,10 @@ class SurveyCollection extends CmsPageCollection implements IFormAware
         );
 
         $form->add($answersElement);
+
+        $captcha = $this->createFormEntity('captcha', ['type' => Captcha::TYPE_NAME, 'label' => 'Captcha']);
+        $form->add($captcha);
+
         $submit = $this->createFormEntity('submit', ['type' => Submit::TYPE_NAME, 'label' => 'Vote']);
         $form->add($submit);
 
