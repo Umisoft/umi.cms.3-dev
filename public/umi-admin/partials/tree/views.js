@@ -488,10 +488,15 @@ define(['App', 'toolbar'], function(UMI) {
 
                 if (model.get('id') === 'root') {
                     self.get('controller.controllers.component').on('needReloadRootElements', function(event, object) {
+                        var childrenList = self.get('childrenList');
+
+                        if (!childrenList) {
+                            self.set('childrenList', []);
+                        }
                         if (event === 'add') {
-                            self.get('childrenList').pushObject(object);
+                            childrenList.pushObject(object);
                         } else if (event === 'remove') {
-                            self.get('childrenList').removeObject(object);
+                            childrenList.removeObject(object);
                         }
                     });
                 } else {
