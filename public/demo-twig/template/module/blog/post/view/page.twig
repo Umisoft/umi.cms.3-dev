@@ -17,6 +17,6 @@
 
 <h1>{{ translate('Comments') }} ({{ page.commentsCount }}):</h1>
 
-{{ widget('blog.comment.list', {'blogPost' : page, 'template' : 'list'}) }}
+{{ widget('blog.comment.tree', {'blogPost' : page, 'template' : 'tree'}) }}
 
 {{ widget('blog.comment.add.addForm', {'blogPost' : page, 'template' : 'addComment'}) }}

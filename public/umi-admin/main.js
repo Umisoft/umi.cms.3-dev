@@ -36,7 +36,7 @@ require.config({
         {name: 'divider', location: 'partials/divider'},
         {name: 'dock', location: 'partials/dock'},
         {name: 'fileManager', location: 'partials/fileManager'},
-        {name: 'forms', location: 'partials/forms'},
+        {name: 'form', location: 'partials/form'},
         {name: 'notification', location: 'partials/notification'},
         {name: 'popup', location: 'partials/popup'},
         {name: 'search', location: 'partials/search'},
