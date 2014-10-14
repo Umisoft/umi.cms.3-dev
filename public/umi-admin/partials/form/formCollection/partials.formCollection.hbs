@@ -1,0 +1,29 @@
+{{#if control.toolbar}}
+    <div class="s-full-height-before">
+        {{view 'toolbar' toolbar=control.toolbar}}
+    </div>
+{{/if}}
+
+<div class="s-full-height">
+    {{#if view.hasFieldset}}
+        {{#view "magellan" elements=view.fieldsetElements}}
+            {{#each formElement in view.elements}}
+                {{#view view.buttonView model=formElement}}
+                    {{formElement.label}}
+                {{/view}}
+            {{/each}}
+        {{/view}}
+    {{/if}}
+
+    <div class="row s-full-height collapse">
+        <div class="columns small-12 magellan-content">
+            {{#each formElement in formElements}}
+                {{view view.elementView metaBinding="formElement" objectBinding="controller.object"}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{#if control.submitToolbar}}
+    {{view 'submitToolbar' elements=control.submitToolbar}}
+{{/if}}
