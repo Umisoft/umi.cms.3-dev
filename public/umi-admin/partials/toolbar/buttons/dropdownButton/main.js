@@ -222,7 +222,15 @@ define(['App', 'moment'], function(UMI, moment) {
                         $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
                             if (isFirstLoad) {
                                 isFirstLoad = false;
-                                self.set('backupList', self.getBackupList());
+                                var promise = self.getBackupList();
+                                self.set('backupList', promise);
+                                promise.addObserver('isLoaded', function() {
+                                    if (Ember.get(promise, 'isLoaded')) {
+                                        Ember.run.next(this, function() {
+                                            $el.children('.button').foundation('dropdown', 'init');
+                                        });
+                                    }
+                                });
                             }
                         });
                     }
