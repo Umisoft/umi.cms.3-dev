@@ -1,4 +1,4 @@
-define(['App'], function(UMI) {
+define(['App', './slugCollectionElement'], function(UMI, slugCollectionElement) {
     'use strict';
 
     return function() {
@@ -42,5 +42,7 @@ define(['App'], function(UMI) {
                 return Ember.Handlebars.compile(template);
             }.property()
         });
+
+        slugCollectionElement();
     };
 });

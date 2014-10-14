@@ -31,6 +31,14 @@ define(
                     });
                 }.property(),
 
+                elementFactoryForDataSource: function() {
+                    return UMI.FormElementFactory.create({
+                        container: this.container,
+
+                        slug: 'FormSlugCollectionElement'
+                    });
+                }.property(),
+
                 /**
                  * view элемента формы
                  * @property elementView
@@ -38,10 +46,23 @@ define(
                 elementView: function() {
                     var self = this;
                     var elementFactory = self.get('elementFactory');
+                    var elementFactoryForDataSource = self.get('elementFactoryForDataSource');
+
                     return Ember.View.extend({
                         init: function() {
-                            var type = this.get('meta.type');
-                            var elementMixin = elementFactory.elementMixinForType(type) || {};
+                            var meta = this.get('meta');
+                            var type = Ember.get(meta, 'type');
+                            var dataSource = Ember.get(meta, 'dataSource');
+                            var elementMixin;
+
+                            if (dataSource) {
+                                elementMixin = elementFactoryForDataSource.elementMixinForType(dataSource, true);
+                            }
+
+                            if (!elementMixin) {
+                                elementMixin = elementFactory.elementMixinForType(type) || {};
+                            }
+
                             if (type !== 'fieldset') {
                                 this.reopen(elementMixin, UMI.FormCollectionElementValidateMixin);
                             } else {

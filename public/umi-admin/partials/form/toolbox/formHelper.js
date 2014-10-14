@@ -78,6 +78,26 @@ define(
 
                     _fillMeta(elements);
                     return meta;
+                },
+
+                getSlug: function(displayName) {
+                    if (Ember.typeOf(displayName) !== 'string') {
+                        Ember.warn('Wrong argument type. Expected array.');
+                        displayName = '';
+                    }
+
+                    var slug;
+                    var slugFilter = function(string) {
+                        return Ember.String.dasherize(string);
+                    };
+
+                    var translateString = function(string) {
+                        return string;
+                    };
+
+                    slug = slugFilter(displayName);
+                    slug = translateString(slug);
+                    return slug;
                 }
             };
         };

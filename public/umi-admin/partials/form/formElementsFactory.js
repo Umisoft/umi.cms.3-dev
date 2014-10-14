@@ -5,7 +5,7 @@ define(
 
         return function() {
             UMI.FormElementFactory = Ember.Object.extend({
-                elementMixinForType: function(type) {
+                elementMixinForType: function(type, isSilence) {
                     var elementMixinName = this.get(type);
 
                     if (elementMixinName) {
@@ -14,7 +14,7 @@ define(
                         if (elementMixin) {
                             return elementMixin;
                         }
-                    } else {
+                    } else if (!isSilence) {
                         Ember.warn('Mixin for element with type "' + type + '" not registered');
                     }
                 },
