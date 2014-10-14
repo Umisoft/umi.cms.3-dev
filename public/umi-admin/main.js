@@ -12,7 +12,7 @@ require.config({
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment: 'vendor/momentjs/min/moment-with-langs',
         FastClick: 'vendor/fastclick/lib/fastclick',
-        iscroll: 'library/iScroll/iscroll-probe-5.1.1',
+        iscroll: 'vendor/iscroll/build/iscroll-probe',
         ckEditor: 'library/ckeditor/ckeditor',
         elFinder: 'library/elFinder/elFinder',
         Foundation: 'library/foundation/foundation'
