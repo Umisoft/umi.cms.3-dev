@@ -280,16 +280,6 @@ define(['App', 'moment'], function(UMI, moment) {
                         return object;
                     }.property('controller.object'),
 
-                    fieldView: function() {
-                        return UMI.FieldBaseView.extend({
-                            actions: {
-                                submit: function() {
-                                    this.get('parentView').send('submit', this.$());
-                                }
-                            }
-                        });
-                    }.property('object'),
-
                     actions: {
                         submit: function(handler) {
                             var self = this;
@@ -341,6 +331,22 @@ define(['App', 'moment'], function(UMI, moment) {
                                 }
                             });
                         }
+                    },
+
+                    init: function() {
+                        this.reopen(UMI.FormElementsMixin, {
+                            elementView: function() {
+                                var elementView = this._super();
+                                elementView.reopen({
+                                    init: function() {
+                                        this._super();
+                                        this.set('classNames', ['columns', 'large-12']);
+                                    }
+                                });
+                                return elementView;
+                            }.property('object')
+                        });
+                        this._super();
                     },
 
                     didInsertElement: function() {
