@@ -53,10 +53,9 @@ class SelectorSerializer extends BaseSerializer
             foreach ($selector->getWithInfo() as $fieldPath => $fieldInfo) {
 
                 $fieldParts = explode(Selector::FIELD_SEPARATOR, $fieldPath);
-                list($field, $selectiveFields) = $fieldInfo;
 
-                if ($fields && !array_key_exists($field->getName(), $fields)) {
-                    $fields[$field->getName()] = $fields;
+                if ($fields && !array_key_exists($fieldParts[0], $fields)) {
+                    $fields[$fieldParts[0]] = $selector->getCollection()->getMetadata()->getField($fieldParts[0]);
                     $this->collections[$mainCollectionName][$object->getId()] = [$object, $fields];
                 }
 
@@ -65,16 +64,20 @@ class SelectorSerializer extends BaseSerializer
                  */
                 $withObject = $object;
                 for ($i = 0; $i < count($fieldParts); $i++) {
+
                     $withObject = $withObject->getValue($fieldParts[$i]);
                     if (is_null($withObject)) break;
 
-                    if ($withObject && $i < count($fieldParts)- 1) {
-                        $this->storeRelatedObject($withObject, $withObject->getCollection()->getForcedFieldsToLoad());
+                    if ($i < count($fieldParts) - 1) {
+                        $fieldsToSerialize = $withObject->getCollection()->getForcedFieldsToLoad();
+                        if (!array_key_exists($fieldParts[$i + 1], $fieldsToSerialize)) {
+                            $fieldsToSerialize[$fieldParts[$i + 1]] =
+                                $withObject->getCollection()->getMetadata()->getField($fieldParts[$i + 1]);
+                        }
+                        $this->storeRelatedObject($withObject, $fieldsToSerialize);
+                    } else {
+                        $this->storeRelatedObject($withObject, $fieldInfo[1]);
                     }
-                }
-
-                if ($withObject) {
-                    $this->storeRelatedObject($withObject, $selectiveFields);
                 }
             }
         }
