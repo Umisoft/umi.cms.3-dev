@@ -106,21 +106,15 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             );
         }
 
-        $locale = $this->getPostVar('locale');
-        if ($locale) {
-            $this->getLocalesService()->setCurrentLocale($locale);
+        $localeId = $this->getPostVar('locale');
+        if ($localeId) {
+            $this->getLocalesService()->setCurrentLocale($localeId);
         }
 
         $response = $this->createViewResponse('auth', $this->getAuthUserInfo());
 
-        if ($locale) {
-            $this->getLocalesService()->setCurrentLocale($locale);
-            $cookie = new Cookie(
-                AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
-                $locale,
-                new \DateTime('+5 year')
-            );
-            $response->headers->setCookie($cookie);
+        if ($localeId) {
+            $this->setLocaleCookie($response, $localeId);
         }
 
         return $response;
@@ -275,6 +269,23 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     }
 
     /**
+     * Изменяет текущую локаль административного интерфейса
+     * @return Response
+     */
+    protected function actionChangeLocale()
+    {
+        $localeId = $this->getPostVar('locale');
+        $response = $this->createResponse('', Response::HTTP_NO_CONTENT);
+
+        if ($localeId) {
+            $this->getLocalesService()->setCurrentLocale($localeId);
+            $this->setLocaleCookie($response, $localeId);
+        }
+
+        return $response;
+    }
+
+    /**
      * Возвращает сервис для работы с локалями
      * @throws RequiredDependencyException если сервис не был внедрен
      * @return CmsLocalesService
@@ -312,6 +323,22 @@ class ActionController extends BaseController implements ILocalesAware, ISession
         }
 
         return $token;
+    }
+
+    /**
+     * Выставляет куки с текущей локалью административной панели
+     * @param Response $response ответ
+     * @param string $localeId идентификатор локали
+     */
+    private function setLocaleCookie(Response $response, $localeId)
+    {
+        $this->getLocalesService()->setCurrentLocale($localeId);
+        $cookie = new Cookie(
+            AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
+            $localeId,
+            new \DateTime('+5 year')
+        );
+        $response->headers->setCookie($cookie);
     }
 
 
