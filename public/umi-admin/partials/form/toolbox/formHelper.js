@@ -86,17 +86,7 @@ define(
                         displayName = '';
                     }
 
-                    var slug;
-                    var slugFilter = function(string) {
-                        return Ember.String.dasherize(string);
-                    };
-
-                    var translateString = function(string) {
-                        return string;
-                    };
-
-                    slug = slugFilter(displayName);
-                    slug = translateString(slug);
+                    var slug = window.URLify(displayName);
                     return slug;
                 }
             };

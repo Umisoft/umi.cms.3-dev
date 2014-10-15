@@ -15,7 +15,8 @@ require.config({
         iscroll: 'library/iScroll/iscroll-probe-5.1.1',
         ckEditor: 'library/ckeditor/ckeditor',
         elFinder: 'library/elFinder/elFinder',
-        Foundation: 'library/foundation/foundation'
+        Foundation: 'library/foundation/foundation',
+        urlify: 'vendor/urlify/urlify'
     },
 
     shim: {
