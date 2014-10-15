@@ -168,7 +168,8 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function actionForm()
     {
-        $adminLocales = $this->getLocalesService()->getAdminLocales();
+        $localeService = $this->getLocalesService();
+        $adminLocales = $localeService->getAdminLocales();
         $locales = [];
         foreach ($adminLocales as $adminLocale) {
             $locales[$adminLocale->getId()] = $adminLocale->getId();
@@ -176,7 +177,9 @@ class ActionController extends BaseController implements ILocalesAware, ISession
 
         if ($localeId = $this->getQueryVar('locale')) {
             if (array_key_exists($localeId, $locales)) {
-                $this->getLocalesService()->setCurrentLocale($localeId);
+                $localeService->setCurrentLocale($localeId);
+            } else {
+                $localeService->setCurrentLocale($localeService->getDefaultAdminLocaleId());
             }
         }
 
