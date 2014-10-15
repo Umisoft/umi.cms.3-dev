@@ -244,6 +244,37 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     }
 
     /**
+     * Возращает список локалей административного интерфейса.
+     * @return array
+     */
+    protected function actionLocales()
+    {
+        $localesService = $this->getLocalesService();
+
+        $result = [];
+        foreach ($localesService->getAdminLocales() as $locale) {
+
+            $localeId = $locale->getId();
+            $localeInfo = [
+                'id' => $localeId,
+                'label' => $this->translate($localeId)
+            ];
+
+            if ($localeId === $localesService->getDefaultAdminLocaleId()) {
+                $localeInfo['default'] = true;
+            }
+
+            if ($localeId === $localesService->getCurrentLocale()) {
+                $localeInfo['current'] = true;
+            }
+
+            $result[] = $localeInfo;
+        }
+
+        return $result;
+    }
+
+    /**
      * Возвращает сервис для работы с локалями
      * @throws RequiredDependencyException если сервис не был внедрен
      * @return CmsLocalesService
