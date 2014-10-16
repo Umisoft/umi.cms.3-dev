@@ -8,6 +8,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
@@ -24,13 +25,19 @@ return array_replace_recursive(
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_name',
                 'defaultValue' => 'structure',
-                'readOnly'   => true
+                'readOnly'   => true,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
             StructureElement::FIELD_COMPONENT_PATH     => [
                 'type'       => IField::TYPE_STRING,
                 'columnName' => 'component_path',
                 'defaultValue' => 'structure',
-                'readOnly'   => true
+                'readOnly'   => true,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
             SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [
                 'type'         => IField::TYPE_BOOL,

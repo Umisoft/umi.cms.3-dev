@@ -8,8 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Permissions;
 use umicms\project\module\users\model\object\UserGroup;
 
@@ -31,7 +33,14 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => UserGroup::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => UserGroup::FIELD_DISPLAY_NAME
+                        'dataSource' => UserGroup::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ]
                 ]
             ]

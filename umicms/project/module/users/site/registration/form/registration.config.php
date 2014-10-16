@@ -55,6 +55,7 @@ return [
                 'dataSource' => RegisteredUser::FIELD_EMAIL,
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => [],
+                    IValidatorFactory::TYPE_EMAIL    => [],
                 ]
             ]
         ],

@@ -8,10 +8,12 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogComment;
 
@@ -32,7 +34,14 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => BlogComment::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => BlogComment::FIELD_DISPLAY_NAME
+                        'dataSource' => BlogComment::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ]
             ]
@@ -46,7 +55,13 @@ return [
                     'label' => BlogComment::FIELD_POST,
                     'options' => [
                         'lazy' => true,
-                        'dataSource' => BlogComment::FIELD_POST
+                        'dataSource' => BlogComment::FIELD_POST,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                    ],
+                    'attributes' => [
+                        'disabled' => 'disabled'
                     ]
                 ],
                 BlogComment::FIELD_AUTHOR => [
@@ -54,7 +69,10 @@ return [
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
                         'lazy' => true,
-                        'dataSource' => BlogComment::FIELD_AUTHOR
+                        'dataSource' => BlogComment::FIELD_AUTHOR,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
                     ],
                     'attributes' => [
                         'disabled' => 'disabled'
@@ -72,7 +90,10 @@ return [
                     'label' => BlogComment::FIELD_STATUS,
                     'options' => [
                         'lazy' => true,
-                        'dataSource' => BlogComment::FIELD_STATUS
+                        'dataSource' => BlogComment::FIELD_STATUS,
+                        'validators'    => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
                     ],
                 ],
                 BlogComment::FIELD_CONTENTS => [

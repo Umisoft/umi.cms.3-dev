@@ -8,8 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\users\model\object\Guest;
 
 return [
@@ -30,7 +32,14 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => Guest::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => Guest::FIELD_DISPLAY_NAME
+                        'dataSource' => Guest::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ]
             ]

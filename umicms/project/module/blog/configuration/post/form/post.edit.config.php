@@ -12,6 +12,7 @@ use umi\form\element\html5\DateTime;
 use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -48,7 +49,10 @@ return array_replace_recursive(
                         'label' => BlogPost::FIELD_AUTHOR,
                         'options' => [
                             'lazy' => true,
-                            'dataSource' => BlogPost::FIELD_AUTHOR
+                            'dataSource' => BlogPost::FIELD_AUTHOR,
+                            'validators' => [
+                                IValidatorFactory::TYPE_REQUIRED => []
+                            ]
                         ],
                         'attributes' => [
                             'disabled' => 'disabled'
@@ -66,7 +70,10 @@ return array_replace_recursive(
                         'label' => BlogPost::FIELD_STATUS,
                         'options' => [
                             'lazy' => true,
-                            'dataSource' => BlogPost::FIELD_STATUS
+                            'dataSource' => BlogPost::FIELD_STATUS,
+                            'validators'    => [
+                                IValidatorFactory::TYPE_REQUIRED => []
+                            ],
                         ]
                     ],
                     BlogPost::FIELD_ANNOUNCEMENT => [
