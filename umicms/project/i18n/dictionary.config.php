@@ -216,6 +216,8 @@ return [
             'Add' => 'Add',
             'Change' => 'Change',
             'Send request' => 'Send request',
+            'Captcha' => 'Captcha',
+
         ],
         'ru-RU' => [
             'common' => 'Общее',
@@ -227,6 +229,7 @@ return [
             'Add' => 'Добавить',
             'Change' => 'Изменить',
             'Send request' => 'Отправить запрос',
+            'Captcha' => 'Введите код с картинки',
         ]
     ],
 
