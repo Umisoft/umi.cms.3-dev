@@ -14,6 +14,7 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umi\validation\IValidatorFactory;
+use umicms\form\element\Captcha;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -100,6 +101,10 @@ return [
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
             ]
+        ],
+        'captcha' => [
+            'label' => 'Captcha',
+            'type' => Captcha::TYPE_NAME
         ],
         'submit' => [
             'type' => Submit::TYPE_NAME,
