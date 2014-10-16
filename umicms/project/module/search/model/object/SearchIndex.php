@@ -53,28 +53,4 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
             ->getCollection($this->refCollectionName)
             ->get($this->refGuid);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function fillProperties()
-    {
-        $this->generateDisplayName($this->getCurrentDataLocale());
-    }
-
-    /**
-     * Генерирует отображаемое имя, если оно не было установлено.
-     * @param string|null $localeId
-     * @return bool
-     */
-    protected function generateDisplayName($localeId = null)
-    {
-        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
-            $value = 'Index for ' . $this->refCollectionName . '#' . $this->refGuid;
-            if ($localeId) {
-                $value .= '_' . $localeId;
-            }
-            $this->setValue(self::FIELD_DISPLAY_NAME, $value, $localeId);
-        }
-    }
 }
