@@ -20,7 +20,7 @@ define(['App'], function(UMI) {
                 var object = this.get('object');
                 var displayName = object.get('displayName');
 
-                if (!this.get('isFillByUser')) {
+                if (!this.get('isFillByUser') && object.get('currentState.stateName') !== 'root.loaded.saved') {
                     object.set('slug', UMI.FormHelper.getSlug(displayName));
                 }
             }.observes('object.displayName')
