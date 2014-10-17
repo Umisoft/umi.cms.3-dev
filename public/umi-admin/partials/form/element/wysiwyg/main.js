@@ -8,55 +8,75 @@ define(['App'], function(UMI) {
             var tabCount = dialogDefinition.contents.length;
             var dialogName = event.data.name;
 
-            var popupParams = {
-                viewParams: {
-                    popupType: 'fileManager',
-                    title: UMI.i18n.getTranslate('Select file')
-                },
-                templateParams: {
-                    fileSelect: function(fileInfo) {
-                        var self = this;
-                        var image = Ember.get(fileInfo, 'url') || '';
-                        var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
-                        var pattern = new RegExp('^' + baseUrl, 'g');
+            if (dialogName === 'link') {
+                var popupParams = {
+                    viewParams: {
+                        popupType: 'fileManager',
+                        title: UMI.i18n.getTranslate('Select file')
+                    },
+                    templateParams: {
+                        fileSelect: function(fileInfo) {
+                            var self = this;
+                            var image = Ember.get(fileInfo, 'url') || '';
+                            var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
+                            var pattern = new RegExp('^' + baseUrl, 'g');
 
-                        window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, image.replace(pattern, ''));
-                        self.get('controller').send('closePopup');
-                    }
-                }
-            };
-            var browseButton;
-
-            var showFileManager = function() {
-                editor._.filebrowserSe = this;
-                var $dialog = $('.cke_dialog');
-                $dialog.addClass('s-blur');
-                var $dialogCover = $('.cke_dialog_background_cover');
-                $dialogCover.addClass('hide');
-
-                var showDialogCK = function() {
-                    $dialog.removeClass('s-blur');
-                    $dialogCover.removeClass('hide');
-                };
-                popupParams.viewParams.beforeClose = showDialogCK;
-                UMI.__container__.lookup('route:application').send('showPopup', popupParams);
-            };
-
-            for (var i = 0; i < tabCount; i++) {
-                browseButton = dialogDefinition.contents[i];
-                if (browseButton) {
-                    browseButton = browseButton.get('browse');
-
-                    if (browseButton !== null) {
-                        browseButton.label = UMI.i18n.getTranslate('File manager');
-
-                        if (i === 0) {
-                            browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                            window.CKEDITOR.tools.callFunction(editor._.filebrowserFn, image.replace(pattern, ''));
+                            self.get('controller').send('closePopup');
                         }
-                        browseButton.hidden = false;
-                        browseButton.onClick = showFileManager;
+                    }
+                };
+                var browseButton;
+
+                var showFileManager = function() {
+                    editor._.filebrowserSe = this;
+                    var $dialog = $('.cke_dialog');
+                    $dialog.addClass('s-blur');
+                    var $dialogCover = $('.cke_dialog_background_cover');
+                    $dialogCover.addClass('hide');
+
+                    var showDialogCK = function() {
+                        $dialog.removeClass('s-blur');
+                        $dialogCover.removeClass('hide');
+                    };
+                    popupParams.viewParams.beforeClose = showDialogCK;
+                    UMI.__container__.lookup('route:application').send('showPopup', popupParams);
+
+                    //$dialog.find('.cke_dialog_ui_input_select').val('');
+                };
+
+                for (var i = 0; i < tabCount; i++) {
+                    browseButton = dialogDefinition.contents[i];
+                    if (browseButton) {
+                        browseButton = browseButton.get('browse');
+
+                        if (browseButton !== null) {
+                            browseButton.label = UMI.i18n.getTranslate('File manager');
+
+                            if (i === 0) {
+                                browseButton.style = 'display: inline-block; margin-top: 15px; margin-left: auto; margin-right: auto;';
+                            }
+                            browseButton.hidden = false;
+                            browseButton.onClick = showFileManager;
+                        }
                     }
                 }
+
+                var infoTab = dialogDefinition.getContents('info');
+                var protocol = infoTab.get('protocol');
+                protocol.items.splice(0, 4);
+                var linkUrlField = infoTab.get('url');
+                linkUrlField.onKeyUp = function() {};
+                linkUrlField.setup = function(data) {
+                    this.allowOnChange = false;
+                    if (data.url) {
+                        this.setValue((typeof data.url.protocol === 'string' ? data.url.protocol : '') + data.url.url);
+                    }
+                    this.allowOnChange = true;
+                };
+                dialogDefinition.dialog.on('load', function() {
+                    $('.cke_dialog_ui_hbox_first:first').hide();
+                });
             }
         });
 
