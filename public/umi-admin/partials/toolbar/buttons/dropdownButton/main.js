@@ -9,7 +9,7 @@ define(['App', 'moment'], function(UMI, moment) {
                     return Foundation.utils.random_str();
                 }.property(),
 
-                dropdownClassName: null,
+                dropdownClassName: 'content small',
 
                 _button: {
                     classNameBindings: 'meta.attributes.class',
@@ -51,7 +51,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 iScroll: null,
 
-                dropdownClassName: 'content',
+                dropdownClassName: 'content medium',
 
                 noBackupsLabel: null,
 
@@ -257,7 +257,7 @@ define(['App', 'moment'], function(UMI, moment) {
             DropdownButtonBehaviour.prototype.form = {
                 templateName: 'partials/dropdownButton/form',
 
-                dropdownClassName: 'content',
+                dropdownClassName: 'content small',
 
                 extendButton: {
                     dataOptions: function() {
