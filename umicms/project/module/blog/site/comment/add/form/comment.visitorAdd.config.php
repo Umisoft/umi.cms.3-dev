@@ -13,6 +13,7 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
+use umicms\form\element\Captcha;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -63,6 +64,10 @@ return [
             'options' => [
                 'dataSource' => BlogComment::FIELD_CONTENTS
             ]
+        ],
+        'captcha' => [
+            'label' => 'Captcha',
+            'type' => Captcha::TYPE_NAME
         ],
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME

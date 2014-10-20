@@ -11,7 +11,7 @@
 namespace umicms\serialization\xml\orm;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\structure\model\object\MenuItem;
+use umicms\project\module\structure\model\object\IMenuItem;
 
 /**
  * XML-пункта произвольного меню.
@@ -24,7 +24,7 @@ class MenuItemSerializer extends CmsObjectSerializer
     protected function buildAttributes(ICmsObject $object, array $attributes)
     {
         parent::buildAttributes($object, $attributes);
-        if ($object instanceof MenuItem) {
+        if ($object instanceof IMenuItem) {
             $this->writeAttribute('url', $object->getItemUrl());
         }
     }
