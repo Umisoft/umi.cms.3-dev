@@ -38,6 +38,7 @@ return [
         ],
 
         'captcha' => [
+            'label' => 'Captcha',
             'type' => Captcha::TYPE_NAME
         ],
 
