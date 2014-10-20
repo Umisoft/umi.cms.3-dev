@@ -17,8 +17,8 @@ use umicms\orm\object\CmsObject;
  *
  * @property string $description описание
  * @property Release|null $lastRelease последний выпуск рассылки
- * @property IManyToManyObjectSet|BaseSubscriber[] $subscribers подписчики на рассылку
- * @property IManyToManyObjectSet|BaseSubscriber[] $unsubscribed отписавшиеся подписчики
+ * @property IManyToManyObjectSet|Subscriber[] $subscribers подписчики на рассылку
+ * @property IManyToManyObjectSet|Subscriber[] $unsubscribed отписавшиеся подписчики
  */
 class Dispatch extends CmsObject
 {

@@ -11,6 +11,7 @@
 namespace umicms\project\module\dispatches\model\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
+use umicms\orm\object\behaviour\IUserAssociatedObject;
 use umicms\orm\object\CmsObject;
 use umicms\project\module\dispatches\model\collection\SubscriberCollection;
 
@@ -25,7 +26,7 @@ use umicms\project\module\dispatches\model\collection\SubscriberCollection;
  * @property IManyToManyObjectSet|Dispatch[] $unsubscribedDispatches рассылки, от которых отписался подписчик
  * @property string $token токен для управления подписками
  */
-abstract class BaseSubscriber extends CmsObject
+class Subscriber extends CmsObject implements IUserAssociatedObject
 {
     /**
      * Имя поля для хранения email
@@ -57,6 +58,16 @@ abstract class BaseSubscriber extends CmsObject
     const FIELD_TOKEN = 'token';
 
     /**
+     * Форма подписки
+    */
+    const FORM_SUBSCRIBE_SITE = 'formSubscribe';
+
+    /**
+     * Форма подписки
+    */
+    const FORM_UNSUBSCRIBE_SITE = 'formUnsubscribe';
+
+    /**
      * Проверяет валидность email.
      * @return bool
      */
@@ -71,7 +82,7 @@ abstract class BaseSubscriber extends CmsObject
 
         if (!$collection->checkEmailUniqueness($this)) {
             $result = false;
-            $this->getProperty(BaseSubscriber::FIELD_EMAIL)
+            $this->getProperty(Subscriber::FIELD_EMAIL)
                 ->addValidationErrors(
                     [$this->translate('Email is not unique')]
                 );
@@ -95,9 +106,6 @@ abstract class BaseSubscriber extends CmsObject
      */
     protected function generateDisplayName($localeId = null)
     {
-        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
-            $displayName = $this->getValue(self::FIELD_DISPLAY_NAME, $this->getCurrentLocale()) ? : $this->email;
-            $this->setValue(self::FIELD_DISPLAY_NAME, $displayName, $localeId);
-        }
+        $this->setValue(self::FIELD_DISPLAY_NAME, $this->email, $localeId);
     }
 }

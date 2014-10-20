@@ -25,6 +25,9 @@ return array_replace_recursive(
                 'options' => [
                     'unsigned' => true
                 ]
+            ],
+            'token' => [
+                'type'    => Type::STRING
             ]
         ],
         'indexes'     => [

@@ -19,8 +19,13 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
     //SiteComponent::OPTION_COLLECTION_NAME => 'dispatch',
 
+    SiteComponent::OPTION_CONTROLLERS => [
+        'page' => __NAMESPACE__ . '\controller\PageController',
+    ],
+
     SiteComponent::OPTION_WIDGET => [
-        //'dispatch' => __NAMESPACE__ . '\widget\DispatchSubscriberWidget',
+        'page' => __NAMESPACE__ . '\widget\DispatchWidget',
+        'form' => __NAMESPACE__ . '\widget\DispatchFormWidget',
     ],
 
     SiteComponent::OPTION_VIEW => [
@@ -32,7 +37,12 @@ return [
             'viewer' => [],
         ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => []
+            'viewer' => [
+                //'controller:page' => [],
+                'widget:page' => [],
+                'widget:list' => [],
+                'widget:form' => [],
+            ]
         ]
     ]
 ];

@@ -26,6 +26,21 @@ return array_replace_recursive(
                 'options' => [
                     'unsigned' => true
                 ]
+            ],
+            'release_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+            'date_reason' => [
+                'type' => Type::DATETIME,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+            'reason_unsubscribe' => [
+                'type' => Type::TEXT
             ]
         ],
         'indexes' => [
@@ -60,7 +75,17 @@ return array_replace_recursive(
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'CASCADE'
                 ]
-            ]
+            ],
+            'unsubscription_to_release' => [
+                'foreignTable' => 'dispatches_release',
+                'columns' => [
+                    'release_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
         ]
     ]
 );

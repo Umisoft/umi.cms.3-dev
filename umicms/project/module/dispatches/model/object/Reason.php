@@ -16,7 +16,7 @@ use umicms\orm\object\CmsObject;
  * Причина отписки.
  *
  * @property Release $release выпуск рассылки, из-за которого произошла отписка
- * @property BaseSubscriber $subscriber отписавшийся подписчик
+ * @property Subscriber $subscriber отписавшийся подписчик
  * @property DateTime $date дата отписки
  */
 class Reason extends CmsObject

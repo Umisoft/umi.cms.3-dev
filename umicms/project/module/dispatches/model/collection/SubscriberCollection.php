@@ -12,37 +12,43 @@ namespace umicms\project\module\dispatches\model\collection;
 use umi\form\element\CheckboxGroup;
 use umi\form\element\CSRF;
 use umi\form\element\Text;
+use umicms\form\element\Captcha;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umicms\orm\collection\behaviour\IUserAssociatedCollection;
+use umicms\orm\collection\behaviour\TUserAssociatedCollection;
 use umicms\exception\NonexistentEntityException;
-use umicms\form\element\Captcha;
 use umicms\orm\collection\CmsCollection;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\dispatches\model\object\BaseSubscriber;
+use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Dispatch;
+use umicms\project\module\users\model\object\BaseUser;
 
 /**
  * Коллекция для работы с подписчиками.
  *
- * @method CmsSelector|BaseSubscriber[] select() Возвращает селектор для выбора подписчиков.
- * @method BaseSubscriber get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает подписчика по GUID.
- * @method BaseSubscriber getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает подписчика по id.
- * @method BaseSubscriber add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает подписчика.
+ * @method CmsSelector|Subscriber[] select() Возвращает селектор для выбора подписчиков.
+ * @method Subscriber get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает подписчика по GUID.
+ * @method Subscriber getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает подписчика по id.
+ * @method Subscriber add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает подписчика.
  */
-class SubscriberCollection extends CmsCollection
+class SubscriberCollection extends CmsCollection implements IUserAssociatedCollection
 {
+    use TUserAssociatedCollection;
 
     /**
      * Проверяет уникальность e-mail пользователя.
-     * @param BaseSubscriber $subscriber
+     * @param Subscriber $subscriber
      * @return bool
      */
-    public function checkEmailUniqueness(BaseSubscriber $subscriber)
+    public function checkEmailUniqueness(Subscriber $subscriber)
     {
         $subscribers = $this->getInternalSelector()
-            ->fields([BaseSubscriber::FIELD_IDENTIFY])
-            ->where(BaseSubscriber::FIELD_EMAIL)
+            ->fields([Subscriber::FIELD_IDENTIFY])
+            ->where(Subscriber::FIELD_EMAIL)
             ->equals($subscriber->email)
+            ->where(Subscriber::FIELD_IDENTIFY)
+            ->notEquals($subscriber->getId())
             ->getResult();
 
         return !count($subscribers);
@@ -52,19 +58,19 @@ class SubscriberCollection extends CmsCollection
      * Возвращает подписчика по email
      * @param string $email email
      * @throws NonexistentEntityException если не существует подписчика с таким email
-     * @return BaseSubscriber $subscriber
+     * @return Subscriber $subscriber
      */
     public function getSubscriberByEmail($email)
     {
         $subscriber = $this->getInternalSelector()
-            ->where(BaseSubscriber::FIELD_EMAIL)
+            ->where(Subscriber::FIELD_EMAIL)
             ->equals($email)
             ->end()
             ->limit(1)
             ->getResult()
             ->fetch();
 
-        if (!$subscriber instanceof BaseSubscriber) {
+        if (!$subscriber instanceof Subscriber) {
             throw new NonexistentEntityException(
                 $this->translate('Cannot find subscriber by email.')
             );
@@ -74,73 +80,18 @@ class SubscriberCollection extends CmsCollection
     }
 
     /**
-     * Получить форму на подписку
-     * @param BaseSubscriber $subscriber подписчик
-     * @param bool $isAuth - авторизован или нет
-     * @param CmsSelector|Dispatch[] $dispatches - рассылки
-     * @return \umi\form\IForm
+     * Создает и возвращает подписчика для пользователя
+     * @param BaseUser $user пользователь
+     * @param string $type тип создаваемого автора
+     * @param null $guid GUID создаваемого автора
+     * @return Subscriber
      */
-    public function getSubscribeForm(BaseSubscriber $subscriber, $isAuth = false, CmsSelector $dispatches)
+    public function createForUser(BaseUser $user, $type = IObjectType::BASE, $guid = null)
     {
-        /**
-         * @var array $config
-         */
-        $config = [
-            'options'    => [
-                'dictionaries' => [
-                    'project.site.dispatches'
-                ],
-            ],
-            'attributes' => [
-                'method' => 'post'
-            ],
-            'elements'   => []
-        ];
+        $subscriber = $this->add($type, $guid);
+        $this->fillFromUser($user, $subscriber);
 
-        if (count($dispatches)) {
-            $config['elements'][BaseSubscriber::FIELD_DISPATCHES] = [
-                'type'    => CheckboxGroup::TYPE_NAME,
-                'options' => [
-                    'choices' => []
-                ]
-            ];
-            /**
-             * @var array $arrayTemp
-             */
-            $arrayTemp = [];
-            foreach ($dispatches as $dispatchItem) {
-                $arrayTemp[$dispatchItem->getId()] = $dispatchItem->getProperty(Dispatch::FIELD_DISPLAY_NAME)
-                    ->getValue();
-            };
-            $config['elements'][BaseSubscriber::FIELD_DISPATCHES]['options']['choices'] = $arrayTemp;
-            unset($arrayTemp);
-        }
-
-        if (!$isAuth) {
-            $config['elements'][BaseSubscriber::FIELD_EMAIL] = [
-                'type'    => Text::TYPE_NAME,
-                'label'   => BaseSubscriber::FIELD_EMAIL,
-                'options' => [
-                    'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_EMAIL
-                    ]
-                ]
-            ];
-        }
-
-        $config['elements']['captcha'] = [
-            'type' => Captcha::TYPE_NAME
-        ];
-        $config['elements']['csrf'] = [
-            'type' => CSRF::TYPE_NAME
-        ];
-
-        $config['elements']['submit'] = [
-            'type'  => 'submit',
-            'label' => 'Submit'
-        ];
-
-        return $this->createForm($config, $subscriber);
+        return $subscriber;
     }
 
 }

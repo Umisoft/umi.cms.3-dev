@@ -9,6 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umicms\project\module\dispatches\model\object\Unsubscription;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
@@ -17,23 +18,34 @@ return array_replace_recursive(
             'sourceName' => 'dispatches_unsubscription'
         ],
         'fields' => [
-            'dispatch' => [
+            Unsubscription::FIELD_DISPATCH => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'dispatch_id',
                 'target' => 'dispatch'
             ],
-            'subscriber' => [
+            Unsubscription::FIELD_SUBSCRIBER => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'subscriber_id',
                 'target' => 'dispatchSubscriber'
-            ]
+            ],
+            Unsubscription::FIELD_RELEASE    => [
+                'type'       => IField::TYPE_BELONGS_TO,
+                'columnName' => 'release_id',
+                'target'     => 'dispatchRelease'
+            ],
+            Unsubscription::FIELD_REASON    => [
+                'type'       => IField::TYPE_BELONGS_TO,
+                'columnName' => 'reason_unsubscribe',
+            ],
         ],
         'types' => [
             'base' => [
                 'objectClass' => 'umicms\orm\object\CmsLinkObject',
                 'fields' => [
-                    'dispatch'  => [],
-                    'subscriber'  => []
+                    Unsubscription::FIELD_DISPATCH  => [],
+                    Unsubscription::FIELD_SUBSCRIBER  => [],
+                    Unsubscription::FIELD_RELEASE => [],
+                    Unsubscription::FIELD_REASON => []
                 ]
             ]
         ]

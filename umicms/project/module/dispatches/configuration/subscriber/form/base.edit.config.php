@@ -10,7 +10,7 @@
 use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\dispatches\model\object\BaseSubscriber;
+use umicms\project\module\dispatches\model\object\Subscriber;
 
 return [
 
@@ -26,39 +26,39 @@ return [
             'type'     => FieldSet::TYPE_NAME,
             'label'    => 'common',
             'elements' => [
-                BaseSubscriber::FIELD_DISPLAY_NAME => [
+                Subscriber::FIELD_DISPLAY_NAME => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_DISPLAY_NAME,
+                    'label'   => Subscriber::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_DISPLAY_NAME
+                        'dataSource' => Subscriber::FIELD_DISPLAY_NAME
                     ],
                 ],
-                BaseSubscriber::FIELD_EMAIL        => [
+                Subscriber::FIELD_EMAIL        => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_EMAIL,
+                    'label'   => Subscriber::FIELD_EMAIL,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_EMAIL
+                        'dataSource' => Subscriber::FIELD_EMAIL
                     ],
                 ],
-                BaseSubscriber::FIELD_FIRST_NAME   => [
+                Subscriber::FIELD_FIRST_NAME   => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_FIRST_NAME,
+                    'label'   => Subscriber::FIELD_FIRST_NAME,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_FIRST_NAME
+                        'dataSource' => Subscriber::FIELD_FIRST_NAME
                     ],
                 ],
-                BaseSubscriber::FIELD_LAST_NAME    => [
+                Subscriber::FIELD_LAST_NAME    => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_LAST_NAME,
+                    'label'   => Subscriber::FIELD_LAST_NAME,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_LAST_NAME
+                        'dataSource' => Subscriber::FIELD_LAST_NAME
                     ],
                 ],
-                BaseSubscriber::FIELD_MIDDLE_NAME  => [
+                Subscriber::FIELD_MIDDLE_NAME  => [
                     'type'    => Text::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_MIDDLE_NAME,
+                    'label'   => Subscriber::FIELD_MIDDLE_NAME,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_MIDDLE_NAME
+                        'dataSource' => Subscriber::FIELD_MIDDLE_NAME
                     ],
                 ]
             ]
@@ -67,11 +67,11 @@ return [
             'type'     => FieldSet::TYPE_NAME,
             'label'    => 'additional',
             'elements' => [
-                BaseSubscriber::FIELD_DISPATCHES => [
+                Subscriber::FIELD_DISPATCHES => [
                     'type'    => MultiSelect::TYPE_NAME,
-                    'label'   => BaseSubscriber::FIELD_DISPATCHES,
+                    'label'   => Subscriber::FIELD_DISPATCHES,
                     'options' => [
-                        'dataSource' => BaseSubscriber::FIELD_DISPATCHES,
+                        'dataSource' => Subscriber::FIELD_DISPATCHES,
                         'lazy'       => true
                     ]
                 ]

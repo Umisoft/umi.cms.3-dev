@@ -9,22 +9,22 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\dispatches\model\collection\SubscriberCollection;
-use umicms\project\module\dispatches\model\object\GuestSubscriber;
-use umicms\project\module\dispatches\model\object\RegisteredSubscriber;
+use umicms\project\module\dispatches\model\object\Subscriber;
+use umi\orm\metadata\IObjectType;
 
 return [
     'type'         => ICollectionFactory::TYPE_SIMPLE,
     'class'        => 'umicms\project\module\dispatches\model\collection\SubscriberCollection',
     'handlers'     => [
-        'admin' => 'dispatches.subscriber'
+        'admin' => 'dispatches.subscriber',
+        'site' => 'dispatches.subscriber'
     ],
     'forms'        => [
-        GuestSubscriber::TYPE_NAME      => [
+        IObjectType::BASE      => [
             SubscriberCollection::FORM_EDIT   => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.edit.config.php}',
+            Subscriber::FORM_SUBSCRIBE_SITE   => '{#lazy:~/project/module/dispatches/site/subscription/form/subscribe.config.php}',
+            Subscriber::FORM_UNSUBSCRIBE_SITE   => '{#lazy:~/project/module/dispatches/site/unsubscription/form/unsubscribe.config.php}',
         ],
-        RegisteredSubscriber::TYPE_NAME => [
-            SubscriberCollection::FORM_EDIT   => '{#lazy:~/project/module/dispatches/configuration/subscriber/form/base.edit.config.php}',
-        ]
     ],
     'dictionaries' => [
         'collection.dispatchSubscriber',

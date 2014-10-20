@@ -1,9 +1,10 @@
 <?php
 
-use umi\filter\IFilterFactory;
+use umi\validation\IValidatorFactory;
 use umi\form\element\Submit;
 use umi\form\element\Text;
-use umicms\project\module\dispatches\model\object\BaseSubscriber;
+use umi\form\element\CSRF;
+use umicms\project\module\dispatches\model\object\Subscriber;
 
 return [
 
@@ -17,13 +18,40 @@ return [
     ],
 
     'elements' => [
-        BaseSubscriber::FIELD_EMAIL => [
+        Subscriber::FIELD_EMAIL => [
             'type' => Text::TYPE_NAME,
-            'label' => BaseSubscriber::FIELD_EMAIL,
+            'label' => Subscriber::FIELD_EMAIL,
             'options' => [
-                'filters' => [
+                'dataSource' => Subscriber::FIELD_EMAIL,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ]
+        ],
+        Subscriber::FIELD_FIRST_NAME => [
+            'type' => Text::TYPE_NAME,
+            'label' => Subscriber::FIELD_FIRST_NAME,
+            'options' => [
+                'dataSource' => Subscriber::FIELD_FIRST_NAME
+            ]
+        ],
+        Subscriber::FIELD_MIDDLE_NAME => [
+            'type' => Text::TYPE_NAME,
+            'label' => Subscriber::FIELD_MIDDLE_NAME,
+            'options' => [
+                'dataSource' => Subscriber::FIELD_MIDDLE_NAME
+            ]
+        ],
+        Subscriber::FIELD_LAST_NAME => [
+            'type' => Text::TYPE_NAME,
+            'label' => Subscriber::FIELD_LAST_NAME,
+            'options' => [
+                'dataSource' => Subscriber::FIELD_LAST_NAME
+            ]
+        ],
+
+        'csrf' => [
+            'type' => CSRF::TYPE_NAME
         ],
 
         'submit' => [

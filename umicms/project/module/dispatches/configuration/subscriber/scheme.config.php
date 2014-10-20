@@ -11,6 +11,7 @@ use Doctrine\DBAL\Types\Type;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/scheme/collection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/userAssociated.config.php',
     [
         'name'        => 'dispatches_subscriber',
         'columns'     => [
@@ -19,12 +20,6 @@ return array_replace_recursive(
             ],
             'token'       => [
                 'type' => Type::STRING
-            ],
-            'profile_id'  => [
-                'type'    => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true
-                ]
             ],
             'first_name'  => [
                 'type' => Type::STRING
@@ -35,25 +30,6 @@ return array_replace_recursive(
             'last_name'   => [
                 'type' => Type::STRING
             ],
-        ],
-        'indexes'     => [
-            'profile' => [
-                'columns' => [
-                    'profile_id' => []
-                ]
-            ]
-        ],
-        'constraints' => [
-            'subscriber_to_profile' => [
-                'foreignTable' => 'users_user',
-                'columns'      => [
-                    'profile_id' => []
-                ],
-                'options'      => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
-                ]
-            ]
         ]
     ]
 );

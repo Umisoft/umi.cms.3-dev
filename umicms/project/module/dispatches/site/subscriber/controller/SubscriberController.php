@@ -60,7 +60,7 @@ class SubscriberController extends BaseSitePageController
 
         return $this->module->subscriber()->getSubscribeForm(
             $this->subscriber,
-            $this->module->isAuthenticated(),
+            false,
             $this->module->getDispatches());
     }
 
@@ -87,7 +87,7 @@ class SubscriberController extends BaseSitePageController
     {
         return [
             'page' => $this->getCurrentPage(),
-            'authenticated' => $this->module->isAuthenticated()
+            'authenticated' => false
         ];
     }
 
