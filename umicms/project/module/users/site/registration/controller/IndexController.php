@@ -57,7 +57,11 @@ class IndexController extends BaseSitePageController
         $type = $this->getRouteVar('type', RegisteredUser::TYPE_NAME);
         $this->user = $this->module->getUserForRegistration($type);
 
-        return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $type, $this->user);
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $type, $this->user);
+
+        $form->setAction($this->getUrl('index', ['type' => $type]));
+
+        return $form;
     }
 
     /**

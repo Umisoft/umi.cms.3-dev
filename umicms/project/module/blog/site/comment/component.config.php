@@ -27,7 +27,7 @@ return [
     ],
     SiteGroupComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
-        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'tree' => __NAMESPACE__ . '\widget\TreeWidget',
         'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
         'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget',
         'unpublishForm' => __NAMESPACE__ . '\widget\UnpublishFormWidget'
@@ -46,7 +46,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
-                'widget:list' => []
+                'widget:tree' => []
             ],
             'moderator' => [
                 'widget:rejectForm' => [],

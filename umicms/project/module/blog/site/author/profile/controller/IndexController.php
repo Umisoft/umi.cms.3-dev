@@ -60,11 +60,14 @@ class IndexController extends BaseSitePageController
     {
         $blogAuthor = $this->module->getCurrentAuthor();
 
-        return $this->module->author()->getForm(
+        $form = $this->module->author()->getForm(
             BlogAuthor::FORM_EDIT_PROFILE,
             $blogAuthor->getTypeName(),
             $blogAuthor
         );
+        $form->setAction($this->getUrl('index'));
+
+        return $form;
     }
 
     /**
