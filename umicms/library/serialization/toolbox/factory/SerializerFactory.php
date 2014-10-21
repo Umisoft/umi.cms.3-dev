@@ -31,6 +31,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
     public $types = [
         self::TYPE_XML => [
 
+            'umicms\exception\InvalidObjectsException' => 'umicms\serialization\xml\InvalidObjectsExceptionSerializer',
             'Exception' => 'umicms\serialization\xml\ExceptionSerializer',
             'object' => 'umicms\serialization\xml\ObjectSerializer',
             'array' => 'umicms\serialization\xml\ArraySerializer',
