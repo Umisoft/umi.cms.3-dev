@@ -94,7 +94,7 @@ $table-control-row-bg-hover: #C8DEEE;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // hack for IE (not supports base64 and relative paths)
     .umi-table-control-column-resizer {
-        cursor: col-resize;
+        cursor: e-resize;
     }
 }
 
