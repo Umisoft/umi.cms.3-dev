@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*'],
+                files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*', 'library/**/*.*'],
                 tasks: ['emberTemplates', 'requirejs:development']
             }
         },
@@ -149,8 +149,8 @@ module.exports = function(grunt) {
                     'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
                     'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
                     'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
-                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js',
-                    'vendor/momentjs/min/moment-with-langs.js', 'vendorExtend/elFinder.js', 'library/**'
+                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js', 'vendorExtend/elFinder.js',
+                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
                 ],
                 dest: 'development'
             },

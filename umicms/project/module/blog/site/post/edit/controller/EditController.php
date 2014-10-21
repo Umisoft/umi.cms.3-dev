@@ -16,7 +16,6 @@ use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
-use umicms\project\module\blog\model\object\GuestBlogPost;
 
 /**
  * Контроллер редактирования поста блога.
@@ -69,11 +68,15 @@ class EditController extends BaseSitePageController
             );
         }
 
-        return $this->module->post()->getForm(
+        $form = $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
-            $this->module->isGuestAuthor() ? GuestBlogPost::TYPE : BlogPost::TYPE,
+            $blogPost->getTypeName(),
             $blogPost
         );
+
+        $form->setAction($this->getUrl('index', ['id' => $blogPost->getId()]));
+
+        return $form;
     }
 
     /**

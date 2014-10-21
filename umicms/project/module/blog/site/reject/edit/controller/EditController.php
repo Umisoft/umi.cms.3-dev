@@ -12,7 +12,6 @@ namespace umicms\project\module\blog\site\reject\edit\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -69,11 +68,15 @@ class EditController extends BaseSitePageController
             );
         }
 
-        return $this->module->post()->getForm(
+        $form = $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
-            IObjectType::BASE,
+            $blogPost->getTypeName(),
             $blogPost
         );
+
+        $form->setAction($this->getUrl('index', ['id' => $blogPost->getId()]));
+
+        return $form;
     }
 
     /**

@@ -56,7 +56,7 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $user = $this->module->getCurrentUser();
+        $user = $this->module->getAuthenticatedUser();
         $form = $this->module->user()->getForm(RegisteredUser::FORM_CHANGE_PASSWORD, RegisteredUser::TYPE_NAME, $user);
 
         /**
@@ -74,6 +74,8 @@ class IndexController extends BaseSitePageController
             ]
         );
         $passwordInput->getValidators()->appendValidator($passwordValidator);
+
+        $form->setAction($this->getUrl('index'));
 
         return $form;
     }

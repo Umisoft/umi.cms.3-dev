@@ -11,13 +11,13 @@
 namespace umicms\project\module\blog\site\post\add\controller;
 
 use umi\form\IForm;
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
-use umicms\project\module\blog\model\object\GuestBlogPost;
 use umicms\project\module\blog\model\object\PostStatus;
 
 /**
@@ -68,6 +68,7 @@ class AddController extends BaseSitePageController
     {
         $blogCategory = null;
         $blogCategoryId = $this->getRouteVar('id');
+        $type = $this->getRouteVar('type', IObjectType::BASE);
 
         if (!is_null($blogCategoryId)) {
             $blogCategory = $this->module->category()->getById($blogCategoryId);
@@ -85,20 +86,20 @@ class AddController extends BaseSitePageController
             );
         }
 
-        $typeBlogPost = BlogPost::TYPE;
-        if ($this->module->isGuestAuthor()) {
-            $typeBlogPost = GuestBlogPost::TYPE;
-        }
-        $this->blogPost = $this->module->addPost($typeBlogPost);
+        $this->blogPost = $this->module->addPost($type);
         $this->blogPost->category = $blogCategory;
 
         $this->blogPost->setStatus($this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION));
 
-        return $this->module->post()->getForm(
-            $this->module->isGuestAuthor() ? GuestBlogPost::FORM_ADD_POST : BlogPost::FORM_ADD_POST,
-            $typeBlogPost,
+        $form = $this->module->post()->getForm(
+            $this->module->isAuthorRegistered() ? BlogPost::FORM_ADD_POST : BlogPost::FORM_ADD_VISITOR_POST,
+            $type,
             $this->blogPost
         );
+
+        $form->setAction($this->getUrl('index', ['id' => $blogCategoryId, 'type' => $type]));
+
+        return $form;
     }
 
     /**

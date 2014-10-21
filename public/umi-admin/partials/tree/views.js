@@ -91,7 +91,8 @@ define(['App', 'toolbar'], function(UMI) {
              */
             didInsertElement: function() {
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
-                var contentScroll = new IScroll(scrollContainer, UMI.config.iScroll);
+                var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                var contentScroll = new IScroll(scrollContainer, iScrollConfiguration);
 
                 this.set('iScroll', contentScroll);
                 var self = this;
@@ -487,18 +488,27 @@ define(['App', 'toolbar'], function(UMI) {
 
                 if (model.get('id') === 'root') {
                     self.get('controller.controllers.component').on('needReloadRootElements', function(event, object) {
+                        var childrenList = self.get('childrenList');
+
+                        if (!childrenList) {
+                            self.set('childrenList', []);
+                        }
                         if (event === 'add') {
-                            self.get('childrenList').pushObject(object);
+                            childrenList.pushObject(object);
                         } else if (event === 'remove') {
-                            self.get('childrenList').removeObject(object);
+                            childrenList.removeObject(object);
                         }
                     });
                 } else {
                     this.get('item').on('needReloadHasMany', function(event, object) {
-                        if (event === 'add') {
-                            self.get('childrenList').pushObject(object);
+                        if (self.get('isExpanded')) {
+                            if (event === 'add') {
+                                self.get('childrenList').pushObject(object);
+                            } else {
+                                self.get('childrenList').removeObject(object);
+                            }
                         } else {
-                            self.get('childrenList').removeObject(object);
+                            self.toggleProperty('isExpanded');
                         }
                     });
                 }

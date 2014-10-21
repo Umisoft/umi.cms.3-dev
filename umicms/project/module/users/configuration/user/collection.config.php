@@ -17,7 +17,7 @@ use umicms\project\module\users\model\object\Supervisor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\users\model\collection\UserCollection',
+    'class' => UserCollection::className(),
     'handlers' => [
         'admin' => 'users.user'
     ],
@@ -45,6 +45,7 @@ return [
             'supervisor' => [
                 UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
                 UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+                RegisteredUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/profile.edit.config.php}',
             ],
         ]
     ],

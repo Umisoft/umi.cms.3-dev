@@ -31,7 +31,7 @@ use umicms\hmvc\url\TUrlManagerAware;
  * @property string|null $nextPageUrl URL следующей страницы
  * @property array $pagesRange список страниц для отображения в соответствии с заданным типом
  * @property array $rangeUrls список ссылок на страницы в ряду, ключами массива являются номера страниц
- * @property int $pagesCountInRange количество страниц в ряду
+ * @property int|null $pagesCountInRange количество страниц в ряду
  * @property int $pagesCount общее количество страниц
  * @property int $itemsCount общее количество элементов
  * @property int $itemsPerPage количество элементов, выводимых на странице
@@ -248,19 +248,10 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
     /**
      * Возвращает количество страниц в ряду
      * @throws UnexpectedValueException
-     * @return int
+     * @return int|null
      */
     public function getPagesCountInRange()
     {
-        if ($this->pagesCount <= 0 || !is_int($this->pagesCount)) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    '{count} is wrong pages count in range. Value should be positive integer.',
-                    ['count' => $this->pagesCount]
-                )
-            );
-        }
-
         return $this->pagesCount;
     }
 
@@ -276,10 +267,10 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
                 return range(1, $this->getPagesCount());
             }
             case 'sliding': {
-                return $this->buildSlidingPagesRange($this->getPagesCountInRange());
+                return $this->buildSlidingPagesRange();
             }
             case 'elastic': {
-                return $this->buildElasticPagesRange($this->getPagesCountInRange());
+                return $this->buildElasticPagesRange();
             }
             default: {
                 throw new OutOfBoundsException(
@@ -293,11 +284,22 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
 
     /**
      * Возвращает массив страниц для отображения в ряду - текущую и следующие за ней
-     * @param int $pagesCountInRange количество страниц отображаемых в ряду
+     * @throws UnexpectedValueException
      * @return array
      */
-    protected function buildSlidingPagesRange($pagesCountInRange)
+    protected function buildSlidingPagesRange()
     {
+        $pagesCountInRange = $this->getPagesCountInRange();
+
+        if ($pagesCountInRange <= 0 || !is_int($pagesCountInRange)) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    '{count} is wrong pages count in range. Value should be positive integer.',
+                    ['count' => $pagesCountInRange]
+                )
+            );
+        }
+
         $pagesCount = $this->getPagesCount();
         if ($pagesCountInRange >= $pagesCount) {
             return range(1, $pagesCount);
@@ -316,11 +318,22 @@ class CmsPaginator extends Paginator implements IUrlManagerAware
 
     /**
      * Возвращает массив страниц для отображения в ряду - текущую и окружающие ее.
-     * @param int $pagesCountInRange количество страниц отображаемых в ряду
+     * @throws UnexpectedValueException
      * @return array
      */
-    protected function buildElasticPagesRange($pagesCountInRange)
+    protected function buildElasticPagesRange()
     {
+        $pagesCountInRange = $this->getPagesCountInRange();
+
+        if ($pagesCountInRange <= 0 || !is_int($pagesCountInRange)) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    '{count} is wrong pages count in range. Value should be positive integer.',
+                    ['count' => $pagesCountInRange]
+                )
+            );
+        }
+
         $pagesCount = $this->getPagesCount();
         if ($pagesCountInRange >= $pagesCount) {
             return range(1, $pagesCount);

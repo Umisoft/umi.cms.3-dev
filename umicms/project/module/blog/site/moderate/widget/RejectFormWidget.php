@@ -11,11 +11,10 @@
 namespace umicms\project\module\blog\site\moderate\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BaseBlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет отклонения поста, требующего модерации.
@@ -31,7 +30,7 @@ class RejectFormWidget extends BaseFormWidget
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BaseBlogPost $blogPost пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
     /**
@@ -57,13 +56,13 @@ class RejectFormWidget extends BaseFormWidget
             $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (!$this->blogPost instanceof BaseBlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => BaseBlogPost::className()
+                        'class' => BlogPost::className()
                     ]
                 )
             );
@@ -77,8 +76,8 @@ class RejectFormWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BaseBlogPost::FORM_REJECT_POST,
-            IObjectType::BASE,
+            BlogPost::FORM_REJECT_POST,
+            $this->blogPost->getTypeName(),
             $this->blogPost
         );
 

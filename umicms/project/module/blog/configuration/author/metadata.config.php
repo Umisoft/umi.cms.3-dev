@@ -9,23 +9,19 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/userAssociated.config.php',
     [
         'dataSource' => [
             'sourceName' => 'blog_author'
         ],
         'fields' => [
-            BlogAuthor::FIELD_PROFILE => [
-                'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'profile_id',
-                'target' => 'user'
-            ],
-
             BlogAuthor::FIELD_POSTS => [
                 'type' => IField::TYPE_HAS_MANY,
                 'target' => 'blogPost',
@@ -64,6 +60,21 @@ return array_replace_recursive(
                     ]
                 ]
             ],
+            BlogAuthor::FIELD_PAGE_CONTENTS => [
+                'mutator' => 'setContents',
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ]
+                ]
+            ],
             BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'contents_raw',
@@ -79,7 +90,6 @@ return array_replace_recursive(
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
                 'fields' => [
                     BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [],
-                    BlogAuthor::FIELD_PROFILE => [],
                     BlogAuthor::FIELD_POSTS => [],
                     BlogAuthor::FIELD_COMMENTS => [],
                     BlogAuthor::FIELD_COMMENTS_COUNT => [],

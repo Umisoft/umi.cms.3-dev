@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\structure\model\object;
 
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
 /**
@@ -17,7 +18,7 @@ use umicms\orm\object\ICmsPage;
  *
  * @property ICmsPage $pageRelation связанная страница
  */
-class MenuInternalItem extends MenuItem
+class MenuInternalItem extends CmsHierarchicObject implements IMenuItem
 {
     /**
      * Тип объекта
@@ -33,8 +34,7 @@ class MenuInternalItem extends MenuItem
     const FIELD_PAGE_RELATION = 'pageRelation';
 
     /**
-     * Возвращает ссылку на внутренний ресурс.
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getItemUrl()
     {
@@ -49,6 +49,14 @@ class MenuInternalItem extends MenuItem
         } else {
             return null;
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getItemType()
+    {
+        return $this->itemType;
     }
 }
  

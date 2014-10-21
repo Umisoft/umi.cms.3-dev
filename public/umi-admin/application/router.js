@@ -174,11 +174,15 @@ define([], function() {
 
                         if (parent && 'isFulfilled' in parent) {
                             return parent.then(function(parent) {
-                                parent.reload().then(function(parent) {
+                                var store = self.get('store');
+                                var collectionName = parent.constructor.typeKey;
+                                var request = UMI.OrmHelper.buildRequest(parent, ['childCount']);
+                                request.filters = {id: 'equals(' + parent.get('id') + ')'};
+                                return store.updateCollection(collectionName, request).then(function() {
                                     parent.trigger('needReloadHasMany', 'add', addObject);
-                                });
 
-                                return addObject;
+                                    return addObject;
+                                });
                             });
                         } else {
                             self.controllerFor('component').trigger('needReloadRootElements', 'add', addObject);

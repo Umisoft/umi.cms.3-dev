@@ -22,7 +22,7 @@ class BlogComment extends BaseBlogComment
     /**
      * Тип объекта
      */
-    const TYPE = 'comment';
+    const TYPE_NAME = 'comment';
     /**
      * Имя поля для хранения автора поста
      */
@@ -40,9 +40,13 @@ class BlogComment extends BaseBlogComment
      */
     const FIELD_STATUS = 'status';
     /**
-     * Форма добавления комментария
+     * Форма добавления комментария зарегистрированного пользователя
      */
     const FORM_ADD_COMMENT = 'addComment';
+    /**
+     * Форма добавления комментария незарегистрированного посетителя
+     */
+    const FORM_ADD_VISITOR_COMMENT = 'addVisitorComment';
     /**
      * Форма публикации комментария
      */
@@ -95,7 +99,7 @@ class BlogComment extends BaseBlogComment
             if ($this->author instanceof BlogAuthor) {
                 $this->author->recalculateCommentsCount();
             }
-            if ($this->post instanceof BaseBlogPost) {
+            if ($this->post instanceof BlogPost) {
                 $this->post->recalculateCommentsCount();
             }
         }

@@ -19,6 +19,11 @@ use umicms\project\module\blog\model\object\CommentStatus;
 
 /**
  * Контроллер снятия комментария с публикации.
+ *
+ * Контроллер обрабатывает POST-запрос на снятие комментария с публикации и не имеет шаблонизируемого ответа.
+ * В случае успешного выполнения операции контроллер производит редирект на URL, указанный в запросе, или на реферер.
+ * Если нет возможности выполнить редирект, контроллер возвращает простое текстовое сообщение об успехе.
+ * Если операцию выполнить не удалось, выбрасывается исключение.
  */
 class UnpublishController extends BaseCmsController
 {
@@ -43,7 +48,7 @@ class UnpublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE_NAME);
     }
 
     /**
