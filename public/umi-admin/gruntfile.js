@@ -147,10 +147,10 @@ module.exports = function(grunt) {
                 cwd: './',
                 src: [
                     'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
-                    'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
-                    'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
-                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js', 'vendorExtend/elFinder.js',
-                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
+                    'vendor/jquery-ui/jquery-ui.js', 'vendor/handlebars/handlebars.js', 'vendor/ember/ember.js',
+                    'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js', 'vendorExtend/elFinder.js',
+                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js',
+                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js', 'library/**'
                 ],
                 dest: 'development'
             },
@@ -208,6 +208,16 @@ module.exports = function(grunt) {
                 src: ['library/foundation/foundation.core.js', 'library/foundation/foundation.dropdown.extend.js'],
 
                 dest: 'library/foundation/foundation.js'
+            },
+
+            modernizr: {
+                options: {
+                    separator: '\n'
+                },
+
+                src: ['vendor/modernizr/modernizr.js', 'vendor/modernizr/feature-detects/css-calc.js'],
+
+                dest: 'library/modernizr/modernizr.custom.js'
             }
         },
 
@@ -280,6 +290,8 @@ module.exports = function(grunt) {
     grunt.registerTask('svg', ['grunticon']);
 
     grunt.registerTask('foundation', ['concat:foundation']);
+
+    grunt.registerTask('modernizr', ['concat:modernizr']);
 
     grunt.registerTask('dev', [
         'copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass', 'autoprefixer', 'concat:development',

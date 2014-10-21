@@ -5,7 +5,7 @@ require.config({
         App: 'application/application',
         jquery: 'vendor/jquery/dist/jquery',
         jqueryUI: 'vendor/jquery-ui/jquery-ui',
-        Modernizr: 'vendor/modernizr/modernizr',
+        Modernizr: 'library/modernizr/modernizr.custom',
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
@@ -57,7 +57,7 @@ require.config({
 require(['Modernizr'], function() {
     'use strict';
     var checkBrowser = function() {
-        return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage && !('opera' in window));
+        return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage && Modernizr.csscalc);
     };
 
     if (!checkBrowser()) {
