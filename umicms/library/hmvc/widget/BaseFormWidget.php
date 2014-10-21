@@ -32,10 +32,6 @@ abstract class BaseFormWidget extends BaseCmsWidget
      * Выполнять редирект на URL источника запроса
      */
     const REFERER_REDIRECT = 'refererRedirect';
-    /**
-     * Выполнять редирект на URL, определенный по умолчанию в контроллере-обработчике
-     */
-    const DEFAULT_REDIRECT = 'defaultRedirect';
 
     /**
      * @var string $template имя шаблона, по которому выводится виджет

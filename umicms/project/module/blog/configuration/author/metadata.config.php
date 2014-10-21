@@ -9,6 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -56,6 +57,21 @@ return array_replace_recursive(
                     'en-US' => [
                         'columnName' => 'posts_count_en',
                         'defaultValue' => 0
+                    ]
+                ]
+            ],
+            BlogAuthor::FIELD_PAGE_CONTENTS => [
+                'mutator' => 'setContents',
+                'localizations' => [
+                    'ru-RU' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
+                    ],
+                    'en-US' => [
+                        'filters' => [
+                            HtmlPurifier::TYPE => []
+                        ]
                     ]
                 ]
             ],

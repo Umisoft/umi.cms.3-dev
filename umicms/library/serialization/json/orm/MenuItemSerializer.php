@@ -11,7 +11,7 @@
 namespace umicms\serialization\json\orm;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\structure\model\object\MenuItem;
+use umicms\project\module\structure\model\object\IMenuItem;
 
 /**
  * Json-сериализатор пункта произвольного меню.
@@ -23,7 +23,7 @@ class MenuItemSerializer extends CmsObjectSerializer
      */
     protected function buildProperties(ICmsObject $object, array &$properties)
     {
-        if ($object instanceof MenuItem) {
+        if ($object instanceof IMenuItem) {
             if (isset($properties['meta'])) {
                 $properties['meta'] = [];
             }
