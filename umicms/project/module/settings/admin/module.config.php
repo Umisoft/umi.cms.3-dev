@@ -22,6 +22,7 @@ return [
         'service' => '{#lazy:~/project/module/service/admin/settings/component.config.php}',
         'seo' => '{#lazy:~/project/module/seo/admin/settings/component.config.php}',
         'forms' => '{#lazy:~/project/module/forms/admin/settings/component.config.php}',
+        'dispatches' => '{#lazy:~/project/module/dispatches/admin/settings/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [

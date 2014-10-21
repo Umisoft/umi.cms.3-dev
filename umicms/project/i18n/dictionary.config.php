@@ -77,6 +77,8 @@ return [
     'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
     'project.admin.rest.settings.forms'               => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.forms.captcha'       => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.dispatches'          => '{#lazy:~/project/module/dispatches/admin/settings/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.dispatches.dispatch' => '{#lazy:~/project/module/dispatches/admin/settings/dispatch/i18n/dictionary.config.php}',
     'project.admin.rest.dispatches'                   => '{#lazy:~/project/module/dispatches/admin/i18n/dictionary.config.php}',
     'project.admin.rest.dispatches.dispatch'          => '{#lazy:~/project/module/dispatches/admin/dispatch/i18n/dictionary.config.php}',
     'project.admin.rest.dispatches.subscriber'        => '{#lazy:~/project/module/dispatches/admin/subscriber/i18n/dictionary.config.php}',

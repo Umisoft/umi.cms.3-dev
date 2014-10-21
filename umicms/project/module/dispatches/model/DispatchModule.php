@@ -44,6 +44,16 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     protected $currentSubscriber;
 
     /**
+     * Настройка отправителя писем
+     */
+    const SETTING_MAIL_SENDER = 'mailFromEmail';
+
+    /**
+     * Настройка кол-ва писем в одну итерацию
+     */
+    const SETTING_COUNT_SEND = 'countSend';
+
+    /**
      * Конструктор.
      * @param UsersModule $usersModule
      */
