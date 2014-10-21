@@ -603,7 +603,7 @@ define(
                         this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else {
-                    serialized = [];
+                    serialized = null;
                 }
                 return serialized;
             }

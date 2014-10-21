@@ -1,5 +1,5 @@
 define([
-    'App', 'topBar', 'divider', 'dock', 'toolbar', 'tableControl', 'fileManager', 'treeSimple', 'tree', 'forms',
+    'App', 'topBar', 'divider', 'dock', 'toolbar', 'tableControl', 'fileManager', 'treeSimple', 'tree', 'form',
     'notification', 'dialog', 'popup', 'DS', 'table', 'sideMenu', 'updateLayout', 'Foundation'
 ], function(UMI) {
         'use strict';
