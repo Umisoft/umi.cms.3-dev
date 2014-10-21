@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var \umicms\project\module\dispatches\model\object\Dispatch $page
+ * @var umi\form\FormEntityView $form
+ */
+?>
+
+<h1><?=$page->getHeader()?></h1>
+<?=$page->contents?>
+<?php $errors = isset($errors) ? $errors : null ?>
+<?=$this->render('form/form.phtml', ['form' => $form])?>

@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var umicms\project\module\dispatches\model\object\Dispatch $dispatch
+ */
+?>
+<?php if ($list->getTotal()) : ?>
+    <ul>
+        <?php foreach ($list as $dispatch) : ?>
+           <li><?php echo $dispatch->displayName; ?> <?=$this->widget('dispatches.link', ['dispatch' => $dispatch])?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
