@@ -9553,7 +9553,7 @@ elFinder.prototype.commands.resize = function() {
                                 coverc.width(img.width()).height(img.height());
 
                                 rhandlec.width(imgc.width()).height(imgc.height()).offset(imgc.offset()).resizable({
-                                        containment: basec,
+                                        containment: imgc,
                                         resize: crop.resize_update,
                                         handles: 'all'
                                     }).draggable({
