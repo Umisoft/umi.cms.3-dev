@@ -43,7 +43,7 @@ return [
 
         'submit' => [
             'type' => Submit::TYPE_NAME,
-            'label' => 'Subscribe'
+            'label' => 'Unsubscribe'
         ]
     ]
 ];

@@ -9,9 +9,25 @@
 
 use umi\orm\collection\ICollectionFactory;
 
+use umicms\project\module\dispatches\model\collection\UnsubscriptionCollection;
+use umicms\project\module\dispatches\model\object\Unsubscription;
+
 return [
     'type'     => ICollectionFactory::TYPE_SIMPLE,
+    'class'        => 'umicms\project\module\dispatches\model\collection\UnsubscriptionCollection',
     'handlers' => [
         'admin' => 'dispatches.unsubscription'
+    ],
+    'dictionaries' => [
+        'collection.dispatchUnsubscription',
+        'collection' => 'collection'
+    ],
+
+    UnsubscriptionCollection::IGNORED_TABLE_FILTER_FIELDS => [
+        Unsubscription::FIELD_DISPLAY_NAME => []
+    ],
+
+    UnsubscriptionCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        Unsubscription::FIELD_REASON => [],
     ]
 ];

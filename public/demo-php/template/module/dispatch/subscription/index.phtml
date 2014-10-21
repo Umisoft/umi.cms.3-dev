@@ -3,13 +3,18 @@
  * @var umicms\project\module\structure\model\object\SystemPage $page
  * @var umi\form\FormEntityView $form
  * @var umicms\project\module\dispatches\model\object\Subscriber $subscriber
- * @var bool $contains
+ * @var umicms\project\module\dispatches\model\object\Dispatch $dispatch
+ * @var bool $subscribe
  */
 ?>
 
 <div class="blog-post">
     <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
     <?=$page->contents?>
+    <?php if($subscribe): ?>
+        <p>Вы подписаны на рассылку "<?php echo $dispatch->displayName; ?>" </p>
+    <?php else: ?>
         <?= $errors = isset($errors) ? $errors : null ?>
         <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>
+    <?php endif; ?>
 </div>

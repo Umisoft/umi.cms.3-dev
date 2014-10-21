@@ -100,6 +100,16 @@ class IndexController extends BaseSitePageController
      */
     protected function processForm(IForm $form)
     {
+        if($this->subscriber->dispatches->contains($this->dispatch)){
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'You are already subscribed to our newsletter "{nameDispatch}".',
+                    [
+                        'nameDispatch' => $this->dispatch->displayName
+                    ]
+                )
+            );
+        }
         $this->module->subscriber($this->subscriber);
         $this->commit();
 
@@ -117,7 +127,9 @@ class IndexController extends BaseSitePageController
     {
         return [
             'page' => $this->getCurrentPage(),
-            'subscriber' => $this->subscriber
+            'subscriber' => $this->subscriber,
+            'subscribe' => $this->subscriber->dispatches->contains($this->dispatch),
+            'dispatch' => $this->dispatch
         ];
     }
 

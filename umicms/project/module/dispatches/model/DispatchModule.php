@@ -22,8 +22,6 @@ use umicms\project\module\dispatches\model\object\Dispatch;
 use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Subscription;
 use umicms\project\module\dispatches\model\object\Unsubscription;
-use umicms\project\module\users\model\object\BaseUser;
-use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umi\orm\metadata\IObjectType;
@@ -167,6 +165,7 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
         $unsubscription = $this->unsubscription()->add($typeName);
         $unsubscription->dispatch = $dispatch;
         $unsubscription->subscriber = $this->getCurrentSubscriber();
+        $unsubscription->subscriber->dispatches->detach($dispatch);
 
         return $unsubscription;
     }

@@ -21,7 +21,6 @@ return [
         'dispatch' => '{#lazy:~/project/module/dispatches/admin/dispatch/component.config.php}',
         'subscriber' => '{#lazy:~/project/module/dispatches/admin/subscriber/component.config.php}',
         'release' => '{#lazy:~/project/module/dispatches/admin/release/component.config.php}',
-        'reason' => '{#lazy:~/project/module/dispatches/admin/reason/component.config.php}',
         'template' => '{#lazy:~/project/module/dispatches/admin/template/component.config.php}',
         'subscription' => '{#lazy:~/project/module/dispatches/admin/subscription/component.config.php}',
         'unsubscription' => '{#lazy:~/project/module/dispatches/admin/unsubscription/component.config.php}',

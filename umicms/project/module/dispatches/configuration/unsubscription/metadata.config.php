@@ -34,7 +34,7 @@ return array_replace_recursive(
                 'target'     => 'dispatchRelease'
             ],
             Unsubscription::FIELD_REASON    => [
-                'type'       => IField::TYPE_BELONGS_TO,
+                'type'       => IField::TYPE_TEXT,
                 'columnName' => 'reason_unsubscribe',
             ],
         ],

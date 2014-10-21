@@ -40,7 +40,7 @@ class ManageSubscriptionLink extends BaseLinkWidget
     public $dispatch;
 
     /**
-     * @var string $isContains подписан или нет
+     * @var string $isContains проверка существования рассылки у данного подписчика
      */
     public $isContains;
 
