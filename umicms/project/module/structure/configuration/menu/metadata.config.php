@@ -24,16 +24,6 @@ return array_replace_recursive(
             'sourceName' => 'menu'
         ],
         'fields'     => [
-            Menu::FIELD_NAME                      => [
-                'type'       => IField::TYPE_STRING,
-                'columnName' => 'name',
-                'filters'    => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
-                ],
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
-                ]
-            ],
             MenuInternalItem::FIELD_PAGE_RELATION => [
                 'type'       => CmsPageRelationField::TYPE,
                 'columnName' => 'page_relation',
@@ -54,14 +44,9 @@ return array_replace_recursive(
         ],
         'types'      => [
             IObjectType::BASE      => [
-                'objectClass' => 'umicms\project\module\structure\model\object\BaseMenu',
-                'fields'      => []
             ],
             Menu::TYPE             => [
                 'objectClass' => 'umicms\project\module\structure\model\object\Menu',
-                'fields'      => [
-                    Menu::FIELD_NAME => []
-                ]
             ],
             MenuInternalItem::TYPE => [
                 'objectClass' => 'umicms\project\module\structure\model\object\MenuInternalItem',

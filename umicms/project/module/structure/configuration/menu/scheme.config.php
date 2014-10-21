@@ -15,22 +15,11 @@ return array_replace_recursive(
     [
         'name' => 'menu',
         'columns'     =>  [
-            'name' => [
-                'type' => Type::STRING
-            ],
             'page_relation' => [
                 'type' => Type::STRING
             ],
             'url_resource' => [
                 'type' => Type::STRING
-            ]
-        ],
-        'indexes' => [
-            'name' => [
-                'type' => 'unique',
-                'columns' => [
-                    'name' => []
-                ]
             ]
         ]
     ]

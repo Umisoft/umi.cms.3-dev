@@ -10,20 +10,16 @@
 
 namespace umicms\project\module\structure\model\object;
 
-use umicms\orm\object\TCmsObject;
+use umicms\orm\object\CmsHierarchicObject;
 
 /**
- * Класс описывающий меню.
+ * Составное меню.
  */
-class Menu extends BaseMenu
+class Menu extends CmsHierarchicObject
 {
     /**
      * Тип объекта
      */
     const TYPE = 'menu';
-    /**
-     * Имя поля для хранения имени меню
-     */
-    const FIELD_NAME = 'name';
 }
  
