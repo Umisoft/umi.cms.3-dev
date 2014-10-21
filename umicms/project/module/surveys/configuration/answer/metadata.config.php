@@ -21,12 +21,14 @@ return array_replace_recursive(
             Answer::FIELD_SURVEY => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'survey_id',
-                'target' => 'survey'
+                'target' => 'survey',
+                'mutator' => 'setSurvey'
             ],
             Answer::FIELD_VOTES => [
                 'type' => IField::TYPE_COUNTER,
                 'columnName' => 'votes',
-                'defaultValue' => 0
+                'defaultValue' => 0,
+                'readOnly' => true
             ]
         ],
         'types' => [

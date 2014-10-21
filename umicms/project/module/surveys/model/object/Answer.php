@@ -28,4 +28,19 @@ class Answer extends CmsObject
      * Имя поля для хранения количества голосов, отданных за данный ответ
      */
     const FIELD_VOTES = 'votes';
+
+    /**
+     * Выставляет опрос, к которому относится вариант ответа.
+     * @param Survey $survey опрос
+     * @return $this
+     */
+    public function setSurvey(Survey $survey)
+    {
+        if ($this->survey !== $survey) {
+            $this->getProperty(self::FIELD_SURVEY)->setValue($survey);
+            $this->getProperty(self::FIELD_VOTES)->setValue(0);
+        }
+
+        return $this;
+    }
 }

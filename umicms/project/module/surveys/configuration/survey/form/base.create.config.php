@@ -1,7 +1,6 @@
 <?php
 
 use umi\form\element\Checkbox;
-use umi\form\element\MultiSelect;
 use umicms\project\module\surveys\model\object\Survey;
 
 return array_replace_recursive(
@@ -16,14 +15,6 @@ return array_replace_recursive(
         'elements' => [
             'contents' => [
                 'elements' => [
-                    Survey::FIELD_ANSWERS => [
-                        'type' => MultiSelect::TYPE_NAME,
-                        'label' => Survey::FIELD_ANSWERS,
-                        'options' => [
-                            'lazy' => true,
-                            'dataSource' => Survey::FIELD_ANSWERS
-                        ]
-                    ],
                     Survey::FIELD_MULTIPLE_CHOICE => [
                         'type' => Checkbox::TYPE_NAME,
                         'label' => Survey::FIELD_MULTIPLE_CHOICE,
