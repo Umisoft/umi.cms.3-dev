@@ -8,6 +8,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\seo\model\object\Robots;
 
 return array_replace_recursive(
@@ -19,7 +20,10 @@ return array_replace_recursive(
         'fields' => [
             Robots::FIELD_PAGE_RELATION => [
                 'type' => IField::TYPE_OBJECT_RELATION,
-                'columnName' => 'page_relation'
+                'columnName' => 'page_relation',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED    => [],
+                ]
             ],
         ],
         'types' => [
