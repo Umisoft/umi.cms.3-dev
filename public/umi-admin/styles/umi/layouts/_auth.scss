@@ -41,6 +41,7 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
 }
 
 .auth-layout{
+    position: relative;
     overflow: hidden;
     height: 100%;
     width: 100%;
