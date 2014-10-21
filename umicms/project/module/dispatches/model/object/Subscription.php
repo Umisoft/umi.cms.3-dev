@@ -10,7 +10,8 @@
 
 namespace umicms\project\module\dispatches\model\object;
 
-use umicms\orm\object\CmsObject;
+use umicms\orm\object\CmsLinkObject;
+use umicms\Utils;
 
 /**
  * Базовый класс подписки.
@@ -19,7 +20,7 @@ use umicms\orm\object\CmsObject;
  * @property Subscriber $subscriber Связанный подписчик
  * @property string $token токен для управления подписками
  */
-class Subscription extends CmsObject
+class Subscription extends CmsLinkObject
 {
     /**
      * Тип объекта
@@ -40,5 +41,15 @@ class Subscription extends CmsObject
      * Имя поля для хранения токена
      */
     const FIELD_TOKEN = 'token';
+
+    /**
+     * Обновляет токен подписки
+     * @return $this
+     */
+    public function updateToken()
+    {
+        $this->getProperty(self::FIELD_TOKEN)->setValue(Utils::generateGUID());
+        return $this;
+    }
 
 }

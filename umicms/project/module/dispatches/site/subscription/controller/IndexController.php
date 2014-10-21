@@ -39,6 +39,11 @@ class IndexController extends BaseSitePageController
     private $subscriber;
 
     /**
+     * @var Subscription $subscription подписчик
+     */
+    private $subscription;
+
+    /**
      * @var Dispatch $dispatch рассылка
      */
     private $dispatch;
@@ -87,11 +92,11 @@ class IndexController extends BaseSitePageController
                 )
             );
         }
-        $subscription = $this->module->addSubscription($this->type, $this->dispatch);
+        $this->subscription = $this->module->addSubscription($this->type, $this->dispatch);
 
         return $this->module->subscriber()->getForm(Subscriber::FORM_SUBSCRIBE_SITE,
-            $subscription->getTypeName(),
-            $subscription
+            $this->subscription->getTypeName(),
+            $this->subscription
         );
     }
 
@@ -110,7 +115,7 @@ class IndexController extends BaseSitePageController
                 )
             );
         }
-        $this->module->subscriber($this->subscriber);
+        $this->module->updateTokenSubscription($this->subscription);
         $this->commit();
 
         return $this->buildRedirectResponse();

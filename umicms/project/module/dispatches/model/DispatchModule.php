@@ -143,7 +143,7 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
      * Создает подписку от имени текущего подписчика.
      * @param string $typeName тип объекта
      * @param Dispatch $dispatch рассылка
-     * @return Subscription
+     * @return Subscription $subscription
      */
     public function addSubscription($typeName = IObjectType::BASE, Dispatch $dispatch)
     {
@@ -168,6 +168,17 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
         $unsubscription->subscriber->dispatches->detach($dispatch);
 
         return $unsubscription;
+    }
+
+    /**
+     * Обновляет токен подписки
+     * @param Subscription $subscription подписка
+     * @return Subscription $subscription
+     */
+    public function updateTokenSubscription(Subscription $subscription)
+    {
+        $subscription->updateToken();
+        return $subscription;
     }
 
 }
