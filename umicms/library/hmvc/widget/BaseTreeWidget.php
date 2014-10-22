@@ -33,13 +33,22 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public $template = 'tree';
     /**
-     * @var string|CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды. Если не указано, строится полное дерево
+     * @var string|CmsHierarchicObject $branch ветка или GUID ветки, для которой строится дерево.
+     * Если не указано, строится полное дерево
      */
-    public $parentNode;
+    public $branch;
     /**
      * @var int $depth глубина вложения. Если не указано, строится на всю глубину вложенности
      */
     public $depth;
+    /**
+     * @var string $orderBy имя поля, по которому происходит сортировка потомков одного уровня
+     */
+    public $orderBy = CmsHierarchicObject::FIELD_ORDER;
+    /**
+     * @var string $direction направление, по которому происходит сортировка потомков одного уровня
+     */
+    public $direction = CmsSelector::ORDER_ASC;
     /**
      * @var array $options настройки выборки
      * <ul>
@@ -54,10 +63,10 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     public $fullyLoad;
 
     /**
-     * Возвращает выборку для построения дерева.
-     * @return CmsSelector
+     * Возвращает коллекцию, для которой строится дерево.
+     * @return CmsHierarchicCollection
      */
-    abstract protected function getSelector();
+    abstract protected function getCollection();
 
     /**
      * Формирует результат работы виджета.
@@ -70,9 +79,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $selector = $this->getSelector();
-
-        $collection = $selector->getCollection();
+        $collection = $this->getCollection();
 
         if (!$collection instanceof CmsHierarchicCollection) {
             throw new RuntimeException($this->translate(
@@ -80,21 +87,25 @@ abstract class BaseTreeWidget extends BaseCmsWidget
             ));
         }
 
-        $parentNode = $this->getParentNode($collection);
+        $branch = $this->getBranch($collection);
+        /**
+         * @var CmsSelector $selector
+         */
+        $selector = $collection->selectDescendants($branch, $this->depth, $this->orderBy, $this->direction);
 
-        if ($parentNode instanceof CmsHierarchicObject) {
-            $selector = $collection->selectDescendants($parentNode);
-
-            if ($this->depth) {
-                $selector = $collection->selectDescendants($parentNode, $this->depth);
-            }
-        } else if ($this->depth) {
-            $selector = $collection->selectDescendants(null, $this->depth);
-        }
-
+        $this->configureSelector($selector);
         $this->applySelectorConditions($selector);
 
         return $this->createTreeResult($this->template, $selector);
+    }
+
+    /**
+     * Расширяет выборку потомков дополнительными условиями.
+     * @param CmsSelector $selector
+     */
+    protected function configureSelector(CmsSelector $selector)
+    {
+
     }
 
     /**
@@ -116,32 +127,32 @@ abstract class BaseTreeWidget extends BaseCmsWidget
     }
 
     /**
-     * Возвращает родительскую ноду. Если был указан GUID получает объект.
-     * @param ICollection $collection коллекция для получения родительской ноды
-     * @throws InvalidArgumentException в случае если родительская нода не иерархический объект
-     * @return CmsHierarchicObject
+     * Возвращает бранч. Если был указан GUID получает объект.
+     * @param ICollection $collection коллекция для получения бранча
+     * @throws InvalidArgumentException в случае если бранч не иерархический объект
+     * @return CmsHierarchicObject|null
      */
-    private function getParentNode($collection)
+    protected function getBranch($collection)
     {
-        $parentNode = $this->parentNode;
+        $branch = $this->branch;
 
-        if (is_string($parentNode)) {
-            $parentNode = $collection->get($parentNode);
+        if (is_string($branch)) {
+            $branch = $collection->get($branch);
         }
 
-        if (!is_null($parentNode) && !$parentNode instanceof CmsHierarchicObject) {
+        if (!is_null($branch) && !$branch instanceof CmsHierarchicObject) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'parentNode',
-                        'class' => 'CmsHierarchicObject'
+                        'param' => 'branch',
+                        'class' => 'umicms\orm\object\CmsHierarchicObject'
                     ]
                 )
             );
         }
 
-        return $parentNode;
+        return $branch;
     }
 }
  
