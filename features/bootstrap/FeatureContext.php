@@ -79,4 +79,13 @@ class FeatureContext extends MinkContext
         $this->clickLink($langId);
     }
 
+    /**
+     * @Given /^Activation is turned "([^"]*)"$/
+     */
+    public function activationIsTurned($arg1)
+    {
+        // TODO: switching activation
+//        throw new \Behat\Behat\Tester\Exception\PendingException();
+    }
+
 }
