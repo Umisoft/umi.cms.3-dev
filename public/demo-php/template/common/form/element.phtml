@@ -27,6 +27,10 @@ switch($element->type)
         echo $this->render('form/element/checkbox.phtml', ['element' => $element]);
         break;
     }
+    case 'radio': {
+        echo $this->render('form/element/radio.phtml', ['element' => $element]);
+        break;
+    }
     case 'hidden':
     case 'csrf': {
         echo $this->render('form/element/hidden.phtml', ['element' => $element]);
