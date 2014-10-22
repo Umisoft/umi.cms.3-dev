@@ -81,16 +81,20 @@ define(['App'], function(UMI) {
                 var buttonGroupWidth = $buttonGroup.width();
                 var nextElementsWidth = 0;
                 var $nextElements = $buttonGroup.next();
+                var buttonGroupUnlabeledWidth = 20;
+
                 if ($nextElements.length) {
                     nextElementsWidth = $nextElements.width();
                     buttonGroupWidth += nextElementsWidth + 60;
                 }
+
                 var toggleLabel = function(needShow) {
                     var $button = $buttonGroup.find('.button');
                     if (needShow) {
                         $buttonGroup.removeClass('umi-hide-button-label');
                     } else {
                         $buttonGroup.addClass('umi-hide-button-label');
+                        buttonGroupUnlabeledWidth = $buttonGroup.width() + nextElementsWidth + 20;
                     }
                     if ($button.length) {
                         $button.each(function(index) {
@@ -103,21 +107,39 @@ define(['App'], function(UMI) {
                     }
                 };
 
+                var togglePagination = function(needShow) {
+                    if (needShow) {
+                        $nextElements.removeClass('umi-hide-pagination-label');
+                    } else {
+                        $nextElements.addClass('umi-hide-pagination-label');
+                    }
+                };
+
                 if ($buttonGroup.length) {
                     if (buttonGroupWidth >= $el.width()) {
                         toggleLabel();
+                        if (buttonGroupUnlabeledWidth >= $el.width()) {
+                            togglePagination();
+                        } else {
+                            togglePagination(true);
+                        }
                     }
                 }
-                $(window).on('resize.umi.toolbar', function() {
+                $(window).on('resize.umi.toolbar dividerResize.umi.toolbar', function() {
                     if (buttonGroupWidth >= $el.width()) {
                         toggleLabel();
+                        if (buttonGroupUnlabeledWidth >= $el.width()) {
+                            togglePagination();
+                        } else {
+                            togglePagination(true);
+                        }
                     } else {
                         toggleLabel(true);
                     }
                 });
             },
             willDestroyElement: function() {
-                $(window).off('resize.umi.toolbar');
+                $(window).off('.umi.toolbar');
             }
         });
     };
