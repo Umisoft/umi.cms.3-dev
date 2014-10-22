@@ -274,7 +274,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-02 09:34:39";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 13:05:05";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'editor' => 
       array (
@@ -285,8 +285,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -348,6 +348,8 @@ return array (
 &lt;xsl:apply-templates select=&quot;document(&#39;widget://structure.menu.auto?depth=1&#39;)/result&quot;/&gt;</pre>
 
 <p>&nbsp;</p>
+
+<p>&nbsp;</p>
 ',
       ),
       'active#ru-RU' => 
@@ -389,6 +391,166 @@ return array (
       array (
         0 => 'integer',
         1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '<p>Виджеты служат для вывода контентных блоков на сайте, дополняющих основное содержание страницы. Доступ к данным через виджеты контролируется через списки контроля доступа, что позволяет отображать для пользователя только разрешенные для него данные.</p>
+
+<p>Вывод данных на сайте с помощью виджетов позволяет изменять отображение, изменяя только сами данные без изменений кода шаблонов. Например, если в какую-то форму требуется добавить еще один элемент, то достаточно поправить конфигурацию этой формы, чтобы во всех местах на сайте, где выводится форма, появилось новое поле для ввода данных. Или, например, если для вывода ссылки на системную страницу использовать виджет, то при любых изменениях адреса страницы ссылка всегда будет актуальной по всему сайту.</p>
+
+<p>Большинство предоставляемых системой виджетов имеют однотипное поведение, например, вывод списка объектов, вывод формы, вывод ссылки. Это позволяет один раз изучить, как работает виджет определенного типа и какие у него могут быть параметры, чтобы в дальнейшем использовать полученный опыт для всех виджетов этого типа.</p>
+
+<p>Более подробно про каждый тип виджета можно прочитать в отдельных статьях.</p>
+
+<h2>Вызов виджета в шаблоне</h2>
+
+<p>&nbsp;</p>
+
+<h3>Вызов виджета для PHP-подобных шаблонизаторов</h3>
+
+<p>Для PHP-шаблонизатора вызов виджета происходит с помощью помощника <strong>widget</strong>, доступного в шаблоне как его собственный метод. Первым параметром метода является имя виджета, вторым параметром в виде ассоциативного массива передаются параметры вызова виджета.</p>
+
+<p>Для Twig вызов виджета происходит с помощью функции <strong>widget</strong>. Первым параметром функции является имя виджета, вторым параметром в виде ассоциативного массива передаются параметры вызова виджета.</p>
+
+<p>Так как вызов виджета в шаблоне сам по себе не вызывает шаблонизацию его результата, то для PHP-подобных шаблонизаторов (PHP-шаблонизатор и Twig) существует 2 способа отобразить результат работы виджета.</p>
+
+<h4>Приведение к строке по заданному шаблону</h4>
+
+<p>Первый способ - это вывод результата работы виджета по заданному шаблону путем приведения его к строке. Результат работы виджета доступен в шаблоне в виде переменных. Имя шаблона, по которому формируется результат работы виджета, задается как параметр вызова виджета <strong>template</strong>. Если параметр <strong>template </strong>не указывается, то отображение строится по шаблону, заданному для виджета по умолчанию. Вызов одного и того же виджета с разными шаблонами, позволяет отобразить одни и те же данные в разных местах сайта по-разному. В момент приведения результата работы виджета к строке запускается шаблонизация компонента, которому принадлежит виджет. Файл шаблона и шаблонизатор определяются в соответствии с настройками шаблонизации компонента и настройками <a href="/about-umi-cms/template-engines">шаблонизации</a> по умолчанию.</p>
+
+<p><strong>Вызов виджета и код шаблона для PHP:</strong></p>
+
+<pre>
+&lt;?= $this-&gt;widget(&#39;structure.menu.auto&#39;, [&#39;depth&#39; =&gt; 1, &#39;template&#39; =&gt; &#39;auto&#39;]) ?&gt;
+</pre>
+
+<pre>
+&lt;?php
+/** @var array $menu */
+?&gt;
+
+&lt;?php if (count($menu)) : ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;?php foreach ($menu as $pageInfo) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li class=&quot;&lt;?= $pageInfo[&#39;active&#39;] ? &#39;active&#39; : &#39;&#39; ?&gt;&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;&lt;?= $pageInfo[&#39;page&#39;]-&gt;getPageUrl() ?&gt;&quot;&gt;&lt;?= $pageInfo[&#39;page&#39;]-&gt;displayName ?&gt;&lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&lt;?php endif; ?&gt;
+</pre>
+
+<p><strong>Вызов виджета и код шаблона для Twig:</strong></p>
+
+<pre>
+{{ widget(&#39;structure.menu.auto&#39;, {&#39;depth&#39;: 1, &#39;template&#39;: &#39;auto&#39;}) | raw }}</pre>
+
+<pre>
+{% if (menu) %}
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for pageInfo in menu %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li class=&quot;{{ pageInfo.active ? &#39;active&#39; }}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{{ pageInfo.page.getPageUrl() }}&quot;&gt;{{ pageInfo.page.displayName }}&lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+{% endif %}
+</pre>
+
+<h4>Присвоение результата переменной</h4>
+
+<p>Второй способ шаблонизации виджета заключается в присвоении его результата работы переменной в месте вызова виджета. Переменная, которой присваивается результат работы виджета, содержит массив со значениями переменных, которые бы были доступны при выводе виджета по заданному шаблону, и с ключами в виде имен переменных.</p>
+
+<p>Способ шаблонизации через присвоение результата переменной позволяет отобразить результат работы виджета без потери контекста того, где он был вызван. Если результат работы виджета не приводится к строке, то, значит, не запускается и дополнительная шаблонизация, что в свою очередь позволит сэкономить ресурсы. Однако, при таком подходе к шаблонизации нет возможности использовать четкую структуру файлов шаблонов, а также необходимо самостоятельно проверять, что виджет доступен на исполнение для текущего пользователя.</p>
+
+<p><strong>Вызов виджета и шаблонизация результата для PHP:</strong></p>
+
+<pre>
+&lt;?php $menuResult = $this-&gt;widget(&#39;structure.menu.auto&#39;, [&#39;depth&#39; =&gt; 1]) ?&gt;
+&lt;?php if (count($menuResult[&#39;menu&#39;])) : ?&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+&nbsp;&nbsp;&nbsp;     &lt;?php foreach ($menuResult[&#39;menu&#39;] as $pageInfo) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &lt;li class=&quot;&lt;?= $pageInfo[&#39;active&#39;] ? &#39;active&#39; : &#39;&#39; ?&gt;&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &lt;a href=&quot;&lt;?= $pageInfo[&#39;page&#39;]-&gt;getPageUrl() ?&gt;&quot;&gt;&lt;?= $pageInfo[&#39;page&#39;]-&gt;displayName ?&gt;&lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&lt;?php endif; ?&gt;</pre>
+
+<p><strong>Вызов виджета и шаблонизация результата для Twig:</strong></p>
+
+<pre>
+{% set menuResult = widget(&#39;structure.menu.auto&#39;, {&#39;depth&#39;: 1}) %}
+{% if (menuResult.menu) %}
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for pageInfo in menuResult.menu %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li class=&quot;{{ pageInfo.active ? &#39;active&#39; }}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{{ pageInfo.page.getPageUrl() }}&quot;&gt;{{ pageInfo.page.displayName }}&lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+{% endif %}</pre>
+
+<h3>Вызов виджета для XSLT-шаблонизатора</h3>
+
+<p>Для XSLT вызов виджета осуществляется с помощью протокола <strong>widget</strong>, где в качестве хоста указывается имя виджета. Параметры вызова виджета указываются как параметры запроса.</p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://structure.menu.auto?depth=1&#39;)/result&quot;/&gt;</pre>
+
+<p>Для шаблонизации доступны данные, представленные в XML-формате.</p>
+
+<pre>
+&lt;xsl:template match=&quot;result[@widget = &#39;structure.menu.auto&#39;]&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;menu&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;menu/item&quot; /&gt;
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&lt;/xsl:template&gt;</pre>
+
+<h2>Вызов виджета с помощью REST API</h2>
+
+<p>Кроме вызова в шаблоне любой виджет может быть вызван с помощью GET-запроса к REST API в удобном формате. Виджет вызывается через контроллер widget компонента project.site с указанием имени виджета. Параметры вызова виджета указываются как параметры запроса.</p>
+
+<p>Следующий запрос вернет результат работы виджета вывода автогенерируемого меню:</p>
+
+<p>http://имя_домена/widget/structure.menu.auto?depth=1&amp;template=auto</p>
+
+<p><img alt="" src="images/widgets/html.PNG" style="height:222px; width:303px" /></p>
+
+<p>По умолчанию API отдает результат работы виджета в HTML-формате, результат отшаблонизирован в соответствии с настройками шаблонизации и готов к вставке на страницу сайта. Чтобы получить результат работы виджета в формате JSON или XML, к адресной части запроса добавляют мнемонику .json или .xml соответственно.</p>
+
+<p>http://имя_домена/widget/structure.menu.auto.json?depth=1</p>
+
+<p><img alt="" src="images/widgets/json.PNG" style="height:532px; width:519px" /></p>
+
+<p>http://имя_домена/widget/structure.menu.auto.xml?depth=1</p>
+
+<p><img alt="" src="images/widgets/xml.PNG" style="height:314px; width:689px" /></p>
+
+<p>Если вы хотите использовать вызов виджетов через REST API на вашем сайте, проверьте, что соответствующие группы пользователей имеют на это право (в редактировании прав группы стоит галочка &quot;Доступ к виджетам через REST&quot;):</p>
+
+<p><img alt="" src="images/widgets/rest-allow.PNG" style="height:206px; width:342px" /></p>
+
+<p>Права на вызываемый виджет будут проверены отдельно.</p>
+
+<h2>Альтернативное отображение виджета при отсутствие прав на его вызов</h2>
+
+<p>Если у текущего пользователя нет прав на исполнение виджета, то для него можно отобразить альтернативный контент. Для этого в PHP-подобных шаблонизаторах при вызове виджета есть возможность указать параметр <strong>forbiddenTemplate</strong>. Параметр <strong>forbiddenTemplate </strong>содержит имя шаблона, по которому будет сформировано отображение вместо отображения результата работы виджета. По умолчанию такой шаблон называется widget.forbidden и содержит пустой контент.</p>
+
+<p>Т. о. без лишней логики в шаблонах вы всегда можете определить, выводить ли сообщение об ошибке, ничего не выводить или вывести, например, форму авторизации, если у пользователя нет прав на просмотр запрошенного контента.</p>
+
+<p>Для XSLT-подобная ситуация решается 2 шаблонами:</p>
+
+<pre>
+&lt;xsl:template match=&quot;result[@widget = &#39;имя.виджета&#39;]&quot;&gt;
+...
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match=&quot;result[@widget = &#39;имя.виджета&#39;][code = 403]&quot;&gt;
+...
+&lt;/xsl:template&gt;</pre>
+',
       ),
     ),
   ),
@@ -655,7 +817,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-01 14:49:21";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 10:38:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -680,8 +842,8 @@ return array (
           array (
             'collection' => 'user',
             'type' => 'registered.supervisor',
-            'guid' => '600348b8-64c8-4714-b4fa-fa91d029df81',
-            'displayName' => 'sedrak',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
           ),
         ),
       ),
@@ -869,6 +1031,1704 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'static',
+      'guid' => 'bfa6bce7-e50d-4f1d-8ab7-4775ddc0a0b8',
+      'displayName' => 'Виджеты вывода ссылок',
+      'branch' => NULL,
+      'slug' => 'linkwidget',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода ссылок',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 10:31:00";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 11:46:19";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода ссылок',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода ссылок',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Использование виджетов вывода ссылок вместо &quot;зашивания&quot; адресов в шаблонах позволяет безболезненно менять адреса ресурсов без исправления кода шаблонов. Также виджет вывода ссылки может содержать некоторую логику по опредению нужного адреса в зависимости от условий. Как и остальные виджеты,&nbsp;виджеты вывода ссылок находятся под контролем системы прав, поэтому для пользователя, у которого нет прав на просмотр ссылки, можно ничего не отображать или определить дополнительную логику вывода с помощью использования параметра forbiddenTemplate.</p>
+
+<p>По умолчанию виджеты вывода ссылок формируют относительный адрес ссылки.</p>
+
+<p>Рассмотрим работу виджетов вывода ссылок на примере виджета вывода ссылки на страницу регистрации пользователей.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/users.registration.link.json</p>
+
+<p><img alt="" src="images/widgets/link/link.PNG" style="height:102px; width:339px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;users.registration.link&#39;) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;users.registration.link&#39;) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://users.registration.link&#39;)/result&quot;/&gt;</pre>
+
+<h2>Абсолютные ссылки</h2>
+
+<p>Для того, чтобы с помощью виджета вывода ссылок получить абсолютную ссылку, необходимо указать значение <strong>true</strong> для параметра виджета <strong>$absolute</strong>.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/users.registration.link.json?absolute=1</p>
+
+<p><img alt="" src="images/widgets/link/absolute.PNG" style="height:137px; width:410px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;users.registration.link&#39;, [&#39;absolute&#39; =&gt; true]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;users.registration.link&#39;, {&#39;absolute&#39; : true}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://users.registration.link?absolute=1&#39;)/result&quot;/&gt;</pre>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  8 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '5cd3207b-104e-4b97-bba2-ddbeac6d4f0f',
+      'displayName' => 'Виджеты вывода списков',
+      'branch' => NULL,
+      'slug' => 'listwidget',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода списков',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 10:31:49";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода списков',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода списков',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Виджеты вывода списков являются гибким и удобным способом отображения объектов коллекций. Для каждого такого виджета есть возможность задать настройки фильтрации и сортировки объектов, ограничить загрузку данных только необходимыми свойствами, чтобы сэкономить ресурсы и время, а также дополнить вывод постраничной навигацией.</p>
+
+<p>Рассмотрим особенности и возможности виджетов списков на примере виджета вывода списка последних новостей <a href="/widgets/news/item/list">news.item.list</a>.</p>
+
+<ul>
+	<li><a href="/listwidget#load">Настройки загрузки объектов</a>
+
+	<ul>
+		<li><a href="/listwidget#load-default">Свойства по умолчанию</a></li>
+		<li><a href="/listwidget#load-fields">Указание свойств для загрузки</a></li>
+		<li><a href="/listwidget#load-with">Загрузка связей</a></li>
+		<li><a href="/listwidget#load-full">Полная загрузка</a></li>
+	</ul>
+	</li>
+	<li><a href="/listwidget#sort-and-filter">Сортировка и фильтрация</a>
+	<ul>
+		<li><a href="/listwidget#sort">Сортировка</a></li>
+		<li><a href="/listwidget#conditions">Условия выборки</a></li>
+		<li><a href="/listwidget#limit">Ограничения выборки</a></li>
+	</ul>
+	</li>
+	<li><a href="/listwidget#pagination">Постраничная навигация</a></li>
+</ul>
+
+<h2><a name="load"></a>Настройки загрузки объектов</h2>
+
+<p>По умолчанию объекты в списках загружаются с минимальным набором свойств. Список загружаемых свойств можно расширить конкретными свойствами, также можно загрузить объекты полностью. В случае обращения к незагруженному свойству объект догружает значения всех своих свойств. Верно установив параметры вызова виджета, все необходимые данные можно получить всего лишь одним запросом к базе данных.</p>
+
+<h3><a name="load-default"></a>Свойства по умолчанию</h3>
+
+<p>Для всех типов коллекций по умолчанию загружаются следующие свойства:</p>
+
+<ul>
+	<li>id</li>
+	<li>guid</li>
+	<li>type</li>
+	<li>version</li>
+	<li>displayName</li>
+</ul>
+
+<p>Для иерархических коллекций дополнительно загружаются свойства:</p>
+
+<ul>
+	<li>parent</li>
+	<li>mpath</li>
+	<li>slug</li>
+</ul>
+
+<p>Для коллекций объектов, имеющих страничное представление дополнительно загружаются свойства:</p>
+
+<ul>
+	<li>slug</li>
+	<li>h1</li>
+</ul>
+
+<p><strong>REST API</strong>:</p>
+
+<p>http://имя_домена/widget/news.item.list.json</p>
+
+<p><img alt="" src="images/widgets/list/lazyload.PNG" style="height:491px; width:509px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="load-fields"></a>Указание свойств для загрузки</h3>
+
+<p>Чтобы дополнить загружаемый объект дополнительными свойствами со скалярными значениями, необходимо через запятую указать список имен загружаемых полей в параметре виджета <strong>$options[&#39;fields&#39;]</strong>.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?options[fields]=date,announcement</p>
+
+<p><img alt="" src="images/widgets/list/fieldsload.PNG" style="height:650px; width:546px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;options&#39; =&gt; [&#39;fields&#39; =&gt; &#39;date,announcement&#39;]]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;options&#39; : {&#39;fields&#39; : &#39;date,announcement&#39;}}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?options%5Bfields%5D=date,announcement&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="load-with"></a>Загрузка связей</h3>
+
+<p>Виджеты вывода списков позволяют загрузить объекты сразу со значениями для связей типа &quot;многие к одному&quot; с указанием, какие свойства должны быть загружены для связи. Для загрузки связей устанавливается параметр <strong>$options[&#39;with&#39;]</strong> в виде массива, где ключами являются пути до свойств связи, а значениями - имена загружаемых свойств, указанные через запятую. Если имена загружаемых свойств не указывать, то объект связи загрузится полностью.</p>
+
+<p>Загружать можно не только собственные свойства связи типа &quot;многие к одному&quot;, но и связи связей на неограниченный уровень вложенности. Для загрузки связи связи указывается полный путь к свойству связанной коллекции, состоящий из названия свойств, через которые осуществляется связь, объединенных точкой. В таком случае загружены будут все промежуточные связи. Промежуточные связи загружаются со свойствами по умолчанию.</p>
+
+<p>В примере запрашивается список новостей с загрузкой рубрик, в которые они входят, и загрузкой создателей рубрик с логином.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?options[with][rubric.owner]=login</p>
+
+<p><img alt="" src="images/widgets/list/withload.PNG" style="height:902px; width:514px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;options&#39; =&gt; [&#39;with&#39; =&gt; [&#39;rubric.owner&#39; =&gt; &#39;login&#39;]]]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;options&#39; : {&#39;with&#39; : {&#39;rubric.owner&#39; =&gt; &#39;login&#39;}}}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?options%5Bwith%5D%5Brubric.owner%5D=login&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="load-full"></a>Полная загрузка</h3>
+
+<p>Чтобы виджет списка полностью загружал объекты, необходимо указать параметр <strong>$fullyLoad=true</strong>. При полной загрузке объектов параметр <strong>$options[&#39;fields&#39;]</strong> игнорируется. Объект загружается со всеми своими скалярными свойствами и связями &quot;многие к одному&quot;, для которых выполняется загрузка свойств по умолчанию, если не указано, что связь нужно загружать иначе.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?fullyLoad=1</p>
+
+<p><img alt="" src="images/widgets/list/fullyload.PNG" style="height:870px; width:766px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;fullyLoad&#39; =&gt; true]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;fullyLoad&#39; : true}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?fullyLoad=1&#39;)/result&quot;/&gt;</pre>
+
+<h2><a name="sort-and-filter"></a>Сортировка и фильтрация</h2>
+
+<p>&nbsp;</p>
+
+<h3><a name="sort"></a>Сортировка</h3>
+
+<p>Сортировка объектов в списке задается параметром <strong>$options[&#39;orderBy&#39;]</strong> в виде массива, где ключами являются пути до свойств, по которым идет сортировка, а значениями - направление сортировки (ASC - прямая и DESC - обратная).</p>
+
+<p>Сортировать объекты в списке можно не только по собственным свойствам, но и по свойствам связанных объектов (для всех типов связи) на неограниченный уровень вложенности. Для сортировки по свойству связи указывается полный путь к свойству связанной коллекции, состоящий из названия свойств, через которые осуществляется связь, объединенных точкой. Связи при этом загружены не будут.</p>
+
+<p>Задаваемая параметром <strong>$options[&#39;orderBy&#39;]</strong> сортировка не отменяет сортировки, которые заданы для объектов в списке изначально, и не изменяет их порядок, а только их дополняет. Например, для виджета вывода последних новостей уже задана сортировка по дате новости. Если нужно вывести список новостей без сортировки по дате, необходимо написать свой виджет, который будет использовать выборку из коллекции новостей без сортировок.</p>
+
+<p>Сортировку новостей по дате можно расширить так, чтобы новости с одинаковыми датами были отсортированы дополнительно.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?options[orderBy][id]=ASC&amp;options[fields]=date&nbsp;</p>
+
+<p>Сортировка по дате новости дополняется прямой сортировкой по id новости, новости запрошены со значением для свойства date для наглядности сортировки.</p>
+
+<p><img alt="" src="images/widgets/list/orderby.PNG" style="height:783px; width:649px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;options&#39; =&gt; [&#39;orderBy&#39; =&gt; [&#39;id&#39; =&gt; &#39;ASC&#39;]]]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;options&#39; : {&#39;orderBy&#39; : {&#39;id&#39; =&gt; &#39;ASC&#39;}}}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?options%5BorderBy%5D%5Bid%5D=ASC&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="conditions"></a>Условия выборки</h3>
+
+<p>Условия выборки объектов в списке задаются параметром <strong>$options[&#39;filters&#39;]</strong> в виде массива, где ключами являются пути к полям, ограничивающих выборку, а значениями - условия ограничения. Условие ограничения содержит в себе тип ограничения и значение для этого ограничения.</p>
+
+<p>Все условия заданные в параметре <strong>$options[&#39;filters&#39;]</strong> складываются.</p>
+
+<p>Доступные типы условий:</p>
+
+<table border="0" cellpadding="5" cellspacing="5">
+	<thead>
+		<tr>
+			<th scope="col">Тип</th>
+			<th scope="col">Описание</th>
+			<th scope="col">Пример</th>
+			<th scope="col">Результат примера</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>notequals</td>
+			<td>условие неравенства</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=notequals(1)</td>
+			<td>список объектов коллекции с id, неравным единице</td>
+		</tr>
+		<tr>
+			<td>equals</td>
+			<td>условие равенства</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=equals(1)</td>
+			<td>один объект с id, равным единице</td>
+		</tr>
+		<tr>
+			<td>in</td>
+			<td>условие вхождения в заданные варианты</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=in(1,2,3)</td>
+			<td>список объектов, у которых id равен 1, 2 или 3</td>
+		</tr>
+		<tr>
+			<td>equalsorless</td>
+			<td>условие &quot;меньше или равно&quot;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=equalsorless(3)</td>
+			<td>список объектов, у которых id равен или меньше 3-x</td>
+		</tr>
+		<tr>
+			<td>equalsormore</td>
+			<td>условие &quot;больше или равно&quot;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=equalsormore(3)</td>
+			<td>список объектов, у которых id равен или больше 3-x</td>
+		</tr>
+		<tr>
+			<td>less</td>
+			<td>условие &quot;меньше&quot;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=less(3)</td>
+			<td>список объектов, у которых id меньше 3-x</td>
+		</tr>
+		<tr>
+			<td>more</td>
+			<td>условие &quot;больше&quot;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=more(3)</td>
+			<td>список объектов, у которых id больше 3-x</td>
+		</tr>
+		<tr>
+			<td>like</td>
+			<td>условие по подстроке</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=like(%3)</td>
+			<td>список объектов, у которых id заканчивается на 3</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=like(3%)</td>
+			<td>список объектов, у которых id начинается на 3</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=like(%3%)</td>
+			<td>список объектов, у которых id содержит 3</td>
+		</tr>
+		<tr>
+			<td>between</td>
+			<td>условие &quot;между&quot; (включительно)</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=between(1,3)</td>
+			<td>список объектов, у которых id больше или равен 1-му и меньше или равен 3-м</td>
+		</tr>
+		<tr>
+			<td>null</td>
+			<td>условие отсутствия значения</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=null()</td>
+			<td>список объектов, у которых id не установлен</td>
+		</tr>
+		<tr>
+			<td>notnull</td>
+			<td>условие наличия значения</td>
+			<td>$options[&#39;filters&#39;][&#39;id&#39;]=notnull()</td>
+			<td>список объектов, у которых id установлен</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Если тип условия пропущен, то по умолчанию принимается, что он равен equals. Виджет списка с параметром <strong>$options[&#39;filters&#39;][&#39;id&#39;]=1</strong> вернет один объект с id, равным единице. &nbsp;</p>
+
+<p>Запрос на получения списка новостей, имеющих&nbsp; определенный сюжет, входящих в определенную рубрику, с непустым анонсом:</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?options[filters][subjects.id]=equals(1)&amp;options[filters][rubric.id]=equals(2)&amp;options[filters][announcement]=notnull()</p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;options&#39; =&gt; [&#39;filters&#39; =&gt; [&#39;subjects.id&#39; =&gt; &#39;equals(1)&#39;, &#39;rubric.id&#39; =&gt; &#39;equals(2)&#39;, &#39;announcement&#39; =&gt; &#39;notnull()&#39;]]]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;options&#39; : {&#39;filters&#39; : {&#39;subjects.id&#39; : &#39;equals(1)&#39;, &#39;rubric.id&#39; : &#39;equals(2)&#39;, &#39;announcement&#39; : &#39;notnull()&#39;}}}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?options%5Bfilters%5D%5Bsubjects.id%5D=equals(1)&amp;amp;options%5Bfilters%5D%5Brubric.id%5D=equals(2)&amp;amp;options%5Bfilters%5D%5Bannouncement%5D=notnull()&#39;)/result&quot; /&gt;</pre>
+
+<h3><a name="limit"></a>Ограничения выборки</h3>
+
+<p>Для ограничения выборки используются параметры <strong>$limit</strong>, который указывает количество выбираемых элементов, и <strong>$offset</strong>, который указывает сдвиг в выборке. Если параметр <strong>$limit&nbsp; </strong>не указан, в виджете отображаются все подходящие объекты, <strong>$limit </strong>может использоваться без задания параметра <strong>$offset</strong>. Параметр <strong>$offset </strong>используется только тогда, когда указано значение для параметра <strong>$limit</strong>,<strong> </strong>и игнорируется, когда заданы параметры построения постраничной навигации.</p>
+
+<p>Вывод 2-х последних новостей с пропуском первых 3-х новостей в списке.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?limit=2&amp;offset=3</p>
+
+<p><img alt="" src="images/widgets/list/orderby.PNG" style="height:783px; width:649px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;limit&#39; =&gt; 2, &#39;offset&#39; =&gt; 3]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;limit&#39; : 2, &#39;offset&#39; : 3}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?limit=2&amp;amp;offset=3&#39;)/result&quot;/&gt;</pre>
+
+<h2><a name="pagination"></a>Постраничная навигация</h2>
+
+<p>Для построения постраничной навигации обязательно задание параметра <strong>$limit </strong>- количества выводимых на одной странице объектов.<strong> </strong>Другие настройки постраничной навигации задаются в параметре <strong>$pagination</strong> в виде массива. Постраничная навигация не строится, если не задана ни одна настройка для <strong>$pagination</strong>. Постраничная навигация не строится, если общее количество объектов в списке не превышает количества выводимых на одной странице объектов, т.е. если постраничная навигация содержит только одну страницу.</p>
+
+<p>Параметр <strong>$pagination</strong> может содержать следующие настройки:</p>
+
+<ul>
+	<li>type - тип постраничной навигации. На выбор предоставляется три типа:
+	<ul>
+		<li>all - тип постраничной навигации с выводом всех страниц сразу. Данный тип используется по умолчанию.<br />
+		<img alt="" src="images/widgets/list/pagination-all.PNG" style="height:84px; width:443px" /></li>
+		<li>elastic - тип постраничной навигации с выводом текущей страницы и заданного количества страниц вокруг нее<br />
+		<img alt="" src="images/widgets/list/pagination-elastic.PNG" style="height:56px; width:288px" /></li>
+		<li>sliding - тип постраничной навигации с выводом текущей страницы и заданного количества страниц после нее<br />
+		<img alt="" src="images/widgets/list/pagination-sliding.PNG" style="height:65px; width:301px" /></li>
+	</ul>
+	</li>
+	<li>pageParam - имя GET-параметра, значение которого будет использовано для определения номера текущей страницы. По умолчанию равен &quot;p&quot;. Такая настройка позволяет независимо друг от друга выводить несколько постраничных навигаций на одной странице.</li>
+	<li>pagesCount - количество выводимых страниц, не используется для типа &quot;all&quot;.</li>
+</ul>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/news.item.list.json?limit=2&amp;pagination[type]=sliding&amp;pagination[pageParam]=p&amp;pagination[pagesCount]=3</p>
+
+<p><img alt="" src="images/widgets/list/pagination.PNG" style="height:822px; width:1242px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;news.item.list&#39;, [&#39;limit&#39; =&gt; 2, &#39;pagination&#39; =&gt; [&#39;pageParam&#39; =&gt; &#39;p&#39;, &#39;pagesCount&#39; =&gt; 3, &#39;type&#39; =&gt; &#39;sliding&#39; ]]) ?&gt;
+</pre>
+
+<p>Пример шаблона для вывода постраничной навигации:</p>
+
+<pre>
+&lt;?php
+/**
+&nbsp;* @var umicms\\pagination\\CmsPaginator $paginator
+&nbsp;*/
+?&gt;
+
+&lt;?php if ($paginator-&gt;pagesCount) : ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;pagination&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php if ($paginator-&gt;previousPage) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;&lt;?= $paginator-&gt;previousPageUrl ?&gt;&quot;&gt;&lt;?=$this-&gt;translate(&#39;Previous&#39;)?&gt;&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endif; ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php foreach ($paginator-&gt;rangeUrls as $page =&gt; $link) : ?&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php if ($page != $paginator-&gt;currentPage) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;&lt;?= $link ?&gt;&quot;&gt;&lt;?= $page ?&gt;&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php else : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li class=&quot;active&quot;&gt;&lt;span&gt;&lt;?= $page ?&gt;&lt;/span&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endif; ?&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php if ($paginator-&gt;nextPage) : ?&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;&lt;?= $paginator-&gt;nextPageUrl ?&gt;&quot;&gt;&lt;?=$this-&gt;translate(&#39;Next&#39;)?&gt;&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endif; ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&lt;?php endif; ?&gt;</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;news.item.list&#39;, {&#39;limit&#39; : 2, &#39;pagination&#39; : {&#39;pageParam&#39; : &#39;p&#39;, &#39;pagesCount&#39; : 3, &#39;type&#39; ; &#39;sliding&#39;}}) |raw }}</pre>
+
+<p>Пример шаблона для вывода постраничной навигации:</p>
+
+<pre>
+{% if (paginator.pagesCount) %}
+&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;pagination&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% if (paginator.previousPage) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;{{ paginator.previousPageUrl }}&quot;&gt;{{ translate(&#39;Previous&#39;) }}&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for page, link in paginator.rangeUrls %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% if (page != paginator.currentPage) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;{{ link }}&quot;&gt;{{ page }}&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% else %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li class=&quot;active&quot;&gt;&lt;span&gt;{{ page }}&lt;/span&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% if (paginator.nextPage) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;a href=&quot;{{ paginator.nextPageUrl }}&quot;&gt;{{ translate(&#39;Next&#39;) }}&lt;/a&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+{% endif %}
+</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://news.item.list?limit=2&amp;amp;pagination%5Btype%5D=sliding&amp;amp;pagination%5BpageParam%5D=p&amp;amp;pagination%5BpagesCount%5D=3&#39;)/result&quot;/&gt;</pre>
+
+<p>Пример шаблона для вывода постраничной навигации:</p>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;xsl:stylesheet version=&quot;1.0&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:php=&quot;http://php.net/xsl&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:umi=&quot;http://umi-cms.ru/xsl&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exclude-result-prefixes=&quot;php umi&quot;&gt;
+
+    &lt;xsl:variable name=&quot;pagesCount&quot; select=&quot;5&quot; /&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;paginator&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;navigation navcent&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;previousPage&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul class=&quot;pagination&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;firstPage[../currentPage/@number &amp;gt; $pagesCount - 2]&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:with-param name=&quot;var&quot; select=&quot;$pagesCount&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:apply-templates&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;range/page&quot; mode=&quot;pagination&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;lastPage[../currentPage/@number &amp;lt; @number - ($pagesCount - 3)]&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:with-param name=&quot;var&quot; select=&quot;$pagesCount&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:apply-templates&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;nextPage&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;firstPage&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:param name=&quot;var&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{@url}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:value-of select=&quot;@number&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:if test=&quot;../currentPage/@number != $var - 1&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:if&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;lastPage&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:param name=&quot;var&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:if test=&quot;../currentPage/@number != @number - ($var - 2)&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:if&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{@url}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:value-of select=&quot;@number&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;previousPage&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{@url}&quot; class=&quot;np&quot;&gt;&lt;xsl:value-of select=&quot;document(&#39;translate://project.site/Previous&#39;)/result&quot;/&gt;&lt;/a&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;nextPage&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a href=&quot;{@url}&quot; class=&quot;np&quot;&gt;&lt;xsl:value-of select=&quot;document(&#39;translate://project.site/Next&#39;)/result&quot;/&gt;&lt;/a&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;page&quot; mode=&quot;pagination&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;.&quot; mode=&quot;pagination.current&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:value-of select=&quot;@number&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/a&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/li&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;page[not(@current)]&quot; mode=&quot;pagination.current&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name=&quot;href&quot;&gt;&lt;xsl:value-of select=&quot;@url&quot; /&gt;&lt;/xsl:attribute&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:template match=&quot;page[@current]&quot; mode=&quot;pagination.current&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name=&quot;class&quot;&gt;active&lt;/xsl:attribute&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</pre>
+
+<p>&nbsp;</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  9 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '015cf16d-f6f0-47d5-a169-b3f14859dc70',
+      'displayName' => 'Виджеты вывода древовидных структур',
+      'branch' => NULL,
+      'slug' => 'treewidget',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода древовидных структур',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 10:32:53";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 13:17:31";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода древовидных структур',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода древовидных структур',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Виджеты вывода древовидных структур служат для вывода объектов иерархических коллекций в виде деревьев. Элементы в дереве вложены друг в друга в соответствии с их иерархическим уровнем и по умолчанию располагаются в порядке следования в иерархии. Примером виджетов древовидных структур является виджет вывода комментариев к посту блога или вывода настраиваемого меню.</p>
+
+<p>Рассмотрим особенности и возможности виджетов древовидных структур на примере виджета вывода комментариев (<strong>blog.comment.tree</strong>) к посту блога с guid aafb8016-470c-4cca-947c-f999c1ea4b55.</p>
+
+<ul>
+	<li><a href="/treewidget#load">Настройки загрузки объектов</a>
+
+	<ul>
+		<li><a href="/treewidget#load-default">Свойства по умолчанию</a></li>
+		<li><a href="/treewidget#load-fields">Указание свойств для загрузки</a></li>
+		<li><a href="/treewidget#load-full">Полная загрузка</a></li>
+	</ul>
+	</li>
+	<li><a href="/treewidget#conditions">Условия выборки объектов</a>
+	<ul>
+		<li><a href="/treewidget#depth">Ограничение уровня вложенности дерева</a></li>
+		<li><a href="/treewidget#branch">Выбор элемента, для которого строится дерево</a></li>
+	</ul>
+	</li>
+	<li><a href="/treewidget#sort">Условия сортировки объектов</a></li>
+</ul>
+
+<h2><a name="load"></a>Настройки загрузки объектов</h2>
+
+<p>По умолчанию объекты в деревьях загружаются с минимальным набором свойств. Список загружаемых свойств можно расширить конкретными свойствами, также можно загрузить объекты полностью. В случае обращения к незагруженному свойству объект догружает значения всех своих свойств. Верно установив параметры вызова виджета, все необходимые данные можно получить всего лишь одним запросом к базе данных.</p>
+
+<h3><a name="load-default"></a>Свойства по умолчанию</h3>
+
+<p>Для всех типов коллекций по умолчанию загружаются следующие свойства:</p>
+
+<ul>
+	<li>id</li>
+	<li>guid</li>
+	<li>type</li>
+	<li>version</li>
+	<li>displayName</li>
+</ul>
+
+<p>Для иерархических коллекций дополнительно загружаются свойства:</p>
+
+<ul>
+	<li>parent</li>
+	<li>mpath</li>
+	<li>slug</li>
+</ul>
+
+<p>Для коллекций объектов, имеющих страничное представление дополнительно загружаются свойства:</p>
+
+<ul>
+	<li>slug</li>
+	<li>h1</li>
+</ul>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55</p>
+
+<p><img alt="" src="images/widgets/tree/tree.PNG" style="height:907px; width:653px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="load-fields"></a>Указание свойств для загрузки</h3>
+
+<p>Чтобы дополнить загружаемый объект дополнительными свойствами необходимо через запятую указать список имен загружаемых в параметре виджета <strong>$options[&#39;fields&#39;]</strong>.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;options[fields]=publishTime,author</p>
+
+<p><img alt="" src="images/widgets/tree/tree-fields.PNG" style="height:633px; width:513px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;options&#39; =&gt; [&#39;fields&#39; =&gt; &#39;publishTime,author&#39;]]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;options&#39; : {&#39;fields&#39; : &#39;publishTime,author&#39;}}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;amp;options%5Bfields%5D=publishTime,author&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="load-full"></a>Полная загрузка</h3>
+
+<p>Чтобы виджет полностью загружал объекты, необходимо указать параметр <strong>$fullyLoad=true</strong>. При полной загрузке объектов параметр <strong>$options[&#39;fields&#39;]</strong> игнорируется. Объект загружается со всеми своими скалярными свойствами и связями &quot;многие к одному&quot;, для которых выполняется загрузка свойств по умолчанию.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;fullyLoad=1</p>
+
+<p><img alt="" src="images/widgets/tree/tree-full.PNG" style="height:595px; width:480px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;fullyLoad&#39; =&gt; true]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;fullyLoad&#39; : true}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;amp;fullyLoad=1&#39;)/result&quot;/&gt;</pre>
+
+<h2><a name="conditions"></a>Условия выборки объектов</h2>
+
+<p>Гибкие настройки выборки объектов для дерева позволяют подгружать и отображать большие деревья частями.&nbsp;</p>
+
+<h3><a name="depth"></a>Ограничение уровня вложенности дерева</h3>
+
+<p>За уровень вложенности элементов в дереве отвечает параметр виджета <strong>$depth</strong>. Значение параметра <strong>$depth</strong> говорит о том, сколько уровней иерархии должно быть отображено. Если значение для параметра <strong>$depth </strong>не указано, то элементы в дереве загружаются на всю глубину, т.е. последним уровнем в выборке будет уровень, у элементов которого нет детей.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;depth=1</p>
+
+<p><img alt="" src="images/widgets/tree/tree-depth.PNG" style="height:497px; width:488px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;depth&#39; =&gt; 1]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;depth&#39; : 1}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;amp;depth=1&#39;)/result&quot;/&gt;</pre>
+
+<h3><a name="branch"></a>Выбор элемента, для которого строится дерево</h3>
+
+<p>Элемент, для которого строится дерево, задается параметром <strong>$branch</strong>, в котором указывается GUID элемента или сам элемент. Отображение строится от детей указанного элемента. Если значение для параметра <strong>$branch </strong>не указано, то отображение строится от элементов, у которых родитель не задан.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;branch=24a6d3f3-bdba-4163-bf61-c8f274a92dac</p>
+
+<p><img alt="" src="images/widgets/tree/tree-branch.PNG" style="height:516px; width:596px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;branch&#39; =&gt; &#39;24a6d3f3-bdba-4163-bf61-c8f274a92dac&#39;]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;branch&#39; : &#39;24a6d3f3-bdba-4163-bf61-c8f274a92dac&#39;}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;amp;branch=24a6d3f3-bdba-4163-bf61-c8f274a92dac&#39;)/result&quot;/&gt;</pre>
+
+<h2><a name="sort"></a>Условия сортировки объектов</h2>
+
+<p>Сортировка элементов одного уровня в дереве задается параметрами <strong>$orderBy </strong>и <strong>$direction</strong>. Параметр <strong>$orderBy</strong> задает имя поля, по которому происходит сортировка, параметр <strong>$direction</strong> задает направление сортировки (ASC - прямая и DESC - обратная). По умолчанию элементы одного уровня отсортированы в прямом порядке их следования в иерархии.</p>
+
+<p>Комментарии по умолчанию отсортированы по дате публикации в обратном порядке.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/blog.comment.tree.json?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;orderBy=displayName&amp;direction=DESC</p>
+
+<p><img alt="" src="images/widgets/tree/tree-order.PNG" style="height:500px; width:515px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;blog.comment.tree&#39;, [&#39;blogPost&#39; =&gt; &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;orderBy&#39; =&gt; &#39;displayName&#39;, &#39;direction&#39; =&gt; &#39;DESC&#39;]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;blog.comment.tree&#39;, {&#39;blogPost&#39; : &#39;aafb8016-470c-4cca-947c-f999c1ea4b55&#39;, &#39;orderBy&#39; : &#39;displayName&#39;, &#39;direction&#39; : &#39;DESC&#39;}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://blog.comment.tree?blogPost=aafb8016-470c-4cca-947c-f999c1ea4b55&amp;amp;orderBy=displayName&amp;amp;direction=DESC&#39;)/result&quot;/&gt;</pre>
+
+<p>&nbsp;</p>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'secondContents' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+    ),
+  ),
+  10 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
+      'guid' => '347dce7c-a844-4b1a-a897-8db834a1be27',
+      'displayName' => 'Виджеты вывода форм',
+      'branch' => NULL,
+      'slug' => 'formwidget',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода форм',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 10:38:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-22 12:13:56";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода форм',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Виджеты вывода форм',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '<p>Формы - это гибкий и безопасный способ предоставить пользователям доступ к модификации данных, они позволяют фильтровать и валидировать данные, введенные пользователем. Сохранение данных с использованием форм гарантирует, что применены будут только разрешенные изменения. Форму, которая не прошла валидацию, можно повторно отобразить пользователю без потери введенных им данных.</p>
+
+<p>Любая форма создается на основе конфигурации, в которой описываются все используемые формой элементы. Вывод форм на сайте с помощью виджетов гарантирует, что одна и та же форма в разных местах всегда будет отображена в соответствии с ее актуальной конфигурацией.</p>
+
+<p>Рассмотрим виджеты вывода форм на примере виджета формы авторизации пользователя на сайте (<strong>users.authorization.loginForm</strong>).</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/users.authorization.loginForm.json</p>
+
+<p><img alt="" src="images/widgets/form/form.PNG" style="height:884px; width:661px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;users.authorization.loginForm&#39;) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;users.authorization.loginForm&#39;) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://users.authorization.loginForm&#39;)/result&quot;/&gt;</pre>
+
+<h2>Представление формы</h2>
+
+<p>На шаблонизацию и сериализацию виджеты вывода форм отдают представление формы. Представление формы - это всегда актуальная информация о форме, с которой можно работать как с массивом.</p>
+
+<p>Представление как отдельного элемента формы, так и группы элементов, имеет следующие параметры:</p>
+
+<ul>
+	<li>type - название типа элемента (например, form, fieldset, text, captcha и т.д.)</li>
+	<li>tag - название HTML-тега, с помощью которого по умолчанию отображается элемент (например, form, fieldset, input, select, textarea и т.д.)</li>
+	<li>id - идентификатор элемента</li>
+	<li>label - переведенная в текущую локаль метка элемента</li>
+	<li>attributes - список атрибутов HTML-тега (например, name, class, type, value и т.д.)</li>
+	<li>valid - флаг валидности значения элемента</li>
+	<li>errors - список ошибок валидации</li>
+</ul>
+
+<p>Представление групп элементов (form и fieldset) имеет следующие параметры:</p>
+
+<ul>
+	<li>elements - список представлений дочерних элементов</li>
+</ul>
+
+<p>Представление отдельных элементов имеет следующие параметры:</p>
+
+<ul>
+	<li>value - значение элемента</li>
+	<li>validators - список валидаторов, которые должно пройти значение элемента</li>
+	<li>filters - список фильтров, которые должно пройти значение элемента</li>
+</ul>
+
+<p>Представление элемента с выбором вариантов значений имеет следующие параметры:</p>
+
+<ul>
+	<li>choices - список значений на выбор</li>
+</ul>
+
+<h2>Типы элементов форм</h2>
+
+<p>В представлении элемента формы тип элемента содержится в атрибуте <strong>type</strong> и соответсвуют типу, заданному для элемента в конфигурации формы.</p>
+
+<p>Группы элементов:</p>
+
+<ul>
+	<li>form - форма</li>
+	<li>fieldset - элемент формы, предназначенный для группирования&nbsp;элементов внутри формы</li>
+</ul>
+
+<p>Простые поля для ввода данных, представленных&nbsp;тегом &lt;input&gt;:</p>
+
+<ul>
+	<li>checkbox - флажок</li>
+	<li>file - поле для выбора файла</li>
+	<li>hidden - скрытое поле</li>
+	<li>image - поле с изображением. При нажатии на рисунок данные формы отправляются на сервер</li>
+	<li>password - поле для ввода пароля</li>
+	<li>text - поле для ввода текста</li>
+</ul>
+
+<p>Для HTML5 доступны дополнительные специализированные типы тега &lt;input&gt;:</p>
+
+<ul>
+	<li>color - поле для выбора цвета</li>
+	<li>date - поле для выбора календарной даты</li>
+	<li>datetime - поле для даты и времени</li>
+	<li>email - поле для ввода адреса электронной почты</li>
+	<li>month - поле выбора месяца</li>
+	<li>number - поле для вывода числового значения</li>
+	<li>phone - поле для ввода номера телефона</li>
+	<li>range - ползунок для выбора чисел в указанном диапазоне</li>
+	<li>search - поле для ввода поисковой фразы</li>
+	<li>time - поле для указания времени</li>
+	<li>url - поле для ввода веб-адреса</li>
+	<li>week - поле для выбора недели</li>
+</ul>
+
+<p>Кнопки:</p>
+
+<ul>
+	<li>button - простая кнопка</li>
+	<li>submit - кнопка отправки запроса</li>
+	<li>reset - кнопка сброса</li>
+</ul>
+
+<p>Элементы для ввода текста:</p>
+
+<ul>
+	<li>textarea - элемент формы для создания области, в которую можно вводить несколько строк текста</li>
+	<li>wysiwyg - элемент формы для вывода визуального HTML-редактора</li>
+</ul>
+
+<p>Элементы с выбором варианта значения:</p>
+
+<ul>
+	<li>select - элемент формы с раскрывающимся списком вариантов значения</li>
+	<li>multiSelect - элемент формы с раскрывающимся списком вариантов значения с возможностью выбора нескольких значений</li>
+	<li>radio - переключатель между вариантами значения</li>
+	<li>checkboxGroup - группа флажков для выбора нескольких вариантов значения</li>
+</ul>
+
+<p>Специальные типы элементов форм:</p>
+
+<ul>
+	<li>passwordWithConfirmation - поле для ввода пароля и его подтверждения. Предполагается, что в шаблоне поле для ввода пароля выводится 2 раза.</li>
+	<li>captcha - поле для ввода символов, изображенных на рисунке. Используется для защиты от отправки формы роботами.</li>
+	<li>csrf - скрытое поле, содержащее секретный токен, позволяющий аутентифицировать текущего пользователя.</li>
+</ul>
+
+<h2>Примеры шаблонов</h2>
+
+<h3>PHP-шаблонизатор</h3>
+
+<p>Обратите внимание на вывод атрибутов тега - для отображения всех атрибутов тега свойство представления attributes приводится к строке.</p>
+
+<p>Вывод формы:</p>
+
+<pre>
+&lt;form &lt;?= $form-&gt;attributes ?&gt; &gt;
+&nbsp;&nbsp;&nbsp; &lt;?php foreach ($form-&gt;elements as $element) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?= $this-&gt;render(&#39;form/element.phtml&#39;, [&#39;element&#39; =&gt; $element]); ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&lt;/form&gt;</pre>
+
+<p>Определение шаблона элемента:</p>
+
+<pre>
+switch($element-&gt;type)
+{
+&nbsp;&nbsp;&nbsp; case &#39;textarea&#39;: {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $this-&gt;render(&#39;form/element/textarea.phtml&#39;, [&#39;element&#39; =&gt; $element]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; default: {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch($element-&gt;tag)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case &#39;input&#39;: {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $this-&gt;render(&#39;form/element/input.phtml&#39;, [&#39;element&#39; =&gt; $element]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+            ...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; }
+}
+</pre>
+
+<p>Шаблон поля для ввода данных, представленных&nbsp;тегом &lt;input&gt;:</p>
+
+<pre>
+&lt;div class=&quot;form-group &lt;?= $element-&gt;valid ? &#39;&#39; : &#39;has-error&#39; ?&gt;&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;label&gt;&lt;?= $element-&gt;label ?&gt;&lt;/label&gt;
+&nbsp;&nbsp;&nbsp; &lt;?php if (!$element-&gt;valid) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;alert alert-danger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php foreach ($element-&gt;errors as $message) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;?= $message ?&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; &lt;?php endif; ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;input class=&quot;form-control&quot; &lt;?= $element-&gt;attributes ?&gt; /&gt;
+&lt;/div&gt;</pre>
+
+<p>Браузеры не отправляют на сервер информацию о чекбоксах, значение которых не выбрано. Для решения этой проблемы можно использовать следующий трюк:</p>
+
+<pre>
+&lt;input type=&quot;hidden&quot; value=&quot;0&quot; name=&quot;&lt;?= $element-&gt;attributes-&gt;name ?&gt;&quot;/&gt;
+&lt;label&gt;&lt;input &lt;?= $element-&gt;attributes ?&gt; /&gt;&lt;?= $element-&gt;label ?&gt;&lt;/label&gt;
+</pre>
+
+<p>Шаблон для выпадающего списка:</p>
+
+<pre>
+&lt;div class=&quot;form-group&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;label&gt;&lt;?= $element-&gt;label ?&gt;&lt;/label&gt;
+&nbsp;&nbsp;&nbsp; &lt;select class=&quot;form-control&quot; &lt;?= $element-&gt;attributes ?&gt; &gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php foreach ($element-&gt;choices as $choice) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;option &lt;?= $choice[&#39;attributes&#39;] ?&gt; &gt;&lt;?= $choice[&#39;label&#39;] ?&gt;&lt;/option&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp; &lt;/select&gt;
+&lt;/div&gt;</pre>
+
+<p>Шаблон для вывода капчи:</p>
+
+<pre>
+&lt;?php if (!$element-&gt;isHuman) : ?&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;form-group &lt;?= !$element-&gt;valid ? &#39;has-error&#39; : &#39;&#39; ?&gt;&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;label&gt;&lt;?= $element-&gt;label ?&gt;&lt;/label&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php if (!$element-&gt;valid) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;alert alert-danger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php foreach ($element-&gt;errors as $message) : ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;?= $message ?&gt;&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endforeach; ?&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;?php endif; ?&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;script type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function reloadCaptcha_&lt;?= $element-&gt;sessionKey ?&gt;() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var img = document.getElementById(&#39;&lt;?= $element-&gt;sessionKey ?&gt;&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; img.src = &#39;&lt;?= $element-&gt;url ?&gt;?t=&#39; + (new Date()).getTime();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/script&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;input-group&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class=&quot;input-group-addon&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;img id=&quot;&lt;?= $element-&gt;sessionKey ?&gt;&quot; src=&quot;&lt;?= $element-&gt;url ?&gt;&quot; alt=&quot;&lt;?= $element-&gt;label ?&gt;&quot; title=&quot;&lt;?= $element-&gt;label ?&gt;&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;button class=&quot;btn btn-default glyphicon glyphicon-refresh&quot; onclick=&quot;reloadCaptcha_&lt;?= $element-&gt;sessionKey ?&gt;();return false;&quot;&gt;&lt;/button&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; class=&quot;form-control input-lg&quot; &lt;?= $element-&gt;attributes ?&gt;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+
+&lt;?php endif; ?&gt;</pre>
+
+<h3>Twig</h3>
+
+<p>Обратите внимание на вывод атрибутов тега - для отображения всех атрибутов тега свойство представления attributes приводится к строке.</p>
+
+<p>Вывод формы:</p>
+
+<pre>
+&lt;form {{ form.attributes | raw }}&gt;
+&nbsp;&nbsp;&nbsp; {% for element in form.elements %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ include(&#39;form/element.twig&#39;, {&#39;element&#39; : element}) }}
+&nbsp;&nbsp;&nbsp; {% endfor %}
+&lt;/form&gt;</pre>
+
+<p>Определение шаблона элемента:</p>
+
+<pre>
+{% if (element.type == &#39;textarea&#39; or element.type == &#39;wysiwyg&#39;) %}
+&nbsp;&nbsp;&nbsp; {{ include(&#39;form/element/textarea.twig&#39;, {&#39;element&#39; : element}) }}
+...
+{% else %}
+&nbsp;&nbsp;&nbsp; {% if (element.tag == &#39;input&#39;) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ include(&#39;form/element/input.twig&#39;, {&#39;element&#39; : element}) }}
+&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; {% endif %}
+{% endif %}</pre>
+
+<p>Шаблон поля для ввода данных, представленных&nbsp;тегом &lt;input&gt;:</p>
+
+<pre>
+&lt;div class=&quot;form-group {{ not element.valid ? &#39;has-error&#39; }}&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;label&gt; {{ element.label }} &lt;/label&gt;
+&nbsp;&nbsp;&nbsp; {% if (not element.valid) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;alert alert-danger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for message in element.errors %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;{{ message }}&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp; &lt;input class=&quot;form-control&quot; {{ element.attributes | raw }}/&gt;
+&lt;/div&gt;</pre>
+
+<p>Браузеры не отправляют на сервер информацию о чекбоксах, значение которых не выбрано. Для решения этой проблемы можно использовать следующий трюк:</p>
+
+<pre>
+&lt;input type=&quot;hidden&quot; value=&quot;0&quot; name=&quot;{{ element.attributes.name }} &quot;/&gt;
+&lt;label&gt;
+&nbsp;&nbsp;&nbsp; &lt;input {{ element.attributes | raw }}/&gt;
+&nbsp;&nbsp;&nbsp; {{ element.label }}
+&lt;/label&gt;
+</pre>
+
+<p>Шаблон для выпадающего списка:</p>
+
+<pre>
+&lt;div class=&quot;form-group&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;label&gt; {{ element.label }} &lt;/label&gt;
+&nbsp;&nbsp;&nbsp; {% if (not element.valid) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;alert alert-danger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for message in element.errors %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;{{ message }}&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp; &lt;select class=&quot;form-control&quot; {{ element.attributes | raw }} &gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for choice in element.choices %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;option {{ choice.attributes | raw }}&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ choice.label }}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/option&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp; &lt;/select&gt;
+&lt;/div&gt;
+</pre>
+
+<p>Шаблон капчи:</p>
+
+<pre>
+{% if not(element.isHuman) %}
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;form-group {{ not element.valid ? &#39;has-error&#39; }}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;label&gt; {{ element.label }} &lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% if (not element.valid) %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;alert alert-danger&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% for message in element.errors %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;li&gt;{{ message }}&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% endif %}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;script type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function reloadCaptcha_{{ element.sessionKey }}() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var img = document.getElementById(&#39;{{ element.sessionKey }}&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; img.src = &#39;{{ element.url }}?t=&#39; + (new Date()).getTime();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/script&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;input-group&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class=&quot;input-group-addon&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;img id=&quot;{{ element.sessionKey }}&quot; src=&quot;{{ element.url }}&quot; alt=&quot;{{ element.label }}&quot; title=&quot;{{ element.label }}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;button class=&quot;btn btn-default glyphicon glyphicon-refresh&quot; onclick=&quot;reloadCaptcha_{{ element.sessionKey }}();return false;&quot;&gt;&lt;/button&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; class=&quot;form-control input-lg&quot; {{ element.attributes | raw }}&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+{% endif %}</pre>
+
+<h3>XSLT-шаблонизатор</h3>
+
+<p>Вывод атрибутов элементов:</p>
+
+<pre>
+&lt;xsl:template match=&quot;@*&quot; mode=&quot;all.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name=&quot;{name(.)}&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:value-of select=&quot;.&quot;/&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:attribute&gt;
+&lt;/xsl:template&gt;</pre>
+
+<p>Вывод ошибок элементов:</p>
+
+<pre>
+&lt;xsl:template match=&quot;item&quot; mode=&quot;default.form.validation&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;xsl:if test=&quot;valid = 0 or not(valid)&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:attribute name=&quot;class&quot;&gt;form-group input-group-error&lt;/xsl:attribute&gt;
+&nbsp;&nbsp;&nbsp; &lt;/xsl:if&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match=&quot;errors&quot; mode=&quot;default.form&quot; /&gt;
+
+&lt;xsl:template match=&quot;errors[item]&quot; mode=&quot;default.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;hint&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;item&quot; mode=&quot;default.form&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ul&gt;
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match=&quot;errors/item&quot; mode=&quot;default.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/li&gt;
+&lt;/xsl:template&gt;</pre>
+
+<p>Вывод формы:</p>
+
+<pre>
+&lt;xsl:template match=&quot;form&quot; mode=&quot;default.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;row&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;attributes&quot; mode=&quot;all.form&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;elements/item&quot; mode=&quot;default.form&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match=&quot;form//attributes&quot; mode=&quot;all.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;@*&quot; mode=&quot;all.form&quot;/&gt;
+&lt;/xsl:template&gt;
+</pre>
+
+<p>Вывод элемента, представленного тегом &lt;input&gt;:</p>
+
+<pre>
+&lt;xsl:template match=&quot;item[tag=&#39;input&#39;]&quot; mode=&quot;default.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;form-group&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;.&quot; mode=&quot;default.form.validation&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;label class=&quot;control-label&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:value-of select=&quot;label&quot;/&gt;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;errors&quot; mode=&quot;default.form&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input class=&quot;form-control&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;attributes&quot; mode=&quot;all.form&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/input&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/label&gt;
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&lt;/xsl:template&gt;</pre>
+
+<p>Вывод капчи:</p>
+
+<pre>
+&lt;xsl:template match=&quot;item[type=&#39;captcha&#39;][isHuman=&#39;1&#39;]&quot; mode=&quot;default.form&quot; /&gt;
+&lt;xsl:template match=&quot;item[type=&#39;captcha&#39;][isHuman=&#39;0&#39;]&quot; mode=&quot;default.form&quot;&gt;
+&nbsp;&nbsp;&nbsp; &lt;div class=&quot;form-group&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;.&quot; mode=&quot;default.form.validation&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;label&gt; &lt;xsl:value-of select=&quot;label&quot; /&gt; &lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;errors&quot; mode=&quot;default.form&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;script type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function reloadCaptcha_&lt;xsl:value-of select=&quot;concat(sessionKey, generate-id())&quot; /&gt;() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var img = document.getElementById(&#39;&lt;xsl:value-of select=&quot;concat(sessionKey, generate-id())&quot; /&gt;&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; img.src = &#39;&lt;xsl:value-of select=&quot;url&quot; /&gt;?t=&#39; + (new Date()).getTime();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/script&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;div class=&quot;input-group&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class=&quot;input-group-addon&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;img id=&quot;{concat(sessionKey, generate-id())}&quot; src=&quot;{url}&quot; alt=&quot;{label}&quot; title=&quot;{label}&quot; /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;button class=&quot;btn btn-primary glyphicon glyphicon-refresh&quot; onclick=&quot;reloadCaptcha_{concat(sessionKey, generate-id())}();return false;&quot;&gt;&lt;/button&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; class=&quot;form-control input-lg&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select=&quot;attributes&quot; mode=&quot;all.form&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/input&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&nbsp;&nbsp;&nbsp; &lt;/div&gt;
+&lt;/xsl:template&gt;
+</pre>
+
+<h2>Перенаправление после успешной обработки формы</h2>
+
+<p>Виджет вывода формы позволяет задать адрес перенаправления&nbsp;после успешной обработки формы. Если конфигурация формы содержит скрытое поле&nbsp;с именем &nbsp;<strong>redirectUrl</strong>, то это поле будет заполнено соответствующим значением в момент создания формы. Адрес перенаправления задается в параметре вызова виджета <strong>$redirectUrl</strong>. Каждый виджет вывода форм имеет свой заданный по умолчанию адрес перенаправления.</p>
+
+<p>Возможные значения для параметра <strong>$redirectUrl</strong>:</p>
+
+<ul>
+	<li>конкретный адрес перенаправления в пределах проекта</li>
+	<li>noRedirect - перенаправление не осуществляется, после обработки формы будет отображена страница контроллера, обработчика формы</li>
+	<li>refererRedirect - перенаправление осуществляется на страницу, где была отображена форма</li>
+</ul>
+
+<p>Даже, если пользователь ввел неверные данные и уже оказался на странице обработчика формы, то в любом случае, когда форма будет заполнена верно, перенаправление произойдет на изначально заданный адрес.</p>
+
+<p><strong>REST API </strong></p>
+
+<p>http://имя_домена/widget/users.authorization.loginForm.json?redirectUrl=/</p>
+
+<p><img alt="" src="images/widgets/form/redirect.PNG" style="height:633px; width:732px" /></p>
+
+<p><strong>PHP-шаблонизатор</strong></p>
+
+<pre>
+ &lt;?= $this-&gt;widget(&#39;users.authorization.loginForm&#39;, [&#39;redirectUrl&#39; =&gt; &#39;/&#39;]) ?&gt;
+</pre>
+
+<p><strong>Twig</strong></p>
+
+<pre>
+{{ widget(&#39;users.authorization.loginForm&#39;, {&#39;redirectUrl&#39; : &#39;/&#39;}) |raw }}</pre>
+
+<p><strong>XSLT-шаблонизатор</strong></p>
+
+<pre>
+&lt;xsl:apply-templates select=&quot;document(&#39;widget://users.authorization.loginForm?redirectUrl=/&#39;)/result&quot;/&gt; </pre>
+',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'structure',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+    ),
+  ),
+  11 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'static',
       'guid' => '171b2bc7-c2e2-4278-8505-9f39529116c9',
       'displayName' => 'Структура',
       'branch' => 
@@ -992,7 +2852,7 @@ return array (
       ),
     ),
   ),
-  8 => 
+  12 => 
   array (
     'meta' => 
     array (
@@ -1087,7 +2947,7 @@ return array (
       ),
     ),
   ),
-  9 => 
+  13 => 
   array (
     'meta' => 
     array (
@@ -1216,7 +3076,7 @@ return array (
       ),
     ),
   ),
-  10 => 
+  14 => 
   array (
     'meta' => 
     array (
@@ -1352,7 +3212,7 @@ return array (
       ),
     ),
   ),
-  11 => 
+  15 => 
   array (
     'meta' => 
     array (
@@ -1481,7 +3341,7 @@ return array (
       ),
     ),
   ),
-  12 => 
+  16 => 
   array (
     'meta' => 
     array (
@@ -1635,7 +3495,7 @@ return array (
       ),
     ),
   ),
-  13 => 
+  17 => 
   array (
     'meta' => 
     array (
@@ -1799,7 +3659,7 @@ return array (
       ),
     ),
   ),
-  14 => 
+  18 => 
   array (
     'meta' => 
     array (
@@ -1928,7 +3788,7 @@ return array (
       ),
     ),
   ),
-  15 => 
+  19 => 
   array (
     'meta' => 
     array (
@@ -2316,7 +4176,7 @@ return array (
       ),
     ),
   ),
-  16 => 
+  20 => 
   array (
     'meta' => 
     array (
@@ -2445,7 +4305,7 @@ return array (
       ),
     ),
   ),
-  17 => 
+  21 => 
   array (
     'meta' => 
     array (
@@ -2574,7 +4434,7 @@ return array (
       ),
     ),
   ),
-  18 => 
+  22 => 
   array (
     'meta' => 
     array (
@@ -2703,7 +4563,7 @@ return array (
       ),
     ),
   ),
-  19 => 
+  23 => 
   array (
     'meta' => 
     array (
@@ -2914,7 +4774,7 @@ return [
       ),
     ),
   ),
-  20 => 
+  24 => 
   array (
     'meta' => 
     array (
@@ -3274,7 +5134,7 @@ return [
       ),
     ),
   ),
-  21 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3403,7 +5263,7 @@ return [
       ),
     ),
   ),
-  22 => 
+  26 => 
   array (
     'meta' => 
     array (
@@ -3532,7 +5392,7 @@ return [
       ),
     ),
   ),
-  23 => 
+  27 => 
   array (
     'meta' => 
     array (
@@ -3677,7 +5537,7 @@ return [
       ),
     ),
   ),
-  24 => 
+  28 => 
   array (
     'meta' => 
     array (
@@ -3806,7 +5666,7 @@ return [
       ),
     ),
   ),
-  25 => 
+  29 => 
   array (
     'meta' => 
     array (
@@ -3946,7 +5806,7 @@ return [
       ),
     ),
   ),
-  26 => 
+  30 => 
   array (
     'meta' => 
     array (
@@ -4086,7 +5946,7 @@ return [
       ),
     ),
   ),
-  27 => 
+  31 => 
   array (
     'meta' => 
     array (
@@ -4206,7 +6066,7 @@ return [
       ),
     ),
   ),
-  28 => 
+  32 => 
   array (
     'meta' => 
     array (
@@ -4489,7 +6349,7 @@ return [
       ),
     ),
   ),
-  29 => 
+  33 => 
   array (
     'meta' => 
     array (
@@ -4838,7 +6698,7 @@ return [
       ),
     ),
   ),
-  30 => 
+  34 => 
   array (
     'meta' => 
     array (
@@ -4978,7 +6838,7 @@ return [
       ),
     ),
   ),
-  31 => 
+  35 => 
   array (
     'meta' => 
     array (
@@ -5118,7 +6978,7 @@ return [
       ),
     ),
   ),
-  32 => 
+  36 => 
   array (
     'meta' => 
     array (
@@ -5268,7 +7128,7 @@ return [
       ),
     ),
   ),
-  33 => 
+  37 => 
   array (
     'meta' => 
     array (
@@ -5408,7 +7268,7 @@ return [
       ),
     ),
   ),
-  34 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -5548,7 +7408,7 @@ return [
       ),
     ),
   ),
-  35 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -5688,7 +7548,7 @@ return [
       ),
     ),
   ),
-  36 => 
+  40 => 
   array (
     'meta' => 
     array (
@@ -5828,7 +7688,7 @@ return [
       ),
     ),
   ),
-  37 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -5968,7 +7828,7 @@ return [
       ),
     ),
   ),
-  38 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -6088,7 +7948,7 @@ return [
       ),
     ),
   ),
-  39 => 
+  43 => 
   array (
     'meta' => 
     array (
@@ -6228,7 +8088,7 @@ return [
       ),
     ),
   ),
-  40 => 
+  44 => 
   array (
     'meta' => 
     array (
@@ -6488,7 +8348,7 @@ return [
       ),
     ),
   ),
-  41 => 
+  45 => 
   array (
     'meta' => 
     array (
@@ -6628,7 +8488,7 @@ return [
       ),
     ),
   ),
-  42 => 
+  46 => 
   array (
     'meta' => 
     array (
@@ -6768,7 +8628,7 @@ return [
       ),
     ),
   ),
-  43 => 
+  47 => 
   array (
     'meta' => 
     array (
@@ -6918,7 +8778,7 @@ return [
       ),
     ),
   ),
-  44 => 
+  48 => 
   array (
     'meta' => 
     array (
@@ -7049,7 +8909,7 @@ return [
       ),
     ),
   ),
-  45 => 
+  49 => 
   array (
     'meta' => 
     array (
@@ -7236,7 +9096,7 @@ return [
       ),
     ),
   ),
-  46 => 
+  50 => 
   array (
     'meta' => 
     array (
@@ -7386,7 +9246,7 @@ return [
       ),
     ),
   ),
-  47 => 
+  51 => 
   array (
     'meta' => 
     array (
@@ -7536,7 +9396,7 @@ return [
       ),
     ),
   ),
-  48 => 
+  52 => 
   array (
     'meta' => 
     array (
@@ -7676,7 +9536,7 @@ return [
       ),
     ),
   ),
-  49 => 
+  53 => 
   array (
     'meta' => 
     array (
@@ -7896,7 +9756,7 @@ return [
       ),
     ),
   ),
-  50 => 
+  54 => 
   array (
     'meta' => 
     array (
@@ -8036,7 +9896,7 @@ return [
       ),
     ),
   ),
-  51 => 
+  55 => 
   array (
     'meta' => 
     array (
@@ -8176,7 +10036,7 @@ return [
       ),
     ),
   ),
-  52 => 
+  56 => 
   array (
     'meta' => 
     array (
@@ -8446,7 +10306,7 @@ return [
       ),
     ),
   ),
-  53 => 
+  57 => 
   array (
     'meta' => 
     array (
@@ -8694,7 +10554,7 @@ return [
       ),
     ),
   ),
-  54 => 
+  58 => 
   array (
     'meta' => 
     array (
@@ -8825,7 +10685,7 @@ return [
       ),
     ),
   ),
-  55 => 
+  59 => 
   array (
     'meta' => 
     array (
@@ -8965,7 +10825,7 @@ return [
       ),
     ),
   ),
-  56 => 
+  60 => 
   array (
     'meta' => 
     array (
@@ -9132,7 +10992,7 @@ return [
       ),
     ),
   ),
-  57 => 
+  61 => 
   array (
     'meta' => 
     array (
@@ -9287,7 +11147,7 @@ return [
       ),
     ),
   ),
-  58 => 
+  62 => 
   array (
     'meta' => 
     array (
@@ -9427,7 +11287,7 @@ return [
       ),
     ),
   ),
-  59 => 
+  63 => 
   array (
     'meta' => 
     array (
@@ -9654,7 +11514,7 @@ return [
       ),
     ),
   ),
-  60 => 
+  64 => 
   array (
     'meta' => 
     array (
@@ -9937,7 +11797,7 @@ return [
       ),
     ),
   ),
-  61 => 
+  65 => 
   array (
     'meta' => 
     array (
@@ -10068,7 +11928,7 @@ return [
       ),
     ),
   ),
-  62 => 
+  66 => 
   array (
     'meta' => 
     array (
@@ -10332,7 +12192,7 @@ return [
       ),
     ),
   ),
-  63 => 
+  67 => 
   array (
     'meta' => 
     array (
@@ -10633,7 +12493,7 @@ return [
       ),
     ),
   ),
-  64 => 
+  68 => 
   array (
     'meta' => 
     array (
@@ -10773,7 +12633,7 @@ return [
       ),
     ),
   ),
-  65 => 
+  69 => 
   array (
     'meta' => 
     array (
@@ -10913,7 +12773,7 @@ return [
       ),
     ),
   ),
-  66 => 
+  70 => 
   array (
     'meta' => 
     array (
@@ -11063,7 +12923,7 @@ return [
       ),
     ),
   ),
-  67 => 
+  71 => 
   array (
     'meta' => 
     array (
@@ -11194,7 +13054,7 @@ return [
       ),
     ),
   ),
-  68 => 
+  72 => 
   array (
     'meta' => 
     array (
@@ -11325,7 +13185,7 @@ return [
       ),
     ),
   ),
-  69 => 
+  73 => 
   array (
     'meta' => 
     array (
@@ -11465,7 +13325,7 @@ return [
       ),
     ),
   ),
-  70 => 
+  74 => 
   array (
     'meta' => 
     array (
@@ -11605,7 +13465,7 @@ return [
       ),
     ),
   ),
-  71 => 
+  75 => 
   array (
     'meta' => 
     array (
@@ -11861,7 +13721,7 @@ return [
       ),
     ),
   ),
-  72 => 
+  76 => 
   array (
     'meta' => 
     array (
@@ -12001,7 +13861,7 @@ return [
       ),
     ),
   ),
-  73 => 
+  77 => 
   array (
     'meta' => 
     array (
@@ -12141,7 +14001,7 @@ return [
       ),
     ),
   ),
-  74 => 
+  78 => 
   array (
     'meta' => 
     array (
@@ -12272,7 +14132,7 @@ return [
       ),
     ),
   ),
-  75 => 
+  79 => 
   array (
     'meta' => 
     array (
@@ -12422,7 +14282,7 @@ return [
       ),
     ),
   ),
-  76 => 
+  80 => 
   array (
     'meta' => 
     array (
@@ -12553,7 +14413,7 @@ return [
       ),
     ),
   ),
-  77 => 
+  81 => 
   array (
     'meta' => 
     array (
@@ -12684,7 +14544,7 @@ return [
       ),
     ),
   ),
-  78 => 
+  82 => 
   array (
     'meta' => 
     array (
@@ -12905,7 +14765,7 @@ return [
       ),
     ),
   ),
-  79 => 
+  83 => 
   array (
     'meta' => 
     array (
@@ -13205,7 +15065,7 @@ return [
       ),
     ),
   ),
-  80 => 
+  84 => 
   array (
     'meta' => 
     array (
@@ -13352,7 +15212,7 @@ return [
       ),
     ),
   ),
-  81 => 
+  85 => 
   array (
     'meta' => 
     array (
@@ -13464,7 +15324,7 @@ return [
       ),
     ),
   ),
-  82 => 
+  86 => 
   array (
     'meta' => 
     array (
@@ -13683,7 +15543,7 @@ return [
       ),
     ),
   ),
-  83 => 
+  87 => 
   array (
     'meta' => 
     array (
@@ -13897,7 +15757,7 @@ return [
       ),
     ),
   ),
-  84 => 
+  88 => 
   array (
     'meta' => 
     array (
@@ -14111,7 +15971,7 @@ return [
       ),
     ),
   ),
-  85 => 
+  89 => 
   array (
     'meta' => 
     array (
@@ -14334,7 +16194,7 @@ return [
       ),
     ),
   ),
-  86 => 
+  90 => 
   array (
     'meta' => 
     array (
@@ -14490,7 +16350,7 @@ return [
       ),
     ),
   ),
-  87 => 
+  91 => 
   array (
     'meta' => 
     array (
@@ -14803,7 +16663,7 @@ return [
       ),
     ),
   ),
-  88 => 
+  92 => 
   array (
     'meta' => 
     array (
@@ -15125,7 +16985,7 @@ return [
       ),
     ),
   ),
-  89 => 
+  93 => 
   array (
     'meta' => 
     array (
@@ -15332,7 +17192,7 @@ return [
       ),
     ),
   ),
-  90 => 
+  94 => 
   array (
     'meta' => 
     array (
@@ -15444,7 +17304,7 @@ return [
       ),
     ),
   ),
-  91 => 
+  95 => 
   array (
     'meta' => 
     array (
@@ -15600,7 +17460,7 @@ return [
       ),
     ),
   ),
-  92 => 
+  96 => 
   array (
     'meta' => 
     array (
@@ -15816,7 +17676,7 @@ return [
       ),
     ),
   ),
-  93 => 
+  97 => 
   array (
     'meta' => 
     array (
@@ -16128,7 +17988,7 @@ return [
       ),
     ),
   ),
-  94 => 
+  98 => 
   array (
     'meta' => 
     array (
@@ -16439,7 +18299,7 @@ return [
       ),
     ),
   ),
-  95 => 
+  99 => 
   array (
     'meta' => 
     array (
@@ -16720,7 +18580,7 @@ return [
       ),
     ),
   ),
-  96 => 
+  100 => 
   array (
     'meta' => 
     array (
@@ -16976,7 +18836,7 @@ return [
       ),
     ),
   ),
-  97 => 
+  101 => 
   array (
     'meta' => 
     array (
@@ -17088,7 +18948,7 @@ return [
       ),
     ),
   ),
-  98 => 
+  102 => 
   array (
     'meta' => 
     array (
@@ -17318,7 +19178,7 @@ return [
       ),
     ),
   ),
-  99 => 
+  103 => 
   array (
     'meta' => 
     array (
@@ -17430,7 +19290,7 @@ return [
       ),
     ),
   ),
-  100 => 
+  104 => 
   array (
     'meta' => 
     array (
@@ -17654,7 +19514,7 @@ return [
       ),
     ),
   ),
-  101 => 
+  105 => 
   array (
     'meta' => 
     array (
@@ -17766,7 +19626,7 @@ return [
       ),
     ),
   ),
-  102 => 
+  106 => 
   array (
     'meta' => 
     array (
@@ -17878,7 +19738,7 @@ return [
       ),
     ),
   ),
-  103 => 
+  107 => 
   array (
     'meta' => 
     array (
@@ -18069,7 +19929,7 @@ return [
       ),
     ),
   ),
-  104 => 
+  108 => 
   array (
     'meta' => 
     array (
@@ -18211,7 +20071,7 @@ return [
       ),
     ),
   ),
-  105 => 
+  109 => 
   array (
     'meta' => 
     array (
@@ -18323,7 +20183,7 @@ return [
       ),
     ),
   ),
-  106 => 
+  110 => 
   array (
     'meta' => 
     array (
@@ -18435,7 +20295,7 @@ return [
       ),
     ),
   ),
-  107 => 
+  111 => 
   array (
     'meta' => 
     array (
@@ -18692,7 +20552,7 @@ return [
       ),
     ),
   ),
-  108 => 
+  112 => 
   array (
     'meta' => 
     array (
@@ -18834,7 +20694,7 @@ return [
       ),
     ),
   ),
-  109 => 
+  113 => 
   array (
     'meta' => 
     array (
@@ -18981,7 +20841,7 @@ return [
       ),
     ),
   ),
-  110 => 
+  114 => 
   array (
     'meta' => 
     array (
@@ -19142,7 +21002,7 @@ return [
       ),
     ),
   ),
-  111 => 
+  115 => 
   array (
     'meta' => 
     array (
@@ -19298,7 +21158,7 @@ return [
       ),
     ),
   ),
-  112 => 
+  116 => 
   array (
     'meta' => 
     array (
@@ -19517,7 +21377,7 @@ return [
       ),
     ),
   ),
-  113 => 
+  117 => 
   array (
     'meta' => 
     array (
@@ -19673,7 +21533,7 @@ return [
       ),
     ),
   ),
-  114 => 
+  118 => 
   array (
     'meta' => 
     array (
@@ -19987,7 +21847,7 @@ return [
       ),
     ),
   ),
-  115 => 
+  119 => 
   array (
     'meta' => 
     array (
@@ -20207,7 +22067,7 @@ return [
       ),
     ),
   ),
-  116 => 
+  120 => 
   array (
     'meta' => 
     array (
@@ -20444,7 +22304,7 @@ return [
       ),
     ),
   ),
-  117 => 
+  121 => 
   array (
     'meta' => 
     array (
@@ -20663,7 +22523,7 @@ return [
       ),
     ),
   ),
-  118 => 
+  122 => 
   array (
     'meta' => 
     array (
@@ -20984,7 +22844,7 @@ return [
       ),
     ),
   ),
-  119 => 
+  123 => 
   array (
     'meta' => 
     array (
@@ -21256,7 +23116,7 @@ return [
       ),
     ),
   ),
-  120 => 
+  124 => 
   array (
     'meta' => 
     array (
@@ -21427,7 +23287,7 @@ return [
       ),
     ),
   ),
-  121 => 
+  125 => 
   array (
     'meta' => 
     array (
@@ -21711,7 +23571,7 @@ return [
       ),
     ),
   ),
-  122 => 
+  126 => 
   array (
     'meta' => 
     array (
@@ -21933,7 +23793,7 @@ return [
       ),
     ),
   ),
-  123 => 
+  127 => 
   array (
     'meta' => 
     array (
@@ -22133,7 +23993,7 @@ return [
       ),
     ),
   ),
-  124 => 
+  128 => 
   array (
     'meta' => 
     array (
@@ -22275,7 +24135,7 @@ return [
       ),
     ),
   ),
-  125 => 
+  129 => 
   array (
     'meta' => 
     array (
@@ -22436,7 +24296,7 @@ return [
       ),
     ),
   ),
-  126 => 
+  130 => 
   array (
     'meta' => 
     array (
@@ -22651,7 +24511,7 @@ return [
       ),
     ),
   ),
-  127 => 
+  131 => 
   array (
     'meta' => 
     array (
@@ -23034,7 +24894,7 @@ return [
       ),
     ),
   ),
-  128 => 
+  132 => 
   array (
     'meta' => 
     array (
@@ -23248,7 +25108,7 @@ return [
       ),
     ),
   ),
-  129 => 
+  133 => 
   array (
     'meta' => 
     array (
@@ -23404,7 +25264,7 @@ return [
       ),
     ),
   ),
-  130 => 
+  134 => 
   array (
     'meta' => 
     array (
@@ -23560,7 +25420,7 @@ return [
       ),
     ),
   ),
-  131 => 
+  135 => 
   array (
     'meta' => 
     array (
@@ -23672,7 +25532,7 @@ return [
       ),
     ),
   ),
-  132 => 
+  136 => 
   array (
     'meta' => 
     array (
@@ -23784,7 +25644,7 @@ return [
       ),
     ),
   ),
-  133 => 
+  137 => 
   array (
     'meta' => 
     array (
@@ -24066,7 +25926,7 @@ return [
       ),
     ),
   ),
-  134 => 
+  138 => 
   array (
     'meta' => 
     array (
@@ -24283,7 +26143,7 @@ return [
       ),
     ),
   ),
-  135 => 
+  139 => 
   array (
     'meta' => 
     array (
@@ -24503,7 +26363,7 @@ return [
       ),
     ),
   ),
-  136 => 
+  140 => 
   array (
     'meta' => 
     array (
@@ -24801,7 +26661,7 @@ return [
       ),
     ),
   ),
-  137 => 
+  141 => 
   array (
     'meta' => 
     array (
@@ -24962,7 +26822,7 @@ return [
       ),
     ),
   ),
-  138 => 
+  142 => 
   array (
     'meta' => 
     array (
@@ -25227,7 +27087,7 @@ return [
       ),
     ),
   ),
-  139 => 
+  143 => 
   array (
     'meta' => 
     array (
@@ -25491,7 +27351,7 @@ return [
       ),
     ),
   ),
-  140 => 
+  144 => 
   array (
     'meta' => 
     array (
@@ -25822,7 +27682,7 @@ return [
       ),
     ),
   ),
-  141 => 
+  145 => 
   array (
     'meta' => 
     array (
@@ -25983,7 +27843,7 @@ return [
       ),
     ),
   ),
-  142 => 
+  146 => 
   array (
     'meta' => 
     array (
@@ -26139,7 +27999,7 @@ return [
       ),
     ),
   ),
-  143 => 
+  147 => 
   array (
     'meta' => 
     array (
@@ -26398,7 +28258,7 @@ return [
       ),
     ),
   ),
-  144 => 
+  148 => 
   array (
     'meta' => 
     array (
@@ -26540,7 +28400,7 @@ return [
       ),
     ),
   ),
-  145 => 
+  149 => 
   array (
     'meta' => 
     array (
@@ -26652,7 +28512,7 @@ return [
       ),
     ),
   ),
-  146 => 
+  150 => 
   array (
     'meta' => 
     array (
@@ -26875,7 +28735,7 @@ return [
       ),
     ),
   ),
-  147 => 
+  151 => 
   array (
     'meta' => 
     array (
@@ -27031,7 +28891,7 @@ return [
       ),
     ),
   ),
-  148 => 
+  152 => 
   array (
     'meta' => 
     array (
@@ -27178,7 +29038,7 @@ return [
       ),
     ),
   ),
-  149 => 
+  153 => 
   array (
     'meta' => 
     array (
@@ -27399,7 +29259,7 @@ return [
       ),
     ),
   ),
-  150 => 
+  154 => 
   array (
     'meta' => 
     array (
@@ -27638,7 +29498,7 @@ return [
       ),
     ),
   ),
-  151 => 
+  155 => 
   array (
     'meta' => 
     array (
@@ -27903,7 +29763,7 @@ return [
       ),
     ),
   ),
-  152 => 
+  156 => 
   array (
     'meta' => 
     array (
@@ -28218,7 +30078,7 @@ return [
       ),
     ),
   ),
-  153 => 
+  157 => 
   array (
     'meta' => 
     array (
@@ -28360,7 +30220,7 @@ return [
       ),
     ),
   ),
-  154 => 
+  158 => 
   array (
     'meta' => 
     array (
@@ -28575,7 +30435,7 @@ return [
       ),
     ),
   ),
-  155 => 
+  159 => 
   array (
     'meta' => 
     array (
@@ -28731,7 +30591,7 @@ return [
       ),
     ),
   ),
-  156 => 
+  160 => 
   array (
     'meta' => 
     array (
@@ -28945,7 +30805,7 @@ return [
       ),
     ),
   ),
-  157 => 
+  161 => 
   array (
     'meta' => 
     array (
@@ -29257,7 +31117,7 @@ return [
       ),
     ),
   ),
-  158 => 
+  162 => 
   array (
     'meta' => 
     array (
@@ -29523,7 +31383,7 @@ return [
       ),
     ),
   ),
-  159 => 
+  163 => 
   array (
     'meta' => 
     array (
@@ -29679,7 +31539,7 @@ return [
       ),
     ),
   ),
-  160 => 
+  164 => 
   array (
     'meta' => 
     array (
@@ -29971,7 +31831,7 @@ return [
       ),
     ),
   ),
-  161 => 
+  165 => 
   array (
     'meta' => 
     array (
@@ -30127,7 +31987,7 @@ return [
       ),
     ),
   ),
-  162 => 
+  166 => 
   array (
     'meta' => 
     array (
@@ -30269,7 +32129,7 @@ return [
       ),
     ),
   ),
-  163 => 
+  167 => 
   array (
     'meta' => 
     array (
@@ -30534,7 +32394,7 @@ return [
       ),
     ),
   ),
-  164 => 
+  168 => 
   array (
     'meta' => 
     array (
@@ -30756,7 +32616,7 @@ return [
       ),
     ),
   ),
-  165 => 
+  169 => 
   array (
     'meta' => 
     array (
@@ -30970,7 +32830,7 @@ return [
       ),
     ),
   ),
-  166 => 
+  170 => 
   array (
     'meta' => 
     array (
@@ -31112,7 +32972,7 @@ return [
       ),
     ),
   ),
-  167 => 
+  171 => 
   array (
     'meta' => 
     array (
@@ -31284,7 +33144,7 @@ return [
       ),
     ),
   ),
-  168 => 
+  172 => 
   array (
     'meta' => 
     array (
@@ -31537,7 +33397,7 @@ return [
       ),
     ),
   ),
-  169 => 
+  173 => 
   array (
     'meta' => 
     array (
@@ -31756,7 +33616,7 @@ return [
       ),
     ),
   ),
-  170 => 
+  174 => 
   array (
     'meta' => 
     array (
@@ -31975,7 +33835,7 @@ return [
       ),
     ),
   ),
-  171 => 
+  175 => 
   array (
     'meta' => 
     array (
@@ -32215,7 +34075,7 @@ return [
       ),
     ),
   ),
-  172 => 
+  176 => 
   array (
     'meta' => 
     array (
@@ -32530,7 +34390,7 @@ return [
       ),
     ),
   ),
-  173 => 
+  177 => 
   array (
     'meta' => 
     array (
@@ -32642,7 +34502,7 @@ return [
       ),
     ),
   ),
-  174 => 
+  178 => 
   array (
     'meta' => 
     array (
@@ -32754,7 +34614,7 @@ return [
       ),
     ),
   ),
-  175 => 
+  179 => 
   array (
     'meta' => 
     array (
@@ -32970,7 +34830,7 @@ return [
       ),
     ),
   ),
-  176 => 
+  180 => 
   array (
     'meta' => 
     array (
@@ -33259,7 +35119,7 @@ return [
       ),
     ),
   ),
-  177 => 
+  181 => 
   array (
     'meta' => 
     array (
@@ -33511,7 +35371,7 @@ return [
       ),
     ),
   ),
-  178 => 
+  182 => 
   array (
     'meta' => 
     array (
@@ -33667,7 +35527,7 @@ return [
       ),
     ),
   ),
-  179 => 
+  183 => 
   array (
     'meta' => 
     array (
@@ -33922,7 +35782,7 @@ return [
       ),
     ),
   ),
-  180 => 
+  184 => 
   array (
     'meta' => 
     array (
@@ -34144,7 +36004,7 @@ return [
       ),
     ),
   ),
-  181 => 
+  185 => 
   array (
     'meta' => 
     array (
@@ -34381,7 +36241,7 @@ return [
       ),
     ),
   ),
-  182 => 
+  186 => 
   array (
     'meta' => 
     array (
@@ -34493,7 +36353,7 @@ return [
       ),
     ),
   ),
-  183 => 
+  187 => 
   array (
     'meta' => 
     array (
@@ -34635,7 +36495,7 @@ return [
       ),
     ),
   ),
-  184 => 
+  188 => 
   array (
     'meta' => 
     array (
@@ -34854,7 +36714,7 @@ return [
       ),
     ),
   ),
-  185 => 
+  189 => 
   array (
     'meta' => 
     array (
@@ -35010,7 +36870,7 @@ return [
       ),
     ),
   ),
-  186 => 
+  190 => 
   array (
     'meta' => 
     array (
@@ -35284,7 +37144,7 @@ return [
       ),
     ),
   ),
-  187 => 
+  191 => 
   array (
     'meta' => 
     array (
@@ -35440,7 +37300,7 @@ return [
       ),
     ),
   ),
-  188 => 
+  192 => 
   array (
     'meta' => 
     array (
@@ -35659,7 +37519,7 @@ return [
       ),
     ),
   ),
-  189 => 
+  193 => 
   array (
     'meta' => 
     array (
@@ -35771,7 +37631,7 @@ return [
       ),
     ),
   ),
-  190 => 
+  194 => 
   array (
     'meta' => 
     array (
@@ -36092,7 +37952,7 @@ return [
       ),
     ),
   ),
-  191 => 
+  195 => 
   array (
     'meta' => 
     array (
@@ -36248,7 +38108,7 @@ return [
       ),
     ),
   ),
-  192 => 
+  196 => 
   array (
     'meta' => 
     array (
@@ -36395,7 +38255,7 @@ return [
       ),
     ),
   ),
-  193 => 
+  197 => 
   array (
     'meta' => 
     array (
@@ -36614,7 +38474,7 @@ return [
       ),
     ),
   ),
-  194 => 
+  198 => 
   array (
     'meta' => 
     array (
@@ -36879,7 +38739,7 @@ return [
       ),
     ),
   ),
-  195 => 
+  199 => 
   array (
     'meta' => 
     array (
@@ -36991,7 +38851,7 @@ return [
       ),
     ),
   ),
-  196 => 
+  200 => 
   array (
     'meta' => 
     array (
@@ -37255,7 +39115,7 @@ return [
       ),
     ),
   ),
-  197 => 
+  201 => 
   array (
     'meta' => 
     array (
@@ -37487,7 +39347,7 @@ return [
       ),
     ),
   ),
-  198 => 
+  202 => 
   array (
     'meta' => 
     array (
@@ -37717,7 +39577,7 @@ return [
       ),
     ),
   ),
-  199 => 
+  203 => 
   array (
     'meta' => 
     array (
@@ -38035,7 +39895,7 @@ return [
       ),
     ),
   ),
-  200 => 
+  204 => 
   array (
     'meta' => 
     array (
@@ -38262,7 +40122,7 @@ return [
       ),
     ),
   ),
-  201 => 
+  205 => 
   array (
     'meta' => 
     array (
@@ -38618,7 +40478,7 @@ return [
       ),
     ),
   ),
-  202 => 
+  206 => 
   array (
     'meta' => 
     array (
@@ -38844,7 +40704,7 @@ return [
       ),
     ),
   ),
-  203 => 
+  207 => 
   array (
     'meta' => 
     array (
@@ -39076,7 +40936,7 @@ return [
       ),
     ),
   ),
-  204 => 
+  208 => 
   array (
     'meta' => 
     array (
@@ -39284,7 +41144,7 @@ return [
       ),
     ),
   ),
-  205 => 
+  209 => 
   array (
     'meta' => 
     array (
@@ -39604,7 +41464,7 @@ return [
       ),
     ),
   ),
-  206 => 
+  210 => 
   array (
     'meta' => 
     array (
@@ -39880,7 +41740,7 @@ return [
       ),
     ),
   ),
-  207 => 
+  211 => 
   array (
     'meta' => 
     array (
@@ -40215,7 +42075,7 @@ return [
       ),
     ),
   ),
-  208 => 
+  212 => 
   array (
     'meta' => 
     array (
@@ -40433,7 +42293,7 @@ return [
       ),
     ),
   ),
-  209 => 
+  213 => 
   array (
     'meta' => 
     array (
@@ -40663,7 +42523,7 @@ return [
       ),
     ),
   ),
-  210 => 
+  214 => 
   array (
     'meta' => 
     array (
@@ -40974,7 +42834,7 @@ return [
       ),
     ),
   ),
-  211 => 
+  215 => 
   array (
     'meta' => 
     array (
@@ -41240,7 +43100,7 @@ return [
       ),
     ),
   ),
-  212 => 
+  216 => 
   array (
     'meta' => 
     array (
@@ -41472,7 +43332,7 @@ return [
       ),
     ),
   ),
-  213 => 
+  217 => 
   array (
     'meta' => 
     array (
@@ -41849,7 +43709,7 @@ return [
       ),
     ),
   ),
-  214 => 
+  218 => 
   array (
     'meta' => 
     array (
@@ -42081,7 +43941,7 @@ return [
       ),
     ),
   ),
-  215 => 
+  219 => 
   array (
     'meta' => 
     array (
@@ -42366,7 +44226,7 @@ return [
       ),
     ),
   ),
-  216 => 
+  220 => 
   array (
     'meta' => 
     array (
@@ -42688,7 +44548,7 @@ return [
       ),
     ),
   ),
-  217 => 
+  221 => 
   array (
     'meta' => 
     array (
@@ -42984,7 +44844,7 @@ return [
       ),
     ),
   ),
-  218 => 
+  222 => 
   array (
     'meta' => 
     array (
@@ -43280,7 +45140,7 @@ return [
       ),
     ),
   ),
-  219 => 
+  223 => 
   array (
     'meta' => 
     array (
@@ -43576,7 +45436,7 @@ return [
       ),
     ),
   ),
-  220 => 
+  224 => 
   array (
     'meta' => 
     array (
@@ -43759,7 +45619,7 @@ return [
       ),
     ),
   ),
-  221 => 
+  225 => 
   array (
     'meta' => 
     array (
@@ -44055,7 +45915,7 @@ return [
       ),
     ),
   ),
-  222 => 
+  226 => 
   array (
     'meta' => 
     array (
@@ -44291,7 +46151,7 @@ return [
       ),
     ),
   ),
-  223 => 
+  227 => 
   array (
     'meta' => 
     array (
@@ -44619,7 +46479,7 @@ return [
       ),
     ),
   ),
-  224 => 
+  228 => 
   array (
     'meta' => 
     array (
@@ -44851,7 +46711,7 @@ return [
       ),
     ),
   ),
-  225 => 
+  229 => 
   array (
     'meta' => 
     array (
@@ -45073,7 +46933,7 @@ return [
       ),
     ),
   ),
-  226 => 
+  230 => 
   array (
     'meta' => 
     array (
@@ -45352,7 +47212,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  227 => 
+  231 => 
   array (
     'meta' => 
     array (
@@ -45582,7 +47442,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  228 => 
+  232 => 
   array (
     'meta' => 
     array (
@@ -45809,7 +47669,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  229 => 
+  233 => 
   array (
     'meta' => 
     array (
@@ -46126,7 +47986,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  230 => 
+  234 => 
   array (
     'meta' => 
     array (
@@ -46334,7 +48194,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  231 => 
+  235 => 
   array (
     'meta' => 
     array (
@@ -46608,7 +48468,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  232 => 
+  236 => 
   array (
     'meta' => 
     array (
@@ -46840,7 +48700,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  233 => 
+  237 => 
   array (
     'meta' => 
     array (
@@ -47131,7 +48991,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  234 => 
+  238 => 
   array (
     'meta' => 
     array (
@@ -47356,7 +49216,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  235 => 
+  239 => 
   array (
     'meta' => 
     array (
@@ -47673,7 +49533,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  236 => 
+  240 => 
   array (
     'meta' => 
     array (
@@ -47996,7 +49856,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  237 => 
+  241 => 
   array (
     'meta' => 
     array (
@@ -48241,7 +50101,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  238 => 
+  242 => 
   array (
     'meta' => 
     array (
@@ -48473,7 +50333,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  239 => 
+  243 => 
   array (
     'meta' => 
     array (
@@ -48721,7 +50581,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  240 => 
+  244 => 
   array (
     'meta' => 
     array (
@@ -48987,7 +50847,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  241 => 
+  245 => 
   array (
     'meta' => 
     array (
@@ -49309,7 +51169,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  242 => 
+  246 => 
   array (
     'meta' => 
     array (
@@ -49631,7 +51491,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  243 => 
+  247 => 
   array (
     'meta' => 
     array (
@@ -49904,7 +51764,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  244 => 
+  248 => 
   array (
     'meta' => 
     array (
@@ -50202,7 +52062,7 @@ published, если комментарий был добававлен и опу
       ),
     ),
   ),
-  245 => 
+  249 => 
   array (
     'meta' => 
     array (
