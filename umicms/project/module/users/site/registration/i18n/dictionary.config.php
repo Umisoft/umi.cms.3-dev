@@ -33,7 +33,7 @@ return [
         'In order to complete your registration, visit the following URL' => 'Для того чтобы завершить регистрацию, перейдите по следующей ссылке',
         'Registration email sent to {email}. Open this email to finish signup.' => 'Письмо с ключом активации было выслано на Ваш электронный адрес {email}. Откройте письмо, чтобы завершить регистрацию.',
         'Hello' => 'Здравствуйте',
-        'You have successfully registered and logged in' => 'Вы были успешно зарегистрировались и были авторизованы',
+        'You have successfully registered and logged in' => 'Вы успешно зарегистрировались и были авторизованы',
         'You have successfully registered on the website {site}' => 'Вы успешно зарегистрировались на сайте {site}',
         'New user {user} has registered registered on the website {site}' => 'Новый пользователь {user} зарегистрировался на сайте {site}',
 
