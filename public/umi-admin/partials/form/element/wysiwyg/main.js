@@ -14,7 +14,7 @@ define(['App'], function(UMI) {
                     title: UMI.i18n.getTranslate('Select file')
                 },
                 templateParams: {
-                    fileSelect: function (fileInfo) {
+                    fileSelect: function(fileInfo) {
                         var self = this;
                         var image = Ember.get(fileInfo, 'url') || '';
                         var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
@@ -57,24 +57,6 @@ define(['App'], function(UMI) {
                         browseButton.onClick = showFileManager;
                     }
                 }
-            }
-
-            if (dialogName === 'link') {
-                var infoTab = dialogDefinition.getContents('info');
-                var protocol = infoTab.get('protocol');
-                protocol.items.splice(0, 4);
-                var linkUrlField = infoTab.get('url');
-                linkUrlField.onKeyUp = function() {};
-                linkUrlField.setup = function(data) {
-                    this.allowOnChange = false;
-                    if (data.url) {
-                        this.setValue((typeof data.url.protocol === 'string' ? data.url.protocol : '') + data.url.url);
-                    }
-                    this.allowOnChange = true;
-                };
-                dialogDefinition.dialog.on('load', function(e) {
-                    $(e.sender.parts.dialog.$).find('.cke_dialog_ui_hbox_first:first').hide();
-                });
             }
         });
 
