@@ -12,6 +12,7 @@ namespace umicms\hmvc\component\site;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\hmvc\component\IComponent;
 use umi\http\Response;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -29,6 +30,10 @@ trait TFormController
      * @var IForm $form форма для обработки
      */
     private $form;
+    /**
+     * @var int $formCounter
+     */
+    protected static $formCounter;
 
     /**
      * Возвращает форму для обработки
@@ -74,6 +79,12 @@ trait TFormController
      * @return Response
      */
     abstract protected function createRedirectResponse($url, $code = Response::HTTP_SEE_OTHER);
+
+    /**
+     * Возвращает короткий путь контроллера, относительно приложения сайта
+     * @return string
+     */
+    abstract protected function getShortPath();
 
     /**
      * Формирует результат работы контроллера.
@@ -138,6 +149,7 @@ trait TFormController
     {
         $result = (array) $this->buildResponseContent();
         $result['form'] = $this->form->getView();
+        $result['formId'] = $this->getFormId();
 
         if (count($this->errors)) {
             $result['errors'] = $this->errors;
@@ -190,6 +202,21 @@ trait TFormController
     protected function getDefaultRedirectUrl()
     {
         return $this->getUrlManager()->getCurrentUrl(true);
+    }
+
+    protected function getFormNamePostfix()
+    {
+        if (isset(self::$formCounter)) {
+            return '_' . ++self::$formCounter;
+        } else {
+            self::$formCounter = 0;
+            return '';
+        }
+    }
+
+    protected function getFormId()
+    {
+        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormNamePostfix();
     }
 }
  
