@@ -9,4 +9,6 @@
  */
 
 return [
+    'generatorClassName' => 'umicms\slugify\filtration\FiltrationGenerator',
+    'options' => ['slugLength' => 60],
 ];
