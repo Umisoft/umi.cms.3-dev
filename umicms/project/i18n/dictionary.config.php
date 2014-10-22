@@ -67,6 +67,12 @@ return [
     'project.admin.rest.blog.poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/i18n/dictionary.config.php}',
     'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
+    'project.admin.rest.surveys' => '{#lazy:~/project/module/surveys/admin/i18n/dictionary.config.php}',
+    'project.admin.rest.surveys.survey' => '{#lazy:~/project/module/surveys/admin/survey/i18n/dictionary.config.php}',
+    'project.admin.rest.surveys.answer' => '{#lazy:~/project/module/surveys/admin/answer/i18n/dictionary.config.php}',
+
+    'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
+
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
@@ -133,6 +139,7 @@ return [
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
     'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+    'project.site.surveys' => '{#lazy:~/project/module/surveys/site/i18n/dictionary.config.php}',
 
     'collection' => [
 
@@ -260,6 +267,9 @@ return [
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
     'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
+
+    'collection.survey' => '{#lazy:~/project/module/surveys/configuration/survey/i18n/dictionary.config.php}',
+    'collection.answer' => '{#lazy:~/project/module/surveys/configuration/answer/i18n/dictionary.config.php}',
 
     'collection.searchIndex' => '{#lazy:~/project/module/search/configuration/index/i18n/dictionary.config.php}',
 

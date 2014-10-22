@@ -1,0 +1,16 @@
+<p>{{ translate("Total votes") }}: {{ total  }}</p>
+
+{% for answerInfo in answers %}
+
+    <span>{{ answerInfo.answer.displayName }} - {{ answerInfo.percentage }}% ({{ answerInfo.votes }})</span>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ answerInfo.percentage|round }}" aria-valuemin="0" aria-valuemax="100"
+        {% if answerInfo.percentage %}
+            style="width: {{ answerInfo.percentage|round  }}%"
+        {% endif %}
+        >
+        <span class="sr-only">{{ answerInfo.percentage }}%</span>
+    </div>
+    </div>
+
+{% endfor %}
