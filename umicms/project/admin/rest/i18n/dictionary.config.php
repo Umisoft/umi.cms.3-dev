@@ -11,6 +11,10 @@
 return [
 
     'en-US' => [
+
+        'en-US' => 'English',
+        'ru-RU' => 'Русский',
+
         'action:create:base' => 'Create',
         'action:switchActivity' => 'Switch activity',
         'action:switchActivity:activate' => 'Activate',
@@ -105,6 +109,10 @@ return [
     ],
 
     'ru-RU' => [
+
+        'en-US' => 'English',
+        'ru-RU' => 'Русский',
+
         'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
