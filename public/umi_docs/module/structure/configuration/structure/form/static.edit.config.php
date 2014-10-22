@@ -19,7 +19,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => 'secondContent',
                     'options' => [
-                        'dataSource' => 'secondContent'
+                        'dataSource' => 'secondContents'
                     ]
                 ]
             ]

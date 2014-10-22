@@ -59,11 +59,6 @@ return array (
           ),
         ),
       ),
-      'name' => 
-      array (
-        0 => 'string',
-        1 => 'navbar-menu',
-      ),
     ),
   ),
   1 => 
