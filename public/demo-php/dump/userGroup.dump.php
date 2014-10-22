@@ -29,7 +29,12 @@ return array (
         0 => 'object',
         1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-07-08 20:30:10";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
-      'owner' => 
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-13 14:26:36";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'editor' => 
       array (
         0 => 'relation',
         1 => 
@@ -43,16 +48,6 @@ return array (
           ),
         ),
       ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
       'locked' => 
       array (
         0 => 'boolean',
@@ -61,7 +56,7 @@ return array (
       'roles' => 
       array (
         0 => 'array',
-        1 => 'a:26:{s:7:"project";a:4:{i:0;s:12:"siteExecutor";i:1;s:13:"adminExecutor";i:2;s:12:"siteExecutor";i:3;s:13:"adminExecutor";}s:13:"project.admin";a:2:{i:0;s:6:"viewer";i:1;s:12:"restExecutor";}s:18:"project.admin.rest";a:1:{i:0;s:6:"viewer";}s:12:"project.site";a:8:{i:0;s:13:"usersExecutor";i:1;s:12:"newsExecutor";i:2;s:17:"structureExecutor";i:3;s:12:"blogExecutor";i:4;s:14:"searchExecutor";i:5;s:6:"viewer";i:6;s:14:"widgetExecutor";i:7;s:14:"searchExecutor";}s:19:"project.site.search";a:1:{i:0;s:6:"viewer";}s:18:"project.site.users";a:4:{i:0;s:21:"authorizationExecutor";i:1;s:20:"registrationExecutor";i:2;s:19:"restorationExecutor";i:3;s:6:"viewer";}s:32:"project.site.users.authorization";a:1:{i:0;s:6:"viewer";}s:31:"project.site.users.registration";a:2:{i:0;s:18:"activationExecutor";i:1;s:6:"viewer";}s:42:"project.site.users.registration.activation";a:1:{i:0;s:6:"viewer";}s:30:"project.site.users.restoration";a:2:{i:0;s:20:"confirmationExecutor";i:1;s:6:"viewer";}s:43:"project.site.users.restoration.confirmation";a:1:{i:0;s:6:"viewer";}s:22:"project.site.structure";a:3:{i:0;s:12:"menuExecutor";i:1;s:17:"infoblockExecutor";i:2;s:6:"viewer";}s:27:"project.site.structure.menu";a:1:{i:0;s:6:"viewer";}s:32:"project.site.structure.infoblock";a:1:{i:0;s:6:"viewer";}s:17:"project.site.news";a:4:{i:0;s:12:"itemExecutor";i:1;s:14:"rubricExecutor";i:2;s:15:"subjectExecutor";i:3;s:6:"viewer";}s:22:"project.site.news.item";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:24:"project.site.news.rubric";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:25:"project.site.news.subject";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:17:"project.site.blog";a:6:{i:0;s:16:"categoryExecutor";i:1;s:12:"postExecutor";i:2;s:11:"tagExecutor";i:3;s:14:"authorExecutor";i:4;s:15:"commentExecutor";i:5;s:6:"viewer";}s:22:"project.site.blog.post";a:3:{i:0;s:12:"viewExecutor";i:1;s:6:"viewer";i:2;s:9:"rssViewer";}s:27:"project.site.blog.post.view";a:1:{i:0;s:6:"viewer";}s:26:"project.site.blog.category";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:21:"project.site.blog.tag";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:24:"project.site.blog.author";a:3:{i:0;s:12:"viewExecutor";i:1;s:6:"viewer";i:2;s:9:"rssViewer";}s:25:"project.site.blog.comment";a:1:{i:0;s:6:"viewer";}s:29:"project.site.blog.author.view";a:1:{i:0;s:6:"viewer";}}',
+        1 => 'a:27:{s:7:"project";a:6:{i:0;s:12:"siteExecutor";i:1;s:13:"adminExecutor";i:2;s:12:"siteExecutor";i:3;s:13:"adminExecutor";i:4;s:12:"siteExecutor";i:5;s:13:"adminExecutor";}s:13:"project.admin";a:2:{i:0;s:6:"viewer";i:1;s:12:"restExecutor";}s:18:"project.admin.rest";a:1:{i:0;s:6:"viewer";}s:12:"project.site";a:9:{i:0;s:12:"blogExecutor";i:1;s:12:"newsExecutor";i:2;s:14:"searchExecutor";i:3;s:14:"searchExecutor";i:4;s:17:"structureExecutor";i:5;s:15:"surveysExecutor";i:6;s:13:"usersExecutor";i:7;s:6:"viewer";i:8;s:14:"widgetExecutor";}s:19:"project.site.search";a:1:{i:0;s:6:"viewer";}s:18:"project.site.users";a:4:{i:0;s:21:"authorizationExecutor";i:1;s:20:"registrationExecutor";i:2;s:19:"restorationExecutor";i:3;s:6:"viewer";}s:32:"project.site.users.authorization";a:1:{i:0;s:6:"viewer";}s:31:"project.site.users.registration";a:2:{i:0;s:18:"activationExecutor";i:1;s:6:"viewer";}s:42:"project.site.users.registration.activation";a:1:{i:0;s:6:"viewer";}s:30:"project.site.users.restoration";a:2:{i:0;s:20:"confirmationExecutor";i:1;s:6:"viewer";}s:43:"project.site.users.restoration.confirmation";a:1:{i:0;s:6:"viewer";}s:22:"project.site.structure";a:3:{i:0;s:12:"menuExecutor";i:1;s:17:"infoblockExecutor";i:2;s:6:"viewer";}s:27:"project.site.structure.menu";a:1:{i:0;s:6:"viewer";}s:32:"project.site.structure.infoblock";a:1:{i:0;s:6:"viewer";}s:17:"project.site.news";a:4:{i:0;s:12:"itemExecutor";i:1;s:14:"rubricExecutor";i:2;s:15:"subjectExecutor";i:3;s:6:"viewer";}s:22:"project.site.news.item";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:24:"project.site.news.rubric";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:25:"project.site.news.subject";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:17:"project.site.blog";a:6:{i:0;s:16:"categoryExecutor";i:1;s:12:"postExecutor";i:2;s:11:"tagExecutor";i:3;s:14:"authorExecutor";i:4;s:15:"commentExecutor";i:5;s:6:"viewer";}s:22:"project.site.blog.post";a:3:{i:0;s:12:"viewExecutor";i:1;s:6:"viewer";i:2;s:9:"rssViewer";}s:27:"project.site.blog.post.view";a:1:{i:0;s:6:"viewer";}s:26:"project.site.blog.category";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:21:"project.site.blog.tag";a:2:{i:0;s:6:"viewer";i:1;s:9:"rssViewer";}s:24:"project.site.blog.author";a:3:{i:0;s:12:"viewExecutor";i:1;s:6:"viewer";i:2;s:9:"rssViewer";}s:25:"project.site.blog.comment";a:1:{i:0;s:6:"viewer";}s:29:"project.site.blog.author.view";a:1:{i:0;s:6:"viewer";}s:20:"project.site.surveys";a:2:{i:0;s:13:"resultsViewer";i:1;s:6:"viewer";}}',
       ),
     ),
   ),
@@ -104,16 +99,6 @@ return array (
             'displayName' => 'Супервайзер',
           ),
         ),
-      ),
-      'active#ru-RU' => 
-      array (
-        0 => 'boolean',
-        1 => true,
-      ),
-      'active#en-US' => 
-      array (
-        0 => 'boolean',
-        1 => true,
       ),
       'locked' => 
       array (

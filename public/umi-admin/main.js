@@ -12,7 +12,7 @@ require.config({
         timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment: 'vendor/momentjs/min/moment-with-langs',
         FastClick: 'vendor/fastclick/lib/fastclick',
-        iscroll: 'library/iScroll/iscroll-probe-5.1.1',
+        iscroll: 'vendor/iscroll/build/iscroll-probe',
         ckEditor: 'library/ckeditor/ckeditor',
         elFinder: 'library/elFinder/elFinder',
         Foundation: 'library/foundation/foundation'
@@ -36,7 +36,7 @@ require.config({
         {name: 'divider', location: 'partials/divider'},
         {name: 'dock', location: 'partials/dock'},
         {name: 'fileManager', location: 'partials/fileManager'},
-        {name: 'forms', location: 'partials/forms'},
+        {name: 'form', location: 'partials/form'},
         {name: 'notification', location: 'partials/notification'},
         {name: 'popup', location: 'partials/popup'},
         {name: 'search', location: 'partials/search'},
@@ -49,7 +49,8 @@ require.config({
         {name: 'topBar', location: 'partials/topBar'},
         {name: 'tree', location: 'partials/tree'},
         {name: 'treeSimple', location: 'partials/treeSimple'},
-        {name: 'updateLayout', location: 'partials/updateLayout'}
+        {name: 'updateLayout', location: 'partials/updateLayout'},
+        {name: 'IScrollExtend', location: 'library/IScroll'}
     ]
 });
 
@@ -59,16 +60,8 @@ require(['jquery'], function() {
     var deffer = $.get(window.UmiSettings.authUrl);
 
     deffer.done(function(data) {
-        var objectMerge = function(objectBase, objectProperty) {
-            for (var key in objectProperty) {
-                if (objectProperty.hasOwnProperty(key)) {
-                    objectBase[key] = objectProperty[key];
-                }
-            }
-        };
-
         if (data.result) {
-            objectMerge(window.UmiSettings, data.result.auth);
+            $.extend(window.UmiSettings, data.result.auth);
         }
         require(['application/main'], function(application) {
             application();

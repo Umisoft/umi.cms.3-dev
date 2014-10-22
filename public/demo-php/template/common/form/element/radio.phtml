@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var umi\form\FormEntityView $element
+ */
+?>
+
+<div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
+
+    <label><?= $element->label ?></label>
+
+    <?php if (!$element->valid) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->errors as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <?php foreach ($element->choices as $choice) : ?>
+        <div class="radio">
+            <label><input <?= $choice['attributes'] ?> /><?= $choice['label'] ?></label>
+        </div>
+    <?php endforeach; ?>
+
+</div>
+
