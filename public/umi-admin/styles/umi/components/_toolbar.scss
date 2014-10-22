@@ -28,4 +28,12 @@
             line-height: 1.6rem;
         }
     }
+
+    .umi-hide-pagination-label {
+        .pagination-limit,
+        .pagination-counter {
+            display: none;
+        }
+    }
+
 }
