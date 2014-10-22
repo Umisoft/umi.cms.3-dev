@@ -51,7 +51,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 iScroll: null,
 
-                dropdownClassName: 'content medium',
+                dropdownClassName: 'content small',
 
                 noBackupsLabel: null,
 
