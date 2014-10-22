@@ -33,6 +33,7 @@ return [
             'umicms\project\module\structure\model\object\MenuInternalItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
             'umicms\project\module\structure\model\object\MenuExternalItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
             'umicms\pagination\CmsPaginator' => 'umicms\serialization\xml\PaginatorSerializer',
+            'umicms\exception\LibXMLException' => 'umicms\serialization\xml\LibXMLExceptionSerializer',
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
