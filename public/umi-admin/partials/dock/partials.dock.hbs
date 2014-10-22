@@ -3,13 +3,22 @@
         <ul class="dock navigation">
             {{#each module in sortedModules}}
                 {{#view 'dockModuleButton' module=module }}
-                    {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
-            data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;"}}
-                        <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
-                        <span>{{module.displayName}}</span>
-                    {{/link-to}}
+                    {{#if view.parentView.isTouchDevice}}
+                        <a href="javascript: void(0)" class="dock-module dropdown" data-dropdown=""
+                        data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;">
+                            <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
+                            <span>{{module.displayName}}</span>
+                        </a>
+                    {{else}}
+                        {{#link-to 'module' module.name class="dock-module dropdown" data-dropdown=""
+                        data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;"}}
+                            <div class="umi-dock-module-icon umi-dock-module-{{unbound view.module.name}}"></div>
+                            <span>{{module.displayName}}</span>
+                        {{/link-to}}
+                    {{/if}}
 
-                    <ul class="f-dropdown" data-dropdown-content>
+
+                    <ul {{bind-attr class=":f-dropdown view.parentView.isTouchDevice:is-touch-mode"}} data-dropdown-content>
                         {{#each component in module.components}}
                             <li class="{{unbound component.name}}">
                                 {{#link-to 'component' module.name component.name}}

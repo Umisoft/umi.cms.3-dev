@@ -70,28 +70,29 @@ class XsltTemplate implements ISerializationAware
         libxml_clear_errors();
         $xslt->importStylesheet($template);
 
-        if ($errors = libxml_get_last_error()) {
+        if ($errors = libxml_get_errors()) {
             throw new LibXMLException(
                 sprintf(
                     'Cannot load template "%s" XML.',
                     $templateFilePath
                 ),
                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                libxml_get_errors()
+                $errors
             );
         }
 
         $result = (string) @$xslt->transformToXML($data);
-        if ($errors = libxml_get_last_error()) {
+        if ($errors = libxml_get_errors()) {
             throw new LibXMLException(
                 sprintf(
                     'Cannot transform template "%s" to XML.',
                     $templateFilePath
                 ),
                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                libxml_get_errors()
+                $errors
             );
         }
+        libxml_clear_errors();
 
         return $result;
     }
@@ -110,13 +111,14 @@ class XsltTemplate implements ISerializationAware
 
         libxml_clear_errors();
         @$document->loadXML($xmlString);
-        if ($errors = libxml_get_last_error()) {
+        if ($errors = libxml_get_errors()) {
             throw new LibXMLException(
                 'Cannot create DOMDocument.',
                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                libxml_get_errors()
+                $errors
             );
         }
+        libxml_clear_errors();
 
         return $document;
     }

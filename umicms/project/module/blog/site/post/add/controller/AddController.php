@@ -91,11 +91,15 @@ class AddController extends BaseSitePageController
 
         $this->blogPost->setStatus($this->module->postStatus()->get(PostStatus::GUID_NEED_MODERATION));
 
-        return $this->module->post()->getForm(
+        $form = $this->module->post()->getForm(
             $this->module->isAuthorRegistered() ? BlogPost::FORM_ADD_POST : BlogPost::FORM_ADD_VISITOR_POST,
             $type,
             $this->blogPost
         );
+
+        $form->setAction($this->getUrl('index', ['id' => $blogCategoryId, 'type' => $type]));
+
+        return $form;
     }
 
     /**
