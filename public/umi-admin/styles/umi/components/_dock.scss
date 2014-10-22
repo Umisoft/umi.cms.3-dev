@@ -173,6 +173,11 @@ $umi-dock-wrapper-height: rem-calc(48);
         box-shadow: 0 0 4px 1px #535353;
         border: none;
 
+        &.is-touch-mode{
+            width: 200px;
+            margin-left: -77px;
+        }
+
         li{
             > span{
                 color: $body-font-color;

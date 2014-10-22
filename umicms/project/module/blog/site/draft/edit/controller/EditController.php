@@ -68,11 +68,15 @@ class EditController extends BaseSitePageController
             );
         }
 
-        return $this->module->post()->getForm(
+        $form = $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             $blogDraft->getTypeName(),
             $blogDraft
         );
+
+        $form->setAction($this->getUrl('index', ['id' => $blogDraft->getId()]));
+
+        return $form;
     }
 
     /**

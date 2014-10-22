@@ -311,21 +311,17 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                         };
 
                         deffer.done(function(data) {
-                            var objectMerge = function(objectBase, objectProperty) {
-                                for (var key in objectProperty) {
-                                    if (objectProperty.hasOwnProperty(key)) {
-                                        if (key === 'token') {
-                                            $.ajaxSetup({
-                                                headers: {'X-Csrf-Token': objectProperty[key]}
-                                            });
-                                        }
-                                        objectBase[key] = objectProperty[key];
-                                    }
-                                }
-                            };
-
                             if (data.result) {
-                                objectMerge(window.UmiSettings, data.result);
+                                $.ajaxSetup({
+                                    headers: {'X-Csrf-Token': data.result.token}
+                                });
+
+                                var mergedSettings = $.extend({}, window.UmiSettings, data.result);
+                                if ('Ember' in window) {
+                                    Ember.set(window, 'UmiSettings', mergedSettings);
+                                } else {
+                                    window.UmiSettings = mergedSettings;
+                                }
                             }
 
                             self.transition();
@@ -343,9 +339,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
             },
 
             destroy: function() {
-                $(document).off('click.umi.auth');
-                $(document).off('submit.umi.auth');
-                $(document).off('change.umi.auth');
+                $(document).off('.umi.auth');
             },
 
             cookie: {
