@@ -60,16 +60,8 @@ require(['jquery'], function() {
     var deffer = $.get(window.UmiSettings.authUrl);
 
     deffer.done(function(data) {
-        var objectMerge = function(objectBase, objectProperty) {
-            for (var key in objectProperty) {
-                if (objectProperty.hasOwnProperty(key)) {
-                    objectBase[key] = objectProperty[key];
-                }
-            }
-        };
-
         if (data.result) {
-            objectMerge(window.UmiSettings, data.result.auth);
+            $.extend(window.UmiSettings, data.result.auth);
         }
         require(['application/main'], function(application) {
             application();
