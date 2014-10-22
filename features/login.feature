@@ -1,7 +1,7 @@
 Feature: Login
   In order to check login form works correct
   As a website user
-  I need to be able to login to the system
+  I need to be able to login to the system with correct login and password
 
   Scenario: Try to login with incorrect login or password
     Given I am on "/php"

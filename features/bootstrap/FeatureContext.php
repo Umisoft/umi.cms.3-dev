@@ -1,8 +1,12 @@
 <?php
 
+require_once 'bootstrap.php';
+
 use Behat\MinkExtension\Context\MinkContext;
 use umi\http\Request;
+use umi\messages\toolbox\MessagesTools;
 use umi\orm\persister\IObjectPersister;
+use umicms\messages\FileTransport;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
@@ -33,6 +37,10 @@ class FeatureContext extends MinkContext
         $toolkit = $bootstrap->getToolkit();
         $this->usersModule = $toolkit->getService('umicms\module\IModule', UsersModule::className());
         $this->objectPersister = $toolkit->getService('umi\orm\persister\IObjectPersister');
+        /** @var MessagesTools $msgTools */
+        $msgTools = $toolkit->getToolbox(MessagesTools::NAME);
+        $transport = new FileTransport();
+        $msgTools->setTransport($transport);
     }
 
     /**
