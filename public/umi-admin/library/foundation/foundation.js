@@ -774,9 +774,11 @@
 
                 S(self.scope).on('click.fndtn.dropdown', self.selector(), function(e) {
                     var settings = self.getSettings(this);
-                    if (!settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
+                    if (Modernizr.touch || (!settings.fastSelect && !settings.isHover)) {
                         e.preventDefault();
                         self.toggle($(this), settings);
+                    } else if(settings.fastSelect || settings.isHover) {
+                        e.preventDefault();
                     }
                 });
             },
@@ -789,7 +791,7 @@
                 S(self.scope).on('mousedown.fndtn.dropdown', self.selector(), function(e) {
                     var settings = self.getSettings(this);
 
-                    if (settings.fastSelect && (!settings.isHover || Modernizr.touch)) {
+                    if (!Modernizr.touch && settings.fastSelect && !settings.isHover) {
                         e.preventDefault();
                         var $targetButton = $(this);
                         var $dropdown = self.toggle($targetButton, settings);
@@ -859,7 +861,7 @@
 
                     var settings = self.getSettings(target);
 
-                    if (settings.isHover) {
+                    if (!Modernizr.touch && settings.isHover) {
                         self.closeall.call(self);
                         self.open.apply(self, [dropdown, target]);
                     }
@@ -876,7 +878,7 @@
                         if ($this.data(self.dataAttr()) !== undefined) {
                             settings = self.getSettings($this);
 
-                            if (settings.isHover) {
+                            if (!Modernizr.touch && settings.isHover) {
                                 dropdown = self.getDropdown($this, settings);
                                 self.close.call(self, dropdown);
                             }
@@ -886,7 +888,7 @@
                                 target = $this.parent().children(self.selector());
                             }
                             settings = self.getSettings(target);
-                            if (settings.isHover) {
+                            if (!Modernizr.touch && settings.isHover) {
                                 self.close.call(self, $this);
                             }
                         }
@@ -903,16 +905,15 @@
                 var S = self.S;
                 var dropdownSelector = '[' + self.attr_name() + '-content]';
 
-                S(self.scope).on('click.fndtn.dropdown.miss', function(e) {
+                S(self.scope).on('click.fndtn.dropdown.miss', function(e) {//
                     var parent = S(e.target).closest(dropdownSelector);
 
-                    if (S(e.target).data(self.dataAttr()) || S(e.target).parent().data(self.dataAttr())) {
+                    if (S(e.target).data(self.dataAttr()) !== undefined || S(e.target).parent().data(self.dataAttr()) !== undefined) {
                         return;
                     }
 
                     if (parent.length > 0 && (S(e.target).is(dropdownSelector) ||
                         $.contains(parent.first()[0], e.target))) {
-                        //e.stopPropagation();
                         return;
                     }
 

@@ -27,6 +27,7 @@ use umi\i18n\ILocalesService;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\validation\IValidatorFactory;
+use umicms\exception\OutOfBoundsException;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\TActionController;
@@ -161,6 +162,21 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function actionForm()
     {
+        $localeService = $this->getLocalesService();
+        $adminLocales = $localeService->getAdminLocales();
+        $locales = [];
+        foreach ($adminLocales as $adminLocale) {
+            $locales[$adminLocale->getId()] = $adminLocale->getId();
+        }
+
+        if ($localeId = $this->getQueryVar('locale')) {
+            if (array_key_exists($localeId, $locales)) {
+                $localeService->setCurrentLocale($localeId);
+            } else {
+                $localeService->setCurrentLocale($localeService->getDefaultAdminLocaleId());
+            }
+        }
+
         $form = $this->createForm([
             'options' => [
                 'dictionaries' => [
@@ -208,13 +224,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
 
         $form->add($passwordInput);
 
-        $adminLocales = $this->getLocalesService()->getAdminLocales();
-        if (count($adminLocales) > 1) {
-
-            $locales = [];
-            foreach ($adminLocales as $adminLocale) {
-                $locales[$adminLocale->getId()] = $adminLocale->getId();
-            }
+        if (count($locales) > 1) {
             $localeInput = $this->createFormEntity(
                 'locale',
                 [
