@@ -9,4 +9,11 @@
  */
 
 return [
+    'mailerOptions' => [
+        'sender_address' => [
+            [
+                'email' => 'no-reply@example.com'
+            ],
+        ],
+    ],
 ];

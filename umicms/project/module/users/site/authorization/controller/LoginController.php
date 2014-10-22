@@ -51,7 +51,11 @@ class LoginController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        return $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_SITE, RegisteredUser::TYPE_NAME);
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_SITE, RegisteredUser::TYPE_NAME);
+
+        $form->setAction($this->getUrl('login'));
+
+        return $form;
     }
 
     /**
