@@ -99,7 +99,8 @@ return [
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
         'role:settingsExecutor:displayName' => 'Settings',
-        
+        'role:surveysExecutor:displayName' => 'Surveys',
+
         'Incorrect login or password.' => 'Incorrect login or password.'
     ],
 
@@ -178,6 +179,10 @@ return [
         'Unknown error' => 'Неизвестная ошибка',
 
         'Rows on page' => 'Строк на странице',
+        'Selected fields' => 'Выбранные поля',
+        'Apply' => 'Применить',
+        'Default' => 'По умолчанию',
+
         'No data' => 'Нет данных',
         'Nothing is selected' => 'Ничего не выбрано',
 
@@ -193,6 +198,7 @@ return [
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
         'role:settingsExecutor:displayName' => 'Настройки',
+        'role:surveysExecutor:displayName' => 'Опросы',
 
         'Incorrect login or password.' => 'Неправильный логин или пароль.'
     ]

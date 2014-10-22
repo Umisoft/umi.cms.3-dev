@@ -19,6 +19,7 @@ use umicms\Utils;
  *
  * @property string $ip IP
  * @property string $login логин
+ * @property string $password пароль
  * @property string $email e-mail
  * @property string $firstName имя
  * @property string $middleName отчество
@@ -119,7 +120,7 @@ class RegisteredUser extends BaseUser
             }
         );
 
-        return parent::configureSerializer($serializer);
+        parent::configureSerializer($serializer);
     }
 
      /**

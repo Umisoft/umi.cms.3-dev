@@ -15,8 +15,8 @@ define([
         }.property(),
 
         userName: function() {
-            return Ember.get(window, 'UmiSettings.user.displayName');
-        }.property(),//TODO: reload after logout
+            return this.get('controller.user._data.displayName');
+        }.property('controller.user.displayName'),
 
         modules: function() {
             return this.get('controller.modules');

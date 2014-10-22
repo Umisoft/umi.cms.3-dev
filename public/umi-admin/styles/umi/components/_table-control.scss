@@ -134,14 +134,9 @@ $table-control-row-bg-hover: #C8DEEE;
         height: $table-control-row-height;
         width: $table-control-left-column-width*2 + 18; //Плюс ширина скролла;
         border-bottom: 1px solid #E3E4E5;
-        .umi-table-control-header-fixed-right-first{
-            float: left;
-        }
-        .umi-table-control-header-fixed-right-second{
-            float: left;
-            width: $table-control-left-column-width - 1;
-            border-left: 1px solid #E3E4E5;
-            padding-right: 18px; //Ширина скролла
+
+        .button{
+            margin-top: rem-calc(5);
         }
     }
     .umi-table-control-header-filter{
@@ -469,17 +464,19 @@ $table-control-row-bg-hover: #C8DEEE;
     .pagination-limit{
 
     }
-    .pagination-label{
-        display: inline-block;
+    .pagination-label,
+    .pagination-counter {
+        float: left;
         margin-right: 15px;
         line-height: 24px;
     }
     input{
-        display: inline-block;
+        display: block;
         padding: rem-calc(0 5);
         height: rem-calc(24);
         width: 50px;
         line-height: 20px;
+        float: left;
     }
 }
 

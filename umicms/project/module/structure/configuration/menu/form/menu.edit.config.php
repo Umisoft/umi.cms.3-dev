@@ -33,13 +33,6 @@ return [
                         'dataSource' => Menu::FIELD_DISPLAY_NAME
                     ],
                 ],
-                Menu::FIELD_NAME => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_NAME,
-                    'options' => [
-                        'dataSource' => Menu::FIELD_NAME
-                    ],
-                ],
             ]
         ]
     ]
