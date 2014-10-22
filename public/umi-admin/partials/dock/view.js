@@ -13,6 +13,10 @@ define(['App'], function(UMI) {
 
             classNames: ['umi-dock', 's-unselectable'],
 
+            isTouchDevice: function() {
+                return Modernizr.touch;
+            }.property(),
+
             didInsertElement: function() {
                 var self = this;
                 var dock = self.$().find('.dock')[0];
@@ -85,6 +89,10 @@ define(['App'], function(UMI) {
                 var dock = self.$().find('.dock')[0];
                 def.old = false;
 
+                if (this.get('parentView.isTouchDevice')) {
+                    return;
+                }
+
                 if (!event.relatedTarget) {
                     $(document.body).bind('mouseover', function(e) {
                         if ($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()) {
@@ -100,9 +108,10 @@ define(['App'], function(UMI) {
             },
 
             leaveDock: function() {
-                if (this.get('isBlocked') || !this.get('needDockMinimize')) {
+                if (this.get('parentView.isTouchDevice') || this.get('isBlocked') || !this.get('needDockMinimize')) {
                     return;
                 }
+
                 var self = this;
                 var dock = self.$().find('.dock')[0];
                 expanded = false;
@@ -146,6 +155,10 @@ define(['App'], function(UMI) {
                 var dock = self.$().closest('.dock');
                 var $el = self.$();
 
+                if (self.get('parentView.isTouchDevice')) {
+                    return;
+                }
+
                 var onHover = function() {
                     self.set('parentView.needDockMinimize', false);
                     if (!expanded) {
@@ -184,7 +197,7 @@ define(['App'], function(UMI) {
             },
 
             didInsertElement: function() {
-                if (Modernizr.touch) {
+                if (this.get('parentView.isTouchDevice')) {
                     return;
                 }
                 var self = this;
