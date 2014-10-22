@@ -247,6 +247,8 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                     $(document.querySelector('.auth-layout')).foundation();
 
+                    $('input[name="login"]').focus();
+
                     var bubbles = document.querySelector('.bubbles');
                     var bubblesFront = document.querySelector('.bubbles-front');
                     var parallax = function(event) {
@@ -381,7 +383,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                     document.cookie = updatedCookie;
                 },
 
-                delete: function(name) {
+                'delete': function(name) {
                     Auth.cookie.set(name, '', { expires: -1 });
                 }
             }
