@@ -149,11 +149,7 @@ define(['App'], function(UMI) {
                     var editor = CKEDITOR.replace(el[0].id, config);
                     self.set('ckeditor', editor);
 
-                    editor.on('blur', function(event) {
-                        Ember.run.once(self, 'updateContent', event, editor);
-                    });
-
-                    editor.on('key', function(event) {// TODO: Это событие было добавлено только из-за того, что событие save срабатывает быстрее blur. Кажется можно сделать лучше.
+                    editor.on('change', function(event) {
                         Ember.run.once(self, 'updateContent', event, editor);
                     });
 
