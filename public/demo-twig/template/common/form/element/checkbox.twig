@@ -1,5 +1,5 @@
 <input type="hidden" value="0" name="{{ element.attributes.name }} "/>
-<label>
+<label for="{{ element.attributes.id }}">
     <input {{ element.attributes | raw }}/>
     {{ element.label }}
 </label>
