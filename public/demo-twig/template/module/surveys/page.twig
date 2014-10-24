@@ -1,0 +1,14 @@
+{{ include('breadcrumbs.twig') }}
+
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.getHeader() }} </h2>
+    {{ page.contents | raw }}
+
+    {% if (voted) %}
+        {{ widget('surveys.voteResults', {'survey' : page, 'forbiddenTemplate' : 'forbiddenResults'}) }}
+    {% else %}
+        {% set errors = errors ?: null %}
+        {{ include('form/form.twig', {'form' : form, 'errors' : errors}) }}
+    {% endif %}
+
+</div>

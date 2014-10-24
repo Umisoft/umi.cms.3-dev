@@ -9212,7 +9212,7 @@ elFinder.prototype.commands.resize = function() {
                         })), uideg90 = $(uibutton).attr('title', fm.i18n('rotate-ccw')).append($('<span class="elfinder-button-icon elfinder-button-icon-rotate-r"/>').click(function() {
                             rdegree = rdegree + 90;
                             rotate.update(rdegree);
-                        })), uiprop = $('<span />'), reset = $('<div class="ui-state-default ui-corner-all elfinder-resize-reset"><span class="ui-icon ui-icon-arrowreturnthick-1-w"/></div>'), uitype = $('<div class="elfinder-resize-type"/>').append('<input type="radio" name="type" id="' + id + '-resize" value="resize" checked="checked" /><label for="' + id + '-resize">' + fm.i18n('resize') + '</label>').append('<input type="radio" name="type" id="' + id + '-crop" value="crop" /><label for="' + id + '-crop">' + fm.i18n('crop') + '</label>').append('<input type="radio" name="type" id="' + id + '-rotate" value="rotate" /><label for="' + id + '-rotate">' + fm.i18n('rotate') + '</label>'), type = $('input', uitype).attr('disabled', 'disabled').change(function() {
+                        })), uiprop = $('<span />'), reset = $('<div class="ui-state-default ui-corner-all elfinder-resize-reset" title="' + fm.i18n('resetSize') + '"><span class="ui-icon ui-icon-arrowreturnthick-1-w"/></div>'), uitype = $('<div class="elfinder-resize-type"/>').append('<input type="radio" name="type" id="' + id + '-resize" value="resize" checked="checked" /><label for="' + id + '-resize">' + fm.i18n('resize') + '</label>').append('<input type="radio" name="type" id="' + id + '-crop" value="crop" /><label for="' + id + '-crop">' + fm.i18n('crop') + '</label>').append('<input type="radio" name="type" id="' + id + '-rotate" value="rotate" /><label for="' + id + '-rotate">' + fm.i18n('rotate') + '</label>'), type = $('input', uitype).attr('disabled', 'disabled').change(function() {
                             var val = $('input:checked', uitype).val();
 
                             resetView();
@@ -9643,7 +9643,7 @@ elFinder.prototype.commands.resize = function() {
 
                 uicrop.append($(row).append($(label).text('X')).append(pointX)).append($(row).append($(label).text('Y')).append(pointY)).append($(row).append($(label).text(fm.i18n('width'))).append(offsetX)).append($(row).append($(label).text(fm.i18n('height'))).append(offsetY));
 
-                uirotate.append($(row).append($(label).text(fm.i18n('rotate'))).append($('<div style="float:left; width: 130px;">').append($('<div style="float:left;">').append(degree).append($('<span/>').text(fm.i18n('degree')))).append($(uibuttonset).append(uideg270).append($(uiseparator)).append(uideg90))).append(uidegslider));
+                uirotate.append($(row).append($(label).text(fm.i18n('rotate'))).append($('<div style="float:left; width: 200px;">').append($('<div style="float:left;">').append(degree).append($('<span/>').text(fm.i18n('degree')))).append($(uibuttonset).append(uideg270).append($(uiseparator)).append(uideg90))).append(uidegslider));
 
 
                 dialog.append(uitype);
@@ -10513,9 +10513,10 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
             'resize': 'Размер',
             'crop': 'Кадрировать',
             'rotate': 'Поворот',
-            'rotate-cw': 'Поворот на 90 градусов по часовой стрелке',
-            'rotate-ccw': 'Поворот на 90 градусов против часовой стрелке',
+            'rotate-cw': 'Поворот на 90 градусов против часовой стрелки',
+            'rotate-ccw': 'Поворот на 90 градусов по часовой стрелке',
             'degree': '°',
+            'resetSize': 'Сбросить размер',
             'netMountDialogTitle': 'Подключить сетевой диск', // added 18.04.2012
             'protocol': 'Протокол', // added 18.04.2012
             'host': 'Хост', // added 18.04.2012

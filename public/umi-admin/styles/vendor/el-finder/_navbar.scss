@@ -2,6 +2,8 @@
 /*              NAVIGATION PANEL             */
 /*********************************************/
 
+@import "../../umi/components/icons";
+
 /* container */
 .elfinder .elfinder-navbar {
     box-sizing: border-box;
@@ -89,12 +91,12 @@
     display: none;
     top: 50%;
     margin-top: -8px;
-    background: url(#{$images-path}elfinder/img/arrows-normal.png) no-repeat;
+    background: url($umi-icons-img) no-repeat;
     /*	border:1px solid #111;*/
 }
 
 .ui-state-active .elfinder-navbar-arrow {
-    background-image: url(#{$images-path}elfinder/img/arrows-active.png);
+    background-image: url($umi-icons-img);
 }
 
 /* collapsed/expanded arrow view */
@@ -104,30 +106,30 @@
 
 /* arrow ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-collapsed .elfinder-navbar-arrow {
-    background-position: 0 4px;
+    background-position: -863px 0;
     left: 0;
 }
 
 .elfinder-rtl .elfinder-navbar-collapsed .elfinder-navbar-arrow {
-    background-position: 0 -10px;
+    background-position: -903px 0;
     right: 0;
 }
 
 .elfinder-ltr .elfinder-navbar-expanded .elfinder-navbar-arrow,
 .elfinder-rtl .elfinder-navbar-expanded .elfinder-navbar-arrow {
-    background-position: 0 -21px;
+    background-position: -883px 0;
 }
 
 /* folder icon */
 .elfinder-navbar-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url(#{$images-path}elfinder/img/toolbar.png);
+    background-image: url($umi-icons-img);
     background-repeat: no-repeat;
-    background-position: 0 -16px;
+    background-position: -501px -2px;
 }
 
 /* ltr/rtl enviroment */
@@ -141,7 +143,7 @@
 
 /* root folder */
 .elfinder-tree .elfinder-navbar-root .elfinder-navbar-icon {
-    background-position: 0 0;
+    background-position: -620px -2px;
 }
 
 .elfinder-places .elfinder-navbar-root .elfinder-navbar-icon {
@@ -152,7 +154,7 @@
 .ui-state-active .elfinder-navbar-icon,
 .elfinder-droppable-active .elfinder-navbar-icon,
 .ui-state-hover .elfinder-navbar-icon {
-    background-position: 0 -32px;
+    background-position: -461px -2px;
 }
 
 /* subdirs tree */
