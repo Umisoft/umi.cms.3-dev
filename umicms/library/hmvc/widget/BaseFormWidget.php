@@ -43,9 +43,9 @@ abstract class BaseFormWidget extends BaseCmsWidget
      */
     public $redirectUrl = self::NO_REDIRECT;
     /**
-     * @var int $formCounter
+     * @var int $formCounters
      */
-    protected static $formCounter;
+    protected static $formCounters;
 
     /**
      * Возвращает форму для отображения
@@ -64,7 +64,7 @@ abstract class BaseFormWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $form = $this->getForm();
+        $form = $this->getForm()->setId($this->getUniqueFormId());
 
         if ($form->has(self::INPUT_REDIRECT_URL)) {
 
@@ -80,7 +80,6 @@ abstract class BaseFormWidget extends BaseCmsWidget
 
         $result = (array) $this->buildResponseContent();
         $result['form'] = $form->getView();
-        $result['formId'] = $this->getFormId();
 
         return $this->createResult(
             $this->template,
@@ -97,19 +96,19 @@ abstract class BaseFormWidget extends BaseCmsWidget
         return [];
     }
 
-    protected function getFormNamePostfix()
+    protected function getFormIdPostfix()
     {
-        if (isset(self::$formCounter)) {
-            return '_' . ++self::$formCounter;
+        if (isset(self::$formCounters[get_class($this)])) {
+            return '_' . ++self::$formCounters[get_class($this)];
         } else {
-            self::$formCounter = 0;
+            self::$formCounters[get_class($this)] = 0;
             return '';
         }
     }
 
-    protected function getFormId()
+    protected function getUniqueFormId()
     {
-        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormNamePostfix();
+        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormIdPostfix();
     }
 
 }

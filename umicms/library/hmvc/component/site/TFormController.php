@@ -30,10 +30,6 @@ trait TFormController
      * @var IForm $form форма для обработки
      */
     private $form;
-    /**
-     * @var int $formCounter
-     */
-    protected static $formCounter;
 
     /**
      * Возвращает форму для обработки
@@ -148,8 +144,7 @@ trait TFormController
     protected function buildResponse()
     {
         $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form->getView();
-        $result['formId'] = $this->getFormId();
+        $result['form'] = $this->form->setId($this->getUniqueFormId())->getView();
 
         if (count($this->errors)) {
             $result['errors'] = $this->errors;
@@ -204,19 +199,8 @@ trait TFormController
         return $this->getUrlManager()->getCurrentUrl(true);
     }
 
-    protected function getFormNamePostfix()
+    protected function getUniqueFormId()
     {
-        if (isset(self::$formCounter)) {
-            return '_' . ++self::$formCounter;
-        } else {
-            self::$formCounter = 0;
-            return '';
-        }
-    }
-
-    protected function getFormId()
-    {
-        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormNamePostfix();
+        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath());
     }
 }
- 
