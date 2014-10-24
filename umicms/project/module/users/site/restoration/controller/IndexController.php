@@ -56,7 +56,11 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        return $this->module->user()->getForm(RegisteredUser::FORM_RESTORE_PASSWORD, RegisteredUser::TYPE_NAME);
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_RESTORE_PASSWORD, RegisteredUser::TYPE_NAME);
+
+        $form->setAction($this->getUrl('index'));
+
+        return $form;
     }
 
     /**

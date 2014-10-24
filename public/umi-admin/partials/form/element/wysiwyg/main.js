@@ -14,7 +14,7 @@ define(['App'], function(UMI) {
                     title: UMI.i18n.getTranslate('Select file')
                 },
                 templateParams: {
-                    fileSelect: function(fileInfo) {
+                    fileSelect: function (fileInfo) {
                         var self = this;
                         var image = Ember.get(fileInfo, 'url') || '';
                         var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');
@@ -57,6 +57,24 @@ define(['App'], function(UMI) {
                         browseButton.onClick = showFileManager;
                     }
                 }
+            }
+
+            if (dialogName === 'link') {
+                var infoTab = dialogDefinition.getContents('info');
+                var protocol = infoTab.get('protocol');
+                protocol.items.splice(0, 4);
+                var linkUrlField = infoTab.get('url');
+                linkUrlField.onKeyUp = function() {};
+                linkUrlField.setup = function(data) {
+                    this.allowOnChange = false;
+                    if (data.url) {
+                        this.setValue((typeof data.url.protocol === 'string' ? data.url.protocol : '') + data.url.url);
+                    }
+                    this.allowOnChange = true;
+                };
+                dialogDefinition.dialog.on('load', function(e) {
+                    $(e.sender.parts.dialog.$).find('.cke_dialog_ui_hbox_first:first').hide();
+                });
             }
         });
 
@@ -149,11 +167,7 @@ define(['App'], function(UMI) {
                     var editor = CKEDITOR.replace(el[0].id, config);
                     self.set('ckeditor', editor);
 
-                    editor.on('blur', function(event) {
-                        Ember.run.once(self, 'updateContent', event, editor);
-                    });
-
-                    editor.on('key', function(event) {// TODO: Это событие было добавлено только из-за того, что событие save срабатывает быстрее blur. Кажется можно сделать лучше.
+                    editor.on('change', function(event) {
                         Ember.run.once(self, 'updateContent', event, editor);
                     });
 
@@ -165,8 +179,12 @@ define(['App'], function(UMI) {
 
             willDestroyElement: function() {
                 var self = this;
+                var editor = self.get('ckeditor');
                 self.removeObserver('object.' + self.get('meta.dataSource'));
-                self.get('ckeditor').destroy();
+                if (typeof editor.commands.maximize !== 'undefined' && editor.commands.maximize.state === 1) {
+                    editor.execCommand('maximize');
+                }
+                editor.destroy();
             }
         });
     };

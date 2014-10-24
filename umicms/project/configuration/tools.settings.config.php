@@ -138,6 +138,9 @@ return [
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
 
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
+
+            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/metadata.config.php}',
+            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/metadata.config.php}',
         ],
 
         'collections' => [
@@ -173,6 +176,9 @@ return [
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
 
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
+
+            'survey' => '{#lazy:~/project/module/surveys/configuration/survey/collection.config.php}',
+            'answer' => '{#lazy:~/project/module/surveys/configuration/answer/collection.config.php}',
         ]
     ],
 
