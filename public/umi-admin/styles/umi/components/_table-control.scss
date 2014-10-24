@@ -84,17 +84,12 @@ $table-control-row-bg-hover: #C8DEEE;
     height: 65px;
     top: 0;
     border: 0;
-    cursor: url($image-cursor-col-resize), col-resize;
+    cursor: col-resize;
     &:hover{
         background: #444444;
     }
     &.on-resize{
         background: #444444;
-    }
-}
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // hack for IE (not supports base64 and relative paths)
-    .umi-table-control-column-resizer {
-        cursor: e-resize;
     }
 }
 
