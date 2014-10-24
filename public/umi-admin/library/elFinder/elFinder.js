@@ -9399,10 +9399,12 @@ elFinder.prototype.commands.resize = function() {
                         }
                     }, crop = {
                         update: function() {
-                            offsetX.val(Math.round((rhandlec.data('w') || rhandlec.width()) / prop));
-                            offsetY.val(Math.round((rhandlec.data('h') || rhandlec.height()) / prop));
+                            var newX = Math.round((rhandlec.data('w') || rhandlec.width()) / prop),
+                                newY = Math.round((rhandlec.data('h') || rhandlec.height()) / prop);
+                            offsetX.val(newX > owidth ? owidth : newX);
+                            offsetY.val(newY > oheight ? oheight : newY);
                             pointX.val(Math.round(((rhandlec.data('x') || rhandlec.offset().left) - imgc.offset().left) / prop));
-                            pointY.val(Math.round(((rhandlec.data('y') || rhandlec.offset().top) - imgc.offset().top) / prop));
+                            pointY.val( Math.round(((rhandlec.data('y') || rhandlec.offset().top) - imgc.offset().top) / prop));
                         },
                         updateView: function() {
                             var x = parseInt(pointX.val()) * prop + imgc.offset().left;
