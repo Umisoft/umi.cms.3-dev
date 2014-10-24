@@ -121,6 +121,23 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
         font-size: rem-calc(18);
     }
 
+    button[type="submit"] {
+        &.loading {
+            color: transparent;
+
+            &:before {
+                content: attr(data-label-loading);
+                color: #fff;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                line-height: rem-calc(30);
+            }
+        }
+    }
+
     .umi-validator span.error{
         background: #fff;
         background-image: url($image-close-blue);

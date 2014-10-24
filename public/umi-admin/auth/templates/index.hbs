@@ -39,7 +39,9 @@
                 {{#ifCond type 'submit'}}
                     <div class="row">
                         <div class="small-6 small-offset-6 columns">
-                            <input name="submit" class="button expand s-margin-clear" type="submit" value="{{label}}"/>
+                            <button name="submit" class="button expand s-margin-clear" data-label-loading="Загрузка.." type="submit">
+                                {{label}}
+                            </button>
                         </div>
                     </div>
                 {{else}}

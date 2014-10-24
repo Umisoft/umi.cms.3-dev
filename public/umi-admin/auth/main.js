@@ -296,7 +296,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                         if (!self.validator.check(this)) {
                             return false;
                         }
-                        var submitButton = this.querySelector('input[type="submit"]');
+                        var submitButton = this.querySelector('button[type="submit"]');
                         $(submitButton).addClass('loading');
                         var submit = this.elements.submit;
                         submit.setAttribute('disabled', 'disabled');
