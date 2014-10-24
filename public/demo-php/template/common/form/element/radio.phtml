@@ -6,7 +6,7 @@
 
 <div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
 
-    <label><?= $element->label ?></label>
+    <label for="<?= $element->attributes->id ?>"><?= $element->label ?></label>
 
     <?php if (!$element->valid) : ?>
         <div class="alert alert-danger">

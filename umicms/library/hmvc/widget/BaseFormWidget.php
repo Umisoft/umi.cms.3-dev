@@ -12,6 +12,7 @@ namespace umicms\hmvc\widget;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\hmvc\component\IComponent;
 use umicms\hmvc\view\CmsView;
 
 /**
@@ -41,6 +42,10 @@ abstract class BaseFormWidget extends BaseCmsWidget
      * @var string $redirectUrl URL для редиректа после успешной обработки формы
      */
     public $redirectUrl = self::NO_REDIRECT;
+    /**
+     * @var int $formCounters
+     */
+    protected static $formCounters;
 
     /**
      * Возвращает форму для отображения
@@ -53,12 +58,13 @@ abstract class BaseFormWidget extends BaseCmsWidget
      *
      * Для шаблонизации доступны следущие параметры:
      * @templateParam umi\form\FormEntityView $form представление формы
+     * @templateParam string $formId уникальный идентификатор формы
      *
      * @return CmsView
      */
     public function __invoke()
     {
-        $form = $this->getForm();
+        $form = $this->getForm()->setId($this->getUniqueFormId());
 
         if ($form->has(self::INPUT_REDIRECT_URL)) {
 
@@ -88,6 +94,21 @@ abstract class BaseFormWidget extends BaseCmsWidget
     protected function buildResponseContent()
     {
         return [];
+    }
+
+    protected function getFormIdPostfix()
+    {
+        if (isset(self::$formCounters[get_class($this)])) {
+            return '_' . ++self::$formCounters[get_class($this)];
+        } else {
+            self::$formCounters[get_class($this)] = 0;
+            return '';
+        }
+    }
+
+    protected function getUniqueFormId()
+    {
+        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormIdPostfix();
     }
 
 }
