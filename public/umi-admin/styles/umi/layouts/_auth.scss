@@ -32,9 +32,13 @@ $umi-auth-bubbles-back-img: $images-path + 'auth-bubbles-back.png' + $images-ver
             }
         }
     }
-    &.fade-out{
+    &.fade-out {
         opacity: 0;
         ~ .auth-mask{
+            opacity: 0;
+        }
+
+        &-def {
             opacity: 0;
         }
     }

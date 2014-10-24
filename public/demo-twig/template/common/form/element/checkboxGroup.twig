@@ -1,4 +1,6 @@
-{% for choice in element.choices %}
+<div class="form-group {{ not element.valid ? 'has-error' }}">
+    <label> {{ element.label }} </label>
+
     {% if (not element.valid) %}
         <div class="alert alert-danger">
             <ul>
@@ -8,8 +10,11 @@
             </ul>
         </div>
     {% endif %}
-    <label>
-        <input {{ choice.attributes |raw }}/>
-        {{ choice.label }}
-    </label>
-{% endfor %}
+
+    {% for choice in element.choices %}
+        <div class="checkbox">
+            <label><input {{ choice.attributes | raw }} />{{ choice.label }}</label>
+        </div>
+    {% endfor %}
+
+</div>

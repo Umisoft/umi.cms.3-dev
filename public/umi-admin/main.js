@@ -5,7 +5,7 @@ require.config({
         App: 'application/application',
         jquery: 'vendor/jquery/dist/jquery',
         jqueryUI: 'vendor/jquery-ui/jquery-ui',
-        Modernizr: 'library/modernizr/modernizr.custom',
+        Modernizr: 'vendor/modernizr/modernizr',
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
@@ -49,52 +49,28 @@ require.config({
         {name: 'topBar', location: 'partials/topBar'},
         {name: 'tree', location: 'partials/tree'},
         {name: 'treeSimple', location: 'partials/treeSimple'},
-        {name: 'updateLayout', location: 'partials/updateLayout'}
+        {name: 'updateLayout', location: 'partials/updateLayout'},
+        {name: 'IScrollExtend', location: 'library/IScroll'}
     ]
 });
 
-
-require(['Modernizr'], function() {
+require(['jquery'], function() {
     'use strict';
-    var checkBrowser = function() {
-        return (Modernizr.history && Modernizr.cssgradients && Modernizr.localstorage && Modernizr.csscalc);
-    };
 
-    if (!checkBrowser()) {
-        require(['text!auth/templates/badBrowser.hbs', 'Handlebars'],
-            function(badBrowser) {
-                var assetsUrl = window.UmiSettings && window.UmiSettings.assetsUrl;
-                badBrowser = Handlebars.compile(badBrowser);
-                document.body.insertAdjacentHTML('beforeend', badBrowser({
-                    assetsUrl: assetsUrl}));
-            });
+    var deffer = $.get(window.UmiSettings.authUrl);
 
-    } else {
-        require(['jquery'], function() {
-            var deffer = $.get(window.UmiSettings.authUrl);
-
-            deffer.done(function(data) {
-                var objectMerge = function(objectBase, objectProperty) {
-                    for (var key in objectProperty) {
-                        if (objectProperty.hasOwnProperty(key)) {
-                            objectBase[key] = objectProperty[key];
-                        }
-                    }
-                };
-
-                if (data.result) {
-                    objectMerge(window.UmiSettings, data.result.auth);
-                }
-                require(['application/main'], function(application) {
-                    application();
-                });
-            });
-
-            deffer.fail(function(error) {
-                require(['auth/main'], function(auth) {
-                    auth({accessError: error});
-                });
-            });
+    deffer.done(function(data) {
+        if (data.result) {
+            $.extend(window.UmiSettings, data.result.auth);
+        }
+        require(['application/main'], function(application) {
+            application();
         });
-    }
+    });
+
+    deffer.fail(function(error) {
+        require(['auth/main'], function(auth) {
+            auth({accessError: error});
+        });
+    });
 });

@@ -1,7 +1,7 @@
 <div {{bind-attr class=":umi-item view.item.type view.isActiveContext:active view.inActive"}}>
 
     {{#if view.hasChildren}}
-        <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
+        <span {{action "expanded" target="view"}} {{bind-attr class=":umi-expand"}}>
 
             {{#if view.isExpanded}}
 

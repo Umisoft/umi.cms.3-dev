@@ -14,14 +14,13 @@
 <ul {{bind-attr id="view.dropdownId"}} class="f-dropdown f-dropdown-composite" data-dropdown-content>
     {{#each view.meta.behaviour.choices}}
         {{#view view.itemView}}
-            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}>
+            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView"}}>
                 <i {{bind-attr class=":icon view.icon"}}></i>
 
                 <div>{{view.label}}</div>
 
                 <i {{bind-attr class=":icon :icon-accept :split-default-button view.isDefaultBehaviour::white"}}
-                {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView"
-                on="mouseUp" bubbles=false}}></i>
+                {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" bubbles=false}}></i>
             </a>
         {{/view}}
     {{/each}}

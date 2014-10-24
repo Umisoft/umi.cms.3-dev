@@ -27,6 +27,7 @@ use umi\i18n\ILocalesService;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\validation\IValidatorFactory;
+use umicms\exception\OutOfBoundsException;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\TActionController;
@@ -106,21 +107,15 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             );
         }
 
-        $locale = $this->getPostVar('locale');
-        if ($locale) {
-            $this->getLocalesService()->setCurrentLocale($locale);
+        $localeId = $this->getPostVar('locale');
+        if ($localeId) {
+            $this->getLocalesService()->setCurrentLocale($localeId);
         }
 
         $response = $this->createViewResponse('auth', $this->getAuthUserInfo());
 
-        if ($locale) {
-            $this->getLocalesService()->setCurrentLocale($locale);
-            $cookie = new Cookie(
-                AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
-                $locale,
-                new \DateTime('+5 year')
-            );
-            $response->headers->setCookie($cookie);
+        if ($localeId) {
+            $this->setLocaleCookie($response, $localeId);
         }
 
         return $response;
@@ -167,6 +162,21 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function actionForm()
     {
+        $localeService = $this->getLocalesService();
+        $adminLocales = $localeService->getAdminLocales();
+        $locales = [];
+        foreach ($adminLocales as $adminLocale) {
+            $locales[$adminLocale->getId()] = $adminLocale->getId();
+        }
+
+        if ($localeId = $this->getQueryVar('locale')) {
+            if (array_key_exists($localeId, $locales)) {
+                $localeService->setCurrentLocale($localeId);
+            } else {
+                $localeService->setCurrentLocale($localeService->getDefaultAdminLocaleId());
+            }
+        }
+
         $form = $this->createForm([
             'options' => [
                 'dictionaries' => [
@@ -214,13 +224,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
 
         $form->add($passwordInput);
 
-        $adminLocales = $this->getLocalesService()->getAdminLocales();
-        if (count($adminLocales) > 1) {
-
-            $locales = [];
-            foreach ($adminLocales as $adminLocale) {
-                $locales[$adminLocale->getId()] = $adminLocale->getId();
-            }
+        if (count($locales) > 1) {
             $localeInput = $this->createFormEntity(
                 'locale',
                 [
@@ -241,6 +245,54 @@ class ActionController extends BaseController implements ILocalesAware, ISession
 
         return $form->getView();
 
+    }
+
+    /**
+     * Возращает список локалей административного интерфейса.
+     * @return array
+     */
+    protected function actionLocales()
+    {
+        $localesService = $this->getLocalesService();
+
+        $result = [];
+        foreach ($localesService->getAdminLocales() as $locale) {
+
+            $localeId = $locale->getId();
+            $localeInfo = [
+                'id' => $localeId,
+                'label' => $this->translate($localeId)
+            ];
+
+            if ($localeId === $localesService->getDefaultAdminLocaleId()) {
+                $localeInfo['default'] = true;
+            }
+
+            if ($localeId === $localesService->getCurrentLocale()) {
+                $localeInfo['current'] = true;
+            }
+
+            $result[] = $localeInfo;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Изменяет текущую локаль административного интерфейса
+     * @return Response
+     */
+    protected function actionChangeLocale()
+    {
+        $localeId = $this->getPostVar('locale');
+        $response = $this->createResponse('', Response::HTTP_NO_CONTENT);
+
+        if ($localeId) {
+            $this->getLocalesService()->setCurrentLocale($localeId);
+            $this->setLocaleCookie($response, $localeId);
+        }
+
+        return $response;
     }
 
     /**
@@ -281,6 +333,22 @@ class ActionController extends BaseController implements ILocalesAware, ISession
         }
 
         return $token;
+    }
+
+    /**
+     * Выставляет куки с текущей локалью административной панели
+     * @param Response $response ответ
+     * @param string $localeId идентификатор локали
+     */
+    private function setLocaleCookie(Response $response, $localeId)
+    {
+        $this->getLocalesService()->setCurrentLocale($localeId);
+        $cookie = new Cookie(
+            AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
+            $localeId,
+            new \DateTime('+5 year')
+        );
+        $response->headers->setCookie($cookie);
     }
 
 
