@@ -31,6 +31,8 @@ Feature: Registration
     And I fill in "users_registration_index_lastName" with "TestLastName"
     And I press "users_registration_index_submit"
     Then I should see "Письмо с ключом активации было выслано на Ваш электронный адрес"
+    When I follow activation from email
+    Then I should see "Ваш аккаунт успешно активирован"
 
   Scenario: Try to register with confirmation as non-exist user
     Given I am on "/php"

@@ -1,6 +1,8 @@
 <?php
 
 require_once 'bootstrap.php';
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 use Behat\MinkExtension\Context\MinkContext;
 use umi\http\Request;
@@ -86,6 +88,16 @@ class FeatureContext extends MinkContext
     {
         // TODO: switching activation
 //        throw new \Behat\Behat\Tester\Exception\PendingException();
+    }
+
+    /**
+     * @When /^I follow activation from email$/
+     */
+    public function iFollowActivationFromEmail()
+    {
+        $message = file_get_contents('public/messages.txt');
+        assertEquals(1, preg_match('/>(http.*)<\/a/', $message, $matches));
+        $this->visit($matches[1]);
     }
 
 }

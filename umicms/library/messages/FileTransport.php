@@ -10,8 +10,8 @@ class FileTransport implements Swift_Transport {
 
     public function send(Swift_Mime_Message $message, &$failedRecipients = null)
     {
-        file_put_contents('messages.txt', $message->toString(), FILE_APPEND | LOCK_EX);
-        return 1;
+        $res = file_put_contents('messages.txt', \imap_utf8($message->getBody()), LOCK_EX);
+        return (bool)$res;
     }
 
     /**
