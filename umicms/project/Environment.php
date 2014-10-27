@@ -82,6 +82,10 @@ class Environment
      * @var ClassLoader $classLoader загрузчик классов
      */
     public static $classLoader;
+    /**
+     * @var bool|string $toolkitInitializer путь к файлу дополнительной инициализации тулкита (например, для тестов)
+     */
+    public static $toolkitInitializer = false;
 
     /**
      * Инициализирует окружение настройками из конфигурации
