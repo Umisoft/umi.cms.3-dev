@@ -128,11 +128,7 @@
         </div>
 
         <div class="form-group">
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                    <xsl:text>0</xsl:text>
-                </xsl:attribute>
+            <label for="{attributes/@id}0">
                 <xsl:value-of select="document('translate://project.site.users/PasswordConfirmation')/result"/>
             </label>
             <input class="form-control">
