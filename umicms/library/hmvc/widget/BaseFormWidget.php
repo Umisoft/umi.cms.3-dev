@@ -96,6 +96,10 @@ abstract class BaseFormWidget extends BaseCmsWidget
         return [];
     }
 
+    /**
+     * Возвращает уникальный суффикс для идентификатора формы
+     * @return string
+     */
     protected function getFormIdPostfix()
     {
         if (isset(self::$formCounters[get_class($this)])) {
@@ -106,6 +110,11 @@ abstract class BaseFormWidget extends BaseCmsWidget
         }
     }
 
+    /**
+     * Возвращает уникальный идентификатор формы таким образом, чтобы при выводе двух одинаковых форм
+     * на странице у них были разные идентификаторы
+     * @return string
+     */
     protected function getUniqueFormId()
     {
         return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormIdPostfix();
