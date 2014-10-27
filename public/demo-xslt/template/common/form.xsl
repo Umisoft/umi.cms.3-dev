@@ -30,10 +30,7 @@
                     <xsl:text>has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                </xsl:attribute>
+            <label for="{attributes/@id}">
                 <xsl:value-of select="label"/>
             </label>
             <xsl:apply-templates select="errors" mode="formErrors"/>
@@ -57,10 +54,7 @@
     <xsl:template match="item[type='textarea' or type='wysiwyg']" mode="formElement">
 
         <div class="form-group">
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                </xsl:attribute>
+            <label for="{attributes/@id}">
                 <xsl:value-of select="label"/>
             </label>
             <xsl:apply-templates select="errors" mode="formErrors"/>
@@ -73,10 +67,7 @@
 
     <xsl:template match="item[type='select' or type='multiSelect']" mode="formElement">
         <div class="form-group">
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                </xsl:attribute>
+            <label for="{attributes/@id}">
                 <xsl:value-of select="label"/>
             </label>
             <xsl:apply-templates select="errors" mode="formErrors"/>
@@ -110,10 +101,7 @@
 
     <xsl:template match="item[type='checkbox']" mode="formElement">
         <input type="hidden" value="0" name="{attributes/@name}"/>
-        <label>
-            <xsl:attribute name="for">
-                <xsl:value-of select="attributes/@id"/>
-            </xsl:attribute>
+        <label for="{attributes/@id}">
             <input>
                 <xsl:copy-of select="attributes/@*"/>
                 <xsl:value-of select="label"/>
@@ -130,10 +118,7 @@
                     <xsl:text>has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                </xsl:attribute>
+            <label for="{attributes/@id}">
                 <xsl:value-of select="label"/>
             </label>
             <xsl:apply-templates select="errors" mode="formErrors"/>
@@ -143,17 +128,14 @@
         </div>
 
         <div class="form-group">
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                    <xsl:text>0</xsl:text>
-                </xsl:attribute>
+            <label for="{attributes/@id}0">
                 <xsl:value-of select="document('translate://project.site.users/PasswordConfirmation')/result"/>
             </label>
             <input class="form-control">
                 <xsl:copy-of select="attributes/@*"/>
                 <xsl:attribute name="id">
-                    <xsl:value-of select="attributes/@id"/>0
+                    <xsl:value-of select="attributes/@id"/>
+                    <xsl:text>0</xsl:text>
                 </xsl:attribute>
             </input>
         </div>
@@ -169,10 +151,7 @@
                     <xsl:text>has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
-            <label>
-                <xsl:attribute name="for">
-                    <xsl:value-of select="attributes/@id"/>
-                </xsl:attribute>
+            <label for="{attributes/@id}">
                 <xsl:value-of select="label"/>
             </label>
             <xsl:apply-templates select="errors" mode="formErrors"/>

@@ -38,11 +38,11 @@ return [
     ],
 
     RestApplication::OPTION_MODIFY_ACTIONS => [
-        'login' => [], 'logout' => []
+        'login' => [], 'logout' => [], 'changeLocale' => []
     ],
 
     RestApplication::OPTION_QUERY_ACTIONS => [
-        'form' => [], 'auth' => []
+        'form' => [], 'auth' => [], 'locales' => []
     ],
 
     RestApplication::OPTION_COMPONENTS => [
