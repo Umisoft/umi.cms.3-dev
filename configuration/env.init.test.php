@@ -6,9 +6,9 @@ use umi\toolkit\IToolkit;
 /**
  * @param IToolkit $toolkit
  */
-function toolkit_initializer(IToolkit $toolkit)
+return function (IToolkit $toolkit)
 {
     /** @var MessagesTools $toolbox */
     $toolbox = $toolkit->getToolbox(MessagesTools::NAME);
 //    $toolbox->setTransport(new FileTransport());
-}
+};

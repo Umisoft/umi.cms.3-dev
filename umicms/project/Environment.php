@@ -83,9 +83,9 @@ class Environment
      */
     public static $classLoader;
     /**
-     * @var bool|string $toolkitInitializer путь к файлу дополнительной инициализации тулкита (например, для тестов)
+     * @var null|string $toolkitInitializer путь к файлу дополнительной инициализации тулкита (например, для тестов)
      */
-    public static $toolkitInitializer = false;
+    public static $toolkitInitializer = null;
 
     /**
      * Инициализирует окружение настройками из конфигурации

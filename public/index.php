@@ -19,8 +19,9 @@ try {
     $bootstrap = new Bootstrap();
     $bootstrap->init();
     if (Environment::$toolkitInitializer) {
-        require Environment::$toolkitInitializer;
-        toolkit_initializer($bootstrap->getToolkit());
+        /** @var callable $initializer */
+        $initializer = require Environment::$toolkitInitializer;
+        $initializer($bootstrap->getToolkit());
     }
     $bootstrap->dispatch();
     $bootstrap->sendResponse();

@@ -19,7 +19,7 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => false,
+        'toolkitInitializer' => null,
     ],
 
     'test' => [
@@ -57,7 +57,7 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => false,
+        'toolkitInitializer' => null,
     ],
 
     'console' => [
@@ -76,6 +76,6 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => false,
+        'toolkitInitializer' => null,
     ]
 ];
