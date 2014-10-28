@@ -138,6 +138,22 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
     }
 
     /**
+     * Возвращает пользователей по любой части логина
+     * @param $loginPart string
+     * @return RegisteredUser[]
+     */
+    public function getUsersByLoginPart($loginPart)
+    {
+        $users = $this->getInternalSelector()
+            ->where(RegisteredUser::FIELD_LOGIN)
+                ->like("%{$loginPart}%")
+            ->getResult()
+            ->fetchAll();
+
+        return $users;
+    }
+
+    /**
      * Находит посетителя по токену.
      * @param string $token
      * @throws NonexistentEntityException если не существует посетителя с таким токеном

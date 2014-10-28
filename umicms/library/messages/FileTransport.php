@@ -8,47 +8,56 @@ use Swift_Transport;
 
 class FileTransport implements Swift_Transport {
 
+    /**
+     * @var string путь к файлу, в который будет сохраняться отправляемое сообщение
+     */
+    private $filePath;
+
+    /**
+     * @param $filePath string путь к файлу, в который будет сохраняться отправляемое сообщение
+     */
+    public function __construct($filePath)
+    {
+        if (empty($filePath)) {
+            throw new \LogicException('Путь к файлу не может быть пустым');
+        }
+        $this->filePath = $filePath;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function send(Swift_Mime_Message $message, &$failedRecipients = null)
     {
-        $res = file_put_contents('messages.txt', \imap_utf8($message->getBody()), LOCK_EX);
+        $res = file_put_contents($this->filePath, \imap_utf8($message->getBody()), LOCK_EX);
         return (bool)$res;
     }
 
     /**
-     * Test if this Transport mechanism has started.
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isStarted()
     {
-        // TODO: Implement isStarted() method.
     }
 
     /**
-     * Start this Transport mechanism.
+     * {@inheritdoc}
      */
     public function start()
     {
-        // TODO: Implement start() method.
     }
 
     /**
-     * Stop this Transport mechanism.
+     * {@inheritdoc}
      */
     public function stop()
     {
-        // TODO: Implement stop() method.
     }
 
     /**
-     * Register a plugin in the Transport.
-     *
-     * @param Swift_Events_EventListener $plugin
+     * {@inheritdoc}
      */
     public function registerPlugin(Swift_Events_EventListener $plugin)
     {
-        // TODO: Implement registerPlugin() method.
     }
-
-
 }

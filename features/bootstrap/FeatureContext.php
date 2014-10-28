@@ -5,16 +5,17 @@ require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 use Behat\MinkExtension\Context\MinkContext;
+use umi\config\io\TConfigIOAware;
 use umi\http\Request;
-use umi\messages\toolbox\MessagesTools;
 use umi\orm\persister\IObjectPersister;
-use umicms\messages\FileTransport;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 class FeatureContext extends MinkContext
 {
+    use TConfigIOAware;
     /**
      * @var UsersModule $usersModule
      */
@@ -24,6 +25,11 @@ class FeatureContext extends MinkContext
      * @var IObjectPersister $objectPersister
      */
     private $objectPersister;
+
+    /**
+     * @var SettingsComponent
+     */
+    private $settings;
 
     public function __construct()
     {
@@ -39,10 +45,14 @@ class FeatureContext extends MinkContext
         $toolkit = $bootstrap->getToolkit();
         $this->usersModule = $toolkit->getService('umicms\module\IModule', UsersModule::className());
         $this->objectPersister = $toolkit->getService('umi\orm\persister\IObjectPersister');
-        /** @var MessagesTools $msgTools */
-        $msgTools = $toolkit->getToolbox(MessagesTools::NAME);
-        $transport = new FileTransport();
-        $msgTools->setTransport($transport);
+        $this->settings = new SettingsComponent(
+            'registration',
+            'project.admin.rest.settings.users.registration',
+            array(
+                'settingsConfigAlias' => '~/project/module/users/configuration/user/collection.settings.config.php',
+            )
+        );
+        $this->setConfigIO($toolkit->getService('umi\config\io\IConfigIO'));
     }
 
     /**
@@ -67,10 +77,14 @@ class FeatureContext extends MinkContext
     public function after($event)
     {
         $userCollection = $this->usersModule->user();
-        $user = $userCollection->getUserByLoginOrEmail('minktest');
-        $userCollection->delete($user);
+        $users = $userCollection->getUsersByLoginPart('minktest');
+        foreach ($users as $user) {
+            $userCollection->delete($user);
+        }
 
         $this->objectPersister->commit();
+        @unlink('public/messages.txt');
+        $this->activationIsTurned('on');
     }
 
     /**
@@ -84,10 +98,11 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^Activation is turned "([^"]*)"$/
      */
-    public function activationIsTurned($arg1)
+    public function activationIsTurned($value)
     {
-        // TODO: switching activation
-//        throw new \Behat\Behat\Tester\Exception\PendingException();
+        $config = $this->readConfig($this->settings->getSettingsConfigAlias());
+        $config->set('registrationWithActivation', (bool)('on' == $value));
+        $this->writeConfig($config);
     }
 
     /**
