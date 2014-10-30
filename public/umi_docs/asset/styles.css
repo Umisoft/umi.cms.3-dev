@@ -1,6 +1,6 @@
-@charset "IBM866";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic);
+@charset "UTF-8";
 /** General classes **/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic);
 pre {
   background: #f2f2f2;
   border: 1px solid #ccc;
@@ -84,49 +84,41 @@ ul.horizontal > li {
   font-style: normal;
   font-weight: 300;
   src: local("Open Sans Light"), local("OpenSans-Light"), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTYraN7vELC11_xip9Rz-hMs.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   src: local("Open Sans"), local("OpenSans"), url(http://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UT8E0i7KZn-EPnyo3HZu7kw.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(http://fonts.gstatic.com/s/opensans/v10/MTP_ySUJH_bn48VBG8sNSoraN7vELC11_xip9Rz-hMs.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 800;
   src: local("Open Sans Extrabold"), local("OpenSans-Extrabold"), url(http://fonts.gstatic.com/s/opensans/v10/EInbV5DfGHOiMmvb1Xr-horaN7vELC11_xip9Rz-hMs.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300;
   src: local("Open Sans Light Italic"), local("OpenSansLight-Italic"), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxq6JHp92iES8exGTOIyTn1A.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 400;
   src: local("Open Sans Italic"), local("OpenSans-Italic"), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBmOb2gHztoQeulij-1lvl-8.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 600;
   src: local("Open Sans Semibold Italic"), local("OpenSans-SemiboldItalic"), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxl1DIE4XHZKVVbKkAUmpPQQ.woff) format("woff"); }
-
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 800;
   src: local("Open Sans Extrabold Italic"), local("OpenSans-ExtraboldItalic"), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxsm6z33g0Z9rhmCMv9JmtIA.woff) format("woff"); }
-
 /**@import url();**/
 body {
   margin: 0;
@@ -278,11 +270,11 @@ h2.table-header .sub {
 
 .media-heading.active .handler svg {
   -ms-transform: rotate(90deg);
-  /* Для IE */
+  /* ╨Ф╨╗╤П IE */
   -webkit-transform: rotate(90deg);
-  /* Для Safari, Chrome, iOS */
+  /* ╨Ф╨╗╤П Safari, Chrome, iOS */
   -o-transform: rotate(90deg);
-  /* Для Opera */
+  /* ╨Ф╨╗╤П Opera */
   transform: rotate(90deg); }
 
 .media-list .media .media-body {
@@ -306,6 +298,10 @@ footer section {
 
 footer section:first-child {
   margin-top: 30px; }
+
+footer section:last-child {
+  position: absolute;
+  right: 0; }
 
 footer h4 {
   margin-bottom: 15px; }
@@ -400,20 +396,20 @@ footer section:first-child span {
 
   #js-menu-aside svg {
     -ms-transform: rotate(90deg);
-    /* Для IE */
+    /* ╨Ф╨╗╤П IE */
     -webkit-transform: rotate(90deg);
-    /* Для Safari, Chrome, iOS */
+    /* ╨Ф╨╗╤П Safari, Chrome, iOS */
     -o-transform: rotate(90deg);
-    /* Для Opera */
+    /* ╨Ф╨╗╤П Opera */
     transform: rotate(90deg); }
 
   #js-menu-aside.active svg {
     -ms-transform: rotate(270deg);
-    /* Для IE */
+    /* ╨Ф╨╗╤П IE */
     -webkit-transform: rotate(270deg);
-    /* Для Safari, Chrome, iOS */
+    /* ╨Ф╨╗╤П Safari, Chrome, iOS */
     -o-transform: rotate(270deg);
-    /* Для Opera */
+    /* ╨Ф╨╗╤П Opera */
     transform: rotate(270deg); }
 
   .page aside {
@@ -477,7 +473,7 @@ footer section:first-child span {
   .twitter + main {
     order: 1;
     -webkit-order: 1; } }
-/** Tablets ≥768px **/
+/** Tablets тЙе768px **/
 @media (min-width: 768px) {
   /** Headers size **/
   h1 {
@@ -559,7 +555,7 @@ footer section:first-child span {
   footer section {
     display: inline-block;
     margin-right: 60px; } }
-/** Desktops ≥992px **/
+/** Desktops тЙе992px **/
 @media (min-width: 992px) {
   /** Main menu **/
   nav.dropdown > ul {
@@ -573,4 +569,6 @@ footer section:first-child span {
 
   .twitter + main {
     margin-right: 420px; } }
-/** Large desktops ≥1200px **/
+/** Large desktops тЙе1200px **/
+
+/*# sourceMappingURL=styles.css.map */
