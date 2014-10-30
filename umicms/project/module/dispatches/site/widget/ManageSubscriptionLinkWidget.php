@@ -20,9 +20,9 @@ use umicms\project\module\dispatches\model\object\Subscription;
 use umicms\project\module\dispatches\model\object\Unsubscription;
 
 /**
- * Виджет для вывода списка рассылок
+ * Виджет для вывода ссылки на подписку/отписку
  */
-class ManageSubscriptionLink extends BaseLinkWidget
+class ManageSubscriptionLinkWidget extends BaseLinkWidget
 {
     /**
      * @var DispatchModule $module модуль "Рассылки"
@@ -33,6 +33,11 @@ class ManageSubscriptionLink extends BaseLinkWidget
      * @var Subscriber $subscriber подписчик
      */
     private $subscriber;
+
+    /**
+     * @var Subscription $subscription подписка
+     */
+    private $subscription;
 
     /**
      * @var string|Dispatch $dispatch рассылка или GUID рассылки
@@ -76,28 +81,9 @@ class ManageSubscriptionLink extends BaseLinkWidget
         $this->subscriber = $this->module->getCurrentSubscriber();
         $this->isContains = $this->subscriber->dispatches->contains($this->dispatch);
         $type = $this->isContains ? Unsubscription::TYPE_NAME : Subscription::TYPE_NAME;
+        $this->subscription = $this->subscriber->dispatches->link($this->dispatch);
 
         return $this->getUrl('index', ['type'=> $type, 'id'=> $this->dispatch->getId()]);
-    }
-
-    /**
-     * Формирует результат работы виджета.
-     *
-     * Для шаблонизации доступны следущие параметры:
-     * @templateParam string $url URL ссылки
-     * @templateParam string $viewName имя для отображения
-     *
-     * @return CmsView
-     */
-    public function __invoke()
-    {
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getLinkUrl(),
-                'viewName' => $this->isContains ? 'unsubcribe' : 'subscribe'
-            ]
-        );
     }
 
 }

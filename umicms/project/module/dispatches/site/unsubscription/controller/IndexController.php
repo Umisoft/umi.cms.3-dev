@@ -13,8 +13,10 @@ namespace umicms\project\module\dispatches\site\unsubscription\controller;
 use umi\form\IForm;
 use umi\form\element\IFormElement;
 use umicms\exception\InvalidArgumentException;
+use umicms\project\module\dispatches\model\collection\SubscriptionCollection;
 use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Dispatch;
+use umicms\project\module\dispatches\model\object\Subscription;
 use umicms\project\module\dispatches\model\object\Unsubscription;
 use umicms\project\module\dispatches\model\DispatchModule;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -71,11 +73,13 @@ class IndexController extends BaseSitePageController
     protected function buildForm()
     {
         $this->subscriber = $this->module->getCurrentSubscriber();
-        $dispatchId = $this->getRouteVar('id');
+        $token = $this->getRouteVar('token');
 
-        if (!is_null($dispatchId)) {
-            $this->dispatch = $this->module->dispatch()->getById($dispatchId);
+        if (!is_null($token)) {
+            $subscription = $this->module->subscription()->getSubscriptionByToken($token);
+            $this->dispatch = $subscription->getProperty(Subscription::FIELD_DISPATCH)->getValue();
         }
+
         if ($this->dispatch && !$this->dispatch instanceof Dispatch) {
             throw new InvalidArgumentException(
                 $this->translate(

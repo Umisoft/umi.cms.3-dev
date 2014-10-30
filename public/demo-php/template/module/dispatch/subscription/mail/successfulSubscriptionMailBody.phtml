@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var \umicms\project\module\dispatches\model\object\Dispatch $dispatch
+ * @var string $projectUrl
+ * @var string $token
+ */
+
+?>
+
+<p><?= $this->translate(
+        'You have subscribed to the newsletter "{dispatchName}" on the website {site}.',
+        [
+            'site' => $projectUrl,
+            'dispatchName' => $dispatch->displayName
+        ]
+    );?>: <br/>
+    <?= $this->widget('dispatches.unsubscription.link', ['template' => 'link', 'dispatch' => $dispatch]); ?>
+</p>

@@ -118,7 +118,28 @@ class IndexController extends BaseSitePageController
         $this->module->updateTokenSubscription($this->subscription);
         $this->commit();
 
+        $this->sendSuccessfulSubscriptionNotification();
+
         return $this->buildRedirectResponse();
+    }
+
+
+    /**
+     * Отпраляет письмо пользователю о подписки на рассылки
+     */
+    protected function sendSuccessfulSubscriptionNotification()
+    {
+        $this->mail(
+            [$this->subscriber->email => $this->subscriber->displayName],
+            $this->module->getMailSender(),
+            'mail/successfulSubscriptionMailSubject',
+            'mail/successfulSubscriptionMailBody',
+            [
+                'token' => $this->subscription->getProperty(Subscription::FIELD_TOKEN)->getValue(),
+                'dispatch' => $this->dispatch,
+                'subscriber' => $this->subscriber
+            ]
+        );
     }
 
     /**

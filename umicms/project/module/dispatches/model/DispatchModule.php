@@ -11,6 +11,7 @@ namespace umicms\project\module\dispatches\model;
 
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\TAuthenticationAware;
+use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
@@ -24,7 +25,7 @@ use umicms\project\module\dispatches\model\object\Subscription;
 use umicms\project\module\dispatches\model\object\Unsubscription;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
-use umi\orm\metadata\IObjectType;
+use umicms\Utils;
 
 /**
  * Модуль "Рассылки".
@@ -189,6 +190,15 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     {
         $subscription->updateToken();
         return $subscription;
+    }
+
+    /**
+     * Возвращает отправителя электронных писем.
+     * @return array|null
+     */
+    public function getMailSender()
+    {
+        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_SENDER));
     }
 
 }

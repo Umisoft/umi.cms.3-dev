@@ -16,7 +16,7 @@ use umicms\project\module\dispatches\model\DispatchModule;
 use umicms\project\module\dispatches\model\object\Dispatch;
 
 /**
- * Виджет для вывода списка рассылок
+ * Виджет для вывода ссылки на подписку
  */
 class LinkWidget extends BaseLinkWidget
 {

@@ -50,7 +50,7 @@ return [
     SiteComponent::OPTION_ROUTES      => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{id:integer}',
+            'route'    => '/{token:string}',
             'defaults' => [
                 'controller' => 'index'
             ]

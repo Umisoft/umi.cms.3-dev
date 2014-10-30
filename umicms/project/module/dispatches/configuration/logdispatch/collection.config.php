@@ -10,9 +10,8 @@
 use umi\orm\collection\ICollectionFactory;
 
 return [
-    'type'     => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\dispatches\model\collection\SubscriptionCollection',
-    'handlers' => [
-        'admin' => 'dispatches.subscription'
+    'type'         => ICollectionFactory::TYPE_SIMPLE,
+    'handlers'     => [
+        'admin' => 'dispatches.logdispatch'
     ]
 ];

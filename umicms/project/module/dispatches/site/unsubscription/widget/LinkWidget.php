@@ -14,9 +14,10 @@ use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\dispatches\model\DispatchModule;
 use umicms\project\module\dispatches\model\object\Dispatch;
+use umicms\project\module\dispatches\model\object\Subscription;
 
 /**
- * Виджет для вывода списка рассылок
+ * Виджет для вывода ссылки на отписку
  */
 class LinkWidget extends BaseLinkWidget
 {
@@ -29,6 +30,11 @@ class LinkWidget extends BaseLinkWidget
      * @var string|Dispatch $dispatch рассылка или GUID рассылки
      */
     public $dispatch;
+
+    /**
+     * {@inheritdoc}
+     */
+    public $absolute = true;
 
     /**
      * Конструктор.
@@ -60,7 +66,10 @@ class LinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('index', ['id'=>$this->dispatch->getId()]);
+        $subscriber = $this->module->getCurrentSubscriber();
+        $subscription = $subscriber->dispatches->link($this->dispatch);
+
+        return $this->getUrl('index', ['token'=>$subscription->getProperty(Subscription::FIELD_TOKEN)->getValue()], $this->absolute);
     }
 
 }

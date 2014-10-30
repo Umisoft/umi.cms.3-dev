@@ -7,12 +7,13 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
+use umi\orm\metadata\field\IField;
 
-return [
-    'type'     => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\dispatches\model\collection\SubscriptionCollection',
-    'handlers' => [
-        'admin' => 'dispatches.subscription'
+return array_replace_recursive(
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',
+    [
+        'dataSource' => [
+            'sourceName' => 'dispatches_log_dispatch'
+        ]
     ]
-];
+);
