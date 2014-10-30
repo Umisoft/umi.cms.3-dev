@@ -47,6 +47,50 @@ class Bootstrap
     use TConfigSupport;
 
     /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
+    /**
+     * @var IComponent
+     */
+    private $project;
+
+    /**
+     * @var CmsDispatcher
+     */
+    private $dispatcher;
+
+    /**
+     * @var string
+     */
+    private $projectPrefix;
+
+    /**
+     * @var IRouteResult
+     */
+    private $route;
+
+    /**
+     * @var string
+     */
+    private $domainUrl;
+
+    /**
+     * @var string
+     */
+    private $siteUrlPostfix;
+
+    /**
+     * @var string
+     */
+    private $routePath;
+    /**
      * Имя куки сессии.
      */
     const SESSION_COOKIE_NAME = 'UMISESSID';
@@ -112,64 +156,27 @@ class Bootstrap
     }
 
     /**
-     * Выполняет запрос
+     * Инициализирует все необходимые данные для проекта
      */
-    public function run()
+    public function init()
     {
-        /**
-         * @var Request $request
-         */
-        $request = $this->toolkit->getService('umi\http\Request');
+        $this->createRequest();
+        $this->initRoute();
+        $this->initDomainUrl();
+        $this->initProjectPrefix();
+        $this->initSiteUrlPostfix();
+        $this->initRoutePath();
+        $this->initUrlManager();
+        $this->initDispatcher();
+        return $this;
+    }
 
-        $this->prepareRequest($request);
-
-        $routeResult = $this->dispatchProject();
-        $routeMatches = $routeResult->getMatches();
-
-        $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
-        $siteUrlPostfix = isset($routeMatches['postfix']) ? $routeMatches['postfix'] : null;
-        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
-        $routePath = $routeResult->getUnmatchedUrl();
-
-        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
-            $format = $matches[1];
-
-            if ($format === $siteUrlPostfix || isset($this->allowedRequestFormats[$format])) {
-                $routePath = substr($routePath, 0, -strlen($format) - 1);
-
-                if ($format === $siteUrlPostfix) {
-                    $format = 'html';
-                    $this->allowedRequestFormats['html'] = 'text/html; charset=utf8';
-                }
-
-                $request->setRequestFormat($format);
-            }
-        }
-
-        $routePath = $routePath ?: '/';
-
-        $project = $this->createProject();
-        /**
-         * @var IUrlManager $urlManager
-         */
-        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-
-        $urlManager->setSchemeAndHttpHost($domainUrl);
-        $urlManager->setUrlPrefix($projectPrefix);
-        $urlManager->setSiteUrlPostfix($siteUrlPostfix);
-
-        $this->configureAdminUrls($project);
-
-        /**
-         * @var CmsDispatcher $dispatcher
-         */
-        $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-        $this->initTemplateEngines();
-        $dispatcher->setCurrentRequest($request);
-        $dispatcher->setInitialComponent($project);
-        $response = $dispatcher->dispatch($routePath, $projectPrefix);
-
-        $this->sendResponse($response, $request);
+    /**
+     * Обрабатывает запрос и устанавливает ответ
+     */
+    public function dispatch()
+    {
+        $this->response = $this->dispatcher->dispatch($this->routePath ?: '/', $this->projectPrefix);
     }
 
     /**
@@ -355,26 +362,22 @@ class Bootstrap
     }
 
     /**
-     * Отправляет ответ.
-     * @param Response $response
-     * @param Request $request
+     * Отправляет ответ
      */
-    protected function sendResponse(Response $response, Request $request)
+    public function sendResponse()
     {
-        $this->setUmiHeaders($response);
+        $this->setUmiHeaders($this->response);
 
-        if (!$response->headers->has('content-type') && isset($this->allowedRequestFormats[$request->getRequestFormat()])) {
-            $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
+        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
+            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
         }
 
         if (Environment::$browserCacheEnabled) {
-            $this->setBrowserCacheHeaders($request, $response);
+            $this->setBrowserCacheHeaders($this->request, $this->response);
         }
 
-        $response->prepare($request)
+        $this->response->prepare($this->request)
             ->send();
-
-
     }
 
     /**
@@ -407,18 +410,17 @@ class Bootstrap
     /**
      * Предварительно обрабатывает Request, проверяет необходимость редиректов для SEO
      * и выполняет их.
-     * @param Request $request
      */
-    protected function prepareRequest(Request $request)
+    protected function prepareRequest()
     {
-        $pathInfo = $request->getPathInfo();
-        $requestedUri = $request->getRequestUri();
-        $queryString = $request->getQueryString();
+        $pathInfo = $this->request->getPathInfo();
+        $requestedUri = $this->request->getRequestUri();
+        $queryString = $this->request->getQueryString();
 
         if (
             ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
             ((substr($requestedUri, -1, 1) == '?') && !$queryString) ||
-            substr($request->getSchemeAndHttpHost(), -1, 1) == '.'
+            substr($this->request->getSchemeAndHttpHost(), -1, 1) == '.'
             )
         {
 
@@ -426,7 +428,7 @@ class Bootstrap
             if ($queryString) {
                 $url .= '?' . $queryString;
             }
-            $host = rtrim($request->getSchemeAndHttpHost() , '.');
+            $host = rtrim($this->request->getSchemeAndHttpHost() , '.');
 
             $redirectLocation = $host . $url;
 
@@ -788,6 +790,104 @@ class Bootstrap
                 }
             }, $tags);
         }
+    }
+
+    /**
+     * Инициализирует запрос
+     */
+    protected function createRequest()
+    {
+        $this->request = $this->toolkit->getService('umi\http\Request');
+
+        $this->prepareRequest($this->request);
+    }
+
+    /**
+     * Инициализирует менеджер адресации
+     */
+    protected function initUrlManager()
+    {
+        $this->project = $this->createProject();
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+
+        $urlManager->setSchemeAndHttpHost($this->domainUrl);
+        $urlManager->setUrlPrefix($this->projectPrefix);
+        $urlManager->setSiteUrlPostfix($this->siteUrlPostfix);
+
+        $this->configureAdminUrls($this->project);
+    }
+
+    /**
+     * Инициализирует диспетчер
+     */
+    protected function initDispatcher()
+    {
+        $this->dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+        $this->initTemplateEngines();
+        $this->dispatcher->setCurrentRequest($this->request);
+        $this->dispatcher->setInitialComponent($this->project);
+    }
+
+    /**
+     * Инициализирует префикс проекта
+     */
+    protected function initProjectPrefix()
+    {
+        $routeMatches = $this->route->getMatches();
+        $this->projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
+    }
+
+    /**
+     * Инициализирует роутинг
+     */
+    protected function initRoute()
+    {
+        $this->route = $this->dispatchProject();
+    }
+
+    /**
+     * Инициализирует домен проекта
+     */
+    protected function initDomainUrl()
+    {
+        $routeMatches = $this->route->getMatches();
+        $this->domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
+    }
+
+    /**
+     * Инициализирует суффикс проекта
+     */
+    protected function initSiteUrlPostfix()
+    {
+        $routeMatches = $this->route->getMatches();
+        $this->siteUrlPostfix = isset($routeMatches['postfix']) ? $routeMatches['postfix'] : null;
+    }
+
+    /**
+     * Инициализирует путь роутинг проекта
+     */
+    protected function initRoutePath()
+    {
+        $routePath = $this->route->getUnmatchedUrl();
+
+        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
+            $format = $matches[1];
+
+            if ($format === $this->siteUrlPostfix || isset($this->allowedRequestFormats[$format])) {
+                $routePath = substr($routePath, 0, -strlen($format) - 1);
+
+                if ($format === $this->siteUrlPostfix) {
+                    $format = 'html';
+                    $this->allowedRequestFormats['html'] = 'text/html; charset=utf8';
+                }
+
+                $this->request->setRequestFormat($format);
+            }
+        }
+        $this->routePath = $routePath;
     }
 
 }
