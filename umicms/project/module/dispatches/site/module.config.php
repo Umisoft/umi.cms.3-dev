@@ -25,7 +25,7 @@ return [
 
     SiteGroupComponent::OPTION_WIDGET => [
         'list' => __NAMESPACE__ . '\widget\DispatchesListWidget',
-        'link' => __NAMESPACE__ . '\widget\ManageSubscriptionLink',
+        'link' => __NAMESPACE__ . '\widget\ManageSubscriptionLinkWidget',
     ],
 
     SiteGroupComponent::OPTION_ACL => [

@@ -33,11 +33,6 @@ class ManageSubscriptionLinkWidget extends BaseLinkWidget
     private $subscriber;
 
     /**
-     * @var Subscription $subscription подписка
-     */
-    private $subscription;
-
-    /**
      * @var string|Dispatch $dispatch рассылка или GUID рассылки
      */
     public $dispatch;
