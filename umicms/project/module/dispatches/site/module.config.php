@@ -25,7 +25,8 @@ return [
 
     SiteGroupComponent::OPTION_WIDGET => [
         'list' => __NAMESPACE__ . '\widget\DispatchesListWidget',
-        'link' => __NAMESPACE__ . '\widget\ManageSubscriptionLinkWidget',
+        'link' => __NAMESPACE__ . '\widget\LinkWidget',
+        'manageLink' => __NAMESPACE__ . '\widget\ManageSubscriptionLinkWidget',
     ],
 
     SiteGroupComponent::OPTION_ACL => [
@@ -36,6 +37,7 @@ return [
             'viewer' => [
                 'widget:list' => [],
                 'widget:link' => [],
+                'widget:manageLink' => [],
             ]
         ]
     ],
@@ -46,11 +48,6 @@ return [
     SiteGroupComponent::OPTION_ROUTES => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{type:string}/{id:integer}',
-            'defaults' => [
-                'type' => '',
-                'id' => null
-            ]
         ]
     ]
 ];

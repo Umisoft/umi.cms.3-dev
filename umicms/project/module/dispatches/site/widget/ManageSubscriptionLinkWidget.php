@@ -23,6 +23,11 @@ use umicms\project\module\dispatches\model\object\Subscription;
 class ManageSubscriptionLinkWidget extends BaseLinkWidget
 {
     /**
+     * {@inheritdoc}
+     */
+    public $template = 'manageLink';
+
+    /**
      * @var DispatchModule $module модуль "Рассылки"
      */
     protected $module;
