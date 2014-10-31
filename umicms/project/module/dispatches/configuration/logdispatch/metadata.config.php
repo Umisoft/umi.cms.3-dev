@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\metadata\field\IField;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/collection.config.php',

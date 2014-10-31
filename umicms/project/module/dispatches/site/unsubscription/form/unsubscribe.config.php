@@ -1,12 +1,9 @@
 <?php
 
-use umi\validation\IValidatorFactory;
 use umi\form\element\Submit;
 use umi\form\element\Hidden;
-use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\element\CSRF;
-use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Unsubscription;
 
 return [

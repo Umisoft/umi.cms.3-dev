@@ -10,14 +10,12 @@
 
 namespace umicms\project\module\dispatches\site\widget;
 
-use umicms\hmvc\view\CmsView;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\dispatches\model\DispatchModule;
 use umicms\project\module\dispatches\model\object\Dispatch;
 use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Subscription;
-use umicms\project\module\dispatches\model\object\Unsubscription;
 
 /**
  * Виджет для вывода ссылки на подписку/отписку
@@ -43,11 +41,6 @@ class ManageSubscriptionLinkWidget extends BaseLinkWidget
      * @var string|Dispatch $dispatch рассылка или GUID рассылки
      */
     public $dispatch;
-
-    /**
-     * @var string $isContains проверка существования рассылки у данного подписчика
-     */
-    public $isContains;
 
     /**
      * Конструктор.
@@ -78,12 +71,24 @@ class ManageSubscriptionLinkWidget extends BaseLinkWidget
                 )
             );
         }
-        $this->subscriber = $this->module->getCurrentSubscriber();
-        $this->isContains = $this->subscriber->dispatches->contains($this->dispatch);
-        $type = $this->isContains ? Unsubscription::TYPE_NAME : Subscription::TYPE_NAME;
-        $this->subscription = $this->subscriber->dispatches->link($this->dispatch);
 
-        return $this->getUrl('index', ['type'=> $type, 'id'=> $this->dispatch->getId()]);
+        $this->subscriber = $this->module->getCurrentSubscriber();
+        /**
+         * @var string $link
+        */
+        $link = '';
+
+        if ($this->subscriber->dispatches->contains($this->dispatch)) {
+            /**
+             * @var Subscription $subscription
+             */
+            $subscription = $this->subscriber->dispatches->link($this->dispatch);
+            $link = $this->getUrl('unsubscription.index', ['token' => $subscription->token], $this->absolute);
+        } else {
+            $link = $this->getUrl('subscription.index', ['id' => $this->dispatch->getId()], $this->absolute);
+        }
+
+        return $link;
     }
 
 }
