@@ -163,7 +163,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
      * Возвращает короткий путь виджета, относительно приложения сайта
      * @return string
      */
-    private function getShortPath()
+    protected function getShortPath()
     {
         $relativePath = substr($this->getComponent()->getPath(), strlen(CmsDispatcher::SITE_COMPONENT_PATH) + 1);
 

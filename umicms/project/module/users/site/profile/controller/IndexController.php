@@ -56,11 +56,15 @@ class IndexController extends BaseSitePageController
     {
         $user = $this->module->getAuthenticatedUser();
 
-        return $this->module->user()->getForm(
+        $form = $this->module->user()->getForm(
             RegisteredUser::FORM_EDIT_PROFILE,
             $user->getTypeName(),
             $user
         );
+
+        $form->setAction($this->getUrl('index'));
+
+        return $form;
     }
 
     /**

@@ -62,7 +62,7 @@ $umi-bg-darken-set: #404959, #181B21;
         }
 
         &.open{
-            background: #fff;
+            background: #21252d;
             color: #575e6c;
             border-bottom-color: transparent;
 
@@ -72,17 +72,21 @@ $umi-bg-darken-set: #404959, #181B21;
         }
     }
 
-    .f-dropdown{
+    .f-dropdown {
         padding: 5px 0;
         box-shadow: none;
+        background: #21252d;
 
         li{
             a{
                 min-width: rem-calc(160);
                 display: block;
+                color: #fff;
+                padding: 0.3rem 0.5rem;
+
                 &:hover{
                     text-decoration: none;
-                    background: #eeeeee;
+                    background: #223d53;
                 }
             }
         }
@@ -101,6 +105,10 @@ $umi-bg-darken-set: #404959, #181B21;
             right: 0;
             border: 0;
             top: auto;
+        }
+
+        &-double {
+            width: 22.5rem;
         }
     }
 
@@ -132,7 +140,7 @@ $umi-bg-darken-set: #404959, #181B21;
         line-height: 30px;
 
         span{
-            margin-left: 10px;
+            margin-left: 6px;
             font-size: 14px;
         }
 

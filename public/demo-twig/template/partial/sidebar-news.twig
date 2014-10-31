@@ -2,6 +2,8 @@
 
 {{ include('partial/authorization.twig') }}
 
+{{ widget('surveys.voteForm', {'survey' : '307064ad-f397-42f5-9b19-d92c65990429'}) }}
+
 <div class="sidebar-module sidebar-module-inset">
     <h4>{{ translate('RSSFeed') }}</h4>
     <p>{{ translate('News') }}: {{ widget('news.item.rssLink', {'template' : 'rssLink'}) }}</p>
