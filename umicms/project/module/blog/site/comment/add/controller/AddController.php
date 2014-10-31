@@ -80,11 +80,19 @@ class AddController extends BaseSitePageController
             $this->comment->status = $this->module->commentStatus()->get(CommentStatus::GUID_NEED_MODERATION);
         }
 
-        return $this->module->comment()->getForm(
+        $form = $this->module->comment()->getForm(
             $this->module->isAuthorRegistered() ? BlogComment::FORM_ADD_COMMENT : BlogComment::FORM_ADD_VISITOR_COMMENT,
             $type,
             $this->comment
         );
+
+        $routeParams = ['type' => $type];
+        if ($parentComment) {
+            $routeParams['parent'] = $parentComment->getId();
+        }
+        $form->setAction($this->getUrl('add', $routeParams));
+
+        return $form;
     }
 
     /**

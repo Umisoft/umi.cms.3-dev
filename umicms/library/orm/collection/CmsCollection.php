@@ -19,4 +19,11 @@ class CmsCollection extends SimpleCollection implements ICmsCollection
 {
     use TCmsCollection;
 
+    /**
+     * Возаращает имя класса коллекции.
+     * @return string
+     */
+    public static function className() {
+        return get_called_class();
+    }
 }

@@ -1,0 +1,12 @@
+
+<div class="sidebar-module sidebar-module-inset">
+
+    <p> {{ survey.getHeader() }} </p>
+
+    {% if (voted) %}
+        {{ widget('surveys.voteResults', {'survey' : survey, 'forbiddenTemplate' : 'forbiddenResults'}) }}
+    {% else %}
+        {{ include('form/form.twig', {'form' : form}) }}
+    {% endif %}
+
+</div>

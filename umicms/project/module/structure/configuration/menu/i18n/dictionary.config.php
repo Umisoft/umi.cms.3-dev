@@ -21,7 +21,6 @@ return [
         'type:menu:displayName' => 'Menu',
         'type:internalItem:displayName' => 'Internal link',
         'type:externalItem:displayName' => 'External link',
-        MenuInternalItem::FIELD_NAME => 'Name menu',
         'settings' => 'Settings',
         MenuExternalItem::FIELD_RESOURCE_URL => 'Resource URL'
     ],
@@ -35,7 +34,6 @@ return [
         'type:menu:displayName' => 'Меню',
         'type:internalItem:displayName' => 'Внутренняя ссылка',
         'type:externalItem:displayName' => 'Внешняя ссылка',
-        MenuInternalItem::FIELD_NAME => 'Имя меню',
         'settings' => 'Настройки',
         MenuExternalItem::FIELD_RESOURCE_URL => 'Внешняя ссылка'
     ]

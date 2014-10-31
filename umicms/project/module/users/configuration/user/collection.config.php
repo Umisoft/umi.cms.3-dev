@@ -17,7 +17,7 @@ use umicms\project\module\users\model\object\Supervisor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\users\model\collection\UserCollection',
+    'class' => UserCollection::className(),
     'handlers' => [
         'admin' => 'users.user'
     ],

@@ -11,6 +11,10 @@
 return [
 
     'en-US' => [
+
+        'en-US' => 'English',
+        'ru-RU' => 'Русский',
+
         'action:create:base' => 'Create',
         'action:switchActivity' => 'Switch activity',
         'action:switchActivity:activate' => 'Activate',
@@ -99,11 +103,16 @@ return [
         'role:structureExecutor:displayName' => 'Structure',
         'role:usersExecutor:displayName' => 'Users',
         'role:settingsExecutor:displayName' => 'Settings',
-        
+        'role:surveysExecutor:displayName' => 'Surveys',
+
         'Incorrect login or password.' => 'Incorrect login or password.'
     ],
 
     'ru-RU' => [
+
+        'en-US' => 'English',
+        'ru-RU' => 'Русский',
+
         'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
@@ -197,6 +206,7 @@ return [
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:usersExecutor:displayName' => 'Пользователи',
         'role:settingsExecutor:displayName' => 'Настройки',
+        'role:surveysExecutor:displayName' => 'Опросы',
 
         'Incorrect login or password.' => 'Неправильный логин или пароль.'
     ]

@@ -174,9 +174,15 @@ define([], function() {
 
                         if (parent && 'isFulfilled' in parent) {
                             return parent.then(function(parent) {
-                                parent.trigger('needReloadHasMany', 'add', addObject);
+                                var store = self.get('store');
+                                var collectionName = parent.constructor.typeKey;
+                                var request = UMI.OrmHelper.buildRequest(parent, ['childCount']);
+                                request.filters = {id: 'equals(' + parent.get('id') + ')'};
+                                return store.updateCollection(collectionName, request).then(function() {
+                                    parent.trigger('needReloadHasMany', 'add', addObject);
 
-                                return addObject;
+                                    return addObject;
+                                });
                             });
                         } else {
                             self.controllerFor('component').trigger('needReloadRootElements', 'add', addObject);
@@ -213,21 +219,26 @@ define([], function() {
                 },
 
                 logout: function() {
+                    var self = this;
                     var applicationLayout = document.querySelector('.umi-main-view');
                     var maskLayout = document.createElement('div');
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
+
+                    self.send('showLoader');
                     $(applicationLayout).addClass('off is-transition');
 
                     $.post(UmiSettings.baseApiURL + '/action/logout').then(function() {
                         require(['auth/main'], function(auth) {
-                            auth({appIsFreeze: true, appLayout: applicationLayout});
-                            $(applicationLayout).addClass('fade-out');
+                            auth({appIsFreeze: true, appLayout: applicationLayout}, function() {
+                                $(applicationLayout).addClass('fade-out');
 
-                            Ember.run.later('', function() {
-                                $(applicationLayout).removeClass('is-transition');
-                                maskLayout.parentNode.removeChild(maskLayout);
-                            }, 800);
+                                Ember.run.later('', function() {
+                                    $(applicationLayout).addClass('fade-out-def').removeClass('is-transition fade-out');
+                                    maskLayout.parentNode.removeChild(maskLayout);
+                                    self.send('hideLoader');
+                                }, 800);
+                            });
                         });
                     });
                 },

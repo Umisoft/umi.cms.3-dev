@@ -2,9 +2,17 @@ define([], function() {
     'use strict';
     return function(UMI) {
         UMI.ApplicationController = Ember.ObjectController.extend({
+            globalObject: window,
             settings: null,
             modules: null,
-            routeIsTransition: null
+            routeIsTransition: null,
+            user: function() {
+                var store = this.get('store');
+                var user = this.get('globalObject.UmiSettings.user');
+                var collectionName = Ember.get(user, 'meta.collectionName');
+                store.push(collectionName, user);
+                return store.findById(collectionName, Ember.get(user, 'id'));
+            }.property('globalObject.UmiSettings.users')
         });
         UMI.ModuleController = Ember.ObjectController.extend({});
 
