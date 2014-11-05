@@ -18,11 +18,16 @@ define(['Modernizr'], function(Modernizr) {
 
         UMI.Utils.replacePlaceholder = function(object, pattern) {
             var deserialize;
+
+            if (!object) {
+                return pattern;
+            }
+
             deserialize = pattern.replace(/{\w+}/g, function(key) {
                 if (key) {
                     key = key.slice(1, -1);
                 }
-                return Ember.get(object, key) || key;//TODO: error handling
+                return Ember.get(object, key) || key;
             });
             return deserialize;
         };

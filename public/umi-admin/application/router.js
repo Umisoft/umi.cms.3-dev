@@ -1014,11 +1014,21 @@ define([], function() {
                                     model = this.store.getById(Ember.get(collection, 'name'), params.context);
                                     //model = model.reload();
                                 } else {
-                                    model = this.store.updateCollection(
-                                        Ember.get(collection, 'name'),
-                                        {'filters[id]': params.context, fields: 'displayName'}
-                                    ).then(function(results) {
-                                        return results.get('firstObject');
+                                    var self = this;
+                                    model = new Ember.RSVP.Promise(function(resolve, reject) {
+                                        self.store.updateCollection(
+                                            Ember.get(collection, 'name'),
+                                            {'filters[id]': params.context, fields: 'displayName'}
+                                        ).then(function(results) {
+                                            if (results.get('firstObject')) {
+                                                resolve(results.get('firstObject'));
+                                            } else {
+                                                reject(transition.send('templateLogs', {
+                                                    statusText: 'Object not found',
+                                                    message: 'Object with id "' + params.context + '" not found.'
+                                                }, 'component'));
+                                            }
+                                        });
                                     });
                                 }
                                 break;
@@ -1028,7 +1038,7 @@ define([], function() {
                     }
                 } catch (error) {
                     Ember.run.next(this, function() {
-                        transition.send('templateLogs', error);
+                        transition.send('templateLogs', error, 'component');
                     });
                 } finally {
                     return model;
