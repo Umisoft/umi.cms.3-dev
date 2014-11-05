@@ -26,28 +26,13 @@ define(['App'], function(UMI) {
 
         didInsertElement: function() {
             var self = this;
-            $('#elfinder').elfinder({
-                url: window.UmiSettings.baseApiURL + '/files/manager/action/connector',//self.get('controller.connector.source'),
-                lang: 'ru',
-                getFileCallback: function(fileInfo) {
-                    self.fileSelect(fileInfo);
-                },
-
-                uiOptions: {
-                    toolbar: [
-                        ['back', 'forward'],
-                        ['reload'],
-                        ['getfile'],
-                        ['mkdir', 'mkfile', 'upload'],
-                        ['download'],
-                        ['copy', 'cut', 'paste'],
-                        ['rm'],
-                        ['duplicate', 'rename', 'edit'],
-                        ['view'],
-                        ['help']
-                    ]
-                }
-            }).elfinder('instance');
+            $('#elfinder').elfinder($.extend({},
+                UMI.config.elFinder, {
+                    url: window.UmiSettings.baseApiURL + '/files/manager/action/connector',
+                    getFileCallback: function(fileInfo) {
+                        self.fileSelect(fileInfo);
+                    }
+            })).elfinder('instance');
 
             $('.elfinder-navbar').on('mousedown.umi.fileManager', '.elfinder-navbar-div', function() {
                 $('.elfinder-navbar').children().removeClass('ui-state-active');
