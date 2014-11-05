@@ -12,6 +12,7 @@ namespace umicms\hmvc\component\site;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\hmvc\component\IComponent;
 use umi\http\Response;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -76,6 +77,12 @@ trait TFormController
     abstract protected function createRedirectResponse($url, $code = Response::HTTP_SEE_OTHER);
 
     /**
+     * Возвращает короткий путь контроллера, относительно приложения сайта
+     * @return string
+     */
+    abstract protected function getShortPath();
+
+    /**
      * Формирует результат работы контроллера.
      *
      * Для шаблонизации доступны следущие параметры:
@@ -137,7 +144,7 @@ trait TFormController
     protected function buildResponse()
     {
         $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form->getView();
+        $result['form'] = $this->form->setId($this->getUniqueFormId())->getView();
 
         if (count($this->errors)) {
             $result['errors'] = $this->errors;
@@ -191,5 +198,9 @@ trait TFormController
     {
         return $this->getUrlManager()->getCurrentUrl(true);
     }
+
+    protected function getUniqueFormId()
+    {
+        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath());
+    }
 }
- 
