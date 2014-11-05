@@ -21,8 +21,7 @@ $button-border-color-secondary: #A8ADB1;
     border-color: $button-border-color;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
-    padding-bottom: $button-med;
-    height: 2rem;
+    height: rem-calc(32);
 
     &.secondary{
         border: 1px solid #A8ADB1;
@@ -70,15 +69,12 @@ $button-border-color-secondary: #A8ADB1;
     }
 
     &.tiny{
-        padding-bottom: rem-calc(6);
-        height: 1.54rem;
-        padding-top: 0.3rem;
+        height: rem-calc(24);
 
         > .icon{
             margin-top: -3px;
-            margin-bottom: -6px;
             margin-left: -2px;
-            margin-right: -3px;
+            margin-right: -2px;
         }
 
         &.square{
@@ -88,7 +84,7 @@ $button-border-color-secondary: #A8ADB1;
     }
 
     &.small{
-        height: 2.55rem;
+        height: rem-calc(28);
 
         .icon{
             margin-top: -7px;
@@ -102,11 +98,7 @@ $button-border-color-secondary: #A8ADB1;
     }
 
     &.large {
-        height: 3.42rem;
-    }
-
-    &.medium {
-      height: 3rem;
+        height: rem-calc(37);
     }
 
     .icon{
