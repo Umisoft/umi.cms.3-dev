@@ -16,7 +16,15 @@ require dirname(__DIR__) . '/configuration/core.php';
 
 
 try {
-    (new Bootstrap())->run();
+    $bootstrap = new Bootstrap();
+    $bootstrap->init();
+    if (Environment::$toolkitInitializer) {
+        /** @var callable $initializer */
+        $initializer = require Environment::$toolkitInitializer;
+        $initializer($bootstrap->getToolkit());
+    }
+    $bootstrap->dispatch();
+    $bootstrap->sendResponse();
 } catch (\Exception $e) {
 
     $code = Response::HTTP_INTERNAL_SERVER_ERROR;

@@ -73,7 +73,8 @@ module.exports = function(grunt) {
                     optimize: 'none',
                     exclude: [
                         'Modernizr', 'jquery', 'jqueryUI', 'Handlebars', 'Ember', 'DS', 'iscroll', 'ckEditor',
-                        'timepicker', 'moment', 'elFinder', 'Foundation', 'FastClick'
+                        'timepicker', 'moment', 'elFinder', 'Foundation', 'FastClick', 'datepickerI18n',
+                        'timepickerI18n'
                     ],
 
                     findNestedDependencies: true
@@ -147,10 +148,11 @@ module.exports = function(grunt) {
                 cwd: './',
                 src: [
                     'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
-                    'vendor/jquery-ui/jquery-ui.js', 'vendor/handlebars/handlebars.js', 'vendor/ember/ember.js',
-                    'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js', 'vendorExtend/elFinder.js',
-                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js',
-                    'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon.js', 'library/**'
+                    'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
+                    'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
+                    'vendor/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js',
+                    'vendor/jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-addon-i18n.min.js',
+                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
                 ],
                 dest: 'development'
             },
@@ -208,6 +210,16 @@ module.exports = function(grunt) {
                 src: ['library/foundation/foundation.core.js', 'library/foundation/foundation.dropdown.extend.js'],
 
                 dest: 'library/foundation/foundation.js'
+            },
+
+            jqueryUiI18n: {
+                options: {
+                    separator: '\n'
+                },
+
+                src: ['vendor/jquery-ui/ui/i18n/datepicker-en-GB.js', 'vendor/jquery-ui/ui/i18n/datepicker-ru.js'],
+
+                dest: 'library/jquery-ui/datepicker-i18n.js'
             },
 
             modernizr: {

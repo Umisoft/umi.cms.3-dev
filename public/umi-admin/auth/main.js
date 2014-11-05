@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templates) {
+define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], function(templates) {
     'use strict';
 
     /**
@@ -278,7 +278,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                         if (locale && self.cookie.get('auth-locale') !== locale) {
                             self.cookie.set('auth-locale', locale, {path: '/'});
-                            window.location.href = window.location.href;
+                            window.location.reload();
                         }
                     });
 
