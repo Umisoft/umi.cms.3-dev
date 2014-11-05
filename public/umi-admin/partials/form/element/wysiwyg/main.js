@@ -11,10 +11,11 @@ define(['App'], function(UMI) {
             var popupParams = {
                 viewParams: {
                     popupType: 'fileManager',
-                    title: UMI.i18n.getTranslate('Select file')
+                    title: UMI.i18n.getTranslate('Select file'),
+                    fixed: true
                 },
                 templateParams: {
-                    fileSelect: function (fileInfo) {
+                    fileSelect: function(fileInfo) {
                         var self = this;
                         var image = Ember.get(fileInfo, 'url') || '';
                         var baseUrl = Ember.get(window, 'UmiSettings.projectAssetsUrl');

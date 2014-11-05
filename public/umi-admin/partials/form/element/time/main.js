@@ -22,6 +22,16 @@ define(['App'], function(UMI) {
                 this.clearValidate();
             },
 
+            globalObject: window,
+
+            localization: function() {
+                var locale = this.get('globalObject.UmiSettings.locale');
+
+                if (locale) {
+                    $.timepicker.setDefaults($.timepicker.regional[locale.replace(/-.*/g, '')]);
+                }
+            }.observes('globalObject.UmiSettings').on('init'),
+
             didInsertElement: function() {
                 var el = this.$();
                 el.find('.icon-delete').click(function() {
@@ -29,10 +39,7 @@ define(['App'], function(UMI) {
                 });
 
                 this.$().find('input').timepicker({
-                    hourText: 'Часы',
-                    minuteText: 'Минуты',
-                    timeFormat: 'HH:mm:ss',
-                    currentText: 'Выставить текущее время'
+                    timeFormat: 'HH:mm:ss'
                 });
             },
 

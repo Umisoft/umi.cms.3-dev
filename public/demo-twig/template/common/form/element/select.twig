@@ -1,6 +1,6 @@
 
 <div class="form-group">
-    <label> {{ element.label }} </label>
+    <label for="{{ element.attributes.id }}"> {{ element.label }} </label>
     {% if (not element.valid) %}
         <div class="alert alert-danger">
             <ul>

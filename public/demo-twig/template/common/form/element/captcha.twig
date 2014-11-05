@@ -1,7 +1,7 @@
 {% if not(element.isHuman) %}
 
     <div class="form-group {{ not element.valid ? 'has-error' }}">
-        <label> {{ element.label }} </label>
+        <label for="{{ element.attributes.id }}"> {{ element.label }} </label>
 
         {% if (not element.valid) %}
             <div class="alert alert-danger">

@@ -124,7 +124,7 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
      * Возвращает короткий путь контроллера, относительно приложения сайта
      * @return string
      */
-    private function getShortPath()
+    protected function getShortPath()
     {
         $relativePath = substr($this->getComponent()->getPath(), strlen(CmsDispatcher::SITE_COMPONENT_PATH) + 1);
         $relativePath .= IComponent::PATH_SEPARATOR . $this->getName();
