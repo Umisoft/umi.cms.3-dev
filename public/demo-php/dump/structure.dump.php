@@ -1146,7 +1146,7 @@ return array (
       'updated' => 
       array (
         0 => 'object',
-        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-07 10:38:12";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-11-05 15:14:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
       ),
       'owner' => 
       array (
@@ -1263,7 +1263,7 @@ return array (
           'slug' => 'dispatches',
         ),
       ),
-      'slug' => '44',
+      'slug' => 'subscription',
     ),
     'data' => 
     array (
@@ -2561,7 +2561,7 @@ return array (
           'slug' => 'dispatches',
         ),
       ),
-      'slug' => '45',
+      'slug' => 'unsubscription',
     ),
     'data' => 
     array (
@@ -3050,6 +3050,135 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
+      'guid' => '2a4b47bb-9d76-463f-867e-6b3fddc42b48',
+      'displayName' => 'Выпуск рассылки',
+      'branch' => 
+      array (
+        'meta' => 
+        array (
+          'collection' => 'structure',
+          'type' => 'system',
+          'guid' => '0cedcc82-a060-472c-be96-1dbac7ddadab',
+          'displayName' => 'Рассылки',
+          'branch' => NULL,
+          'slug' => 'dispatches',
+        ),
+      ),
+      'slug' => 'release',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Выпуск рассылки',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-11-05 15:10:40";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-11-05 15:14:18";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Выпуск рассылки',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Выпуск рассылки',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Выпуск рассылки',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'release',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'dispatches.release',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  20 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
       'guid' => '810332c9-ce70-4c85-9681-147a8507fda7',
       'displayName' => 'Авторизация',
       'branch' => 
@@ -3203,7 +3332,7 @@ return array (
       ),
     ),
   ),
-  20 => 
+  21 => 
   array (
     'meta' => 
     array (
@@ -3362,7 +3491,7 @@ return array (
       ),
     ),
   ),
-  21 => 
+  22 => 
   array (
     'meta' => 
     array (
@@ -3521,7 +3650,7 @@ return array (
       ),
     ),
   ),
-  22 => 
+  23 => 
   array (
     'meta' => 
     array (
@@ -3680,7 +3809,7 @@ return array (
       ),
     ),
   ),
-  23 => 
+  24 => 
   array (
     'meta' => 
     array (
@@ -3839,7 +3968,7 @@ return array (
       ),
     ),
   ),
-  24 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3998,7 +4127,7 @@ return array (
       ),
     ),
   ),
-  25 => 
+  26 => 
   array (
     'meta' => 
     array (
@@ -4157,7 +4286,7 @@ return array (
       ),
     ),
   ),
-  26 => 
+  27 => 
   array (
     'meta' => 
     array (
@@ -4316,7 +4445,7 @@ return array (
       ),
     ),
   ),
-  27 => 
+  28 => 
   array (
     'meta' => 
     array (
@@ -4486,7 +4615,7 @@ return array (
       ),
     ),
   ),
-  28 => 
+  29 => 
   array (
     'meta' => 
     array (
@@ -4656,7 +4785,7 @@ return array (
       ),
     ),
   ),
-  29 => 
+  30 => 
   array (
     'meta' => 
     array (
@@ -4826,7 +4955,7 @@ return array (
       ),
     ),
   ),
-  30 => 
+  31 => 
   array (
     'meta' => 
     array (
@@ -4996,7 +5125,7 @@ return array (
       ),
     ),
   ),
-  31 => 
+  32 => 
   array (
     'meta' => 
     array (
@@ -5166,7 +5295,7 @@ return array (
       ),
     ),
   ),
-  32 => 
+  33 => 
   array (
     'meta' => 
     array (
@@ -5336,7 +5465,7 @@ return array (
       ),
     ),
   ),
-  33 => 
+  34 => 
   array (
     'meta' => 
     array (
@@ -5506,7 +5635,7 @@ return array (
       ),
     ),
   ),
-  34 => 
+  35 => 
   array (
     'meta' => 
     array (
@@ -5676,7 +5805,7 @@ return array (
       ),
     ),
   ),
-  35 => 
+  36 => 
   array (
     'meta' => 
     array (
@@ -5846,7 +5975,7 @@ return array (
       ),
     ),
   ),
-  36 => 
+  37 => 
   array (
     'meta' => 
     array (
@@ -6016,7 +6145,7 @@ return array (
       ),
     ),
   ),
-  37 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -6186,7 +6315,7 @@ return array (
       ),
     ),
   ),
-  38 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -6356,7 +6485,7 @@ return array (
       ),
     ),
   ),
-  39 => 
+  40 => 
   array (
     'meta' => 
     array (
@@ -6526,7 +6655,7 @@ return array (
       ),
     ),
   ),
-  40 => 
+  41 => 
   array (
     'meta' => 
     array (
@@ -6696,7 +6825,7 @@ return array (
       ),
     ),
   ),
-  41 => 
+  42 => 
   array (
     'meta' => 
     array (
@@ -6866,7 +6995,7 @@ return array (
       ),
     ),
   ),
-  42 => 
+  43 => 
   array (
     'meta' => 
     array (
