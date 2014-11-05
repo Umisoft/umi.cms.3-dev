@@ -356,12 +356,24 @@ define(['App', 'moment'], function(UMI, moment) {
                                         }
                                     }
                                     var data = Ember.get(result, actionName);
-                                    delete data.updated;
-                                    delete data.created;
-                                    store.update(collectionName, data);
+                                    data = store.normalize(collectionName, data);
+                                    object = store.update(collectionName, data);
                                     var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
                                     UMI.notification.create(params);
-                                    self.cleanForm();
+
+                                    if (actionName !== 'changeSlug') {
+                                        self.cleanForm();
+                                    }
+
+                                    var form = UMI.FormHelper.fillMeta(self.get('form'), object);
+                                    /**
+                                     * Elements без следующего присвоения не обновляются в шаблоне
+                                     * @hack
+                                     */
+                                    var elementsUpdated = Ember.get(form, 'elements').slice();
+                                    form.set('elements', elementsUpdated);
+
+                                    self.set('form', form);
                                 }
                             });
                         }
