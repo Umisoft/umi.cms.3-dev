@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\structure\model\object;
 
-use umicms\orm\object\TCmsObject;
+use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * Класс описывающий пункт меню на сторонний ресурс.
 
  * @property string $resourceUrl ссылка на сторонний ресурс
  */
-class MenuExternalItem extends MenuItem
+class MenuExternalItem extends CmsHierarchicObject implements IMenuItem
 {
     /**
      * Тип объекта
@@ -27,18 +27,26 @@ class MenuExternalItem extends MenuItem
      * Имя поля для хранения ссылки на сторонний ресурс
      */
     const FIELD_RESOURCE_URL = 'resourceUrl';
+
     /**
      * @var string $itemType тип элемента меню
      */
     protected $itemType = 'externalItem';
 
     /**
-     * Возвращает ссылку на сторонний ресурс.
-     * @return string
+     * {@inheritdoc}
      */
     public function getItemUrl()
     {
         return $this->resourceUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getItemType()
+    {
+        return $this->itemType;
     }
 }
  

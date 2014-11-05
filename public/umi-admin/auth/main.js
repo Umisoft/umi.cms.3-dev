@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templates) {
+define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], function(templates) {
     'use strict';
 
     /**
@@ -7,7 +7,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
      * @param {Boolean} [authParams.appIsFreeze] Приложение уже загружено
      * @param {HTMLElement} appLayout корневой DOM элемент приложения
      */
-    return function(authParams) {
+    return function(authParams, callback) {
         /**
          * Сбрасываем настройки ajax установленые админ приложением (появляются после выхода из системы)
          */
@@ -167,7 +167,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                 if (authParams.appIsFreeze) {
                     window.applicationLoading.resolve();
-                    $(authParams.appLayout).removeClass('off fade-out');
+                    $(authParams.appLayout).removeClass('off fade-out fade-out-def');
                     removeAuth();
                 } else {
                     require(['application/main'], function(application) {
@@ -235,7 +235,8 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                                 {
                                     accessError: self.accessError,
                                     form: self.forms.form,
-                                    currentLocale: currentLocaleLabel
+                                    currentLocale: currentLocale,
+                                    currentLocaleLabel: currentLocaleLabel
                                 }
                             )
                         });
@@ -245,6 +246,8 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                     $('body').removeClass('loading');
 
                     $(document.querySelector('.auth-layout')).foundation();
+
+                    $('input[name="login"]').focus();
 
                     var bubbles = document.querySelector('.bubbles');
                     var bubblesFront = document.querySelector('.bubbles-front');
@@ -278,7 +281,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                         if (locale && self.cookie.get('auth-locale') !== locale) {
                             self.cookie.set('auth-locale', locale, {path: '/'});
-                            window.location.href = window.location.href;
+                            window.location.reload();
                         }
                     });
 
@@ -310,21 +313,17 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                         };
 
                         deffer.done(function(data) {
-                            var objectMerge = function(objectBase, objectProperty) {
-                                for (var key in objectProperty) {
-                                    if (objectProperty.hasOwnProperty(key)) {
-                                        if (key === 'token') {
-                                            $.ajaxSetup({
-                                                headers: {'X-Csrf-Token': objectProperty[key]}
-                                            });
-                                        }
-                                        objectBase[key] = objectProperty[key];
-                                    }
-                                }
-                            };
-
                             if (data.result) {
-                                objectMerge(window.UmiSettings, data.result);
+                                $.ajaxSetup({
+                                    headers: {'X-Csrf-Token': data.result.token}
+                                });
+
+                                var mergedSettings = $.extend({}, window.UmiSettings, data.result);
+                                if ('Ember' in window) {
+                                    Ember.set(window, 'UmiSettings', mergedSettings);
+                                } else {
+                                    window.UmiSettings = mergedSettings;
+                                }
                             }
 
                             self.transition();
@@ -334,13 +333,15 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                         });
                         return false;
                     });
+
+                    if (typeof callback === 'function') {
+                        callback.call(self);
+                    }
                 });
             },
 
             destroy: function() {
-                $(document).off('click.umi.auth');
-                $(document).off('submit.umi.auth');
-                $(document).off('change.umi.auth');
+                $(document).off('.umi.auth');
             },
 
             cookie: {
@@ -382,7 +383,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                     document.cookie = updatedCookie;
                 },
 
-                delete: function(name) {
+                'delete': function(name) {
                     Auth.cookie.set(name, '', { expires: -1 });
                 }
             }

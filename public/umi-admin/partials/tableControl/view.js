@@ -31,10 +31,8 @@ define(['App', 'toolbar'], function(UMI) {
                 var scrollUpdate = function() {
                     Ember.run.scheduleOnce('afterRender', self, function() {
                         // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                        //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                         var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                         var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
-                        //umiTableLeft.style.marginTop = 0;
                         umiTableRight.style.marginTop = 0;
                         umiTableHeader.style.marginLeft = 0;
                         setTimeout(function() {
@@ -49,16 +47,14 @@ define(['App', 'toolbar'], function(UMI) {
                         scrollUpdate();
                     });
                 }
-            }.observes('controller.objects').on('didInsertElement'),
+            },
             /**
              * Событие вызываемое после вставки шаблона в DOM
              * @method didInsertElement
              */
             didInsertElement: function() {
                 var tableControl = this.$();
-
                 var self = this;
-                var objects = this.get('controller.objects.content');
 
                 // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
                 //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
@@ -67,95 +63,94 @@ define(['App', 'toolbar'], function(UMI) {
 
                 var umiTableContentRowSize = tableControl.find('.umi-table-control-content-row-size')[0];
 
-                if (objects) {
-                    var tableContent = tableControl.find('.s-scroll-wrap');
 
-                    objects.then(function(objects) {
-                        if (!objects.length) {
-                            return;
-                        }
+                var tableContent = tableControl.find('.s-scroll-wrap');
 
-                        Ember.run.scheduleOnce('afterRender', self, function() {
-                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
-                            self.set('iScroll', scrollContent);
+                Ember.run.scheduleOnce('afterRender', self, function() {
+                    self = this;
+                    var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
+                    self.set('iScroll', scrollContent);
+                    self.scrollUpdate();
 
-                            scrollContent.on('scroll', function() {
-                                //umiTableLeft.style.marginTop = this.y + 'px';
-                                umiTableRight.style.marginTop = this.y + 'px';
-                                umiTableHeader.style.marginLeft = this.x + 'px';
-                            });
+                    self.addObserver('controller.objects', function() {
+                        self.scrollUpdate();
+                    });
 
-                            // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
-                            $(window).on('resize.umi.tableControl', function() {
-                                setTimeout(function() {
-                                    //umiTableLeft.style.marginTop = scrollContent.y + 'px';
-                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
-                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
-                                }, 100);// TODO: заменить на событие окончания ресайза iScroll
-                            });
+                    scrollContent.on('scroll', function() {
+                        //umiTableLeft.style.marginTop = this.y + 'px';
+                        umiTableRight.style.marginTop = this.y + 'px';
+                        umiTableHeader.style.marginLeft = this.x + 'px';
+                    });
 
-                            // Событие изменения ширины колонки
-                            tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function() {
-                                $('html').addClass('s-unselectable');
-                                var handler = this;
-                                $(handler).addClass('on-resize');
-                                var columnEl = handler.parentNode.parentNode;
-                                var columnName = columnEl.className;
-                                columnName = columnName.substr(columnName.indexOf('column-id-'));
-                                var columnOffset = $(columnEl).offset().left;
-                                var columnWidth;
-                                var contentCell = umiTableContentRowSize.querySelector('.' + columnName);
+                    // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
+                    $(window).on('resize.umi.tableControl', function() {
+                        setTimeout(function() {
+                            //umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                            umiTableRight.style.marginTop = scrollContent.y + 'px';
+                            umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                        }, 100);// TODO: заменить на событие окончания ресайза iScroll
+                    });
 
-                                $('body').on('mousemove.umi.tableControl', function(event) {
-                                    event.stopPropagation();
-                                    columnWidth = event.pageX - columnOffset;
-                                    if (columnWidth >= 60 && columnEl.offsetWidth > 59) {
-                                        columnEl.style.width = contentCell.style.width = columnWidth + 'px';
-                                    }
-                                });
+                    // Событие изменения ширины колонки
+                    tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function() {
+                        $('html').addClass('s-unselectable');
+                        var handler = this;
+                        $(handler).addClass('on-resize');
+                        var columnEl = handler.parentNode.parentNode;
+                        var columnName = columnEl.className;
+                        columnName = columnName.substr(columnName.indexOf('column-id-'));
+                        var columnOffset = $(columnEl).offset().left;
+                        var columnWidth;
+                        var contentCell = umiTableContentRowSize.querySelector('.' + columnName);
 
-                                $('body').on('mouseup.umi.tableControl', function() {
-                                    $('html').removeClass('s-unselectable');
-                                    $(handler).removeClass('on-resize');
-                                    $('body').off('mousemove');
-                                    $('body').off('mouseup.umi.tableControl');
-                                    scrollContent.refresh();
-                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
-                                });
-                            });
+                        $('body').on('mousemove.umi.tableControl', function(event) {
+                            event.stopPropagation();
+                            columnWidth = event.pageX - columnOffset;
+                            if (columnWidth >= 60 && columnEl.offsetWidth > 59) {
+                                columnEl.style.width = contentCell.style.width = columnWidth + 'px';
+                            }
+                        });
 
-                            // Hover event
-                            var getHoverElements = function(el) {
-                                var isContentRow = $(el).hasClass('umi-table-control-content-row');
-                                var rows = el.parentNode.querySelectorAll(isContentRow ?
-                                    '.umi-table-control-content-row' : '.umi-table-control-column-fixed-cell');
-
-                                for (var i = 0; i < rows.length; i++) {
-                                    if (rows[i] === el) {
-                                        break;
-                                    }
-                                }
-                                //var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
-                                var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
-                                if (!isContentRow) {
-                                    el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
-                                }
-                                return [el, rightElements[i]];//[el, leftElements[i], rightElements[i]];
-                            };
-
-                            tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function() {
-                                var elements = getHoverElements(this);
-                                $(elements).addClass('hover');
-                            });
-
-                            tableControl.on('mouseleave.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function() {
-                                var elements = getHoverElements(this);
-                                $(elements).removeClass('hover');
-                            });
-                            // Drag and Drop
+                        $('body').on('mouseup.umi.tableControl', function() {
+                            $('html').removeClass('s-unselectable');
+                            $(handler).removeClass('on-resize');
+                            $('body').off('mousemove');
+                            $('body').off('mouseup.umi.tableControl');
+                            scrollContent.refresh();
+                            umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                         });
                     });
-                }
+
+                    // Hover event
+                    var getHoverElements = function(el) {
+                        var isContentRow = $(el).hasClass('umi-table-control-content-row');
+                        var rows = el.parentNode.querySelectorAll(isContentRow ?
+                            '.umi-table-control-content-row' : '.umi-table-control-column-fixed-cell');
+
+                        for (var i = 0; i < rows.length; i++) {
+                            if (rows[i] === el) {
+                                break;
+                            }
+                        }
+                        //var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
+                        var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
+                        if (!isContentRow) {
+                            el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
+                        }
+                        return [el, rightElements[i]];//[el, leftElements[i], rightElements[i]];
+                    };
+
+                    tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function() {
+                        var elements = getHoverElements(this);
+                        $(elements).addClass('hover');
+                    });
+
+                    tableControl.on('mouseleave.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function() {
+                        var elements = getHoverElements(this);
+                        $(elements).removeClass('hover');
+                    });
+                    // Drag and Drop
+                });
             },
             /**
              * Событие вызываемое после удаления шаблона из DOM
@@ -163,8 +158,7 @@ define(['App', 'toolbar'], function(UMI) {
              */
             willDestroyElement: function() {
                 $(window).off('.umi.tableControl');
-                // Удаляем Observes для контоллера
-                this.get('controller').removeObserver('query');
+                this.removeObserver('controller.object');
             },
 
             paginationView: Ember.View.extend({
@@ -465,7 +459,7 @@ define(['App', 'toolbar'], function(UMI) {
             },
 
             willDestroyElement: function() {
-                this.get('controller').removeObserver('control.collectionName');
+                this.get('controller').removeObserver('collectionName');
             }
         });
 

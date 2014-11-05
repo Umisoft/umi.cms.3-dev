@@ -25,7 +25,9 @@ use umicms\serialization\xml\BaseSerializer;
 trait TCmsObject
 {
     use TUrlManagerAware;
-    use TSerializerConfigurator;
+    use TSerializerConfigurator {
+        TSerializerConfigurator::configureSerializer as protected configureSerializerInternal;
+    }
 
     /**
      * @var string $traitEditLink ссылка на редактирование объекта
@@ -114,9 +116,7 @@ trait TCmsObject
             }
         );
 
-        foreach ($this->configurators as $configurator) {
-            $configurator($serializer);
-        }
+        $this->configureSerializerInternal($serializer);
     }
 
     /**
