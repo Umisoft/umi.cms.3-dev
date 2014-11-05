@@ -147,8 +147,8 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: './',
                 src: [
-                    'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
-                    'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
+                    'vendor/requirejs/require.js', 'vendor/modernizr/modernizr.custom.js', 'vendor/requirejs-text/text.js',
+                    'vendor/jquery/dist/jquery.js', 'vendor/jquery-ui/jquery-ui.js', 'vendor/handlebars/handlebars.js',
                     'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
                     'vendor/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js',
                     'vendor/jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-addon-i18n.min.js',
