@@ -21,7 +21,7 @@ use umicms\hmvc\component\site\TFormController;
 use umi\orm\metadata\IObjectType;
 
 /**
- * Контроллер авторизации пользователя
+ * Контроллер подписки пользователя
  */
 class IndexController extends BaseSitePageController
 {

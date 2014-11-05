@@ -19,6 +19,7 @@ use umicms\project\module\dispatches\model\collection\DispatchCollection;
 use umicms\project\module\dispatches\model\collection\SubscriberCollection;
 use umicms\project\module\dispatches\model\collection\SubscriptionCollection;
 use umicms\project\module\dispatches\model\collection\UnsubscriptionCollection;
+use umicms\project\module\dispatches\model\collection\ReleaseCollection;
 use umicms\project\module\dispatches\model\object\Dispatch;
 use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Subscription;
@@ -97,6 +98,15 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     public function dispatch()
     {
         return $this->getCollection('dispatch');
+    }
+
+    /**
+     * Возвращает репозиторий для работы с выпусками рассылок.
+     * @return ReleaseCollection
+     */
+    public function release()
+    {
+        return $this->getCollection('dispatchRelease');
     }
 
     /**

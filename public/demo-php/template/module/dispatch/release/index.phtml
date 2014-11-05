@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umicms\project\module\dispatches\model\object\Subscriber $subscriber
+ * @var umicms\project\module\dispatches\model\object\Release $release
+ */
+?>
+
+<div class="index-release">
+    <h1><?=$release->displayName?></h1>
+    <h3><?=$release->subject?></h3>
+    <h5><?=$release->header?></h5>
+    <div class="content">
+        <?=$release->message?>: <?=$subscriber->firstName ? $subscriber->firstName : $subscriber->email?>
+    </div>
+</div>

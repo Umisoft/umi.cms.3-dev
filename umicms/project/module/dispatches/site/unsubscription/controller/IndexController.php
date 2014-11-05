@@ -21,7 +21,7 @@ use umicms\hmvc\component\site\TFormController;
 use umi\orm\metadata\IObjectType;
 
 /**
- * Контроллер авторизации пользователя
+ * Контроллер отписки пользователя
  */
 class IndexController extends BaseSitePageController
 {
@@ -73,9 +73,9 @@ class IndexController extends BaseSitePageController
         $token = $this->getRouteVar('token');
 
         if (!is_null($token)) {
-            $subscription = $this->module->subscription()->getSubscriptionByToken($token);
-            $this->dispatch = $subscription->getProperty(Subscription::FIELD_DISPATCH)->getValue();
-        }
+        $subscription = $this->module->subscription()->getSubscriptionByToken($token);
+        $this->dispatch = $subscription->getProperty(Subscription::FIELD_DISPATCH)->getValue();
+    }
 
         if ($this->dispatch && !$this->dispatch instanceof Dispatch) {
             throw new InvalidArgumentException(

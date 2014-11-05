@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umicms\project\module\dispatches\model\object\Subscriber $subscriber
+ * @var umicms\project\module\dispatches\model\object\Release $release
+ */
+?>
+
+<div class="testTemplate-release" style="font-family: 'Tahoma', sans-serif;">
+    <h1><?=$release->displayName?></h1>
+    <h3><?=$release->subject?></h3>
+    <h5><?=$release->header?></h5>
+    <div class="content">
+        <?php $subscriberName = $subscriber->firstName ? $subscriber->firstName : $subscriber->email;
+        ?>
+        <?= $this->translate($release->message, ['subscriber' => $subscriberName, 'email' => $subscriber->email])?>
+    </div>
+</div>

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\dispatches\site\subscriber;
+namespace umicms\project\module\dispatches\site\release;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
@@ -17,18 +17,13 @@ use umicms\hmvc\component\site\SiteComponent;
 return [
 
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
-    //SiteComponent::OPTION_COLLECTION_NAME => 'dispatchSubscriber',
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'subscriber' => __NAMESPACE__ . '\controller\SubscriberController',
+        'index' => __NAMESPACE__ . '\controller\IndexController',
     ],
 
     SiteComponent::OPTION_WIDGET => [
-        'form' => __NAMESPACE__ . '\widget\DispatchSubscriberWidget',
-    ],
-
-    SiteComponent::OPTION_FORMS => [
-        'subscriber' => '{#lazy:~/project/module/dispatches/site/subscriber/form/subscriber.config.php}'
+        'link' => __NAMESPACE__ . '\widget\LinkWidget',
     ],
 
     SiteComponent::OPTION_ACL => [
@@ -37,22 +32,24 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:subscriber' => [],
-                'widget:form' => [],
+                'controller:index' => [],
+                'widget:link' => [],
             ]
         ]
     ],
 
     SiteComponent::OPTION_VIEW => [
-        'directories' => ['module/dispatch/subscriber']
+        'directories' => ['module/dispatch/release']
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-        'subscriber' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
+        'index' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{id:integer}/{token:guid}',
             'defaults' => [
-                'controller' => 'subscriber'
+                'controller' => 'index'
             ]
         ]
     ]
+
 ];

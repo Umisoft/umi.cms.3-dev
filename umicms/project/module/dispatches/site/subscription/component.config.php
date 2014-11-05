@@ -37,7 +37,6 @@ return [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],
-                'widget:form' => [],
                 'widget:link' => [],
             ]
         ]

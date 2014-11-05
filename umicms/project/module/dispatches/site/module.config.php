@@ -18,7 +18,7 @@ return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
     SiteGroupComponent::OPTION_COMPONENTS => [
-        'subscriber' => '{#lazy:~/project/module/dispatches/site/subscriber/component.config.php}',
+        'release' => '{#lazy:~/project/module/dispatches/site/release/component.config.php}',
         'subscription' => '{#lazy:~/project/module/dispatches/site/subscription/component.config.php}',
         'unsubscription' => '{#lazy:~/project/module/dispatches/site/unsubscription/component.config.php}',
     ],
