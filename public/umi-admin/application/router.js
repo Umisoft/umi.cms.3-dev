@@ -176,7 +176,7 @@ define([], function() {
                             return parent.then(function(parent) {
                                 var store = self.get('store');
                                 var collectionName = parent.constructor.typeKey;
-                                var request = UMI.OrmHelper.buildRequest(parent, ['childCount']);
+                                var request = UMI.OrmHelper.buildRequest(store, collectionName, ['childCount']);
                                 request.filters = {id: 'equals(' + parent.get('id') + ')'};
                                 return store.updateCollection(collectionName, request).then(function() {
                                     parent.trigger('needReloadHasMany', 'add', addObject);
@@ -667,7 +667,8 @@ define([], function() {
                                     {
                                         'content': Ember.get(results, 'result.importFromRss.message'),
                                         'close': true,
-                                        'reject': UMI.i18n.getTranslate('Close'), 'type': null
+                                        'reject': UMI.i18n.getTranslate('Close'),
+                                        'type': null
                                     }
                                 );
                             }
@@ -1012,23 +1013,26 @@ define([], function() {
                             case 'collection':
                                 if (this.store.hasRecordForId(Ember.get(collection, 'name'), params.context)) {
                                     model = this.store.getById(Ember.get(collection, 'name'), params.context);
-                                    //model = model.reload();
                                 } else {
                                     var self = this;
                                     model = new Ember.RSVP.Promise(function(resolve, reject) {
-                                        self.store.updateCollection(
-                                            Ember.get(collection, 'name'),
-                                            {'filters[id]': params.context, fields: 'displayName'}
-                                        ).then(function(results) {
-                                            if (results.get('firstObject')) {
-                                                resolve(results.get('firstObject'));
-                                            } else {
-                                                reject(transition.send('templateLogs', {
-                                                    statusText: 'Object not found',
-                                                    message: 'Object with id "' + params.context + '" not found.'
-                                                }, 'component'));
+                                        var request = UMI.OrmHelper.buildRequest(self.store,
+                                            Ember.get(collection, 'name'), ['displayName', 'trashed']);
+
+                                        request['filters[id]'] = params.context;
+                                        self.store.updateCollection(Ember.get(collection, 'name'), request).then(
+                                            function(results) {
+                                                var object = results.get('firstObject');
+                                                if (object && !object.get('trashed')) {
+                                                    resolve(object);
+                                                } else {
+                                                    reject(transition.send('templateLogs', {
+                                                        statusText: 'Object not found',
+                                                        message: 'Object with id "' + params.context + '" not found.'
+                                                    }, 'component'));
+                                                }
                                             }
-                                        });
+                                        );
                                     });
                                 }
                                 break;
