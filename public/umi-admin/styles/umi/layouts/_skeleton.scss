@@ -47,6 +47,7 @@ body{
 
 .umi-main-view {
     overflow: hidden;
+    min-width: upper-bound($small-range) + 4em;
 }
 
 .umi-loading-animation{
