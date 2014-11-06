@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Guide UMI.CMS HTML Elements</title>
-        <link rel="stylesheet" type="text/css" href="./production/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./development/css/styles.css">
     </head>
 
     <body style="overflow: auto;">
@@ -25,7 +25,7 @@
                 <h3 data-magellan-destination="buttons">Buttons [Кнопки].</h3>
 
                 <p>Для объявления кнопки достаточно задать класс <code>.button</code>.</p>
-                <button class="button">Базовая кнопка</button>
+                <div class="button">Базовая кнопка</div>
                 <p>Кнопки имеют классы-модификаторы изменяющие:</p>
 
                 <div class="row">
@@ -33,13 +33,13 @@
                         <p>Размер. Классы <code>tiny, small, large</code>.</p>
                         <pre>
                             <code class="html">
-                                <button class="button tiny">tiny</button>
+                                <div class="button tiny">tiny</div>
                                 <p></p>
-                                <button class="button small">small</button>
+                                <div class="button small">small</div>
                                 <p></p>
-                                <button class="button medium">medium</button>
+                                <div class="button medium">medium</div>
                                 <p></p>
-                                <button class="button large">large</button>
+                                <div class="button large">large</div>
                                 <p></p>
                             </code>
                         </pre>
@@ -50,46 +50,46 @@
                     <li>
                         Ширину. Классы <code>expand, wide, square</code>.
                         <div>
-                            <button class="button expand">expand</button>
+                            <div class="button expand">expand</div>
                             <p></p>
-                            <button class="button wide">wide</button>
+                            <div class="button wide">wide</div>
                             <p></p>
-                            <button class="button square">square</button>
+                            <div class="button square">square</div>
                             <p></p>
                         </div>
                     </li>
                     <li>
                         Цвет. Классы <code>secondary, success, alert, white, flat</code>.
                         <div>
-                            <button class="button secondary">secondary</button>
+                            <div class="button secondary">secondary</div>
                             <p></p>
-                            <button class="button success">success</button>
+                            <div class="button success">success</div>
                             <p></p>
-                            <button class="button alert">alert</button>
+                            <div class="button alert">alert</div>
                             <p></p>
-                            <button class="button white">white</button>
+                            <div class="button white">white</div>
                             <p></p>
-                            <button class="button flat">flat</button>
+                            <div class="button flat">flat</div>
                             <p></p>
                         </div>
                     </li>
                     <li>
                         Радиус. Классы <code>round, radius</code>.
                         <div>
-                            <button class="button round">round</button>
+                            <div class="button round">round</div>
                             <p></p>
-                            <button class="button radius">radius</button>
+                            <div class="button radius">radius</div>
                             <p></p>
                         </div>
                     </li>
                     <li>
                         Состояние. Классы <code>disabled, loading</code>.
                         <div>
-                            <button class="button disabled">disabled</button>
+                            <div class="button disabled">disabled</div>
                             <p></p>
-                            <button class="button loading">loading</button>
+                            <div class="button loading">loading</div>
                             <p></p>
-                            <button class="button secondary loading">secondary loading</button>
+                            <div class="button secondary loading">secondary loading</div>
                             <p></p>
                         </div>
                     </li>
@@ -192,7 +192,7 @@
                 <p></p>
                 <p>По умолчанию разрешены быстрые действия для выпадающих списков.</p>
                 <a href="#" data-dropdown="umi-drop-3" class="button large dropdown" data-options="fastSelect: false;">Dropdown Button [fast select off]</a>
-                <a href="#" data-dropdown="umi-drop-3" class="button large dropdown" data-options="fastSelectHoverClassName: mark; closeAfterClickOnElement: false;">Dropdown Button [fast select on]</a>
+                <a href="#" data-dropdown="umi-drop-3" class="button large dropdown" data-options="fastSelectHoverClassName: hover;">Dropdown Button [fast select on]</a>
                 <ul id="umi-drop-3" data-dropdown-content class="f-dropdown">
                     <li><a href="#">This is a link</a></li>
                     <li><a href="#">This is another</a></li>
@@ -262,7 +262,7 @@
                 <a href="#" class="button tiny white split">Split Button
                     <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
                 <ul class="f-dropdown" data-dropdown-content id="umi-drop-2">
-                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#" onclick="alert('ooooo');">This is a link</a></li>
                     <li><a href="#">This is another</a></li>
                     <li><a href="#">Yet another</a></li>
                 </ul>

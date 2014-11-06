@@ -9,7 +9,9 @@ require.config({
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
-        timepicker: 'vendor/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
+        timepicker: 'vendor/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon',
+        timepickerI18n: 'vendor/jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-addon-i18n.min',
+        datepickerI18n: 'library/jquery-ui/datepicker-i18n',
         moment: 'vendor/momentjs/min/moment-with-langs',
         FastClick: 'vendor/fastclick/lib/fastclick',
         iscroll: 'vendor/iscroll/build/iscroll-probe',
@@ -22,11 +24,13 @@ require.config({
         Modernizr: {exports: 'Modernizr'},
         jquery: {exports: 'jQuery'},
         jqueryUI: {exports: 'jQuery', deps: ['jquery']},
-        elFinder: {exports: 'elFinder', deps: ['jquery', 'jqueryUI']},
+        elFinder: {exports: 'elFinder', deps: ['jqueryUI']},
         Ember: {exports: 'Ember', deps: ['Handlebars', 'jquery']},
         DS: {exports: 'DS', deps: ['Ember']},
         ckEditor: {exports: 'ckEditor'},
-        timepicker: {exports: 'timepicker', deps: ['jquery', 'jqueryUI']},
+        timepicker: {exports: 'timepicker', deps: ['jqueryUI']},
+        timepickerI18n: {exports: 'timepickerI18n', deps: ['timepicker']},
+        datepickerI18n: {exports: 'datepickerI18n', deps: ['jqueryUI']},
         Foundation: {exports: 'Foundation', deps: ['jquery', 'FastClick']}
     },
 
@@ -49,7 +53,8 @@ require.config({
         {name: 'topBar', location: 'partials/topBar'},
         {name: 'tree', location: 'partials/tree'},
         {name: 'treeSimple', location: 'partials/treeSimple'},
-        {name: 'updateLayout', location: 'partials/updateLayout'}
+        {name: 'updateLayout', location: 'partials/updateLayout'},
+        {name: 'IScrollExtend', location: 'library/IScroll'}
     ]
 });
 
@@ -59,16 +64,8 @@ require(['jquery'], function() {
     var deffer = $.get(window.UmiSettings.authUrl);
 
     deffer.done(function(data) {
-        var objectMerge = function(objectBase, objectProperty) {
-            for (var key in objectProperty) {
-                if (objectProperty.hasOwnProperty(key)) {
-                    objectBase[key] = objectProperty[key];
-                }
-            }
-        };
-
         if (data.result) {
-            objectMerge(window.UmiSettings, data.result.auth);
+            $.extend(window.UmiSettings, data.result.auth);
         }
         require(['application/main'], function(application) {
             application();

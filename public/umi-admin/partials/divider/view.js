@@ -23,6 +23,7 @@ define(['App'], function(UMI) {
                 var $sidebar = $el.find('.umi-divider-left');
                 var $content = $el.find('.umi-divider-right');
                 var $gridElements = $el.find('.magellan-content').find('.umi-columns.large-4');
+                var $window = $(window);
 
                 $el.off('mousedown.umi.divider.toggle');
                 $divider.off('mousedown.umi.divider.proccess');
@@ -53,6 +54,8 @@ define(['App'], function(UMI) {
 
                                 $content.css({marginLeft: sidebarWidth + 1});
                                 $sidebar.css({width: sidebarWidth});
+
+                                $window.trigger('dividerResize');
 
                                 $('html').on('mouseup.umi.divider.proccess', function() {
                                     $('html').off('mousemove.umi.divider.proccess');

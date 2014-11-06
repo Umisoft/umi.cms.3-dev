@@ -1,12 +1,12 @@
 define(
     [
-        'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'elFinder', 'timepicker', 'moment', 'application/config',
-        'application/utils', 'application/i18n', 'application/templates.compile', 'application/templates.extends',
-        'application/validators', 'application/models', 'application/router', 'application/controllers',
-        'application/views'
+        'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'datepickerI18n', 'elFinder', 'timepicker',
+        'timepickerI18n', 'moment', 'application/config', 'application/utils', 'application/i18n',
+        'application/templates.compile', 'application/templates.extends', 'application/validators',
+        'application/models', 'application/router', 'application/controllers', 'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates,
-    templatesExtends, validators, models, router, controller, views) {
+    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, datepickerI18n, elFinder, timepicker, timepickerI18n, moment,
+        config, utils, i18n, templates, templatesExtends, validators, models, router, controller, views) {
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};

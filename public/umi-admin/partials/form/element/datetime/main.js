@@ -72,6 +72,20 @@ define(['App'], function(UMI) {
                 }
             },
 
+            globalObject: window,
+
+            localization: function() {
+                var locale = this.get('globalObject.UmiSettings.locale');
+                var localeCustomFormat = locale.replace(/-.*/g, '');
+
+                if (locale && $.datepicker.regional[locale] && $.timepicker.regional[localeCustomFormat]) {
+                    $.datepicker.setDefaults($.datepicker.regional[locale]);
+                    $.timepicker.setDefaults($.timepicker.regional[localeCustomFormat]);
+                } else {
+                    $.timepicker.setDefaults($.timepicker.regional['']);
+                }
+            }.observes('globalObject.UmiSettings').on('init'),
+
             init: function() {
                 this._super();
                 var value;
@@ -95,11 +109,7 @@ define(['App'], function(UMI) {
 
             didInsertElement: function() {
                 this.$().find('input').datetimepicker({
-                    hourText: 'Часы',
-                    minuteText: 'Минуты',
-                    secondText: 'Секунды',
-                    currentText: 'Выставить текущее время',
-                    timeFormat: 'HH:mm:ss',
+                    timeFormat: 'hh:mm:ss',
                     dateFormat: 'dd.mm.yy'
                 });
             },
