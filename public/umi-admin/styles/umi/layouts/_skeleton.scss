@@ -104,6 +104,10 @@ body{
     }
 }
 
+.umi-main-view{
+    background: #f6f7f8;
+}
+
 $umi-header-height: $umi-dock-height + $umi-top-bar-height;
 .umi-header{
     position: relative;
