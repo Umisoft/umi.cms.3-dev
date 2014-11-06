@@ -3,6 +3,7 @@
  * @var umicms\project\module\structure\model\object\SystemPage $page
  * @var umicms\project\module\dispatches\model\object\Subscriber $subscriber
  * @var umicms\project\module\dispatches\model\object\Release $release
+ * @var umicms\project\module\dispatches\model\object\Subscription $subscription
  */
 ?>
 
@@ -13,4 +14,5 @@
     <div class="content">
         <?=$release->message?>: <?=$subscriber->firstName ? $subscriber->firstName : $subscriber->email?>
     </div>
+    <?=$this->widget('dispatches.imageSrcLink', ['release' => $release, 'subscription' => $subscription])?>
 </div>

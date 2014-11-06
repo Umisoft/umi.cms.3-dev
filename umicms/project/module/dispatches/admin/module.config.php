@@ -24,7 +24,8 @@ return [
         'template' => '{#lazy:~/project/module/dispatches/admin/template/component.config.php}',
         'subscription' => '{#lazy:~/project/module/dispatches/admin/subscription/component.config.php}',
         'unsubscription' => '{#lazy:~/project/module/dispatches/admin/unsubscription/component.config.php}',
-        'releasestatus' => '{#lazy:~/project/module/dispatches/admin/releasestatus/component.config.php}'
+        'releasestatus' => '{#lazy:~/project/module/dispatches/admin/releasestatus/component.config.php}',
+        'logdispatch' => '{#lazy:~/project/module/dispatches/admin/logdispatch/component.config.php}'
     ],
 
     AdminComponent::OPTION_ROUTES      => [

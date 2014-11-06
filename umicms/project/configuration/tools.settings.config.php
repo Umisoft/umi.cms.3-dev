@@ -135,6 +135,7 @@ return [
             'dispatchSubscription'         => '{#lazy:~/project/module/dispatches/configuration/subscription/metadata.config.php}',
             'dispatchUnsubscription'       => '{#lazy:~/project/module/dispatches/configuration/unsubscription/metadata.config.php}',
             'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/metadata.config.php}',
+            'dispatchLogdispatch'        => '{#lazy:~/project/module/dispatches/configuration/logdispatch/metadata.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
         ],
 
@@ -171,6 +172,7 @@ return [
             'dispatchSubscription'         => '{#lazy:~/project/module/dispatches/configuration/subscription/collection.config.php}',
             'dispatchUnsubscription'       => '{#lazy:~/project/module/dispatches/configuration/unsubscription/collection.config.php}',
             'dispatchReleaseStatus'        => '{#lazy:~/project/module/dispatches/configuration/releasestatus/collection.config.php}',
+            'dispatchLogdispatch'        => '{#lazy:~/project/module/dispatches/configuration/logdispatch/collection.config.php}',
             'robots'                       => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
         ]
     ],

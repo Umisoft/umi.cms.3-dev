@@ -41,6 +41,7 @@ class IndexController extends BaseSitePageController
      *
      * Для шаблонизации доступны следущие параметры:
      * @templateParam umicms\project\module\structure\model\object\SystemPage $page текущая страница
+     * @templateParam Subscription $subscription - подписка
      * @templateParam Subscriber $subscriber - подписчик
      * @templateParam Release $release - выпуск рассылки
      * @return Response
@@ -73,6 +74,7 @@ class IndexController extends BaseSitePageController
             $this->template,
             [
                 'page' => $this->getCurrentPage(),
+                'subscription' => $subscription,
                 'subscriber' => $subscription->getProperty(Subscription::FIELD_SUBSCRIBER)->getValue(),
                 'release' => $release
             ]

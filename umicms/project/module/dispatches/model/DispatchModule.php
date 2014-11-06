@@ -20,10 +20,13 @@ use umicms\project\module\dispatches\model\collection\SubscriberCollection;
 use umicms\project\module\dispatches\model\collection\SubscriptionCollection;
 use umicms\project\module\dispatches\model\collection\UnsubscriptionCollection;
 use umicms\project\module\dispatches\model\collection\ReleaseCollection;
+use umicms\project\module\dispatches\model\collection\LogdispatchCollection;
 use umicms\project\module\dispatches\model\object\Dispatch;
+use umicms\project\module\dispatches\model\object\Release;
 use umicms\project\module\dispatches\model\object\Subscriber;
 use umicms\project\module\dispatches\model\object\Subscription;
 use umicms\project\module\dispatches\model\object\Unsubscription;
+use umicms\project\module\dispatches\model\object\Logdispatch;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\Utils;
@@ -110,6 +113,15 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
+     * Возвращает репозиторий для работы с логами рассылок.
+     * @return LogdispatchCollection
+     */
+    public function logdispatch()
+    {
+        return $this->getCollection('dispatchLogdispatch');
+    }
+
+    /**
      * Возвращает селектор для выборки рассылки.
      * @return CmsSelector|Dispatch[]
      */
@@ -120,6 +132,30 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
             ->orderBy(Dispatch::FIELD_IDENTIFY, CmsSelector::ORDER_ASC);
 
         return $dispatch;
+    }
+
+    /**
+     * Выставляет статус о прочтении, если существует объект
+     * @param Release $release - GUID выпуска рассылок
+     * @param Subscriber $subscriber - token подписки
+     * @return CmsSelector|Logdispatch[] - лог выпуска рассылки
+     */
+    public function setReadLogDispatch(Release $release, Subscriber $subscriber)
+    {
+        $logDispatch = $this->logdispatch()
+            ->select()
+            ->where(Logdispatch::FIELD_RELEASE)->equals($release->getId())
+            ->where(Logdispatch::FIELD_SUBSCRIBERS)->equals($subscriber->getId())
+            ->where(Logdispatch::FIELD_READ)->notEquals(true)
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if($logDispatch instanceof Logdispatch){
+            $logDispatch->getProperty(Logdispatch::FIELD_READ)->setValue(true);
+        }
+
+        return $logDispatch;
     }
 
     /**
@@ -189,6 +225,25 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
         $unsubscription->subscriber->dispatches->detach($dispatch);
 
         return $unsubscription;
+    }
+
+    /**
+     * Создает лог рассылки
+     * @param string $typeName тип объекта
+     * @param string|Release $release выпуск рассылки или GUID выпуса рассылки
+     * @param Subscriber $subscriber подписчик
+     * @return Logdispatch
+     */
+    public function addLogdispatch($typeName = IObjectType::BASE, $release, Subscriber $subscriber)
+    {
+        $logdispatch = $this->logdispatch()->add($typeName);
+        if(is_string($release)){
+            $release = $this->release()->get($release);
+        }
+        $logdispatch->release = $release;
+        $logdispatch->subscriber = $subscriber;
+
+        return $logdispatch;
     }
 
     /**

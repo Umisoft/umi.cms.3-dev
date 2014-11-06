@@ -20,10 +20,12 @@ return [
 
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
+        'imagesrc' => __NAMESPACE__ . '\controller\ImageSrcController',
     ],
 
     SiteComponent::OPTION_WIDGET => [
         'link' => __NAMESPACE__ . '\widget\LinkWidget',
+        'imageSrcLink' => __NAMESPACE__ . '\widget\ImageSrcLinkWidget',
     ],
 
     SiteComponent::OPTION_ACL => [
@@ -33,7 +35,9 @@ return [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],
+                'controller:imagesrc' => [],
                 'widget:link' => [],
+                'widget:imageSrcLink' => [],
             ]
         ]
     ],
@@ -48,6 +52,13 @@ return [
             'route'    => '/{id:integer}/{token:guid}',
             'defaults' => [
                 'controller' => 'index'
+            ]
+        ],
+        'imagesrc' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{release:guid}/{token:guid}',
+            'defaults' => [
+                'controller' => 'imagesrc'
             ]
         ]
     ]

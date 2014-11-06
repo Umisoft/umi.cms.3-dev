@@ -26,6 +26,7 @@ return [
     SiteGroupComponent::OPTION_WIDGET => [
         'list' => __NAMESPACE__ . '\widget\DispatchesListWidget',
         'link' => __NAMESPACE__ . '\widget\LinkWidget',
+        //'imageSrcLink' => __NAMESPACE__ . '\widget\ImageSrcLinkWidget',
         'manageLink' => __NAMESPACE__ . '\widget\ManageSubscriptionLinkWidget',
     ],
 
@@ -37,6 +38,7 @@ return [
             'viewer' => [
                 'widget:list' => [],
                 'widget:link' => [],
+                //'widget:imageSrcLink' => [],
                 'widget:manageLink' => [],
             ]
         ]
@@ -45,9 +47,10 @@ return [
     SiteGroupComponent::OPTION_VIEW        => [
         'directories' => ['module/dispatch']
     ],
+
     SiteGroupComponent::OPTION_ROUTES => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-        ]
+        ],
     ]
 ];
