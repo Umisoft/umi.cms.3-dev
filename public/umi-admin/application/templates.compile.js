@@ -359,28 +359,28 @@ function program5(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <button class=\"button primary left\" ");
+  data.buffer.push(" <div class=\"button primary left\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "confirm", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(">");
   stack1 = helpers._triageMustache.call(depth0, "model.confirm", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</button> ");
+  data.buffer.push("</div> ");
   return buffer;
   }
 
 function program8(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push(" <button class=\"button secondary right\" ");
+  data.buffer.push(" <div class=\"button secondary right\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "close", {hash:{
     'target': ("view")
   },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(">");
   stack1 = helpers._triageMustache.call(depth0, "model.reject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</button> ");
+  data.buffer.push("</div> ");
   return buffer;
   }
 
@@ -1952,13 +1952,13 @@ function program9(depth0,data) {
 function program10(depth0,data) {
   
   
-  data.buffer.push(" <button class=\"button flat tiny square\"> <i class=\"icon icon-accept\"></i> </button> ");
+  data.buffer.push(" <div class=\"button flat tiny square\"> <i class=\"icon icon-accept\"></i> </div> ");
   }
 
 function program12(depth0,data) {
   
   
-  data.buffer.push(" <button class=\"button flat tiny square\"> <i class=\"icon icon-renew\"></i> </button> ");
+  data.buffer.push(" <div class=\"button flat tiny square\"> <i class=\"icon icon-renew\"></i> </div> ");
   }
 
 function program14(depth0,data) {

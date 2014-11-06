@@ -75,7 +75,7 @@ $table-control-row-bg-hover: #C8DEEE;
     position: relative;
 }
 
-.umi-table-control-column-resizer{
+.umi-table-control-column-resizer {
     position: absolute;
     right: 0;
     margin-right: -4px;
@@ -84,7 +84,7 @@ $table-control-row-bg-hover: #C8DEEE;
     height: 65px;
     top: 0;
     border: 0;
-    cursor: e-resize;
+    cursor: col-resize;
     &:hover{
         background: #444444;
     }
