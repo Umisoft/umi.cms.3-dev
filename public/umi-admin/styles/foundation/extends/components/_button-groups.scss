@@ -9,6 +9,7 @@
         float: none;
         display: inline-block;
         letter-spacing: normal;
+        vertical-align: top;
 
         > button, > .button, button, .button{
             border-color: $button-border-color;
