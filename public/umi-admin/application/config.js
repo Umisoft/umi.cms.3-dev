@@ -36,8 +36,8 @@ define([], function() {
                         ['rm'],
                         ['duplicate', 'rename'/*, 'edit'*/],
                         //                      ['extract', 'archive'], ['search'],
-                        ['view']
-                        // ['help']
+                        ['view'],
+                        ['help']
                     ]
                 }
             }

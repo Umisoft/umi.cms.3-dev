@@ -38,18 +38,19 @@
 
 /* folders tree container */
 .elfinder-tree {
-    display: table;
-    width: 100%;
-    margin: 0 0 .5em 0;
+    margin: 0 0 .5em 1em;
+    padding: 10px 0 20px;
 }
 
 /* one folder wrapper */
-.elfinder-navbar-wrapper .ui-state-active{
+.elfinder-navbar-wrapper .ui-state-active,
+.elfinder-navbar-wrapper .elfinder-navbar-dir {
     position: relative;
     z-index: 1;
 }
 
-.elfinder-navbar-wrapper .ui-state-active:after{
+.elfinder-navbar-wrapper .ui-state-active:after,
+.elfinder-navbar-wrapper .elfinder-navbar-dir:not(.ui-state-active):hover:after {
     content: '';
     position: absolute;
     display: block;
@@ -60,6 +61,9 @@
     height: 100%;
     background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 100%);
     background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
+}
+.elfinder-navbar-wrapper .elfinder-navbar-dir:not(.ui-state-active):hover:after {
+    background: #AFD3EC;
 }
 
 /* folder */
@@ -76,23 +80,23 @@
 
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-dir {
-    padding-left: 35px;
+    padding-left: 52px;
 }
 
 .elfinder-rtl .elfinder-navbar-dir {
-    padding-right: 35px;
+    padding-right: 52px;
 }
 
 /* arrow before icon */
 .elfinder-navbar-arrow {
-    width: 12px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
     position: absolute;
     display: none;
     top: 50%;
-    margin-top: -8px;
+    margin-top: -12px;
     background: url($umi-icons-img) no-repeat;
-    /*	border:1px solid #111;*/
 }
 
 .ui-state-active .elfinder-navbar-arrow {
@@ -106,18 +110,22 @@
 
 /* arrow ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-collapsed .elfinder-navbar-arrow {
-    background-position: -863px 0;
+    background-position: -858px 2px;
     left: 0;
 }
 
 .elfinder-rtl .elfinder-navbar-collapsed .elfinder-navbar-arrow {
-    background-position: -903px 0;
+    background-position: -858px 2px;
     right: 0;
 }
 
 .elfinder-ltr .elfinder-navbar-expanded .elfinder-navbar-arrow,
 .elfinder-rtl .elfinder-navbar-expanded .elfinder-navbar-arrow {
-    background-position: -883px 0;
+    background-position: -878px 2px;
+}
+
+.elfinder-navbar-arrow:hover {
+    background-color: #fff;
 }
 
 /* folder icon */
@@ -134,11 +142,11 @@
 
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-icon {
-    left: 14px;
+    left: 26px;
 }
 
 .elfinder-rtl .elfinder-navbar-icon {
-    right: 14px;
+    right: 26px;
 }
 
 /* root folder */
@@ -164,11 +172,11 @@
 
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-subtree {
-    margin-left: 12px;
+    margin-left: 20px;
 }
 
 .elfinder-rtl .elfinder-navbar-subtree {
-    margin-right: 12px;
+    margin-right: 20px;
 }
 
 /* spinner */
