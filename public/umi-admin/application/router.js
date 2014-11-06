@@ -1026,9 +1026,15 @@ define([], function() {
                                                 if (object && !object.get('trashed')) {
                                                     resolve(object);
                                                 } else {
+                                                    var errorMessage = UMI.i18n.getTranslate('Object') + ' ' +
+                                                        UMI.i18n.getTranslate('With').toLowerCase() +
+                                                        ' "id" ' + params.context + ' ' +
+                                                        UMI.i18n.getTranslate('Not found').toLowerCase() + '.';
+
                                                     reject(transition.send('templateLogs', {
-                                                        statusText: 'Object not found',
-                                                        message: 'Object with id "' + params.context + '" not found.'
+                                                        statusText: UMI.i18n.getTranslate('Object') + ' ' +
+                                                            UMI.i18n.getTranslate('Not found').toLowerCase(),
+                                                        message: errorMessage
                                                     }, 'component'));
                                                 }
                                             }
