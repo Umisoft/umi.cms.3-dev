@@ -225,8 +225,8 @@ main > ul.media-list ul.active {
 
 
 /** Footer **/
-footer {
-	background: #191919;
+footer, footer > div.container {
+	background-color: #191919;
 }
 footer section {
 	margin-top: 45px;
@@ -236,8 +236,7 @@ footer section:first-child {
 	margin-top: 30px;
 }
 footer section:last-child {
-	position: absolute;
-	right: 0;
+
 }
 footer h4 {
 	margin-bottom: 15px;
