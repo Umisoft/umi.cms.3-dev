@@ -146,7 +146,6 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
             ->select()
             ->where(Logdispatch::FIELD_RELEASE)->equals($release->getId())
             ->where(Logdispatch::FIELD_SUBSCRIBERS)->equals($subscriber->getId())
-            ->where(Logdispatch::FIELD_READ)->notEquals(true)
             ->limit(1)
             ->getResult()
             ->fetch();
@@ -229,14 +228,15 @@ class DispatchModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Создает лог рассылки
-     * @param string $typeName тип объекта
-     * @param string|Release $release выпуск рассылки или GUID выпуса рассылки
+     * @param Release $release выпуск рассылки или GUID выпуса рассылки
      * @param Subscriber $subscriber подписчик
+     * @param string $typeName тип объекта
      * @return Logdispatch
      */
-    public function addLogdispatch($typeName = IObjectType::BASE, $release, Subscriber $subscriber)
+    public function addLogdispatch(Release $release, Subscriber $subscriber, $typeName = IObjectType::BASE)
     {
         $logdispatch = $this->logdispatch()->add($typeName);
+        $logdispatch->displayName = "test log";
         if(is_string($release)){
             $release = $this->release()->get($release);
         }

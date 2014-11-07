@@ -65,6 +65,7 @@ class ImageSrcController extends BaseCmsController
          */
         $subscriber = $subscription->getProperty(Subscription::FIELD_SUBSCRIBER)->getValue();
         $this->module->setReadLogDispatch($release, $subscriber);
+        $this->commit();
 
         /**
          * @var $image - однопиксельная картинка

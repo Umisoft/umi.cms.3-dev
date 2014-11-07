@@ -57,8 +57,12 @@ return array_replace_recursive(
                 'columnName' => 'sent_message_count'
             ],
             Release::FIELD_VIEWED_MESSAGE_COUNT => [
-                'type'       => IField::TYPE_INTEGER,
-                'columnName' => 'viewed_message_count'
+                'type'       => IField::TYPE_COUNTER,
+                'columnName' => 'viewed_message_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateViewedMessageCount',
+                'readOnly'     => true
             ],
             Release::FIELD_UNSUBSCRIPTION_COUNT => [
                 'type'       => IField::TYPE_INTEGER,

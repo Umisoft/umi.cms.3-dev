@@ -11,6 +11,7 @@ namespace umicms\project\module\dispatches\model\object;
 
 use DateTime;
 use umicms\orm\object\CmsObject;
+use umicms\project\module\dispatches\model\collection\ReleaseCollection;
 
 /**
  * Выпуски рассылок.
@@ -90,6 +91,14 @@ class Release extends CmsObject
         }
 
         return ($this->viewedMessageCount / $this->sentMessageCount) * 100;
+    }
+
+    /**
+     * Вычисляет количество просмотреных выпусков рассылок.
+     * @return int
+     */
+    public function calculateViewedMessageCount()
+    {
     }
 
 }

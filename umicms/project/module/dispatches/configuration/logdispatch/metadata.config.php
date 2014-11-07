@@ -38,7 +38,7 @@ return array_replace_recursive(
         ],
                 'types'      => [
             'base' => [
-                'objectClass' => 'umicms\project\module\dispatches\model\object\Release',
+                'objectClass' => 'umicms\project\module\dispatches\model\object\Logdispatch',
                 'fields'      => [
                     Logdispatch::FIELD_RELEASE      => [],
                     Logdispatch::FIELD_SUBSCRIBERS  => [],
