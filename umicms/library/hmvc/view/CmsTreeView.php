@@ -110,7 +110,11 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
             foreach($categories[$parentId] as $item) {
                 $node = new CmsTreeNode($item, $this->buildTreeNodes($categories, $item->getId()));
                 if ($item instanceof ICmsPage) {
-                    $node->current = $this->hasPage($item);
+                    $node->current = ($this->hasCurrentPage() && $this->getCurrentPage() == $item);
+                    $node->active  = $this->hasPage($item);
+                } else {
+                    $node->current = false;
+                    $node->active  = false;
                 }
                 $nodes[] = $node;
             }
