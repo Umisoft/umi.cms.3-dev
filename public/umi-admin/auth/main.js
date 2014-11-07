@@ -228,8 +228,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], fu
 
                     // Проверяем есть ли шаблон и если нет то собираем его
                     if (!document.querySelector('.auth-layout')) {
-                        var helper = document.createElement('div');
-                        helper.innerHTML = self.TEMPLATES.app({
+                        document.body.insertAdjacentHTML('beforeend', self.TEMPLATES.app({
                             assetsUrl: assetsUrl,
                             outlet: self.TEMPLATES.index(
                                 {
@@ -239,9 +238,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation', 'Modernizr'], fu
                                     currentLocaleLabel: currentLocaleLabel
                                 }
                             )
-                        });
-                        helper = document.body.appendChild(helper);
-                        $(helper.firstElementChild).unwrap();
+                        }));
                     }
                     $('body').removeClass('loading');
 

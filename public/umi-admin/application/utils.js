@@ -18,11 +18,16 @@ define(['Modernizr'], function(Modernizr) {
 
         UMI.Utils.replacePlaceholder = function(object, pattern) {
             var deserialize;
+
+            if (!object) {
+                return pattern;
+            }
+
             deserialize = pattern.replace(/{\w+}/g, function(key) {
                 if (key) {
                     key = key.slice(1, -1);
                 }
-                return Ember.get(object, key) || key;//TODO: error handling
+                return Ember.get(object, key) || key;
             });
             return deserialize;
         };
@@ -113,45 +118,5 @@ define(['Modernizr'], function(Modernizr) {
 
         UMI.Utils.LS.init();
 
-        //Проверка браузера на мобильность
-        window.mobileDetection = {
-            Android: function() {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function() {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function() {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function() {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function() {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function() {
-                return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());
-            }
-        };
-
-        if (mobileDetection.any()) {
-            console.log('mobile');
-        }
-
-        //Проверка браузера на современность - проверка поддержки calc()
-        Modernizr.addTest('csscalc', function() {
-            var prop = 'width:';
-            var value = 'calc(10px);';
-            var el = document.createElement('div');
-            el.style.cssText = prop + Modernizr._prefixes.join(value + prop);
-            return !!el.style.length;
-        });
-
-        Modernizr.addTest('cssfilters', function() {
-            var el = document.createElement('div');
-            el.style.cssText = Modernizr._prefixes.join('filter' + ':blur(2px); ');
-            return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
-        });
     };
 });

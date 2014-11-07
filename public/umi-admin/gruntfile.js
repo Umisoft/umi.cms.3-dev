@@ -147,13 +147,12 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: './',
                 src: [
-                    'vendor/requirejs/require.js', 'vendor/requirejs-text/text.js', 'vendor/jquery/dist/jquery.js',
-                    'vendor/jquery-ui/jquery-ui.js', 'vendor/modernizr/modernizr.js', 'vendor/handlebars/handlebars.js',
+                    'vendor/requirejs/require.js', 'vendor/modernizr/modernizr.custom.js', 'vendor/requirejs-text/text.js',
+                    'vendor/jquery/dist/jquery.js', 'vendor/jquery-ui/jquery-ui.js', 'vendor/handlebars/handlebars.js',
                     'vendor/ember/ember.js', 'vendor/ember-data/ember-data.js', 'vendor/fastclick/lib/fastclick.js',
                     'vendor/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js',
                     'vendor/jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-addon-i18n.min.js',
-                    'vendorExtend/elFinder.js', 'vendor/iscroll/build/iscroll-probe.js',
-                    'vendor/momentjs/min/moment-with-langs.js', 'library/**'
+                    'vendor/iscroll/build/iscroll-probe.js', 'vendor/momentjs/min/moment-with-langs.js', 'library/**'
                 ],
                 dest: 'development'
             },
@@ -221,6 +220,16 @@ module.exports = function(grunt) {
                 src: ['vendor/jquery-ui/ui/i18n/datepicker-en-GB.js', 'vendor/jquery-ui/ui/i18n/datepicker-ru.js'],
 
                 dest: 'library/jquery-ui/datepicker-i18n.js'
+            },
+
+            modernizr: {
+                options: {
+                    separator: '\n'
+                },
+
+                src: ['vendor/modernizr/modernizr.js', 'vendor/modernizr/feature-detects/css-calc.js'],
+
+                dest: 'library/modernizr/modernizr.custom.js'
             }
         },
 
@@ -293,6 +302,8 @@ module.exports = function(grunt) {
     grunt.registerTask('svg', ['grunticon']);
 
     grunt.registerTask('foundation', ['concat:foundation']);
+
+    grunt.registerTask('modernizr', ['concat:modernizr']);
 
     grunt.registerTask('dev', [
         'copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass', 'autoprefixer', 'concat:development',
