@@ -9,7 +9,7 @@ define(['App', 'moment'], function(UMI, moment) {
                     return Foundation.utils.random_str();
                 }.property(),
 
-                dropdownClassName: null,
+                dropdownClassName: 'content small',
 
                 _button: {
                     classNameBindings: 'meta.attributes.class',
@@ -51,7 +51,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 iScroll: null,
 
-                dropdownClassName: 'content',
+                dropdownClassName: 'content small',
 
                 noBackupsLabel: null,
 
@@ -222,7 +222,15 @@ define(['App', 'moment'], function(UMI, moment) {
                         $el.children('[data-dropdown-content]').on('opened.fndtn.dropdown', function() {
                             if (isFirstLoad) {
                                 isFirstLoad = false;
-                                self.set('backupList', self.getBackupList());
+                                var promise = self.getBackupList();
+                                self.set('backupList', promise);
+                                promise.addObserver('isLoaded', function() {
+                                    if (Ember.get(promise, 'isLoaded')) {
+                                        Ember.run.next(this, function() {
+                                            $el.children('.button').foundation('dropdown', 'init');
+                                        });
+                                    }
+                                });
                             }
                         });
                     }
@@ -249,7 +257,7 @@ define(['App', 'moment'], function(UMI, moment) {
             DropdownButtonBehaviour.prototype.form = {
                 templateName: 'partials/dropdownButton/form',
 
-                dropdownClassName: 'content',
+                dropdownClassName: 'content small',
 
                 extendButton: {
                     dataOptions: function() {

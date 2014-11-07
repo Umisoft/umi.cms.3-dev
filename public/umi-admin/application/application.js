@@ -69,9 +69,7 @@ define(
              * @method buildRequest
              * @public
              */
-            buildRequest: function(object, fields) {
-                var store = object.get('store');
-                var collectionName = object.constructor.typeKey;
+            buildRequest: function(store, collectionName, fields) {
                 var model = store.modelFor(collectionName);
 
                 var nativeProperties = this.getNativeProperties(model, fields);
@@ -89,7 +87,7 @@ define(
                 var nativeProperties = [];
 
                 model.eachAttribute(function(name) {
-                    if (fields.contains(name)) {
+                    if (fields.contains(name) || name === 'trashed') {
                         nativeProperties.push(name);
                     }
                 });

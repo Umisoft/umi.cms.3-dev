@@ -14,7 +14,7 @@ define(
                 var promises = [];
                 fields = UMI.FormHelper.getNestedProperties(Ember.get(meta, 'elements'), ignoreTypes);
 
-                var request = UMI.OrmHelper.buildRequest(incompleteObject, fields);
+                var request = UMI.OrmHelper.buildRequest(store, collectionName, fields);
                 request.filters = {id: incompleteObject.get('id')};
                 promises.push(store.updateCollection(collectionName, request));
 
