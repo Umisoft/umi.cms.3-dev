@@ -100,65 +100,55 @@ define([], function() {
                 var deferred = Ember.RSVP.defer();
 
                 try {
-                    params.object.validateObject(Ember.get(params, 'fields'));
+                    params.object.save().then(
+                        function() {
+                            params.object.updateRelationshipsMap();
 
-                    if (!params.object.get('isValid')) {
-                        if (params.handler) {
-                            $(params.handler).removeClass('loading');
-                        }
+                            if (params.handler) {
+                                $(params.handler).removeClass('loading');
+                            }
 
-                        deferred.reject();
-                    } else {
-                        params.object.save().then(
-                            function() {
-                                params.object.updateRelationshipsMap();
+                            deferred.resolve(params.object);
+                        },
+
+                        function(results) {
+                            try {
+                                results = results || {};
 
                                 if (params.handler) {
                                     $(params.handler).removeClass('loading');
                                 }
 
-                                deferred.resolve(params.object);
-                            },
+                                var store = self.get('store');
+                                var collection;
+                                var object;
+                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                var invalidObject;
+                                var invalidProperties;
+                                var i;
 
-                            function(results) {
-                                try {
-                                    results = results || {};
-
-                                    if (params.handler) {
-                                        $(params.handler).removeClass('loading');
+                                if (Ember.typeOf(invalidObjects) === 'array') {*******
+                                    if (params.object.get('isValid')) {
+                                        params.object.send('becameInvalid');
                                     }
 
-                                    var store = self.get('store');
-                                    var collection;
-                                    var object;
-                                    var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
-                                    var invalidObject;
-                                    var invalidProperties;
-                                    var i;
+                                    for (i = 0; i < invalidObjects.length; i++) {
+                                        invalidObject = invalidObjects[i];
+                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                        collection = store.all(invalidObject.collection);
+                                        object = collection.findBy('guid', invalidObject.guid);
 
-                                    if (Ember.typeOf(invalidObjects) === 'array') {
-                                        if (params.object.get('isValid')) {
-                                            params.object.send('becameInvalid');
-                                        }
-
-                                        for (i = 0; i < invalidObjects.length; i++) {
-                                            invalidObject = invalidObjects[i];
-                                            invalidProperties = Ember.get(invalidObject, 'invalidProperties');
-                                            collection = store.all(invalidObject.collection);
-                                            object = collection.findBy('guid', invalidObject.guid);
-
-                                            if (object) {
-                                                object.setInvalidProperties(invalidProperties);
-                                            }
+                                        if (object) {
+                                            object.setInvalidProperties(invalidProperties);
                                         }
                                     }
-                                    deferred.reject();
-                                } catch (error) {
-                                    self.send('backgroundError', error);
                                 }
+                                deferred.reject();
+                            } catch (error) {
+                                self.send('backgroundError', error);
                             }
-                        );
-                    }
+                        }
+                    );
                 } catch (error) {
                     self.send('backgroundError', error);
                 } finally {

@@ -1,26 +1,11 @@
 define(['App'], function(UMI) {
     'use strict';
 
-
     return function() {
-        UMI.FormTimeElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
-            classNames: ['small-12', 'large-4'],
-
-            template: Ember.Handlebars.compile('{{view "timeElement" object=view.object meta=view.meta}}')
-        });
-
-        UMI.TimeElementView = Ember.View.extend(UMI.FormElementValidatable, {
+        UMI.TimeElementView = Ember.View.extend({
             templateName: 'partials/timeElement',
 
             classNames: ['row', 'collapse'],
-
-            focusOut: function() {
-                this.checkValidate();
-            },
-
-            focusIn: function() {
-                this.clearValidate();
-            },
 
             globalObject: window,
 
@@ -49,6 +34,12 @@ define(['App'], function(UMI) {
                     return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder name=meta.attributes.name}}');
                 }.property()
             })
+        });
+
+        UMI.FormTimeElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidateMixin, {
+            classNames: ['small-12', 'large-4'],
+
+            elementView: UMI.TimeElementView.extend(UMI.FormElementValidateHandlerMixin, {})
         });
     };
 });

@@ -51,7 +51,7 @@ define(['App'], function(UMI) {
                     var $el = this.$();
                     var checkbox = $el.find('input[type="checkbox"]')[0];
                     checkbox.checked = !checkbox.checked;
-                    $(checkbox).trigger("change");
+                    $(checkbox).trigger('change');
 
                     if (this.get('objectNeedChange')) {
                         Ember.set(this.get('meta'), 'value', checkbox.checked ? 1 : 0);
@@ -107,8 +107,6 @@ define(['App'], function(UMI) {
             actions: {
                 change: function() {
                     var self = this;
-                    var $el = this.$();
-                    var checkbox;
                     self.get('object').toggleProperty(self.get('meta.dataSource'));
                 }
             }

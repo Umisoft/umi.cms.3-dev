@@ -12,9 +12,7 @@ define(
                 objectBinding: 'model.object',
 
                 settings: function() {
-                    var settings = {};
-                    settings = this.get('controllers.component.settings');
-                    return settings;
+                    return this.get('controllers.component.settings');
                 }.property(),
 
                 inputElements: function() {
@@ -34,7 +32,7 @@ define(
                     return inputElements;
                 },
 
-                validationErrors: function() {
+                validationErrors: function() {***sdffsd//TODO: Вот это не сработает?
                     var validErrors = this.get('object.validErrors');
                     var stack = [];
                     var key;
@@ -63,11 +61,11 @@ define(
                     }
                 }.observes('object.validErrors.@each'),
 
-                actionWithCustomValidate: function(actionName, params) {
-                    var elements = this.inputElements();
-                    elements = elements.mapBy('dataSource');
-                    params.fields = elements;
-                    this.get('controllers.component').send(actionName, params);
+                actionWithCustomValidate: function(actionName, params) {//WTF?
+                    var isValid = this.validateForm();
+                    if (isValid) {
+                        this.get('controllers.component').send(actionName, params);
+                    }
                 },
 
                 actions: {

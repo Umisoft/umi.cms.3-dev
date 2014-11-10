@@ -2,33 +2,7 @@ define(['App'], function(UMI) {
     'use strict';
 
     return function() {
-        UMI.FormSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidatable, {
-            classNames: ['small-12', 'large-4'],
-
-            template: function() {
-                var selectView = '{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}';
-                this.set('isWrapperTemplate', true);
-                var validate = this.validateErrorsTemplate();
-                var template = selectView + validate;
-                return Ember.Handlebars.compile(template);
-            }.property()
-        });
-
         UMI.SelectView = Ember.Select.extend({
-            focusOut: function() {
-                var parentView = this.get('parentView');
-                if (Ember.canInvoke(parentView, 'checkValidate')) {
-                    parentView.checkValidate();
-                }
-            },
-
-            focusIn: function() {
-                var parentView = this.get('parentView');
-                if (Ember.canInvoke(parentView, 'clearValidate')) {
-                    parentView.clearValidate();
-                }
-            },
-
             attributeBindings: ['meta.dataSource:name'],
 
             optionLabelPath: function() {
@@ -77,37 +51,7 @@ define(['App'], function(UMI) {
             }
         });
 
-        UMI.FormSelectCollectionElementMixin = Ember.Mixin.create(UMI.FormCollectionElementMixin, UMI.FormElementValidatable, {
-            classNames: ['small-12', 'large-4'],
-
-            template: function() {
-                this.set('isWrapperTemplate', true);
-
-                if (this.get('meta.lazy')) {
-                    this.set('validatorType', 'collection');
-                }
-                var selectView = '{{view "selectCollection" object=view.object meta=view.meta}}';
-                var validate = this.validateErrorsTemplate();
-                var template = selectView + validate;
-                return Ember.Handlebars.compile(template);
-            }.property()
-        });
-
         UMI.SelectCollectionView = Ember.Select.extend({
-            focusOut: function() {
-                var parentView = this.get('parentView');
-                if (Ember.canInvoke(parentView, 'checkValidate')) {
-                    parentView.checkValidate();
-                }
-            },
-
-            focusIn: function() {
-                var parentView = this.get('parentView');
-                if (Ember.canInvoke(parentView, 'clearValidate')) {
-                    parentView.clearValidate();
-                }
-            },
-
             attributeBindings: ['meta.dataSource:name'],
 
             isLazy: false,
@@ -161,7 +105,6 @@ define(['App'], function(UMI) {
                 var object = self.get('object');
                 var property = self.get('meta.dataSource');
                 self.set('isLazy', self.get('meta.lazy'));
-                self.set('validatorType', 'collection');
 
                 if (self.get('isLazy')) {
                     var store = self.get('controller.store');
@@ -230,6 +173,18 @@ define(['App'], function(UMI) {
                 this.removeObserver('value');
                 this.removeObserver('object.' + this.get('meta.dataSource'));
             }
+        });
+
+        UMI.FormSelectElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidateMixin, {
+            classNames: ['small-12', 'large-4'],
+
+            elementView: UMI.SelectView.extend(UMI.FormElementValidateHandlerMixin, {}),
+
+            elementTemplate: '{{view view.elementView object=view.object meta=view.meta name=view.meta.attributes.name}}'
+        });
+
+        UMI.FormSelectCollectionElementMixin = Ember.Mixin.create(UMI.FormSelectElementMixin, {
+            elementView: UMI.SelectCollectionView.extend(UMI.FormElementValidateHandlerMixin, {})
         });
     };
 });

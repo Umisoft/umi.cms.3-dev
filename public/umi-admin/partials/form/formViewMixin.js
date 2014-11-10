@@ -39,7 +39,21 @@ define(
                  */
                 fieldsetElements: function() {
                     return this.get('formElements').filterBy('type', 'fieldset');
-                }.property('formElements.@each.type')
+                }.property('formElements.@each.type'),
+
+                isValid: true,
+
+                verifiableElements: [],
+
+                checkValid: function() {
+
+                },
+
+                validateForm: function() {
+                    this.get('verifiableElements').invoke('checkValidate');
+                    this.checkValid();
+                    return this.get('isValid');
+                }
             });
         };
     }

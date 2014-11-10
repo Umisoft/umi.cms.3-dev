@@ -2,12 +2,6 @@ define(['App'], function(UMI) {
     'use strict';
 
     return function() {
-        UMI.FormObjectRelationElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
-            classNames: ['small-12', 'large-4'],
-
-            template: Ember.Handlebars.compile('{{view "objectRelationElement" object=view.object meta=view.meta}}')
-        });
-
         UMI.ObjectRelationElementView = Ember.View.extend(UMI.SerializedValue, {
             templateName: 'partials/objectRelationElement',
 
@@ -42,7 +36,11 @@ define(['App'], function(UMI) {
                     var property = this.get('meta.dataSource');
                     self.set('value', '');
                     object.set(property, '');
-                    object.validateProperty(property);
+
+                    var parentView = this.get('parentView');
+                    if (Ember.canInvoke(parentView, 'checkValidate')) {
+                        parentView.checkValidate();
+                    }
                 },
 
                 showPopup: function(params) {
@@ -54,13 +52,19 @@ define(['App'], function(UMI) {
                 }
             },
 
-            inputView: Ember.View.extend(UMI.FormElementValidatable, {
+            inputView: Ember.View.extend({
                 focusOut: function() {
-                    this.checkValidate();
+                    var parentView = this.get('parentView.parentView');
+                    if (Ember.canInvoke(parentView, 'checkValidate')) {
+                        parentView.checkValidate();
+                    }
                 },
 
                 focusIn: function() {
-                    this.clearValidate();
+                    var parentView = this.get('parentView.parentView');
+                    if (Ember.canInvoke(parentView, 'checkValidate')) {
+                        parentView.clearValidate();
+                    }
                 },
 
                 type: 'text',
@@ -72,16 +76,19 @@ define(['App'], function(UMI) {
                 metaBinding: 'parentView.meta',
 
                 template: function() {
-                    var template;
+                    var template = '';
                     if (Ember.typeOf(this.get('object')) === 'instance') {
-                        this.set('validatorType', 'collection');
-                        var input = '{{input type=view.type value=view.parentView.value placeholder=view.meta.placeholder name=view.meta.attributes.name disabled=true}}';
-                        var validate = this.validateErrorsTemplate();
-                        template = input + validate;
+                        var template = '{{input type=view.type value=view.parentView.value placeholder=view.meta.placeholder name=view.meta.attributes.name disabled=true}}';
                     }
                     return Ember.Handlebars.compile(template);
                 }.property()
             })
+        });
+
+        UMI.FormObjectRelationElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidateMixin, {
+            classNames: ['small-12', 'large-4'],
+
+            elementView: UMI.ObjectRelationElementView.extend({})
         });
 
 
