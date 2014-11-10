@@ -260,4 +260,19 @@ footer section:first-child span {
 	margin-bottom: 10px;
 	color: #7f7f7f;
 }
+footer .social_like {
+	margin-top: 0;
+	li:first-child {
+		width: 99px;
+		&+li {
+			width: 77px;
+			&+li {
+				width: 164px;
+				&+li {
+					width: 98px;
+				}
+			}
+		}
+	}
+}
 /** Footer **/

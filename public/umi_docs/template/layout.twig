@@ -42,30 +42,30 @@
     {{ contents|raw }}
 
     <footer>
-        <div class="justify container">
-            <section class="toLeft">
+        <div class="container">
+            <section>
                 <img src="http://summit.umi-cms.ru/templates/summit/images/umicms-logo.png" />
                 {#TODO get (c) Umisoft from data #}
                 <span class="small">© ООО «Юмисофт» 2007-2014</span>
             </section>
-            <section class="toLeft">
+            <section>
                 {{ widget('structure.menu.auto', {'template' : 'columns'})|raw }}
             </section>
-            <section class="toRight">
-                <ul class="horizontal">
-                    <li style="width: 95px;">
+            <section>
+                <ul class="social_like horizontal">
+                    <li>
                         <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
                     </li>
-                    <li style="width: 75px;">
+                    <li>
                         <div class="g-plusone" data-recommendations="false" data-size="medium" data-href="http://developers.umi-cms.ru/"></div>
                     </li>
-                    <li style="width: 153px;">
+                    <li>
                         <div id="vk_like"></div>
                     </li>
-                    <li style="width: 100px;">
+                    <li>
                         <iframe width="80" height="20" frameborder="0" scrolling="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=Umisoft&amp;repo=umi-framework&amp;type=watch&amp;count=true"></iframe>
                     </li>
-                    <li style="width: 114px;">
+                    <li>
                         <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdevelopers.umi-cms.ru%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:108px; position:relative; top:1px; height:21px;" allowTransparency="true"></iframe>
                     </li>
                 </ul>

@@ -241,5 +241,7 @@
 }
 /** Large desktops ≥1200px **/
 @media (min-width: 1200px) {
-
+	footer section:last-child {
+		float: right;
+	}
 }

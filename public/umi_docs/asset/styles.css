@@ -321,6 +321,17 @@ footer section:first-child span {
   margin-bottom: 10px;
   color: #7f7f7f; }
 
+footer .social_like {
+  margin-top: 0; }
+  footer .social_like li:first-child {
+    width: 99px; }
+    footer .social_like li:first-child + li {
+      width: 77px; }
+      footer .social_like li:first-child + li + li {
+        width: 164px; }
+        footer .social_like li:first-child + li + li + li {
+          width: 98px; }
+
 /** Footer **/
 /* :root {
 	--outline-size: 0px;
@@ -566,5 +577,8 @@ footer section:first-child span {
   .twitter + main {
     margin-right: 420px; } }
 /** Large desktops тЙе1200px **/
+@media (min-width: 1200px) {
+  footer section:last-child {
+    float: right; } }
 
 /*# sourceMappingURL=styles.css.map */
