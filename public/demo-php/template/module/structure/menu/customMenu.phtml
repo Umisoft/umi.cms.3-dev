@@ -4,16 +4,21 @@
  * @var \umicms\hmvc\view\CmsTreeNode $node
  */
 ?>
-<?php if (count($tree) > 0) : ?>
+<?if (count($tree) > 0) : ?>
     <ul class="bottomMenu">
-        <?php foreach ($tree as $node) : ?>
-            <li>
+        <?foreach ($tree as $node) : ?>
+            <?$ac = $node->getArrayCopy();?>
+            <li <?if($node->active):?>class="active"<?endif?>>
+                <?if($node->current):?>
+                    <?=$node->item->displayName?>
+                <?else:?>
                 <a href="<?= $node->item->getItemUrl() ?: $this->anchor() ?>"
-                    <?php echo $node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
+                    <?=$node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
                     <?=$node->item->displayName?>
                 </a>
+                <?endif?>
                 <?= $this->render('customMenu.phtml', ['tree' => $node->children]); ?>
             </li>
-        <?php endforeach;?>
+        <?endforeach;?>
     </ul>
-<?php endif; ?>
+<?endif;?>
