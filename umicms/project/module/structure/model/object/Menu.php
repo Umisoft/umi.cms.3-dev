@@ -10,16 +10,16 @@
 
 namespace umicms\project\module\structure\model\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * Составное меню.
  */
-class Menu extends CmsHierarchicObject
+class Menu extends CmsHierarchicObject implements IActiveAccessibleObject
 {
     /**
      * Тип объекта
      */
     const TYPE = 'menu';
 }
- 

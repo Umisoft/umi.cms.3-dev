@@ -19,6 +19,7 @@ use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/active.config.php',
     [
         'dataSource' => [
             'sourceName' => 'menu'

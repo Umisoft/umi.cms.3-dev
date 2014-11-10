@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\structure\model\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
@@ -18,7 +19,7 @@ use umicms\orm\object\ICmsPage;
  *
  * @property ICmsPage $pageRelation связанная страница
  */
-class MenuInternalItem extends CmsHierarchicObject implements IMenuItem
+class MenuInternalItem extends CmsHierarchicObject implements IMenuItem, IActiveAccessibleObject
 {
     /**
      * Тип объекта

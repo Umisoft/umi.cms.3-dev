@@ -10,12 +10,14 @@
 
 namespace umicms\project\module\structure\model\collection;
 
+use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 
 /**
  * Коллекция для работы с меню.
  */
-class MenuCollection extends CmsHierarchicCollection
+class MenuCollection extends CmsHierarchicCollection implements IActiveAccessibleCollection
 {
-
+    use TActiveAccessibleCollection;
 }

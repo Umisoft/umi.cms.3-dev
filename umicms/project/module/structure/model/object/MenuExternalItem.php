@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\structure\model\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
@@ -17,7 +18,7 @@ use umicms\orm\object\CmsHierarchicObject;
 
  * @property string $resourceUrl ссылка на сторонний ресурс
  */
-class MenuExternalItem extends CmsHierarchicObject implements IMenuItem
+class MenuExternalItem extends CmsHierarchicObject implements IMenuItem, IActiveAccessibleObject
 {
     /**
      * Тип объекта
