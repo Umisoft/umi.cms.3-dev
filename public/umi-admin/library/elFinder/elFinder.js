@@ -4193,10 +4193,11 @@ elFinder.prototype.command = function(fm) {
 
 
 ;
-$.fn.elfinderoverlay = function(opts) {
+$.fn.elfinderoverlay = function(what) {
 
-    this.filter(':not(.elfinder-overlay)').each(function() {
-        opts = $.extend({}, opts);
+    var $elfinder = $('.elfinder');
+    this.each(function() {
+       var opts = $.extend({}, what);
         $(this).addClass('ui-widget-overlay elfinder-overlay').hide().mousedown(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -4209,7 +4210,7 @@ $.fn.elfinderoverlay = function(opts) {
             });
     });
 
-    if (opts == 'show') {
+    if (what == 'show') {
         var o = this.eq(0), cnt = o.data('cnt') + 1, show = o.data('show');
 
         o.data('cnt', cnt);
@@ -4221,7 +4222,7 @@ $.fn.elfinderoverlay = function(opts) {
         }
     }
 
-    if (opts == 'hide') {
+    if (what == 'hide') {
         var o = this.eq(0), cnt = o.data('cnt') - 1, hide = o.data('hide');
 
         o.data('cnt', cnt);
@@ -4376,7 +4377,7 @@ $.fn.elfinderdialog = function(opts) {
                                 d.trigger('totop');
                                 return false;
                             }
-                        })
+                        });
                     } else {
                         // return focus to parent
                         setTimeout(function() {
@@ -4393,6 +4394,7 @@ $.fn.elfinderdialog = function(opts) {
                 }).bind('totop', function() {
                     $(this).mousedown().find('.ui-button:first').focus().end().find(':text:first').focus();
                     $(this).data('modal') && overlay.elfinderoverlay('show');
+
                     overlay.zIndex($(this).zIndex());
                 }).data({modal: opts.modal}), maxZIndex = function() {
                 var z = parent.zIndex() + 10;
@@ -4404,7 +4406,7 @@ $.fn.elfinderdialog = function(opts) {
                             z = _z;
                         }
                     }
-                })
+                });
                 return z;
             }, top;
 
@@ -4475,7 +4477,7 @@ $.fn.elfinderdialog = function(opts) {
 $.fn.elfinderdialog.defaults = {
     cssClass: '',
     title: '',
-    modal: false,
+    modal: true,
     resizable: true,
     autoOpen: true,
     closeOnEscape: true,

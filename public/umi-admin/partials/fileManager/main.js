@@ -31,7 +31,16 @@ define(['App'], function(UMI) {
                     url: window.UmiSettings.baseApiURL + '/files/manager/action/connector',
                     getFileCallback: function(fileInfo) {
                         self.fileSelect(fileInfo);
-                    }
+                    }/*,
+                    handlers: {
+                        init: function() {
+                            var $wrapper = $('<div class="umi-tree-wrapper"></div>');
+                            $('.elfinder-tree').wrap($wrapper);
+                            var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                            var contentScroll = new IScroll($wrapper[0], iScrollConfiguration);
+                        }
+
+                    }*/
             })).elfinder('instance');
 
             $('.elfinder-navbar').on('mousedown.umi.fileManager', '.elfinder-navbar-div', function() {

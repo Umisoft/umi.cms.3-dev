@@ -324,10 +324,9 @@
 .elfinder-dialog .ui-tabs .ui-tabs-nav li a { padding:.2em 1em;}
 
 .elfinder-help-shortcuts {
-	height:300px;
-	padding:1em;
-	margin:.5em 0;
-	overflow:auto;
+	height: 300px;
+	padding: 1em;
+	margin: .5em 0;
 }
 .elfinder-help-shortcut { white-space:nowrap; clear:both;}
 
@@ -397,6 +396,7 @@
 	position:absolute;
 	left:0;
 	top:45px;
+    line-height: 1.4em;
 }
 
 
