@@ -88,7 +88,7 @@ class AutoMenu implements ILocalizable, IPageCallStackAware
 
             $pageInfo = ['page' => $page];
             $pageInfo['active'] = $this->hasPage($page);
-            $pageInfo['current'] = ($this->hasCurrentPage() && $this->getCurrentPage() === $page);
+            $pageInfo['current'] = $this->isCurrent($page);
             if ($depth && ($this->checkIfSubmenuAlwaysShown($page) || $this->checkIfCurrentSubmenuShown($page))) {
                 $pageInfo['children'] = $this->getMenuItems($page, $depth - 1);
             } else {

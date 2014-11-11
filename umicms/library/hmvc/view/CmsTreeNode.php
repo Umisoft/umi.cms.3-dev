@@ -17,6 +17,8 @@ use umicms\orm\object\CmsHierarchicObject;
  *
  * @property CmsTreeNode[] $children список детей элемента
  * @property CmsHierarchicObject $item элемент
+ * @property bool $current флаг, что текущий элемент активен
+ * @property bool $active флаг, что текущий элемент присутствует в стеке вызова страниц
  */
 class CmsTreeNode extends \ArrayObject
 {
@@ -27,7 +29,7 @@ class CmsTreeNode extends \ArrayObject
      */
     public function __construct(CmsHierarchicObject $item, array $children)
     {
-        parent::__construct(['item' => $item, 'children' => $children], self::ARRAY_AS_PROPS | self::STD_PROP_LIST);
+        parent::__construct(['item' => $item, 'children' => $children, 'current' => false, 'active' => false], self::ARRAY_AS_PROPS | self::STD_PROP_LIST);
     }
 
     /**

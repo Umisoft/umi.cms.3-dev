@@ -19,6 +19,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 /**
  * Представление дерева.
@@ -109,13 +110,7 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
             /** @var CmsHierarchicObject|ICmsPage $item */
             foreach($categories[$parentId] as $item) {
                 $node = new CmsTreeNode($item, $this->buildTreeNodes($categories, $item->getId()));
-                if ($item instanceof ICmsPage) {
-                    $node->current = ($this->hasCurrentPage() && $this->getCurrentPage() === $item);
-                    $node->active  = $this->hasPage($item);
-                } else {
-                    $node->current = false;
-                    $node->active  = false;
-                }
+                $this->setCurrentAndActive($node);
                 $nodes[] = $node;
             }
         }
@@ -143,6 +138,26 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
         }
 
         return $parentId;
+    }
+
+    /**
+     * Определяет значения флагов active и current для ноды дерева.
+     * @param CmsTreeNode $node
+     */
+    private function setCurrentAndActive(CmsTreeNode $node)
+    {
+        $item = $node->item;
+        if ($item instanceof ICmsPage) {
+            $node->current = $this->isCurrent($item);
+            $node->active = $this->hasPage($item);
+        } elseif ($item instanceof MenuInternalItem) {
+            /** @var MenuInternalItem $item */
+            $node->current = $this->isCurrent($item->pageRelation);
+            $node->active = $this->hasPage($item->pageRelation);
+        } else {
+            $node->current = false;
+            $node->active = false;
+        }
     }
 }
  

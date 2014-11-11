@@ -38,12 +38,22 @@
 
     <xsl:template match="tree/item" mode="bottomMenu">
         <li>
-            <a href="{@url}">
-                <xsl:if test="@type='externalItem'">
-                    <xsl:attribute name="target">blank</xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="@displayName" />
-            </a>
+            <xsl:attribute name="class">
+                <xsl:if test="active = 1">active</xsl:if>
+            </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="current = 1">
+                    <xsl:value-of select="@displayName" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <a href="{@url}">
+                        <xsl:if test="@type='externalItem'">
+                            <xsl:attribute name="target">blank</xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="@displayName" />
+                    </a>
+                </xsl:otherwise>
+            </xsl:choose>
         </li>
     </xsl:template>
 

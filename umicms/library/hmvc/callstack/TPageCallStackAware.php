@@ -90,5 +90,15 @@ trait TPageCallStackAware
         }
         return false;
     }
+
+    /**
+     * Проверяет, является ли страница текущей
+     * @param ICmsPage $page
+     * @return bool
+     */
+    protected function isCurrent(ICmsPage $page)
+    {
+        return ($this->hasCurrentPage() && $this->getCurrentPage() === $page);
+    }
 }
  
