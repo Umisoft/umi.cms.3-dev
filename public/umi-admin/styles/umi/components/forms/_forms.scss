@@ -38,8 +38,12 @@ form{
     }
 }
 
-.umi-form-control .magellan-content{
+.umi-form-control .magellan-content {
     height: auto !important;
+
+    & + .iScrollVerticalScrollbar {
+        top: 40px !important;
+    }
 }
 
 .umi-form-control-buttons{

@@ -60,7 +60,7 @@ define(['App'], function(UMI) {
                         scrollAreaHeight = scrollArea.parent().height();
                         placeholder.style.height = scrollAreaHeight - lastFieldsetHeight - 10 -
                         parseInt($(lastFieldset).css('marginBottom')) + 'px';
-                        $body.trigger('formcontroll.heightChange');
+                        $body.trigger('resize.umi.formcontroll');
                     };
 
                     if (scrollAreaHeight > lastFieldsetHeight) {
@@ -73,8 +73,15 @@ define(['App'], function(UMI) {
                         });
                     }
 
-                    self.set('scrollContent', new IScroll(scrollArea.parent()[0], UMI.config.iScroll));
-                    $body.on('formcontroll.heightChange', function() {
+                    self.set('scrollContent', new IScroll(scrollArea.parent()[0],
+                        $.extend({}, UMI.config.iScroll, {
+                                preventDefaultException: {
+                                    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LABEL|SPAN)$/,
+                                    className: /^(cke_resizer)$/
+                            }
+                        }
+                    )));
+                    $body.on('resize.umi.formcontroll', function() {
                         self.get('scrollContent').refresh();
                     });
 
@@ -97,7 +104,7 @@ define(['App'], function(UMI) {
                     });
 
                     scrollArea.find('legend').on('click.umi.magellan', function() {
-                        $body.trigger('formcontroll.heightChange');
+                        $body.trigger('resize.umi.formcontroll');
                     });
 
                 });

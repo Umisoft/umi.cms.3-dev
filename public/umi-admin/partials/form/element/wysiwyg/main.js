@@ -81,7 +81,7 @@ define(['App'], function(UMI) {
         var $body = $('body');
         CKEDITOR.on('instanceCreated', function(ev) {
             ev.editor.on('resize', function() {
-                $body.trigger('formcontroll.heightChange');
+                $body.trigger('resize.umi.formcontroll');
             });
         });
 
