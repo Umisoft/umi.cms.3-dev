@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templates) {
+define(['auth/templates', 'Handlebars', 'jquery', 'Modernizr', 'Foundation'], function(templates) {
     'use strict';
 
     /**
@@ -7,7 +7,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
      * @param {Boolean} [authParams.appIsFreeze] Приложение уже загружено
      * @param {HTMLElement} appLayout корневой DOM элемент приложения
      */
-    return function(authParams) {
+    return function(authParams, callback) {
         /**
          * Сбрасываем настройки ajax установленые админ приложением (появляются после выхода из системы)
          */
@@ -51,11 +51,11 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
              * @param {null|String} action
              * @returns Object $.Deferred
              */
-            getForm: function(action) {
+            getForm: function(action, parametrs) {
                 var deferred = $.Deferred();
                 action = action || 'form';
                 var self = this;
-                $.get(window.UmiSettings.baseApiURL + '/action/' + action).then(function(results) {
+                $.get(window.UmiSettings.baseApiURL + '/action/' + action + '?' + parametrs).then(function(results) {
                     self.forms[action] = results.result.form;
                     deferred.resolve();
                 });
@@ -167,7 +167,7 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                 if (authParams.appIsFreeze) {
                     window.applicationLoading.resolve();
-                    $(authParams.appLayout).removeClass('off fade-out');
+                    $(authParams.appLayout).removeClass('off fade-out fade-out-def');
                     removeAuth();
                 } else {
                     require(['application/main'], function(application) {
@@ -203,15 +203,16 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                  */
                 templates(self);
 
-                this.getForm('form').then(function() {
-                    var currentLocale = self.cookie.get('auth-locale');
-                    var options;
-                    var currentLocaleLabel;
 
-                    if (!currentLocale && window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
-                        currentLocale = window.UmiSettings.locale;
-                    }
+                var currentLocale = self.localStorage('locale');
+                var options;
+                var currentLocaleLabel;
 
+                if (!currentLocale && window.UmiSettings && window.UmiSettings.hasOwnProperty('locale')) {
+                    currentLocale = window.UmiSettings.locale;
+                }
+
+                self.getForm('form', 'locale=' + currentLocale).then(function() {
                     try {
                         options = self.forms.form.elements[2].choices;
                         currentLocale = currentLocale || options[0].value;
@@ -247,6 +248,8 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                     $(document.querySelector('.auth-layout')).foundation();
 
+                    $('input[name="login"]').focus();
+
                     var bubbles = document.querySelector('.bubbles');
                     var bubblesFront = document.querySelector('.bubbles-front');
                     var parallax = function(event) {
@@ -277,9 +280,9 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
 
                         var locale = $(this).data('locale');
 
-                        if (locale && self.cookie.get('auth-locale') !== locale) {
-                            self.cookie.set('auth-locale', locale, {path: '/'});
-                            window.location.href = window.location.href;
+                        if (locale && self.localStorage('locale') !== locale) {
+                            self.localStorage('locale', locale);
+                            window.location.reload();
                         }
                     });
 
@@ -331,6 +334,10 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                         });
                         return false;
                     });
+
+                    if (typeof callback === 'function') {
+                        callback.call(self);
+                    }
                 });
             },
 
@@ -338,47 +345,11 @@ define(['auth/templates', 'Handlebars', 'jquery', 'Foundation'], function(templa
                 $(document).off('.umi.auth');
             },
 
-            cookie: {
-                get: function(name) {
-                    var matches = document.cookie.match(new RegExp(
-                        '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
-                    ));
-                    return matches ? decodeURIComponent(matches[1]) : undefined;
-                },
-
-                set: function(name, value, options) {
-                    options = options || {};
-
-                    var expires = options.expires;
-
-                    if (typeof expires === 'number' && expires) {
-                        var d = new Date();
-                        d.setTime(d.getTime() + expires * 1000);
-                        expires = options.expires = d;
-                    }
-                    if (expires && expires.toUTCString) {
-                        options.expires = expires.toUTCString();
-                    }
-
-                    value = encodeURIComponent(value);
-
-                    var updatedCookie = name + '=' + value;
-
-                    for (var propName in options) {
-                        if (options.hasOwnProperty(propName)) {
-                            updatedCookie += '; ' + propName;
-                            var propValue = options[propName];
-                            if (propValue !== true) {
-                                updatedCookie += '=' + propValue;
-                            }
-                        }
-                    }
-
-                    document.cookie = updatedCookie;
-                },
-
-                delete: function(name) {
-                    Auth.cookie.set(name, '', { expires: -1 });
+            localStorage: function(key, val) {
+                if (typeof val === 'undefined') {
+                    return window.localStorage.getItem(key);
+                } else {
+                    return window.localStorage.setItem(key, val);
                 }
             }
         };
