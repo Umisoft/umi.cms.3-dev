@@ -8,8 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\structure\model\object\Layout;
 
 return [
@@ -30,14 +32,27 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => Layout::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => Layout::FIELD_DISPLAY_NAME
+                        'dataSource' => Layout::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ],
                 Layout::FIELD_FILE_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => Layout::FIELD_FILE_NAME,
                     'options' => [
-                        'dataSource' => Layout::FIELD_FILE_NAME
+                        'dataSource' => Layout::FIELD_FILE_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters'       => [
+                            IFilterFactory::TYPE_STRING_TRIM => []
+                        ],
                     ],
                 ]
             ]

@@ -9,6 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\service\model\object\Backup;
 
 return array_replace_recursive(
@@ -20,11 +21,17 @@ return array_replace_recursive(
         'fields' => [
             Backup::FIELD_OBJECT_ID => [
                 'type' => IField::TYPE_INTEGER,
-                'columnName' => 'object_id'
+                'columnName' => 'object_id',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             Backup::FIELD_REF_COLLECTION_NAME => [
                 'type' => IField::TYPE_STRING,
-                'columnName' => 'collection_name'
+                'columnName' => 'collection_name',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             Backup::FIELD_DATA => [
                 'type' => IField::TYPE_TEXT,

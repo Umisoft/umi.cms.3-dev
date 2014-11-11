@@ -8,9 +8,11 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Image;
 use umicms\project\module\structure\model\object\InfoBlock;
 
@@ -32,14 +34,28 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => InfoBlock::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_DISPLAY_NAME
+                        'dataSource' => InfoBlock::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ],
                 InfoBlock::FIELD_INFOBLOCK_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => InfoBlock::FIELD_INFOBLOCK_NAME,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME
+                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ]
             ]

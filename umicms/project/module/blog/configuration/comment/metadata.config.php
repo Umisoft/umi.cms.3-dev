@@ -32,13 +32,19 @@ return array_replace_recursive(
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'post_id',
                 'target' => 'blogPost',
-                'mutator' => 'setPost'
+                'mutator' => 'setPost',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             BlogComment::FIELD_AUTHOR => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
                 'target' => 'blogAuthor',
-                'mutator' => 'setAuthor'
+                'mutator' => 'setAuthor',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
             ],
             BlogComment::FIELD_CONTENTS => [
                 'type' => IField::TYPE_TEXT,

@@ -22,20 +22,6 @@ return array_replace_recursive(
             'sourceName' => 'blog_post'
         ],
         'fields' => [
-            BlogPost::FIELD_PAGE_H1 => [
-                'localizations' => [
-                    'ru-RU' => [
-                        'filters' => [
-                            IFilterFactory::TYPE_STRIP_TAGS => []
-                        ]
-                    ],
-                    'en-US' => [
-                        'filters' => [
-                            IFilterFactory::TYPE_STRIP_TAGS => []
-                        ]
-                    ]
-                ]
-            ],
             BlogPost::FIELD_PUBLISH_TIME => [
                 'type' => IField::TYPE_DATE_TIME,
                 'columnName' => 'publish_time'
@@ -104,7 +90,10 @@ return array_replace_recursive(
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'author_id',
                 'target' => 'blogAuthor',
-                'mutator' => 'setAuthor'
+                'mutator' => 'setAuthor',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
             BlogPost::FIELD_TAGS => [
                 'type' => IField::TYPE_MANY_TO_MANY,

@@ -10,7 +10,6 @@
 
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
-use umi\validation\IValidatorFactory;
 use umicms\orm\object\CmsObject;
 
 /**
@@ -49,9 +48,6 @@ return [
             'localizations' => [
                 'ru-RU' => [
                     'columnName' => 'display_name',
-                    'validators' => [
-                        IValidatorFactory::TYPE_REQUIRED => []
-                    ],
                     'filters' => [
                         IFilterFactory::TYPE_STRING_TRIM => [],
                         IFilterFactory::TYPE_STRIP_TAGS => []
@@ -59,9 +55,6 @@ return [
                 ],
                 'en-US' => [
                     'columnName' => 'display_name_en',
-                    'validators' => [
-                        IValidatorFactory::TYPE_REQUIRED => []
-                    ],
                     'filters' => [
                         IFilterFactory::TYPE_STRING_TRIM => [],
                         IFilterFactory::TYPE_STRIP_TAGS => []

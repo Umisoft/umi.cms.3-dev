@@ -45,7 +45,13 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_DISPLAY_NAME,
             'options' => [
-                'dataSource' => BlogPost::FIELD_DISPLAY_NAME
+                'dataSource' => BlogPost::FIELD_DISPLAY_NAME,
+                'filters'    => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ],
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
         ],
         BlogPost::FIELD_PAGE_H1 => [

@@ -8,8 +8,10 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\structure\model\object\MenuExternalItem;
 
 return [
@@ -30,7 +32,13 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => MenuExternalItem::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => MenuExternalItem::FIELD_DISPLAY_NAME
+                        'dataSource' => MenuExternalItem::FIELD_DISPLAY_NAME,
+                        'filters'    => [
+                            IFilterFactory::TYPE_STRING_TRIM => []
+                        ],
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ]
                     ],
                 ]
             ]
@@ -44,7 +52,13 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => MenuExternalItem::FIELD_RESOURCE_URL,
                     'options' => [
-                        'dataSource' => MenuExternalItem::FIELD_RESOURCE_URL
+                        'dataSource' => MenuExternalItem::FIELD_RESOURCE_URL,
+                        'filters'    => [
+                            IFilterFactory::TYPE_STRING_TRIM => []
+                        ],
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ]
                     ],
                 ]
             ]
