@@ -78,6 +78,12 @@ define(['App'], function(UMI) {
                 });
             }
         });
+        var $body = $('body');
+        CKEDITOR.on('instanceCreated', function(ev) {
+            ev.editor.on('resize', function() {
+                $body.trigger('formcontroll.heightChange');
+            });
+        });
 
         UMI.FormHtmlEditorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
             classNames: 'small-12',

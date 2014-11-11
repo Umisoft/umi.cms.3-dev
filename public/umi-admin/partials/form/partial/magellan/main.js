@@ -18,9 +18,10 @@ define(['App'], function(UMI) {
 
                 click: function() {
                     var self = this;
-                    var fieldset = document.querySelector('.umi-fieldset-' + this.get('model.id'));
-                    $(fieldset).closest('.magellan-content').animate({'scrollTop': fieldset.offsetTop -
-                    parseFloat(getComputedStyle(fieldset).marginTop)}, 0);
+                    var $fieldset = $('.umi-fieldset-' + this.get('model.id'));
+                    var scrollContent = self.get('parentView.scrollContent');
+                    scrollContent.scrollTo(0, - $fieldset.position().top +
+                    parseInt($fieldset.css('marginTop').replace('px', '')));
                     setTimeout(function() {
                         if (self.get('parentView.focusId') !== self.get('model.id')) {
                             self.get('parentView').set('focusId', self.get('model.id'));
@@ -28,6 +29,8 @@ define(['App'], function(UMI) {
                     }, 10);
                 }
             }),
+
+            scrollContent: null,
 
             init: function() {
                 this._super();
@@ -38,6 +41,7 @@ define(['App'], function(UMI) {
             didInsertElement: function() {
                 var self = this;
                 var scrollArea = this.$().parent().find('.magellan-content');
+                var $body = $('body');
 
                 if (!scrollArea.length) {
                     return;
@@ -53,9 +57,10 @@ define(['App'], function(UMI) {
 
                     var setPlaceholderHeight = function(placeholder) {
                         lastFieldsetHeight = lastFieldset.offsetHeight;
-                        scrollAreaHeight = scrollArea[0].offsetHeight;
+                        scrollAreaHeight = scrollArea.parent().height();
                         placeholder.style.height = scrollAreaHeight - lastFieldsetHeight - 10 -
                         parseInt($(lastFieldset).css('marginBottom')) + 'px';
+                        $body.trigger('formcontroll.heightChange');
                     };
 
                     if (scrollAreaHeight > lastFieldsetHeight) {
@@ -67,6 +72,11 @@ define(['App'], function(UMI) {
                             setPlaceholderHeight(placeholderFieldset);
                         });
                     }
+
+                    self.set('scrollContent', new IScroll(scrollArea.parent()[0], UMI.config.iScroll));
+                    $body.on('formcontroll.heightChange', function() {
+                        self.get('scrollContent').refresh();
+                    });
 
                     scrollArea.on('scroll.umi.magellan', function() {
                         var scrollOffset = $(this).scrollTop();
@@ -85,6 +95,11 @@ define(['App'], function(UMI) {
                             self.set('focusId', focusField.className.replace(/umi-fieldset-|ember-view|\s/g, ''));
                         }
                     });
+
+                    scrollArea.find('legend').on('click.umi.magellan', function() {
+                        $body.trigger('formcontroll.heightChange');
+                    });
+
                 });
             }
         });
