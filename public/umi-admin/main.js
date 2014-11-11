@@ -5,7 +5,7 @@ require.config({
         App: 'application/application',
         jquery: 'vendor/jquery/dist/jquery',
         jqueryUI: 'vendor/jquery-ui/jquery-ui',
-        Modernizr: 'vendor/modernizr/modernizr',
+        Modernizr: 'library/modernizr/modernizr.custom',
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',
         DS: 'vendor/ember-data/ember-data',
@@ -58,23 +58,48 @@ require.config({
     ]
 });
 
-require(['jquery'], function() {
+
+require(['Modernizr'], function() {
     'use strict';
+    var checkBrowser = function() {
+        return (Modernizr.history && Modernizr.cssgradients && Modernizr.csscalc);
+    };
 
-    var deffer = $.get(window.UmiSettings.authUrl);
+    if (!checkBrowser()) {
+        require(['text!auth/templates/badBrowser.hbs', 'Handlebars'],
+            function(badBrowser) {
+                var assetsUrl = window.UmiSettings && window.UmiSettings.assetsUrl;
+                badBrowser = Handlebars.compile(badBrowser);
+                document.body.insertAdjacentHTML('beforeend', badBrowser({
+                    assetsUrl: assetsUrl}));
+            });
 
-    deffer.done(function(data) {
-        if (data.result) {
-            $.extend(window.UmiSettings, data.result.auth);
-        }
-        require(['application/main'], function(application) {
-            application();
+    } else {
+        require(['jquery'], function() {
+            var deffer = $.get(window.UmiSettings.authUrl);
+
+            deffer.done(function(data) {
+                var objectMerge = function(objectBase, objectProperty) {
+                    for (var key in objectProperty) {
+                        if (objectProperty.hasOwnProperty(key)) {
+                            objectBase[key] = objectProperty[key];
+                        }
+                    }
+                };
+
+                if (data.result) {
+                    objectMerge(window.UmiSettings, data.result.auth);
+                }
+                require(['application/main'], function(application) {
+                    application();
+                });
+            });
+
+            deffer.fail(function(error) {
+                require(['auth/main'], function(auth) {
+                    auth({accessError: error});
+                });
+            });
         });
-    });
-
-    deffer.fail(function(error) {
-        require(['auth/main'], function(auth) {
-            auth({accessError: error});
-        });
-    });
+    }
 });
