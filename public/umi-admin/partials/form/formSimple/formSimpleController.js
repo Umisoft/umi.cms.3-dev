@@ -9,6 +9,10 @@ define(
 
                 actions: {
                     submit: function(params) {
+                        if (this.validateForm()) {
+                            return;
+                        }
+
                         var form = Ember.get(params, 'form');
                         var handler = Ember.get(params, 'handler');
                         var data = form.$().serialize();

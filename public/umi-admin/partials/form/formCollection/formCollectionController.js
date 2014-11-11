@@ -32,7 +32,7 @@ define(
                     return inputElements;
                 },
 
-                validationErrors: function() {***sdffsd//TODO: Вот это не сработает?
+                validationErrors: function() {//***sdffsdTODO: Вот это не сработает?
                     var validErrors = this.get('object.validErrors');
                     var stack = [];
                     var key;

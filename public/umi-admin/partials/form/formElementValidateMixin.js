@@ -87,8 +87,20 @@ define(
                     Ember.set(meta, 'errors', []);
                 },
 
-                init: function() {
-                    this.super();
+                _observeValidateEvent: function() {
+                    this._validate();
+                    var InvalidElements = this.get('controller.InvalidElements');
+                    var elementId = this.get('elementId');
+
+                    if (this.get('validateErrors')) {
+                        InvalidElements.push(elementId);
+                    } else {
+                        InvalidElements.remove(elementId);
+                    }
+                }.observes('controller.needsValidateForm'),
+
+                willDestroyElement: function() {
+                    this.removeObserver('controller.needsValidateForm');
                 }
             });
 

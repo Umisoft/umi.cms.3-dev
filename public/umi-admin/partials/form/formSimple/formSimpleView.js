@@ -27,12 +27,6 @@ define(
 
                 actions: {
                     submit: function(handler) {
-                        this.validateForm();
-
-                        if (!this.get('isValid')) {
-                            return;
-                        }
-
                         var params = {
                             handler: handler,
                             form: this

@@ -10,7 +10,16 @@ define(
                 localDictionary: function() {
                     var form = this.get('control') || {};
                     return form.i18n;
-                }.property()
+                }.property(),
+
+                InvalidElements: Ember.Set.create([]),
+
+                needsValidateForm: false,
+
+                validateForm: function() {
+                    this.toggleProperty('needsValidateForm');
+                    return this.get('InvalidElements.length');
+                }
             });
         };
     }

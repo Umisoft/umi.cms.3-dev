@@ -127,7 +127,7 @@ define([], function() {
                                 var invalidProperties;
                                 var i;
 
-                                if (Ember.typeOf(invalidObjects) === 'array') {*******
+                                if (Ember.typeOf(invalidObjects) === 'array') {//*******
                                     if (params.object.get('isValid')) {
                                         params.object.send('becameInvalid');
                                     }
