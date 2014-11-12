@@ -31,20 +31,23 @@
 html{
     height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 
 body{
     height: 100%;
     width: 100%;
-    overflow: hidden;
     image-rendering: -webkit-optimize-contrast;
     &.loading{
         .umi-loading-animation{
             display: block;
         }
     }
+}
+
+.umi-main-view {
+    overflow: hidden;
+    min-width: upper-bound($small-range) + 4em;
 }
 
 .umi-loading-animation{
