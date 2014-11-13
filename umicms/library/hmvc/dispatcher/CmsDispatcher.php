@@ -53,6 +53,11 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware, IModuleAware
     const ADMIN_SETTINGS_COMPONENT_PATH = 'project.admin.settings';
 
     /**
+     * @var array $widgetCallCounter счетчик вызова виджетов
+     */
+    protected $widgetCallCounter = [];
+
+    /**
      * Обрабатывает вызов виджета.
      * @param string $widgetPath путь виджета
      * @param array $params параметры вызова виджета
@@ -83,7 +88,18 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware, IModuleAware
         try {
 
             try {
+                /**
+                 * @var BaseCmsWidget $widget
+                 */
                 $widget = $this->dispatchWidget($component, $widgetUri, $params, $callStack, $componentURI);
+
+                if (!isset($this->widgetCallCounter[$widgetUri])) {
+                    $this->widgetCallCounter[$widgetUri] = 0;
+                } else {
+                    $this->widgetCallCounter[$widgetUri]++;
+                }
+
+                $widget->setCallCounter($this->widgetCallCounter[$widgetUri]);
 
                 return $this->invokeWidget($widget);
             } catch (ResourceAccessForbiddenException $e) {

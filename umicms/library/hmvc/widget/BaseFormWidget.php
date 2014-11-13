@@ -12,7 +12,6 @@ namespace umicms\hmvc\widget;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umi\hmvc\component\IComponent;
 use umicms\hmvc\view\CmsView;
 
 /**
@@ -64,7 +63,7 @@ abstract class BaseFormWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $form = $this->getForm()->setId($this->getUniqueFormId());
+        $form = $this->getForm()->setId($this->getWidgetId());
 
         if ($form->has(self::INPUT_REDIRECT_URL)) {
 
@@ -94,30 +93,6 @@ abstract class BaseFormWidget extends BaseCmsWidget
     protected function buildResponseContent()
     {
         return [];
-    }
-
-    /**
-     * Возвращает уникальный суффикс для идентификатора формы
-     * @return string
-     */
-    protected function getFormIdPostfix()
-    {
-        if (isset(self::$formCounters[get_class($this)])) {
-            return '_' . ++self::$formCounters[get_class($this)];
-        } else {
-            self::$formCounters[get_class($this)] = 0;
-            return '';
-        }
-    }
-
-    /**
-     * Возвращает уникальный идентификатор формы таким образом, чтобы при выводе двух одинаковых форм
-     * на странице у них были разные идентификаторы
-     * @return string
-     */
-    protected function getUniqueFormId()
-    {
-        return str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath()) . $this->getFormIdPostfix();
     }
 
 }
