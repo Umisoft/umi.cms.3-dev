@@ -14,6 +14,7 @@ use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\object\UserAuthCookie;
 use umicms\project\module\users\model\object\Visitor;
 
 return array_replace_recursive(
@@ -105,7 +106,11 @@ return array_replace_recursive(
                 'type'       => IField::TYPE_DATE_TIME,
                 'columnName' => 'registration_date'
             ],
-
+            RegisteredUser::FIELD_LOGIN_COOKIES => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'userAuthCookie',
+                'targetField' => UserAuthCookie::FIELD_USER
+            ]
         ],
         'types'      => [
             'base'                    => [
@@ -136,7 +141,8 @@ return array_replace_recursive(
                     RegisteredUser::FIELD_FIRST_NAME => [],
                     RegisteredUser::FIELD_MIDDLE_NAME => [],
                     RegisteredUser::FIELD_LAST_NAME => [],
-                    RegisteredUser::FIELD_REGISTRATION_DATE => []
+                    RegisteredUser::FIELD_REGISTRATION_DATE => [],
+                    RegisteredUser::FIELD_LOGIN_COOKIES => []
                 ]
             ],
             Supervisor::TYPE_NAME     => [

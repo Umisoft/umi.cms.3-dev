@@ -18,12 +18,14 @@ use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\module\BaseModule;
 use umicms\project\Bootstrap;
+use umicms\project\module\users\model\collection\UserAuthCookieCollection;
 use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\collection\UserGroupCollection;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\object\UserAuthCookie;
 use umicms\project\module\users\model\object\UserGroup;
 use umicms\project\module\users\model\object\Visitor;
 use umicms\Utils;
@@ -88,6 +90,14 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
     public function userGroup()
     {
         return $this->getCollection('userGroup');
+    }
+
+    /**
+     * @return UserAuthCookieCollection
+     */
+    public function userAuthCookie()
+    {
+        return $this->getCollection('userAuthCookie');
     }
 
     /**
@@ -429,6 +439,17 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
         $this->setVisitor($visitor);
 
         return $visitor;
+    }
+
+    /**
+     * @return UserAuthCookie
+     */
+    public function createUserAuthCookie()
+    {
+        $userAuthCookie = $this->userAuthCookie()->add();
+        $userAuthCookie->setToken(Utils::generateGUID());
+        $userAuthCookie->getProperty(UserAuthCookie::FIELD_DISPLAY_NAME)->setValue('test');
+        return $userAuthCookie;
     }
 
     /**

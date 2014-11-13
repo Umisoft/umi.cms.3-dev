@@ -132,6 +132,7 @@ return [
             'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
             'userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/metadata.config.php}',
+            'userAuthCookie' => '{#lazy:~/project/module/users/configuration/authcookie/metadata.config.php}',
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
@@ -170,6 +171,7 @@ return [
             'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',
             'userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/collection.config.php}',
+            'userAuthCookie' => '{#lazy:~/project/module/users/configuration/authcookie/collection.config.php}',
 
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 

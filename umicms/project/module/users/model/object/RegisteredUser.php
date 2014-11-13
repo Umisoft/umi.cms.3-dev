@@ -25,6 +25,7 @@ use umicms\Utils;
  * @property string $middleName отчество
  * @property string $lastName фамилия
  * @property \DateTime $registrationDate дата регистрации
+ * @property UserAuthCookie[] $loginCookies
  */
 class RegisteredUser extends BaseUser
 {
@@ -73,11 +74,19 @@ class RegisteredUser extends BaseUser
      * Имя поля для хранения даты регистрации пользователя
      */
     const FIELD_REGISTRATION_DATE = 'registrationDate';
+    /**
+     * Имя поля для хранения набора login-кук пользователя
+     */
+    const FIELD_LOGIN_COOKIES = 'loginCookies';
 
     /**
      * Форма авторизации пользователя на сайте
      */
     const FORM_LOGIN_SITE = 'loginSite';
+    /**
+     * Чекбокс "запомни меня" для форым логина
+     */
+    const FORM_LOGIN_SITE_FIELD_REMEMBER_ME = 'rememberMe';
     /**
      * Форма разавторизации пользователя на сайте
      */

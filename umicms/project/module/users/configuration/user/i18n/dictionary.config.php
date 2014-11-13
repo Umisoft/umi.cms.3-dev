@@ -22,6 +22,7 @@ return [
             RegisteredUser::FIELD_LAST_NAME => 'Last name',
             RegisteredUser::FIELD_GROUPS => 'Groups',
             RegisteredUser::FIELD_REGISTRATION_DATE => 'Registration date',
+            RegisteredUser::FORM_LOGIN_SITE_FIELD_REMEMBER_ME => 'Remember me',
 
             'personal' => 'Personal',
 
@@ -51,6 +52,7 @@ return [
             RegisteredUser::FIELD_LAST_NAME => 'Фамилия',
             RegisteredUser::FIELD_GROUPS => 'Группы',
             RegisteredUser::FIELD_REGISTRATION_DATE => 'Дата регистрации',
+            RegisteredUser::FORM_LOGIN_SITE_FIELD_REMEMBER_ME => 'Запомни меня',
 
             'personal' => 'Личная информация',
 

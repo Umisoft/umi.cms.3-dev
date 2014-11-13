@@ -44,10 +44,13 @@ return [
                 ]
             ],
         ],
+        RegisteredUser::FORM_LOGIN_SITE_FIELD_REMEMBER_ME => [
+            'type' => \umi\form\element\Checkbox::TYPE_NAME,
+            'label' => RegisteredUser::FORM_LOGIN_SITE_FIELD_REMEMBER_ME
+        ],
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
         ],
-
         'submit' => [
             'type' => Submit::TYPE_NAME,
             'label' => 'Log in'
