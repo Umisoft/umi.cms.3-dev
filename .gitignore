@@ -9,3 +9,5 @@ public/umi-admin/development
 Vagrantfile
 .vagrant
 *.pp
+
+tests/_output/*

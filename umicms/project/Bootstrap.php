@@ -173,10 +173,24 @@ class Bootstrap
 
     /**
      * Обрабатывает запрос и устанавливает ответ
+     * @return Response
      */
     public function dispatch()
     {
         $this->response = $this->dispatcher->dispatch($this->routePath ?: '/', $this->projectPrefix);
+        $this->setUmiHeaders($this->response);
+
+        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
+            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
+        }
+
+        if (Environment::$browserCacheEnabled) {
+            $this->setBrowserCacheHeaders($this->request, $this->response);
+        }
+
+        $this->response->prepare($this->request);
+
+        return $this->response;
     }
 
     /**
@@ -359,25 +373,6 @@ class Bootstrap
         $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
         return $routeResult;
-    }
-
-    /**
-     * Отправляет ответ
-     */
-    public function sendResponse()
-    {
-        $this->setUmiHeaders($this->response);
-
-        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
-            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
-        }
-
-        if (Environment::$browserCacheEnabled) {
-            $this->setBrowserCacheHeaders($this->request, $this->response);
-        }
-
-        $this->response->prepare($this->request)
-            ->send();
     }
 
     /**
@@ -661,6 +656,7 @@ class Bootstrap
         if (Environment::$startTime > 0) {
             $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
         }
+        Environment::$startTime = microtime(true);
     }
 
     /**
