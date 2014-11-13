@@ -13,14 +13,79 @@
     transition: opacity 0.1s linear;
     white-space: nowrap;
     border: none;
-    box-shadow: 0 0 4px 1px #939699;
     max-width: 330px;
+    padding: 10px 0 10px 10px;
+
+    &-padding {
+        margin: 10px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,.4);
+    }
+
+    &-border {
+      border: 1px solid #b3b3b3;
+      border-top: none;
+    }
+
+    &-parent {
+        padding: 0;
+        width: auto;
+        max-width: none;
+
+        & > li {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+
+    &:not(.f-dropdown-parent),
+    &-child {
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        padding: 10px 0 10px 10px;
+        background: #fff;
+
+        &.highlighted {
+          background: #f3f3f3;
+          border-top: 1px solid #e6e6e6;
+        }
+
+        li {
+          padding: 0 10px 0 0;
+        }
+    }
 
     li {
         @include dropdown-style;
+        background: transparent;
+        cursor: default;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 10px 0 0;
 
-        &.hover{
-            background: $f-dropdown-list-hover-bg;
+        &:hover,
+        &:focus {
+            background: transparent;
+        }
+
+        a {
+            min-width: rem-calc(90);
+            display: block;
+            color: #222;
+            padding: 0.3rem 0.5rem;
+            font-size: 14px;
+
+            &:hover,
+            &.active {
+              text-decoration: none;
+              background: #259cec;
+              color: #fff;
+            }
+
+            &.active {
+              cursor: default;
+            }
         }
     }
 

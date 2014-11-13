@@ -1,19 +1,33 @@
 <nav class="umi-top-bar">
     <ul class="umi-top-bar-list left">
         <li>
-            <span class="button tiny flat dropdown without-arrow umi-top-bar-button" data-dropdown
+            <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
                   data-options="selectorById: false;">
                 <i class="icon icon-butterfly"></i>
+                <span>Модули</span>
             </span>
-            <ul class="f-dropdown f-dropdown-double" data-dropdown-content>
-                {{#each view.modules}}
-                    <li>
-                        {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
-                            <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
-                            <span>{{displayName}}</span>
-                        {{/link-to}}
-                    </li>
-                {{/each}}
+            <ul class="f-dropdown f-dropdown-padding f-dropdown-parent" data-dropdown-content>
+                    <li><ul class="f-dropdown-double f-dropdown-child">
+                        {{#each view.modules}}
+                            <li>
+                                {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
+                                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
+                                    <span>{{displayName}}</span>
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                    </li><li>
+                    <ul class="f-dropdown-double f-dropdown-child highlighted">
+                        {{#each view.modules}}
+                            <li>
+                                {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
+                                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
+                                    <span>{{displayName}}</span>
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul></li>
             </ul>
         </li>
         <li>
@@ -36,10 +50,11 @@
 
     <ul class="umi-top-bar-list right">
         <li>
-            <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown data-options="selectorById: false;">
+            <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
+                  data-options="selectorById: false; align: right; side: right;">
                 {{view.userName}}
             </span>
-            <ul class="f-dropdown" data-dropdown-content>
+            <ul class="f-dropdown f-dropdown-padding" data-dropdown-content>
                 <li>
                     <a href="javascript:void(0)" {{action "logout"}}>
                         <i class="icon icon-exit"></i> {{i18n "Logout"}}

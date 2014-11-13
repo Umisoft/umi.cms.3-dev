@@ -421,7 +421,7 @@ function program2(depth0,data) {
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <ul ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': (":f-dropdown view.parentView.isTouchDevice:is-touch-mode")
+    'class': (":f-dropdown :f-dropdown-border view.parentView.isTouchDevice:is-touch-mode")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(" data-dropdown-content> ");
   stack1 = helpers.each.call(depth0, "component", "in", "module.components", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
@@ -2358,10 +2358,13 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"button tiny flat dropdown without-arrow umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> <i class=\"icon icon-butterfly\"></i> </span> <ul class=\"f-dropdown f-dropdown-double\" data-dropdown-content> ");
+  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> <i class=\"icon icon-butterfly\"></i> <span>Модули</span> </span> <ul class=\"f-dropdown f-dropdown-padding f-dropdown-parent\" data-dropdown-content> <li><ul class=\"f-dropdown-double f-dropdown-child\"> ");
   stack1 = helpers.each.call(depth0, "view.modules", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </ul> </li> <li> <span class=\"umi-top-bar-label\">");
+  data.buffer.push(" </ul> </li><li> <ul class=\"f-dropdown-double f-dropdown-child highlighted\"> ");
+  stack1 = helpers.each.call(depth0, "view.modules", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </ul></li> </ul> </li> <li> <span class=\"umi-top-bar-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</span> </li> <li> <a href=\"");
@@ -2369,10 +2372,10 @@ function program4(depth0,data) {
   data.buffer.push("\" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon white icon-viewOnSite\"></i> </a> </li> </ul> ");
   stack1 = helpers['if'].call(depth0, "routeIsTransition", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <ul class=\"umi-top-bar-list right\"> <li> <span class=\"button tiny flat dropdown umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> ");
+  data.buffer.push(" <ul class=\"umi-top-bar-list right\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false; align: right; side: right;\"> ");
   stack1 = helpers._triageMustache.call(depth0, "view.userName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </span> <ul class=\"f-dropdown\" data-dropdown-content> <li> <a href=\"javascript:void(0)\" ");
+  data.buffer.push(" </span> <ul class=\"f-dropdown f-dropdown-padding\" data-dropdown-content> <li> <a href=\"javascript:void(0)\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "logout", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("> <i class=\"icon icon-exit\"></i> ");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Logout", options) : helperMissing.call(depth0, "i18n", "Logout", options))));

@@ -60,21 +60,7 @@ $umi-dock-wrapper-height: rem-calc(48);
 
         .f-dropdown{
             top: 100% !important;
-            padding-top: 5px;
-            padding-bottom: 5px;
-
-            li:nth-child(even){
-                background: #E8EDEF;
-            }
-
-            li:hover{
-                background: #24B3F8;
-
-                a{
-                    color: #fff;
-                    text-decoration: none;
-                }
-            }
+            margin-left: -2px;
         }
 
         &.sorting,
@@ -164,37 +150,6 @@ $umi-dock-wrapper-height: rem-calc(48);
             width: 122px;
             height: 100%;
             display: inline-block;
-        }
-    }
-    .f-dropdown{
-        width: 160%;
-        margin-left: -30%;
-        padding: 0;
-        box-shadow: 0 0 4px 1px #535353;
-        border: none;
-
-        &.is-touch-mode{
-            width: 200px;
-            margin-left: -77px;
-        }
-
-        li{
-            > span{
-                color: $body-font-color;
-                white-space: normal;
-            }
-
-            .active{
-                color: #fff;
-                background: $primary-color;
-            }
-
-            a{
-                display: block;
-                padding: 10px 20px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
         }
     }
 }
