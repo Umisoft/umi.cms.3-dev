@@ -44,4 +44,22 @@ class UserAuthCookie extends CmsObject
         $this->getProperty(self::FIELD_TOKEN)->setValue($token);
         return $this;
     }
+
+    /**
+     * @param RegisteredUser $user
+     * @return $this
+     */
+    public function setUser(RegisteredUser $user)
+    {
+        $this->getProperty(self::FIELD_USER)->setValue($user);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCookieValue()
+    {
+        return "{$this->getUser()->getId()}:{$this->getGUID()}:{$this->getToken()}";
+    }
 }

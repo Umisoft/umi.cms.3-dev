@@ -21,6 +21,7 @@ return [
     SiteComponent::OPTION_CONTROLLERS => [
         'login' => __NAMESPACE__ . '\controller\LoginController',
         'logout' => __NAMESPACE__ . '\controller\LogoutController',
+        'loginByAuthCookie' => __NAMESPACE__ . '\controller\LoginByAuthCookieController'
     ],
 
     SiteComponent::OPTION_WIDGET => [
@@ -41,6 +42,7 @@ return [
             'viewer' => [
                 'controller:login' => [],
                 'controller:logout' => [],
+                'controller:loginByAuthCookie' => [],
                 'widget:loginForm' => [],
                 'widget:logoutForm' => [],
                 'widget:loginLink' => []
@@ -54,6 +56,13 @@ return [
             'route' => '/logout',
             'defaults' => [
                 'controller' => 'logout'
+            ]
+        ],
+        'loginByAuthCookie' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/login-by-auth-cookie',
+            'defaults' => [
+                'controller' => 'loginByAuthCookie'
             ]
         ],
         'login' => [

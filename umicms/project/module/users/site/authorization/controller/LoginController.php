@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\users\site\authorization\controller;
 
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -78,8 +79,17 @@ class LoginController extends BaseSitePageController
 
         if ($this->module->login($loginInput->getValue(), $passwordInput->getValue())) {
 
-            return $this->buildRedirectResponse();
+            $response = $this->buildRedirectResponse();
 
+            /** @var IFormElement $rememberMeInput */
+            $rememberMeInput = $form->get(RegisteredUser::FORM_LOGIN_SITE_FIELD_REMEMBER_ME);
+            if((bool) $rememberMeInput->getValue()) {
+                $response->headers->setCookie($this->createAuthCookie());
+                // Коммит auth-куки
+                $this->commit();
+            }
+
+            return $response;
         }
 
         $this->errors[] = $this->translate('Invalid login or password');
@@ -103,4 +113,15 @@ class LoginController extends BaseSitePageController
         ];
     }
 
+    /**
+     * @return Cookie
+     */
+    private function createAuthCookie()
+    {
+        return new Cookie(
+            UsersModule::AUTH_COOKIE_NAME,
+            $this->module->createUserAuthCookie()->getCookieValue(),
+            new \DateTime('+5 day')
+        );
+    }
 }

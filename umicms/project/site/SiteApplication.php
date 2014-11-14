@@ -83,6 +83,15 @@ class SiteApplication extends SiteComponent
         $this->registerSelectorInitializer();
         $this->registerSerializers();
 
+        if ($this->isNonAuthVisit() && $this->isAuthCookieExist($request) && ($request->getPathInfo() != '/php/users/auth/login-by-auth-cookie')) {
+            $response = $this->createHttpResponse();
+            $response->headers->set(
+                'Location', '/php/users/auth/login-by-auth-cookie?' . http_build_query(['referer' => $request->getRequestUri()])
+            );
+            $response->setStatusCode(Response::HTTP_FOUND);
+            return $response;
+        }
+
         if ($response = $this->postRedirectGet($request)) {
             return $response;
         }
@@ -410,6 +419,24 @@ class SiteApplication extends SiteComponent
         $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
 
         return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
+    }
+
+    /**
+     * @return bool
+     */
+    private function isNonAuthVisit()
+    {
+        /** @var UsersModule $usersModule */
+        $usersModule = $this->getModuleByClass(UsersModule::className());
+        return !$usersModule->isAuthenticated();
+    }
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    private function isAuthCookieExist(Request $request) {
+        return $request->cookies->has(UsersModule::AUTH_COOKIE_NAME);
     }
 
 }

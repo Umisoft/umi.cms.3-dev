@@ -43,6 +43,10 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
      */
     const VISITOR_TOKEN_COOKIE_NAME = 'umiVisitorToken';
     /**
+     * Имя куки, для auth-куки
+     */
+    const AUTH_COOKIE_NAME = 'umiAuth';
+    /**
      * Название аттрибута в сессии для хранения идентификатора авторизованного пользователя
      */
     const IDENTITY_ATTRIBUTE_NAME = 'identity';
@@ -449,6 +453,7 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
         $userAuthCookie = $this->userAuthCookie()->add();
         $userAuthCookie->setToken(Utils::generateGUID());
         $userAuthCookie->getProperty(UserAuthCookie::FIELD_DISPLAY_NAME)->setValue('test');
+        $userAuthCookie->setUser($this->getAuthenticatedUser());
         return $userAuthCookie;
     }
 
