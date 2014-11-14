@@ -102,7 +102,7 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware, IProject
     {
         try {
 
-            $defaultPage = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
+            $defaultPage = $this->structureApi->element()->getDefaultPage();
 
             if (!$defaultPage instanceof SystemPage || !$defaultPage->active || $defaultPage->trashed) {
                 return false;

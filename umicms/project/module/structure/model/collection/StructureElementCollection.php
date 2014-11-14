@@ -39,13 +39,15 @@ class StructureElementCollection extends CmsHierarchicPageCollection implements 
     use TLockedAccessibleCollection;
     use TProjectSettingsAware;
 
+    const DEFAULT_PAGE_GUID = '002675ac-9e29-4675-abf7-aa0f93ff9a8c';
+
     /**
      * Возвращает страницу сайта по умолчанию.
      * @return StructureElement
      */
     public function getDefaultPage()
     {
-        return $this->get($this->getSiteDefaultPageGuid());
+        return $this->get(self::DEFAULT_PAGE_GUID);
     }
 
     /**

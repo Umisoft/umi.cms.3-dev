@@ -49,15 +49,6 @@ trait TProjectSettingsAware
     }
 
     /**
-     * Возвращает GUID страницы сайта по умолчанию.
-     * @return string
-     */
-    protected function getSiteDefaultPageGuid()
-    {
-        return $this->getProjectSettings()->get(IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID);
-    }
-
-    /**
      * Возвращает GUID шаблона сайта по умолчанию.
      * @return string
      */
