@@ -73,18 +73,6 @@ define(['App'], function(UMI) {
                         });
                     }
 
-                    self.set('scrollContent', new IScroll(scrollArea.parent()[0],
-                        $.extend({}, UMI.config.iScroll, {
-                                preventDefaultException: {
-                                    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LABEL|SPAN)$/,
-                                    className: /^(cke_resizer)$/
-                            }
-                        }
-                    )));
-                    $body.on('resize.umi.formcontroll', function() {
-                        self.get('scrollContent').refresh();
-                    });
-
                     scrollArea.on('scroll.umi.magellan', function() {
                         var scrollOffset = $(this).scrollTop();
                         var focusField;
@@ -106,6 +94,21 @@ define(['App'], function(UMI) {
                     scrollArea.find('legend').on('click.umi.magellan', function() {
                         $body.trigger('resize.umi.formcontroll');
                     });
+
+                    $body.on('resize.umi.formcontroll', function() {
+                        setTimeout(function() {
+                            self.get('scrollContent').refresh();
+                        }, 100);
+                    });
+
+                    self.set('scrollContent', new IScroll(scrollArea.parent()[0],
+                        $.extend({}, UMI.config.iScroll, {
+                                preventDefaultException: {
+                                    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LABEL|SPAN)$/,
+                                    className: /^(cke_resizer)$/
+                                }
+                            }
+                    )));
 
                 });
             }

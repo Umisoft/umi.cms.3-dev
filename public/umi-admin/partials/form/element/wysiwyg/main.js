@@ -83,6 +83,9 @@ define(['App'], function(UMI) {
             ev.editor.on('resize', function() {
                 $body.trigger('resize.umi.formcontroll');
             });
+            ev.editor.on('instanceReady', function() {
+                $body.trigger('resize.umi.formcontroll');
+            });
         });
 
         UMI.FormHtmlEditorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
