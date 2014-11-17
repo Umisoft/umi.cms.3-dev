@@ -18,6 +18,7 @@ use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\model\object\StructureElement;
@@ -63,6 +64,14 @@ class StructureElementCollection extends CmsHierarchicPageCollection implements 
         }
 
         return parent::move($object, $branch, $previousSibling);
+    }
+
+    public function deactivate(IActiveAccessibleObject $object)
+    {
+        if (self::DEFAULT_PAGE_GUID == $object->guid) {
+            throw new NotAllowedOperationException($this->translate('Can not deactivate default page'));
+        }
+        return parent::deactivate($object);
     }
 
     /**
