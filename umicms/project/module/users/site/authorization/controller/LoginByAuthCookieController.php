@@ -10,9 +10,9 @@
 
 namespace umicms\project\module\users\site\authorization\controller;
 
+use Symfony\Component\HttpFoundation\Cookie;
 use umi\http\Response;
 use umicms\hmvc\component\BaseCmsController;
-use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\users\model\UsersModule;
 
 class LoginByAuthCookieController extends BaseCmsController
@@ -38,10 +38,48 @@ class LoginByAuthCookieController extends BaseCmsController
      */
     public function __invoke()
     {
-        $this->module->login('sv', '1');
         $request = $this->getRequest();
         $response = $this->createRedirectResponse($request->query->get('referer'));
+
+        list($userId, $guid, $token) = $this->module->getUST($request->cookies->get(UsersModule::AUTH_COOKIE_NAME));
+        $response->headers->clearCookie(UsersModule::AUTH_COOKIE_NAME);
+        $userAuthCookie = $this->module->getUserAuthCookie($userId, $guid);
+
+        if (!$userAuthCookie) {
+            return $response;
+        }
+
+        if (!$this->module->isUserAuthCookieTokenValid($userAuthCookie, $token)) {
+            $this->module->deleteAuthCookiesForUser($userAuthCookie->getUser());
+            $this->commit();
+            return $response;
+        }
+
+        if ($this->module->isUserCookieExpired($userAuthCookie, $this->getZeroDay())) {
+            $this->module->deleteUserAuthCookie($userAuthCookie);
+            $this->commit();
+            return $response;
+        }
+
+        $this->module->generateUserAuthToken($userAuthCookie);
+        $this->module->setAuthenticatedUser($userAuthCookie->getUser());
+        $this->commit();
+
+        $response->headers->setCookie(new Cookie(
+            UsersModule::AUTH_COOKIE_NAME,
+            $userAuthCookie->getCookieValue(),
+            new \DateTime('+5 day')
+        ));
+
         return $response;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    private function getZeroDay()
+    {
+        return new \DateTime('+5 day');
     }
 
 }

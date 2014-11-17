@@ -118,9 +118,11 @@ class LoginController extends BaseSitePageController
      */
     private function createAuthCookie()
     {
+        $user = $this->module->getAuthenticatedUser();
+        $userAgentInfo = $this->getRequest()->headers->get('User-Agent');
         return new Cookie(
             UsersModule::AUTH_COOKIE_NAME,
-            $this->module->createUserAuthCookie()->getCookieValue(),
+            $this->module->createUserAuthCookie($user, $userAgentInfo)->getCookieValue(),
             new \DateTime('+5 day')
         );
     }

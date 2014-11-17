@@ -23,6 +23,7 @@ use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\exception\InvalidLicenseException;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\module\IModuleAware;
@@ -83,10 +84,14 @@ class SiteApplication extends SiteComponent
         $this->registerSelectorInitializer();
         $this->registerSerializers();
 
-        if ($this->isNonAuthVisit() && $this->isAuthCookieExist($request) && ($request->getPathInfo() != '/php/users/auth/login-by-auth-cookie')) {
+        /** @var CmsDispatcher $dispatcher */
+        $dispatcher = $context->getDispatcher();
+        $loginByCookieUrl = $dispatcher->executeWidgetByPath('users.authorization.loginByCookieLink');
+
+        if ($this->isNonAuthVisit() && $this->isAuthCookieExist($request) && ($request->getPathInfo() != $loginByCookieUrl)) {
             $response = $this->createHttpResponse();
             $response->headers->set(
-                'Location', '/php/users/auth/login-by-auth-cookie?' . http_build_query(['referer' => $request->getRequestUri()])
+                'Location', $loginByCookieUrl . '?' . http_build_query(['referer' => $request->getRequestUri()])
             );
             $response->setStatusCode(Response::HTTP_FOUND);
             return $response;

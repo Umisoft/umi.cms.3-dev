@@ -19,6 +19,8 @@ class UserAuthCookie extends CmsObject
     /** Имя поля для хранения токена */
     const FIELD_TOKEN = 'token';
 
+    const DELIMITER_CHAR = ':';
+
     /**
      * @return RegisteredUser
      */
@@ -60,6 +62,6 @@ class UserAuthCookie extends CmsObject
      */
     public function getCookieValue()
     {
-        return "{$this->getUser()->getId()}:{$this->getGUID()}:{$this->getToken()}";
+        return implode(self::DELIMITER_CHAR, [$this->getUser()->getId(), $this->getGUID(), $this->getToken()]);
     }
 }

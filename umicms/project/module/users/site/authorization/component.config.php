@@ -27,7 +27,8 @@ return [
     SiteComponent::OPTION_WIDGET => [
         'loginForm' => __NAMESPACE__ . '\widget\LoginFormWidget',
         'loginLink' => __NAMESPACE__ . '\widget\LoginLinkWidget',
-        'logoutForm' => __NAMESPACE__ . '\widget\LogoutFormWidget'
+        'logoutForm' => __NAMESPACE__ . '\widget\LogoutFormWidget',
+        'loginByCookieLink' => __NAMESPACE__ . '\widget\LoginByAuthCookieLinkWidget',
     ],
 
     SiteComponent::OPTION_VIEW => [

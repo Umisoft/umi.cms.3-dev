@@ -106,7 +106,7 @@ return array_replace_recursive(
                 'type'       => IField::TYPE_DATE_TIME,
                 'columnName' => 'registration_date'
             ],
-            RegisteredUser::FIELD_LOGIN_COOKIES => [
+            RegisteredUser::FIELD_AUTH_COOKIES => [
                 'type' => IField::TYPE_HAS_MANY,
                 'target' => 'userAuthCookie',
                 'targetField' => UserAuthCookie::FIELD_USER
@@ -142,7 +142,7 @@ return array_replace_recursive(
                     RegisteredUser::FIELD_MIDDLE_NAME => [],
                     RegisteredUser::FIELD_LAST_NAME => [],
                     RegisteredUser::FIELD_REGISTRATION_DATE => [],
-                    RegisteredUser::FIELD_LOGIN_COOKIES => []
+                    RegisteredUser::FIELD_AUTH_COOKIES => []
                 ]
             ],
             Supervisor::TYPE_NAME     => [

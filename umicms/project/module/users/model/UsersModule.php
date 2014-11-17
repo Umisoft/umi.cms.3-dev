@@ -11,6 +11,7 @@
 namespace umicms\project\module\users\model;
 
 use umi\http\IHttpAware;
+use umi\http\Request;
 use umi\http\THttpAware;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
@@ -446,15 +447,87 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
     }
 
     /**
+     * @param RegisteredUser $user
+     * @param string $userAgentInfo
      * @return UserAuthCookie
      */
-    public function createUserAuthCookie()
+    public function createUserAuthCookie(RegisteredUser $user, $userAgentInfo)
     {
         $userAuthCookie = $this->userAuthCookie()->add();
         $userAuthCookie->setToken(Utils::generateGUID());
-        $userAuthCookie->getProperty(UserAuthCookie::FIELD_DISPLAY_NAME)->setValue('test');
-        $userAuthCookie->setUser($this->getAuthenticatedUser());
+        $userAuthCookie->getProperty(UserAuthCookie::FIELD_DISPLAY_NAME)->setValue($userAgentInfo);
+        $userAuthCookie->setUser($user);
         return $userAuthCookie;
+    }
+
+    /**
+     * @param int $userId
+     * @param string $guid
+     * @return null|UserAuthCookie
+     */
+    public function getUserAuthCookie($userId, $guid)
+    {
+        try {
+            $userAuthCookie = $this->userAuthCookie()->getByUserIdAndGUID($userId, $guid);
+        } catch (NonexistentEntityException $e) {
+            $userAuthCookie = null;
+        }
+        return $userAuthCookie;
+    }
+
+    /**
+     * @param UserAuthCookie $userAuthCookie
+     * @param string $token
+     * @return bool
+     */
+    public function isUserAuthCookieTokenValid(UserAuthCookie $userAuthCookie, $token)
+    {
+        return $userAuthCookie->getToken() == $token;
+    }
+
+    /**
+     * @param UserAuthCookie $userAuthCookie
+     * @param \DateTime $zeroDay
+     * @return bool
+     */
+    public function isUserCookieExpired(UserAuthCookie $userAuthCookie, $zeroDay)
+    {
+        return $userAuthCookie->created > $zeroDay;
+    }
+
+    /**
+     * @param UserAuthCookie $userAuthCookie
+     */
+    public function generateUserAuthToken(UserAuthCookie $userAuthCookie)
+    {
+        $userAuthCookie->setToken(Utils::generateGUID());
+    }
+
+    /**
+     * @param UserAuthCookie $userAuthCookie
+     */
+    public function deleteUserAuthCookie(UserAuthCookie $userAuthCookie)
+    {
+        $this->userAuthCookie()->delete($userAuthCookie);
+    }
+
+    /**
+     * @param RegisteredUser $registeredUser
+     */
+    public function deleteAuthCookiesForUser(RegisteredUser $registeredUser)
+    {
+        foreach ($registeredUser->authCookies as $authCookies) {
+            $this->userAuthCookie()->delete($authCookies);
+        }
+    }
+
+    /**
+     * @param string $authCookieValue
+     * @return array
+     */
+    public function getUST($authCookieValue)
+    {
+        return explode(UserAuthCookie::DELIMITER_CHAR, $authCookieValue);
     }
 
     /**

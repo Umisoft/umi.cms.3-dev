@@ -11,7 +11,10 @@
 namespace umicms\project\module\users\model\collection;
 
 use umi\orm\metadata\IObjectType;
+use umi\orm\selector\condition\IFieldConditionGroup;
+use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\CmsCollection;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\UserAuthCookie;
 
 /**
@@ -20,4 +23,28 @@ use umicms\project\module\users\model\object\UserAuthCookie;
 class UserAuthCookieCollection extends CmsCollection
 {
 
-} 
+    /**
+     * @param int $userId
+     * @param string $authCookieGUID
+     * @return UserAuthCookie
+     * @throws \umicms\exception\NonexistentEntityException
+     */
+    public function getByUserIdAndGUID($userId, $authCookieGUID)
+    {
+        $userAuthCookie = $this->select()->
+            begin(IFieldConditionGroup::MODE_AND)
+                ->where(UserAuthCookie::FIELD_USER . '.' . RegisteredUser::FIELD_IDENTIFY)->equals((int) $userId)
+                ->where(UserAuthCookie::FIELD_GUID)->equals($authCookieGUID)
+            ->end()
+            ->getResult()->fetch();
+
+        if (!$userAuthCookie instanceof UserAuthCookie) {
+            throw new NonexistentEntityException(
+                $this->translate('Cannot find auth cookie by user_id and guid')
+            );
+        }
+
+        return $userAuthCookie;
+    }
+
+}
