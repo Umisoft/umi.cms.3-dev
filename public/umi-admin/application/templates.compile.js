@@ -2006,7 +2006,7 @@ function program20(depth0,data) {
   data.buffer.push(" <ul ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'id': ("view.dropdownId"),
-    'class': (":f-dropdown view.dropdownClassName")
+    'class': (":f-dropdown :f-dropdown-border view.dropdownClassName")
   },hashTypes:{'id': "STRING",'class': "STRING"},hashContexts:{'id': depth0,'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(" data-dropdown-content> <li> ");
   stack1 = helpers['if'].call(depth0, "view.button.displayName", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
@@ -2093,7 +2093,7 @@ function program9(depth0,data) {
   data.buffer.push(" <ul ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'id': ("view.dropdownId"),
-    'class': (":f-dropdown view.dropdownClassName")
+    'class': (":f-dropdown :f-dropdown-border view.dropdownClassName")
   },hashTypes:{'id': "STRING",'class': "STRING"},hashContexts:{'id': depth0,'class': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(" data-dropdown-content> <li> ");
   stack1 = helpers['if'].call(depth0, "view.form.isLoaded", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(9, program9, data),fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
@@ -2288,7 +2288,11 @@ function program7(depth0,data) {
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'id': ("view.dropdownId")
   },hashTypes:{'id': "STRING"},hashContexts:{'id': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" class=\"f-dropdown f-dropdown-composite\" data-dropdown-content> ");
+  data.buffer.push(" ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'class': (":f-dropdown :f-dropdown-border :f-dropdown-composite view.listClassNames")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
+  data.buffer.push(" data-dropdown-content> ");
   stack1 = helpers.each.call(depth0, "view.meta.behaviour.choices", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </ul> ");
@@ -2358,21 +2362,21 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> <i class=\"icon icon-butterfly\"></i> <span>Модули</span> </span> <ul class=\"f-dropdown f-dropdown-padding f-dropdown-parent\" data-dropdown-content> <li><ul class=\"f-dropdown-double f-dropdown-child\"> ");
+  data.buffer.push("<nav class=\"umi-top-bar row\"> <ul class=\"umi-top-bar-list left small-5 columns\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> <i class=\"icon icon-butterfly\"></i> <span>Модули</span> </span> <ul class=\"f-dropdown f-dropdown-padding f-dropdown-parent\" data-dropdown-content> <li><ul class=\"f-dropdown-double f-dropdown-child\"> ");
   stack1 = helpers.each.call(depth0, "view.modules", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </ul> </li><li> <ul class=\"f-dropdown-double f-dropdown-child highlighted\"> ");
   stack1 = helpers.each.call(depth0, "view.modules", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </ul></li> </ul> </li> <li> <span class=\"umi-top-bar-label\">");
+  data.buffer.push(" </ul></li> </ul> </li> <li> <a href=\"");
+  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.siteUrl", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon white icon-viewOnSite\"></i> </a> </li> </ul> <div class=\"small-2 columns active-project\"> <span class=\"umi-top-bar-label\">");
   stack1 = helpers._triageMustache.call(depth0, "view.activeProject", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</span> </li> <li> <a href=\"");
-  data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "view.siteUrl", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push("\" class=\"button tiny flat umi-top-bar-button\"> <i class=\"icon white icon-viewOnSite\"></i> </a> </li> </ul> ");
+  data.buffer.push("</span> </div> ");
   stack1 = helpers['if'].call(depth0, "routeIsTransition", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" <ul class=\"umi-top-bar-list right\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false; align: right; side: right;\"> ");
+  data.buffer.push(" <ul class=\"umi-top-bar-list right small-5 columns\"> <li> <span class=\"button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button\" data-dropdown data-options=\"selectorById: false; align: right; side: right;\"> ");
   stack1 = helpers._triageMustache.call(depth0, "view.userName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </span> <ul class=\"f-dropdown f-dropdown-padding\" data-dropdown-content> <li> <a href=\"javascript:void(0)\" ");
