@@ -15,6 +15,7 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umicms\project\IProjectSettingsAware;
+use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\TProjectSettingsAware;
 
 /**
@@ -68,7 +69,7 @@ abstract class StructureElement extends CmsHierarchicObject implements ICmsPage,
      */
     public function getIsDefault()
     {
-        return $this->getSiteDefaultPageGuid() === $this->guid;
+        return StructureElementCollection::DEFAULT_PAGE_GUID === $this->guid;
     }
 
     /**

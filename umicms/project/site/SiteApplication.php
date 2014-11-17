@@ -24,20 +24,20 @@ use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\exception\InvalidLicenseException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\hmvc\component\site\SiteComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
-use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
-use umicms\hmvc\component\site\SiteComponent;
+use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\users\model\UsersModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
@@ -285,7 +285,7 @@ class SiteApplication extends SiteComponent
      */
     protected function processDefaultPageRedirect($suffix = null)
     {
-        if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
+        if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === StructureElementCollection::DEFAULT_PAGE_GUID) {
             $response = $this->createHttpResponse();
             $location = $this->getUrlManager()->getProjectUrl();
             if ($suffix && $suffix != $this->getUrlManager()->getSiteUrlPostfix()) {
