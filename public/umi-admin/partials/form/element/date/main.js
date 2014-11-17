@@ -13,6 +13,16 @@ define(['App'], function(UMI) {
 
             classNames: ['row', 'collapse'],
 
+            globalObject: window,
+
+            localization: function() {
+                var locale = this.get('globalObject.UmiSettings.locale');
+
+                if (locale && $.datepicker.regional[locale]) {
+                    $.datepicker.setDefaults($.datepicker.regional[locale]);
+                }
+            }.observes('globalObject.UmiSettings').on('init'),
+
             didInsertElement: function() {
                 this.$().find('input').datepicker({
                     changeMonth: true,
