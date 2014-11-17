@@ -19,6 +19,10 @@ $umi-bg-darken-set: #404959, #181B21;
             display: inline-block;
             line-height: $umi-top-bar-height;
         }
+
+        &.right {
+            text-align: right;
+        }
     }
 
     &-label{
@@ -133,5 +137,12 @@ $umi-bg-darken-set: #404959, #181B21;
             background: #259cec !important;
             color: #fff;
         }
+    }
+
+    .active-project {
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }

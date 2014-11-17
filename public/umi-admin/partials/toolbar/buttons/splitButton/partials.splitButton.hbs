@@ -11,7 +11,7 @@
         {{bind-attr data-options="view.dataOptions" data-dropdown="view.parentView.dropdownId"}}></span>
 {{/view}}
 
-<ul {{bind-attr id="view.dropdownId"}} class="f-dropdown f-dropdown-composite" data-dropdown-content>
+<ul {{bind-attr id="view.dropdownId"}} {{bind-attr class=":f-dropdown :f-dropdown-border :f-dropdown-composite view.listClassNames"}} data-dropdown-content>
     {{#each view.meta.behaviour.choices}}
         {{#view view.itemView}}
             <a {{action 'sendActionForBehaviour' behaviour target="view.parentView"}}>

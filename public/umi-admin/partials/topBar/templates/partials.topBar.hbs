@@ -1,5 +1,5 @@
-<nav class="umi-top-bar">
-    <ul class="umi-top-bar-list left">
+<nav class="umi-top-bar row">
+    <ul class="umi-top-bar-list left small-5 columns">
         <li>
             <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
                   data-options="selectorById: false;">
@@ -31,14 +31,15 @@
             </ul>
         </li>
         <li>
-            <span class="umi-top-bar-label">{{view.activeProject}}</span>
-        </li>
-        <li>
             <a href="{{unbound view.siteUrl}}" class="button tiny flat umi-top-bar-button">
                 <i class="icon white icon-viewOnSite"></i>
             </a>
         </li>
     </ul>
+
+    <div class="small-2 columns active-project">
+        <span class="umi-top-bar-label">{{view.activeProject}}</span>
+    </div>
 
     {{#if routeIsTransition}}
         <span class="umi-top-bar-label umi-top-bar-loader">
@@ -48,7 +49,7 @@
         <div class="umi-overlay"></div>
     {{/if}}
 
-    <ul class="umi-top-bar-list right">
+    <ul class="umi-top-bar-list right small-5 columns">
         <li>
             <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
                   data-options="selectorById: false; align: right; side: right;">
