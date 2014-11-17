@@ -36973,7 +36973,7 @@ return [
     array (
       'collection' => 'structure',
       'type' => 'static',
-      'guid' => 'd534fd83-0f12-4a0d-9853-583b9181a948',
+      'guid' => '002675ac-9e29-4675-abf7-aa0f93ff9a8c',
       'displayName' => 'Главная',
       'branch' => NULL,
       'slug' => 'main',
@@ -37082,7 +37082,7 @@ return [
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (

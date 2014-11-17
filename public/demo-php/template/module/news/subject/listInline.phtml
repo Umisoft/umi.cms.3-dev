@@ -8,4 +8,4 @@
     <?php $i=0; foreach ($list as $subject) : ?>
         <a href="<?=$subject->getPageUrl()?>"><?=$subject->displayName?></a><?php $i++; if ($list->getTotal() != $i) echo ', ';?>
     <?php endforeach; ?>
-<? endif; ?>
+<?php endif; ?>
