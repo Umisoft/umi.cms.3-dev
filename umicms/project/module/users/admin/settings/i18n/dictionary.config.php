@@ -12,6 +12,7 @@ return [
         UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => 'Registered users default groups',
         UsersModule::SETTING_MAIL_SENDER => 'Sender e-mail',
         UsersModule::SETTING_MAIL_NOTIFICATION_RECIPIENTS => 'Registration information recipient e-mail',
+        UsersModule::SETTING_AUTH_COOKIE_TTL => 'Days to Remember Me',
         'role:notificationsExecutor:displayName' => 'Notifications',
         'role:registrationExecutor:displayName' => 'Registration',
     ],
@@ -24,6 +25,7 @@ return [
         UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => 'Группы зарегистрированных пользователей по умолчанию',
         UsersModule::SETTING_MAIL_SENDER => 'E-mail отправителя',
         UsersModule::SETTING_MAIL_NOTIFICATION_RECIPIENTS => 'E-mail получателя информации о регистрациях',
+        UsersModule::SETTING_AUTH_COOKIE_TTL => 'Длительность запоминания пользователя (в днях)',
 
         'role:notificationsExecutor:displayName' => 'Уведомления',
         'role:registrationExecutor:displayName' => 'Регистрация'

@@ -38,24 +38,27 @@ class LogoutController extends BaseCmsController
      */
     public function __invoke()
     {
-
         $form = $this->module->user()->getForm(RegisteredUser::FORM_LOGOUT_SITE, RegisteredUser::TYPE_NAME);
 
         if ($this->isRequestMethodPost()) {
             $form->setData($this->getAllPostVars());
             if ($form->isValid()) {
                 $this->module->logout();
+                $this->commit();
             }
         }
 
         $referer = $this->getRequest()->getReferer();
         if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
-            return $this->createRedirectResponse($referer);
+            $response = $this->createRedirectResponse($referer);
+        } else {
+            $response = $this->createRedirectResponse($this->getUrl('login', [], true));
+        }
+        if ($this->getRequest()->cookies->has(UsersModule::AUTH_COOKIE_NAME)) {
+            $response->headers->clearCookie(UsersModule::AUTH_COOKIE_NAME);
         }
 
-        return $this->createRedirectResponse(
-            $this->getUrl('login', [], true)
-        );
+        return $response;
     }
 }
  

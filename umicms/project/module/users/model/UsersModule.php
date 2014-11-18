@@ -15,6 +15,7 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
+use umicms\exception\UnexpectedValueException;
 use umicms\module\BaseModule;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\collection\UserAuthCookieCollection;
@@ -61,6 +62,10 @@ class UsersModule extends BaseModule implements ISessionAware
      * Настройка получателей уведомлений
      */
     const SETTING_MAIL_NOTIFICATION_RECIPIENTS = 'registeredUserNotificationEmails';
+    /**
+     * Настройка времени жизни auth-куки
+     */
+    const SETTING_AUTH_COOKIE_TTL = 'rememberMeTTL';
 
     /**
      * @var string $guestGuid GUID гостя
@@ -372,6 +377,18 @@ class UsersModule extends BaseModule implements ISessionAware
     {
         $this->removeSessionVar(self::IDENTITY_ATTRIBUTE_NAME);
 
+        if ($this->request->cookies->has(self::AUTH_COOKIE_NAME)) {
+            try {
+                list($userId, $guid,) = $this->getUST($this->request->cookies->get(self::AUTH_COOKIE_NAME));
+            } catch (UnexpectedValueException $e) {
+                return $this;
+            }
+
+            if (($authUserCookie = $this->getUserAuthCookie($userId, $guid))) {
+                $this->deleteUserAuthCookie($authUserCookie);
+            }
+        }
+
         return $this;
     }
 
@@ -536,11 +553,29 @@ class UsersModule extends BaseModule implements ISessionAware
 
     /**
      * @param string $authCookieValue
+     * @throws \umicms\exception\UnexpectedValueException
      * @return array
      */
     public function getUST($authCookieValue)
     {
-        return explode(UserAuthCookie::DELIMITER_CHAR, $authCookieValue);
+        list($userId, $guid, $token) = explode(UserAuthCookie::DELIMITER_CHAR, $authCookieValue);
+
+        if (Utils::checkGUIDFormat($guid) && Utils::checkGUIDFormat($token)) {
+            return [(int) $userId, $guid, $token];
+        } else {
+            throw new UnexpectedValueException($this->translate(
+                'Auth cookie has invalid format'
+            ));
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAuthCookieTTL()
+    {
+        $days = $this->getSetting(self::SETTING_AUTH_COOKIE_TTL);
+        return new \DateTime('+' . $days . ' day');
     }
 
     /**

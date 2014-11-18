@@ -46,20 +46,6 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     public $forbiddenTemplate = 'widget.forbidden';
 
     /**
-     * @var int $callCounter счетчик вызовов конкретного виджета
-     */
-    protected $callCounter = 0;
-
-    /**
-     * Устанавливает счетчик вызовов конкретного виджета
-     * @param int $callCounter
-     */
-    public function setCallCounter($callCounter)
-    {
-        $this->callCounter = $callCounter;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getAclResourceName()

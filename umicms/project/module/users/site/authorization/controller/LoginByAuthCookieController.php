@@ -12,7 +12,9 @@ namespace umicms\project\module\users\site\authorization\controller;
 
 use Symfony\Component\HttpFoundation\Cookie;
 use umi\http\Response;
+use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 class LoginByAuthCookieController extends BaseCmsController
@@ -41,17 +43,31 @@ class LoginByAuthCookieController extends BaseCmsController
         $request = $this->getRequest();
         $response = $this->createRedirectResponse($request->query->get('referer'));
 
-        list($userId, $guid, $token) = $this->module->getUST($request->cookies->get(UsersModule::AUTH_COOKIE_NAME));
-        $response->headers->clearCookie(UsersModule::AUTH_COOKIE_NAME);
+        if ($request->cookies->has(UsersModule::AUTH_COOKIE_NAME)) {
+            $userAuthCookie = $request->cookies->get(UsersModule::AUTH_COOKIE_NAME);
+            $response->headers->clearCookie(UsersModule::AUTH_COOKIE_NAME);
+        } else {
+            return $response;
+        }
+
+        try {
+            list($userId, $guid, $token) = $this->module->getUST($userAuthCookie);
+        } catch (UnexpectedValueException $e) {
+            return $response;
+        }
+
         $userAuthCookie = $this->module->getUserAuthCookie($userId, $guid);
 
         if (!$userAuthCookie) {
             return $response;
         }
 
+        $user = $userAuthCookie->getUser();
+
         if (!$this->module->isUserAuthCookieTokenValid($userAuthCookie, $token)) {
-            $this->module->deleteAuthCookiesForUser($userAuthCookie->getUser());
+            $this->module->deleteAuthCookiesForUser($user);
             $this->commit();
+            $this->sendWarningNotification($user);
             return $response;
         }
 
@@ -62,7 +78,7 @@ class LoginByAuthCookieController extends BaseCmsController
         }
 
         $this->module->generateUserAuthToken($userAuthCookie);
-        $this->module->setAuthenticatedUser($userAuthCookie->getUser());
+        $this->module->setAuthenticatedUser($user);
         $this->commit();
 
         $response->headers->setCookie(new Cookie(
@@ -79,7 +95,18 @@ class LoginByAuthCookieController extends BaseCmsController
      */
     private function getZeroDay()
     {
-        return new \DateTime('+5 day');
+        return $this->module->getAuthCookieTTL();
+    }
+
+    private function sendWarningNotification(RegisteredUser $user)
+    {
+        $this->mail(
+            [$user->email => $user->displayName],
+            $this->module->getMailSender(),
+            'mail/warningNotificationSubject',
+            'mail/warningNotificationBody',
+            []
+        );
     }
 
 }

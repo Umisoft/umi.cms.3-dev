@@ -17,6 +17,7 @@ return [
     SettingsGroupComponent::OPTION_COMPONENTS => [
         'notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/component.config.php}',
         'registration' => '{#lazy:~/project/module/users/admin/settings/registration/component.config.php}',
+        'authorization' => '{#lazy:~/project/module/users/admin/settings/authorization/component.config.php}',
     ]
 
 ];

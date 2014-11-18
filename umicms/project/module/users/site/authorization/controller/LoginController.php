@@ -123,7 +123,7 @@ class LoginController extends BaseSitePageController
         return new Cookie(
             UsersModule::AUTH_COOKIE_NAME,
             $this->module->createUserAuthCookie($user, $userAgentInfo)->getCookieValue(),
-            new \DateTime('+5 day')
+            $this->module->getAuthCookieTTL()
         );
     }
 }

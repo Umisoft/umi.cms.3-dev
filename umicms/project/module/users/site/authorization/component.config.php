@@ -46,7 +46,8 @@ return [
                 'controller:loginByAuthCookie' => [],
                 'widget:loginForm' => [],
                 'widget:logoutForm' => [],
-                'widget:loginLink' => []
+                'widget:loginLink' => [],
+                'widget:loginByCookieLink' => [],
             ]
         ]
     ],

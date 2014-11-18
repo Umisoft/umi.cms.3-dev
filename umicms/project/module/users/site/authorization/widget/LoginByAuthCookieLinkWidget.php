@@ -13,21 +13,12 @@ namespace umicms\project\module\users\site\authorization\widget;
 use umi\hmvc\widget\BaseWidget;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\widget\BaseCmsWidget;
 
-class LoginByAuthCookieLinkWidget extends BaseWidget implements IUrlManagerAware
+class LoginByAuthCookieLinkWidget extends BaseCmsWidget
 {
-    use TUrlManagerAware;
-
     public function __invoke()
     {
-        $url = rtrim($this->getUrlManager()->getProjectUrl(), '/');
-        $url .= $this->getContext()->getBaseUrl();
-        $url .= $this->getComponent()->getRouter()->assemble('loginByAuthCookie');
-
-        if ($postfix = $this->getUrlManager()->getSiteUrlPostfix()) {
-            $url .= '.' . $postfix;
-        }
-
-        return $url;
+        return $this->getUrl('loginByAuthCookie');
     }
 } 
