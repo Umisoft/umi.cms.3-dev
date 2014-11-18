@@ -31,13 +31,13 @@ class UmiModule extends Framework
      * Locale for test localized strings.
      * @var string $currentLocale
      */
-    protected $locale = 'en-US';
+    protected $locale = '';
 
     /**
      * Project url.
      * @var string $projectUrl
      */
-    protected $projectUrl = '/php/en';
+    protected $projectUrl = '';
     /**
      * @var ICollection[] $fixtureObjects [guid => collection instance, ...]
      */
@@ -51,8 +51,8 @@ class UmiModule extends Framework
      * {@inheritdoc}
      */
     public function _initialize() {
-        // TODO: initialize $projectUrl, $locale from environment configuration
-
+        $this->locale = $this->config['locale'];
+        $this->projectUrl = $this->config['projectUrl'];
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
@@ -214,7 +214,15 @@ class UmiModule extends Framework
     private function initializeUrlMap()
     {
         foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
-            UrlMap::${$name} = $this->projectUrl . $value;
+            $constantName = strtoupper(
+                preg_replace(
+                    '/(?!^)[[:upper:]][[:lower:]]/',
+                    '$0',
+                    preg_replace('/(?!^)[[:upper:]]+/', '_$0', $name)
+                )
+            );
+
+            UrlMap::${$name} = $this->projectUrl . constant("umitest\\UrlMap::{$constantName}");
         }
     }
 

@@ -15,10 +15,16 @@ namespace umitest;
  */
 abstract class UrlMap
 {
-    public static $default = '';
-    public static $userAuthorization = '/users/auth';
-    public static $userRegistration = '/users/registration';
-    public static $userLogout = '/users/auth/logout';
-    public static $userEditProfile = '/users/profile';
+    const DEFAULT_URL = '';
+    const USER_AUTHORIZATION = '/users/auth';
+    const USER_REGISTRATION = '/users/registration';
+    const USER_LOGOUT = '/users/auth/logout';
+    const USER_EDIT_PROFILE = '/users/profile';
+
+    public static $defaultUrl;
+    public static $userAuthorization;
+    public static $userRegistration;
+    public static $userLogout;
+    public static $userEditProfile;
+
 }
- 
