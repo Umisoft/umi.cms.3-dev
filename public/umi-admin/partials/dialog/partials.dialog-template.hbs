@@ -10,12 +10,12 @@
     {{#if view.hasButtons}}
     <div class="umi-dialog-buttons">
         {{#if model.confirm}}
-        <button class="button primary left"
-        {{action 'confirm' target="view"}}>{{model.confirm}}</button>
+        <div class="button primary left"
+        {{action 'confirm' target="view"}}>{{model.confirm}}</div>
         {{/if}}
         {{#if model.reject}}
-        <button class="button secondary right"
-        {{action 'close' target="view"}}>{{model.reject}}</button>
+        <div class="button secondary right"
+        {{action 'close' target="view"}}>{{model.reject}}</div>
         {{/if}}
     </div>
     {{/if}}

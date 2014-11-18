@@ -12,6 +12,8 @@
 
 {% elseif (element.type == 'checkbox') %}
     {{ include('form/element/checkbox.twig', {'element' : element}) }}
+{% elseif (element.type == 'radio') %}
+    {{ include('form/element/radio.twig', {'element' : element}) }}
 {% elseif (element.type == 'hidden' or element.type == 'csrf') %}
     {{ include('form/element/hidden.twig', {'element' : element}) }}
 

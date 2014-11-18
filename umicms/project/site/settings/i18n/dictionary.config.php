@@ -11,7 +11,6 @@ return [
         IProjectSettingsAware::SETTING_DEFAULT_TITLE => 'Default title tag',
         IProjectSettingsAware::SETTING_TITLE_PREFIX => 'Default title prefix',
 
-        IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID => 'Index page',
         IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID => 'Default layout',
 
         IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY => 'Template directory',
@@ -35,7 +34,6 @@ return [
         IProjectSettingsAware::SETTING_DEFAULT_TITLE => 'Метатег title по умолчанию',
         IProjectSettingsAware::SETTING_TITLE_PREFIX => 'Префикс для метатега title',
 
-        IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID => 'Главная страница',
         IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID => 'Шаблон страниц по умолчанию',
 
         IProjectSettingsAware::SETTING_TEMPLATE_DIRECTORY => 'Директория с шаблонами',

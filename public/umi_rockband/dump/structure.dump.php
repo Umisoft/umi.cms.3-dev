@@ -144,7 +144,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -6494,4 +6494,192 @@ return array (
       ),
     ),
   ),
+  40 =>
+      array (
+          'meta' =>
+              array (
+                  'collection' => 'structure',
+                  'type' => 'system',
+                  'guid' => '2de13d86-3ed0-4570-9a8f-9b24993b9a27',
+                  'displayName' => 'Опросы',
+                  'branch' => NULL,
+                  'slug' => 'surveys',
+              ),
+          'data' =>
+              array (
+                  'displayName#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Опросы',
+                      ),
+                  'displayName#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Surveys',
+                      ),
+                  'created' =>
+                      array (
+                          0 => 'object',
+                          1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-04 10:52:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+                      ),
+                  'updated' =>
+                      array (
+                          0 => 'object',
+                          1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-13 10:55:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+                      ),
+                  'owner' =>
+                      array (
+                          0 => 'relation',
+                          1 =>
+                              array (
+                                  'meta' =>
+                                      array (
+                                          'collection' => 'user',
+                                          'type' => 'registered.supervisor',
+                                          'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+                                          'displayName' => 'Супервайзер',
+                                      ),
+                              ),
+                      ),
+                  'editor' =>
+                      array (
+                          0 => 'relation',
+                          1 =>
+                              array (
+                                  'meta' =>
+                                      array (
+                                          'collection' => 'user',
+                                          'type' => 'registered.supervisor',
+                                          'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+                                          'displayName' => 'Супервайзер',
+                                      ),
+                              ),
+                      ),
+                  'metaTitle#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Опросы',
+                      ),
+                  'metaTitle#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Surveys',
+                      ),
+                  'metaDescription#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'metaDescription#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'metaKeywords#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'metaKeywords#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'h1#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Опросы',
+                      ),
+                  'h1#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => 'Surveys',
+                      ),
+                  'contents#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'contents#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'active#ru-RU' =>
+                      array (
+                          0 => 'boolean',
+                          1 => true,
+                      ),
+                  'active#en-US' =>
+                      array (
+                          0 => 'boolean',
+                          1 => true,
+                      ),
+                  'trashed' =>
+                      array (
+                          0 => 'boolean',
+                          1 => false,
+                      ),
+                  'locked' =>
+                      array (
+                          0 => 'boolean',
+                          1 => true,
+                      ),
+                  'componentName' =>
+                      array (
+                          0 => 'string',
+                          1 => 'surveys',
+                      ),
+                  'componentPath' =>
+                      array (
+                          0 => 'string',
+                          1 => 'surveys',
+                      ),
+                  'inMenu' =>
+                      array (
+                          0 => 'boolean',
+                          1 => false,
+                      ),
+                  'submenuState' =>
+                      array (
+                          0 => 'integer',
+                          1 => 0,
+                      ),
+                  'firstImage' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'secondImage' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'file' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'secondContents#ru-RU' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'secondContents#en-US' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'simpleText' =>
+                      array (
+                          0 => 'string',
+                          1 => '',
+                      ),
+                  'skipInBreadcrumbs' =>
+                      array (
+                          0 => 'boolean',
+                          1 => false,
+                      ),
+              ),
+      ),
 );

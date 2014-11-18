@@ -49,7 +49,7 @@
     }
 }
 
-.umi-divider{
+.umi-divider {
     position: absolute;
     width: 4px;
     height: unquote("calc(100% + 1px)");
@@ -57,7 +57,5 @@
     right: 0;
     background: #E0E4E7;
     border-left: 1px solid #ADB9C5;
-    &:hover{
-        cursor: col-resize;
-    }
+    cursor: col-resize;
 }

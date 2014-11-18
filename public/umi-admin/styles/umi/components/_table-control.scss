@@ -75,7 +75,7 @@ $table-control-row-bg-hover: #C8DEEE;
     position: relative;
 }
 
-.umi-table-control-column-resizer{
+.umi-table-control-column-resizer {
     position: absolute;
     right: 0;
     margin-right: -4px;
@@ -84,7 +84,7 @@ $table-control-row-bg-hover: #C8DEEE;
     height: 65px;
     top: 0;
     border: 0;
-    cursor: e-resize;
+    cursor: col-resize;
     &:hover{
         background: #444444;
     }
@@ -464,17 +464,19 @@ $table-control-row-bg-hover: #C8DEEE;
     .pagination-limit{
 
     }
-    .pagination-label{
-        display: inline-block;
+    .pagination-label,
+    .pagination-counter {
+        float: left;
         margin-right: 15px;
         line-height: 24px;
     }
     input{
-        display: inline-block;
+        display: block;
         padding: rem-calc(0 5);
         height: rem-calc(24);
         width: 50px;
         line-height: 20px;
+        float: left;
     }
 }
 

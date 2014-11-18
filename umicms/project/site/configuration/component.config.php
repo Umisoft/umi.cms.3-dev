@@ -33,6 +33,7 @@ return [
             'umicms\project\module\structure\model\object\MenuInternalItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
             'umicms\project\module\structure\model\object\MenuExternalItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
             'umicms\pagination\CmsPaginator' => 'umicms\serialization\xml\PaginatorSerializer',
+            'umicms\exception\LibXMLException' => 'umicms\serialization\xml\LibXMLExceptionSerializer',
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
@@ -55,7 +56,8 @@ return [
         'news' => '{#lazy:~/project/module/news/site/module.config.php}',
         'blog' => '{#lazy:~/project/module/blog/site/module.config.php}',
         'search' => '{#lazy:~/project/module/search/site/module.config.php}',
-        'users' => '{#lazy:~/project/module/users/site/module.config.php}'
+        'users' => '{#lazy:~/project/module/users/site/module.config.php}',
+        'surveys' => '{#lazy:~/project/module/surveys/site/module.config.php}'
     ],
 
     SiteApplication::OPTION_CONTROLLERS => [

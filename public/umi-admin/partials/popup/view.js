@@ -30,6 +30,8 @@ define(['App'], function(UMI) {
 
             resize: true,
 
+            fixed: false,
+
             layoutName: 'partials/popup',
 
             templateName: function() {
@@ -102,8 +104,11 @@ define(['App'], function(UMI) {
                 var styles = {};
                 var elHeight = $el.height() / 2;
                 var elWidth = $el.width() / 2;
-                styles.marginTop = -( $(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
-                styles.marginLeft = -( $(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                styles.marginTop = -($(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
+                styles.marginLeft = -($(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                if (this.fixed) {
+                    styles.position = 'fixed';
+                }
                 $el.css(styles);
             },
 
@@ -150,10 +155,10 @@ define(['App'], function(UMI) {
                             var h = event.pageY - posY;
 
                             if (w < that.get('width')) {
-                                w = that.get('width')
+                                w = that.get('width');
                             }
                             if (h < that.get('height')) {
-                                h = that.get('height')
+                                h = that.get('height');
                             }
 
                             $('.umi-popup').css({width: w, height: h});
@@ -192,16 +197,16 @@ define(['App'], function(UMI) {
 
                             //Запрет на вывод Popup за пределы экрана
                             if (y <= 0) {
-                                return
+                                return;
                             }
                             if (y >= windowHeight) {
-                                return
+                                return;
                             }
                             if (x <= 68 - that.width) {
-                                return
+                                return;
                             } // 68 - чтобы не только крестик оставался, но и было за что без опаски схватить
                             if (x >= windowWidth) {
-                                return
+                                return;
                             }
 
                             $that.parent().offset({left: x, top: y});
