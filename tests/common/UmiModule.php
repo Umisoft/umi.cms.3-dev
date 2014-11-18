@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of UMI.CMS.
+ *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -31,13 +32,13 @@ class UmiModule extends Framework
      * Locale for test localized strings.
      * @var string $currentLocale
      */
-    protected $locale = 'en-US';
+    protected $locale = '';
 
     /**
      * Project url.
      * @var string $projectUrl
      */
-    protected $projectUrl = '/php/en';
+    protected $projectUrl = '';
     /**
      * @var ICollection[] $fixtureObjects [guid => collection instance, ...]
      */
@@ -50,9 +51,9 @@ class UmiModule extends Framework
     /**
      * {@inheritdoc}
      */
-    public function _initialize()
-    {
-        // TODO: initialize $projectUrl, $locale from environment configuration
+    public function _initialize() {
+        $this->locale = $this->config['locale'];
+        $this->projectUrl = $this->config['projectUrl'];
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
@@ -113,8 +114,7 @@ class UmiModule extends Framework
         $user->password = $userName;
         $user->displayName = $userName;
 
-        $this->grabUsersModule()
-            ->register($user);
+        $this->grabUsersModule()->register($user);
         $user->active = true;
 
         $this->haveCommitTransaction();
@@ -133,8 +133,7 @@ class UmiModule extends Framework
      * @param null $selector
      * @see \Codeception\Lib\InnerBrowser::see()
      */
-    public function seeLocalized(array $texts, $selector = null)
-    {
+    public function seeLocalized(array $texts, $selector = null) {
         $this->see($this->getLocalized($texts), $selector);
     }
 
@@ -142,6 +141,7 @@ class UmiModule extends Framework
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
      * Examples:
+     *
      * ``` php
      * <?php
      * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // matches <a href="#">Logout</a>
@@ -223,7 +223,15 @@ class UmiModule extends Framework
     private function initializeUrlMap()
     {
         foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
-            UrlMap::${$name} = $this->projectUrl . $value;
+            $constantName = strtoupper(
+                preg_replace(
+                    '/(?!^)[[:upper:]][[:lower:]]/',
+                    '$0',
+                    preg_replace('/(?!^)[[:upper:]]+/', '_$0', $name)
+                )
+            );
+
+            UrlMap::${$name} = $this->projectUrl . constant("umitest\\UrlMap::{$constantName}");
         }
     }
 

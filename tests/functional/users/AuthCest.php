@@ -14,7 +14,7 @@ class AuthCest
      */
     public function tryToLoginWithIncorrectCredentials(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$default);
+        $I->amOnPage(UrlMap::$defaultUrl);
 
         $I->submitForm(
             '#users_authorization_loginForm',
@@ -41,7 +41,7 @@ class AuthCest
     {
         $I->haveRegisteredUser('TestUser');
 
-        $I->amOnPage(UrlMap::$default);
+        $I->amOnPage(UrlMap::$defaultUrl);
         $I->submitForm(
             '#users_authorization_loginForm',
             [
@@ -50,7 +50,7 @@ class AuthCest
             ]
         );
 
-        $I->canSeeCurrentUrlEquals(UrlMap::$default);
+        $I->canSeeCurrentUrlEquals(UrlMap::$defaultUrl);
         $I->canSeeLocalized(
             [
                 'ru-RU' => 'Добро пожаловать, TestUser',
