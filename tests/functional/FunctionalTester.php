@@ -62,7 +62,6 @@ class FunctionalTester extends \Codeception\Actor
      * ```
      * @param array $texts text for each locale
      * @param null $selector
-
      * @see \Codeception\Lib\InnerBrowser::see()
      * Conditional Assertion: Test won't be stopped on fail
      * @see \umitest\UmiModule::seeLocalized()
@@ -83,7 +82,6 @@ class FunctionalTester extends \Codeception\Actor
      * ```
      * @param array $texts text for each locale
      * @param null $selector
-
      * @see \Codeception\Lib\InnerBrowser::see()
      * @see \umitest\UmiModule::seeLocalized()
      */
@@ -97,7 +95,6 @@ class FunctionalTester extends \Codeception\Actor
      *
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
-     *
      * Examples:
      *
      * ``` php
@@ -106,7 +103,6 @@ class FunctionalTester extends \Codeception\Actor
      * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
      * ?>
      * ```
-     *
      * @param array $texts text for each locale
      * @param null $url
      * Conditional Assertion: Test won't be stopped on fail
@@ -120,7 +116,6 @@ class FunctionalTester extends \Codeception\Actor
      *
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
-     *
      * Examples:
      *
      * ``` php
@@ -129,7 +124,6 @@ class FunctionalTester extends \Codeception\Actor
      * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
      * ?>
      * ```
-     *
      * @param array $texts text for each locale
      * @param null $url
      * @see \umitest\UmiModule::seeLinkLocalized()
