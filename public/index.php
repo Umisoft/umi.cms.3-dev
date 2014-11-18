@@ -23,8 +23,10 @@ try {
         $initializer = require Environment::$toolkitInitializer;
         $initializer($bootstrap->getToolkit());
     }
-    $bootstrap->dispatch();
-    $bootstrap->sendResponse();
+
+    $response = $bootstrap->dispatch();
+    $response->send();
+
 } catch (\Exception $e) {
 
     $code = Response::HTTP_INTERNAL_SERVER_ERROR;

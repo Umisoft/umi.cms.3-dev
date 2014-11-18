@@ -35,6 +35,13 @@
 
         "symfony/finder": "~2.2",
         "symfony/process": "~2.1",
-        "symfony/console": "~2.1"
+        "symfony/console": "~2.1",
+
+        "codeception/codeception" : "~2.0"
+    },
+
+    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin/"
     }
 }
