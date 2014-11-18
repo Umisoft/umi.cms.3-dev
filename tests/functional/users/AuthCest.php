@@ -1,6 +1,7 @@
 <?php
 namespace umitest\users;
 
+use umicms\project\module\users\model\UsersModule;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -74,5 +75,41 @@ class AuthCest
             ],
             UrlMap::$userEditProfile
         );
+    }
+
+    /**
+     * @param FunctionalTester $I
+     */
+    public function setAuthCookieWhenLoginWithRememberMe(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser('TestUser');
+        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->submitForm(
+            '#users_authorization_loginForm',
+            [
+                'login'    => 'TestUser',
+                'password' => 'TestUser',
+                'rememberMe' => true
+            ]
+        );
+        $I->seeCookie(UsersModule::AUTH_COOKIE_NAME);
+    }
+
+    /**
+     * @param FunctionalTester $I
+     */
+    public function doNotSetAuthCookieWhenLoginWithoutRememberMe(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser('TestUser');
+        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->submitForm(
+            '#users_authorization_loginForm',
+            [
+                'login'    => 'TestUser',
+                'password' => 'TestUser',
+                'rememberMe' => false
+            ]
+        );
+        $I->cantSeeCookie(UsersModule::AUTH_COOKIE_NAME);
     }
 }
