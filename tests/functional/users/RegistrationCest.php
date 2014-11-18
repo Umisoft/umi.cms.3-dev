@@ -85,7 +85,7 @@ class RegistrationCest
         $I->canSeeLocalized(
             [
                 'ru-RU' => 'Пользователь с указанным логином уже существует.',
-                'en-US' => 'Login is not unique.'
+                'en-US' => 'Login is nots unique.'
             ],
             '#users_registration_index .login'
         );

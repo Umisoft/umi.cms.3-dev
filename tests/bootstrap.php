@@ -1,14 +1,21 @@
 <?php
 
-$environmentMode = 'console';
+namespace umitest;
+
+global $environmentMode;
+$environmentMode= 'console';
+
 require dirname(__DIR__) . '/configuration/core.php';
+require __DIR__ . '/aspectMock.php';
+
+require __DIR__ . '/common/UrlMap.php';
+require __DIR__ . '/common/UmiModule.php';
+require __DIR__ . '/common/UmiConnector.php';
+
+
+$kernel = AopKernel::getInstance();
 
 $srcPath = dirname(__DIR__);
-
-/*
-
-TODO: include Aspect Mock
-$kernel = Kernel::getInstance();
 
 $kernel->init(
     [
@@ -16,11 +23,8 @@ $kernel->init(
         'cacheDir'      => $srcPath . '/cache/mock',
         'prebuiltCache' => true,
         'includePaths'  => [$srcPath . '/umicms'],
-        'excludePaths' => [$srcPath]
+        'allowedNamespaces' => [
+            'umicms\form\\'
+        ]
     ]
 );
-*/
-
-require __DIR__ . '/common/UrlMap.php';
-require __DIR__ . '/common/UmiModule.php';
-require __DIR__ . '/common/UmiConnector.php';

@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -10,6 +9,7 @@
 
 namespace umitest;
 
+use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use umi\http\Request;
@@ -50,9 +50,9 @@ class UmiModule extends Framework
     /**
      * {@inheritdoc}
      */
-    public function _initialize() {
+    public function _initialize()
+    {
         // TODO: initialize $projectUrl, $locale from environment configuration
-
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
@@ -61,15 +61,19 @@ class UmiModule extends Framework
     /**
      * {@inheritdoc}
      */
-    public function _before(TestCase $test) {
+    public function _before(TestCase $test)
+    {
         $this->client = new UmiConnector();
         $this->client->followRedirects(true);
+        $this->initializeMocks();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function _after(TestCase $test) {
+    public function _after(TestCase $test)
+    {
+        Test::clean();
         $this->clearFixtureObjects();
     }
 
@@ -100,13 +104,17 @@ class UmiModule extends Framework
     public function haveRegisteredUser($userName = 'TestUser')
     {
         /**
-         * @var RegisteredUser $user */
-        $user = $this->grabUsersModule()->user()->add(RegisteredUser::TYPE_NAME);
+         * @var RegisteredUser $user
+         */
+        $user = $this->grabUsersModule()
+            ->user()
+            ->add(RegisteredUser::TYPE_NAME);
         $user->login = $userName;
         $user->password = $userName;
         $user->displayName = $userName;
 
-        $this->grabUsersModule()->register($user);
+        $this->grabUsersModule()
+            ->register($user);
         $user->active = true;
 
         $this->haveCommitTransaction();
@@ -123,30 +131,28 @@ class UmiModule extends Framework
      * ```
      * @param array $texts text for each locale
      * @param null $selector
-
      * @see \Codeception\Lib\InnerBrowser::see()
      */
-    public function seeLocalized(array $texts, $selector = null) {
+    public function seeLocalized(array $texts, $selector = null)
+    {
         $this->see($this->getLocalized($texts), $selector);
     }
 
     /**
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
-     *
      * Examples:
-     *
      * ``` php
      * <?php
      * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // matches <a href="#">Logout</a>
      * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
      * ?>
      * ```
-     *
      * @param array $texts text for each locale
      * @param null $url
      */
-    public function seeLinkLocalized(array $texts, $url = null) {
+    public function seeLinkLocalized(array $texts, $url = null)
+    {
         $this->seeLink($this->getLocalized($texts), $url);
     }
 
@@ -156,7 +162,8 @@ class UmiModule extends Framework
      * @param null|string $concreteClassName prepare realization
      * @return object
      */
-    public function grabService($serviceInterfaceName, $concreteClassName = null) {
+    public function grabService($serviceInterfaceName, $concreteClassName = null)
+    {
         return $this->commonToolkit->getService($serviceInterfaceName, $concreteClassName);
     }
 
@@ -165,7 +172,8 @@ class UmiModule extends Framework
      * @param string $moduleClassName
      * @return IModule
      */
-    public function grabModule($moduleClassName) {
+    public function grabModule($moduleClassName)
+    {
         return $this->grabService('umicms\module\IModule', $moduleClassName);
     }
 
@@ -202,7 +210,8 @@ class UmiModule extends Framework
                 $collection->delete($collection->get($guid));
             }
 
-            $this->grabService('umi\orm\persister\IObjectPersister')->commit();
+            $this->grabService('umi\orm\persister\IObjectPersister')
+                ->commit();
 
             $this->ormFixtureObjects = [];
         }
@@ -232,6 +241,22 @@ class UmiModule extends Framework
         $bootstrap->dispatchProject();
 
         $this->commonToolkit = $bootstrap->getToolkit();
+    }
+
+    /**
+     * Initialize mock for testing
+     */
+    protected function initializeMocks()
+    {
+        Test::double(
+            'umicms\form\element\Captcha',
+            [
+                'validate' => function () {
+                    return true;
+                }
+            ]
+        );
+
     }
 
 }
