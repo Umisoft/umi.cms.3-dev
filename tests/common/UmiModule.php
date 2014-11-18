@@ -10,7 +10,6 @@
 
 namespace umitest;
 
-use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use umi\http\Request;
@@ -52,16 +51,10 @@ class UmiModule extends Framework
      * {@inheritdoc}
      */
     public function _initialize() {
-        /**
-         * @var Request $request
-         */
-        $request = Request::create($this->projectUrl);
+        // TODO: initialize $projectUrl, $locale from environment configuration
 
-        $bootstrap = new Bootstrap($request);
-        $bootstrap->dispatchProject();
 
-        $this->commonToolkit = $bootstrap->getToolkit();
-
+        $this->initializeCommonToolkit();
         $this->initializeUrlMap();
     }
 
@@ -77,7 +70,6 @@ class UmiModule extends Framework
      * {@inheritdoc}
      */
     public function _after(TestCase $test) {
-        Test::clean();
         $this->clearFixtureObjects();
     }
 
@@ -219,11 +211,27 @@ class UmiModule extends Framework
     /**
      * Add project url for all map
      */
-    protected function initializeUrlMap()
+    private function initializeUrlMap()
     {
         foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
             UrlMap::${$name} = $this->projectUrl . $value;
         }
+    }
+
+    /**
+     * Initialize common toolkit (for all tests)
+     */
+    protected function initializeCommonToolkit()
+    {
+        /**
+         * @var Request $request
+         */
+        $request = Request::create($this->projectUrl);
+
+        $bootstrap = new Bootstrap($request);
+        $bootstrap->dispatchProject();
+
+        $this->commonToolkit = $bootstrap->getToolkit();
     }
 
 }

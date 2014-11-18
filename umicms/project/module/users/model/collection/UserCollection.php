@@ -266,7 +266,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
             );
         }
 
-        return  $groupGuids;
+        return $groupGuids;
     }
 
     /**
