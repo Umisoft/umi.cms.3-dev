@@ -14,6 +14,8 @@ use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\IHierarchicCollection;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
@@ -24,9 +26,10 @@ use umicms\project\module\structure\model\object\MenuInternalItem;
 /**
  * Представление дерева.
  */
-class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, ILocalizable
+class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, IBreadcrumbsStackAware, ILocalizable
 {
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
     use TLocalizable;
 
     /**
@@ -149,11 +152,11 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
         $item = $node->item;
         if ($item instanceof ICmsPage) {
             $node->current = $this->isCurrent($item);
-            $node->active = $this->hasPage($item);
+            $node->active = $this->isPageInBreadcrumbs($item);
         } elseif ($item instanceof MenuInternalItem) {
             /** @var MenuInternalItem $item */
             $node->current = $this->isCurrent($item->pageRelation);
-            $node->active = $this->hasPage($item->pageRelation);
+            $node->active = $this->isPageInBreadcrumbs($item->pageRelation);
         } else {
             $node->current = false;
             $node->active = false;

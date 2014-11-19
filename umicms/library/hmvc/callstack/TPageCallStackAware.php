@@ -25,6 +25,9 @@ trait TPageCallStackAware
      */
     private $traitPageCallStack;
 
+    /**
+     * @param SplStack $callStack
+     */
     public function setPageCallStack(SplStack $callStack)
     {
         $this->traitPageCallStack = $callStack;

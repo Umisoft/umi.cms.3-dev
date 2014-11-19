@@ -13,6 +13,8 @@ namespace umicms\project\module\structure\model;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
@@ -21,10 +23,11 @@ use umicms\serialization\ISerializer;
 /**
  * API для работы с автогенерируемым меню структуры
  */
-class AutoMenu implements ILocalizable, IPageCallStackAware
+class AutoMenu implements ILocalizable, IPageCallStackAware, IBreadcrumbsStackAware
 {
     use TLocalizable;
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
 
     /**
      * @var StructureModule $module
@@ -87,7 +90,7 @@ class AutoMenu implements ILocalizable, IPageCallStackAware
             );
 
             $pageInfo = ['page' => $page];
-            $pageInfo['active'] = $this->hasPage($page);
+            $pageInfo['active'] = $this->isPageInBreadcrumbs($page);
             $pageInfo['current'] = $this->isCurrent($page);
             if ($depth && ($this->checkIfSubmenuAlwaysShown($page) || $this->checkIfCurrentSubmenuShown($page))) {
                 $pageInfo['children'] = $this->getMenuItems($page, $depth - 1);
