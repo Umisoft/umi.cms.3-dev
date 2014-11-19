@@ -78,6 +78,14 @@ class UmiModule extends Framework
         $this->clearFixtureObjects();
     }
 
+    public function dontFollowRedirects() {
+        $this->client->followRedirects(false);
+    }
+
+    public function seeHttpHeader($header, $value) {
+        $this->assertTrue($this->client->getResponse()->headers->contains($header, $value));
+    }
+
     /**
      * Persist UMI.CMS transaction to database
      */

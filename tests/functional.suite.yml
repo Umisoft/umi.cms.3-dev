@@ -7,6 +7,10 @@
 class_name: FunctionalTester
 modules:
     enabled: [umitest\UmiModule, Filesystem, FunctionalHelper]
+    config:
+        umitest\UmiModule:
+            locale:     'ru-RU'
+            projectUrl: '/php'
 
 env:
     ru-php:
