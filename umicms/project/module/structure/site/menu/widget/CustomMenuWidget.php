@@ -26,11 +26,6 @@ class CustomMenuWidget extends BaseTreeWidget
     public $template = 'customMenu';
 
     /**
-     * @var string $menuName имя выводимого меню.
-     */
-    public $menuName;
-
-    /**
      * @var StructureModule $module
      */
     protected $module;
@@ -47,27 +42,30 @@ class CustomMenuWidget extends BaseTreeWidget
     /**
      * {@inheritdoc}
      */
-    protected function getSelector()
+    protected function getCollection()
     {
-        $menu = $this->module->menu()->select()
-            ->where(Menu::FIELD_NAME)->equals($this->menuName)
-            ->result()
-            ->fetch();
+        return $this->module->menu();
+    }
 
-        if (!$menu instanceof Menu) {
+    /**
+     * {@inheritdoc}
+     */
+    protected function getBranch($collection)
+    {
+        $branch = parent::getBranch($collection);
+
+        if (!$branch instanceof Menu) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'menuName',
+                        'param' => 'branch',
                         'class' => Menu::className()
                     ]
                 )
             );
         }
 
-        $this->parentNode = $menu;
-
-        return $this->module->menu()->select();
+        return $branch;
     }
 }

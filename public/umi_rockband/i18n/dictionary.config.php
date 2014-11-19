@@ -28,6 +28,7 @@ return [
             'AboutUs' => 'About us',
             'Blog' => 'Blog',
             'Error' => 'Error',
+            'PreviousExceptions' => 'Previous exceptions',
             'Share' => 'Share with friends',
             'Most famous' => 'We are the most famous rock-group in the world',
         ],
@@ -57,6 +58,7 @@ return [
             'AboutUs' => 'О нас',
             'Blog' => 'Блог',
             'Error' => 'Ошибка',
+            'PreviousExceptions' => 'Предыдущие исключения',
             'Share' => 'Поделитесь с друзьями',
             'Most famous' => 'Мы самая известная рок группа в мире',
         ]

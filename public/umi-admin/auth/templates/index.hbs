@@ -14,7 +14,7 @@
                 <div class="auth-layout-lang">
                     <span class="button dropdown without-arrow" data-dropdown
                           data-options="selectorById: false; align: right;">
-                        {{../../currentLocale}}
+                        {{../../currentLocaleLabel}}
                     </span>
                     <ul class="f-dropdown radius" data-dropdown-content>
                         {{#each choices}}
@@ -47,7 +47,7 @@
                         <div class="small-12 columns">
                             <i class="icon icon-{{attributes.name}} input-icon"></i>
                             <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}"
-                                   required="required" autocomplete="off" value="">
+                                   autocomplete="off" value="">
                             {{#if validators}}
                                 <span class="error">
                                     {{#each validators}}

@@ -1,6 +1,3 @@
-@import "../snippets";
-@import "../../foundation/settings/components/buttons";
-
 .umi-toolbar{
     width: 100%;
     position: relative;
@@ -19,4 +16,21 @@
         padding-top: $button-med + rem-calc(1);
         padding-bottom: $button-med + rem-calc(1);
     }
+
+    .f-dropdown.content{
+        .button {
+            padding: 0.4rem;
+        }
+        table td {
+            line-height: 1.6rem;
+        }
+    }
+
+    .umi-hide-pagination-label {
+        .pagination-limit,
+        .pagination-counter {
+            display: none;
+        }
+    }
+
 }

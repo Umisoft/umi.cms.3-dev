@@ -20,13 +20,17 @@ define(['App'], function(UMI) {
 
             contentOverflow: ['overflow', 'hidden'],
 
-            blur: true,
+            hasScroll: false,
+
+            blur: false,
 
             fade: false,
 
             drag: true,
 
             resize: true,
+
+            fixed: false,
 
             layoutName: 'partials/popup',
 
@@ -36,6 +40,9 @@ define(['App'], function(UMI) {
 
             didInsertElement: function() {
                 var self = this;
+
+                self.addOverlay();
+
                 if (self.get('blur')) {
                     self.addBlur();
                 }
@@ -52,8 +59,12 @@ define(['App'], function(UMI) {
                     this.allowResize();
                 }
 
-                if (this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array') {// TODO: WTF?
+                if (this.get('contentOverflow') !== 'hidden' && Ember.typeOf(this.get('contentOverflow')) === 'array') {
                     $('.umi-popup-content').css(this.get('contentOverflow')[0], this.get('contentOverflow')[1]);
+                }
+
+                if (this.get('hasScroll')) {
+                    this.initScroll();
                 }
 
                 this.setSize();
@@ -76,6 +87,7 @@ define(['App'], function(UMI) {
                 closePopup: function() {
                     this.beforeClose();
                     this.removeBlur();
+                    this.removeOverlay();
                     this.get('controller').send('removePopupLayout');
                     this.afterClose();
                 }
@@ -92,8 +104,11 @@ define(['App'], function(UMI) {
                 var styles = {};
                 var elHeight = $el.height() / 2;
                 var elWidth = $el.width() / 2;
-                styles.marginTop = -( $(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
-                styles.marginLeft = -( $(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                styles.marginTop = -($(window).height() > elHeight ? elHeight : $(window).height() / 2 - 50);
+                styles.marginLeft = -($(window).width() > elWidth ? elWidth : $(window).width() / 2 - 50);
+                if (this.fixed) {
+                    styles.position = 'fixed';
+                }
                 $el.css(styles);
             },
 
@@ -106,16 +121,22 @@ define(['App'], function(UMI) {
                 });
             },
 
+            addOverlay: function() {
+                $('body').append('<div class="umi-popup-invisible-overlay"></div>');
+            },
+
+            removeOverlay: function() {
+                $('.umi-popup-invisible-overlay').remove();
+            },
+
             addBlur: function() {
                 $('.umi-header').addClass('s-blur');
                 $('.umi-content').addClass('s-blur');
-                $('body').append('<div class="umi-popup-invisible-overlay"></div>');
             },
 
             removeBlur: function() {
                 $('.umi-header').removeClass('s-blur');
                 $('.umi-content').removeClass('s-blur');
-                $('.umi-popup-invisible-overlay').remove();
                 $('.umi-popup-visible-overlay').remove();
             },
 
@@ -134,10 +155,10 @@ define(['App'], function(UMI) {
                             var h = event.pageY - posY;
 
                             if (w < that.get('width')) {
-                                w = that.get('width')
+                                w = that.get('width');
                             }
                             if (h < that.get('height')) {
-                                h = that.get('height')
+                                h = that.get('height');
                             }
 
                             $('.umi-popup').css({width: w, height: h});
@@ -176,16 +197,16 @@ define(['App'], function(UMI) {
 
                             //Запрет на вывод Popup за пределы экрана
                             if (y <= 0) {
-                                return
+                                return;
                             }
                             if (y >= windowHeight) {
-                                return
+                                return;
                             }
                             if (x <= 68 - that.width) {
-                                return
+                                return;
                             } // 68 - чтобы не только крестик оставался, но и было за что без опаски схватить
                             if (x >= windowWidth) {
-                                return
+                                return;
                             }
 
                             $that.parent().offset({left: x, top: y});
@@ -198,6 +219,13 @@ define(['App'], function(UMI) {
                         });
                     }
                 });
+            },
+
+            initScroll: function() {
+                var $el = this.$();
+                var $popupContent = $el.find('.s-scroll-wrap');
+                var scrollContent = new IScroll($popupContent[0], UMI.config.iScroll);
+                this.set('iScroll', scrollContent);
             },
 
             init: function() {

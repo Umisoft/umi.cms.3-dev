@@ -41,4 +41,3 @@ trait TSerializerConfigurator
         return $this;
     }
 }
- 

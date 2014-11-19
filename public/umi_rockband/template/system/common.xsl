@@ -84,11 +84,46 @@
                             <xsl:value-of select="error/@message"/>
                         </span>
                     </h3>
-                    <textarea><xsl:value-of select="//trace" disable-output-escaping="yes" /></textarea>
+                    <xsl:apply-templates select="error/libXMLErrors" mode="controller-error"/>
+                    <xsl:apply-templates select="error/trace" mode="controller-error"/>
+                    <xsl:apply-templates select="stack" mode="controller-error"/>
+
                 </div>
             </div>
         </div>
     </xsl:template>
+
+    <xsl:template match="trace" mode="controller-error">
+        <pre><xsl:value-of select="." disable-output-escaping="yes" /></pre>
+    </xsl:template>
+
+    <xsl:template match="stack" mode="controller-error">
+        <h4><xsl:value-of select="document('translate://project.site/PreviousExceptions')/result" /></h4>
+        <ul>
+            <xsl:apply-templates select="item" mode="controller-error"/>
+        </ul>
+    </xsl:template>
+
+    <xsl:template match="stack/item" mode="controller-error">
+        <li>
+            <strong><xsl:value-of select="@message"/></strong>
+            <xsl:apply-templates select="libXMLErrors" mode="controller-error"/>
+            <xsl:apply-templates select="trace" mode="controller-error"/>
+        </li>
+    </xsl:template>
+
+    <xsl:template match="libXMLErrors" mode="controller-error">
+        <ul>
+            <xsl:apply-templates select="item" mode="controller-error"/>
+        </ul>
+    </xsl:template>
+
+    <xsl:template match="libXMLErrors/item" mode="controller-error">
+        <li>
+           <xsl:value-of select="message"/>
+        </li>
+    </xsl:template>
+
     <!-- Шаблон для вывода сообщений об ошибках на странице <Конец> -->
 
     <!-- Шаблон для вывода числовых значений полей <Начало> -->

@@ -86,6 +86,10 @@ class LayoutController extends BaseCmsController implements IProjectSettingsAwar
         $response->setStatusCode($this->response->getStatusCode());
         $response->headers->replace($this->response->headers->all());
 
+        foreach ($this->response->headers->getCookies() as $cookie) {
+            $response->headers->setCookie($cookie);
+        }
+
         return $response;
     }
 

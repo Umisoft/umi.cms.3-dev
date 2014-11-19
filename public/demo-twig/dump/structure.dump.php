@@ -144,7 +144,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (
@@ -1121,6 +1121,194 @@ return array (
     array (
       'collection' => 'structure',
       'type' => 'system',
+      'guid' => '2de13d86-3ed0-4570-9a8f-9b24993b9a27',
+      'displayName' => 'Опросы',
+      'branch' => NULL,
+      'slug' => 'surveys',
+    ),
+    'data' => 
+    array (
+      'displayName#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Опросы',
+      ),
+      'displayName#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Surveys',
+      ),
+      'created' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-09-04 10:52:54";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'updated' => 
+      array (
+        0 => 'object',
+        1 => 'O:8:"DateTime":3:{s:4:"date";s:19:"2014-10-13 10:55:52";s:13:"timezone_type";i:3;s:8:"timezone";s:3:"UTC";}',
+      ),
+      'owner' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'editor' => 
+      array (
+        0 => 'relation',
+        1 => 
+        array (
+          'meta' => 
+          array (
+            'collection' => 'user',
+            'type' => 'registered.supervisor',
+            'guid' => '68347a1d-c6ea-49c0-9ec3-b7406e42b01e',
+            'displayName' => 'Супервайзер',
+          ),
+        ),
+      ),
+      'metaTitle#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Опросы',
+      ),
+      'metaTitle#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Surveys',
+      ),
+      'metaDescription#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaDescription#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'metaKeywords#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'h1#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => 'Опросы',
+      ),
+      'h1#en-US' => 
+      array (
+        0 => 'string',
+        1 => 'Surveys',
+      ),
+      'contents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'contents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'active#ru-RU' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'active#en-US' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'trashed' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'locked' => 
+      array (
+        0 => 'boolean',
+        1 => true,
+      ),
+      'componentName' => 
+      array (
+        0 => 'string',
+        1 => 'surveys',
+      ),
+      'componentPath' => 
+      array (
+        0 => 'string',
+        1 => 'surveys',
+      ),
+      'inMenu' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+      'submenuState' => 
+      array (
+        0 => 'integer',
+        1 => 0,
+      ),
+      'firstImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondImage' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'file' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#ru-RU' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'secondContents#en-US' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'simpleText' => 
+      array (
+        0 => 'string',
+        1 => '',
+      ),
+      'skipInBreadcrumbs' => 
+      array (
+        0 => 'boolean',
+        1 => false,
+      ),
+    ),
+  ),
+  8 => 
+  array (
+    'meta' => 
+    array (
+      'collection' => 'structure',
+      'type' => 'system',
       'guid' => '246eef27-4021-47d5-828d-16afaac41628',
       'displayName' => 'Информационные блоки',
       'branch' => 
@@ -1274,7 +1462,7 @@ return array (
       ),
     ),
   ),
-  8 => 
+  9 => 
   array (
     'meta' => 
     array (
@@ -1433,7 +1621,7 @@ return array (
       ),
     ),
   ),
-  9 => 
+  10 => 
   array (
     'meta' => 
     array (
@@ -1592,7 +1780,7 @@ return array (
       ),
     ),
   ),
-  10 => 
+  11 => 
   array (
     'meta' => 
     array (
@@ -1751,7 +1939,7 @@ return array (
       ),
     ),
   ),
-  11 => 
+  12 => 
   array (
     'meta' => 
     array (
@@ -1910,7 +2098,7 @@ return array (
       ),
     ),
   ),
-  12 => 
+  13 => 
   array (
     'meta' => 
     array (
@@ -2069,7 +2257,7 @@ return array (
       ),
     ),
   ),
-  13 => 
+  14 => 
   array (
     'meta' => 
     array (
@@ -2228,7 +2416,7 @@ return array (
       ),
     ),
   ),
-  14 => 
+  15 => 
   array (
     'meta' => 
     array (
@@ -2387,7 +2575,7 @@ return array (
       ),
     ),
   ),
-  15 => 
+  16 => 
   array (
     'meta' => 
     array (
@@ -2546,7 +2734,7 @@ return array (
       ),
     ),
   ),
-  16 => 
+  17 => 
   array (
     'meta' => 
     array (
@@ -2705,7 +2893,7 @@ return array (
       ),
     ),
   ),
-  17 => 
+  18 => 
   array (
     'meta' => 
     array (
@@ -2864,7 +3052,7 @@ return array (
       ),
     ),
   ),
-  18 => 
+  19 => 
   array (
     'meta' => 
     array (
@@ -3023,7 +3211,7 @@ return array (
       ),
     ),
   ),
-  19 => 
+  20 => 
   array (
     'meta' => 
     array (
@@ -3182,7 +3370,7 @@ return array (
       ),
     ),
   ),
-  20 => 
+  21 => 
   array (
     'meta' => 
     array (
@@ -3341,7 +3529,7 @@ return array (
       ),
     ),
   ),
-  21 => 
+  22 => 
   array (
     'meta' => 
     array (
@@ -3500,7 +3688,7 @@ return array (
       ),
     ),
   ),
-  22 => 
+  23 => 
   array (
     'meta' => 
     array (
@@ -3659,7 +3847,7 @@ return array (
       ),
     ),
   ),
-  23 => 
+  24 => 
   array (
     'meta' => 
     array (
@@ -3818,7 +4006,7 @@ return array (
       ),
     ),
   ),
-  24 => 
+  25 => 
   array (
     'meta' => 
     array (
@@ -3988,7 +4176,7 @@ return array (
       ),
     ),
   ),
-  25 => 
+  26 => 
   array (
     'meta' => 
     array (
@@ -4158,7 +4346,7 @@ return array (
       ),
     ),
   ),
-  26 => 
+  27 => 
   array (
     'meta' => 
     array (
@@ -4328,7 +4516,7 @@ return array (
       ),
     ),
   ),
-  27 => 
+  28 => 
   array (
     'meta' => 
     array (
@@ -4498,7 +4686,7 @@ return array (
       ),
     ),
   ),
-  28 => 
+  29 => 
   array (
     'meta' => 
     array (
@@ -4668,7 +4856,7 @@ return array (
       ),
     ),
   ),
-  29 => 
+  30 => 
   array (
     'meta' => 
     array (
@@ -4838,7 +5026,7 @@ return array (
       ),
     ),
   ),
-  30 => 
+  31 => 
   array (
     'meta' => 
     array (
@@ -5008,7 +5196,7 @@ return array (
       ),
     ),
   ),
-  31 => 
+  32 => 
   array (
     'meta' => 
     array (
@@ -5178,7 +5366,7 @@ return array (
       ),
     ),
   ),
-  32 => 
+  33 => 
   array (
     'meta' => 
     array (
@@ -5348,7 +5536,7 @@ return array (
       ),
     ),
   ),
-  33 => 
+  34 => 
   array (
     'meta' => 
     array (
@@ -5518,7 +5706,7 @@ return array (
       ),
     ),
   ),
-  34 => 
+  35 => 
   array (
     'meta' => 
     array (
@@ -5688,7 +5876,7 @@ return array (
       ),
     ),
   ),
-  35 => 
+  36 => 
   array (
     'meta' => 
     array (
@@ -5858,7 +6046,7 @@ return array (
       ),
     ),
   ),
-  36 => 
+  37 => 
   array (
     'meta' => 
     array (
@@ -6028,7 +6216,7 @@ return array (
       ),
     ),
   ),
-  37 => 
+  38 => 
   array (
     'meta' => 
     array (
@@ -6198,7 +6386,7 @@ return array (
       ),
     ),
   ),
-  38 => 
+  39 => 
   array (
     'meta' => 
     array (
@@ -6368,7 +6556,7 @@ return array (
       ),
     ),
   ),
-  39 => 
+  40 => 
   array (
     'meta' => 
     array (

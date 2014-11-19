@@ -1,12 +1,12 @@
 define(
     [
-        'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'elFinder', 'timepicker', 'moment', 'application/config',
-        'application/utils', 'application/i18n', 'application/templates.compile', 'application/templates.extends',
-        'application/validators', 'application/models', 'application/router', 'application/controllers',
-        'application/views'
+        'DS', 'Modernizr', 'iscroll', 'ckEditor', 'jqueryUI', 'datepickerI18n', 'elFinder', 'timepicker',
+        'timepickerI18n', 'moment', 'application/config', 'application/utils', 'application/i18n',
+        'application/templates.compile', 'application/templates.extends', 'application/validators',
+        'application/models', 'application/router', 'application/controllers', 'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates,
-    templatesExtends, validators, models, router, controller, views) {
+    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, datepickerI18n, elFinder, timepicker, timepickerI18n, moment,
+        config, utils, i18n, templates, templatesExtends, validators, models, router, controller, views) {
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -67,10 +67,9 @@ define(
         UMI.OrmHelper = {
             /**
              * @method buildRequest
+             * @public
              */
-            buildRequest: function(object, fields) {
-                var store = object.get('store');
-                var collectionName = object.constructor.typeKey;
+            buildRequest: function(store, collectionName, fields) {
                 var model = store.modelFor(collectionName);
 
                 var nativeProperties = this.getNativeProperties(model, fields);
@@ -88,7 +87,7 @@ define(
                 var nativeProperties = [];
 
                 model.eachAttribute(function(name) {
-                    if (fields.contains(name)) {
+                    if (fields.contains(name) || name === 'trashed') {
                         nativeProperties.push(name);
                     }
                 });
@@ -161,21 +160,22 @@ define(
                     var dataSource;
                     var collectionName = Ember.get(relatedModel, 'type.typeKey');
 
-                    if (relatedModel.kind === 'belongsTo' || relatedModel.kind === 'hasMany' ||
-                        relatedModel.kind === 'manyToMany') {
-                        for (i = 0; i < fields.length; i++) {
-                            dataSource = fields[i];
+                    for (i = 0; i < fields.length; i++) {
+                        dataSource = fields[i];
 
-                            if (dataSource === name) {
-                                fieldsList[collectionName] = fieldsList[collectionName] || [];
-                            } else if (dataSource.indexOf(name + '.', 0) === 0) {
-                                fieldsList[collectionName] = fieldsList[collectionName] || [];
-                                fieldsList[collectionName].push(dataSource.slice(name.length + 1));
-                            }
+                        if (dataSource === name) {
+                            fieldsList[collectionName] = fieldsList[collectionName] || [];
+                        } else if (dataSource.indexOf(name + '.', 0) === 0) {
+                            fieldsList[collectionName] = fieldsList[collectionName] || [];
+                            fieldsList[collectionName].push(dataSource.slice(name.length + 1));
                         }
+                    }
 
-                        if (fieldsList[collectionName]) {//TODO: parametrize properties list
-                            fieldsList[collectionName] = fieldsList[collectionName].join(',') || 'displayName';
+                    if (fieldsList[collectionName]) {
+                        if (Ember.typeOf(fieldsList[collectionName]) === 'array' && fieldsList[collectionName].length) {
+                            fieldsList[collectionName] = fieldsList[collectionName].join(',');
+                        } else {
+                            fieldsList[collectionName] = 'displayName';
                         }
                     }
                 });
@@ -601,7 +601,7 @@ define(
                         this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else {
-                    serialized = [];
+                    serialized = null;
                 }
                 return serialized;
             }
