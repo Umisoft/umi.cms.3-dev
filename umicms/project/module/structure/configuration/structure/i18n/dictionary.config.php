@@ -30,6 +30,8 @@ return [
         'type:system:displayName' => 'System page',
         'type:static:displayName' => 'Static page',
         'type:static:createLabel' => 'Create page',
+
+        'Can not deactivate default page' => 'Can not deactivate default page',
     ],
 
     'ru-RU' => [
@@ -49,6 +51,8 @@ return [
         'type:system:displayName' => 'Системная страница',
         'type:static:displayName' => 'Статичная страница',
         'type:static:createLabel' => 'Добавить страницу',
+
+        'Can not deactivate default page' => 'Страница по умолчанию не может быть деактивирована',
     ]
 ];
  
