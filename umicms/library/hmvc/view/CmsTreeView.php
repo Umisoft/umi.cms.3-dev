@@ -152,11 +152,11 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
         $item = $node->item;
         if ($item instanceof ICmsPage) {
             $node->current = $this->isCurrent($item);
-            $node->active = $this->isPageInBreadcrumbs($item);
+            $node->active = $this->isPageInBreadcrumbs($item) || $this->hasPage($item);
         } elseif ($item instanceof MenuInternalItem) {
             /** @var MenuInternalItem $item */
             $node->current = $this->isCurrent($item->pageRelation);
-            $node->active = $this->isPageInBreadcrumbs($item->pageRelation);
+            $node->active = $this->isPageInBreadcrumbs($item->pageRelation) || $this->hasPage($item->pageRelation);
         } else {
             $node->current = false;
             $node->active = false;

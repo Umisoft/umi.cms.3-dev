@@ -90,7 +90,7 @@ class AutoMenu implements ILocalizable, IPageCallStackAware, IBreadcrumbsStackAw
             );
 
             $pageInfo = ['page' => $page];
-            $pageInfo['active'] = $this->isPageInBreadcrumbs($page);
+            $pageInfo['active'] = $this->isPageInBreadcrumbs($page) || $this->hasPage($page);
             $pageInfo['current'] = $this->isCurrent($page);
             if ($depth && ($this->checkIfSubmenuAlwaysShown($page) || $this->checkIfCurrentSubmenuShown($page))) {
                 $pageInfo['children'] = $this->getMenuItems($page, $depth - 1);
