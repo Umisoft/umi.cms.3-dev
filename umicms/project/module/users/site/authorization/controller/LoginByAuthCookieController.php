@@ -44,7 +44,8 @@ class LoginByAuthCookieController extends BaseCmsController
     public function __invoke()
     {
         $request = $this->getRequest();
-        $response = $this->createRedirectResponse($request->query->get('referer'));
+        $referer = $request->query->get('referer') ? : $this->getUrlManager()->getProjectUrl();
+        $response = $this->createRedirectResponse($referer);
 
         if ($request->cookies->has(UsersModule::AUTH_COOKIE_NAME)) {
             $userAuthCookie = $request->cookies->get(UsersModule::AUTH_COOKIE_NAME);

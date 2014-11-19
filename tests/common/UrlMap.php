@@ -20,11 +20,13 @@ abstract class UrlMap
     const USER_REGISTRATION = '/users/registration';
     const USER_LOGOUT = '/users/auth/logout';
     const USER_EDIT_PROFILE = '/users/profile';
+    const USER_AUTH_BY_COOKIE = '/users/auth/login-by-auth-cookie';
 
     public static $defaultUrl;
     public static $userAuthorization;
     public static $userRegistration;
     public static $userLogout;
     public static $userEditProfile;
+    public static $userAuthByCookie;
 
 }
