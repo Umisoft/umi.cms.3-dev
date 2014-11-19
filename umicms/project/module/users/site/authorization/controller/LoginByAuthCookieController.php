@@ -17,6 +17,9 @@ use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
+/**
+ * Контроллер аутентификации по куке
+ */
 class LoginByAuthCookieController extends BaseCmsController
 {
 
@@ -98,6 +101,10 @@ class LoginByAuthCookieController extends BaseCmsController
         return $this->module->getAuthCookieTTL();
     }
 
+    /**
+     * Отправляет пользователю письмо-оповещение о возможном взломе
+     * @param RegisteredUser $user
+     */
     private function sendWarningNotification(RegisteredUser $user)
     {
         $this->mail(

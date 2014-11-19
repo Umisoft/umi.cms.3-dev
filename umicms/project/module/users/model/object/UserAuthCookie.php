@@ -12,13 +12,16 @@ namespace umicms\project\module\users\model\object;
 
 use umicms\orm\object\CmsObject;
 
+/**
+ * Кука аутентификации
+ */
 class UserAuthCookie extends CmsObject
 {
     /** Имя поля для хранения пользователя */
     const FIELD_USER = 'user';
     /** Имя поля для хранения токена */
     const FIELD_TOKEN = 'token';
-
+    /** Сивмол разделитель, используемый в куке */
     const DELIMITER_CHAR = ':';
 
     /**
@@ -38,7 +41,7 @@ class UserAuthCookie extends CmsObject
     }
 
     /**
-     * @param string $token
+     * @param  string $token
      * @return $this
      */
     public function setToken($token)
@@ -48,7 +51,7 @@ class UserAuthCookie extends CmsObject
     }
 
     /**
-     * @param RegisteredUser $user
+     * @param  RegisteredUser $user
      * @return $this
      */
     public function setUser(RegisteredUser $user)
@@ -58,6 +61,7 @@ class UserAuthCookie extends CmsObject
     }
 
     /**
+     * Возвращает значение куки в формате {userId}DELIMITER_CHAR{guid}DELIMITER_CHAR{token}
      * @return string
      */
     public function getCookieValue()

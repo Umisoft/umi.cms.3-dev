@@ -18,14 +18,14 @@ use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\UserAuthCookie;
 
 /**
+ * Коллекция для работы с куками аутентификации
  * @method UserAuthCookie add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает auth-куку.
  */
 class UserAuthCookieCollection extends CmsCollection
 {
-
     /**
-     * @param int $userId
-     * @param string $authCookieGUID
+     * @param  int    $userId
+     * @param  string $authCookieGUID
      * @return UserAuthCookie
      * @throws \umicms\exception\NonexistentEntityException
      */
@@ -46,5 +46,4 @@ class UserAuthCookieCollection extends CmsCollection
 
         return $userAuthCookie;
     }
-
 }

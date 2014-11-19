@@ -477,8 +477,9 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
-     * @param RegisteredUser $user
-     * @param string $userAgentInfo
+     * Создает auth-куку для пользователя. Дополнительно устанавливает информацию о user-agent пользователя
+     * @param  RegisteredUser $user
+     * @param  string         $userAgentInfo
      * @return UserAuthCookie
      */
     public function createUserAuthCookie(RegisteredUser $user, $userAgentInfo)
@@ -491,8 +492,9 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
-     * @param int $userId
-     * @param string $guid
+     * Возвращает auth-куку по ключу userId, guid
+     * @param  int    $userId
+     * @param  string $guid
      * @return null|UserAuthCookie
      */
     public function getUserAuthCookie($userId, $guid)
@@ -506,8 +508,9 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Проверяет, валиден ли токен переланной auth-куки
      * @param UserAuthCookie $userAuthCookie
-     * @param string $token
+     * @param string         $token
      * @return bool
      */
     public function isUserAuthCookieTokenValid(UserAuthCookie $userAuthCookie, $token)
@@ -516,8 +519,9 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Проверяет, истек ли срок жизни auth-куки
      * @param UserAuthCookie $userAuthCookie
-     * @param \DateTime $zeroDay
+     * @param \DateTime      $zeroDay
      * @return bool
      */
     public function isUserCookieExpired(UserAuthCookie $userAuthCookie, $zeroDay)
@@ -526,6 +530,7 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Устанавливает новый токен для auth-куки
      * @param UserAuthCookie $userAuthCookie
      */
     public function generateUserAuthToken(UserAuthCookie $userAuthCookie)
@@ -534,6 +539,7 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Удаляет переданную auth-куку
      * @param UserAuthCookie $userAuthCookie
      */
     public function deleteUserAuthCookie(UserAuthCookie $userAuthCookie)
@@ -542,6 +548,7 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Удаляет все auth-cookie для переданного пользователя
      * @param RegisteredUser $registeredUser
      */
     public function deleteAuthCookiesForUser(RegisteredUser $registeredUser)
@@ -552,8 +559,9 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
-     * @param string $authCookieValue
-     * @throws \umicms\exception\UnexpectedValueException
+     * Парсит значение auth-куки и возвращет массив [userId, guid, token]
+     * @param  string $authCookieValue
+     * @throws \umicms\exception\UnexpectedValueException если значения auth-куки представлены в неверном формате
      * @return array
      */
     public function getUST($authCookieValue)
@@ -570,6 +578,7 @@ class UsersModule extends BaseModule implements ISessionAware
     }
 
     /**
+     * Возвращает время жизни auth-cookie, взависимости от настроек модуля
      * @return \DateTime
      */
     public function getAuthCookieTTL()

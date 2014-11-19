@@ -15,8 +15,14 @@ use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\widget\BaseCmsWidget;
 
+/**
+ * Виджет для отображения ссылки ресурс аутентификации по куке
+ */
 class LoginByAuthCookieLinkWidget extends BaseCmsWidget
 {
+    /**
+     * @return string|\umi\hmvc\view\IView
+     */
     public function __invoke()
     {
         return $this->getUrl('loginByAuthCookie');
