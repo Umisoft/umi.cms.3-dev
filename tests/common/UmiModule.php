@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -51,7 +50,8 @@ class UmiModule extends Framework
     /**
      * {@inheritdoc}
      */
-    public function _initialize() {
+    public function _initialize()
+    {
         $this->locale = $this->config['locale'];
         $this->projectUrl = $this->config['projectUrl'];
 
@@ -76,6 +76,14 @@ class UmiModule extends Framework
     {
         Test::clean();
         $this->clearFixtureObjects();
+    }
+
+    public function dontFollowRedirects() {
+        $this->client->followRedirects(false);
+    }
+
+    public function seeHttpHeader($header, $value) {
+        $this->assertTrue($this->client->getResponse()->headers->contains($header, $value));
     }
 
     /**
@@ -114,7 +122,8 @@ class UmiModule extends Framework
         $user->password = $userName;
         $user->displayName = $userName;
 
-        $this->grabUsersModule()->register($user);
+        $this->grabUsersModule()
+            ->register($user);
         $user->active = true;
 
         $this->haveCommitTransaction();
@@ -133,7 +142,8 @@ class UmiModule extends Framework
      * @param null $selector
      * @see \Codeception\Lib\InnerBrowser::see()
      */
-    public function seeLocalized(array $texts, $selector = null) {
+    public function seeLocalized(array $texts, $selector = null)
+    {
         $this->see($this->getLocalized($texts), $selector);
     }
 
@@ -141,11 +151,10 @@ class UmiModule extends Framework
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
      * Examples:
-     *
      * ``` php
      * <?php
-     * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // matches <a href="#">Logout</a>
-     * $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
+     *   $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // matches <a href="#">Logout</a>
+     *   $I->seeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
      * ?>
      * ```
      * @param array $texts text for each locale
@@ -265,6 +274,14 @@ class UmiModule extends Framework
             ]
         );
 
+        Test::double(
+            'umicms\hmvc\component\BaseCmsController',
+            [
+                'sendMail' => function ($subject, $body, $contentType, $files, $to, $from, $charset) {
+                    //TODO catch email
+                }
+            ]
+        );
     }
 
 }

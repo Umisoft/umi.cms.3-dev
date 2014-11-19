@@ -13,9 +13,9 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
- * Тесты регистрации пользователя со стороны сайта.
+ * Тесты формы регистрации пользователя со стороны сайта.
  */
-class RegistrationCest
+class RegistrationFormCest
 {
     /**
      * @param FunctionalTester $I

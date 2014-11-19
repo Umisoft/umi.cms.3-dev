@@ -298,7 +298,7 @@ class Bootstrap
         }
 
         if (empty($routeMatches)) {
-            $this->send404('Project not found.');
+            $this->setResponseNotFound('Project not found.');
             exit();
         }
 
@@ -427,7 +427,7 @@ class Bootstrap
 
             $redirectLocation = $host . $url;
 
-            $this->send301($redirectLocation);
+            $this->setResponseMovedPermanently($redirectLocation);
         }
     }
 
@@ -592,9 +592,9 @@ class Bootstrap
     }
 
     /**
-     * Отправляет статус 404 и завершает работу приложения.
+     * Устанавливает код ответа 404
      */
-    protected function send404($content)
+    protected function setResponseNotFound($content)
     {
         /**
          * @var Response $response
@@ -602,14 +602,13 @@ class Bootstrap
         $response = $this->toolkit->getService('umi\http\Response');
         $response->setContent($content);
         $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        $response->send();
-        exit();
     }
 
     /**
-     * Выполняет редирект и завершает работу приложения.
+     * Устанавливает код ответа 301
+     * и заголовок Location для редиректа
      */
-    protected function send301($redirectLocation)
+    protected function setResponseMovedPermanently($redirectLocation)
     {
         /**
          * @var Response $response
@@ -617,9 +616,6 @@ class Bootstrap
         $response = $this->toolkit->getService('umi\http\Response');
         $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
             ->headers->set('Location', $redirectLocation);
-
-        $response->send();
-        exit();
     }
 
     /**

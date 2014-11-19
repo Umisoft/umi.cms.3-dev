@@ -22,9 +22,12 @@ $kernel->init(
         'debug'         => true,
         'cacheDir'      => $srcPath . '/cache/mock',
         'prebuiltCache' => true,
-        'includePaths'  => [$srcPath . '/umicms'],
+        'includePaths'  => [$srcPath],
         'allowedNamespaces' => [
-            'umicms\form\\'
+            'umicms\form\\',
+            'umicms\project\module\\',
+            'umicms\hmvc\\',
+            'umi\messages\\'
         ]
     ]
 );
