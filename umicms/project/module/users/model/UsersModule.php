@@ -520,13 +520,13 @@ class UsersModule extends BaseModule implements ISessionAware
 
     /**
      * Проверяет, истек ли срок жизни auth-куки
-     * @param UserAuthCookie $userAuthCookie
-     * @param \DateTime      $zeroDay
+     * @param  UserAuthCookie $userAuthCookie
      * @return bool
      */
-    public function isUserCookieExpired(UserAuthCookie $userAuthCookie, $zeroDay)
+    public function isUserCookieExpired(UserAuthCookie $userAuthCookie)
     {
-        return $userAuthCookie->created > $zeroDay;
+        $created = $userAuthCookie->updated ? : $userAuthCookie->created;
+        return $created < $this->getAuthCookieTTL();
     }
 
     /**

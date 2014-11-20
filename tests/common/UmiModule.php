@@ -121,6 +121,18 @@ class UmiModule extends Framework
         $user->active = true;
 
         $this->grabOrmObjectPersister()->commit();
+
+        return $user;
+    }
+
+    /**
+     * @param \umicms\project\module\users\model\object\RegisteredUser $user
+     * @return \umicms\project\module\users\model\object\UserAuthCookie
+     */
+    public function haveAuthCookieForUser(RegisteredUser $user) {
+        $authCookie = $this->grabUsersModule()->createUserAuthCookie($user, 'codeception');
+        $this->grabOrmObjectPersister()->commit();
+        return $authCookie;
     }
 
     /**

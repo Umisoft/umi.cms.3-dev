@@ -75,7 +75,7 @@ class LoginByAuthCookieController extends BaseCmsController
             return $response;
         }
 
-        if ($this->module->isUserCookieExpired($userAuthCookie, $this->getZeroDay())) {
+        if ($this->module->isUserCookieExpired($userAuthCookie)) {
             $this->module->deleteUserAuthCookie($userAuthCookie);
             $this->commit();
             return $response;
@@ -92,14 +92,6 @@ class LoginByAuthCookieController extends BaseCmsController
         ));
 
         return $response;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    private function getZeroDay()
-    {
-        return $this->module->getAuthCookieTTL();
     }
 
     /**
