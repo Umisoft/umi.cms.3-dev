@@ -12,6 +12,7 @@ namespace umitest;
 use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
+use Doctrine\DBAL\ConnectionException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
@@ -265,7 +266,12 @@ class UmiModule extends Framework
      */
     protected function rollbackDbTransaction()
     {
-        $this->grabDbCluster()->getConnection()->rollBack();
+        try {
+            $this->grabDbCluster()->getConnection()->rollBack();
+        } catch (ConnectionException $e) {
+            // TODO
+        }
+
     }
 
     /**
