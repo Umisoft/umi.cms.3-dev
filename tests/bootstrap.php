@@ -27,7 +27,8 @@ $kernel->init(
             'umicms\form\\',
             'umicms\project\module\\',
             'umicms\hmvc\\',
-            'umi\messages\\'
+            'umi\messages\\',
+            'umi\orm'
         ]
     ]
 );
