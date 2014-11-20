@@ -311,6 +311,7 @@ class UmiModule extends Framework
         Test::double(
             'umi\orm\persister\ObjectPersister',
              [
+                 'startTransaction' => false,
                  'commitTransaction' => false
              ]
         );
