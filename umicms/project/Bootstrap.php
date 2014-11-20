@@ -157,8 +157,8 @@ class Bootstrap
     }
 
     /**
-     * @return bool
      * Инициализирует все необходимые данные для проекта
+     * @return bool
      */
     public function init()
     {
