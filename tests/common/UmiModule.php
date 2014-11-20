@@ -12,6 +12,7 @@ namespace umitest;
 use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
+use Codeception\Util\Debug;
 use Doctrine\DBAL\ConnectionException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
@@ -107,6 +108,7 @@ class UmiModule extends Framework
      */
     public function haveRegisteredUser($userName = 'TestUser')
     {
+        Debug::debug('Creating registered user "' . $userName  . "'");
         /**
          * @var RegisteredUser $user
          */
@@ -266,7 +268,9 @@ class UmiModule extends Framework
      */
     protected function rollbackDbTransaction()
     {
+        
         try {
+            Debug::debug('Rollback transaction');
             $this->grabDbCluster()->getConnection()->rollBack();
         } catch (ConnectionException $e) {
             // TODO
