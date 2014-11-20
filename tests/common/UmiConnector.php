@@ -15,6 +15,7 @@ use Symfony\Component\BrowserKit\Request as DomRequest;
 use Symfony\Component\BrowserKit\Response as DomResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkit;
@@ -37,7 +38,6 @@ class UmiConnector extends Client
      */
     public function doRequest($request)
     {
-
         $bootstrap = new Bootstrap($request);
         $bootstrap->init();
 
