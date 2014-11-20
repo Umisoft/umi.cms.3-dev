@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkit;
-use umicms\exception\RuntimeException;
 use umicms\project\Bootstrap;
 
 /**
@@ -27,9 +26,9 @@ use umicms\project\Bootstrap;
 class UmiConnector extends Client
 {
     /**
-     * @var IToolkit $toolkit
+     * @var callable $toolkitInitializer
      */
-    protected $toolkit;
+    protected $toolkitInitializer;
 
     /**
      * {@inheritdoc}
@@ -42,23 +41,21 @@ class UmiConnector extends Client
         $bootstrap = new Bootstrap($request);
         $bootstrap->init();
 
-        $this->toolkit = $bootstrap->getToolkit();
+        if ($this->toolkitInitializer) {
+            $initializer = $this->toolkitInitializer;
+            $initializer($bootstrap->getToolkit());
+        }
 
         return $bootstrap->dispatch();
     }
 
     /**
-     * Returns current toolkit for request.
-     * @throws RuntimeException
-     * @return IToolkit
+     * Set toolkit initializer for any request.
+     * @param callable $initializer
      */
-    public function getToolkit()
+    public function setToolkitInitializer(callable $initializer)
     {
-        if (!$this->toolkit) {
-            throw new RuntimeException('Cannot returns Toolkit. Make request before use services. (Use $I->amOnPage(...))');
-        }
-
-        return $this->toolkit;
+        $this->toolkitInitializer = $initializer;
     }
 
     /**

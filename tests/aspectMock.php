@@ -82,6 +82,7 @@ class AopComposerLoader
     /**
      * Constructs an wrapper for the composer loader
      * @param ClassLoader $original Instance of current loader
+     * @param array $allowedNamespaces
      */
     public function __construct(ClassLoader $original, $allowedNamespaces = array())
     {

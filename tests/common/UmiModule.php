@@ -12,8 +12,9 @@ namespace umitest;
 use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
+use umi\dbal\cluster\IDbCluster;
+use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
-use umi\orm\collection\ICollection;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
 use umicms\module\IModule;
@@ -28,6 +29,12 @@ use umicms\project\module\users\model\UsersModule;
 class UmiModule extends Framework
 {
     /**
+     * @api
+     * @var UmiConnector
+     */
+    public $client;
+
+    /**
      * Locale for test localized strings.
      * @var string $currentLocale
      */
@@ -39,13 +46,13 @@ class UmiModule extends Framework
      */
     protected $projectUrl = '';
     /**
-     * @var ICollection[] $fixtureObjects [guid => collection instance, ...]
-     */
-    protected $ormFixtureObjects = [];
-    /**
-     * @var IToolkit $commonToolkit common toolkit for all requests.
+     * @var IToolkit $commonToolkit common toolkit.
      */
     protected $commonToolkit;
+    /**
+     * @var IDbCluster $commonDbCluster common db connection used for all requests.
+     */
+    protected $commonDbCluster;
 
     /**
      * {@inheritdoc}
@@ -64,9 +71,13 @@ class UmiModule extends Framework
      */
     public function _before(TestCase $test)
     {
+        $this->initializeMocks();
+
         $this->client = new UmiConnector();
         $this->client->followRedirects(true);
-        $this->initializeMocks();
+
+        $this->injectCommonServices();
+        $this->beginDbTransaction();
     }
 
     /**
@@ -74,8 +85,8 @@ class UmiModule extends Framework
      */
     public function _after(TestCase $test)
     {
+        $this->rollbackDbTransaction();
         Test::clean();
-        $this->clearFixtureObjects();
     }
 
     public function dontFollowRedirects() {
@@ -86,24 +97,7 @@ class UmiModule extends Framework
         $this->assertTrue($this->client->getResponse()->headers->contains($header, $value));
     }
 
-    /**
-     * Persist UMI.CMS transaction to database
-     */
-    public function haveCommitTransaction()
-    {
-        /**
-         * @var IObjectPersister $objectPersister
-         */
-        $objectPersister = $this->grabService('umi\orm\persister\IObjectPersister');
 
-        $this->ormFixtureObjects = [];
-
-        foreach ($objectPersister->getNewObjects() as $object) {
-            $this->ormFixtureObjects[$object->getGUID()] = $object->getCollection();
-        }
-
-        $objectPersister->commit();
-    }
 
     /**
      * Create new registered user. TestUser by default.
@@ -126,7 +120,7 @@ class UmiModule extends Framework
             ->register($user);
         $user->active = true;
 
-        $this->haveCommitTransaction();
+        $this->grabOrmObjectPersister()->commit();
     }
 
     /**
@@ -177,6 +171,24 @@ class UmiModule extends Framework
     }
 
     /**
+     * Grabs ORM Object persister from common Toolkit
+     * @return IObjectPersister
+     */
+    public function grabOrmObjectPersister()
+    {
+        return $this->grabService('umi\orm\persister\IObjectPersister');
+    }
+
+    /**
+     * Grabs DbCluster persister from common Toolkit
+     * @return IDbCluster
+     */
+    public function grabDbCluster()
+    {
+        return $this->commonDbCluster;
+    }
+
+    /**
      * Grabs a UMI.CMS module from common Toolkit
      * @param string $moduleClassName
      * @return IModule
@@ -196,6 +208,19 @@ class UmiModule extends Framework
     }
 
     /**
+     * Inject common services for any request
+     */
+    protected function injectCommonServices()
+    {
+        $this->client->setToolkitInitializer(function(IToolkit $toolkit) {
+            /**
+             * @var DbalTools $dbalTools
+             */
+            $dbalTools = $toolkit->getToolbox(DbalTools::NAME);
+            $dbalTools->setCluster($this->commonDbCluster);
+        });
+    }
+    /**
      * Returns localized from text array
      * @param array $texts
      * @throws \UnexpectedValueException if undefined localization
@@ -210,26 +235,9 @@ class UmiModule extends Framework
     }
 
     /**
-     * Remove all objects, created by ORM form test.
-     */
-    protected function clearFixtureObjects()
-    {
-        if ($this->ormFixtureObjects) {
-            foreach ($this->ormFixtureObjects as $guid => $collection) {
-                $collection->delete($collection->get($guid));
-            }
-
-            $this->grabService('umi\orm\persister\IObjectPersister')
-                ->commit();
-
-            $this->ormFixtureObjects = [];
-        }
-    }
-
-    /**
      * Add project url for all map
      */
-    private function initializeUrlMap()
+    protected function initializeUrlMap()
     {
         foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
             $constantName = strtoupper(
@@ -245,6 +253,22 @@ class UmiModule extends Framework
     }
 
     /**
+     * Start transaction for request
+     */
+    protected function beginDbTransaction()
+    {
+        $this->grabDbCluster()->getConnection()->beginTransaction();
+    }
+
+    /**
+     * Rollback transaction
+     */
+    protected function rollbackDbTransaction()
+    {
+        $this->grabDbCluster()->getConnection()->rollBack();
+    }
+
+    /**
      * Initialize common toolkit (for all tests)
      */
     protected function initializeCommonToolkit()
@@ -255,9 +279,10 @@ class UmiModule extends Framework
         $request = Request::create($this->projectUrl);
 
         $bootstrap = new Bootstrap($request);
-        $bootstrap->dispatchProject();
+        $bootstrap->init();
 
         $this->commonToolkit = $bootstrap->getToolkit();
+        $this->commonDbCluster = $this->commonToolkit->getService('umi\dbal\cluster\IDbCluster');
     }
 
     /**
@@ -281,6 +306,13 @@ class UmiModule extends Framework
                     //TODO catch email
                 }
             ]
+        );
+
+        Test::double(
+            'umi\orm\persister\ObjectPersister',
+             [
+                 'commitTransaction' => false
+             ]
         );
     }
 
