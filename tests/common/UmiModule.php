@@ -334,7 +334,8 @@ class UmiModule extends Framework
             'umi\orm\persister\ObjectPersister',
              [
                  'startTransaction' => false,
-                 'commitTransaction' => false
+                 'commitTransaction' => false,
+                 'rollbackTransaction' => false
              ]
         );
     }

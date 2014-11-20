@@ -1,5 +1,5 @@
 <?php
-namespace umitest\users;
+namespace umitest\system;
 
 use umi\http\Response;
 use umitest\FunctionalTester;
