@@ -131,8 +131,13 @@
                 &.selectable{
                     &:hover, &.hover{
                         cursor: pointer;
-                        background: #C5E2F7;
+                        background: #259cec;
+                        color: #fff;
                     }
+                }
+
+                .button i {
+                    margin-top: -10px;
                 }
             }
             td{

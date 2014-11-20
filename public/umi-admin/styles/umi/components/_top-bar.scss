@@ -141,8 +141,12 @@ $umi-bg-darken-set: #404959, #181B21;
 
     .active-project {
         text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+
+        .umi-top-bar-label {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 }

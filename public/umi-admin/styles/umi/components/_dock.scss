@@ -168,7 +168,7 @@ $umi-dock-wrapper-height: rem-calc(48);
     }
 }
 
-.dock-components{
+.dock-components {
     overflow: hidden;
     position: relative;
     background-color: #e7ebee;// Временный фикс для FF в OS X
@@ -178,80 +178,32 @@ $umi-dock-wrapper-height: rem-calc(48);
     height: $dock-components-height;
     margin-top: $umi-dock-wrapper-height;
 
-    .components-nav{
+    .components-nav {
         display: inline-block;
 
-        a{
+        a {
             height: $dock-components-height;
             line-height: $dock-components-height;
             vertical-align: middle;
             padding: 0 25px;
             position: relative;
-            color: #AAADB4;
+            color: #222;
             display: block;
             float: left;
-            font-weight: bold;
-            text-size: 14px;
+            font-weight: 500;
+            font-size: 14px;
             cursor: pointer;
             text-decoration: none;
-            font-size: 0.9em;
-            border-left: 1px solid transparent;
-            border-right: 1px solid transparent;
 
-            &:hover{
-                color: #575e6c;
+            &:hover,
+            &.active {
+                background: #259cec;
+                color: #fff;
             }
-
-            &.active{
-                background: #FFFDFD;
-                color: #575e6c;
+            &.active {
                 cursor: default;
-
-                &:before, &:after{
-                    content: "";
-                    position: absolute;
-                    display: block;
-                    width: 3px;
-                    height: 100%;
-                    top: 0;
-                    left: -1px;
-                    background: url($image-to-right-shadow);
-                }
-
-                &:after{
-                    left: auto;
-                    right: -3px;
-                    background: url($image-to-left-shadow);
-                }
             }
         }
     }
 }
 
-
-//Временнные - на посмотреть
-.components-nav{
-    border: none;
-}
-
-.components-nav a{
-    font-family: arial, sans-serif;
-    font-size: 13px!important;
-    height: 24px!important;
-    margin: 6px 10px;
-    padding: 0 10px!important;
-    line-height: 24px!important;
-    border: none;
-    cursor: pointer;
-}
-
-.components-nav a.active{
-    border: none;
-    border-radius: 12px;
-    background: #EEEEEE;
-    box-shadow: 0 1px 1px 0 #F5F5F5, inset 0 1px 5px -1px #000000;
-}
-
-.dock-components .components-nav a.active:before, .dock-components .components-nav a.active:after{
-    content: none!important;
-}
