@@ -88,7 +88,7 @@ class LoginByAuthCookieController extends BaseCmsController
         $response->headers->setCookie(new Cookie(
             UsersModule::AUTH_COOKIE_NAME,
             $userAuthCookie->getCookieValue(),
-            $this->module->getAuthCookieTTL()
+            $this->module->getAuthCookieTTLFromSettings()
         ));
 
         return $response;

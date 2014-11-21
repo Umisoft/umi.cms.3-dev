@@ -525,8 +525,7 @@ class UsersModule extends BaseModule implements ISessionAware
      */
     public function isUserCookieExpired(UserAuthCookie $userAuthCookie)
     {
-        $created = $userAuthCookie->updated ? : $userAuthCookie->created;
-        return $created < $this->getAuthCookieTTL();
+        return $userAuthCookie->getCookieTTL() > $this->getAuthCookieTTLFromSettings();
     }
 
     /**
@@ -581,7 +580,7 @@ class UsersModule extends BaseModule implements ISessionAware
      * Возвращает время жизни auth-cookie, взависимости от настроек модуля
      * @return \DateTime
      */
-    public function getAuthCookieTTL()
+    public function getAuthCookieTTLFromSettings()
     {
         $days = $this->getSetting(self::SETTING_AUTH_COOKIE_TTL);
         return new \DateTime('+' . $days . ' day');

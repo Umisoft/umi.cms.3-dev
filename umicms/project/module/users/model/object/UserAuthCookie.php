@@ -68,4 +68,12 @@ class UserAuthCookie extends CmsObject
     {
         return implode(self::DELIMITER_CHAR, [$this->getUser()->getId(), $this->getGUID(), $this->getToken()]);
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCookieTTL()
+    {
+        return $this->updated ? : $this->created;
+    }
 }

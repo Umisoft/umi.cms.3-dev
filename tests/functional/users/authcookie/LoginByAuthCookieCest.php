@@ -49,6 +49,9 @@ class LoginByAuthCookieCest
      */
     public function canLoginByCookie(FunctionalTester $I)
     {
+        Test::double('\umicms\project\module\users\model\object\UserAuthCookie', [
+            'getCookieTTL' => function() { return new \DateTime(); }
+        ]);
         $authCookie = $I->haveAuthCookieForUser($I->haveRegisteredUser());
 
         $I->setCookie(UsersModule::AUTH_COOKIE_NAME, $authCookie->getCookieValue());
