@@ -18,7 +18,7 @@
                     {{/if}}
 
 
-                    <ul {{bind-attr class=":f-dropdown view.parentView.isTouchDevice:is-touch-mode"}} data-dropdown-content>
+                    <ul {{bind-attr class=":f-dropdown :f-dropdown-border view.parentView.isTouchDevice:is-touch-mode"}} data-dropdown-content>
                         {{#each component in module.components}}
                             <li class="{{unbound component.name}}">
                                 {{#link-to 'component' module.name component.name}}

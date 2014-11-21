@@ -49,16 +49,36 @@ form{
     z-index: 1000;
     background: #fff;
     box-shadow: 0 0px 3px 0px #7C99AC;
+
     > li > .button{
         margin-bottom: 0;
         border-left-width: 0;
         border-right: 0;
+
         &:last-child{
             border-right: 1px solid #D1D1D1;
         }
     }
+
     .f-dropdown{
         left: auto !important;
         right: 0 !important;
+        margin-right: 0 !important;
+        border: none;
+    }
+
+    .f-arrowed-top.open {
+        z-index: 100;
+    }
+
+    .f-arrowed-top.open:before {
+        content: '';
+        position: absolute;
+        top: -0.7rem;
+        right: inherit;
+        left: 50%;
+        margin: 0 0 0 -0.3rem;
+        border: 0.6rem solid transparent;
+        border-top-color: #fff;
     }
 }

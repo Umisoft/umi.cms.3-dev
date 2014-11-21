@@ -15,6 +15,8 @@ define(['App', 'toolbar'], function(UMI) {
                     behaviour.extendButton.dataOptions = function() {
                         return 'side: top; align: right;';
                     }.property();
+                    behaviour.extendButton.classNames = ['f-arrowed-top'];
+                    behaviour.listClassNames = 'f-dropdown-padding';
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

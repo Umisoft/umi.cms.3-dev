@@ -548,7 +548,7 @@
             if (settings.minWidthLikeElement) {
                 minWidthLikeElement = target.closest(settings.minWidthLikeElement);
                 if (minWidthLikeElement.length) {
-                    dropdownStyles.minWidth = minWidthLikeElement.outerWidth() + 'px';
+                    dropdownStyles.minWidth = minWidthLikeElement.outerWidth(true) + 'px';
                     dropdown.css({'minWidth': dropdownStyles.minWidth});
                 }
             }
@@ -556,7 +556,7 @@
             if (settings.maxWidthLikeElement) {
                 maxWidthLikeElement = target.closest(settings.maxWidthLikeElement);
                 if (maxWidthLikeElement.length) {
-                    dropdownStyles.maxWidth = maxWidthLikeElement.outerWidth() - 10 + 'px';
+                    dropdownStyles.maxWidth = maxWidthLikeElement.outerWidth(true) - 10 + 'px';
                     dropdown.css({'maxWidth': dropdownStyles.maxWidth});
                 }
             }
@@ -580,13 +580,13 @@
                     height: $(window).height()
                 };
                 var dropdownSize = {
-                    width: dropdown.outerWidth(),
-                    height: dropdown.outerHeight()
+                    width: dropdown.outerWidth(true),
+                    height: dropdown.outerHeight(true)
                 };
 
                 var targetSize = {
-                    width: target.outerWidth(),
-                    height: target.outerHeight()
+                    width: target.outerWidth(true),
+                    height: target.outerHeight(true)
                 };
 
                 var targetOffset = target.offset();
@@ -595,14 +595,14 @@
                 if (settings.checkPositionRegardingElement) {
                     closestTarget = target.closest(settings.checkPositionRegardingElement);
                     target = closestTarget.length ? closestTarget : target;
-                    screenSize.width = target.outerWidth();//TODO: check parent with overflow: hidden
+                    screenSize.width = target.outerWidth(true);//TODO: check parent with overflow: hidden
                 } else if (settings.minWidthLikeElement && !target.is(settings.minWidthLikeElement)) {
                     closestTarget = target.closest(settings.minWidthLikeElement);
                     target = closestTarget.length ? closestTarget : target;
                 }
 
                 //TODO: optimize
-                targetSize.width = target.outerWidth();
+                targetSize.width = target.outerWidth(true);
                 targetOffset.left = target.offset().left;
 
                 for (var key in targetOffset) {
@@ -690,23 +690,23 @@
                 top: function(target, basePosition) {
                     this.addClass('drop-top');
 
-                    return {top: basePosition.top - this.outerHeight()};
+                    return {top: basePosition.top - this.outerHeight(true)};
                 },
 
                 bottom: function(target, basePosition) {
-                    return {top: basePosition.top + target.outerHeight()};
+                    return {top: basePosition.top + target.outerHeight(true)};
                 },
 
                 left: function(target, basePosition) {
                     this.addClass('drop-left');
 
-                    return {left: basePosition.left - this.outerWidth()};
+                    return {left: basePosition.left - this.outerWidth(true)};
                 },
 
                 right: function(target, basePosition) {
                     this.addClass('drop-right');
 
-                    return {left: basePosition.left + target.outerWidth()};
+                    return {left: basePosition.left + target.outerWidth(true)};
                 }
             },
 
@@ -716,7 +716,7 @@
                 },
 
                 bottom: function(target, basePosition) {
-                    return {top: basePosition.top - this.outerHeight() + target.outerHeight()};
+                    return {top: basePosition.top - this.outerHeight(true) + target.outerHeight(true)};
                 },
 
                 left: function(target, basePosition) {
@@ -724,7 +724,7 @@
                 },
 
                 right: function(target, basePosition) {
-                    return {left: basePosition.left - this.outerWidth() + target.outerWidth()};
+                    return {left: basePosition.left - this.outerWidth(true) + target.outerWidth(true)};
                 }
             }
         },

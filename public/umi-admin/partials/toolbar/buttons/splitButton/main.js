@@ -134,6 +134,8 @@ define(['App'], function(UMI) {
                     return buttonView;
                 }.property(),
 
+                listClassNames: null,
+
                 itemView: ListItemView
             });
 
