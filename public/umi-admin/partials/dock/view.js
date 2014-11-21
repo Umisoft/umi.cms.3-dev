@@ -8,7 +8,7 @@ define(['App'], function(UMI) {
         var def = {old: 0, cur: 0, def: 0, coeff: 1 };
         var intervalLeaveItem;
 
-        UMI.DockView = Ember.View.extend({
+        var dockViewMixin = Ember.Mixin.create({
             templateName: 'partials/dock',
 
             classNames: ['umi-dock', 's-unselectable'],
@@ -53,7 +53,7 @@ define(['App'], function(UMI) {
                         } else if (def.def < 0) {
                             // move right
                             def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) /
-                                (dockParentWidth - event.clientX));
+                            (dockParentWidth - event.clientX));
                             futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
 
                             if (def.coeff > 0 && dockParentWidth < elWidth - 20 + (futureOffset +
@@ -137,9 +137,10 @@ define(['App'], function(UMI) {
             isBlocked: false,
 
             needDockMinimize: false
+
         });
 
-        UMI.DockModuleButtonView = Ember.View.extend({
+        var dockModuleButtonViewMixin = Ember.Mixin.create({
             tagName: 'li',
 
             classNames: ['umi-dock-button'],
@@ -173,7 +174,7 @@ define(['App'], function(UMI) {
                                 step: function(n, o) {
                                     if (this.parentNode.parentNode === $el[0]) {
                                         dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft +
-                                            o.elem.parentNode.offsetWidth / 2) + 'px';
+                                        o.elem.parentNode.offsetWidth / 2) + 'px';
                                     }
                                 },
                                 complete: function() {
@@ -263,6 +264,43 @@ define(['App'], function(UMI) {
                         UMI.Utils.LS.set('dock', mass);
                     });
                 });
+            }
+        });
+
+        var dockModes = {
+            dynamic: {
+                classNames: ['SSSSSSSSSSSSSSSS'],
+                dockModuleButtonView: Ember.View.extend(dockModuleButtonViewMixin, {})
+            },
+            small: {
+                classNames: ['zzzzzzzzzzzzzzzz'],
+                dockModuleButtonView: Ember.View.extend(dockModuleButtonViewMixin, {})
+            },
+            big: {
+                classNames: ['hhhhhhhhhhhhhhh'],
+                dockModuleButtonView: Ember.View.extend(dockModuleButtonViewMixin, {})
+            },
+            list: {
+                classNames: ['yyyyyyyyyyyyyyyy'],
+                dockModuleButtonView: Ember.View.extend(dockModuleButtonViewMixin, {})
+            }
+        };
+
+        UMI.DockView = Ember.View.extend({
+            layout: Ember.Handlebars.compile('{{view view.modeView}}'),
+
+            modeView: function() {
+                var activeModeName = this.get('controller.activeMode.name');
+                var mixin = dockModes[activeModeName];
+                return Ember.View.extend(dockViewMixin, mixin);
+            }.property('controller.activeMode.name'),
+
+            _templateChanged: function() {
+                this.rerender();
+            }.observes('controller.activeMode.name'),
+
+            willDestroyElement: function() {
+                this.removeObserver('controller.activeMode.name');
             }
         });
     };

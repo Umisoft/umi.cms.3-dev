@@ -25,7 +25,28 @@ define(['App'], function(UMI) {
                     return modules;
                 }
             }.property('modules'),
-            activeModuleBinding: 'controllers.module.model'
+
+            activeModuleBinding: 'controllers.module.model',
+
+            modes: [
+                {name: 'small', title: 'Мелкие', isActive: false},
+                {name: 'list', title: 'Списком', isActive: false},
+                {name: 'big', title: 'Крупные', isActive: false},
+                {name: 'dynamic', title: 'Динамичные', isActive: false}
+            ],
+
+            activeMode: function() {
+                return this.get('modes').findBy('isActive', true);
+            }.property('modes.@each.isActive'),
+
+            init: function() {
+                var activeMode = null;//UMI.utils.LS.get('dock.activeModeName');
+                var modes = this.get('modes');
+                if (!activeMode || !modes.findBy('name', activeMode)) {
+                    activeMode = Ember.get(modes[0], 'name');
+                }
+                Ember.set(modes.findBy('name', activeMode), 'isActive', true);
+            }
         });
     };
 });

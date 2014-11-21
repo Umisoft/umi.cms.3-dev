@@ -397,6 +397,31 @@ function program8(depth0,data) {
   
 });
 
+Ember.TEMPLATES["UMI/partials/dockControlPanel"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" <li> <a href=\"javascript: void(0)\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "changeDockMode", "mode", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push(">");
+  stack1 = helpers._triageMustache.call(depth0, "mode.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</a> </li> ");
+  return buffer;
+  }
+
+  data.buffer.push(" ");
+  stack1 = helpers.each.call(depth0, "mode", "in", "modes", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["UMI/partials/dock"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -406,9 +431,9 @@ function program1(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push(" ");
-  stack1 = helpers.view.call(depth0, "dockModuleButton", {hash:{
+  stack1 = helpers.view.call(depth0, "view.dockModuleButtonView", {hash:{
     'module': ("module")
-  },hashTypes:{'module': "ID"},hashContexts:{'module': depth0},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["STRING"],data:data});
+  },hashTypes:{'module': "ID"},hashContexts:{'module': depth0},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
@@ -2372,11 +2397,13 @@ function program4(depth0,data) {
   data.buffer.push(" <ul class=\"umi-top-bar-list right\"> <li> <span class=\"button tiny flat dropdown umi-top-bar-button\" data-dropdown data-options=\"selectorById: false;\"> ");
   stack1 = helpers._triageMustache.call(depth0, "view.userName", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </span> <ul class=\"f-dropdown\" data-dropdown-content> <li> <a href=\"javascript:void(0)\" ");
+  data.buffer.push(" </span> <ul class=\"f-dropdown f-dropdown-parent\" data-dropdown-content> <li> ");
+  data.buffer.push(escapeExpression((helper = helpers.render || (depth0 && depth0.render),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "dockControlPanel", options) : helperMissing.call(depth0, "render", "dockControlPanel", options))));
+  data.buffer.push(" </li> <li> <ul class=\"f-dropdown f-dropdown-child f-dropdown-double highlighted\"> <li> Профиль </li> <li> <a href=\"javascript:void(0)\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "logout", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("> <i class=\"icon icon-exit\"></i> ");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Logout", options) : helperMissing.call(depth0, "i18n", "Logout", options))));
-  data.buffer.push(" </a> </li> </ul> </li> ");
+  data.buffer.push(" </a> </li> </ul> </li> </ul> </li> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "notificationList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </ul> </nav>");
   return buffer;

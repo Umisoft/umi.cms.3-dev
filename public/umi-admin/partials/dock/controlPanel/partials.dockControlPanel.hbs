@@ -1,0 +1,5 @@
+    {{#each mode in modes}}
+        <li>
+            <a href="javascript: void(0)" {{action "changeDockMode" mode}}>{{mode.title}}</a>
+        </li>
+    {{/each}}

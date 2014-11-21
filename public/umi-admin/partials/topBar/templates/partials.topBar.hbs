@@ -15,6 +15,7 @@
                     </li>
                 {{/each}}
             </ul>
+
         </li>
         <li>
             <span class="umi-top-bar-label">{{view.activeProject}}</span>
@@ -39,11 +40,21 @@
             <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown data-options="selectorById: false;">
                 {{view.userName}}
             </span>
-            <ul class="f-dropdown" data-dropdown-content>
+            <ul class="f-dropdown f-dropdown-parent" data-dropdown-content>
                 <li>
-                    <a href="javascript:void(0)" {{action "logout"}}>
-                        <i class="icon icon-exit"></i> {{i18n "Logout"}}
-                    </a>
+                    {{render 'dockControlPanel'}}
+                </li>
+                <li>
+                    <ul class="f-dropdown f-dropdown-child f-dropdown-double highlighted">
+                        <li>
+                            Профиль
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" {{action "logout"}}>
+                                <i class="icon icon-exit"></i> {{i18n "Logout"}}
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
