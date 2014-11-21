@@ -41,7 +41,7 @@ class LoginByAuthCookieCest
 
         $I->setCookie(UsersModule::AUTH_COOKIE_NAME, $authCookie->getCookieValue());
         $I->amOnPage(UrlMap::$defaultUrl);
-        $I->cantSeeCookie(UsersModule::AUTH_COOKIE_NAME);
+        $I->dontSeeCookie(UsersModule::AUTH_COOKIE_NAME);
     }
 
     /**
@@ -57,7 +57,7 @@ class LoginByAuthCookieCest
         $I->setCookie(UsersModule::AUTH_COOKIE_NAME, $authCookie->getCookieValue());
         $I->amOnPage(UrlMap::$defaultUrl);
         $I->seeCookie(UsersModule::AUTH_COOKIE_NAME);
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Выйти',
                 'en-US' => 'Log out'

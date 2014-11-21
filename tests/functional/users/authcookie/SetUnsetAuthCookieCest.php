@@ -37,7 +37,7 @@ class SetUnsetAuthCookieCest
     public function doNotSetAuthCookieWhenLoginWithoutRememberMe(FunctionalTester $I)
     {
         $this->login($I, false);
-        $I->cantSeeCookie(UsersModule::AUTH_COOKIE_NAME);
+        $I->dontSeeCookie(UsersModule::AUTH_COOKIE_NAME);
     }
 
     /**
@@ -47,7 +47,7 @@ class SetUnsetAuthCookieCest
     public function tryLogoutWithAuthCookie(FunctionalTester $I)
     {
         $this->login($I, true);
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Выйти',
                 'en-US' => 'Log out'
@@ -55,7 +55,7 @@ class SetUnsetAuthCookieCest
             '#users_authorization_logoutForm_submit'
         );
         $I->click('#users_authorization_logoutForm_submit');
-        $I->cantSeeCookie(UsersModule::AUTH_COOKIE_NAME);
+        $I->seeCookie(UsersModule::AUTH_COOKIE_NAME);
     }
 
     /**
