@@ -16,6 +16,8 @@ return [
 
     SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/configuration/slugGenerator.config.php',
 
+    SettingsComponent::OPTION_SETTINGS => '{#lazy:~/project/configuration/slugGenerator.config.php}',
+
     SettingsComponent::OPTION_FORMS => [
         'settings' => '{#lazy:~/project/site/settings/slugify/form/settings.php}'
     ]

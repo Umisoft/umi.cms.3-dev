@@ -13,7 +13,7 @@ return [
         'component:slugify:displayName' => 'Slug generator setting',
 
         'slugify' => 'Slug generator',
-        'slugGeneratorType' => 'Slug generator type',
+        'slugTranslit' => 'Slug translating',
         'slugLength' => 'Slug length',
 
         'role:configurator:displayName' => 'Manage settings'
@@ -24,7 +24,7 @@ return [
         'component:slugify:displayName' => 'Псевдостатический адрес',
 
         'slugify' => 'Псевдостатический адрес',
-        'slugGeneratorType' => 'Тип псевдостатического адреса',
+        'slugTranslit' => 'Транслит псевдостатического адреса',
         'slugLength' => 'Длина псевдостатического адреса',
 
         'role:configurator:displayName' => 'Управление настройками'

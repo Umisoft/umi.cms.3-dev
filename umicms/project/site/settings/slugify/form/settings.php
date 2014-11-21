@@ -9,9 +9,8 @@
  */
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Select;
+use umi\form\element\Checkbox;
 use umi\form\element\Text;
-use umi\validation\IValidatorFactory;
 use umicms\validation\Range;
 
 return [
@@ -22,18 +21,11 @@ return [
     ],
 
     'elements' => [
-        'slugGeneratorType' => [
-            'type' => Select::TYPE_NAME,
-            'label' => 'slugGeneratorType',
+        'slugTranslit' => [
+            'type' => Checkbox::TYPE_NAME,
+            'label' => 'slugTranslit',
             'options' => [
-                'validators' => [
-                    IValidatorFactory::TYPE_REQUIRED => []
-                ],
-                'dataSource' => 'generatorClassName',
-                'choices' => [
-                    'umicms\slugify\filtration\FiltrationGenerator' => 'Фильтрация',
-                    'umicms\slugify\transliteration\TransliterationGenerator' => 'Транслитерация'
-                ]
+                'dataSource' => 'slugTranslit'
             ]
         ],
         'slugLength' => [

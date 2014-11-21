@@ -10,7 +10,9 @@
 
 namespace umicms\project\admin\controller;
 
+use umi\config\exception\RuntimeException;
 use umi\http\Response;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\admin\rest\RestApplication;
 use umicms\project\module\users\model\UsersModule;
@@ -52,6 +54,15 @@ class DefaultController extends BaseCmsController
          */
         $restApplication = $this->getComponent()->getChildComponent('rest');
 
+        /** @var SettingsComponent $settings */
+        $settings = $restApplication->getChildComponent('settings')->getChildComponent('site')->getChildComponent('slugify');
+
+        try {
+            $transliterationSlug = $settings->getSetting('slugTranslit');
+        } catch (RuntimeException $e) {
+            $transliterationSlug = false;
+        }
+
         $response = $this->createViewResponse('layout', [
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
@@ -60,6 +71,7 @@ class DefaultController extends BaseCmsController
             'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
             'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($restApplication, 'auth'),
+            'transliterationSlug' => $transliterationSlug,
             'version' => CMS_VERSION,
             'versionDate' => CMS_VERSION_DATE
         ]);
