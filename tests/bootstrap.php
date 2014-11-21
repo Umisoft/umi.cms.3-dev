@@ -8,6 +8,7 @@ $environmentMode= 'console';
 require dirname(__DIR__) . '/configuration/core.php';
 require __DIR__ . '/aspectMock.php';
 
+require __DIR__ . '/common/MockMessageBox.php';
 require __DIR__ . '/common/UrlMap.php';
 require __DIR__ . '/common/UmiModule.php';
 require __DIR__ . '/common/UmiConnector.php';

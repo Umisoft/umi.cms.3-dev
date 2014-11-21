@@ -13,12 +13,12 @@ use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
-use Doctrine\DBAL\ConnectionException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
+use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -55,6 +55,10 @@ class UmiModule extends Framework
      * @var IDbCluster $commonDbCluster common db connection used for all requests.
      */
     protected $commonDbCluster;
+    /**
+     * @var MockMessageBox
+     */
+    public $messageBox;
 
     /**
      * {@inheritdoc}
@@ -66,6 +70,7 @@ class UmiModule extends Framework
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
+        $this->initializeMessageBox();
     }
 
     /**
@@ -76,6 +81,7 @@ class UmiModule extends Framework
         $this->initializeMocks();
 
         $this->client = new UmiConnector();
+        $this->client->setMessageBox($this->messageBox);
         $this->client->followRedirects(true);
 
         $this->injectCommonServices();
@@ -89,6 +95,7 @@ class UmiModule extends Framework
     {
         $this->rollbackDbTransaction();
         Test::clean();
+        $this->messageBox->clean();
     }
 
     public function dontFollowRedirects() {
@@ -99,7 +106,13 @@ class UmiModule extends Framework
         $this->assertTrue($this->client->getResponse()->headers->contains($header, $value));
     }
 
-
+    public function openEmail($email, array $localizedSubject)
+    {
+        /** @var IUrlManager $urlManager */
+        $urlManager = $this->grabService('umicms\hmvc\url\IUrlManager');
+        $subject = $urlManager->getProjectUrl(true) . $this->getLocalized($localizedSubject);
+        $this->amOnPage("/messages?email={$email}&subject={$subject}");
+    }
 
     /**
      * Create new registered user. TestUser by default.
@@ -268,14 +281,8 @@ class UmiModule extends Framework
      */
     protected function rollbackDbTransaction()
     {
-        
-        try {
-            Debug::debug('Rollback transaction');
-            $this->grabDbCluster()->getConnection()->rollBack();
-        } catch (ConnectionException $e) {
-            // TODO
-        }
-
+        Debug::debug('Rollback transaction');
+        $this->grabDbCluster()->getConnection()->rollBack();
     }
 
     /**
@@ -295,6 +302,11 @@ class UmiModule extends Framework
         $this->commonDbCluster = $this->commonToolkit->getService('umi\dbal\cluster\IDbCluster');
     }
 
+    protected function initializeMessageBox()
+    {
+        $this->messageBox = new MockMessageBox();
+    }
+
     /**
      * Initialize mock for testing
      */
@@ -309,11 +321,13 @@ class UmiModule extends Framework
             ]
         );
 
+        $that = $this;
+
         Test::double(
             'umicms\hmvc\component\BaseCmsController',
             [
-                'sendMail' => function ($subject, $body, $contentType, $files, $to, $from, $charset) {
-                    //TODO catch email
+                'sendMail' => function ($subject, $body, $contentType, $files, $to, $from, $charset) use ($that) {
+                    $that->messageBox->push(array_keys($to)[0], $subject, $body);
                 }
             ]
         );

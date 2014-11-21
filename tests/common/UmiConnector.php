@@ -15,7 +15,6 @@ use Symfony\Component\BrowserKit\Request as DomRequest;
 use Symfony\Component\BrowserKit\Response as DomResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkit;
@@ -32,6 +31,11 @@ class UmiConnector extends Client
     protected $toolkitInitializer;
 
     /**
+     * @var MockMessageBox
+     */
+    private $messageBox;
+
+    /**
      * {@inheritdoc}
      * @param Request $request
      * @return Response
@@ -39,14 +43,26 @@ class UmiConnector extends Client
     public function doRequest($request)
     {
         $bootstrap = new Bootstrap($request);
-        $bootstrap->init();
+        if (0 === strpos($request->getRequestUri(), '/messages')) {
+            parse_str($request->getQueryString(), $message);
+            $content = $this->getMessageBox()->read($message['email'], $message['subject']);
+            /** @var Response $response */
+            $response = $bootstrap->getToolkit()->getService('umi\http\Response');
+            if ($content) {
+                $response->setContent($content);
+            } else {
+                $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            }
+            return $response;
+        } else {
+            $bootstrap->init();
+            if ($this->toolkitInitializer) {
+                $initializer = $this->toolkitInitializer;
+                $initializer($bootstrap->getToolkit());
+            }
 
-        if ($this->toolkitInitializer) {
-            $initializer = $this->toolkitInitializer;
-            $initializer($bootstrap->getToolkit());
+            return $bootstrap->dispatch();
         }
-
-        return $bootstrap->dispatch();
     }
 
     /**
@@ -56,6 +72,19 @@ class UmiConnector extends Client
     public function setToolkitInitializer(callable $initializer)
     {
         $this->toolkitInitializer = $initializer;
+    }
+
+    public function setMessageBox(MockMessageBox $messageBox)
+    {
+        $this->messageBox = $messageBox;
+    }
+
+    private function getMessageBox()
+    {
+        if (empty($this->messageBox)) {
+            throw new \LogicException('Please set up message box with UmiConnector::setMessageBox');
+        }
+        return $this->messageBox;
     }
 
     /**

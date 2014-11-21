@@ -33,14 +33,29 @@ class RegistrationWithConfirmationCest
                 'email'      => 'TestUser@example.com',
                 'firstName'  => 'TestFirstName',
                 'middleName' => 'TestMiddleName',
-                'lastName'   => 'TestLastName'
+                'lastName'   => 'TestLastName',
+            ]
+        );
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Письмо с ключом активации было выслано на Ваш электронный адрес TestUser@example.com. Откройте письмо, чтобы завершить регистрацию.',
+                'en-US' => 'Registration email sent to TestUser@example.com. Open this email to finish signup.',
+            ]
+        );
+
+        $I->openEmail(
+            'TestUser@example.com',
+            [
+                'ru-RU' => ': Подтверждение регистрации пользователя.',
+                'en-US' => ': Confirm user registration.',
             ]
         );
 
         $I->canSeeLocalized(
             [
-                'ru-RU' => 'Письмо с ключом активации было выслано на Ваш электронный адрес TestUser@example.com. Откройте письмо, чтобы завершить регистрацию.',
-                'en-US' => 'Registration email sent to TestUser@example.com. Open this email to finish signup.'
+                'ru-RU' => 'Для того чтобы завершить регистрацию, перейдите по следующей ссылке',
+                'en-US' => 'In order to complete your registration, visit the following URL',
             ]
         );
 
