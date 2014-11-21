@@ -1,1 +1,12 @@
-<p>Warning notification body</p>
+<?php
+/**
+ * @var string $activationCode
+ * @var string $projectUrl
+ * @var \umicms\project\module\users\model\object\RegisteredUser $user
+ */
+
+?>
+
+<p><?= $this->translate('Hello')?>, <?= $user->displayName ?></p>
+
+<p><?= $this->translate('You should change your password now')?></p>

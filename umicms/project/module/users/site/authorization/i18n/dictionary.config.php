@@ -17,6 +17,10 @@ return [
         'Log out' => 'Log out',
         'You are already logged in' => 'You are already logged in',
 
+        'Hello' => 'Hello',
+        'Detection of attempts to compromise your account' => 'Detection of attempts to compromise your account',
+        'You should change your password now' => 'You should change your password now',
+
         'role:viewer:displayName' => 'Authorize',
     ],
 
@@ -26,6 +30,10 @@ return [
         'Sign in' => 'Авторизация',
         'Log out' => 'Выйти',
         'You are already logged in' => 'Вы уже авторизованы',
+
+        'Hello' => 'Здравствуйте',
+        'Detection of attempts to compromise your account' => 'Обнаружение попытки скомпрометировать вашу учетную запись',
+        'You should change your password now' => 'Вы должны изменить пароль',
 
         'role:viewer:displayName' => 'Авторизация пользователя',
     ]

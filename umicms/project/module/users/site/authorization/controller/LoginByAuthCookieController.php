@@ -105,7 +105,10 @@ class LoginByAuthCookieController extends BaseCmsController
             $this->module->getMailSender(),
             'mail/warningNotificationSubject',
             'mail/warningNotificationBody',
-            []
+            [
+                'user' => $user,
+
+            ]
         );
     }
 
