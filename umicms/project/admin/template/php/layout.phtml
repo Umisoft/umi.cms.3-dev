@@ -17,7 +17,8 @@
                 "authUrl": '<?= $authUrl ?>',
                 "assetsUrl" : '<?= $assetsUrl ?>',
                 "projectAssetsUrl" : '<?= $projectAssetsUrl ?>',
-                "transliterationSlug" : '<?= $transliterationSlug ?>'
+                "transliterationSlug" : <?= $transliterationSlug ? 'true' : 'false' ?>
+
             }
         </script>
     </head>
