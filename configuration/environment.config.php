@@ -19,7 +19,6 @@ return [
         
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => null,
     ],
 
     'test' => [
@@ -38,7 +37,6 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => dirname(__DIR__) . '/configuration/env.init.test.php',
     ],
 
     'production' => [
@@ -57,7 +55,6 @@ return [
 
         'cacheTemplateEnabled' => true,
 
-        'toolkitInitializer' => null,
     ],
 
     'console' => [
@@ -76,6 +73,5 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => null,
     ]
 ];
