@@ -52,7 +52,7 @@ class RegistrationWithConfirmationCest
             ]
         );
 
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Для того чтобы завершить регистрацию, перейдите по следующей ссылке',
                 'en-US' => 'In order to complete your registration, visit the following URL',

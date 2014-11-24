@@ -1,6 +1,0 @@
-default:
-    extensions:
-        Behat\MinkExtension:
-            base_url: http://umicms3.dkop
-            goutte: ~
-            selenium2: ~
