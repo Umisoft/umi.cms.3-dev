@@ -10,7 +10,7 @@ use umitest\UrlMap;
  */
 class VoteCest
 {
-   /**
+    /**
      * @param FunctionalTester $I
      */
     public function SuccessVote(FunctionalTester $I)
@@ -88,6 +88,42 @@ class VoteCest
 
     public function AlreadyVoted(FunctionalTester $I)
     {
+        Test::double(
+            'umicms\form\element\Captcha',
+            [
+                'validate' => function () {
+                    return true;
+                }
+            ]
+        );
+
+        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Ответы',
+                'en-US' => 'Answers'
+            ],
+            '.answers label'
+        );
+        $I->setCookie('307064ad-f397-42f5-9b19-d92c65990429', 1);
+        $I->submitForm(
+            '#surveys_voteForm',
+            [
+                'answers' => '3617fe64-54cf-4354-9031-4b5674abae6e'
+            ]
+        );
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . '/surveys/nextshow');
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Вы уже проголосовали',
+                'en-US' => 'You have already voted'
+            ]
+        );
+    }
+
+    public function ShowResult(FunctionalTester $I)
+    {
         $I->setCookie('307064ad-f397-42f5-9b19-d92c65990429', 1);
 
         $I->amOnPage(UrlMap::$defaultUrl);
@@ -100,6 +136,5 @@ class VoteCest
             ],
             '.blog-sidebar'
         );
-
     }
 }
