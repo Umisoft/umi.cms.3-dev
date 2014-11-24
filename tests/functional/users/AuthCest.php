@@ -24,8 +24,8 @@ class AuthCest
             ]
         );
 
-        $I->canSeeCurrentUrlEquals(UrlMap::$userAuthorization);
-        $I->canSeeLocalized(
+        $I->seeCurrentUrlEquals(UrlMap::$userAuthorization);
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Неверный логин или пароль',
                 'en-US' => 'Invalid login or password'
@@ -50,8 +50,8 @@ class AuthCest
             ]
         );
 
-        $I->canSeeCurrentUrlEquals(UrlMap::$defaultUrl);
-        $I->canSeeLocalized(
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Добро пожаловать, TestUser',
                 'en-US' => 'Welcome, TestUser'
@@ -59,7 +59,7 @@ class AuthCest
             '.authorization'
         );
 
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Выйти',
                 'en-US' => 'Log out'
