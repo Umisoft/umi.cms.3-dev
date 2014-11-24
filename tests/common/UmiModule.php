@@ -13,11 +13,13 @@ use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
+use umi\config\io\TConfigIOAware;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
@@ -30,6 +32,13 @@ use umicms\project\module\users\model\UsersModule;
  */
 class UmiModule extends Framework
 {
+
+    use TConfigIOAware;
+
+    /**
+     * @var SettingsComponent
+     */
+    private $settings;
     /**
      * @api
      * @var UmiConnector
@@ -71,6 +80,7 @@ class UmiModule extends Framework
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
         $this->initializeMessageBox();
+        $this->initializeSettings();
     }
 
     /**
@@ -100,7 +110,15 @@ class UmiModule extends Framework
         $this->messageBox->clean();
     }
 
-    public function dontFollowRedirects() {
+    public function turnRegistrationConfirmation($value)
+    {
+        $config = $this->readConfig($this->settings->getSettingsConfigAlias());
+        $config->set('registrationWithActivation', (bool)('on' == $value));
+        $this->writeConfig($config);
+    }
+
+    public function dontFollowRedirects()
+    {
         $this->client->followRedirects(false);
     }
 
@@ -342,6 +360,18 @@ class UmiModule extends Framework
                  'rollbackTransaction' => false
              ]
         );
+    }
+
+    private function initializeSettings()
+    {
+        $this->settings = new SettingsComponent(
+            'registration',
+            'project.admin.rest.settings.users.registration',
+             array(
+                 'settingsConfigAlias' => '~/project/module/users/configuration/user/collection.settings.config.php',
+             )
+        );
+        $this->setConfigIO($this->commonToolkit->getService('umi\config\io\IConfigIO'));
     }
 
 }
