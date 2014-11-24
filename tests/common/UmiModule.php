@@ -93,7 +93,9 @@ class UmiModule extends Framework
      */
     public function _after(TestCase $test)
     {
-        $this->rollbackDbTransaction();
+        if ($this->grabDbCluster()->getConnection()->isTransactionActive()) {
+            $this->rollbackDbTransaction();
+        }
         Test::clean();
         $this->messageBox->clean();
     }

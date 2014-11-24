@@ -61,7 +61,7 @@ class RegistrationWithConfirmationCest
 
         $I->click(['xpath' => '//a']);
 
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Ваш аккаунт успешно активирован',
                 'en-US' => 'You have successfully activated your account',

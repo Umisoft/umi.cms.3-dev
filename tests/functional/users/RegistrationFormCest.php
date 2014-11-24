@@ -24,7 +24,7 @@ class RegistrationFormCest
     {
         $I->amOnPage(UrlMap::$defaultUrl);
 
-        $I->canSeeLinkLocalized(
+        $I->seeLinkLocalized(
             [
                 'ru-RU' => 'Регистрация',
                 'en-US' => 'Register'
@@ -45,21 +45,21 @@ class RegistrationFormCest
             '#users_registration_index',
             []
         );
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
             ],
             '#users_registration_index .login'
         );
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
             ],
             '#users_registration_index .password'
         );
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
@@ -75,14 +75,14 @@ class RegistrationFormCest
                 'email' => 'TestUser'
             ]
         );
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Указан некорректный email.',
                 'en-US' => 'Wrong email format.'
             ],
             '#users_registration_index .email'
         );
-        $I->canSeeLocalized(
+        $I->seeLocalized(
             [
                 'ru-RU' => 'Пользователь с указанным логином уже существует.',
                 'en-US' => 'Login is not unique.'

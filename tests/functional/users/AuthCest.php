@@ -50,7 +50,7 @@ class AuthCest
             ]
         );
 
-        $I->canSeeCurrentUrlEquals(UrlMap::$defaultUrl);
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Добро пожаловать, TestUser',
