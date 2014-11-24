@@ -125,6 +125,15 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware, IToolk
     }
 
     /**
+     * Используется только для тестов, сами потоки отменяются в контексте тестового клиента
+     * @param bool $flag
+     */
+    public static function setStreamsRegistered($flag)
+    {
+        self::$streamsRegistered = $flag;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setOptions(array $options)
