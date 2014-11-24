@@ -85,4 +85,21 @@ class VoteCest
             '.captcha'
         );
     }
+
+    public function AlreadyVoted(FunctionalTester $I)
+    {
+        $I->setCookie('307064ad-f397-42f5-9b19-d92c65990429', 1);
+
+        $I->amOnPage(UrlMap::$defaultUrl);
+
+        $I->cantSeeElement('.captcha');
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Всего голосов',
+                'en-US' => 'Total votes'
+            ],
+            '.blog-sidebar'
+        );
+
+    }
 }
