@@ -12,7 +12,7 @@ class AuthCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToLoginWithIncorrectCredentials(FunctionalTester $I)
+    public function loginWithIncorrectCredentials(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$defaultUrl);
 
@@ -37,7 +37,7 @@ class AuthCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToLoginWithCorrectCredentials(FunctionalTester $I)
+    public function loginWithCorrectCredentials(FunctionalTester $I)
     {
         $I->haveRegisteredUser('TestUser');
 

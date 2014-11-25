@@ -22,7 +22,7 @@ class RegistrationWithConfirmationCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToRegisterWithConfirmation(FunctionalTester $I)
+    public function registerWithConfirmation(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRegistration);
 

@@ -22,7 +22,7 @@ class RegistrationWithoutConfirmationCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToRegisterWithoutConfirmation(FunctionalTester $I)
+    public function registerWithoutConfirmation(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRegistration);
 
