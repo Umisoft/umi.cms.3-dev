@@ -9,6 +9,7 @@
 
 namespace umitest\users;
 
+use AspectMock\Test;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -67,7 +68,19 @@ class RegistrationWithConfirmationCest
                 'en-US' => 'You have successfully activated your account',
             ]
         );
+    }
 
+    /**
+     * Setup for test
+     */
+    public function _before()
+    {
+        Test::double(
+            'umicms\project\module\users\model\collection\UserCollection',
+            [
+                'getIsRegistrationWithActivation' => false
+            ]
+        );
     }
 }
  

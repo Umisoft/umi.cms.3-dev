@@ -110,13 +110,6 @@ class UmiModule extends Framework
         $this->messageBox->clean();
     }
 
-    public function turnRegistrationConfirmation($value)
-    {
-        $config = $this->readConfig($this->settings->getSettingsConfigAlias());
-        $config->set('registrationWithActivation', (bool)('on' == $value));
-        $this->writeConfig($config);
-    }
-
     public function dontFollowRedirects()
     {
         $this->client->followRedirects(false);

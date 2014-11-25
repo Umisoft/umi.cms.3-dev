@@ -52,6 +52,7 @@ class UmiConnector extends Client
             } else {
                 $response->setStatusCode(Response::HTTP_NOT_FOUND);
             }
+
             return $response;
         } else {
             $bootstrap->init();
@@ -73,6 +74,10 @@ class UmiConnector extends Client
         $this->toolkitInitializer = $initializer;
     }
 
+    /**
+     * Inject message mox
+     * @param MockMessageBox $messageBox
+     */
     public function setMessageBox(MockMessageBox $messageBox)
     {
         $this->messageBox = $messageBox;

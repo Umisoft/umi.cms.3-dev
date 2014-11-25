@@ -9,6 +9,7 @@
 
 namespace umitest\users;
 
+use AspectMock\Test;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -23,8 +24,6 @@ class RegistrationWithoutConfirmationCest
      */
     public function tryToRegisterWithoutConfirmation(FunctionalTester $I)
     {
-        $I->turnRegistrationConfirmation('off');
-
         $I->amOnPage(UrlMap::$userRegistration);
 
         $I->submitForm(
@@ -45,8 +44,19 @@ class RegistrationWithoutConfirmationCest
                 'en-US' => 'You have successfully registered and logged in',
             ]
         );
+    }
 
-        $I->turnRegistrationConfirmation('on');
+    /**
+     * Setup for test
+     */
+    public function _before()
+    {
+        Test::double(
+            'umicms\project\module\users\model\collection\UserCollection',
+            [
+                'getIsRegistrationWithActivation' => false
+            ]
+        );
     }
 }
  
