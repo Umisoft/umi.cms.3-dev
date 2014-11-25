@@ -162,10 +162,9 @@ class IndexController extends BaseSitePageController
     {
         $admins = $this->module->getNotificationRecipients();
 
-        if (count($admins)) {
-
+        if ($admins) {
             $this->mail(
-                [$this->user->email => $this->user->displayName],
+                $admins,
                 $this->module->getMailSender(),
                 'mail/adminNotificationMailSubject',
                 'mail/adminNotificationMailBody',

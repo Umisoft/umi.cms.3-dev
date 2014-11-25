@@ -8,13 +8,25 @@ class MockMessageBox {
 
     public function push($recipient, $subject, $content)
     {
-        $this->messages[$recipient][$subject] = $content;
+        if (is_array($recipient)) {
+            foreach ($recipient as $email => $name) {
+                $this->doPush($email, $subject, $content);
+            }
+
+        } else {
+            $this->doPush($recipient, $subject, $content);
+        }
     }
 
-    public function read($recipient, $subject)
+    private function doPush($email, $subject, $content)
     {
-        if (isset($this->messages[$recipient][$subject])) {
-            $result = $this->messages[$recipient][$subject];
+        $this->messages[$email][$subject] = $content;
+    }
+
+    public function read($email, $subject)
+    {
+        if (isset($this->messages[$email][$subject])) {
+            $result = $this->messages[$email][$subject];
             if (false === stripos($result, '<html>')) {
                 return '<html>' . $result .'</html>';
             }
@@ -26,6 +38,11 @@ class MockMessageBox {
     public function clean()
     {
         $this->messages = [];
+    }
+
+    public function count($email)
+    {
+        return count($this->messages[$email]);
     }
 
 }

@@ -10,6 +10,7 @@
 namespace umitest\users;
 
 use AspectMock\Test;
+use umi\http\Response;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -45,11 +46,11 @@ class RegistrationWithConfirmationCest
             ]
         );
 
-        $I->openEmail(
+        $I->openEmailMessage(
             'TestUser@example.com',
             [
-                'ru-RU' => ': Подтверждение регистрации пользователя.',
-                'en-US' => ': Confirm user registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Подтверждение регистрации пользователя.',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Confirm user registration.',
             ]
         );
 
@@ -68,6 +69,41 @@ class RegistrationWithConfirmationCest
                 'en-US' => 'You have successfully activated your account',
             ]
         );
+
+        $I->openEmailMessage(
+            'TestNotification@example.com',
+            [
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Регистрация пользователя',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': User registration.',
+            ]
+        );
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Новый пользователь TestUser зарегистрировался на сайте ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
+                'en-US' => 'New user TestUser has registered on the website ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
+            ]
+        );
+
+    }
+
+    public function emptyActivationCode(FunctionalTester $I)
+    {
+        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
+        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation);
+        $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
+    }
+
+    public function incorrectActivationCode(FunctionalTester $I)
+    {
+        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
+        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation . '/incorrect');
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Неверный код активации.',
+                'en-US' => 'Wrong activation code format.',
+            ]
+        );
     }
 
     /**
@@ -78,7 +114,13 @@ class RegistrationWithConfirmationCest
         Test::double(
             'umicms\project\module\users\model\collection\UserCollection',
             [
-                'getIsRegistrationWithActivation' => false
+                'getIsRegistrationWithActivation' => true
+            ]
+        );
+        Test::double(
+            'umicms\project\module\users\model\UsersModule',
+            [
+                'getNotificationRecipients' => ['TestNotification@example.com' => 'TestAdmin'],
             ]
         );
     }

@@ -44,6 +44,24 @@ class RegistrationWithoutConfirmationCest
                 'en-US' => 'You have successfully registered and logged in',
             ]
         );
+
+        $I->openEmailMessage(
+            'TestUser@example.com',
+            [
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Регистрация пользователя.',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': User registration.',
+            ]
+        );
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Вы успешно зарегистрировались на сайте',
+                'en-US' => 'You have successfully registered on the website',
+            ]
+        );
+
+        $I->haveEmailMessage('TestNotification@example.com');
+
     }
 
     /**
@@ -55,6 +73,12 @@ class RegistrationWithoutConfirmationCest
             'umicms\project\module\users\model\collection\UserCollection',
             [
                 'getIsRegistrationWithActivation' => false
+            ]
+        );
+        Test::double(
+            'umicms\project\module\users\model\UsersModule',
+            [
+                'getNotificationRecipients' => ['TestNotification@example.com' => 'TestAdmin'],
             ]
         );
     }
