@@ -7,13 +7,17 @@
 <?php if (count($tree) > 0) : ?>
     <ul class="bottomMenu">
         <?php foreach ($tree as $node) : ?>
-            <li>
-                <a href="<?= $node->item->getItemUrl() ?: $this->anchor() ?>"
-                    <?php echo $node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
+            <li <?php if($node->active):?>class="active"<?endif?>>
+                <?php if($node->current):?>
                     <?=$node->item->displayName?>
-                </a>
+                <?else:?>
+                    <a href="<?= $node->item->getItemUrl() ?: $this->anchor() ?>"
+                        <?=$node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
+                        <?=$node->item->displayName?>
+                    </a>
+                <?endif?>
                 <?= $this->render('customMenu.phtml', ['tree' => $node->children]); ?>
             </li>
-        <?php endforeach;?>
+        <?endforeach;?>
     </ul>
-<?php endif; ?>
+<?endif;?>
