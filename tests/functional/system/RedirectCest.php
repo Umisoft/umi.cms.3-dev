@@ -13,7 +13,7 @@ class RedirectCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToCheckRedirectToMainPage(FunctionalTester $I)
+    public function checkRedirectToMainPage(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
         $I->amOnPage(UrlMap::$defaultUrl . '/main');
@@ -24,7 +24,7 @@ class RedirectCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToCheckNotFoundReponse(FunctionalTester $I)
+    public function checkNotFoundReponse(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
         $I->amOnPage(UrlMap::$defaultUrl . '/123');
@@ -36,7 +36,7 @@ class RedirectCest
     /**
      * @param FunctionalTester $I
      */
-    public function tryToCheckRedirectFromSlash(FunctionalTester $I)
+    public function checkRedirectFromSlash(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
         $I->amOnPage(UrlMap::$defaultUrl . '/');
