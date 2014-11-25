@@ -804,7 +804,6 @@ class Bootstrap
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-
         $urlManager->setSchemeAndHttpHost($this->domainUrl);
         $urlManager->setUrlPrefix($this->projectPrefix);
         $urlManager->setSiteUrlPostfix($this->siteUrlPostfix);
@@ -847,6 +846,9 @@ class Bootstrap
     {
         $routeMatches = $this->route->getMatches();
         $this->domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
+        if (80 != $routeMatches[ProjectHostRoute::OPTION_PORT]) {
+            $this->domainUrl .= ':' . $routeMatches[ProjectHostRoute::OPTION_PORT];
+        }
     }
 
     /**
