@@ -38,7 +38,7 @@ return [
 
         'cacheTemplateEnabled' => false,
 
-        'toolkitInitializer' => dirname(__DIR__) . '/configuration/env.init.test.php',
+        'toolkitInitializer' => null,
     ],
 
     'production' => [
