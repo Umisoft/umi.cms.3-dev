@@ -14,18 +14,22 @@ use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\IHierarchicCollection;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 /**
  * Представление дерева.
  */
-class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, ILocalizable
+class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, IBreadcrumbsStackAware, ILocalizable
 {
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
     use TLocalizable;
 
     /**
@@ -109,9 +113,7 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
             /** @var CmsHierarchicObject|ICmsPage $item */
             foreach($categories[$parentId] as $item) {
                 $node = new CmsTreeNode($item, $this->buildTreeNodes($categories, $item->getId()));
-                if ($item instanceof ICmsPage) {
-                    $node->current = $this->hasPage($item);
-                }
+                $this->setCurrentAndActive($node);
                 $nodes[] = $node;
             }
         }
@@ -139,6 +141,26 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
         }
 
         return $parentId;
+    }
+
+    /**
+     * Определяет значения флагов active и current для ноды дерева.
+     * @param CmsTreeNode $node
+     */
+    private function setCurrentAndActive(CmsTreeNode $node)
+    {
+        $item = $node->item;
+        if ($item instanceof ICmsPage) {
+            $node->current = $this->isCurrent($item);
+            $node->active = $this->isPageInBreadcrumbs($item) || $this->hasPage($item);
+        } elseif ($item instanceof MenuInternalItem) {
+            /** @var MenuInternalItem $item */
+            $node->current = $this->isCurrent($item->pageRelation);
+            $node->active = $this->isPageInBreadcrumbs($item->pageRelation) || $this->hasPage($item->pageRelation);
+        } else {
+            $node->current = false;
+            $node->active = false;
+        }
     }
 }
  

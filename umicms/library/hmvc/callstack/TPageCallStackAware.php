@@ -25,6 +25,10 @@ trait TPageCallStackAware
      */
     private $traitPageCallStack;
 
+    /**
+     * Устанавливает стек вызова страниц сайта
+     * @param SplStack $callStack
+     */
     public function setPageCallStack(SplStack $callStack)
     {
         $this->traitPageCallStack = $callStack;
@@ -89,6 +93,16 @@ trait TPageCallStackAware
             }
         }
         return false;
+    }
+
+    /**
+     * Проверяет, является ли страница текущей
+     * @param ICmsPage $page
+     * @return bool
+     */
+    protected function isCurrent(ICmsPage $page)
+    {
+        return ($this->hasCurrentPage() && $this->getCurrentPage() === $page);
     }
 }
  
