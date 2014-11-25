@@ -29,7 +29,7 @@ return [
         'Register' => 'Регистрация',
         'You are already registered' => 'Вы уже зарегистрированы',
         'Confirm user registration' => 'Подтверждение регистрации пользователя',
-        'User registration' => 'Регистрации пользователя',
+        'User registration' => 'Регистрация пользователя',
         'In order to complete your registration, visit the following URL' => 'Для того чтобы завершить регистрацию, перейдите по следующей ссылке',
         'Registration email sent to {email}. Open this email to finish signup.' => 'Письмо с ключом активации было выслано на Ваш электронный адрес {email}. Откройте письмо, чтобы завершить регистрацию.',
         'Hello' => 'Здравствуйте',

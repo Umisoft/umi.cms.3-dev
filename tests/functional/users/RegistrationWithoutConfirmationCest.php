@@ -44,6 +44,22 @@ class RegistrationWithoutConfirmationCest
                 'en-US' => 'You have successfully registered and logged in',
             ]
         );
+
+        $I->openEmail(
+            'TestUser@example.com',
+            [
+                'ru-RU' => ': Регистрация пользователя.',
+                'en-US' => ': User registration.',
+            ]
+        );
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Вы успешно зарегистрировались на сайте',
+                'en-US' => 'You have successfully registered on the website',
+            ]
+        );
+
     }
 
     /**
