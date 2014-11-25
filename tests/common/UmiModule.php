@@ -13,6 +13,7 @@ use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
+use Symfony\Component\HttpFoundation\Response;
 use umi\config\io\TConfigIOAware;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
@@ -118,12 +119,16 @@ class UmiModule extends Framework
         $this->assertTrue($this->client->getResponse()->headers->contains($header, $value));
     }
 
-    public function openEmail($email, array $localizedSubject)
+    public function openEmailMessage($email, array $localizedSubject)
     {
-        /** @var IUrlManager $urlManager */
-        $urlManager = $this->grabService('umicms\hmvc\url\IUrlManager');
-        $subject = $urlManager->getProjectUrl(true) . $this->getLocalized($localizedSubject);
+        $subject = $this->getLocalized($localizedSubject);
         $this->amOnPage("/messages?email={$email}&subject={$subject}");
+    }
+
+    public function haveEmailMessage($email)
+    {
+        $this->amOnPage("/messages?email={$email}");
+        $this->assertEquals(Response::HTTP_OK, $this->getResponseStatusCode());
     }
 
     /**
@@ -278,6 +283,8 @@ class UmiModule extends Framework
 
             UrlMap::${$name} = $this->projectUrl . constant("umitest\\UrlMap::{$constantName}");
         }
+
+        UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
     }
 
     /**
@@ -339,7 +346,7 @@ class UmiModule extends Framework
             'umicms\hmvc\component\BaseCmsController',
             [
                 'sendMail' => function ($subject, $body, $contentType, $files, $to, $from, $charset) use ($that) {
-                    $that->messageBox->push(array_keys($to)[0], $subject, $body);
+                    $that->messageBox->push($to, $subject, $body);
                 }
             ]
         );

@@ -18,14 +18,35 @@ abstract class UrlMap
     const DEFAULT_URL = '';
     const USER_AUTHORIZATION = '/users/auth';
     const USER_REGISTRATION = '/users/registration';
+    const USER_ACTIVATION = '/users/registration/activate';
     const USER_LOGOUT = '/users/auth/logout';
     const USER_EDIT_PROFILE = '/users/profile';
     const SURVEYS_NEXT_SHOW = '/surveys/nextshow';
 
     public static $defaultUrl;
     public static $userAuthorization;
+    public static $userActivation;
     public static $userRegistration;
     public static $userLogout;
     public static $userEditProfile;
+
+    private static $projectDomain;
+
+    /**
+     * @return mixed
+     */
+    public static function getProjectDomain()
+    {
+        return self::$projectDomain;
+    }
+
+    /**
+     * @param mixed $projectDomain
+     */
+    public static function setProjectDomain($projectDomain)
+    {
+        self::$projectDomain = $projectDomain;
+    }
+
 
 }
