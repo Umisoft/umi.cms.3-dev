@@ -9,8 +9,10 @@
  */
 
 use project\module\structure\model\object\Slider;
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\structure\model\object\InfoBlock;
 
@@ -32,14 +34,26 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => InfoBlock::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_DISPLAY_NAME
+                        'dataSource' => InfoBlock::FIELD_DISPLAY_NAME,
+                        'filters'    => [
+                            IFilterFactory::TYPE_STRING_TRIM => []
+                        ],
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ]
                     ],
                 ],
                 InfoBlock::FIELD_INFOBLOCK_NAME => [
                     'type' => Text::TYPE_NAME,
                     'label' => InfoBlock::FIELD_INFOBLOCK_NAME,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME
+                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME,
+                        'filters'    => [
+                            IFilterFactory::TYPE_STRING_TRIM => []
+                        ],
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ]
                     ],
                 ]
             ]

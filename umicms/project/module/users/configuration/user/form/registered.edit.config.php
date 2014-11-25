@@ -8,11 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\html5\DateTime;
 use umi\form\element\MultiSelect;
 use umi\form\element\Password;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
@@ -33,14 +35,28 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => RegisteredUser::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
+                        'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ],
                 RegisteredUser::FIELD_LOGIN => [
                     'type' => Text::TYPE_NAME,
                     'label' => RegisteredUser::FIELD_LOGIN,
                     'options' => [
-                        'dataSource' => RegisteredUser::FIELD_LOGIN
+                        'dataSource' => RegisteredUser::FIELD_LOGIN,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ],
                 RegisteredUser::FIELD_PASSWORD => [
@@ -54,7 +70,11 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => RegisteredUser::FIELD_EMAIL,
                     'options' => [
-                        'dataSource' => RegisteredUser::FIELD_EMAIL
+                        'dataSource' => RegisteredUser::FIELD_EMAIL,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => [],
+                            IValidatorFactory::TYPE_EMAIL    => [],
+                        ]
                     ],
                 ],
                 RegisteredUser::FIELD_REGISTRATION_DATE => [

@@ -27,44 +27,11 @@ define(
 
                 actions: {
                     submit: function(handler) {
-                        var self = this;
-                        if (handler) {
-                            handler.addClass('loading');
-                        }
-                        var data = this.$().serialize();
-
-                        $.ajax({
-                            type: 'POST',
-                            url: self.get('action'),
-                            global: false,
-                            data: data,
-
-                            success: function(results) {
-                                var meta = Ember.get(results, 'result.save');
-                                var context = self.get('context');
-                                if (meta) {
-                                    Ember.set(context, 'control.meta', meta);
-                                }
-                                handler.removeClass('loading');
-                                var params = {type: 'success', content: UMI.i18n.getTranslate('Saved') + '.'};
-                                UMI.notification.create(params);
-                            },
-
-                            error: function(results) {
-                                var result = Ember.get(results, 'responseJSON.result');
-                                var meta = Ember.get(result, 'save');
-                                var context = self.get('context');
-                                if (meta && Ember.get(meta, 'type')) {
-                                    Ember.set(context, 'control.meta', meta);
-                                }
-                                var error = Ember.get(result, 'error');
-                                if (error && Ember.get(error, 'message')) {
-                                    var params = {type: 'error', content: Ember.get(error, 'message')};
-                                    UMI.notification.create(params);
-                                }
-                                handler.removeClass('loading');
-                            }
-                        });
+                        var params = {
+                            handler: handler,
+                            form: this
+                        };
+                        this.get('controller').send('submit', params);
                     }
                 },
 

@@ -29,27 +29,6 @@ define(
 
                         pageRelation: 'FormObjectRelationElement'
                     });
-                }.property(),
-
-                /**
-                 * view элемента формы
-                 * @property elementView
-                 */
-                elementView: function() {
-                    var self = this;
-                    var elementFactory = self.get('elementFactory');
-                    return Ember.View.extend({
-                        init: function() {
-                            var type = this.get('meta.type');
-                            var elementMixin = elementFactory.elementMixinForType(type) || {};
-                            if (type !== 'fieldset') {
-                                this.reopen(elementMixin, UMI.FormCollectionElementValidateMixin);
-                            } else {
-                                this.reopen(elementMixin);
-                            }
-                            this._super();
-                        }
-                    });
                 }.property()
             });
         };

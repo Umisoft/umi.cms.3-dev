@@ -12,9 +12,7 @@ define(
                 objectBinding: 'model.object',
 
                 settings: function() {
-                    var settings = {};
-                    settings = this.get('controllers.component.settings');
-                    return settings;
+                    return this.get('controllers.component.settings');
                 }.property(),
 
                 inputElements: function() {
@@ -34,39 +32,11 @@ define(
                     return inputElements;
                 },
 
-                validationErrors: function() {
-                    var validErrors = this.get('object.validErrors');
-                    var stack = [];
-                    var key;
-                    var inputElements = this.inputElements();
-                    var validateErrorLabel = UMI.i18n.getTranslate('Object') + ' ' +
-                        UMI.i18n.getTranslate('Not valid').toLowerCase() + '.';
-                    var settings = {
-                        type: 'error',
-                        duration: false,
-                        title: validateErrorLabel,
-                        kind: 'validate',
-                        close: false
-                    };
-
-                    for (key in validErrors) {
-                        if (validErrors.hasOwnProperty(key) && !inputElements.findBy('dataSource', key)) {
-                            stack.push('<div>' + key + ': ' + validErrors[key] + '</div>');
-                        }
-                    }
-
-                    if (stack.length) {
-                        settings.content = stack.join();
-                        UMI.notification.create(settings);
-                    } else {
-                        UMI.notification.removeWithKind('validateError');
-                    }
-                }.observes('object.validErrors.@each'),
-
                 actionWithCustomValidate: function(actionName, params) {
-                    var elements = this.inputElements();
-                    elements = elements.mapBy('dataSource');
-                    params.fields = elements;
+                    if (this.validateForm()) {
+                        return;
+                    }
+
                     this.get('controllers.component').send(actionName, params);
                 },
 

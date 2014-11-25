@@ -79,12 +79,6 @@ define(['App'], function(UMI) {
             }
         });
 
-        UMI.FormHtmlEditorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
-            classNames: 'small-12',
-
-            template: Ember.Handlebars.compile('{{view "htmlEditor" object=view.object meta=view.meta}}')
-        });
-
         UMI.HtmlEditorView = Ember.View.extend({
             classNames: ['ckeditor-row'],
 
@@ -109,13 +103,7 @@ define(['App'], function(UMI) {
             }
         });
 
-        UMI.FormHtmlEditorCollectionElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
-            classNames: 'small-12',
-
-            template: Ember.Handlebars.compile('{{view "htmlEditorCollection" object=view.object meta=view.meta}}')
-        });
-
-        UMI.HtmlEditorCollectionView = Ember.View.extend(UMI.FormElementValidatable, {
+        UMI.HtmlEditorCollectionView = Ember.View.extend({
             classNames: ['ckeditor-row'],
 
             ckeditor: null,
@@ -124,19 +112,9 @@ define(['App'], function(UMI) {
                 return 'textarea-' + this.get('elementId');
             }.property(),
 
-            focusOut: function() {
-                this.checkValidate();
-            },
-
-            focusIn: function() {
-                this.clearValidate();
-            },
-
             template: function() {
                 var textarea = '<textarea id="{{unbound view.textareaId}}" placeholder="{{unbound view.meta.placeholder}}" name="{{unbound view.meta.attributes.name}}">{{unbound view.object.' + this.get('meta.dataSource') + '}}</textarea>';
-                this.set('validatorType', 'collection');
-                var validate = this.validateErrorsTemplate();
-                return Ember.Handlebars.compile(textarea + validate);
+                return Ember.Handlebars.compile(textarea);
             }.property(),
 
             setTextareaValue: function(edit) {
@@ -187,6 +165,16 @@ define(['App'], function(UMI) {
                 }
                 editor.destroy();
             }
+        });
+
+        UMI.FormHtmlEditorElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidateMixin, {
+            classNames: 'small-12',
+
+            elementView: UMI.HtmlEditorView.extend(UMI.FormElementValidateHandlerMixin, {})
+        });
+
+        UMI.FormHtmlEditorCollectionElementMixin = Ember.Mixin.create(UMI.FormHtmlEditorElementMixin, {
+            elementView: UMI.HtmlEditorCollectionView.extend(UMI.FormElementValidateHandlerMixin, {})
         });
     };
 });

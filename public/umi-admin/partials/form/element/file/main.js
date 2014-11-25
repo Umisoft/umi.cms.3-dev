@@ -2,12 +2,6 @@ define(['App'], function(UMI) {
     'use strict';
 
     return function() {
-        UMI.FormFileElementMixin = Ember.Mixin.create(UMI.FormElementMixin, {
-            classNames: ['small-12', 'large-4'],
-
-            template: Ember.Handlebars.compile('{{view "fileElement" object=view.object meta=view.meta}}')
-        });
-
         UMI.FileElementView = Ember.View.extend({
             templateName: 'partials/fileElement',
 
@@ -51,10 +45,10 @@ define(['App'], function(UMI) {
                 },
 
                 showPopup: function(params) {
-                    var self = this;
-                    var object = self.get('object');
-                    var property = this.get('meta.dataSource');
-                    object.clearValidateForProperty(property);
+                    var parentView = this.get('parentView');
+                    if (Ember.canInvoke(parentView, 'checkValidate')) {
+                        parentView.clearValidate();
+                    }
                     this.get('controller').send('showPopup', params);
                 }
             },
@@ -92,6 +86,12 @@ define(['App'], function(UMI) {
                     self.removeObserver('object.' + dataSource);
                 }
             }
+        });
+
+        UMI.FormFileElementMixin = Ember.Mixin.create(UMI.FormElementMixin, UMI.FormElementValidateMixin, {
+            classNames: ['small-12', 'large-4'],
+
+            elementView: UMI.FileElementView.extend(UMI.FormElementValidateHandlerMixin, {})
         });
     };
 });

@@ -22,6 +22,7 @@ define(
                 elementView: function() {
                     var self = this;
                     var elementFactory = self.get('elementFactory');
+
                     return Ember.View.extend({
                         init: function() {
                             var type = this.get('meta.type');

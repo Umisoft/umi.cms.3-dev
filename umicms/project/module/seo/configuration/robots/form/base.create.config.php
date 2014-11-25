@@ -7,8 +7,10 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\PageRelation;
 use umicms\project\module\seo\model\object\Robots;
 
@@ -30,7 +32,14 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => Robots::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => Robots::FIELD_DISPLAY_NAME
+                        'dataSource' => Robots::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ]
             ]
@@ -44,7 +53,14 @@ return [
                     'type' => PageRelation::TYPE_NAME,
                     'label' => Robots::FIELD_PAGE_RELATION,
                     'options' => [
-                        'dataSource' => Robots::FIELD_PAGE_RELATION
+                        'dataSource' => Robots::FIELD_PAGE_RELATION,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ]
                 ]
             ]

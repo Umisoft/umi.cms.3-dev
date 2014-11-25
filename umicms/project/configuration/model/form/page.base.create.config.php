@@ -8,10 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
+use umicms\filter\Slug;
 use umicms\form\element\Wysiwyg;
 use umicms\orm\object\ICmsPage;
 
@@ -32,7 +35,14 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => ICmsPage::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => ICmsPage::FIELD_DISPLAY_NAME
+                        'dataSource' => ICmsPage::FIELD_DISPLAY_NAME,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ],
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            IFilterFactory::TYPE_STRIP_TAGS => []
+                        ],
                     ],
                 ],
                 ICmsPage::FIELD_PAGE_LAYOUT => [
@@ -50,7 +60,11 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => ICmsPage::FIELD_PAGE_SLUG,
                     'options' => [
-                        'dataSource' => ICmsPage::FIELD_PAGE_SLUG
+                        'dataSource' => ICmsPage::FIELD_PAGE_SLUG,
+                        'filters' => [
+                            IFilterFactory::TYPE_STRING_TRIM => [],
+                            Slug::TYPE => []
+                        ],
                     ],
                 ],
                 ICmsPage::FIELD_ACTIVE => [
@@ -71,7 +85,7 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => ICmsPage::FIELD_PAGE_H1,
                     'options' => [
-                        'dataSource' => ICmsPage::FIELD_PAGE_H1
+                        'dataSource' => ICmsPage::FIELD_PAGE_H1,
                     ],
                 ],
                 ICmsPage::FIELD_PAGE_META_TITLE => [

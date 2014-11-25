@@ -8,6 +8,20 @@ define(
                 classNameBindings: ['validateErrors:error'],
 
                 /**
+                 * @abstract
+                 */
+                elementView: null,
+
+                elementTemplate: '{{view view.elementView object=view.object meta=view.meta}}',
+
+                template: function() {
+                    var elementView = this.get('elementTemplate');
+                    var validate = this.validateErrorsTemplate();
+                    var template = elementView + validate;
+                    return Ember.Handlebars.compile(template);
+                }.property(),
+
+                /**
                  * Вычисляемое свойство возвращает сообщение ошибок валидации
                  * @property validateErrors
                  * @hook
@@ -19,26 +33,6 @@ define(
                         return errors.join('. ');
                     }
                 }.property('meta.errors.@each'),
-
-                /**
-                 * @property isRequired
-                 * @hook
-                 */
-                isRequired: function() {
-                    var validators = this.get('meta.validators');
-                    if (Ember.typeOf(validators) === 'array' && validators.findBy('type', 'required')) {
-                        return ' *';
-                    }
-                }.property('meta.validators')
-            });
-
-            UMI.FormElementValidatable = Ember.Mixin.create({
-                /**
-                 * Определяет тип валидатора
-                 * @property validatorType
-                 * @optional
-                 */
-                validatorType: null,
 
                 /**
                  * Метод вызывается при необходимости валидации поля
@@ -56,34 +50,13 @@ define(
                     this._clearValidateError();
                 },
 
-                isWrapperTemplate: false,
-
                 /**
                  * Метод возвращает шаблон ошибок валидации для поля объекта
                  * @method validateErrorsTemplate
                  * @return {String} template
                  */
                 validateErrorsTemplate: function() {
-                    var validatorType = this.get('validatorType');
-                    var template;
-                    var propertyName;
-
-                    if (validatorType === 'collection') {
-                        propertyName = this.get('meta.dataSource');
-                        template = '{{#if view.object.validErrors.' + propertyName + '}}' +
-                        '<small class="error">{{view.object.validErrors.' + propertyName + '}}</small>' +
-                        '{{/if}}';
-                    } else {
-                        if (this.get('isWrapperTemplate')) {
-                            template = '{{#if view.validateErrors}}' +
-                            '<small class="error">{{view.validateErrors}}</small>{{/if}}';
-                        } else {
-                            template = '{{#if view.parentView.validateErrors}}' +
-                            '<small class="error">{{view.parentView.validateErrors}}</small>{{/if}}';
-                        }
-                    }
-
-                    return template;
+                    return '{{#if view.validateErrors}}<small class="error">{{view.validateErrors}}</small>{{/if}}';
                 },
 
                 /**
@@ -93,22 +66,13 @@ define(
                  */
                 _validate: function() {
                     var self = this;
-                    var validatorType = this.get('validatorType');
-                    var property;
                     var meta = self.get('meta');
                     var validationError;
 
-                    if (validatorType === 'collection') {
-                        property = Ember.get(meta, 'dataSource');
-                        var object = self.get('object');
-                        object.filterProperty(property);
-                        object.validateProperty(property);
-                    } else {
-                        UMI.validator.filterProperty(Ember.get(meta, 'value'), Ember.get(meta, 'filters'));
-                        validationError = UMI.validator.validateProperty(Ember.get(meta, 'value'), Ember.get(meta, 'validators'));
-                        validationError = validationError || [];
-                        Ember.set(meta, 'errors', validationError);
-                    }
+                    UMI.validator.filterProperty(Ember.get(meta, 'value'), Ember.get(meta, 'filters'));
+                    validationError = UMI.validator.validateProperty(Ember.get(meta, 'value'), Ember.get(meta, 'validators'));
+                    validationError = validationError || [];
+                    Ember.set(meta, 'errors', validationError);
                 },
 
                 /**
@@ -119,13 +83,39 @@ define(
                 _clearValidateError: function() {
                     var self = this;
                     var meta = self.get('meta');
-                    var dataSource = Ember.get(meta, 'dataSource');
 
-                    if (self.get('validatorType') === 'collection') {
-                        var object = self.get('object');
-                        object.clearValidateForProperty(dataSource);
+                    Ember.set(meta, 'errors', []);
+                },
+
+                _observeValidateEvent: function() {
+                    this._validate();
+                    var InvalidElements = this.get('controller.InvalidElements');
+                    var elementId = this.get('elementId');
+
+                    if (this.get('validateErrors')) {
+                        InvalidElements.push(elementId);
                     } else {
-                        Ember.set(meta, 'errors', []);
+                        InvalidElements.remove(elementId);
+                    }
+                }.observes('controller.needsValidateForm'),
+
+                willDestroyElement: function() {
+                    this.removeObserver('controller.needsValidateForm');
+                }
+            });
+
+            UMI.FormElementValidateHandlerMixin = Ember.Mixin.create({
+                focusOut: function() {
+                    var parentView = this.get('parentView');
+                    if (Ember.canInvoke(parentView, 'checkValidate')) {
+                        parentView.checkValidate();
+                    }
+                },
+
+                focusIn: function() {
+                    var parentView = this.get('parentView');
+                    if (Ember.canInvoke(parentView, 'clearValidate')) {
+                        parentView.clearValidate();
                     }
                 }
             });

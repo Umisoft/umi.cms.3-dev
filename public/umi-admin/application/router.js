@@ -100,65 +100,64 @@ define([], function() {
                 var deferred = Ember.RSVP.defer();
 
                 try {
-                    params.object.validateObject(Ember.get(params, 'fields'));
+                    params.object.save().then(
+                        function() {
+                            params.object.updateRelationshipsMap();
 
-                    if (!params.object.get('isValid')) {
-                        if (params.handler) {
-                            $(params.handler).removeClass('loading');
-                        }
+                            if (params.handler) {
+                                $(params.handler).removeClass('loading');
+                            }
 
-                        deferred.reject();
-                    } else {
-                        params.object.save().then(
-                            function() {
-                                params.object.updateRelationshipsMap();
+                            deferred.resolve(params.object);
+                        },
+
+                        function(results) {
+                            try {
+                                results = results || {};
 
                                 if (params.handler) {
                                     $(params.handler).removeClass('loading');
                                 }
 
-                                deferred.resolve(params.object);
-                            },
+                                var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
+                                var invalidObject;
+                                var invalidProperties;
+                                var stack;
 
-                            function(results) {
-                                try {
-                                    results = results || {};
+                                if (Ember.typeOf(invalidObjects) === 'array') {
+                                    for (var i = 0; i < invalidObjects.length; i++) {
+                                        invalidObject = invalidObjects[i];
+                                        invalidProperties = Ember.get(invalidObject, 'invalidProperties');
+                                        stack = [];
+                                        var validateErrorLabel = UMI.i18n.getTranslate('Object') + ' ' +
+                                            UMI.i18n.getTranslate('Not valid').toLowerCase() + '.';
 
-                                    if (params.handler) {
-                                        $(params.handler).removeClass('loading');
-                                    }
+                                        var settings = {
+                                            type: 'error',
+                                            duration: false,
+                                            title: validateErrorLabel,
+                                            kind: 'validate',
+                                            close: false
+                                        };
 
-                                    var store = self.get('store');
-                                    var collection;
-                                    var object;
-                                    var invalidObjects = Ember.get(results, 'responseJSON.result.error.invalidObjects');
-                                    var invalidObject;
-                                    var invalidProperties;
-                                    var i;
-
-                                    if (Ember.typeOf(invalidObjects) === 'array') {
-                                        if (params.object.get('isValid')) {
-                                            params.object.send('becameInvalid');
-                                        }
-
-                                        for (i = 0; i < invalidObjects.length; i++) {
-                                            invalidObject = invalidObjects[i];
-                                            invalidProperties = Ember.get(invalidObject, 'invalidProperties');
-                                            collection = store.all(invalidObject.collection);
-                                            object = collection.findBy('guid', invalidObject.guid);
-
-                                            if (object) {
-                                                object.setInvalidProperties(invalidProperties);
+                                        for (var key in invalidProperties) {
+                                            if (invalidProperties.hasOwnProperty(key)) {
+                                                stack.push('<div>' + key + ': ' + invalidProperties[key] + '</div>');
                                             }
                                         }
+
+                                        if (stack.length) {
+                                            settings.content = stack.join();
+                                            UMI.notification.create(settings);
+                                        }
                                     }
-                                    deferred.reject();
-                                } catch (error) {
-                                    self.send('backgroundError', error);
                                 }
+                                deferred.reject();
+                            } catch (error) {
+                                self.send('backgroundError', error);
                             }
-                        );
-                    }
+                        }
+                    );
                 } catch (error) {
                     self.send('backgroundError', error);
                 } finally {
@@ -1300,7 +1299,6 @@ define([], function() {
                             function() {},
                             function() {
                                 if (!model.get('isValid')) {
-                                    model.set('validErrors', null);
                                     model.send('becameValid');
                                 }
 
