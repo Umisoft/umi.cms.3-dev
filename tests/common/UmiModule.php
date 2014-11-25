@@ -80,7 +80,6 @@ class UmiModule extends Framework
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
         $this->initializeMessageBox();
-        $this->initializeSettings();
     }
 
     /**
@@ -353,18 +352,6 @@ class UmiModule extends Framework
                  'rollbackTransaction' => false
              ]
         );
-    }
-
-    private function initializeSettings()
-    {
-        $this->settings = new SettingsComponent(
-            'registration',
-            'project.admin.rest.settings.users.registration',
-             array(
-                 'settingsConfigAlias' => '~/project/module/users/configuration/user/collection.settings.config.php',
-             )
-        );
-        $this->setConfigIO($this->commonToolkit->getService('umi\config\io\IConfigIO'));
     }
 
 }
