@@ -38,6 +38,7 @@ use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
 use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
+use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 /**
  * Загрузчик проектов на UMI.CMS
@@ -499,6 +500,8 @@ class Bootstrap
                     ->addExtension($templateExtension);
             }
         );
+
+        XsltTemplateEngine::unregisterStreams();
     }
 
     /**

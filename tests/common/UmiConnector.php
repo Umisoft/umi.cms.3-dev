@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use umi\http\Request;
 use umi\http\Response;
-use umicms\templating\engine\xslt\XsltTemplateEngine;
 use umicms\project\Bootstrap;
 
 /**
@@ -43,22 +42,6 @@ class UmiConnector extends Client
     public function doRequest($request)
     {
         $bootstrap = new Bootstrap($request);
-
-        // XSLT шаблонизатор инициализирует потоки с текущим контекстом.
-        // Для каждого реквеста нужно принудительно чистить потоки для того, чтобы
-        // иметь нужный контекст в потоках
-        $enabled = stream_get_wrappers();
-        if (in_array(XsltTemplateEngine::TEMPLATE_PROTOCOL, $enabled)) {
-            stream_wrapper_unregister(XsltTemplateEngine::TEMPLATE_PROTOCOL);
-        }
-        if (in_array(XsltTemplateEngine::TRANSLATE_PROTOCOL, $enabled)) {
-            stream_wrapper_unregister(XsltTemplateEngine::TRANSLATE_PROTOCOL);
-        }
-        if (in_array(XsltTemplateEngine::WIDGET_PROTOCOL, $enabled)) {
-            stream_wrapper_unregister(XsltTemplateEngine::WIDGET_PROTOCOL);
-        }
-
-        XsltTemplateEngine::setStreamsRegistered(false);
 
         if (0 === strpos($request->getRequestUri(), '/messages')) {
             parse_str($request->getQueryString(), $message);

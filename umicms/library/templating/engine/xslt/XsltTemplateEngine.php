@@ -51,6 +51,10 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware, IToolk
     const OPTION_TEMPLATE_FILE_EXTENSION = 'extension';
 
     /**
+     * @var bool $isStreamsRegistered зарегистрированы ли потоки для xslt
+     */
+    protected static $isStreamsRegistered = false;
+    /**
      * @var array $options опции
      */
     protected $options = [];
@@ -58,79 +62,96 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware, IToolk
      * @var callable[] $functions
      */
     protected $functions = [];
-
-    private static $streamsRegistered = false;
-
     /**
      * @var array $templateDirectories директории расположения шаблонов
      */
-    private $templateDirectories;
+    protected $templateDirectories;
 
+    /**
+     * Отключает все зарегистрированные потоки для xslt-шаблонов
+     */
+    public static function unregisterStreams()
+    {
+        $registeredStreams = stream_get_wrappers();
+        if (in_array(XsltTemplateEngine::TEMPLATE_PROTOCOL, $registeredStreams)) {
+            stream_wrapper_unregister(XsltTemplateEngine::TEMPLATE_PROTOCOL);
+        }
+        if (in_array(XsltTemplateEngine::TRANSLATE_PROTOCOL, $registeredStreams)) {
+            stream_wrapper_unregister(XsltTemplateEngine::TRANSLATE_PROTOCOL);
+        }
+        if (in_array(XsltTemplateEngine::WIDGET_PROTOCOL, $registeredStreams)) {
+            stream_wrapper_unregister(XsltTemplateEngine::WIDGET_PROTOCOL);
+        }
+
+        self::$isStreamsRegistered = false;
+    }
+
+    /**
+     * Конструктор.
+     */
     public function __construct()
     {
-        if (!self::$streamsRegistered) {
-            /**
-             * @var IStreamService $streams
-             */
-            $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
-            /**
-             * @var CmsDispatcher $dispatcher
-             */
-            $dispatcher = $this->getToolkit()->getService('umi\hmvc\dispatcher\IDispatcher');
-            $streams->registerStream(
-                self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
-
-                    $widgetInfo = parse_url($uri);
-                    $widgetParams = [];
-                    if (isset($widgetInfo['query'])) {
-                        parse_str($widgetInfo['query'], $widgetParams);
-                    }
-
-                    return $this->serializeResult(ISerializerFactory::TYPE_XML, [
-                            'result' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
-                        ]
-                    );
-                }
-            );
-
-            $streams->registerStream(
-                self::TEMPLATE_PROTOCOL, function($uri) {
-                    $filePathInfo = parse_url($uri);
-                    $filePath = (isset($filePathInfo['path'])) ? $filePathInfo['host'] . $filePathInfo['path'] : $filePathInfo['host'];
-                    return file_get_contents($this->findTemplate($this->getTemplateFilename($filePath)));
-                }
-            );
-
-            $streams->registerStream(
-                self::TRANSLATE_PROTOCOL, function($uri) use ($dispatcher) {
-
-                    $translateInfo = parse_url($uri);
-                    $placeholders = [];
-                    if (isset($translateInfo['query'])) {
-                        parse_str($translateInfo['query'], $placeholders);
-                    }
-
-                    $component = $dispatcher->getComponentByPath($translateInfo['host']);
-                    $message = isset($translateInfo['path']) ? trim($translateInfo['path'], '/') : '';
-
-                    return $this->serializeResult(ISerializerFactory::TYPE_XML, [
-                            'result' => $component->translate(urldecode($message), $placeholders)
-                        ]
-                    );
-                }
-            );
-
-            self::$streamsRegistered = true;
+        if (!self::$isStreamsRegistered) {
+            $this->registerStreams();
+            self::$isStreamsRegistered = true;
         }
     }
 
     /**
-     * Используется только для тестов, сами потоки отменяются в контексте тестового клиента
-     * @param bool $flag
+     * Регистрирует потоки для xslt-шаблонов
      */
-    public static function setStreamsRegistered($flag)
+    protected function registerStreams()
     {
-        self::$streamsRegistered = $flag;
+        /**
+         * @var IStreamService $streams
+         */
+        $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
+        /**
+         * @var CmsDispatcher $dispatcher
+         */
+        $dispatcher = $this->getToolkit()->getService('umi\hmvc\dispatcher\IDispatcher');
+        $streams->registerStream(
+            self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+
+                $widgetInfo = parse_url($uri);
+                $widgetParams = [];
+                if (isset($widgetInfo['query'])) {
+                    parse_str($widgetInfo['query'], $widgetParams);
+                }
+
+                return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                        'result' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+                    ]
+                );
+            }
+        );
+
+        $streams->registerStream(
+            self::TEMPLATE_PROTOCOL, function($uri) {
+                $filePathInfo = parse_url($uri);
+                $filePath = (isset($filePathInfo['path'])) ? $filePathInfo['host'] . $filePathInfo['path'] : $filePathInfo['host'];
+                return file_get_contents($this->findTemplate($this->getTemplateFilename($filePath)));
+            }
+        );
+
+        $streams->registerStream(
+            self::TRANSLATE_PROTOCOL, function($uri) use ($dispatcher) {
+
+                $translateInfo = parse_url($uri);
+                $placeholders = [];
+                if (isset($translateInfo['query'])) {
+                    parse_str($translateInfo['query'], $placeholders);
+                }
+
+                $component = $dispatcher->getComponentByPath($translateInfo['host']);
+                $message = isset($translateInfo['path']) ? trim($translateInfo['path'], '/') : '';
+
+                return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                        'result' => $component->translate(urldecode($message), $placeholders)
+                    ]
+                );
+            }
+        );
     }
 
     /**
