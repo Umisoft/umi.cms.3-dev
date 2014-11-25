@@ -15,6 +15,7 @@ use umi\config\io\IConfigIO;
 use umi\event\IEvent;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
+use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
@@ -158,10 +159,14 @@ class Bootstrap
 
     /**
      * Инициализирует все необходимые данные для проекта
+     * @return bool
      */
     public function init()
     {
         $this->createRequest();
+        if ($this->response) {
+            return false;
+        }
         $this->initRoute();
         $this->initDomainUrl();
         $this->initProjectPrefix();
@@ -169,7 +174,7 @@ class Bootstrap
         $this->initRoutePath();
         $this->initUrlManager();
         $this->initDispatcher();
-        return $this;
+        return true;
     }
 
     /**
@@ -243,6 +248,7 @@ class Bootstrap
      * Производит предварительную маршрутизацию для определения текущего проекта.
      * @throws RuntimeException
      * @throws UnexpectedValueException
+     * @throws HttpNotFound
      * @return IRouteResult
      */
     public function dispatchProject()
@@ -299,8 +305,7 @@ class Bootstrap
         }
 
         if (empty($routeMatches)) {
-            $this->setResponseNotFound('Project not found.');
-            exit();
+            throw new HttpNotFound('Project not found');
         }
 
         if (!isset($projectConfig['destination'])) {
@@ -428,7 +433,7 @@ class Bootstrap
 
             $redirectLocation = $host . $url;
 
-            $this->setResponseMovedPermanently($redirectLocation);
+            $this->createMovedPermanentlyResponse($redirectLocation);
         }
     }
 
@@ -595,29 +600,15 @@ class Bootstrap
     }
 
     /**
-     * Устанавливает код ответа 404
+     * Выполняет редирект и завершает работу приложения.
      */
-    protected function setResponseNotFound($content)
+    protected function createMovedPermanentlyResponse($redirectLocation)
     {
         /**
          * @var Response $response
          */
-        $response = $this->toolkit->getService('umi\http\Response');
-        $response->setContent($content);
-        $response->setStatusCode(Response::HTTP_NOT_FOUND);
-    }
-
-    /**
-     * Устанавливает код ответа 301
-     * и заголовок Location для редиректа
-     */
-    protected function setResponseMovedPermanently($redirectLocation)
-    {
-        /**
-         * @var Response $response
-         */
-        $response = $this->toolkit->getService('umi\http\Response');
-        $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
+        $this->response = $this->toolkit->getService('umi\http\Response');
+        $this->response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
             ->headers->set('Location', $redirectLocation);
     }
 
@@ -807,7 +798,6 @@ class Bootstrap
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-
         $urlManager->setSchemeAndHttpHost($this->domainUrl);
         $urlManager->setUrlPrefix($this->projectPrefix);
         $urlManager->setSiteUrlPostfix($this->siteUrlPostfix);
@@ -850,6 +840,9 @@ class Bootstrap
     {
         $routeMatches = $this->route->getMatches();
         $this->domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
+        if (80 != $routeMatches[ProjectHostRoute::OPTION_PORT]) {
+            $this->domainUrl .= ':' . $routeMatches[ProjectHostRoute::OPTION_PORT];
+        }
     }
 
     /**

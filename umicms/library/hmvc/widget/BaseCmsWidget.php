@@ -18,6 +18,8 @@ use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget;
 use umi\http\Response;
 use umicms\exception\NonexistentEntityException;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -33,10 +35,11 @@ use umicms\serialization\xml\BaseSerializer;
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlManagerAware, IPageCallStackAware
+abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlManagerAware, IPageCallStackAware, IBreadcrumbsStackAware
 {
     use TUrlManagerAware;
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
 
     const ACL_RESOURCE_PREFIX = 'widget:';
 
@@ -151,6 +154,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     {
         $view = new CmsTreeView($selector);
         $view->setPageCallStack($this->getPageCallStack());
+        $view->setBreadcrumbsStack($this->getBreadcrumbsStack());
 
         return $this->createResult($templateName, [
             'tree' => $view
