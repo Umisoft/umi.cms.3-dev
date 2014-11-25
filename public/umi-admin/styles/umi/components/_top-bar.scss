@@ -22,6 +22,22 @@ $umi-bg-darken-set: #404959, #181B21;
 
         &.right {
             text-align: right;
+
+            .f-dropdown-double {
+                width: 16rem;
+
+                li {
+                    text-align: left;
+                }
+
+                &.small-labels a {
+                    font-size: 12px;
+                }
+
+                &.highlighted a {
+                    padding-left: 0.6rem;
+                }
+            }
         }
     }
 

@@ -32,8 +32,13 @@
 
         </li>
         <li>
-            <a href="{{unbound view.siteUrl}}" class="button tiny flat umi-top-bar-button">
-                <i class="icon white icon-viewOnSite"></i>
+            <a href="{{unbound view.siteUrl}}" target="_blank" class="button tiny flat umi-top-bar-button">
+                <i class="icon blue icon-viewOnSite"></i>
+            </a>
+        </li>
+        <li>
+            <a href="http://developers.umi-cms.ru" target="_blank" class="button tiny flat umi-top-bar-button">
+                <i class="icon blue icon-documentation"></i>
             </a>
         </li>
     </ul>
@@ -53,17 +58,19 @@
     <ul class="umi-top-bar-list right small-5 columns">
         <li>
             <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
-                  data-options="selectorById: false; align: right; side: right;">
+                  data-options="selectorById: false;">
                 {{view.userName}}
             </span>
-            <ul class="f-dropdown f-dropdown-parent" data-dropdown-content>
+            <ul class="f-dropdown f-dropdown-parent f-dropdown-padding" data-dropdown-content>
                 <li>
                     {{render 'dockControlPanel'}}
                 </li>
                 <li>
-                    <ul class="f-dropdown f-dropdown-child f-dropdown-double highlighted">
+                    <ul class="f-dropdown-child f-dropdown-double highlighted">
                         <li>
-                            Профиль
+                            {{#link-to "context" "users" "user" view.userId }}
+                                <i class="icon icon-profile"></i> {{i18n "Profile"}}
+                            {{/link-to}}
                         </li>
                         <li>
                             <a href="javascript:void(0)" {{action "logout"}}>

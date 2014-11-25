@@ -6,7 +6,7 @@ define(['App'], function(UMI) {
             needs: ['application', 'module'],
             modulesBinding: 'controllers.application.modules',
             sortedModules: function() {
-                var userSettings = UMI.Utils.LS.get('dock');
+                var userSettings = UMI.Utils.LS.get('dock.sortedOrder');
                 var modules = this.get('modules');
                 if (Ember.typeOf(userSettings) === 'array') {
                     var sortedModules = [];
@@ -29,10 +29,10 @@ define(['App'], function(UMI) {
             activeModuleBinding: 'controllers.module.model',
 
             modes: [
-                {name: 'small', title: 'Мелкие', isActive: false},
-                {name: 'list', title: 'Списком', isActive: false},
-                {name: 'big', title: 'Крупные', isActive: false},
-                {name: 'dynamic', title: 'Динамичные', isActive: false}
+                {name: 'small', title: 'Little', isActive: false},
+                {name: 'big', title: 'Big', isActive: false},
+                {name: 'dynamic', title: 'Dynamic', isActive: false},
+                {name: 'list', title: 'Listed', isActive: false}
             ],
 
             activeMode: function() {
@@ -40,7 +40,7 @@ define(['App'], function(UMI) {
             }.property('modes.@each.isActive'),
 
             init: function() {
-                var activeMode = null;//UMI.utils.LS.get('dock.activeModeName');
+                var activeMode = UMI.Utils.LS.get('dock.activeModeName');
                 var modes = this.get('modes');
                 if (!activeMode || !modes.findBy('name', activeMode)) {
                     activeMode = Ember.get(modes[0], 'name');

@@ -147,9 +147,39 @@ $umi-dock-wrapper-height: rem-calc(48);
         }
 
         &-empty {
-            width: 122px;
             height: 100%;
             display: inline-block;
+        }
+    }
+
+    &.big {
+        .umi-dock-button .dock-module {
+            .umi-dock-module-icon {
+                width: 48px;
+                height: 48px;
+                margin: 8px 36px 28px;
+            }
+
+            span {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.list {
+        .umi-dock-button .dock-module {
+            .umi-dock-module-icon {
+                display: none;
+            }
+
+            span {
+                position: static;
+                opacity: 1;
+                padding: 0.4rem 0.8rem;
+                width: auto;
+                font-size: 12px;
+                color: #fff;
+            }
         }
     }
 }
@@ -207,3 +237,25 @@ $umi-dock-wrapper-height: rem-calc(48);
     }
 }
 
+body.dock-{
+    &big {
+        .dock-components {
+            margin-top: 5.25rem;
+        }
+
+        .umi-header ~ .s-full-height {
+            padding-top: 9.1rem;
+        }
+    }
+    &list {
+        .umi-dock .dock-wrapper {
+            height: 2rem;
+        }
+        .dock-components {
+            margin-top: 2rem;
+        }
+        .umi-header ~ .s-full-height {
+            padding-top: 5.9rem;
+        }
+    }
+}

@@ -18,6 +18,10 @@ define([
             return this.get('controller.user._data.displayName');
         }.property('controller.user.displayName'),
 
+        userId: function() {
+            return this.get('controller.user.id');
+        }.property('controller.user.id'),
+
         modules: function() {
             return this.get('controller.modules');
         }.property()

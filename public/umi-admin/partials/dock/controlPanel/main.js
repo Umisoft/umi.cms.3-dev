@@ -14,6 +14,7 @@ define(['App'], function(UMI) {
                     var activeModule = this.get('activeMode');
                     Ember.set(activeModule, 'isActive', false);
                     Ember.set(newActiveMode, 'isActive', true);
+                    UMI.Utils.LS.set('dock.activeModeName', newActiveMode.name);
                 }
             }
         });
@@ -21,7 +22,7 @@ define(['App'], function(UMI) {
         UMI.DockControlPanelView = Ember.View.extend({
             templateName: 'partials/dockControlPanel',
             tagName: 'ul',
-            classNames: ['f-dropdown', 'f-dropdown-child', 'f-dropdown-double']
+            classNames: ['f-dropdown-child', 'f-dropdown-double', 'small-labels']
         });
     };
 });

@@ -103,6 +103,11 @@ define(['App', 'toolbar'], function(UMI) {
                         contentScroll.refresh();
                     }, 100);
                 });
+
+                $(window).on('headerHeightChange.umi.divider', function() {
+                    contentScroll.refresh();
+                });
+
                 // Раскрытие ноды имеющую потомков
                 var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];
