@@ -20,6 +20,7 @@ abstract class UrlMap
     const USER_REGISTRATION = '/users/registration';
     const USER_LOGOUT = '/users/auth/logout';
     const USER_EDIT_PROFILE = '/users/profile';
+    const SURVEYS_NEXT_SHOW = '/surveys/nextshow';
 
     public static $defaultUrl;
     public static $userAuthorization;

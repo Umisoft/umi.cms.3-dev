@@ -10,20 +10,14 @@ use umitest\UrlMap;
  */
 class VoteCest
 {
+    const VOTE_GUID = '307064ad-f397-42f5-9b19-d92c65990429';
+    const VOTE_ANSWER_GUID = '3617fe64-54cf-4354-9031-4b5674abae6e';
+
     /**
      * @param FunctionalTester $I
      */
-    public function SuccessVote(FunctionalTester $I)
+    public function vote(FunctionalTester $I)
     {
-        Test::double(
-            'umicms\form\element\Captcha',
-            [
-                'validate' => function () {
-                    return true;
-                }
-            ]
-        );
-
         $I->amOnPage(UrlMap::$defaultUrl);
         $I->seeLocalized(
             [
@@ -35,10 +29,10 @@ class VoteCest
         $I->submitForm(
             '#surveys_voteForm',
             [
-                'answers' => '3617fe64-54cf-4354-9031-4b5674abae6e'
+                'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . '/surveys/nextshow');
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
         $I->cantSeeElement('.captcha');
         $I->seeElement('.progress-bar');
         $I->seeLocalized(
@@ -50,20 +44,8 @@ class VoteCest
         );
     }
 
-    /**
-     * @param FunctionalTester $I
-     */
-    public function FailureVote(FunctionalTester $I)
+    public function reVote(FunctionalTester $I)
     {
-        Test::double(
-            'umicms\form\element\Captcha',
-            [
-                'validate' => function () {
-                    return false;
-                }
-            ]
-        );
-
         $I->amOnPage(UrlMap::$defaultUrl);
         $I->seeLocalized(
             [
@@ -72,47 +54,14 @@ class VoteCest
             ],
             '.answers label'
         );
-        $I->submitForm(
-            '#surveys_voteForm',
-            []
-        );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . '/surveys/nextshow');
-        $I->seeLocalized(
-            [
-                'ru-RU' => 'Введите код с картинки',
-                'en-US' => 'Captcha'
-            ],
-            '.captcha'
-        );
-    }
-
-    public function AlreadyVoted(FunctionalTester $I)
-    {
-        Test::double(
-            'umicms\form\element\Captcha',
-            [
-                'validate' => function () {
-                    return true;
-                }
-            ]
-        );
-
-        $I->amOnPage(UrlMap::$defaultUrl);
-        $I->seeLocalized(
-            [
-                'ru-RU' => 'Ответы',
-                'en-US' => 'Answers'
-            ],
-            '.answers label'
-        );
-        $I->setCookie('307064ad-f397-42f5-9b19-d92c65990429', 1);
+        $I->setCookie(self::VOTE_GUID, 1);
         $I->submitForm(
             '#surveys_voteForm',
             [
-                'answers' => '3617fe64-54cf-4354-9031-4b5674abae6e'
+                'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . '/surveys/nextshow');
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
 
         $I->seeLocalized(
             [
@@ -122,9 +71,9 @@ class VoteCest
         );
     }
 
-    public function ShowResult(FunctionalTester $I)
+    public function viewResult(FunctionalTester $I)
     {
-        $I->setCookie('307064ad-f397-42f5-9b19-d92c65990429', 1);
+        $I->setCookie(self::VOTE_GUID, 1);
 
         $I->amOnPage(UrlMap::$defaultUrl);
 
