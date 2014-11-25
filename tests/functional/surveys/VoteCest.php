@@ -1,7 +1,6 @@
 <?php
 namespace umitest\surveys;
 
-use AspectMock\Test;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
