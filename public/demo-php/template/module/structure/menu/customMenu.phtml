@@ -4,11 +4,11 @@
  * @var \umicms\hmvc\view\CmsTreeNode $node
  */
 ?>
-<?if (count($tree) > 0) : ?>
+<?php if (count($tree) > 0) : ?>
     <ul class="bottomMenu">
-        <?foreach ($tree as $node) : ?>
-            <li <?if($node->active):?>class="active"<?endif?>>
-                <?if($node->current):?>
+        <?php foreach ($tree as $node) : ?>
+            <li <?php if($node->active):?>class="active"<?endif?>>
+                <?php if($node->current):?>
                     <?=$node->item->displayName?>
                 <?else:?>
                     <a href="<?= $node->item->getItemUrl() ?: $this->anchor() ?>"

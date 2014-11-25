@@ -40,7 +40,7 @@ class HmvcTools extends FrameworkHmvcTools
     protected $pageCallStack;
 
     /**
-     * @var SplStack стекхлебных крошек
+     * @var SplStack стек хлебных крошек
      */
     protected $breadcrumbsStack;
 

@@ -26,6 +26,7 @@ trait TPageCallStackAware
     private $traitPageCallStack;
 
     /**
+     * Устанавливает стек вызова страниц сайта
      * @param SplStack $callStack
      */
     public function setPageCallStack(SplStack $callStack)

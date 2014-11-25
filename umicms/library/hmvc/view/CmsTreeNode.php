@@ -18,7 +18,7 @@ use umicms\orm\object\CmsHierarchicObject;
  * @property CmsTreeNode[] $children список детей элемента
  * @property CmsHierarchicObject $item элемент
  * @property bool $current флаг, что текущий элемент активен
- * @property bool $active флаг, что текущий элемент присутствует в стеке вызова страниц
+ * @property bool $active флаг, что текущий элемент присутствует в хлебных крошках
  */
 class CmsTreeNode extends \ArrayObject
 {
