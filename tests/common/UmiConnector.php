@@ -44,8 +44,7 @@ class UmiConnector extends Client
         $bootstrap = new Bootstrap($request);
 
         if (0 === strpos($request->getRequestUri(), '/messages')) {
-            parse_str($request->getQueryString(), $message);
-            $content = $this->getMessageBox()->read($message['email'], $message['subject']);
+            $content = $this->getMessageBox()->read($request->query->get('email'), $request->query->get('subject'));
             /** @var Response $response */
             $response = $bootstrap->getToolkit()->getService('umi\http\Response');
             if ($content) {
