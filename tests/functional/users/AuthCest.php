@@ -1,6 +1,8 @@
 <?php
 namespace umitest\users;
 
+use AspectMock\Test;
+use Symfony\Component\HttpFoundation\Response;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -76,9 +78,76 @@ class AuthCest
     }
 
     /**
+     * Проверяет, что производится редирект если не указан referer
      * @param FunctionalTester $I
      */
-    public function logout(FunctionalTester $I)
+    public function logoutWithoutRefererHeader(FunctionalTester $I)
+    {
+        Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
+            [
+                'getReferer' => null,
+            ]
+        );
+
+        $this->doLoginAndLogout($I);
+        $I->seeCurrentUrlEquals(UrlMap::$userAuthorization);
+    }
+
+    /**
+     * Проверяет, что учитывается referer
+     * @param FunctionalTester $I
+     */
+    public function logoutWithRefererHeader(FunctionalTester $I)
+    {
+        Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
+            [
+                'getReferer' => UrlMap::$defaultUrl,
+                'getProjectUrl' => UrlMap::$defaultUrl
+            ]
+        );
+
+        $this->doLoginAndLogout($I);
+        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
+    }
+
+    /**
+     * Проверяет logout с referer-ом, указывающим на текущую страницу, что циклический редирект отсутствует
+     * @param FunctionalTester $I
+     */
+    public function logoutWhenRefererEqualsCurrentUrl(FunctionalTester $I)
+    {
+        Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
+            [
+                'getReferer' => UrlMap::$defaultUrl,
+                'getCurrentUrl' => UrlMap::$defaultUrl,
+                'getProjectUrl' => UrlMap::$defaultUrl
+            ]
+        );
+        $this->doLoginAndLogout($I);
+        $I->seeCurrentUrlEquals(UrlMap::$userAuthorization);
+    }
+
+    /**
+     * Проверяет корректность работы с "плохим" referer-ом, указывающим на другой сайт
+     * @param FunctionalTester $I
+     */
+    public function logoutWithBadReferer(FunctionalTester $I)
+    {
+        Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
+            [
+                'getReferer' => 'http://bad.ru/' . UrlMap::$defaultUrl,
+                'getCurrentUrl' => UrlMap::$defaultUrl,
+                'getProjectUrl' => 'http://good.ru/' . UrlMap::$defaultUrl
+            ]
+        );
+        $this->doLoginAndLogout($I);
+        $I->seeCurrentUrlEquals(UrlMap::$userAuthorization);
+    }
+
+    /**
+     * @param FunctionalTester $I
+     */
+    private function doLoginAndLogout(FunctionalTester $I)
     {
         $I->haveRegisteredUser('TestUser');
 

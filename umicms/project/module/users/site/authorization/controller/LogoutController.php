@@ -48,19 +48,46 @@ class LogoutController extends BaseCmsController
             }
         }
 
-        $referer = $this->getRequest()->getReferer();
+        $referer = $this->getReferer();
 
-        if ($referer === $this->$this->getUrlManager()->getCurrentUrl(true)) {
+        if ($referer === $this->getCurrentUrl()) {
             $referer = null;
         }
 
-        if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
+        if ($referer && strpos($referer, $this->getProjectUrl()) === 0) {
             return $this->createRedirectResponse($referer);
         }
 
         return $this->createRedirectResponse(
             $this->getUrl('login', [], true)
         );
+    }
+
+    /**
+     * Получает значение заголовка "referer"
+     * @return null|string
+     */
+    private function getReferer()
+    {
+        return $this->getRequest()->getReferer();
+    }
+
+    /**
+     * Получает текущий URL
+     * @return string
+     */
+    private function getCurrentUrl()
+    {
+        return $this->getUrlManager()->getCurrentUrl(true);
+    }
+
+    /**
+     * Получает URL проекта
+     * @return string
+     */
+    private function getProjectUrl()
+    {
+        return $this->getUrlManager()->getProjectUrl(true);
     }
 }
  
