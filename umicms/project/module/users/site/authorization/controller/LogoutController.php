@@ -49,6 +49,11 @@ class LogoutController extends BaseCmsController
         }
 
         $referer = $this->getRequest()->getReferer();
+
+        if ($referer === $this->$this->getUrlManager()->getCurrentUrl(true)) {
+            $referer = null;
+        }
+
         if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
             return $this->createRedirectResponse($referer);
         }

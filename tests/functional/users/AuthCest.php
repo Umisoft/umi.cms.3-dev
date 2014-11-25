@@ -49,7 +49,6 @@ class AuthCest
                 'password' => 'TestUser'
             ]
         );
-
         $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
         $I->seeLocalized(
             [
@@ -74,5 +73,27 @@ class AuthCest
             ],
             UrlMap::$userEditProfile
         );
+    }
+
+    /**
+     * @param FunctionalTester $I
+     */
+    public function logout(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser('TestUser');
+
+        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->submitForm(
+            '#users_authorization_loginForm',
+            [
+                'login'    => 'TestUser',
+                'password' => 'TestUser'
+            ]
+        );
+        $I->submitForm('#users_authorization_logoutForm', []);
+        $I->seeLocalized(            [
+            'ru-RU' => 'Войти',
+            'en-US' => 'Log in'
+        ], '#users_authorization_loginForm');
     }
 }
