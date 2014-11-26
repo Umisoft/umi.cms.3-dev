@@ -11,6 +11,7 @@ namespace umitest\users\registration;
 
 use AspectMock\Test;
 use umi\http\Response;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -29,7 +30,7 @@ class RegistrationWithConfirmationCest
         $I->amOnPage(UrlMap::$userRegistration);
 
         $I->submitForm(
-            '#users_registration_index',
+            BlockMap::REGISTRATION_FORM,
             [
                 'login'      => 'TestUser',
                 'password'   => 'TestUser',

@@ -26,7 +26,7 @@ class MockMessageBox {
      */
     public function push($recipient, $subject, $content)
     {
-        $recipients = array($recipient);
+        $recipients = (array)$recipient;
 
         foreach ($recipients as $email => $name) {
             if (!isset($this->messages[$email])) {

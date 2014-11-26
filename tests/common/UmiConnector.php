@@ -195,7 +195,7 @@ class UmiConnector extends Client
         }
 
         if (false === stripos($content, '<html>')) {
-            return '<html>' . $content .'</html>';
+            $content = '<html>' . $content .'</html>';
         }
 
         return new Response($content, Response::HTTP_OK);
