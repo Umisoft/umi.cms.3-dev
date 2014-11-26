@@ -154,6 +154,8 @@ class UmiModule extends Framework
         $user->active = true;
 
         $this->grabOrmObjectPersister()->commit();
+
+        return $user;
     }
 
     /**
@@ -205,7 +207,7 @@ class UmiModule extends Framework
 
     /**
      * Grabs ORM Object persister from common Toolkit
-     * @return IObjectPersister
+     * @return \umi\orm\persister\IObjectPersister
      */
     public function grabOrmObjectPersister()
     {

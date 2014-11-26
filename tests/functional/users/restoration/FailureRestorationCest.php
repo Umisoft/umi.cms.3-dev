@@ -66,6 +66,27 @@ class FailureRestorationCest
             ],
             '#users_restoration_index_errors'
         );
+    }
 
+    public function restorationForNonActivatedUser(FunctionalTester $I)
+    {
+        $user = $I->haveRegisteredUser();
+        $user->active = false;
+        $I->grabOrmObjectPersister()->markAsModified($user)->commit();
+
+        $I->amOnPage(UrlMap::$userRestore);
+        $I->submitForm(
+            '#users_restoration_index',
+            [
+                'loginOrEmail' => 'TestUser'
+            ]
+        );
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Пользователь с заданным логином или email не активирован или заблокирован.',
+                'en-US' => 'User with given login or email has been block or has not activated.'
+            ],
+            '#users_restoration_index_errors'
+        );
     }
 } 
