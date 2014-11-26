@@ -41,32 +41,11 @@ class UmiConnector extends Client
      */
     public function doRequest($request)
     {
-        $bootstrap = new Bootstrap($request);
-
         if (0 === strpos($request->getRequestUri(), '/messages')) {
-            if ($request->query->get('subject')) {
-                $content = $this->getMessageBox()->read($request->query->get('email'), $request->query->get('subject'));
-            } else {
-                $content = $this->getMessageBox()->count($request->query->get('email'));
-            }
-            /** @var Response $response */
-            $response = $bootstrap->getToolkit()->getService('umi\http\Response');
-            if ($content) {
-                $response->setContent($content);
-            } else {
-                $response->setStatusCode(Response::HTTP_NOT_FOUND);
-            }
-
-            return $response;
-        } else {
-            $bootstrap->init();
-            if ($this->toolkitInitializer) {
-                $initializer = $this->toolkitInitializer;
-                $initializer($bootstrap->getToolkit());
-            }
-
-            return $bootstrap->dispatch();
+            return $this->getMessageResponse($request);
         }
+
+        return $this->getProjectResponse($request);
     }
 
     /**
@@ -79,7 +58,7 @@ class UmiConnector extends Client
     }
 
     /**
-     * Inject message mox
+     * Устанавливает MessageBox
      * @param MockMessageBox $messageBox
      */
     public function setMessageBox(MockMessageBox $messageBox)
@@ -87,7 +66,14 @@ class UmiConnector extends Client
         $this->messageBox = $messageBox;
     }
 
-    private function getMessageBox()
+    /**
+     * Возвращает MessageBox
+     *
+     * @throws \LogicException если не был установлен
+     *
+     * @return MockMessageBox
+     */
+    protected function getMessageBox()
     {
         if (empty($this->messageBox)) {
             throw new \LogicException('Please set up message box with UmiConnector::setMessageBox');
@@ -190,6 +176,48 @@ class UmiConnector extends Client
         }
 
         return $filtered;
+    }
+
+    /**
+     * Возвращает письмо из MessageBox
+     * @param Request $request
+     * @return Response
+     */
+    protected function getMessageResponse(Request $request)
+    {
+        $email = $request->query->get('email');
+        $subject = $request->query->get('subject');
+
+        try {
+            $content = $this->getMessageBox()->read($email, $subject);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage(), Response::HTTP_NOT_FOUND);
+        }
+
+        if (false === stripos($content, '<html>')) {
+            $content = '<html>' . $content .'</html>';
+        }
+
+        return new Response($content, Response::HTTP_OK);
+    }
+
+    /**
+     * Возвращает ответ проекта
+     * @param Request $request
+     * @return Response
+     */
+    protected function getProjectResponse(Request $request)
+    {
+        $bootstrap = new Bootstrap($request);
+        if ($bootstrap->init()) {
+            if ($this->toolkitInitializer) {
+                $initializer = $this->toolkitInitializer;
+                $initializer($bootstrap->getToolkit());
+            }
+            $bootstrap->dispatch();
+        }
+
+        return $bootstrap->getResponse();
     }
 }
  

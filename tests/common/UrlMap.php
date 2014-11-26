@@ -15,22 +15,24 @@ namespace umitest;
  */
 abstract class UrlMap
 {
-    const DEFAULT_URL = '';
-    const USER_AUTHORIZATION = '/users/auth';
-    const USER_REGISTRATION = '/users/registration';
-    const USER_ACTIVATION = '/users/registration/activate';
-    const USER_LOGOUT = '/users/auth/logout';
-    const USER_EDIT_PROFILE = '/users/profile';
-    const USER_RESTORE = '/users/restore';
-    const SURVEYS_NEXT_SHOW = '/surveys/nextshow';
+    /**
+     * @var string $projectUrl url проекта
+     */
+    public static $projectUrl = '';
+    /**
+     * @var string $projectUrl абсолютный url проекта
+     */
+    public static $projectAbsoluteUrl = '';
 
-    public static $defaultUrl;
-    public static $userAuthorization;
-    public static $userActivation;
-    public static $userRegistration;
-    public static $userLogout;
-    public static $userEditProfile;
-    public static $userRestore;
+
+    public static $defaultPageUrl = '/main';
+    public static $userAuthorization = '/users/auth';
+    public static $userActivation =  '/users/registration/activate';
+    public static $userRegistration = '/users/registration';
+    public static $userLogout = '/users/auth/logout';
+    public static $userEditProfile = '/users/profile';
+    public static $surveysNextShow = '/surveys/nextshow';
+    public static $userRestore; = '/users/restore';
 
     private static $projectDomain;
 

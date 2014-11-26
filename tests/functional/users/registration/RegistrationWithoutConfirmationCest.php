@@ -10,6 +10,7 @@
 namespace umitest\users;
 
 use AspectMock\Test;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -27,7 +28,7 @@ class RegistrationWithoutConfirmationCest
         $I->amOnPage(UrlMap::$userRegistration);
 
         $I->submitForm(
-            '#users_registration_index',
+            BlockMap::REGISTRATION_FORM,
             [
                 'login'      => 'TestUser',
                 'password'   => 'TestUser',
@@ -48,8 +49,8 @@ class RegistrationWithoutConfirmationCest
         $I->openEmailMessage(
             'TestUser@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Регистрация пользователя.',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': User registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя.',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
             ]
         );
 
@@ -60,7 +61,13 @@ class RegistrationWithoutConfirmationCest
             ]
         );
 
-        $I->haveEmailMessage('TestNotification@example.com');
+        $I->haveEmailMessage(
+            'TestNotification@example.com',
+            [
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
+            ]
+        );
 
     }
 

@@ -7,8 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace umitest\users;
+namespace umitest\users\registration;
 
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -22,7 +23,7 @@ class RegistrationFormCest
      */
     public function checkRegisterLinkAsGuest(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
 
         $I->seeLinkLocalized(
             [
@@ -42,7 +43,7 @@ class RegistrationFormCest
         $I->amOnPage(UrlMap::$userRegistration);
 
         $I->submitForm(
-            '#users_registration_index',
+            BlockMap::REGISTRATION_FORM,
             []
         );
         $I->seeLocalized(
@@ -50,25 +51,25 @@ class RegistrationFormCest
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
             ],
-            '#users_registration_index .login'
+            BlockMap::REGISTRATION_FORM_LOGIN_ERROR
         );
         $I->seeLocalized(
             [
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
             ],
-            '#users_registration_index .password'
+            BlockMap::REGISTRATION_FORM_PASSWORD_ERROR
         );
         $I->seeLocalized(
             [
                 'ru-RU' => 'Значение поля обязательно для заполнения.',
                 'en-US' => 'Value is required.'
             ],
-            '#users_registration_index .email'
+            BlockMap::REGISTRATION_FORM_EMAIL_ERROR
         );
 
         $I->submitForm(
-            '#users_registration_index',
+            BlockMap::REGISTRATION_FORM,
             [
                 'login' => 'TestUser',
                 'password' => 'TestUser',
@@ -80,14 +81,14 @@ class RegistrationFormCest
                 'ru-RU' => 'Указан некорректный email.',
                 'en-US' => 'Wrong email format.'
             ],
-            '#users_registration_index .email'
+            BlockMap::REGISTRATION_FORM_EMAIL_ERROR
         );
         $I->seeLocalized(
             [
                 'ru-RU' => 'Пользователь с указанным логином уже существует.',
                 'en-US' => 'Login is not unique.'
             ],
-            '#users_registration_index .login'
+            BlockMap::REGISTRATION_FORM_LOGIN_ERROR
         );
 
     }

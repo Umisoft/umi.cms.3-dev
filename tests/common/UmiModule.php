@@ -13,14 +13,11 @@ use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
-use Symfony\Component\HttpFoundation\Response;
-use umi\config\io\TConfigIOAware;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
-use umicms\hmvc\component\admin\settings\SettingsComponent;
 use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
@@ -28,18 +25,11 @@ use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
- * This module extends Codeception framework
- * for testing UMI.CMS projects.
+ * Модуль, расширяющий Codeception framework
+ * для тестирования проектов UMI.CMS.
  */
 class UmiModule extends Framework
 {
-
-    use TConfigIOAware;
-
-    /**
-     * @var SettingsComponent
-     */
-    private $settings;
     /**
      * @api
      * @var UmiConnector
@@ -47,16 +37,20 @@ class UmiModule extends Framework
     public $client;
 
     /**
-     * Locale for test localized strings.
+     * Локаль, для тестирования локализованных строк.
      * @var string $currentLocale
      */
-    protected $locale = '';
-
+    protected $locale;
     /**
-     * Project url.
+     * Список плейсхолдеро, доступных текстах локализованных строк.
+     * @var array $localePlaceholders
+     */
+    protected $localePlaceholders = [];
+    /**
+     * Префикс для всех адресов проекта
      * @var string $projectUrl
      */
-    protected $projectUrl = '';
+    protected $projectUrlPrefix;
     /**
      * @var IToolkit $commonToolkit common toolkit.
      */
@@ -66,7 +60,7 @@ class UmiModule extends Framework
      */
     protected $commonDbCluster;
     /**
-     * @var MockMessageBox
+     * @var MockMessageBox тестовый почтовый ящик
      */
     public $messageBox;
 
@@ -76,11 +70,11 @@ class UmiModule extends Framework
     public function _initialize()
     {
         $this->locale = $this->config['locale'];
-        $this->projectUrl = $this->config['projectUrl'];
+        $this->projectUrlPrefix = $this->config['projectUrl'];
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
-        $this->initializeMessageBox();
+        $this->initializePlaceholders();
     }
 
     /**
@@ -89,6 +83,7 @@ class UmiModule extends Framework
     public function _before(TestCase $test)
     {
         $this->initializeMocks();
+        $this->initializeMessageBox();
 
         $this->client = new UmiConnector();
         $this->client->setMessageBox($this->messageBox);
@@ -107,7 +102,6 @@ class UmiModule extends Framework
             $this->rollbackDbTransaction();
         }
         Test::clean();
-        $this->messageBox->clean();
     }
 
     public function dontFollowRedirects()
@@ -121,14 +115,16 @@ class UmiModule extends Framework
 
     public function openEmailMessage($email, array $localizedSubject)
     {
+        $this->haveEmailMessage($email, $localizedSubject);
+
         $subject = $this->getLocalized($localizedSubject);
         $this->amOnPage("/messages?email={$email}&subject={$subject}");
     }
 
-    public function haveEmailMessage($email)
+    public function haveEmailMessage($email, array $localizedSubject)
     {
-        $this->amOnPage("/messages?email={$email}");
-        $this->assertEquals(Response::HTTP_OK, $this->getResponseStatusCode());
+        $subject = $this->getLocalized($localizedSubject);
+        $this->assertTrue($this->messageBox->has($email, $subject));
     }
 
     /**
@@ -159,17 +155,12 @@ class UmiModule extends Framework
     }
 
     /**
-     * Check if current page contains the text specified for current locale.
-     * Specify the css selector to match only specific region.
-     * Examples:
-     * ``` php
-     * <?php
-     *     $I->seeLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // I can suppose user is logged in
-     * ?>
-     * ```
-     * @param array $texts text for each locale
-     * @param null $selector
+     * Проверяет, содержит ли текущая страница текст в текущей локали.
+     * В тексте можно использовать плейсхолдеры, например для указания url из UrlMap:
+     * ['ru-RU' => 'Абсолютный url проекта: {projectAbsoluteUrl}', ...]
      * @see \Codeception\Lib\InnerBrowser::see()
+     * @param array $texts массив в формате ['RU-ru' => 'текст', 'En-us' => 'текст', ...] для каждой локали
+     * @param null $selector
      */
     public function seeLocalized(array $texts, $selector = null)
     {
@@ -243,7 +234,7 @@ class UmiModule extends Framework
     }
 
     /**
-     * Inject common services for any request
+     * Внедряет общие сервисы в Toolkit для каждого Request
      */
     protected function injectCommonServices()
     {
@@ -255,9 +246,11 @@ class UmiModule extends Framework
             $dbalTools->setCluster($this->commonDbCluster);
         });
     }
+
     /**
      * Returns localized from text array
      * @param array $texts
+     * @return string
      * @throws \UnexpectedValueException if undefined localization
      */
     protected function getLocalized(array $texts)
@@ -266,27 +259,43 @@ class UmiModule extends Framework
             throw new \UnexpectedValueException('Cannot find localization for locale "' . $this->locale . '".');
         }
 
-        return $texts[$this->locale];
+        return strtr($texts[$this->locale], $this->localePlaceholders);
     }
 
     /**
-     * Add project url for all map
+     * Инициализирует карту URL для тестов
      */
     protected function initializeUrlMap()
     {
-        foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
-            $constantName = strtoupper(
-                preg_replace(
-                    '/(?!^)[[:upper:]][[:lower:]]/',
-                    '$0',
-                    preg_replace('/(?!^)[[:upper:]]+/', '_$0', $name)
-                )
-            );
+        $reflection = new \ReflectionClass('umitest\UrlMap');
+        $defaultProperties = $reflection->getDefaultProperties();
 
-            UrlMap::${$name} = $this->projectUrl . constant("umitest\\UrlMap::{$constantName}");
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_STATIC) as $property) {
+            if (isset($defaultProperties[$property->name])) {
+                $property->setValue($this->projectUrlPrefix . $defaultProperties[$property->name]);
+            }
         }
 
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->grabService('umicms\hmvc\url\IUrlManager');
+
+        UrlMap::$projectAbsoluteUrl = $urlManager->getSchemeAndHttpHost() . $this->projectUrlPrefix;
+        UrlMap::$projectUrl = $this->projectUrlPrefix;
+
         UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
+    }
+
+    /**
+     * Инициализирует плейсхолдеры для замены в локализованных сообщениях
+     */
+    protected function initializePlaceholders()
+    {
+        $this->localePlaceholders = [];
+        foreach (get_class_vars('umitest\UrlMap') as $varName => $value) {
+            $this->localePlaceholders['{' . $varName . '}'] = $value;
+        }
     }
 
     /**
@@ -314,7 +323,7 @@ class UmiModule extends Framework
         /**
          * @var Request $request
          */
-        $request = Request::create($this->projectUrl);
+        $request = Request::create($this->projectUrlPrefix);
 
         $bootstrap = new Bootstrap($request);
         $bootstrap->init();
@@ -323,6 +332,9 @@ class UmiModule extends Framework
         $this->commonDbCluster = $this->commonToolkit->getService('umi\dbal\cluster\IDbCluster');
     }
 
+    /**
+     * Initialize new message box for test
+     */
     protected function initializeMessageBox()
     {
         $this->messageBox = new MockMessageBox();
@@ -344,6 +356,7 @@ class UmiModule extends Framework
 
         $that = $this;
 
+        /** @noinspection PhpUnusedParameterInspection */
         Test::double(
             'umicms\hmvc\component\BaseCmsController',
             [

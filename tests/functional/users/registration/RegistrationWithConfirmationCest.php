@@ -7,10 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace umitest\users;
+namespace umitest\users\registration;
 
 use AspectMock\Test;
 use umi\http\Response;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -21,6 +22,7 @@ class RegistrationWithConfirmationCest
 {
 
     /**
+     * Проверяет процесс регистрации пользователя с подтверждением по email (письмо с активацией)
      * @param FunctionalTester $I
      */
     public function registerWithConfirmation(FunctionalTester $I)
@@ -28,7 +30,7 @@ class RegistrationWithConfirmationCest
         $I->amOnPage(UrlMap::$userRegistration);
 
         $I->submitForm(
-            '#users_registration_index',
+            BlockMap::REGISTRATION_FORM,
             [
                 'login'      => 'TestUser',
                 'password'   => 'TestUser',
@@ -49,8 +51,8 @@ class RegistrationWithConfirmationCest
         $I->openEmailMessage(
             'TestUser@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Подтверждение регистрации пользователя.',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Confirm user registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Подтверждение регистрации пользователя.',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Confirm user registration.',
             ]
         );
 
@@ -73,31 +75,37 @@ class RegistrationWithConfirmationCest
         $I->openEmailMessage(
             'TestNotification@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Регистрация пользователя',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': User registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
             ]
         );
 
         $I->seeLocalized(
             [
-                'ru-RU' => 'Новый пользователь TestUser зарегистрировался на сайте ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
-                'en-US' => 'New user TestUser has registered on the website ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
+                'ru-RU' => 'Новый пользователь TestUser зарегистрировался на сайте ' . UrlMap::getProjectDomain() . UrlMap::$projectUrl,
+                'en-US' => 'New user TestUser has registered on the website ' . UrlMap::getProjectDomain() . UrlMap::$projectUrl,
             ]
         );
 
     }
 
-    public function emptyActivationCode(FunctionalTester $I)
+    /**
+     * Проверяет, что при попытке активировать без указания ключа активации, будет возвращен 404 статус
+     * @param FunctionalTester $I
+     */
+    public function activateWithEmptyCode(FunctionalTester $I)
     {
-        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
-        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation);
+        $I->amOnPage(UrlMap::$userActivation);
         $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
     }
 
-    public function incorrectActivationCode(FunctionalTester $I)
+    /**
+     * Проверяет сообщение о не верном коде активации
+     * @param FunctionalTester $I
+     */
+    public function activateWithInvalidActivationCode(FunctionalTester $I)
     {
-        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
-        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation . '/incorrect');
+        $I->amOnPage(UrlMap::$userActivation . '/incorrect');
         $I->seeLocalized(
             [
                 'ru-RU' => 'Неверный код активации.',

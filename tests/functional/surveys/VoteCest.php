@@ -1,6 +1,7 @@
 <?php
 namespace umitest\surveys;
 
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -17,21 +18,21 @@ class VoteCest
      */
     public function vote(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             [
                 'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
         $I->cantSeeElement('.captcha');
         $I->seeElement('.progress-bar');
         $I->seeLocalized(
@@ -39,28 +40,28 @@ class VoteCest
                 'ru-RU' => 'Всего голосов',
                 'en-US' => 'Total votes'
             ],
-            '.blog-post'
+            BlockMap::BLOG_POST
         );
     }
 
     public function reVote(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
         $I->setCookie(self::VOTE_GUID, 1);
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             [
                 'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
 
         $I->seeLocalized(
             [
@@ -70,11 +71,65 @@ class VoteCest
         );
     }
 
+    public function voteWithoutOption(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Ответы',
+                'en-US' => 'Answers'
+            ],
+            '.answers label'
+        );
+
+        $I->submitForm(
+            '#surveys_voteForm',
+            []
+        );
+
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Не выбран ни один из вариантов',
+                'en-US' => 'Do not select any option'
+            ]
+        );
+    }
+
+    public function voteWithFalseOption(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Ответы',
+                'en-US' => 'Answers'
+            ],
+            '.answers label'
+        );
+
+        $I->submitForm(
+            '#surveys_voteForm',
+            [
+                'answers' => 'false-option'
+            ]
+        );
+
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Value "false-option" is not in available values list',
+                'en-US' => 'Value "false-option" is not in available values list'
+            ]
+        );
+    }
+
     public function viewResult(FunctionalTester $I)
     {
         $I->setCookie(self::VOTE_GUID, 1);
 
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
 
         $I->cantSeeElement('.captcha');
         $I->seeLocalized(
@@ -82,7 +137,7 @@ class VoteCest
                 'ru-RU' => 'Всего голосов',
                 'en-US' => 'Total votes'
             ],
-            '.blog-sidebar'
+            BlockMap::BLOG_SIDEBAR
         );
     }
 }
