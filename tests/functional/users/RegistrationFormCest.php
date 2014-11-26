@@ -22,7 +22,7 @@ class RegistrationFormCest
      */
     public function checkRegisterLinkAsGuest(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
 
         $I->seeLinkLocalized(
             [

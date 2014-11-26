@@ -16,7 +16,7 @@ class AuthCest
      */
     public function loginWithIncorrectCredentials(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
 
         $I->submitForm(
             '#users_authorization_loginForm',
@@ -43,7 +43,7 @@ class AuthCest
     {
         $I->haveRegisteredUser('TestUser');
 
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->submitForm(
             '#users_authorization_loginForm',
             [
@@ -51,7 +51,7 @@ class AuthCest
                 'password' => 'TestUser'
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
+        $I->seeCurrentUrlEquals(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Добро пожаловать, TestUser',
@@ -101,13 +101,13 @@ class AuthCest
     {
         Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
             [
-                'getReferer' => UrlMap::$defaultUrl,
-                'getProjectUrl' => UrlMap::$defaultUrl
+                'getReferer' => UrlMap::$projectUrl,
+                'getProjectUrl' => UrlMap::$projectUrl
             ]
         );
 
         $this->doLoginAndLogout($I);
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl);
+        $I->seeCurrentUrlEquals(UrlMap::$projectUrl);
     }
 
     /**
@@ -118,9 +118,9 @@ class AuthCest
     {
         Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
             [
-                'getReferer' => UrlMap::$defaultUrl,
-                'getCurrentUrl' => UrlMap::$defaultUrl,
-                'getProjectUrl' => UrlMap::$defaultUrl
+                'getReferer' => UrlMap::$projectUrl,
+                'getCurrentUrl' => UrlMap::$projectUrl,
+                'getProjectUrl' => UrlMap::$projectUrl
             ]
         );
         $this->doLoginAndLogout($I);
@@ -135,9 +135,9 @@ class AuthCest
     {
         Test::double('\umicms\project\module\users\site\authorization\controller\LogoutController',
             [
-                'getReferer' => 'http://bad.ru/' . UrlMap::$defaultUrl,
-                'getCurrentUrl' => UrlMap::$defaultUrl,
-                'getProjectUrl' => 'http://good.ru/' . UrlMap::$defaultUrl
+                'getReferer' => 'http://bad.ru/' . UrlMap::$projectUrl,
+                'getCurrentUrl' => UrlMap::$projectUrl,
+                'getProjectUrl' => 'http://good.ru/' . UrlMap::$projectUrl
             ]
         );
         $this->doLoginAndLogout($I);
@@ -151,7 +151,7 @@ class AuthCest
     {
         $I->haveRegisteredUser('TestUser');
 
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->submitForm(
             '#users_authorization_loginForm',
             [

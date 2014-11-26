@@ -16,9 +16,9 @@ class RedirectCest
     public function checkRedirectToMainPage(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
-        $I->amOnPage(UrlMap::$defaultUrl . '/main');
+        $I->amOnPage(UrlMap::$defaultPageUrl);
         $I->seeResponseCodeIs(Response::HTTP_MOVED_PERMANENTLY);
-        $I->seeHttpHeader('Location', UrlMap::$defaultUrl);
+        $I->seeHttpHeader('Location', UrlMap::$projectUrl);
     }
 
     /**
@@ -27,9 +27,9 @@ class RedirectCest
     public function checkNotFoundReponse(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
-        $I->amOnPage(UrlMap::$defaultUrl . '/123');
+        $I->amOnPage(UrlMap::$projectUrl . '/123');
         $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
-        $I->amOnPage(UrlMap::$defaultUrl . '/456/');
+        $I->amOnPage(UrlMap::$projectUrl . '/456/');
         $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
     }
 
@@ -39,8 +39,8 @@ class RedirectCest
     public function checkRedirectFromSlash(FunctionalTester $I)
     {
         $I->dontFollowRedirects();
-        $I->amOnPage(UrlMap::$defaultUrl . '/');
+        $I->amOnPage(UrlMap::$projectUrl . '/');
         $I->seeResponseCodeIs(Response::HTTP_MOVED_PERMANENTLY);
-        $I->seeHttpHeader('Location', UrlMap::$defaultUrl);
+        $I->seeHttpHeader('Location', UrlMap::$projectUrl);
     }
 }

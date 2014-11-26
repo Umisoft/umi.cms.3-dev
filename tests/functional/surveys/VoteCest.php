@@ -17,7 +17,7 @@ class VoteCest
      */
     public function vote(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Ответы',
@@ -31,7 +31,7 @@ class VoteCest
                 'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
         $I->cantSeeElement('.captcha');
         $I->seeElement('.progress-bar');
         $I->seeLocalized(
@@ -45,7 +45,7 @@ class VoteCest
 
     public function reVote(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Ответы',
@@ -60,7 +60,7 @@ class VoteCest
                 'answers' => self::VOTE_ANSWER_GUID
             ]
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
 
         $I->seeLocalized(
             [
@@ -74,7 +74,7 @@ class VoteCest
     {
         $I->setCookie(self::VOTE_GUID, 1);
 
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
 
         $I->cantSeeElement('.captcha');
         $I->seeLocalized(

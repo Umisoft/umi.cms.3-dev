@@ -15,7 +15,7 @@ class FailureVoteCest
      */
     public function checkVoteFormValidators(FunctionalTester $I)
     {
-        $I->amOnPage(UrlMap::$defaultUrl);
+        $I->amOnPage(UrlMap::$projectUrl);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Ответы',
@@ -27,7 +27,7 @@ class FailureVoteCest
             '#surveys_voteForm',
             []
         );
-        $I->seeCurrentUrlEquals(UrlMap::$defaultUrl . UrlMap::SURVEYS_NEXT_SHOW);
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Введите код с картинки',

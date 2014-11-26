@@ -49,8 +49,8 @@ class RegistrationWithConfirmationCest
         $I->openEmailMessage(
             'TestUser@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Подтверждение регистрации пользователя.',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Confirm user registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Подтверждение регистрации пользователя.',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Confirm user registration.',
             ]
         );
 
@@ -73,15 +73,15 @@ class RegistrationWithConfirmationCest
         $I->openEmailMessage(
             'TestNotification@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Регистрация пользователя',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': User registration.',
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
             ]
         );
 
         $I->seeLocalized(
             [
-                'ru-RU' => 'Новый пользователь TestUser зарегистрировался на сайте ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
-                'en-US' => 'New user TestUser has registered on the website ' . UrlMap::getProjectDomain() . UrlMap::$defaultUrl,
+                'ru-RU' => 'Новый пользователь TestUser зарегистрировался на сайте ' . UrlMap::getProjectDomain() . UrlMap::$projectUrl,
+                'en-US' => 'New user TestUser has registered on the website ' . UrlMap::getProjectDomain() . UrlMap::$projectUrl,
             ]
         );
 

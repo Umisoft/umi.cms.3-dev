@@ -15,7 +15,11 @@ namespace umitest;
  */
 abstract class UrlMap
 {
-    public static $defaultUrl = '';
+    /**
+     * @var string $projectUrl url проекта
+     */
+    public static $projectUrl = '';
+    public static $defaultPageUrl = '/main';
     public static $userAuthorization = '/users/auth';
     public static $userActivation =  '/users/registration/activate';
     public static $userRegistration = '/users/registration';
