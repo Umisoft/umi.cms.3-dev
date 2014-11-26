@@ -1,4 +1,4 @@
-<div class="form-group {{ not element.valid ? 'has-error' }}">
+<div class="form-group {{ element.attributes.name }} {{ not element.valid ? 'has-error' }}">
     <label for="{{ element.attributes.id }}"> {{ element.label }} </label>
 
     {% if (not element.valid) %}

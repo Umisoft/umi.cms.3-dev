@@ -218,7 +218,7 @@ return [
             'meta' => 'Meta',
             'importSetting' => 'Import setting',
             'contents' => 'Contents',
-
+            'Value is required.' => 'Value is required.',
             'Save' => 'Save',
             'Add' => 'Add',
             'Change' => 'Change',
@@ -231,7 +231,7 @@ return [
             'meta' => 'Мета-информация',
             'importSetting' => 'Настройки импорта',
             'contents' => 'Контент',
-
+            'Value is required.' => 'Значение поля обязательно для заполнения.',
             'Save' => 'Сохранить',
             'Add' => 'Добавить',
             'Change' => 'Изменить',

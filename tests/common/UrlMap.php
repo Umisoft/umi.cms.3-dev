@@ -21,6 +21,7 @@ abstract class UrlMap
     const USER_ACTIVATION = '/users/registration/activate';
     const USER_LOGOUT = '/users/auth/logout';
     const USER_EDIT_PROFILE = '/users/profile';
+    const USER_RESTORE = '/users/restore';
     const SURVEYS_NEXT_SHOW = '/surveys/nextshow';
 
     public static $defaultUrl;
@@ -29,6 +30,7 @@ abstract class UrlMap
     public static $userRegistration;
     public static $userLogout;
     public static $userEditProfile;
+    public static $userRestore;
 
     private static $projectDomain;
 

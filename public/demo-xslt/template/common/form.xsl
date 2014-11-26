@@ -3,7 +3,7 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:php="http://php.net/xsl"
-                xmlns:umi="http://umi-cms.ru/xsl"
+                xmlns:umi="http://umi-cms.ru/xsl" xmlns:ssl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="php umi">
 
     <xsl:output
@@ -26,8 +26,9 @@
         <div>
             <xsl:attribute name="class">
                 <xsl:text>form-group </xsl:text>
+                <ssl:value-of select="attributes/@name"/>
                 <xsl:if test="valid = 0">
-                    <xsl:text>has-error</xsl:text>
+                    <xsl:text> has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
             <label for="{attributes/@id}">
