@@ -49,8 +49,8 @@ class VoteFormCest
             'umicms\form\element\Captcha',
             [
                 'validate' => function () {
-                        return false;
-                    }
+                    return false;
+                }
             ]
         );
     }

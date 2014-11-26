@@ -34,23 +34,4 @@ abstract class UrlMap
     public static $surveysNextShow = '/surveys/nextshow';
     public static $userRestore; = '/users/restore';
 
-    private static $projectDomain;
-
-    /**
-     * @return mixed
-     */
-    public static function getProjectDomain()
-    {
-        return self::$projectDomain;
-    }
-
-    /**
-     * @param mixed $projectDomain
-     */
-    public static function setProjectDomain($projectDomain)
-    {
-        self::$projectDomain = $projectDomain;
-    }
-
-
 }

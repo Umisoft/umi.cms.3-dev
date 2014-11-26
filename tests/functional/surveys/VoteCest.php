@@ -33,8 +33,8 @@ class VoteCest
             ]
         );
         $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
-        $I->cantSeeElement('.captcha');
-        $I->seeElement('.progress-bar');
+        $I->cantSeeElement(BlockMap::CAPTCHA);
+        $I->seeElement(BlockMap::BLOG_POST_PROGRESS_BAR);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Всего голосов',
@@ -79,11 +79,11 @@ class VoteCest
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
 
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             []
         );
 
@@ -105,11 +105,11 @@ class VoteCest
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
 
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             [
                 'answers' => 'false-option'
             ]
@@ -131,7 +131,7 @@ class VoteCest
 
         $I->amOnPage(UrlMap::$projectUrl);
 
-        $I->cantSeeElement('.captcha');
+        $I->cantSeeElement(BlockMap::CAPTCHA);
         $I->seeLocalized(
             [
                 'ru-RU' => 'Всего голосов',

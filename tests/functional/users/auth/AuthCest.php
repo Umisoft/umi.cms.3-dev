@@ -2,6 +2,7 @@
 namespace umitest\users;
 
 use AspectMock\Test;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 

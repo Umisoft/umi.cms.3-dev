@@ -28,6 +28,7 @@ abstract class BlockMap
     const VOTE_ANSWERS = '.answers label';
     const VOTE_FORM = '#surveys_voteForm';
     const BLOG_POST = '.blog-post';
+    const BLOG_POST_PROGRESS_BAR = '.blog-post .progress-bar';
     const BLOG_SIDEBAR = '.blog-sidebar';
-    const CAPTCHA = '.captcha';
+    const CAPTCHA = '.blog-post .captcha';
 }

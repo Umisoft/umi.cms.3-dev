@@ -49,8 +49,8 @@ class RegistrationWithoutConfirmationCest
         $I->openEmailMessage(
             'TestUser@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя.',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
+                'ru-RU' => '{projectAbsoluteUrl}: Регистрация пользователя.',
+                'en-US' => '{projectAbsoluteUrl}: User registration.',
             ]
         );
 
@@ -64,8 +64,8 @@ class RegistrationWithoutConfirmationCest
         $I->haveEmailMessage(
             'TestNotification@example.com',
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
+                'ru-RU' => '{projectAbsoluteUrl}: Регистрация пользователя',
+                'en-US' => '{projectAbsoluteUrl}: User registration.',
             ]
         );
 

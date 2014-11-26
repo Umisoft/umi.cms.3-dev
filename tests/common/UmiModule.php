@@ -283,8 +283,6 @@ class UmiModule extends Framework
 
         UrlMap::$projectAbsoluteUrl = $urlManager->getSchemeAndHttpHost() . $this->projectUrlPrefix;
         UrlMap::$projectUrl = $this->projectUrlPrefix;
-
-        UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
     }
 
     /**
