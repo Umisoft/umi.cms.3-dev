@@ -218,25 +218,30 @@ return [
             'meta' => 'Meta',
             'importSetting' => 'Import setting',
             'contents' => 'Contents',
-            'Value is required.' => 'Value is required.',
             'Save' => 'Save',
             'Add' => 'Add',
             'Change' => 'Change',
             'Send request' => 'Send request',
             'Captcha' => 'Captcha',
 
+            'Value is required.' => 'Value is required.',
+            'Invalid csrf token.' => 'Invalid csrf token.',
+            'Invalid captcha test.' => 'Invalid captcha test.',
         ],
         'ru-RU' => [
             'common' => 'Общее',
             'meta' => 'Мета-информация',
             'importSetting' => 'Настройки импорта',
             'contents' => 'Контент',
-            'Value is required.' => 'Значение поля обязательно для заполнения.',
             'Save' => 'Сохранить',
             'Add' => 'Добавить',
             'Change' => 'Изменить',
             'Send request' => 'Отправить запрос',
             'Captcha' => 'Введите код с картинки',
+
+            'Value is required.' => 'Значение поля обязательно для заполнения.',
+            'Invalid csrf token.' => 'Недопустимый маркер CSRF.',
+            'Invalid captcha test.' => 'Неверный код с картинки.',
         ]
     ],
 

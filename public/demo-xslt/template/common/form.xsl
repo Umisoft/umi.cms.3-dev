@@ -181,8 +181,9 @@
         <div>
             <xsl:attribute name="class">
                 <xsl:text>form-group </xsl:text>
+                <ssl:value-of select="attributes/@name"/>
                 <xsl:if test="valid = 0">
-                    <xsl:text>has-error</xsl:text>
+                    <xsl:text> has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
             <xsl:apply-templates select="errors" mode="formErrors"/>
