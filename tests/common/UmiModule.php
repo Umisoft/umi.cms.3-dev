@@ -329,6 +329,7 @@ class UmiModule extends Framework
 
         $that = $this;
 
+        /** @noinspection PhpUnusedParameterInspection */
         Test::double(
             'umicms\hmvc\component\BaseCmsController',
             [

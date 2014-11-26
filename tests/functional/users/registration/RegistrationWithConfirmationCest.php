@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umitest\users;
+namespace umitest\users\registration;
 
 use AspectMock\Test;
 use umi\http\Response;
@@ -21,6 +21,7 @@ class RegistrationWithConfirmationCest
 {
 
     /**
+     * Проверяет процесс регистрации пользователя с подтверждением по email (письмо с активацией)
      * @param FunctionalTester $I
      */
     public function registerWithConfirmation(FunctionalTester $I)
@@ -87,17 +88,23 @@ class RegistrationWithConfirmationCest
 
     }
 
-    public function emptyActivationCode(FunctionalTester $I)
+    /**
+     * Проверяет, что при попытке активировать без указания ключа активации, будет возвращен 404 статус
+     * @param FunctionalTester $I
+     */
+    public function activateWithEmptyCode(FunctionalTester $I)
     {
-        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
-        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation);
+        $I->amOnPage(UrlMap::$userActivation);
         $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
     }
 
-    public function incorrectActivationCode(FunctionalTester $I)
+    /**
+     * Проверяет сообщение о не верном коде активации
+     * @param FunctionalTester $I
+     */
+    public function activateWithInvalidActivationCode(FunctionalTester $I)
     {
-        echo UrlMap::getProjectDomain() . UrlMap::$userActivation, PHP_EOL;
-        $I->amOnPage(UrlMap::getProjectDomain() . UrlMap::$userActivation . '/incorrect');
+        $I->amOnPage(UrlMap::$userActivation . '/incorrect');
         $I->seeLocalized(
             [
                 'ru-RU' => 'Неверный код активации.',

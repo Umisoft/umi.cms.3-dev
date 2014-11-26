@@ -2,7 +2,6 @@
 namespace umitest\users;
 
 use AspectMock\Test;
-use Symfony\Component\HttpFoundation\Response;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 

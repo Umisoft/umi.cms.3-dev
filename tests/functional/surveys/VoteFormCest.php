@@ -6,9 +6,9 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
- * Тесты на голосование.
+ * Тесты формы голосования
  */
-class FailureVoteCest
+class VoteFormCest
 {
     /**
      * @param FunctionalTester $I

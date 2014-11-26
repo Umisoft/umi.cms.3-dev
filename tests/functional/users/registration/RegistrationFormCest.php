@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umitest\users;
+namespace umitest\users\registration;
 
 use umitest\FunctionalTester;
 use umitest\UrlMap;
