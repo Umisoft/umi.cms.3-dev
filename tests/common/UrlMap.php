@@ -33,23 +33,4 @@ abstract class UrlMap
     public static $userEditProfile = '/users/profile';
     public static $surveysNextShow = '/surveys/nextshow';
 
-    private static $projectDomain;
-
-    /**
-     * @return mixed
-     */
-    public static function getProjectDomain()
-    {
-        return self::$projectDomain;
-    }
-
-    /**
-     * @param mixed $projectDomain
-     */
-    public static function setProjectDomain($projectDomain)
-    {
-        self::$projectDomain = $projectDomain;
-    }
-
-
 }
