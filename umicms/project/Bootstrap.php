@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -112,7 +111,7 @@ class Bootstrap
      */
     public $allowedRequestFormats = [
         'json' => 'application/json; charset=utf8',
-        'xml' => 'text/xml; charset=utf8',
+        'xml'  => 'text/xml; charset=utf8',
     ];
 
     /**
@@ -151,9 +150,12 @@ class Bootstrap
         }
 
         if ($request) {
-            $this->toolkit->overrideService('umi\http\Request', function() use ($request) {
-                return $request;
-            });
+            $this->toolkit->overrideService(
+                'umi\http\Request',
+                function () use ($request) {
+                    return $request;
+                }
+            );
         }
     }
 
@@ -174,29 +176,16 @@ class Bootstrap
         $this->initRoutePath();
         $this->initUrlManager();
         $this->initDispatcher();
+
         return true;
     }
 
     /**
      * Обрабатывает запрос и устанавливает ответ
-     * @return Response
      */
     public function dispatch()
     {
-        $this->response = $this->dispatcher->dispatch($this->routePath ?: '/', $this->projectPrefix);
-        $this->setUmiHeaders($this->response);
-
-        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
-            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
-    }
-
-        if (Environment::$browserCacheEnabled) {
-            $this->setBrowserCacheHeaders($this->request, $this->response);
-        }
-
-        $this->response->prepare($this->request);
-
-        return $this->response;
+        $this->response = $this->dispatcher->dispatch($this->routePath ? : '/', $this->projectPrefix);
     }
 
     /**
@@ -205,7 +194,7 @@ class Bootstrap
      */
     public function getToolkit()
     {
-       return $this->toolkit;
+        return $this->toolkit;
     }
 
     /**
@@ -323,7 +312,6 @@ class Bootstrap
         }
         $this->projectDirectory = $destinationDir[1];
 
-
         $configIO->registerAlias(
             '~/project',
             __DIR__,
@@ -340,7 +328,6 @@ class Bootstrap
         }
         $this->projectDumpDirectory = $dumpDir[1];
 
-
         if (!isset($projectConfig['componentConfig'])) {
             $projectConfig['componentConfig'] = '~/project/configuration/component.config.php';
         }
@@ -350,7 +337,6 @@ class Bootstrap
         $this->configureLocalesService($router, $routeMatches);
         $this->registerProjectEventHandlers();
         $this->registerProjectAutoload();
-
 
         /**
          * @var IUrlManager $urlManager
@@ -382,26 +368,29 @@ class Bootstrap
     }
 
     /**
-     * Отправляет ответ
+     * Возвращает сформированный ответ
+     * @return Response
      */
-    public function sendResponse()
+    public function getResponse()
     {
         $this->setUmiHeaders($this->response);
 
-        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
-            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
+        if (!$this->response->headers->has(
+                'content-type'
+            ) && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])
+        ) {
+            $this->response->headers->set(
+                'content-type',
+                $this->allowedRequestFormats[$this->request->getRequestFormat()]
+            );
         }
 
         if (Environment::$browserCacheEnabled) {
             $this->setBrowserCacheHeaders($this->request, $this->response);
         }
 
-        $this->response->prepare($this->request)
-            ->send();
-    }
+        $this->response->prepare($this->request);
 
-    public function getResponse()
-    {
         return $this->response;
     }
 
@@ -410,7 +399,8 @@ class Bootstrap
      * @param Request $request
      * @param Response $response
      */
-    protected function setBrowserCacheHeaders(Request $request, Response $response) {
+    protected function setBrowserCacheHeaders(Request $request, Response $response)
+    {
         $response->setETag(md5($response->getContent()));
         $response->setPublic();
         $response->isNotModified($request);
@@ -446,14 +436,13 @@ class Bootstrap
             ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
             ((substr($requestedUri, -1, 1) == '?') && !$queryString) ||
             substr($this->request->getSchemeAndHttpHost(), -1, 1) == '.'
-            )
-        {
+        ) {
 
             $url = rtrim($pathInfo, '/');
             if ($queryString) {
                 $url .= '?' . $queryString;
             }
-            $host = rtrim($this->request->getSchemeAndHttpHost() , '.');
+            $host = rtrim($this->request->getSchemeAndHttpHost(), '.');
 
             $redirectLocation = $host . $url;
 
@@ -582,11 +571,17 @@ class Bootstrap
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
 
-        $urlManager->setAdminUrlPrefix($project->getRouter()->assemble('admin'));
+        $urlManager->setAdminUrlPrefix(
+            $project->getRouter()
+                ->assemble('admin')
+        );
 
         $adminComponent = $project->getChildComponent('admin');
 
-        $urlManager->setRestUrlPrefix($adminComponent->getRouter()->assemble('rest'));
+        $urlManager->setRestUrlPrefix(
+            $adminComponent->getRouter()
+                ->assemble('rest')
+        );
     }
 
     /**
@@ -613,7 +608,8 @@ class Bootstrap
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
         $projectSettings = $configIO->read('~/project/configuration/project.config.php');
 
-        $this->getToolkit()->registerAwareInterface(
+        $this->getToolkit()
+            ->registerAwareInterface(
             'umicms\project\IProjectSettingsAware',
             function ($object) use ($projectSettings) {
                 if ($object instanceof IProjectSettingsAware) {
@@ -778,7 +774,10 @@ class Bootstrap
          * @var IConfigIO $configIO
          */
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
-        $eventHandlers = $this->configToArray($configIO->read('~/project/configuration/eventHandlers.config.php'), true);
+        $eventHandlers = $this->configToArray(
+            $configIO->read('~/project/configuration/eventHandlers.config.php'),
+            true
+        );
 
         foreach ($eventHandlers as $handlerClass => $eventInfo) {
             if (!isset($eventInfo['type'])) {
@@ -791,14 +790,19 @@ class Bootstrap
 
             $tags = (isset($eventInfo['tags']) && is_array($eventInfo['tags'])) ? $eventInfo['tags'] : null;
 
-            $this->toolkit->bindEvent($eventInfo['type'], function(IEvent $event) use ($handlerClass) {
-                if (!isset($handlerInstances[$handlerClass])) {
-                    $handler = $this->toolkit->getPrototype($handlerClass)->createSingleInstance();
-                    if (is_callable($handler)) {
-                        $handler($event);
+            $this->toolkit->bindEvent(
+                $eventInfo['type'],
+                function (IEvent $event) use ($handlerClass) {
+                    if (!isset($handlerInstances[$handlerClass])) {
+                        $handler = $this->toolkit->getPrototype($handlerClass)
+                            ->createSingleInstance();
+                        if (is_callable($handler)) {
+                            $handler($event);
+                        }
                     }
-                }
-            }, $tags);
+                },
+                $tags
+            );
         }
     }
 

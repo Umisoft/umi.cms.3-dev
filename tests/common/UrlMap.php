@@ -19,6 +19,12 @@ abstract class UrlMap
      * @var string $projectUrl url проекта
      */
     public static $projectUrl = '';
+    /**
+     * @var string $projectUrl абсолютный url проекта
+     */
+    public static $projectAbsoluteUrl = '';
+
+
     public static $defaultPageUrl = '/main';
     public static $userAuthorization = '/users/auth';
     public static $userActivation =  '/users/registration/activate';

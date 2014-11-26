@@ -60,7 +60,13 @@ class RegistrationWithoutConfirmationCest
             ]
         );
 
-        $I->haveEmailMessage('TestNotification@example.com');
+        $I->haveEmailMessage(
+            'TestNotification@example.com',
+            [
+                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': Регистрация пользователя',
+                'en-US' => UrlMap::getProjectDomain() . UrlMap::$projectUrl . ': User registration.',
+            ]
+        );
 
     }
 

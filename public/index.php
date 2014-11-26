@@ -26,7 +26,7 @@ try {
         }
         $bootstrap->dispatch();
     }
-    $bootstrap->sendResponse();
+    $bootstrap->getResponse()->send();
 } catch (HttpException $e) {
     Environment::reportCoreError('exception.phtml', ['e' => $e], $e->getCode());
 } catch (\Exception $e) {

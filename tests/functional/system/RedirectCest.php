@@ -18,8 +18,9 @@ class RedirectCest
         $I->dontFollowRedirects();
         $I->amOnPage(UrlMap::$projectUrl . '/');
         $I->seeResponseCodeIs(Response::HTTP_MOVED_PERMANENTLY);
-        $I->seeHttpHeader('Location', UrlMap::$projectUrl);
+        $I->seeHttpHeader('Location', UrlMap::$projectAbsoluteUrl);
     }
+
     /**
      * @param FunctionalTester $I
      */
@@ -34,9 +35,8 @@ class RedirectCest
     /**
      * @param FunctionalTester $I
      */
-    public function checkNotFoundReponse(FunctionalTester $I)
+    public function checkNotFoundResponse(FunctionalTester $I)
     {
-        $I->dontFollowRedirects();
         $I->amOnPage(UrlMap::$projectUrl . '/123');
         $I->seeResponseCodeIs(Response::HTTP_NOT_FOUND);
         $I->amOnPage(UrlMap::$projectUrl . '/456/');

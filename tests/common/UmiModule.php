@@ -13,12 +13,12 @@ use AspectMock\Test;
 use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
-use Symfony\Component\HttpFoundation\Response;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
+use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -56,7 +56,7 @@ class UmiModule extends Framework
      */
     protected $commonDbCluster;
     /**
-     * @var MockMessageBox
+     * @var MockMessageBox тестовый почтовый ящик
      */
     public $messageBox;
 
@@ -70,7 +70,6 @@ class UmiModule extends Framework
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
-        $this->initializeMessageBox();
     }
 
     /**
@@ -79,6 +78,7 @@ class UmiModule extends Framework
     public function _before(TestCase $test)
     {
         $this->initializeMocks();
+        $this->initializeMessageBox();
 
         $this->client = new UmiConnector();
         $this->client->setMessageBox($this->messageBox);
@@ -97,7 +97,6 @@ class UmiModule extends Framework
             $this->rollbackDbTransaction();
         }
         Test::clean();
-        $this->messageBox->clean();
     }
 
     public function dontFollowRedirects()
@@ -111,14 +110,16 @@ class UmiModule extends Framework
 
     public function openEmailMessage($email, array $localizedSubject)
     {
+        $this->haveEmailMessage($email, $localizedSubject);
+
         $subject = $this->getLocalized($localizedSubject);
         $this->amOnPage("/messages?email={$email}&subject={$subject}");
     }
 
-    public function haveEmailMessage($email)
+    public function haveEmailMessage($email, array $localizedSubject)
     {
-        $this->amOnPage("/messages?email={$email}");
-        $this->assertEquals(Response::HTTP_OK, $this->getResponseStatusCode());
+        $subject = $this->getLocalized($localizedSubject);
+        $this->assertTrue($this->messageBox->has($email, $subject));
     }
 
     /**
@@ -271,6 +272,14 @@ class UmiModule extends Framework
             }
         }
 
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->grabService('umicms\hmvc\url\IUrlManager');
+
+        UrlMap::$projectAbsoluteUrl = $urlManager->getSchemeAndHttpHost() . $this->projectUrl;
+        UrlMap::$projectUrl = $this->projectUrl;
+
         UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
     }
 
@@ -308,6 +317,9 @@ class UmiModule extends Framework
         $this->commonDbCluster = $this->commonToolkit->getService('umi\dbal\cluster\IDbCluster');
     }
 
+    /**
+     * Initialize new message box for test
+     */
     protected function initializeMessageBox()
     {
         $this->messageBox = new MockMessageBox();
