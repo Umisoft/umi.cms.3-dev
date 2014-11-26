@@ -188,7 +188,7 @@ class Bootstrap
 
         if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
             $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
-        }
+    }
 
         if (Environment::$browserCacheEnabled) {
             $this->setBrowserCacheHeaders($this->request, $this->response);
@@ -379,6 +379,30 @@ class Bootstrap
         $urlManager->setAdminAssetsUrl($projectConfig['adminAssetsUrl']);
 
         return $routeResult;
+    }
+
+    /**
+     * Отправляет ответ
+     */
+    public function sendResponse()
+    {
+        $this->setUmiHeaders($this->response);
+
+        if (!$this->response->headers->has('content-type') && isset($this->allowedRequestFormats[$this->request->getRequestFormat()])) {
+            $this->response->headers->set('content-type', $this->allowedRequestFormats[$this->request->getRequestFormat()]);
+        }
+
+        if (Environment::$browserCacheEnabled) {
+            $this->setBrowserCacheHeaders($this->request, $this->response);
+        }
+
+        $this->response->prepare($this->request)
+            ->send();
+    }
+
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
