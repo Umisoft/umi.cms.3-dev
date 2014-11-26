@@ -14,14 +14,11 @@ use Codeception\Lib\Framework;
 use Codeception\TestCase;
 use Codeception\Util\Debug;
 use Symfony\Component\HttpFoundation\Response;
-use umi\config\io\TConfigIOAware;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
 use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
-use umicms\hmvc\component\admin\settings\SettingsComponent;
-use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\model\object\RegisteredUser;
@@ -33,13 +30,6 @@ use umicms\project\module\users\model\UsersModule;
  */
 class UmiModule extends Framework
 {
-
-    use TConfigIOAware;
-
-    /**
-     * @var SettingsComponent
-     */
-    private $settings;
     /**
      * @api
      * @var UmiConnector
