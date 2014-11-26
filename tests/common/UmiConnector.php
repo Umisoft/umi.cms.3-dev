@@ -42,10 +42,10 @@ class UmiConnector extends Client
     public function doRequest($request)
     {
         if (0 === strpos($request->getRequestUri(), '/messages')) {
-            return $this->doMessageResponse($request);
+            return $this->getMessageResponse($request);
         }
 
-        return $this->doProjectResponse($request);
+        return $this->getProjectResponse($request);
     }
 
     /**
@@ -183,14 +183,10 @@ class UmiConnector extends Client
      * @param Request $request
      * @return Response
      */
-    protected function doMessageResponse(Request $request)
+    protected function getMessageResponse(Request $request)
     {
         $email = $request->query->get('email');
         $subject = $request->query->get('subject');
-
-        if (!$this->getMessageBox()->has($email, $subject)) {
-
-        }
 
         try {
             $content = $this->getMessageBox()->read($email, $subject);
@@ -208,9 +204,9 @@ class UmiConnector extends Client
     /**
      * Возвращает ответ проекта
      * @param Request $request
-     * @return Bootstrap
+     * @return Response
      */
-    protected function doProjectResponse(Request $request)
+    protected function getProjectResponse(Request $request)
     {
         $bootstrap = new Bootstrap($request);
         if ($bootstrap->init()) {
