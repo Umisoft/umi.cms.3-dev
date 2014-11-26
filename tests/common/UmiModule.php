@@ -144,6 +144,7 @@ class UmiModule extends Framework
         $user->login = $userName;
         $user->password = $userName;
         $user->displayName = $userName;
+        $user->email = "{$userName}@example.com";
 
         $this->grabUsersModule()
             ->register($user);

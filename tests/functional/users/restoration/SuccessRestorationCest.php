@@ -18,7 +18,7 @@ class SuccessRestorationCest
 
     public function restorationPassword(FunctionalTester $I)
     {
-        $I->haveRegisteredUser();
+        $user = $I->haveRegisteredUser();
         $I->amOnPage(UrlMap::$userRestore);
         $I->submitForm(
             '#users_restoration_index',
@@ -36,21 +36,27 @@ class SuccessRestorationCest
         );
 
         $I->openEmailMessage(
-            'TestUser@example.com',
+            $user->email,
             [
-                'ru-RU' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Подтверждение запроса смены пароля.',
-                'en-US' => UrlMap::getProjectDomain() . UrlMap::$defaultUrl . ': Confirm password reset request.',
+                'ru-RU' => '{projectAbsoluteUrl}: Подтверждение запроса смены пароля.',
+                'en-US' => '{projectAbsoluteUrl}: Confirm password reset request.',
             ]
         );
 
         $I->seeLocalized(
             [
-                'ru-RU' => 'Для Вашего аккаунта на  ' . UrlMap::getProjectDomain() . '  был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
-                'en-US' => 'There has been a request to reset the password on your ' . UrlMap::getProjectDomain() . ' account. To do this please click the link below'
+                'ru-RU' => 'Для Вашего аккаунта на {projectAbsoluteUrl} был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
+                'en-US' => 'There has been a request to reset the password on your {projectAbsoluteUrl} account. To do this please click the link below'
             ]
         );
 
         $I->click(['xpath' => '//a']);
-        $I->amOnPage('/php/users/restore/confirm/');
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Новый пароль был выслан на Ваш электронный адрес',
+                'en-US' => 'A new password was sent to your email'
+            ]
+        );
     }
 } 
