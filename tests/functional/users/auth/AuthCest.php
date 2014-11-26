@@ -2,6 +2,7 @@
 namespace umitest\users;
 
 use AspectMock\Test;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -10,6 +11,7 @@ use umitest\UrlMap;
  */
 class AuthCest
 {
+
     /**
      * @param FunctionalTester $I
      */
@@ -18,7 +20,7 @@ class AuthCest
         $I->amOnPage(UrlMap::$projectUrl);
 
         $I->submitForm(
-            '#users_authorization_loginForm',
+            BlockMap::AUTHORIZATION_FORM,
             [
                 'login'    => 'wrongLogin',
                 'password' => 'wrongPassword'
@@ -31,7 +33,7 @@ class AuthCest
                 'ru-RU' => 'Неверный логин или пароль',
                 'en-US' => 'Invalid login or password'
             ],
-            '#users_authorization_login_errors'
+            BlockMap::AUTHORIZATION_FORM_ERRORS
         );
     }
 
@@ -44,7 +46,7 @@ class AuthCest
 
         $I->amOnPage(UrlMap::$projectUrl);
         $I->submitForm(
-            '#users_authorization_loginForm',
+            BlockMap::AUTHORIZATION_FORM,
             [
                 'login'    => 'TestUser',
                 'password' => 'TestUser'
@@ -56,7 +58,7 @@ class AuthCest
                 'ru-RU' => 'Добро пожаловать, TestUser',
                 'en-US' => 'Welcome, TestUser'
             ],
-            '.authorization'
+            BlockMap::AUTHORIZATION_WELCOME
         );
 
         $I->seeLocalized(
@@ -64,7 +66,7 @@ class AuthCest
                 'ru-RU' => 'Выйти',
                 'en-US' => 'Log out'
             ],
-            '#users_authorization_logoutForm'
+            BlockMap::LOGOUT_FORM
         );
 
         $I->seeLinkLocalized(
@@ -152,16 +154,16 @@ class AuthCest
 
         $I->amOnPage(UrlMap::$projectUrl);
         $I->submitForm(
-            '#users_authorization_loginForm',
+            BlockMap::AUTHORIZATION_FORM,
             [
                 'login'    => 'TestUser',
                 'password' => 'TestUser'
             ]
         );
-        $I->submitForm('#users_authorization_logoutForm', []);
+        $I->submitForm(BlockMap::LOGOUT_FORM, []);
         $I->seeLocalized(            [
             'ru-RU' => 'Войти',
             'en-US' => 'Log in'
-        ], '#users_authorization_loginForm');
+        ], BlockMap::AUTHORIZATION_FORM);
     }
 }

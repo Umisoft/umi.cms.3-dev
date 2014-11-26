@@ -188,10 +188,6 @@ class UmiConnector extends Client
         $email = $request->query->get('email');
         $subject = $request->query->get('subject');
 
-        if (!$this->getMessageBox()->has($email, $subject)) {
-
-        }
-
         try {
             $content = $this->getMessageBox()->read($email, $subject);
         } catch (\Exception $e) {
@@ -199,7 +195,7 @@ class UmiConnector extends Client
         }
 
         if (false === stripos($content, '<html>')) {
-            return '<html>' . $content .'</html>';
+            $content = '<html>' . $content .'</html>';
         }
 
         return new Response($content, Response::HTTP_OK);
