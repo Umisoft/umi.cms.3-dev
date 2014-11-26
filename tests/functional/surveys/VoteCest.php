@@ -70,6 +70,60 @@ class VoteCest
         );
     }
 
+    public function voteWithoutOption(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Ответы',
+                'en-US' => 'Answers'
+            ],
+            '.answers label'
+        );
+
+        $I->submitForm(
+            '#surveys_voteForm',
+            []
+        );
+
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Не выбран ни один из вариантов',
+                'en-US' => 'Do not select any option'
+            ]
+        );
+    }
+
+    public function voteWithFalseOption(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Ответы',
+                'en-US' => 'Answers'
+            ],
+            '.answers label'
+        );
+
+        $I->submitForm(
+            '#surveys_voteForm',
+            [
+                'answers' => 'false-option'
+            ]
+        );
+
+        $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
+
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Value "false-option" is not in available values list',
+                'en-US' => 'Value "false-option" is not in available values list'
+            ]
+        );
+    }
+
     public function viewResult(FunctionalTester $I)
     {
         $I->setCookie(self::VOTE_GUID, 1);
