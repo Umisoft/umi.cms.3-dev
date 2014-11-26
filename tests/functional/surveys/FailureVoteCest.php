@@ -12,22 +12,6 @@ class FailureVoteCest
 {
     /**
      * @param FunctionalTester $I
-     * @throws \Exception
-     */
-    public function _before(FunctionalTester $I)
-    {
-        Test::double(
-            'umicms\form\element\Captcha',
-            [
-                'validate' => function () {
-                    return false;
-                }
-            ]
-        );
-    }
-
-    /**
-     * @param FunctionalTester $I
      */
     public function checkVoteFormValidators(FunctionalTester $I)
     {
@@ -50,6 +34,22 @@ class FailureVoteCest
                 'en-US' => 'Captcha'
             ],
             '.captcha'
+        );
+    }
+
+    /**
+     * @param FunctionalTester $I
+     * @throws \Exception
+     */
+    public function _before(FunctionalTester $I)
+    {
+        Test::double(
+            'umicms\form\element\Captcha',
+            [
+                'validate' => function () {
+                        return false;
+                    }
+            ]
         );
     }
 }

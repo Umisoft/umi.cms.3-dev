@@ -272,16 +272,13 @@ class UmiModule extends Framework
      */
     protected function initializeUrlMap()
     {
-        foreach (get_class_vars('umitest\UrlMap') as $name => $value) {
-            $constantName = strtoupper(
-                preg_replace(
-                    '/(?!^)[[:upper:]][[:lower:]]/',
-                    '$0',
-                    preg_replace('/(?!^)[[:upper:]]+/', '_$0', $name)
-                )
-            );
+        $reflection = new \ReflectionClass('umitest\UrlMap');
+        $defaultProperties = $reflection->getDefaultProperties();
 
-            UrlMap::${$name} = $this->projectUrl . constant("umitest\\UrlMap::{$constantName}");
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_STATIC) as $property) {
+            if (isset($defaultProperties[$property->name])) {
+                $property->setValue($this->projectUrl . $defaultProperties[$property->name]);
+            }
         }
 
         UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
