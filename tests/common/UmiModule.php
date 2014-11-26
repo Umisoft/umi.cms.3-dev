@@ -25,8 +25,8 @@ use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
- * This module extends Codeception framework
- * for testing UMI.CMS projects.
+ * Модуль, расширяющий Codeception framework
+ * для тестирования проектов UMI.CMS.
  */
 class UmiModule extends Framework
 {
@@ -37,16 +37,20 @@ class UmiModule extends Framework
     public $client;
 
     /**
-     * Locale for test localized strings.
+     * Локаль, для тестирования локализованных строк.
      * @var string $currentLocale
      */
-    protected $locale = '';
-
+    protected $locale;
     /**
-     * Project url.
+     * Список плейсхолдеро, доступных текстах локализованных строк.
+     * @var array $localePlaceholders
+     */
+    protected $localePlaceholders = [];
+    /**
+     * Префикс для всех адресов проекта
      * @var string $projectUrl
      */
-    protected $projectUrl = '';
+    protected $projectUrlPrefix;
     /**
      * @var IToolkit $commonToolkit common toolkit.
      */
@@ -66,10 +70,11 @@ class UmiModule extends Framework
     public function _initialize()
     {
         $this->locale = $this->config['locale'];
-        $this->projectUrl = $this->config['projectUrl'];
+        $this->projectUrlPrefix = $this->config['projectUrl'];
 
         $this->initializeCommonToolkit();
         $this->initializeUrlMap();
+        $this->initializePlaceholders();
     }
 
     /**
@@ -148,17 +153,12 @@ class UmiModule extends Framework
     }
 
     /**
-     * Check if current page contains the text specified for current locale.
-     * Specify the css selector to match only specific region.
-     * Examples:
-     * ``` php
-     * <?php
-     *     $I->seeLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // I can suppose user is logged in
-     * ?>
-     * ```
-     * @param array $texts text for each locale
-     * @param null $selector
+     * Проверяет, содержит ли текущая страница текст в текущей локали.
+     * В тексте можно использовать плейсхолдеры, например для указания url из UrlMap:
+     * ['ru-RU' => 'Абсолютный url проекта: {projectAbsoluteUrl}', ...]
      * @see \Codeception\Lib\InnerBrowser::see()
+     * @param array $texts массив в формате ['RU-ru' => 'текст', 'En-us' => 'текст', ...] для каждой локали
+     * @param null $selector
      */
     public function seeLocalized(array $texts, $selector = null)
     {
@@ -232,7 +232,7 @@ class UmiModule extends Framework
     }
 
     /**
-     * Inject common services for any request
+     * Внедряет общие сервисы в Toolkit для каждого Request
      */
     protected function injectCommonServices()
     {
@@ -244,9 +244,11 @@ class UmiModule extends Framework
             $dbalTools->setCluster($this->commonDbCluster);
         });
     }
+
     /**
      * Returns localized from text array
      * @param array $texts
+     * @return string
      * @throws \UnexpectedValueException if undefined localization
      */
     protected function getLocalized(array $texts)
@@ -255,11 +257,11 @@ class UmiModule extends Framework
             throw new \UnexpectedValueException('Cannot find localization for locale "' . $this->locale . '".');
         }
 
-        return $texts[$this->locale];
+        return strtr($texts[$this->locale], $this->localePlaceholders);
     }
 
     /**
-     * Add project url for all map
+     * Инициализирует карту URL для тестов
      */
     protected function initializeUrlMap()
     {
@@ -268,7 +270,7 @@ class UmiModule extends Framework
 
         foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_STATIC) as $property) {
             if (isset($defaultProperties[$property->name])) {
-                $property->setValue($this->projectUrl . $defaultProperties[$property->name]);
+                $property->setValue($this->projectUrlPrefix . $defaultProperties[$property->name]);
             }
         }
 
@@ -277,10 +279,21 @@ class UmiModule extends Framework
          */
         $urlManager = $this->grabService('umicms\hmvc\url\IUrlManager');
 
-        UrlMap::$projectAbsoluteUrl = $urlManager->getSchemeAndHttpHost() . $this->projectUrl;
-        UrlMap::$projectUrl = $this->projectUrl;
+        UrlMap::$projectAbsoluteUrl = $urlManager->getSchemeAndHttpHost() . $this->projectUrlPrefix;
+        UrlMap::$projectUrl = $this->projectUrlPrefix;
 
         UrlMap::setProjectDomain($this->grabService('umicms\hmvc\url\IUrlManager')->getSchemeAndHttpHost());
+    }
+
+    /**
+     * Инициализирует плейсхолдеры для замены в локализованных сообщениях
+     */
+    protected function initializePlaceholders()
+    {
+        $this->localePlaceholders = [];
+        foreach (get_class_vars('umitest\UrlMap') as $varName => $value) {
+            $this->localePlaceholders['{' . $varName . '}'] = $value;
+        }
     }
 
     /**
@@ -308,7 +321,7 @@ class UmiModule extends Framework
         /**
          * @var Request $request
          */
-        $request = Request::create($this->projectUrl);
+        $request = Request::create($this->projectUrlPrefix);
 
         $bootstrap = new Bootstrap($request);
         $bootstrap->init();

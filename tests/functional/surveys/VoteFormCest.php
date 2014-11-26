@@ -2,6 +2,7 @@
 namespace umitest\surveys;
 
 use AspectMock\Test;
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -10,6 +11,7 @@ use umitest\UrlMap;
  */
 class VoteFormCest
 {
+
     /**
      * @param FunctionalTester $I
      */
@@ -21,10 +23,10 @@ class VoteFormCest
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             []
         );
         $I->seeCurrentUrlEquals(UrlMap::$surveysNextShow);
@@ -33,7 +35,7 @@ class VoteFormCest
                 'ru-RU' => 'Введите код с картинки',
                 'en-US' => 'Captcha'
             ],
-            '.captcha'
+            BlockMap::CAPTCHA
         );
     }
 

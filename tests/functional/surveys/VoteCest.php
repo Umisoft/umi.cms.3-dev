@@ -1,6 +1,7 @@
 <?php
 namespace umitest\surveys;
 
+use umitest\BlockMap;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -23,10 +24,10 @@ class VoteCest
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             [
                 'answers' => self::VOTE_ANSWER_GUID
             ]
@@ -39,7 +40,7 @@ class VoteCest
                 'ru-RU' => 'Всего голосов',
                 'en-US' => 'Total votes'
             ],
-            '.blog-post'
+            BlockMap::BLOG_POST
         );
     }
 
@@ -51,11 +52,11 @@ class VoteCest
                 'ru-RU' => 'Ответы',
                 'en-US' => 'Answers'
             ],
-            '.answers label'
+            BlockMap::VOTE_ANSWERS
         );
         $I->setCookie(self::VOTE_GUID, 1);
         $I->submitForm(
-            '#surveys_voteForm',
+            BlockMap::VOTE_FORM,
             [
                 'answers' => self::VOTE_ANSWER_GUID
             ]
@@ -136,7 +137,7 @@ class VoteCest
                 'ru-RU' => 'Всего голосов',
                 'en-US' => 'Total votes'
             ],
-            '.blog-sidebar'
+            BlockMap::BLOG_SIDEBAR
         );
     }
 }
