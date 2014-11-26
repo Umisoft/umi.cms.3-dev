@@ -20,15 +20,16 @@ jQuery(document).ready(function() {
     jQuery(window).resize(function() {
 		setHeader();
     });
+
     jQuery(window).scroll(function() {
-        if (jQuery(document).scrollTop() <= headerY.height()) {
+		if (jQuery(document).scrollTop() <= headerY.height()) {
 			header.filter('.fixed').each(function() {
-				jQuery(this).removeClass('fixed');
+				header.removeClass('fixed');
 				setHeader();
 			});
-        } else {
+		} else {
 			header.addClass('fixed');
-        }
+		}
     });
     jQuery('.top-scroll').click(function() {
 		jQuery('html, body').animate({scrollTop: 0}, 300);
