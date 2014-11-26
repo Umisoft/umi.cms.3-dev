@@ -102,7 +102,7 @@ jQuery(document).ready(function() {
 						}
 					}
 
-					//Refresh captha data
+					//Refresh captcha data
 					var captcha = jQuery('input[name="captcha"]', self);
 					if(captcha[0]) {
 						for (var i = 0; i < elements.length; i++) {
