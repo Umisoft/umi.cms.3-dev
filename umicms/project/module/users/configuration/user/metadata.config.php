@@ -73,7 +73,7 @@ return array_replace_recursive(
                 'readOnly'   => true
             ],
             RegisteredUser::FIELD_ACTIVATION_CODE   => [
-                'type'       => IField::TYPE_STRING,
+                'type'       => IField::TYPE_GUID,
                 'columnName' => 'activation_code',
                 'readOnly'   => true
             ],

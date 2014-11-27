@@ -76,7 +76,7 @@ class PageController extends SitePageController
     {
         if ($this->module->checkIfVoted($this->survey)) {
             throw new NotAllowedOperationException(
-                $this->translate('You have already voted.')
+                $this->translate('You have already voted')
             );
         }
 

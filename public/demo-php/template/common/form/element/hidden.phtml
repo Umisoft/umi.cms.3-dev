@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="form-group <?= $element->valid ? 'hidden' : 'has-error' ?>">
+<div class="form-group <?= $element->attributes->name ?> <?= $element->valid ? 'hidden' : 'has-error' ?>">
     <?php if (!$element->valid) : ?>
         <div class="alert alert-danger">
             <ul>

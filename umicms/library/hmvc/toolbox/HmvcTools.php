@@ -13,6 +13,7 @@ namespace umicms\hmvc\toolbox;
 use SplDoublyLinkedList;
 use SplStack;
 use umi\hmvc\toolbox\HmvcTools as FrameworkHmvcTools;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
@@ -39,6 +40,11 @@ class HmvcTools extends FrameworkHmvcTools
     protected $pageCallStack;
 
     /**
+     * @var SplStack стек хлебных крошек
+     */
+    protected $breadcrumbsStack;
+
+    /**
      * {@inheritdoc}
      */
     public function getService($serviceInterfaceName, $concreteClassName)
@@ -61,6 +67,10 @@ class HmvcTools extends FrameworkHmvcTools
 
         if ($object instanceof IPageCallStackAware) {
             $object->setPageCallStack($this->getPageCallStack());
+        }
+
+        if ($object instanceof IBreadcrumbsStackAware) {
+            $object->setBreadcrumbsStack($this->getBreadcrumbsStack());
         }
 
         parent::injectDependencies($object);
@@ -104,6 +114,20 @@ class HmvcTools extends FrameworkHmvcTools
         }
 
         return $this->pageCallStack;
+    }
+
+    /**
+     * Возвращает стек хлебных крошек
+     * @return SplStack
+     */
+    protected function getBreadcrumbsStack()
+    {
+        if (!$this->breadcrumbsStack) {
+            $this->breadcrumbsStack = new SplStack();
+            $this->breadcrumbsStack->setIteratorMode(SplDoublyLinkedList::IT_MODE_LIFO);
+        }
+
+        return $this->breadcrumbsStack;
     }
 
 }

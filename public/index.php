@@ -9,6 +9,7 @@
  */
 
 use umi\http\Response;
+use umi\hmvc\exception\http\HttpException;
 use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
@@ -17,19 +18,17 @@ require dirname(__DIR__) . '/configuration/core.php';
 
 try {
     $bootstrap = new Bootstrap();
-    $bootstrap->init();
-    if (Environment::$toolkitInitializer) {
-        /** @var callable $initializer */
-        $initializer = require Environment::$toolkitInitializer;
-        $initializer($bootstrap->getToolkit());
+    if ($bootstrap->init()) {
+        if (Environment::$toolkitInitializer) {
+            /** @var callable $initializer */
+            $initializer = require Environment::$toolkitInitializer;
+            $initializer($bootstrap->getToolkit());
+        }
+        $bootstrap->dispatch();
     }
-    $bootstrap->dispatch();
-    $bootstrap->sendResponse();
+    $bootstrap->getResponse()->send();
+} catch (HttpException $e) {
+    Environment::reportCoreError('exception.phtml', ['e' => $e], $e->getCode());
 } catch (\Exception $e) {
-
-    $code = Response::HTTP_INTERNAL_SERVER_ERROR;
-    if ($e instanceof HttpException) {
-        $code = $e->getCode();
-    }
-    Environment::reportCoreError('exception.phtml', ['e' => $e], $code);
+    Environment::reportCoreError('exception.phtml', ['e' => $e], Response::HTTP_INTERNAL_SERVER_ERROR);
 }

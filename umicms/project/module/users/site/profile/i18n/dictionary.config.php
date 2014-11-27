@@ -12,7 +12,7 @@ return [
 
     'en-US' => [
         'Welcome' => 'Welcome',
-        'Edit profile' => 'Edit profile',
+        'EditProfile' => 'Edit profile',
         'Change password' => 'Change password',
 
         'role:viewer:displayName' => 'View profile',
@@ -21,7 +21,7 @@ return [
 
     'ru-RU' => [
         'Welcome' => 'Добро пожаловать',
-        'Edit profile' => 'Редактировать профиль',
+        'EditProfile' => 'Редактировать профиль',
         'Change password' => 'Смена пароля',
 
         'role:viewer:displayName' => 'Просмотр профиля пользователя',

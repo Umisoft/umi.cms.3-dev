@@ -19,4 +19,20 @@
         <xsl:apply-templates select="form"/>
     </xsl:template>
 
+    <xsl:template match="contents" mode="layout">
+        <xsl:apply-templates select="breadcrumbs" mode="layout"/>
+        <h1><xsl:value-of select="page/@header" /></h1>
+
+        <xsl:if test="errors">
+            <div class="alert alert-danger" id="{form/attributes/@id}_errors">
+                <ul>
+                    <xsl:for-each select="errors/item">
+                        <li><xsl:copy-of select="."/></li>
+                    </xsl:for-each>
+                </ul>
+            </div>
+        </xsl:if>
+        <xsl:apply-templates select="form"/>
+    </xsl:template>
+
 </xsl:stylesheet>

@@ -114,15 +114,10 @@ class ViewTwigExtension extends Twig_Extension
      */
     protected function getAnchorHelper()
     {
-        static $helper;
+        /** @var IUrlManager $urlManager */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
 
-        if (!$helper) {
-            /** @var IUrlManager $urlManager */
-            $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-            $helper = new AnchorHelper($urlManager);
-        }
-
-        return $helper;
+        return new AnchorHelper($urlManager);
     }
 }
  

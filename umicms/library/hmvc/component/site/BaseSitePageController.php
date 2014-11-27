@@ -11,6 +11,8 @@
 namespace umicms\hmvc\component\site;
 
 use umi\hmvc\component\IComponent;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\object\ICmsPage;
@@ -24,9 +26,10 @@ use umicms\serialization\xml\BaseSerializer;
 /**
  * Базовый контроллер для сайта
  */
-abstract class BaseSitePageController extends BaseCmsController implements IPageCallStackAware
+abstract class BaseSitePageController extends BaseCmsController implements IPageCallStackAware, IBreadcrumbsStackAware
 {
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
 
     /**
      * @var string $template имя шаблона, по которому выводится результат
@@ -56,13 +59,12 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
     }
 
     /**
-     * Возвращает массив элементов навигации до текущего элемента.
+     * Заполняет стек хлебных крошек
      * @param ICmsPage $page
-     * @return ICmsPage[]
      */
-    protected function getNavigationAncestry(ICmsPage $page)
+    protected function populateBreadcrumbsStack(ICmsPage $page)
     {
-        return [];
+
     }
 
     /**
@@ -80,10 +82,10 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
             }
             $breadcrumbs[] = $this->getBreadcrumb($page);
             if ($page === $callStack->top()) {
-                $ancestry = $this->getNavigationAncestry($page);
+                $this->populateBreadcrumbsStack($page);
 
                 $navigationAncestry = [];
-                foreach ($ancestry as $ancestryPage) {
+                foreach ($this->getBreadcrumbsStack() as $ancestryPage) {
                     $navigationAncestry[] = $this->getBreadcrumb($ancestryPage);
                 }
 

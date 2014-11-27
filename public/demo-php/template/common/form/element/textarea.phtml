@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="form-group">
+<div class="form-group <?= $element->attributes->name ?>">
     <label for="<?= $element->attributes->id ?>"><?= $element->label ?></label>
 
     <?php if (!$element->valid) : ?>
