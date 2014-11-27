@@ -106,7 +106,8 @@ define(['App'], function(UMI) {
                                 preventDefaultException: {
                                     tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LABEL|SPAN)$/,
                                     className: /^(cke_resizer)$/
-                                }
+                                },
+                                useTransform: false
                             }
                     )));
 
