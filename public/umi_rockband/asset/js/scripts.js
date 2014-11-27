@@ -72,33 +72,42 @@ jQuery(document).ready(function() {
 						jQuery('header#top .login').remove();
 					}
 			}).fail(function( data ) {
-					var errors = data.responseJSON.layout.contents.form.errors,
-						elements = data.responseJSON.layout.contents.form.elements;
+					var errors = data.responseJSON.layout.contents.errors,
+						formErrors = data.responseJSON.layout.contents.form.errors,
+						formElements = data.responseJSON.layout.contents.form.elements;
 
 					//Clear old messages
 					jQuery('.hint', self).remove();
 					jQuery('.form-group', self).removeClass('input-group-error');
 
 					//Add new error messages
-					for(var prop in errors) {
-						var badField = jQuery('input[name^="' + prop + '"]', self).eq(0);
+					for(var field in formErrors) {
+						var badField = jQuery('input[name^="' + field + '"]', self).eq(0);
 						badField.closest('.form-group').addClass('input-group-error');
 
 						var error = '<div class="hint"><ul>';
-						for (var i = 0; i < errors[prop].length; i++) {
-							error += '<li>' + errors[prop][i] + '</li>';
+						for (var i = 0; i < formErrors[field].length; i++) {
+							error += '<li>' + formErrors[field][i] + '</li>';
 						}
 						error += '</ul></div>';
 
 						badField.before(error);
 					}
 
+					//Add form errors
+					var error = '<div class="hint"><ul>';
+					for (var i = 0; i < errors.length; i++) {
+						error += '<li>' + errors[i] + '</li>';
+					}
+					error += '</ul></div>';
+					jQuery(self).before(error);
+
 					//Refresh CSRF token
 					var csrf = jQuery('input[name="csrf"]', self);
 					if(csrf[0]) {
-						for (var i = 0; i < elements.length; i++) {
-							if (elements[i].type == 'csrf')
-								csrf.value = elements[i].attributes.value;
+						for (var i = 0; i < formElements.length; i++) {
+							if (formElements[i].type == 'csrf')
+								csrf.value = formElements[i].attributes.value;
 						}
 					}
 
@@ -106,9 +115,9 @@ jQuery(document).ready(function() {
 					var captcha = jQuery('input[name="captcha"]', self);
 					if(captcha[0]) {
 						for (var i = 0; i < elements.length; i++) {
-							if (elements[i].type == 'captcha' && elements[i].isHuman != true) {
+							if (formElements[i].type == 'captcha' && formElements[i].isHuman != true) {
 								var captchaImg = captcha.parent().find('span > img').eq(0);
-								captchaImg.attr('src', elements[i].url + '?' + Math.random());
+								captchaImg.attr('src', formElements[i].url + '?' + Math.random());
 							}
 						}
 					}

@@ -13,6 +13,7 @@
         <div class="content-inner">
             <div class="container-fluid">
                 <!-- Контент -->
+                <xsl:apply-templates select="errors" mode="default.form" />
                 <xsl:apply-templates select="form" mode="default.form" />
             </div>
         </div>
