@@ -105,7 +105,7 @@ $umi-dock-wrapper-height: rem-calc(48);
                 left: 0;
                 top: 56px;
                 opacity: 0;
-                color: #afb2b7;
+                color: #fff;
                 font-size: 13px;
             }
         }
@@ -117,13 +117,10 @@ $umi-dock-wrapper-height: rem-calc(48);
             border-left: 1px solid transparent;
             border-right: 1px solid transparent;
             background-image: linear-gradient(#535c6a, #2b2d34);
-
-            .dock-module span {
-                color: #FFF;
-            }
         }
 
-        .dock-module.active{
+        &-empty.button-placeholder,
+        .dock-module.active {
             position: relative;
             margin-top: -1px;
             border-top: 1px solid #3a404a;
@@ -135,6 +132,7 @@ $umi-dock-wrapper-height: rem-calc(48);
         &-dragging {
             position: absolute;
             z-index: 2;
+            transition: none;
 
             &:after { // prevent mouseup event
                 content: '';
@@ -149,6 +147,14 @@ $umi-dock-wrapper-height: rem-calc(48);
         &-empty {
             height: 100%;
             display: inline-block;
+
+            &.button-placeholder {
+                opacity: 0.6;
+
+                &.hovered {
+                    opacity: 1;
+                }
+            }
         }
     }
 

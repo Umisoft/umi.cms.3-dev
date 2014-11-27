@@ -1,6 +1,4 @@
-define([
-    'App'
-], function(UMI) {
+define(['./controlPanel/main', './modulesList/main', 'App'], function(controlPanel, modulesList, UMI) {
     'use strict';
 
     UMI.TopBarView = Ember.View.extend({
@@ -26,4 +24,7 @@ define([
             return this.get('controller.modules');
         }.property()
     });
+
+    controlPanel();
+    modulesList();
 });

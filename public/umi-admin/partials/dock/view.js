@@ -31,13 +31,16 @@ define(['App'], function(UMI) {
                     setTimeout(function() {
                         dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
                     }, 0);
+                })
+                .on('dockChange.umi.dock', function() {
+                    $(dock).delay(200).animate({left: (dock.parentNode.offsetWidth - dock.offsetWidth) / 2}, 500);
                 });
 
                 self.changeLayout();
             },
 
             willDestroyElement: function() {
-                $(window).off('resize.umi.dock');
+                $(window).off('.umi.dock');
             },
 
             changeLayout: function() {
@@ -73,17 +76,21 @@ define(['App'], function(UMI) {
 
                 $el.children('a').on('mousedown.umi.dock.button', function(e) {
                     e.preventDefault();
-                    var cursorPosition = e.pageX;
-                    var elPosition = $el.position().left;
-                    var elStartPosition = elPosition;
-                    var elIndex = 0;
+                    var cursorPositionX = e.pageX;
+                    var cursorPositionY = e.pageY;
+                    var elPosition = $el.position();
+                    var elStartPositionLeft = elPosition.left;
                     var isMoved = false;
+                    var isRemoved = false;
+                    var isResorted = false;
                     var elementWidth = $el.width() + 2;
+
 
                     $empty.width(elementWidth);
 
                     $body.on('mousemove.sort.umi.dock', function(e) {
-                        elPosition = elPosition + e.pageX - cursorPosition;
+                        elPosition.left = elPosition.left + e.pageX - cursorPositionX;
+                        elPosition.top = elPosition.top + e.pageY - cursorPositionY;
 
                         if (!isMoved) {
                             self.set('parentView.isBlocked', true);
@@ -92,31 +99,51 @@ define(['App'], function(UMI) {
                             isMoved = true;
                         }
 
-
-                        var shift = Math.round(elPosition - elStartPosition);
-                        var $nearElement = null;
-                        if (shift > 0) {
-                            $nearElement = $empty.nextAll('li:not(.umi-dock-button-dragging):first');
-                        }
-                        if (shift < 0) {
-                            $nearElement = $empty.prevAll('li:not(.umi-dock-button-dragging):first');
-                        }
-                        if ($nearElement && $nearElement.length) {
-                            var nearElementWidth = $nearElement.width();
-
-                            if (Math.abs(shift) > nearElementWidth / 2) {
-                                if (shift > 0) {
-                                    $nearElement.after($empty);
+                        var minTopShift = 20; // Смещение до начала удаления
+                        var maxTopShift = 100; // Смещение до конца удаления
+                        var specElPositionTop = elPosition.top - minTopShift;
+                        if (elPosition.top > minTopShift) {
+                            if (elPosition.top >= maxTopShift + minTopShift) {
+                                isRemoved = true;
+                            } else {
+                                isRemoved = false;
+                                if (specElPositionTop < 3) {
+                                    specElPositionTop = 0;
                                 }
-                                else {
-                                    $nearElement.before($empty);
+                                var opacity = 1 - specElPositionTop / maxTopShift;
+                                if (opacity < 0.1) {
+                                    opacity = 0.1;
                                 }
-                                elStartPosition = $empty.position().left;
+                                $el.css({top: specElPositionTop, opacity: opacity});
                             }
+                        } else {
+                            var shift = Math.round(elPosition.left - elStartPositionLeft);
+                            var $nearElement = null;
+                            if (shift > 0) {
+                                $nearElement = $empty.nextAll('li:not(.umi-dock-button-dragging):first');
+                            }
+                            if (shift < 0) {
+                                $nearElement = $empty.prevAll('li:not(.umi-dock-button-dragging):first');
+                            }
+                            if ($nearElement && $nearElement.length) {
+                                var nearElementWidth = $nearElement.width();
+
+                                if (Math.abs(shift) > nearElementWidth / 2) {
+                                    if (shift > 0) {
+                                        $nearElement.after($empty);
+                                    }
+                                    else {
+                                        $nearElement.before($empty);
+                                    }
+                                    elStartPositionLeft = $empty.position().left;
+                                    isResorted = true;
+                                }
+                            }
+                            $el.css({left: elPosition.left});
                         }
 
-                        $el.css({left: elPosition});
-                        cursorPosition = e.pageX;
+                        cursorPositionX = e.pageX;
+                        cursorPositionY = e.pageY;
 
                     }).on('mouseup.sort.umi.dock', function() {
                         $body.off('.sort.umi.dock');
@@ -125,17 +152,40 @@ define(['App'], function(UMI) {
                             return;
                         }
 
-                        $empty.after($el.removeClass('umi-dock-button-dragging').css({left: ''})).remove();
-
+                        $dock.removeClass('sorting');
                         self.set('parentView.isBlocked', false);
-                        var parentView = self.get('parentView');
-                        if (typeof parentView.leaveDock === 'function') parentView.leaveDock();
 
-                        var mass = [];
-                        $dock.removeClass('sorting').children('li').each(function() {
-                            mass.push($(this).data('name'));
-                        });
-                        UMI.Utils.LS.set('dock.sortedOrder', mass);
+                        if (isRemoved) {
+                            var elName = $el.data().name;
+                            var newHidden = UMI.Utils.LS.get('dock.hiddenModules') || [];
+
+                            newHidden.push(elName);
+                            $el.add($empty).remove();
+
+                            self.get('controller').hideModule(elName);
+                            UMI.Utils.LS.set('dock.hiddenModules', newHidden);
+
+                        } else {
+
+                            $empty.after(
+                                $el.removeClass('umi-dock-button-dragging').css({left: '', top: '', opacity: ''})
+                            ).remove();
+
+                            var parentView = self.get('parentView');
+                            if (typeof parentView.leaveDock === 'function') parentView.leaveDock();
+
+                            if (isResorted) {
+                                isResorted = false;
+                                var newOrder = [];
+
+                                $dock.children('li').each(function() {
+                                    newOrder.push($(this).data().name);
+                                });
+
+                                UMI.Utils.LS.set('dock.sortedOrder', newOrder);
+                                self.get('controller').resortModules(newOrder);
+                            }
+                        }
                     });
                 });
             }

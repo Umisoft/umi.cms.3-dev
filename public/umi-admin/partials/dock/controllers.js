@@ -5,26 +5,51 @@ define(['App'], function(UMI) {
         UMI.DockController = Ember.ObjectController.extend({
             needs: ['application', 'module'],
             modulesBinding: 'controllers.application.modules',
+
+            _modules: [],
+
             sortedModules: function() {
-                var userSettings = UMI.Utils.LS.get('dock.sortedOrder');
-                var modules = this.get('modules');
-                if (Ember.typeOf(userSettings) === 'array') {
-                    var sortedModules = [];
-                    modules = modules.slice();
-                    for (var i = 0, l = userSettings.length; i < l; i++) {
-                        for (var j = 0, l2 = modules.length; j < l2; j++) {
-                            if (modules[j].name === userSettings[i]) {
-                                sortedModules.push(modules[j]);
-                                modules.splice(j, 1);
-                                l2--;
-                            }
-                        }
+                return this.get('_modules').sortBy('index');
+            }.property('_modules.@each.index'),
+
+            resortModules: function(newOrder) {
+                var modules = this.get('_modules');
+                this.propertyWillChange('_modules');
+                for (var i = 0, l = modules.length; i < l; i++) {
+                    var ind = newOrder.indexOf(modules[i].name);
+                    if (ind >= 0) {
+                        Ember.set(modules[i], 'index', ind);
                     }
-                    return sortedModules.concat(modules);
-                } else {
-                    return modules;
                 }
-            }.property('modules'),
+                this.set('_modules', modules);
+                this.propertyDidChange('_modules');
+            },
+
+            hideModule: function(module) {
+                var modules = this.get('_modules');
+                this.propertyWillChange('_modules');
+                for (var i = 0, l = modules.length; i < l; i++) {
+                    if (modules[i].name === module) {
+                        Ember.set(modules[i], 'isHidden', true);
+                    }
+                }
+                this.set('_modules', modules);
+                this.propertyDidChange('_modules');
+                $(window).trigger('dockChange');
+            },
+
+            showModule: function(module) {
+                var modules = this.get('_modules');
+                this.propertyWillChange('_modules');
+                for (var i = 0, l = modules.length; i < l; i++) {
+                    if (modules[i].name === module) {
+                        Ember.set(modules[i], 'isHidden', false);
+                    }
+                }
+                this.set('_modules', modules);
+                this.propertyDidChange('_modules');
+                $(window).trigger('dockChange');
+            },
 
             activeModuleBinding: 'controllers.module.model',
 
@@ -40,6 +65,24 @@ define(['App'], function(UMI) {
             }.property('modes.@each.isActive'),
 
             init: function() {
+                this._super();
+                var sortSettings = UMI.Utils.LS.get('dock.sortedOrder');
+                var hideSettings = UMI.Utils.LS.get('dock.hiddenModules');
+                var modules = this.get('modules');
+                this.propertyWillChange('_modules');
+                if (Ember.typeOf(hideSettings) === 'array') {
+                    for (var i = 0, l = modules.length; i < l; i++) {
+                        var ind = hideSettings.indexOf(modules[i].name);
+                        Ember.set(modules[i], 'isHidden', (ind >= 0));
+                    }
+                }
+                this.set('_modules', modules);
+                this.propertyDidChange('_modules');
+                if (Ember.typeOf(sortSettings) === 'array') {
+                    this.resortModules(sortSettings);
+                }
+
+
                 var activeMode = UMI.Utils.LS.get('dock.activeModeName');
                 var modes = this.get('modes');
                 if (!activeMode || !modes.findBy('name', activeMode)) {

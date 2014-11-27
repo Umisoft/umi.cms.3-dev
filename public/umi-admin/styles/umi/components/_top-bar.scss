@@ -139,6 +139,12 @@ $umi-bg-darken-set: #404959, #181B21;
         height: 30px;
         background-size: 100%;
         vertical-align: top;
+
+        &.dragging {
+            position: absolute;
+            z-index: 100;
+            cursor: move;
+        }
     }
 
     &-dropdown-modules-item{
@@ -152,6 +158,24 @@ $umi-bg-darken-set: #404959, #181B21;
         &.active{
             background: #259cec !important;
             color: #fff;
+        }
+
+        &.inDock {
+            opacity: 0.6;
+        }
+    }
+
+    .noDragging {
+        cursor: not-allowed !important;
+        position: relative;
+
+        &:after { // prevent mouseup event
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
         }
     }
 

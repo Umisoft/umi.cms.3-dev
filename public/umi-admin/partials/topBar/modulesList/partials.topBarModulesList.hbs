@@ -1,0 +1,30 @@
+<span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
+      data-options="selectorById: false;">
+                <i class="icon icon-butterfly"></i>
+                <span>Модули</span>
+            </span>
+<ul class="f-dropdown f-dropdown-padding f-dropdown-parent" data-dropdown-content>
+    <li><ul class="f-dropdown-double f-dropdown-child">
+        {{#each modules}}
+            <li>
+                {{#link-to "module" name classNameBindings="isHidden::inDock :umi-top-bar-dropdown-modules-item"
+                data-name=name}}
+                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
+                    <span>{{displayName}}</span>
+                {{/link-to}}
+            </li>
+        {{/each}}
+    </ul>
+    </li><li>
+    <ul class="f-dropdown-double f-dropdown-child highlighted">
+        {{#each modules}}
+            <li>
+                {{#link-to "module" name classNameBindings="isHidden::inDock :umi-top-bar-dropdown-modules-item"
+                data-name=name}}
+                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
+                    <span>{{displayName}}</span>
+                {{/link-to}}
+            </li>
+        {{/each}}
+    </ul></li>
+</ul>

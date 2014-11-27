@@ -1,6 +1,5 @@
-define(['./controllers', './view', './controlPanel/main', 'App'], function(controller, view, controlPanel) {
+define(['./controllers', './view', 'App'], function(controller, view) {
     'use strict';
     controller();
     view();
-    controlPanel();
 });

@@ -1,35 +1,7 @@
 <nav class="umi-top-bar row">
     <ul class="umi-top-bar-list left small-5 columns">
         <li>
-            <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
-                  data-options="selectorById: false;">
-                <i class="icon icon-butterfly"></i>
-                <span>Модули</span>
-            </span>
-            <ul class="f-dropdown f-dropdown-padding f-dropdown-parent" data-dropdown-content>
-                    <li><ul class="f-dropdown-double f-dropdown-child">
-                        {{#each view.modules}}
-                            <li>
-                                {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
-                                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
-                                    <span>{{displayName}}</span>
-                                {{/link-to}}
-                            </li>
-                        {{/each}}
-                    </ul>
-                    </li><li>
-                    <ul class="f-dropdown-double f-dropdown-child highlighted">
-                        {{#each view.modules}}
-                            <li>
-                                {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
-                                    <i class="umi-top-bar-module-icon umi-dock-module-{{unbound name}}"></i>
-                                    <span>{{displayName}}</span>
-                                {{/link-to}}
-                            </li>
-                        {{/each}}
-                    </ul></li>
-            </ul>
-
+            {{render 'topBarModulesList'}}
         </li>
         <li>
             <a href="{{unbound view.siteUrl}}" target="_blank" class="button tiny flat umi-top-bar-button">
