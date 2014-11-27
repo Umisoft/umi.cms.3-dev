@@ -60,13 +60,7 @@ class IndexController extends BaseSitePageController
 
             $this->success = true;
 
-            return $this->createViewResponse(
-                $this->template,
-                [
-                    'page' => $this->getCurrentPage(),
-                    'success' => $this->success
-                ]
-            );
+            return $this->createRedirectResponse($this->getUrl('success'));
 
         } catch (\Exception $e) {
             return $this->createViewResponse(
@@ -85,6 +79,7 @@ class IndexController extends BaseSitePageController
 
     /**
      * Отпраляет пользователю письмо с новым паролем
+     * @param RegisteredUser $user
      */
     protected function sendNewPassword(RegisteredUser $user)
     {

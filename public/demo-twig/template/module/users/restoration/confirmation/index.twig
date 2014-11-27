@@ -4,7 +4,6 @@
 
 
     {% if (errors) %}
-
         <div class="alert alert-danger">
             <ul>
                 {% for message in errors %}
@@ -12,13 +11,6 @@
                 {% endfor %}
             </ul>
         </div>
-    {% else %}
-
-        <div class="alert alert-success">
-            <p>{{ translate("A new password was sent to your email") }}.</p>
-        </div>
-
-
     {% endif %}
 
 

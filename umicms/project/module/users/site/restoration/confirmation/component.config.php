@@ -20,6 +20,7 @@ return [
 
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
+        'success' => __NAMESPACE__ . '\controller\SuccessController',
     ],
 
     SiteComponent::OPTION_VIEW => [
@@ -37,12 +38,20 @@ return [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],
+                'controller:success' => [],
                 'widget:link' => []
             ]
         ]
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+        'success' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/success',
+            'defaults' => [
+                'controller' => 'success'
+            ]
+        ],
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{activationCode:string}',
