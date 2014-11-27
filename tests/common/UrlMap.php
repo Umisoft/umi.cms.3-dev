@@ -32,6 +32,7 @@ abstract class UrlMap
     public static $userLogout = '/users/auth/logout';
     public static $userEditProfile = '/users/profile';
     public static $userRestore =  '/users/restore';
+    public static $userRestoreConfirm = '/users/restore/confirm';
     public static $surveysNextShow = '/surveys/nextshow';
 
 }

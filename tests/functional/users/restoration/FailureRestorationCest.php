@@ -10,6 +10,8 @@
 
 namespace functional\users\restoration;
 
+use umi\http\Response;
+use umicms\Utils;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
@@ -87,6 +89,32 @@ class FailureRestorationCest
                 'en-US' => 'User with given login or email has been block or has not activated.'
             ],
             '#users_restoration_index_errors'
+        );
+    }
+
+    public function restoreWithWrongActivationCodeFormat(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$userRestoreConfirm . '/bad-activation-code-format');
+        $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Wrong activation code format.',
+                'en-US' => 'Wrong activation code format.'
+            ],
+            '.alert.alert-danger'
+        );
+    }
+
+    public function restoreWithNonExistentActivationCode(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$userRestoreConfirm . '/' . Utils::generateGUID());
+        $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
+        $I->seeLocalized(
+            [
+                'ru-RU' => 'Cannot find user by activation code.',
+                'en-US' => 'Cannot find user by activation code.'
+            ],
+            '.alert.alert-danger'
         );
     }
 } 

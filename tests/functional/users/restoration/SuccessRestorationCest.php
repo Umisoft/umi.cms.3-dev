@@ -16,6 +16,18 @@ use umitest\UrlMap;
 class SuccessRestorationCest
 {
 
+    public function checkRestoreLink(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$defaultPageUrl);
+        $I->seeLinkLocalized(
+            [
+                'ru-RU' => 'Забыли пароль?',
+                'en-US' => 'Forgot your password?'
+            ],
+            UrlMap::$userRestore
+        );
+    }
+
     public function restorationPassword(FunctionalTester $I)
     {
         $user = $I->haveRegisteredUser();
