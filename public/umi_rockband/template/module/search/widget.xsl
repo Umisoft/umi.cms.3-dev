@@ -17,7 +17,7 @@
                             <img src="images/search-icon.png" width="12" height="12"/>
                         </button>
                     </span>
-                    <xsl:apply-templates select="form/elements/item[id='query']" mode="search.form" />
+                    <xsl:apply-templates select="form/elements/item[attributes/@name='query']" mode="search.form" />
                 </div>
             </form>
         </li>
