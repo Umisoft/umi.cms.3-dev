@@ -15,50 +15,48 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
- * @guy umitest\FunctionalTester\CommonSteps
+ *
  */
-class ProfileWidgetCest
+class ProfileWidgetByGuestCest
 {
 
     /**
-     * @param FunctionalTester|FunctionalTester\CommonSteps $I
+     * @param FunctionalTester $I
      */
-    public function checkProfileLinkWidget(FunctionalTester $I)
+    public function guestCanNotSeeProfileLinkWidget(FunctionalTester $I)
     {
-        $I->haveRegisteredUser();
-        $I->login('TestUser', 'TestUser');
-        $I->seeCurrentUrlEquals(UrlMap::$projectUrl);
-        $I->seeLinkLocalized(
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->dontSeeLinkLocalized(
             [
                 'ru-RU' => 'Редактировать профиль',
                 'en-US' => 'Edit profile'
             ],
             UrlMap::$userEditProfile
         );
+
     }
 
     /**
-     * @param FunctionalTester|FunctionalTester\CommonSteps $I
+     * @param FunctionalTester $I
      */
-    public function checkProfileViewWidget(FunctionalTester $I)
+    public function guestCannotSeeProfileViewWidget(FunctionalTester $I)
     {
-        $user = $I->haveRegisteredUser();
-        $I->login('TestUser', 'TestUser');
-        $I->seeLocalized(
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->dontSeeLocalized(
             [
-                'ru-RU' => "Добро пожаловать, {$user->displayName}",
-                'en-US' => "Welcome, {$user->displayName}"
+                'ru-RU' => "Добро пожаловать",
+                'en-US' => "Welcome"
             ],
             BlockMap::AUTHORIZATION_WELCOME
         );
-        $I->seeLocalized(
+        $I->dontSeeLocalized(
             [
                 'ru-RU' => 'Выйти',
                 'en-US' => 'Log out'
             ],
             BlockMap::LOGOUT_FORM
         );
-        $I->seeLinkLocalized(
+        $I->dontSeeLinkLocalized(
             [
                 'ru-RU' => 'Редактировать профиль',
                 'en-US' => 'Edit profile'
@@ -67,4 +65,4 @@ class ProfileWidgetCest
         );
     }
 
-}
+} 

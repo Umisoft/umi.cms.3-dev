@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'Change password' => 'Change password',
+        'ChangePassword' => 'Change password',
         'New password' => 'New password',
         'Wrong password.' => 'Wrong password.',
         'You have successfully changed your password' => 'You have successfully changed your password',
@@ -20,7 +20,7 @@ return [
     ],
 
     'ru-RU' => [
-        'Change password' => 'Сменить пароль',
+        'ChangePassword' => 'Сменить пароль',
         'New password' => 'Новый пароль',
         'Wrong password.' => 'Неверный пароль.',
         'You have successfully changed your password' => 'Вы успешно сменили пароль',

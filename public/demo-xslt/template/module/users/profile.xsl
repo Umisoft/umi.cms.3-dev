@@ -16,10 +16,16 @@
             />
 
 
-    <xsl:template match="result[@widget = 'users.profile.link']">
 
+    <xsl:template match="result[@widget = 'users.profile.link']">
         <a class="btn btn-primary" role="button" href="{url}">
             <xsl:value-of select="document('translate://project.site.users.profile/EditProfile')/result"/>
+        </a>
+    </xsl:template>
+
+    <xsl:template match="result[@widget = 'users.profile.password.link']">
+        <a class="btn btn-primary" role="button" href="{url}">
+            <xsl:value-of select="document('translate://project.site.users.profile/ChangePassword')/result"/>
         </a>
     </xsl:template>
 
@@ -41,6 +47,16 @@
         </p>
     </xsl:template>
 
+    <xsl:template match="contents[@controller='users.profile.index']" mode="layout">
 
+        <xsl:apply-templates select="breadcrumbs" mode="layout"/>
 
+        <xsl:apply-templates select="page" mode="layout"/>
+
+        <xsl:apply-templates select="errors" mode="formErrors"/>
+
+        <xsl:apply-templates select="form"/>
+
+        <xsl:apply-templates select="document('widget://users.profile.password.link')/result"/>
+    </xsl:template>
 </xsl:stylesheet>
