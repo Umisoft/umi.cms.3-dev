@@ -24,7 +24,7 @@
     <!-- Кнопка "ответить" на комментарий <Конец> -->
 
     <!-- Список комментариев <Начало> -->
-    <xsl:template match="result[@widget = 'blog.comment.list']/tree" mode="blog.comments.list">
+    <xsl:template match="result[@widget = 'blog.comment.tree']/tree" mode="blog.comments.list">
         <xsl:param name="postGuid"/>
 
         <xsl:apply-templates select="item" mode="blog.comments.list">
