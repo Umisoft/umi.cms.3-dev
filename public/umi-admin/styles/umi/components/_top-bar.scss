@@ -38,6 +38,12 @@ $umi-bg-darken-set: #404959, #181B21;
                     padding-left: 0.6rem;
                 }
             }
+
+            .f-dropdown-parent {
+                right: 0 !important;
+                left: auto !important;
+                margin-right: 26px !important;
+            }
         }
     }
 
