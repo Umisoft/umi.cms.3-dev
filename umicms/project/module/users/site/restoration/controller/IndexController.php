@@ -76,9 +76,11 @@ class IndexController extends BaseSitePageController
         try {
             $user = $this->module->user()->getUserByLoginOrEmail($loginOrEmailInput->getValue());
 
-            if (!$user->active || $user->trashed) {
+            if (!$user->active) {
                 $this->errors[] = $this->translate('User with given login or email has been block or has not activated.');
             } else {
+                $user->updateActivationCode();
+                $this->commit();
                 $this->success = true;
                 $this->sendRestorePasswordConfirmation($user);
                 return $this->buildRedirectResponse();
@@ -109,6 +111,7 @@ class IndexController extends BaseSitePageController
 
     /**
      * Отпраляет пользователю письмо с кодом подтверждения смены пароля
+     * @param RegisteredUser $user
      */
     protected function sendRestorePasswordConfirmation(RegisteredUser $user)
     {

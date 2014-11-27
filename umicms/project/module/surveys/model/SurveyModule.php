@@ -11,9 +11,8 @@
 namespace umicms\project\module\surveys\model;
 
 use Symfony\Component\HttpFoundation\Cookie;
-use umi\http\IHttpAware;
+use umi\http\Request;
 use umi\http\Response;
-use umi\http\THttpAware;
 use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\surveys\model\collection\SurveyCollection;
@@ -24,14 +23,25 @@ use umicms\project\module\surveys\model\object\Survey;
 /**
  * Модуль "Опросы".
  */
-class SurveyModule extends BaseModule implements IHttpAware
+class SurveyModule extends BaseModule
 {
-    use THttpAware;
-
+    /**
+     * @var Request $request текущий запрос
+     */
+    protected $request;
     /**
      * @var Survey[] $voted список опросов, в которых текущий пользователь принял участие
      */
     private $voted = [];
+
+    /**
+     * Конструктор.
+     * @param Request $request текущий запрос
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * Возвращает коллекцию опросов.
@@ -88,7 +98,7 @@ class SurveyModule extends BaseModule implements IHttpAware
      */
     public function checkIfVoted(Survey $survey)
     {
-        return $this->getHttpRequest()->cookies->has($survey->guid) || array_key_exists($survey->guid, $this->voted);
+        return $this->request->cookies->has($survey->guid) || array_key_exists($survey->guid, $this->voted);
     }
 
     /**

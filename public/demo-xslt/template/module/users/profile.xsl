@@ -15,6 +15,14 @@
             doctype-system="about:legacy-compat"
             />
 
+
+    <xsl:template match="result[@widget = 'users.profile.link']">
+
+        <a class="btn btn-primary" role="button" href="{url}">
+            <xsl:value-of select="document('translate://project.site.users.profile/EditProfile')/result"/>
+        </a>
+    </xsl:template>
+
     <xsl:template match="result[@widget = 'users.profile.view'][code = 403]" mode="sideBar">
 
         <xsl:apply-templates select="document('widget://users.authorization.loginForm')/result"/>
@@ -24,6 +32,15 @@
             <xsl:apply-templates select="document('widget://users.restoration.link')/result"/>
         </p>
     </xsl:template>
+
+    <xsl:template match="result[@widget = 'users.profile.view'][user]" mode="sideBar">
+        <p>
+            <xsl:value-of select="document('translate://project.site.users.profile/Welcome')/result"/>, <xsl:value-of select="user/@displayName"/>
+            <xsl:apply-templates select="document('widget://users.authorization.logoutForm')/result"/>
+            <xsl:apply-templates select="document('widget://users.profile.link')/result"/>
+        </p>
+    </xsl:template>
+
 
 
 </xsl:stylesheet>

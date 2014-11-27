@@ -9,3 +9,9 @@ public/umi-admin/development
 Vagrantfile
 .vagrant
 *.pp
+
+tests/_output/*
+
+tests/unit/UnitTester.php
+tests/functional/FunctionalTester.php
+tests/acceptance/AcceptanceTester.php

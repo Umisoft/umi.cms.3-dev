@@ -5,7 +5,7 @@
 ?>
 
 <?php if (isset($errors)) : ?>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" id="<?= $form->attributes->id ?>_errors">
         <ul>
             <?php foreach ($errors as $message) : ?>
                 <li><?= $message ?></li>

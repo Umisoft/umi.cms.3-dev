@@ -199,7 +199,7 @@ class RegisteredUser extends BaseUser
         if (!$collection->checkLoginUniqueness($this)) {
             $result = false;
             $this->getProperty(self::FIELD_LOGIN)->addValidationErrors(
-                [$this->translate('Login is not unique')]
+                [$this->translate('Login is not unique.')]
             );
         }
 

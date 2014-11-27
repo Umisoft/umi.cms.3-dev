@@ -163,7 +163,7 @@ class BlogPost extends CmsObject implements ICmsPage, IModuleAware
                 break;
             }
             default : {
-            $handler = ICmsCollection::HANDLER_SITE;
+                $handler = ICmsCollection::HANDLER_SITE;
             }
         }
 

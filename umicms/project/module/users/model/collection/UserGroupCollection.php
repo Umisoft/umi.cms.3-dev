@@ -28,6 +28,11 @@ use umicms\project\module\users\model\object\UserGroup;
  */
 class UserGroupCollection extends CmsCollection implements ILockedAccessibleCollection
 {
+    /**
+     * Guid для системной группы "Зарегистрированные пользователи"
+     */
+    const REGISTERED_USERS_GROUP_GUID = 'daabebf8-f3b3-4f62-a23d-522eff9b7f68';
+
     use TLockedAccessibleCollection;
 }
  

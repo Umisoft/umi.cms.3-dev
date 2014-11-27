@@ -15,29 +15,28 @@ use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\hmvc\component\site\BaseSitePageComponent;
+use umicms\project\module\structure\model\StructureModule;
 
 /**
  * URL-менеджер.
  */
-class UrlManager implements IUrlManager, ILocalizable
+class UrlManager implements IUrlManager, ILocalizable, IModuleAware
 {
     use TLocalizable;
+    use TModuleAware;
 
     /**
      * @var CmsDispatcher $dispatcher диспетчер компонентов
      */
     protected $dispatcher;
-    /**
-     * @var StructureModule $structureApi API структуры сайта
-     */
-    protected $structureApi;
     /**
      * @var string $schemeAndHttpHost схема и HTTP-хост проекта
      */
@@ -74,12 +73,10 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * Конструктор.
      * @param CmsDispatcher $dispatcher диспетчер компонентов
-     * @param StructureModule $structureApi
      */
-    public function __construct(CmsDispatcher $dispatcher, StructureModule $structureApi)
+    public function __construct(CmsDispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
-        $this->structureApi = $structureApi;
     }
 
     /**
@@ -249,7 +246,12 @@ class UrlManager implements IUrlManager, ILocalizable
     public function getRawSystemPageUrl($componentPath)
     {
         if (!isset($this->systemPageUrls[$componentPath])) {
-            $this->systemPageUrls[$componentPath] = $this->structureApi
+            /**
+             * @var StructureModule $structure
+             */
+            $structure = $this->getModuleByClass(StructureModule::className());
+
+            $this->systemPageUrls[$componentPath] = $structure
                 ->element()
                 ->getSystemPageByComponentPath($componentPath)
                 ->getURL();
@@ -432,6 +434,8 @@ class UrlManager implements IUrlManager, ILocalizable
     {
         return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 18));
     }
+
+
 
 }
  

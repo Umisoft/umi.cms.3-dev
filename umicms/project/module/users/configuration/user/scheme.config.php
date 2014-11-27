@@ -36,7 +36,7 @@ return array_replace_recursive(
                 'type' => Type::STRING
             ],
             'activation_code' => [
-                'type' => Type::STRING
+                'type' => Type::GUID
             ],
             'first_name' => [
                 'type' => Type::STRING
