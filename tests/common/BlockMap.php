@@ -32,11 +32,12 @@ abstract class BlockMap
     const PROFILE_FORM_LAST_NAME = '#users_profile_index .lastName';
     const PROFILE_FORM_CSRF = '#users_profile_index .csrf';
 
-    const PROFILE_PASSWORD_FORM = 'users_profile_password_form';
-    const PROFILE_PASSWORD_FORM_PASSWORD = 'users_profile_password_form .password';
-    const PROFILE_PASSWORD_FORM_NEW_PASSWORD = 'users_profile_password_form .newPassword';
-    const PROFILE_PASSWORD_FORM_REDIRECT_URL = 'users_profile_password_form .redirectUrl';
-    const PROFILE_PASSWORD_FORM_CSRF = 'users_profile_password_form .csrf';
+    const PROFILE_PASSWORD_FORM = '#users_profile_password_index';
+    const PROFILE_PASSWORD_FORM_PASSWORD = '#users_profile_password_index .password';
+    const PROFILE_PASSWORD_FORM_NEW_PASSWORD = '#users_profile_password_index .newPassword';
+    const PROFILE_PASSWORD_FORM_REDIRECT_URL = '#users_profile_password_index .redirectUrl';
+    const PROFILE_PASSWORD_FORM_CSRF = '#users_profile_password_index .csrf';
+    const PROFILE_PASSWORD_FORM_SUBMIT = '#users_profile_password_index #users_profile_password_index_submit';
 
     const LOGOUT_FORM = '#users_authorization_logoutForm';
     const VOTE_ANSWERS = '.answers label';

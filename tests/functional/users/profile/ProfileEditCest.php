@@ -29,13 +29,10 @@ class ProfileEditCest
         $I->haveRegisteredUser();
         $I->login('TestUser', 'TestUser');
         $I->amOnPage(UrlMap::$userProfile);
-        $I->seeLocalized(
-            [
-                'ru-RU' => 'Профиль',
-                'en-US' => 'Profile'
-            ],
-            'h2'
-        );
+        $I->seeLocalized([
+            'ru-RU' => 'Профиль',
+            'en-US' => 'Profile'
+        ]);
         $I->seeLocalized([
             'en-US' => 'Display name',
             'ru-RU' => 'Название'
@@ -57,12 +54,53 @@ class ProfileEditCest
             'ru-RU' => 'Фамилия'
         ], BlockMap::PROFILE_FORM_LAST_NAME . ' label');
         $I->seeElement(
-            BlockMap::PROFILE_FORM_CSRF . ' input'
-        , ['type' => 'hidden']);
+            BlockMap::PROFILE_FORM_CSRF . ' input',
+            ['type' => 'hidden']
+        );
         $I->seeLocalized([
             'en-US' => 'Save',
             'ru-RU' => 'Сохранить'
         ], BlockMap::PROFILE_FORM . ' button');
+        $I->seeLinkLocalized([
+            'ru-RU' => 'Сменить пароль',
+            'en-US' => 'Change password',
+        ], UrlMap::$userProfilePass);
+    }
+
+    /**
+     * @param CommonSteps|FunctionalTester $I
+     */
+    public function checkPasswordChangeForm(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser();
+        $I->login('TestUser', 'TestUser');
+        $I->amOnPage(UrlMap::$userProfile);
+        $I->click("a[href='" . UrlMap::$userProfilePass . "']");
+        $I->seeLocalized([
+            'ru-RU' => 'Смена пароля',
+            'en-US' => 'Change password'
+        ]);
+        $I->seeLocalized([
+            'ru-RU' => '',
+            'en-US' => 'Password'
+        ], BlockMap::PROFILE_PASSWORD_FORM_PASSWORD . ' label');
+        $I->seeLocalized([
+            'ru-RU' => '',
+            'en-US' => 'Password'
+        ], BlockMap::PROFILE_PASSWORD_FORM_NEW_PASSWORD . ' label');
+        $I->seeElement(
+            BlockMap::PROFILE_PASSWORD_FORM_CSRF . ' input',
+            ['type' => 'hidden']
+        );
+        $I->seeElement(
+            BlockMap::PROFILE_PASSWORD_FORM_REDIRECT_URL . ' input',
+            ['type' => 'hidden']
+        );
+        $I->seeLocalized([
+            'ru-RU' => 'Сохранить',
+            'en-US' => 'Save'
+        ], BlockMap::PROFILE_PASSWORD_FORM_SUBMIT);
+        $I->seeElement(BlockMap::PROFILE_PASSWORD_FORM_SUBMIT);
     }
 
 } 

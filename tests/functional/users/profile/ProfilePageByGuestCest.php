@@ -29,4 +29,13 @@ class ProfilePageByGuestCest
         $I->seeResponseCodeIs(Response::HTTP_FORBIDDEN);
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
+    public function passwordChangeIsForbiddenForGuest(FunctionalTester $I)
+    {
+        $I->amOnPage(UrlMap::$userProfilePass);
+        $I->seeResponseCodeIs(Response::HTTP_FORBIDDEN);
+    }
+
 } 
