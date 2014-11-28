@@ -15,12 +15,13 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
- *
+ *  Тесты виджетов user.profile для гостя
  */
 class ProfileWidgetByGuestCest
 {
 
     /**
+     * Проверяет, что гость не видит ссылки на профиль
      * @param FunctionalTester $I
      */
     public function guestCanNotSeeProfileLinkWidget(FunctionalTester $I)
@@ -37,6 +38,7 @@ class ProfileWidgetByGuestCest
     }
 
     /**
+     * Проверяет, что виджет user.profile.view верно отрабатывает для гостя
      * @param FunctionalTester $I
      */
     public function guestCannotSeeProfileViewWidget(FunctionalTester $I)

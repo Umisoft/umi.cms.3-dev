@@ -16,12 +16,14 @@ use umitest\FunctionalTester\CommonSteps;
 use umitest\UrlMap;
 
 /**
+ * Тесты user.profile, user.profile.password
  * @guy umitest\FunctionalTester\CommonSteps
  */
 class ProfileEditCest
 {
 
     /**
+     * Проверяет страницу профиля пользователя, виджеты, форму
      * @param CommonSteps|FunctionalTester $I
      */
     public function checkProfileEditForm(FunctionalTester $I)
@@ -68,6 +70,7 @@ class ProfileEditCest
     }
 
     /**
+     * Проверяет страницу смены пароля, смену пароля
      * @param CommonSteps|FunctionalTester $I
      */
     public function checkPasswordChangeForm(FunctionalTester $I)
@@ -101,6 +104,65 @@ class ProfileEditCest
             'en-US' => 'Save'
         ], BlockMap::PROFILE_PASSWORD_FORM_SUBMIT);
         $I->seeElement(BlockMap::PROFILE_PASSWORD_FORM_SUBMIT);
+        $I->submitForm(BlockMap::PROFILE_PASSWORD_FORM, [
+            'password' => 'TestUser',
+            'newPassword' => 'NewPassword']
+        );
+        $I->submitForm(BlockMap::LOGOUT_FORM, []);
+        $I->amOnPage(UrlMap::$projectUrl);
+        $I->login('TestUser', 'NewPassword');
+        $I->seeLocalized([
+            'ru-RU' => 'Добро пожаловать, TestUser',
+            'en-US' => 'Welcome, TestUser'
+        ], BlockMap::AUTHORIZATION_WELCOME);
+    }
+
+    /**
+     * Сценарий - пользователь указал неверный старый пароль при смене пароля
+     * @param CommonSteps|FunctionalTester $I
+     */
+    public function submitFormWithInvalidOldPassword(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser();
+        $I->login('TestUser', 'TestUser');
+        $I->amOnPage(UrlMap::$userProfile);
+        $I->click("a[href='" . UrlMap::$userProfilePass . "']");
+        $I->seeLocalized([
+            'ru-RU' => 'Смена пароля',
+            'en-US' => 'Change password'
+        ]);
+        $I->submitForm(BlockMap::PROFILE_PASSWORD_FORM, [
+            'password' => 'invalidPassword',
+            'newPassword' => 'NewPassword'
+        ]);
+        $I->seeLocalized([
+            'ru-RU' => 'Неверный пароль.',
+            'en-US' => 'Wrong password.'
+        ], BlockMap::PROFILE_PASSWORD_FORM_PASSWORD);
+    }
+
+    /**
+     * Сценарий - пользователь указал пустой новый пароль при смене пароля
+     * @param CommonSteps|FunctionalTester $I
+     */
+    public function submitChangePasswordFormWithNewPassword(FunctionalTester $I)
+    {
+        $I->haveRegisteredUser();
+        $I->login('TestUser', 'TestUser');
+        $I->amOnPage(UrlMap::$userProfile);
+        $I->click("a[href='" . UrlMap::$userProfilePass . "']");
+        $I->seeLocalized([
+            'ru-RU' => 'Смена пароля',
+            'en-US' => 'Change password'
+        ]);
+        $I->submitForm(BlockMap::PROFILE_PASSWORD_FORM, [
+            'password' => 'TestUser',
+            'newPassword' => ''
+        ]);
+        $I->seeLocalized([
+            'ru-RU' => 'Значение поля обязательно для заполнения.',
+            'en-US' => 'Value is required.'
+        ], BlockMap::PROFILE_PASSWORD_FORM_NEW_PASSWORD);
     }
 
 } 

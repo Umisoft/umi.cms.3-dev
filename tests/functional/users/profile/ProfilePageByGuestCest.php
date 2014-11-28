@@ -15,12 +15,13 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
- *
+ * Тесты user.profile, user.profile.password под гостем
  */
 class ProfilePageByGuestCest
 {
 
     /**
+     * Проверяет, что страница профиля пользователя не доступна для гостя
      * @param FunctionalTester $I
      */
     public function profilePageIsForbiddenForGuest(FunctionalTester $I)
@@ -30,6 +31,7 @@ class ProfilePageByGuestCest
     }
 
     /**
+     * Проверяет, что страница смены пароля не доступна для гостя
      * @param FunctionalTester $I
      */
     public function passwordChangeIsForbiddenForGuest(FunctionalTester $I)

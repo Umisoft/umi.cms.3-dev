@@ -41,6 +41,9 @@ return [
             'label' => 'New password',
             'options' => [
                 'dataSource' => RegisteredUser::FIELD_PASSWORD,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
                 ]

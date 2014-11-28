@@ -15,12 +15,14 @@ use umitest\FunctionalTester;
 use umitest\UrlMap;
 
 /**
+ * Тесты виджетов user.profile
  * @guy umitest\FunctionalTester\CommonSteps
  */
 class ProfileWidgetCest
 {
 
     /**
+     * Проверяет виджет ссылки на страницу профиля пользователя
      * @param FunctionalTester|FunctionalTester\CommonSteps $I
      */
     public function checkProfileLinkWidget(FunctionalTester $I)
@@ -38,6 +40,7 @@ class ProfileWidgetCest
     }
 
     /**
+     * Проверяет виджет user.profile.view
      * @param FunctionalTester|FunctionalTester\CommonSteps $I
      */
     public function checkProfileViewWidget(FunctionalTester $I)
