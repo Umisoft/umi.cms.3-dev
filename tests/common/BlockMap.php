@@ -31,4 +31,7 @@ abstract class BlockMap
     const BLOG_POST_PROGRESS_BAR = '.blog-post .progress-bar';
     const BLOG_SIDEBAR = '.blog-sidebar';
     const CAPTCHA = '.blog-post .captcha';
+
+    const BOTTOM_MENU = '.bottomMenu';
+    const BOTTOM_MENU_ELEMENT = '.bottomMenu li';
 }

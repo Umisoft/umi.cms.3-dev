@@ -183,7 +183,7 @@ class UmiModule extends Framework
      */
     public function seeLinkLocalized(array $texts, $url = null)
     {
-        $this->seeLink($this->getLocalized($texts), $url);
+        $this->seeLink($this->getLocalized($texts), $this->replaceUrlPlaceholders($url));
     }
 
     /**
@@ -261,6 +261,16 @@ class UmiModule extends Framework
         }
 
         return strtr($texts[$this->locale], $this->localePlaceholders);
+    }
+
+    /**
+     * Заменяет в url все вхождения placeholders
+     * @param  $url
+     * @return string
+     */
+    protected function replaceUrlPlaceholders($url)
+    {
+        return str_replace(array_keys($this->localePlaceholders), array_values($this->localePlaceholders), $url);
     }
 
     /**
