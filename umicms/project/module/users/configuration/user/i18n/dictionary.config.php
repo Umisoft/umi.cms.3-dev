@@ -38,6 +38,9 @@ return [
             'Log in' => 'Log in',
 
             'Visitor' => 'Visitor',
+
+            'Wrong activation code format' => 'Wrong activation code format',
+            'Cannot find user by activation code' => 'Cannot find user by activation code',
         ],
 
         'ru-RU' => [
@@ -67,5 +70,8 @@ return [
             'Log in' => 'Войти',
 
             'Visitor' => 'Посетитель',
+
+            'Wrong activation code format' => 'Неверный код активации',
+            'Cannot find user by activation code' => 'Пользователь с указанным кодом активации не существует',
         ]
     ];

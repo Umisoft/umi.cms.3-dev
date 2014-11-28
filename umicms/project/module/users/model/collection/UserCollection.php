@@ -87,7 +87,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
     {
         if (!Utils::checkGUIDFormat($activationCode)) {
             throw new InvalidArgumentException(
-                $this->translate('Wrong activation code format.')
+                $this->translate('Wrong activation code format')
             );
         }
 

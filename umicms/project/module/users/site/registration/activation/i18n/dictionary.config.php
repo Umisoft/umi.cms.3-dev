@@ -13,7 +13,6 @@ return [
     'en-US' => [
         'Activate' => 'Activate',
         'You have successfully activated your account' => 'You have successfully activated your account',
-        'Wrong activation code format' => 'Wrong activation code format',
 
         'role:viewer:displayName' => 'Activate',
     ],
@@ -21,7 +20,6 @@ return [
     'ru-RU' => [
         'Activate' => 'Активировать',
         'You have successfully activated your account' => 'Ваш аккаунт успешно активирован',
-        'Wrong activation code format' => 'Неверный код активации',
 
         'role:viewer:displayName' => 'Активация пользователя',
     ]

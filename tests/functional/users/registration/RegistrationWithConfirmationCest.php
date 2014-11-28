@@ -108,8 +108,8 @@ class RegistrationWithConfirmationCest
         $I->amOnPage(UrlMap::$userActivation . '/incorrect');
         $I->seeLocalized(
             [
-                'ru-RU' => 'Неверный код активации.',
-                'en-US' => 'Wrong activation code format.',
+                'ru-RU' => 'Неверный код активации',
+                'en-US' => 'Wrong activation code format',
             ]
         );
     }

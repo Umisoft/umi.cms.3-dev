@@ -15,9 +15,16 @@ use umicms\Utils;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
+/**
+ * Class FailureRestorationCest
+ * @package functional\users\restoration
+ */
 class FailureRestorationCest
 {
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function submitEmptyForm(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRestore);
@@ -34,6 +41,9 @@ class FailureRestorationCest
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function submitBadToken(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRestore);
@@ -52,6 +62,9 @@ class FailureRestorationCest
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function restorationForNonexistentUser(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRestore);
@@ -70,6 +83,9 @@ class FailureRestorationCest
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function restorationForNonActivatedUser(FunctionalTester $I)
     {
         $user = $I->haveRegisteredUser();
@@ -92,27 +108,33 @@ class FailureRestorationCest
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function restoreWithWrongActivationCodeFormat(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRestoreConfirm . '/bad-activation-code-format');
         $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
         $I->seeLocalized(
             [
-                'ru-RU' => 'Wrong activation code format.',
-                'en-US' => 'Wrong activation code format.'
+                'ru-RU' => 'Неверный код активации',
+                'en-US' => 'Wrong activation code format'
             ],
             '.alert.alert-danger'
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function restoreWithNonExistentActivationCode(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$userRestoreConfirm . '/' . Utils::generateGUID());
         $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
         $I->seeLocalized(
             [
-                'ru-RU' => 'Cannot find user by activation code.',
-                'en-US' => 'Cannot find user by activation code.'
+                'ru-RU' => 'Пользователь с указанным кодом активации не существует',
+                'en-US' => 'Cannot find user by activation code'
             ],
             '.alert.alert-danger'
         );

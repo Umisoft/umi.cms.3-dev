@@ -13,9 +13,16 @@ namespace functional\users\restoration;
 use umitest\FunctionalTester;
 use umitest\UrlMap;
 
+/**
+ * Class SuccessRestorationCest
+ * @package functional\users\restoration
+ */
 class SuccessRestorationCest
 {
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function checkRestoreLink(FunctionalTester $I)
     {
         $I->amOnPage(UrlMap::$defaultPageUrl);
@@ -28,6 +35,9 @@ class SuccessRestorationCest
         );
     }
 
+    /**
+     * @param FunctionalTester $I
+     */
     public function restorationPassword(FunctionalTester $I)
     {
         $user = $I->haveRegisteredUser();
