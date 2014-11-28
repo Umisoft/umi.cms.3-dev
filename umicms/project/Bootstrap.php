@@ -922,6 +922,10 @@ class Bootstrap
         $this->routePath = $routePath;
     }
 
+    /**
+     * Создаёт и возвращает ответ клиенту в виде списка объектов, подгружаемых на странице
+     * @return Response
+     */
     private function createDebugResponse()
     {
         $response = new Response();
@@ -943,7 +947,8 @@ class Bootstrap
     }
 
     /**
-     * @return mixed
+     * Получает загруженные объекты, группирует их по коллекциям и возвращает
+     * @return array
      */
     private function getObjectByCollection()
     {
