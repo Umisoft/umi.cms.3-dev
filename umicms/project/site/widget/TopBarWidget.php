@@ -73,7 +73,7 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         "modules": {$modulesInfo}
     }
 </script>
-<script src="{$baseResourceUrl}/umi-admin/sitePanel/main.js?version={$version}"></script>
+<script src="{$baseResourceUrl}/umi-admin/development/module/eip/main.js?version={$version}"></script>
 EOF;
         return $this->createPlainResult($result);
     }
