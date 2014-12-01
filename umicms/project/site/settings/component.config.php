@@ -20,8 +20,8 @@ return [
         'seo' => '{#lazy:~/project/site/settings/seo/component.config.php}',
         'templating' => '{#lazy:~/project/site/settings/templating/component.config.php}',
         'slugify' => '{#lazy:~/project/site/settings/slugify/component.config.php}',
-        'license' => '{#lazy:~/project/site/settings/license/component.config.php}'
-
+        'license' => '{#lazy:~/project/site/settings/license/component.config.php}',
+        'siteService' => '{#lazy:~/project/site/settings/siteService/component.config.php}',
     ]
 
 ];

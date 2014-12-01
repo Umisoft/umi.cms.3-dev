@@ -19,6 +19,8 @@ return [
         'License has expired.' => 'License has expired.',
         'Invalid domain key for domain.' => 'Invalid domain key for domain.',
 
+        'SiteOnService' => 'Site on service',
+
         'Administrative panel' => 'Administrative panel',
         'Logout' => 'Logout',
 
@@ -42,6 +44,8 @@ return [
         'Wrong license type.' => 'Неверный тип лицензии.',
         'License has expired.' => 'Срок лицензии истёк.',
         'Invalid domain key for domain.' => 'Неверный лицензионный ключ для этого домена.',
+
+        'SiteOnService' => 'Сайт на обслуживании',
 
         'role:structureExecutor:displayName' => 'Структура сайта',
         'role:newsExecutor:displayName' => 'Новости',

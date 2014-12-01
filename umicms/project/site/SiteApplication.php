@@ -38,6 +38,7 @@ use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
 use umicms\project\module\users\model\UsersModule;
+use umicms\serialization\exception\RuntimeException;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -79,6 +80,8 @@ class SiteApplication extends SiteComponent
          * License checker will appear here.
          */
         //$this->checkLicense($request);
+
+        $this->checkSiteService();
 
         $this->registerSelectorInitializer();
         $this->registerSerializers();
@@ -410,6 +413,20 @@ class SiteApplication extends SiteComponent
         $domainKeySource = $this->getSourceDomainKey($request, $licenseType);
 
         return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
+    }
+
+    /**
+     * Проверяет режим сервисного обслуживания сайта.
+     */
+    private function checkSiteService()
+    {
+        $isSiteService = $this->getProjectSettings()->get('isSiteService');
+
+        if ($isSiteService) {
+            throw new RuntimeException($this->translate(
+                'SiteOnService'
+            ));
+        }
     }
 
 }

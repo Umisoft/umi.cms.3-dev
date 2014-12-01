@@ -18,6 +18,10 @@ return [
         IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'Default template extension',
         IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Default templating engine type',
 
+        'isSiteService' => 'Is site service',
+        'textServiceSite' => 'Text for visitors',
+        'allowedGroupsUser' => 'Allowed groups users',
+
         'role:commonExecutor:displayName' => 'Common',
         'role:templatingExecutor:displayName' => 'Templating',
         'role:slugifyExecutor:displayName' => 'Slug formation',
@@ -40,6 +44,10 @@ return [
         IProjectSettingsAware::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Директория с общими шаблонами',
         IProjectSettingsAware::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'Расширение файлов шаблонов по умолчанию',
         IProjectSettingsAware::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Тип шаблонизатора по умолчанию',
+
+        'isSiteService' => 'Сайт на обслуживании',
+        'textServiceSite' => 'Текст для посетителей',
+        'allowedGroupsUser' => 'Группы пользователей, для которых сайт доступен',
 
         'role:commonExecutor:displayName' => 'Общие',
         'role:templatingExecutor:displayName' => 'Шаблонизация',
