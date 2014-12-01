@@ -136,7 +136,7 @@ class Bootstrap
      */
     protected $projectDumpDirectory = './dump';
     /**
-     * @var bool
+     * @var bool $debugMode хранит информацию о включении дебаг режима (вывода списка объектов на странице отдельным запросом)
      */
     protected $debugMode = false;
 
@@ -928,9 +928,9 @@ class Bootstrap
      */
     private function createDebugResponse()
     {
-        $response = new Response();
         $objects = $this->getObjectByCollection();
         $content = ['collections' => []];
+
         foreach ($objects as $collectionName => $collectionObjects) {
             $current = [];
             $current['name'] = $collectionName;
@@ -941,6 +941,7 @@ class Bootstrap
             $content['collections'][] = $current;
         }
 
+        $response = new Response();
         $response->headers->set('Content-Type', $this->allowedRequestFormats['json']);
         $response->setContent(json_encode($content));
         return $response;
@@ -955,9 +956,11 @@ class Bootstrap
         /** @var IObjectManager $manager */
         $manager = $this->getToolkit()->getService('umi\orm\manager\IObjectManager');
         $groupedObjects = [];
+
         foreach ($manager->getObjects() as $object) {
             $groupedObjects[$object->getCollectionName()][] = ['id' => $object->getId(), 'typeName' => $object->getTypeName()];
         }
+
         return $groupedObjects;
     }
 
