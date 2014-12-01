@@ -102,7 +102,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
 
         if (!$user instanceof RegisteredUser) {
             throw new NonexistentEntityException(
-                $this->translate('Cannot find user by activation code.')
+                $this->translate('Cannot find user by activation code')
             );
         }
 

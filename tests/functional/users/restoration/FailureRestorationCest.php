@@ -133,7 +133,7 @@ class FailureRestorationCest
         $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
         $I->seeLocalized(
             [
-                'ru-RU' => 'Пользователь с указанным кодом активации не существует',
+                'ru-RU' => 'Пользователя с указанным кодом активации не существует',
                 'en-US' => 'Cannot find user by activation code'
             ],
             '.alert.alert-danger'
