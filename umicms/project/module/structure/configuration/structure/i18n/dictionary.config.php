@@ -23,7 +23,7 @@ return [
         StaticPage::FIELD_IN_MENU => 'Show in menu',
         StaticPage::FIELD_SUBMENU_STATE => 'Submenu state',
         'neverShown' => 'Submenu never shown',
-        'currentShown' => 'Submenu shown, when it is the current page',
+        'currentShown' => 'Submenu shown, if the current page is in the breadcrumbs',
         'alwaysShown' => 'Submenu always shown',
 
         'type:base:displayName' => 'Page',
@@ -42,9 +42,9 @@ return [
         StructureElement::FIELD_COMPONENT_NAME => 'Имя компонента-обработчика',
         SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => 'Пропускать в хлебных крошках',
         StaticPage::FIELD_IN_MENU => 'Отображать в меню',
-        StaticPage::FIELD_SUBMENU_STATE => 'Статус отображения в меню',
+        StaticPage::FIELD_SUBMENU_STATE => 'Статус отображения подменю',
         'neverShown' => 'Подменю не развернуто',
-        'currentShown' => 'Подменю развернуто, если в нем находится текущая страница',
+        'currentShown' => 'Подменю развернуто, если текущая страница есть в хлебных крошках',
         'alwaysShown' => 'Подменю развернуто',
 
         'type:base:displayName' => 'Страница',

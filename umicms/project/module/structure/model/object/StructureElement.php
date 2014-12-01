@@ -55,7 +55,7 @@ abstract class StructureElement extends CmsHierarchicObject implements ICmsPage,
      */
     const SUBMENU_NEVER_SHOWN = 0;
     /**
-     * Подменю развернуто, если в нем находится текущая страница
+     * Подменю развернуто, если текущая страница есть в хлебных крошках
      */
     const SUBMENU_CURRENT_SHOWN = 1;
     /**
