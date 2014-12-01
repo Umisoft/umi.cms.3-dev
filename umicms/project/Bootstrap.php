@@ -944,6 +944,7 @@ class Bootstrap
         $response = new Response();
         $response->headers->set('Content-Type', $this->allowedRequestFormats['json']);
         $response->setContent(json_encode($content));
+
         return $response;
     }
 
