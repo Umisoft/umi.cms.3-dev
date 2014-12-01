@@ -16,11 +16,12 @@ use Codeception\Util\Debug;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\toolbox\DbalTools;
 use umi\http\Request;
-use umi\orm\persister\IObjectPersister;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\url\IUrlManager;
 use umicms\module\IModule;
 use umicms\project\Bootstrap;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
@@ -153,6 +154,35 @@ class UmiModule extends Framework
         $this->grabOrmObjectPersister()->commit();
 
         return $user;
+    }
+
+    /**
+     * Обновляет структуру сайта
+     *
+     * ``` php
+     * <?php
+     * $I->updatePagesStructure([
+     *     '9ee6745f-f40d-46d8-8043-d959594628ce' => [
+     *         StructureElement::FIELD_IN_MENU => true,
+     *         StructureElement::FIELD_SUBMENU_STATE => StructureElement::SUBMENU_NEVER_SHOWN
+     *     ]
+     * ]);
+     * ?>
+     * ```
+     * @param array $structure
+     */
+    public function updatePagesStructure(array $structure)
+    {
+        $objectPersister = $this->grabOrmObjectPersister();
+        /** @var StructureModule $structureModule */
+        $structureModule = $this->grabModule(StructureModule::className());
+        foreach ($structure as $guid => $pageOptions) {
+            $page = $structureModule->element()->get($guid);
+            $page->inMenu = $pageOptions[StructureElement::FIELD_IN_MENU];
+            $page->submenuState = $pageOptions [StructureElement::FIELD_SUBMENU_STATE];
+            $objectPersister->markAsModified($page);
+        }
+        $objectPersister->commit();
     }
 
     /**
