@@ -62,6 +62,21 @@ module.exports = function(grunt) {
         },
 
         requirejs: {
+            eip: {
+                options: {
+                    baseUrl: './',
+                    namespace: 'EIP',
+                    mainConfigFile: 'module/eip/common.js',
+                    out: 'development/module/eip/main.js',
+                    name: 'module/eip/common',
+                    inlineText: true,
+                    optimize: 'none',
+                    findNestedDependencies: true,
+                    exclude: [
+                        'jquery'
+                    ]
+                }
+            },
             development: {
                 options: {
                     baseUrl: './',
@@ -189,7 +204,61 @@ module.exports = function(grunt) {
             }
         },
 
+        wrap: {
+            'eip-requirejs': {
+                src: 'vendor/requirejs/require.js',
+                dest: 'development/module/eip',
+                options: {
+                    wrapper: ['var EIP = function () {\n', '\n this.define = define; this.require = require; this.requirejs = requirejs;}; EIP = new EIP();']
+                }
+            },
+            'eip-jquery': {
+                src: 'vendor/jquery/dist/jquery.js',
+                dest: 'development/module/eip',
+                options: {
+                    wrapper: ['EIP.define("jquery", [], function () { var define; var _jQuery;', 'return _jQuery;\n});']
+                }
+            }
+        },
+
+        'string-replace': {
+            'eip-requirejs': {
+                files: {
+                    'development/module/eip/vendor/requirejs/require.js': 'development/module/eip/vendor/requirejs/require.js'
+                },
+                options: {
+                    replacements: [{
+                        pattern: 'var requirejs, require, define;',
+                        replacement: 'var requirejs, require = {skipDataMain: true}, define;'
+                    }]
+                }
+            },
+
+            'eip-jquery': {
+                files: {
+                    'development/module/eip/vendor/jquery/dist/jquery.js': 'development/module/eip/vendor/jquery/dist/jquery.js'
+                },
+                options: {
+                    replacements: [{
+                        pattern: 'factory( global );',
+                        replacement: '_jQuery = factory( global, true );'
+                    }]
+                }
+            }
+        },
+
         concat: {
+            eip: {
+                options: {
+                    separator: '\n'
+                },
+
+                src: [
+                    'development/module/eip/vendor/requirejs/require.js', 'development/module/eip/vendor/**/*.js', 'development/module/eip/main.js'
+                ],
+
+                dest: 'development/module/eip/main.js'
+            },
             development: {
                 options: {
                     separator: '\n'
@@ -296,6 +365,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ember-templates');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-wrap');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     grunt.registerTask('default', ['watch']);
 
@@ -314,4 +385,7 @@ module.exports = function(grunt) {
         'uglify']);
 
     grunt.registerTask('docs', ['yuidoc']);
+
+    grunt.registerTask('eip', ['requirejs:eip', 'wrap:eip-requirejs', 'wrap:eip-jquery', 'string-replace:eip-requirejs',
+        'string-replace:eip-jquery', 'concat:eip']);
 };
