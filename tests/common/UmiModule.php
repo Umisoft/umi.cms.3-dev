@@ -187,6 +187,22 @@ class UmiModule extends Framework
     }
 
     /**
+     * Кликает по эелементу, учитывая текущую локаль и контекст (если задан)
+     * Examples:
+     * ``` php
+     * <?php
+     *   $I->clickLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'], '.nav'); // matches <a href="#">Logout</a>
+     * ?>
+     * ```
+     * @param array       $texts   text for each locale
+     * @param string|null $context
+     */
+    public function clickLocalized(array $texts, $context = null)
+    {
+        $this->click($this->getLocalized($texts), $context);
+    }
+
+    /**
      * Grabs a service from common Toolkit
      * @param string $serviceInterfaceName
      * @param null|string $concreteClassName prepare realization
