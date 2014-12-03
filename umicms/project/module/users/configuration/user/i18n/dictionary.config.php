@@ -72,6 +72,6 @@ return [
             'Visitor' => 'Посетитель',
 
             'Wrong activation code format' => 'Неверный код активации',
-            'Cannot find user by activation code' => 'Пользователя с указанным кодом активации не существует',
+            'Cannot find user by activation code' => 'Пользователь с указанным кодом активации не существует',
         ]
     ];

@@ -226,7 +226,7 @@ return [
 
             'Value is required.' => 'Value is required.',
             'Invalid csrf token.' => 'Invalid csrf token.',
-            'Invalid captcha test.' => 'Invalid captcha test.',
+            'Invalid captcha' => 'Invalid captcha',
         ],
         'ru-RU' => [
             'common' => 'Общее',
@@ -241,7 +241,7 @@ return [
 
             'Value is required.' => 'Значение поля обязательно для заполнения.',
             'Invalid csrf token.' => 'Недопустимый маркер CSRF.',
-            'Invalid captcha test.' => 'Неверный код с картинки.',
+            'Invalid captcha' => 'Неверный код с картинки.',
         ]
     ],
 

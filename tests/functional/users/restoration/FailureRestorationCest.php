@@ -76,8 +76,8 @@ class FailureRestorationCest
         );
         $I->seeLocalized(
             [
-                'ru-RU' => 'Пользователя с заданным логином или email не существует.',
-                'en-US' => 'User with given login or email does not exist.'
+                'ru-RU' => 'Пользователь с заданным логином или email не существует.',
+                'en-US' => 'User with this login or email does not exist.'
             ],
             '#users_restoration_index_errors'
         );
@@ -102,7 +102,7 @@ class FailureRestorationCest
         $I->seeLocalized(
             [
                 'ru-RU' => 'Пользователь с заданным логином или email не активирован или заблокирован.',
-                'en-US' => 'User with given login or email has been block or has not activated.'
+                'en-US' => 'User with this login or email is blocked or deactivated.'
             ],
             '#users_restoration_index_errors'
         );
@@ -133,7 +133,7 @@ class FailureRestorationCest
         $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
         $I->seeLocalized(
             [
-                'ru-RU' => 'Пользователя с указанным кодом активации не существует',
+                'ru-RU' => 'Пользователь с указанным кодом активации не существует',
                 'en-US' => 'Cannot find user by activation code'
             ],
             '.alert.alert-danger'

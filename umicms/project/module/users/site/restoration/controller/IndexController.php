@@ -77,7 +77,7 @@ class IndexController extends BaseSitePageController
             $user = $this->module->user()->getUserByLoginOrEmail($loginOrEmailInput->getValue());
 
             if (!$user->active) {
-                $this->errors[] = $this->translate('User with given login or email has been block or has not activated.');
+                $this->errors[] = $this->translate('User with this login or email is blocked or deactivated.');
             } else {
                 $user->updateActivationCode();
                 $this->commit();
@@ -87,7 +87,7 @@ class IndexController extends BaseSitePageController
             }
 
         } catch (NonexistentEntityException $e) {
-            $this->errors[] = $this->translate('User with given login or email does not exist.');
+            $this->errors[] = $this->translate('User with this login or email does not exist.');
         }
 
         return null;

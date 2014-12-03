@@ -7,14 +7,14 @@
 <p><?= $this->translate('Hello')?>,</p>
 <p>
     <?= $this->translate(
-        'There has been a request to reset the password on your {site} account. To do this please click the link below',
+        'Password reset request was received for you account {site}. Please click the link below to reset you password',
         ['site' => $projectUrl])
     ?>:
     <br/>
     <?= $this->widget('users.restoration.confirmation.link', ['template' => 'link', 'activationCode' => $activationCode]); ?>
 </p>
 <p>
-    <?= $this->translate('If you did nоt request to reset your password please ignore this message')?>.
+    <?= $this->translate('Ignore this message if you did not send reset request')?>.
 </p>
 
 

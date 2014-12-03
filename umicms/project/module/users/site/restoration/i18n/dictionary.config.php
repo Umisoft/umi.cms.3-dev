@@ -11,35 +11,35 @@
 return [
 
     'en-US' => [
-        'User with given login or email does not exist.' => 'User with given login or email does not exist.',
-        'User with given login or email has been block or has not activated.' => 'User with given login or email has been block or has not activated.',
+        'User with this login or email does not exist.' => 'User with this login or email does not exist.',
+        'User with this login or email is blocked or deactivated.' => 'User with this login or email is blocked or deactivated.',
         'Hello' => 'Hello',
         'Login or email' => 'Login or email',
         'ForgotYourPassword' => 'Forgot your password?',
-        'An email with instructions on how to reset your password was sent to your email' =>
-        'An email with instructions on how to reset your password was sent to your email',
+        'Restoration instruction was sent to your email' =>
+        'Restoration instruction was sent to your email',
         'Confirm password reset request' => 'Confirm password reset request',
-        'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
-            'There has been a request to reset the password on your {site} account. To do this please click the link below',
-        'If you did nоt request to reset your password please ignore this message' =>
-            'If you did nоt request to reset your password please ignore this message',
+        'Password reset request was received for you account {site}. Please click the link below to reset you password' =>
+            'Password reset request was received for you account {site}. Please click the link below to reset you password',
+        'Ignore this message if you did not send reset request' =>
+            'Ignore this message if you did not send reset request',
 
         'role:viewer:displayName' => 'Password restoration',
         'role:confirmationExecutor:displayName' => 'Restoration confirm'
     ],
 
     'ru-RU' => [
-        'User with given login or email does not exist.' => 'Пользователя с заданным логином или email не существует.',
-        'User with given login or email has been block or has not activated.' => 'Пользователь с заданным логином или email не активирован или заблокирован.',
+        'User with this login or email does not exist.' => 'Пользователь с заданным логином или email не существует.',
+        'User with this login or email is blocked or deactivated.' => 'Пользователь с заданным логином или email не активирован или заблокирован.',
         'Hello' => 'Здравствуйте',
         'Login or email' => 'Логин или email',
         'ForgotYourPassword' => 'Забыли пароль?',
-        'An email with instructions on how to reset your password was sent to your email' =>
+        'Restoration instruction was sent to your email' =>
         'Письмо с инструкциями по сбросу пароля было выслано на Ваш электронный адрес',
         'Confirm password reset request' => 'Подтверждение запроса смены пароля',
-        'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
+        'Password reset request was received for you account {site}. Please click the link below to reset you password' =>
             'Для Вашего аккаунта на {site} был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
-        'If you did nоt request to reset your password please ignore this message' =>
+        'Ignore this message if you did not send reset request' =>
             'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо ',
 
         'role:viewer:displayName' => 'Восстановление пароля',

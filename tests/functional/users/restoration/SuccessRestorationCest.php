@@ -52,7 +52,7 @@ class SuccessRestorationCest
         $I->seeLocalized(
             [
                 'ru-RU' => 'Письмо с инструкциями по сбросу пароля было выслано на Ваш электронный адрес.',
-                'en-US' => 'An email with instructions on how to reset your password was sent to your email'
+                'en-US' => 'Restoration instruction was sent to your email'
             ],
             '.alert.alert-success'
         );
@@ -68,7 +68,7 @@ class SuccessRestorationCest
         $I->seeLocalized(
             [
                 'ru-RU' => 'Для Вашего аккаунта на {projectAbsoluteUrl} был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
-                'en-US' => 'There has been a request to reset the password on your {projectAbsoluteUrl} account. To do this please click the link below'
+                'en-US' => 'Password reset request was received for you account {projectAbsoluteUrl}. Please click the link below to reset you password'
             ]
         );
 
