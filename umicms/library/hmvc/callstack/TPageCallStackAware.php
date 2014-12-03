@@ -88,7 +88,7 @@ trait TPageCallStackAware
      */
     protected function hasPage(ICmsPage $page) {
         foreach ($this->getPageCallStack() as $stackPage) {
-            if ($stackPage === $page) {
+            if ($stackPage->getGUID() === $page->getGUID()) {
                 return true;
             }
         }
@@ -102,7 +102,7 @@ trait TPageCallStackAware
      */
     protected function isCurrent(ICmsPage $page)
     {
-        return ($this->hasCurrentPage() && $this->getCurrentPage() === $page);
+        return ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $page->getGUID());
     }
 }
  
