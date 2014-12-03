@@ -1,9 +1,9 @@
-define(['jquery'], function(jquery) {
+define(['Ember'], function(Ember) {
     'use strict';
-    console.log('admin', jquery.fn.jquery);
 
-    var topbar = function() {
-        console.log('topbar loading');
+    return function(namespaceApp) {
+        namespaceApp.TopbarView = Ember.View.extend({
+            template: Ember.Handlebars.compile('TEST')
+        });
     };
-    return topbar;
 });
