@@ -15,6 +15,7 @@ return [
 
         'Vote' => 'Vote',
         'You have already voted' => 'You have already voted',
+        'Do not select any option' => 'Do not select any option',
         'Total votes' => 'Total votes',
     ],
 
@@ -23,6 +24,7 @@ return [
 
         'Vote' => 'Голосовать',
         'You have already voted' => 'Вы уже проголосовали',
+        'Do not select any option' => 'Не выбран ни один из вариантов',
         'Total votes' => 'Всего голосов'
     ]
 
