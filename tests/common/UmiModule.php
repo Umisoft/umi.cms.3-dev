@@ -169,6 +169,19 @@ class UmiModule extends Framework
     }
 
     /**
+     * Проверяет, что текущая страница не содержит текст в текущей локали.
+     * В тексте можно использовать плейсхолдеры, например для указания url из UrlMap:
+     * ['ru-RU' => 'Абсолютный url проекта: {projectAbsoluteUrl}', ...]
+     * @see \Codeception\Lib\InnerBrowser::dontSee()
+     * @param array        $texts массив в формате ['RU-ru' => 'текст', 'En-us' => 'текст', ...] для каждой локали
+     * @param null|string  $selector
+     */
+    public function dontSeeLocalized(array $texts, $selector = null)
+    {
+        $this->dontSee($this->getLocalized($texts), $selector);
+    }
+
+    /**
      * Checks if there is a link with text specified for current locale.
      * Specify url to match link with exact this url.
      * Examples:
@@ -184,6 +197,24 @@ class UmiModule extends Framework
     public function seeLinkLocalized(array $texts, $url = null)
     {
         $this->seeLink($this->getLocalized($texts), $url);
+    }
+
+    /**
+     * Checks that there are no links with text specified for current locale.
+     * Specify url to match link with exact this url.
+     * Examples:
+     * ``` php
+     * <?php
+     *   $I->dontSeeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout']); // matches <a href="#">Logout</a>
+     *   $I->dontSeeLinkLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'],'/logout'); // matches <a href="/logout">Logout</a>
+     * ?>
+     * ```
+     * @param array       $texts text for each locale
+     * @param null|string $url
+     */
+    public function dontSeeLinkLocalized(array $texts, $url = null)
+    {
+        $this->dontSeeLink($this->getLocalized($texts), $url);
     }
 
     /**
