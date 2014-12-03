@@ -22,6 +22,7 @@ use umicms\filter\HtmlPurifier;
 use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
+use umicms\form\element\Highlighter;
 use umicms\form\element\Image;
 use umicms\form\element\ObjectRelation;
 use umicms\form\element\PageRelation;
@@ -36,6 +37,7 @@ use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\project\Environment;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
+use umicms\validation\IsWritableFile;
 use umicms\validation\Range;
 
 return [
@@ -70,7 +72,8 @@ return [
                     Permissions::TYPE_NAME => 'umicms\form\element\Permissions',
                     ObjectRelation::TYPE_NAME => 'umicms\form\element\ObjectRelation',
                     PageRelation::TYPE_NAME => 'umicms\form\element\PageRelation',
-                    SingleCollectionObjectRelation::TYPE_NAME => 'umicms\form\element\SingleCollectionObjectRelation'
+                    SingleCollectionObjectRelation::TYPE_NAME => 'umicms\form\element\SingleCollectionObjectRelation',
+                    Highlighter::TYPE_NAME => 'umicms\form\element\Highlighter',
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'
@@ -203,6 +206,7 @@ return [
             'validator' => [
                 'types' => [
                     Range::NAME => 'umicms\validation\Range',
+                    IsWritableFile::NAME => 'umicms\validation\IsWritableFile',
                 ]
             ]
         ]
