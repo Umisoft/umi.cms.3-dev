@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'Welcome' => 'Welcome',
         'EditProfile' => 'Edit profile',
-        'Change password' => 'Change password',
+        'ChangePassword' => 'Change password',
 
         'role:viewer:displayName' => 'View profile',
         'role:passwordExecutor:displayName' => 'Change password'
@@ -22,7 +22,7 @@ return [
     'ru-RU' => [
         'Welcome' => 'Добро пожаловать',
         'EditProfile' => 'Редактировать профиль',
-        'Change password' => 'Смена пароля',
+        'ChangePassword' => 'Смена пароля',
 
         'role:viewer:displayName' => 'Просмотр профиля пользователя',
         'role:passwordExecutor:displayName' => 'Смена пароля'

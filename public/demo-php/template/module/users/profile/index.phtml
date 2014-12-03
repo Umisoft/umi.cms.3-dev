@@ -13,7 +13,6 @@
     <?php $errors = isset($errors) ? $errors : null ?>
     <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>
 
-    <h2><?= $this->translate('Change password')?></h2>
-    <?= $this->widget('users.profile.password.form', ['template' => 'form']) ?>
+    <?= $this->widget('users.profile.password.link', ['template' => 'link']) ?>
 
 </div>
