@@ -196,7 +196,23 @@ class UmiModule extends Framework
      */
     public function seeLinkLocalized(array $texts, $url = null)
     {
-        $this->seeLink($this->getLocalized($texts), $url);
+        $this->seeLink($this->getLocalized($texts), $this->replaceUrlPlaceholders($url));
+    }
+
+    /**
+     * Кликает по эелементу, учитывая текущую локаль и контекст (если задан)
+     * Examples:
+     * ``` php
+     * <?php
+     *   $I->clickLocalized(['ru-RU' => 'Выйти', 'en-US' => 'Logout'], '.nav'); // matches <a href="#">Logout</a>
+     * ?>
+     * ```
+     * @param array       $texts   text for each locale
+     * @param string|null $context
+     */
+    public function clickLocalized(array $texts, $context = null)
+    {
+        $this->click($this->getLocalized($texts), $context);
     }
 
     /**
@@ -292,6 +308,16 @@ class UmiModule extends Framework
         }
 
         return strtr($texts[$this->locale], $this->localePlaceholders);
+    }
+
+    /**
+     * Заменяет в url все вхождения placeholders
+     * @param  $url
+     * @return string
+     */
+    protected function replaceUrlPlaceholders($url)
+    {
+        return str_replace(array_keys($this->localePlaceholders), array_values($this->localePlaceholders), $url);
     }
 
     /**
