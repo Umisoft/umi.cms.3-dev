@@ -141,6 +141,16 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware, IProject
     }
 
     /**
+     * TODO нужен рефакторинг
+     * Сбрасывает кеш обработанных страниц и кеш сдвига роутинга
+     */
+    public static function clearCacheAndRoutingOffset()
+    {
+        self::$cache = [];
+        self::$routingOffset = 0;
+    }
+
+    /**
      * Устанавливает элемент в качестве текущего
      * @param SystemPage $element
      */

@@ -54,7 +54,7 @@
 
                         <div class="navbar-collapse collapse">
 
-                            <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')/result" mode="auto"/>
+                            <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')/result" mode="auto"/>
 
                             <xsl:apply-templates select="locales" mode="layout"/>
 

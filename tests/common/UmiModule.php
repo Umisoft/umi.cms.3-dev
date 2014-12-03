@@ -179,7 +179,7 @@ class UmiModule extends Framework
         foreach ($structure as $guid => $pageOptions) {
             $page = $structureModule->element()->get($guid);
             $page->inMenu = $pageOptions[StructureElement::FIELD_IN_MENU];
-            $page->submenuState = $pageOptions [StructureElement::FIELD_SUBMENU_STATE];
+            $page->submenuState = $pageOptions[StructureElement::FIELD_SUBMENU_STATE];
             $objectPersister->markAsModified($page);
         }
         $objectPersister->commit();

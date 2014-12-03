@@ -9,6 +9,9 @@
     <?php foreach ($menu as $pageInfo) : ?>
         <li class="<?= $pageInfo['active'] ? 'active' : '' ?>">
             <a href="<?= $pageInfo['page']->getPageUrl() ?>"><?= $pageInfo['page']->displayName ?></a>
+            <?php if(count($pageInfo['children'])): ?>
+                <?= $this->render('auto.phtml', ['menu' => $pageInfo['children']])?>
+            <?php endif ?>
         </li>
     <?php endforeach; ?>
     </ul>

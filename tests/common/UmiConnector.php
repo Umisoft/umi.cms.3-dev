@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use umi\http\Request;
 use umi\http\Response;
 use umicms\project\Bootstrap;
+use umicms\project\site\route\SiteComponentRoute;
 
 /**
  * Connector for emulate request-response process to UMI.CMS
@@ -44,7 +45,7 @@ class UmiConnector extends Client
         if (0 === strpos($request->getRequestUri(), '/messages')) {
             return $this->getMessageResponse($request);
         }
-
+        SiteComponentRoute::clearCacheAndRoutingOffset();
         return $this->getProjectResponse($request);
     }
 

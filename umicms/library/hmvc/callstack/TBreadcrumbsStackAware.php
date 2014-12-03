@@ -62,7 +62,7 @@ trait TBreadcrumbsStackAware
     protected function isPageInBreadcrumbs(ICmsPage $page)
     {
         foreach ($this->getBreadcrumbsStack() as $stackPage) {
-            if ($stackPage->getGUID() === $page->getGUID()) {
+            if ($stackPage === $page) {
                 return true;
             }
         }

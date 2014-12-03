@@ -3,6 +3,9 @@
         {% for pageInfo in menu %}
             <li class="{{ pageInfo.active ? 'active' }}">
                 <a href="{{ pageInfo.page.getPageUrl() }}">{{ pageInfo.page.displayName }}</a>
+                {% if (pageInfo.children) %}
+                    {{ include('auto.twig', {'menu' : pageInfo.children}) }}
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
