@@ -90,7 +90,9 @@
         <div class="form-group">
             <xsl:apply-templates select="." mode="default.form.validation" />
             <label class="control-label">
-                <xsl:value-of select="label"/>:
+                <xsl:value-of select="label"/>
+                <xsl:apply-templates select="validators/item[type]" mode="default.form.required" />
+                <xsl:text>:</xsl:text>
                 <xsl:apply-templates select="errors" mode="default.form" />
                 <input class="form-control">
                     <xsl:apply-templates select="attributes" mode="all.form"/>
@@ -103,7 +105,9 @@
         <div class="form-group">
             <xsl:apply-templates select="." mode="default.form.validation" />
             <label class="control-label">
-                <xsl:value-of select="label"/>:
+                <xsl:value-of select="label"/>
+                <xsl:apply-templates select="validators/item[type]" mode="default.form.required" />
+                <xsl:text>:</xsl:text>
                 <xsl:apply-templates select="errors" mode="default.form" />
                 <input class="form-control">
                     <xsl:apply-templates select="attributes" mode="all.form"/>
@@ -114,6 +118,8 @@
             <xsl:apply-templates select="." mode="default.form.validation" />
             <label class="control-label">
                 <xsl:value-of select="document('translate://project.site.users/Confirm%20password')/result"/>
+                <xsl:apply-templates select="validators/item[type]" mode="default.form.required" />
+                <xsl:text>:</xsl:text>
                 <input class="form-control">
                     <xsl:apply-templates select="attributes" mode="all.form"/>
                 </input>
@@ -125,7 +131,11 @@
     <xsl:template match="item[type='captcha'][isHuman='0']" mode="default.form">
         <div class="form-group">
             <xsl:apply-templates select="." mode="default.form.validation" />
-            <label> <xsl:value-of select="label" /> </label>
+            <label>
+                <xsl:value-of select="label" />
+                <xsl:apply-templates select="validators/item[type]" mode="default.form.required" />
+                <xsl:text>:</xsl:text>
+            </label>
             <xsl:apply-templates select="errors" mode="default.form" />
             <script type="text/javascript">
                 function reloadCaptcha_<xsl:value-of select="concat(sessionKey, generate-id())" />() {
@@ -167,6 +177,11 @@
         <xsl:if test="valid = 0 or not(valid)">
             <xsl:attribute name="class">form-group input-group-error</xsl:attribute>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="item[type]" mode="default.form.required" />
+    <xsl:template match="item[type='required']" mode="default.form.required">
+        <xsl:text>*</xsl:text>
     </xsl:template>
 
     <xsl:template match="errors" mode="default.form" />

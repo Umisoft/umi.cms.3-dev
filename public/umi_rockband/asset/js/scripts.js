@@ -22,11 +22,9 @@ jQuery(document).ready(function() {
     });
 
     jQuery(window).scroll(function() {
-		if (jQuery(document).scrollTop() <= headerY.height()) {
-			header.filter('.fixed').each(function() {
-				header.removeClass('fixed');
-				setHeader();
-			});
+		if (header.has('.fixed') && jQuery(document).scrollTop() <= headerY.height()) {
+			header.removeClass('fixed');
+			setHeader();
 		} else {
 			header.addClass('fixed');
 		}
