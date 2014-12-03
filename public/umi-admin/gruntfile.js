@@ -13,6 +13,11 @@ module.exports = function(grunt) {
             js: {
                 files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*', 'library/**/*.*'],
                 tasks: ['emberTemplates', 'requirejs:development']
+            },
+
+            eip: {
+                files: ['module/eip/**/*.*'],
+                tasks: ['eip']
             }
         },
 
@@ -73,7 +78,7 @@ module.exports = function(grunt) {
                     optimize: 'none',
                     findNestedDependencies: true,
                     exclude: [
-                        'jquery'
+                        'jquery', 'Handlebars', 'Ember'
                     ]
                 }
             },
@@ -209,7 +214,7 @@ module.exports = function(grunt) {
                 src: 'vendor/requirejs/require.js',
                 dest: 'development/module/eip',
                 options: {
-                    wrapper: ['var EIP = function () {\n', '\n this.define = define; this.require = require; this.requirejs = requirejs;}; EIP = new EIP();']
+                    wrapper: ['var EIP = {}; (function () {\n', '\n this.define = define; this.require = require; this.requirejs = requirejs;}.call(EIP));']
                 }
             },
             'eip-jquery': {
@@ -217,6 +222,20 @@ module.exports = function(grunt) {
                 dest: 'development/module/eip',
                 options: {
                     wrapper: ['EIP.define("jquery", [], function () { var define; var _jQuery;', 'return _jQuery;\n});']
+                }
+            },
+            'eip-handlebars': {
+                src: 'vendor/handlebars/handlebars.js',
+                dest: 'development/module/eip',
+                options: {
+                    wrapper: ['EIP.define("Handlebars", [], function () {', 'window.Handlebars = Handlebars;\nreturn Handlebars;\n});']
+                }
+            },
+            'eip-ember': {
+                src: 'vendor/ember/ember.js',
+                dest: 'development/module/eip',
+                options: {
+                    wrapper: ['EIP.define("Ember", ["Handlebars"], function (Handlebars) {', '\nreturn Ember;});']
                 }
             }
         },
@@ -254,7 +273,9 @@ module.exports = function(grunt) {
                 },
 
                 src: [
-                    'development/module/eip/vendor/requirejs/require.js', 'development/module/eip/vendor/**/*.js', 'development/module/eip/main.js'
+                    'development/module/eip/vendor/requirejs/require.js',
+                    'development/module/eip/vendor/**/*.js',
+                    'development/module/eip/main.js'
                 ],
 
                 dest: 'development/module/eip/main.js'
@@ -334,6 +355,13 @@ module.exports = function(grunt) {
                         dest: 'production/library'
                     }
                 ]
+            },
+            eip: {
+                files: [
+                    {
+                        'production/module/eip/main.js': 'development/module/eip/main.js'
+                    }
+                ]
             }
         },
 
@@ -386,6 +414,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('docs', ['yuidoc']);
 
-    grunt.registerTask('eip', ['requirejs:eip', 'wrap:eip-requirejs', 'wrap:eip-jquery', 'string-replace:eip-requirejs',
-        'string-replace:eip-jquery', 'concat:eip']);
+    grunt.registerTask('eip', ['requirejs:eip', 'wrap', 'string-replace', 'concat:eip']);
 };
