@@ -18,6 +18,7 @@ use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
+use umi\orm\manager\IObjectManager;
 use umi\route\IRouteFactory;
 use umi\route\IRouter;
 use umi\route\result\IRouteResult;
@@ -134,6 +135,10 @@ class Bootstrap
      * @var string $projectDumpDirectory директория дампа данных проекта
      */
     protected $projectDumpDirectory = './dump';
+    /**
+     * @var bool $debugMode хранит информацию о включении дебаг режима (вывода списка объектов на странице отдельным запросом)
+     */
+    protected $debugMode = false;
 
     /**
      * Конструктор.
@@ -161,6 +166,7 @@ class Bootstrap
 
     /**
      * Инициализирует все необходимые данные для проекта
+     * Если произошёл редирект и создан ответ, то инициализация останавливается
      * @return bool
      */
     public function init()
@@ -391,6 +397,11 @@ class Bootstrap
 
         $this->response->prepare($this->request);
 
+        if ($this->debugMode) {
+            $this->response->getContent();
+            return $this->createDebugResponse();
+        }
+
         return $this->response;
     }
 
@@ -428,6 +439,11 @@ class Bootstrap
      */
     protected function prepareRequest()
     {
+        if ($this->request->query->has('UMI_DEBUG')) {
+            $this->debugMode = true;
+            $this->request->query->remove('UMI_DEBUG');
+        }
+
         $pathInfo = $this->request->getPathInfo();
         $requestedUri = $this->request->getRequestUri();
         $queryString = $this->request->getQueryString();
@@ -904,6 +920,49 @@ class Bootstrap
             }
         }
         $this->routePath = $routePath;
+    }
+
+    /**
+     * Создаёт и возвращает ответ клиенту в виде списка объектов, подгружаемых на странице
+     * @return Response
+     */
+    private function createDebugResponse()
+    {
+        $objects = $this->getObjectByCollection();
+        $content = ['collections' => []];
+
+        foreach ($objects as $collectionName => $collectionObjects) {
+            $current = [];
+            $current['name'] = $collectionName;
+            $current['objects'] = [];
+            foreach ($collectionObjects as $object) {
+                $current['objects'][] = $object;
+            }
+            $content['collections'][] = $current;
+        }
+
+        $response = new Response();
+        $response->headers->set('Content-Type', $this->allowedRequestFormats['json']);
+        $response->setContent(json_encode($content));
+
+        return $response;
+    }
+
+    /**
+     * Получает загруженные объекты, группирует их по коллекциям и возвращает
+     * @return array
+     */
+    private function getObjectByCollection()
+    {
+        /** @var IObjectManager $manager */
+        $manager = $this->getToolkit()->getService('umi\orm\manager\IObjectManager');
+        $groupedObjects = [];
+
+        foreach ($manager->getObjects() as $object) {
+            $groupedObjects[$object->getCollectionName()][] = ['id' => $object->getId(), 'typeName' => $object->getTypeName()];
+        }
+
+        return $groupedObjects;
     }
 
 }
