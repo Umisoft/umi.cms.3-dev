@@ -19,15 +19,4 @@
         <xsl:apply-templates select="form"/>
     </xsl:template>
 
-    <xsl:template match="contents[@controller='users.authorization.login']" mode="layout">
-        <xsl:apply-templates select="breadcrumbs" mode="layout"/>
-
-        <xsl:apply-templates select="page" mode="layout"/>
-
-        <xsl:apply-templates select="errors" mode="formErrors"/>
-
-        <xsl:apply-templates select="form"/>
-
-    </xsl:template>
-
 </xsl:stylesheet>
