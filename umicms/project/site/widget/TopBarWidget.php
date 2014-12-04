@@ -61,7 +61,7 @@ class TopBarWidget extends BaseCmsWidget implements ILocalesAware
         $modulesInfo = json_encode($this->getModulesInfo());
 
         $result = <<<EOF
-<link rel="stylesheet" type="text/css" href="{$baseResourceUrl}/umi-admin/sitePanel/styles/styles.css?version={$version}">
+<link rel="stylesheet" type="text/css" href="{$baseResourceUrl}/umi-admin/development/module/eip/main.css?version={$version}">
 <script>
     window.UmiSettings = {
         "baseURL": "{$baseAdminUrl}",

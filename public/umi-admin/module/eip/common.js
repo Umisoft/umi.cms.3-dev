@@ -6,7 +6,8 @@ require.config({
         adminPackages: 'partials',
         jquery: 'vendor/jquery/dist/jquery',
         Handlebars: 'vendor/handlebars/handlebars',
-        Ember: 'vendor/ember/ember'
+        Ember: 'vendor/ember/ember',
+        templates: 'empty:'
     },
 
     packages: [

@@ -7,12 +7,12 @@ module.exports = function(grunt) {
         watch: {
             scss: {
                 files: ['styles/**/*.scss'],
-                tasks: ['sass', 'autoprefixer', 'concat:development']
+                tasks: ['sass:dev', 'autoprefixer', 'concat:development']
             },
 
             js: {
                 files: ['application/**/*.*', 'partials/**/*.*', 'auth/**/*.*', 'library/**/*.*'],
-                tasks: ['emberTemplates', 'requirejs:development']
+                tasks: ['emberTemplates:admin', 'requirejs:development']
             },
 
             eip: {
@@ -30,11 +30,16 @@ module.exports = function(grunt) {
                 files: {
                     'development/css/styles.css': 'styles/main.scss'
                 }
+            },
+            eip: {
+                files: {
+                    'development/module/eip/main.css': 'module/eip/main.scss'
+                }
             }
         },
 
         emberTemplates: {
-            compile: {
+            admin: {
                 options: {
                     amd: 'Ember',
                     concatenate: true,
@@ -50,6 +55,24 @@ module.exports = function(grunt) {
                 },
                 files: {
                     "application/templates.compile.js": ['application/**/*.hbs', 'partials/**/*.hbs']
+                }
+            },
+            eip: {
+                options: {
+                    amd: false,
+                    concatenate: true,
+                    preprocess: function(source) {
+                        return source.replace(/\s+/g, ' ');
+                    },
+                    templateRegistration: function(name, contents) {
+                        name = name.split('/');
+                        name = name[name.length - 1];
+                        name = name.replace(/\./g, '\/');
+                        return 'Ember.TEMPLATES["UMI/' + name + '"] = ' + contents + ';';
+                    }
+                },
+                files: {
+                    'development/module/eip/templates.compile.js': ['module/eip/**/*.hbs']
                 }
             }
         },
@@ -78,7 +101,7 @@ module.exports = function(grunt) {
                     optimize: 'none',
                     findNestedDependencies: true,
                     exclude: [
-                        'jquery', 'Handlebars', 'Ember'
+                        'jquery', 'Handlebars', 'Ember', 'templates'
                     ]
                 }
             },
@@ -237,6 +260,13 @@ module.exports = function(grunt) {
                 options: {
                     wrapper: ['EIP.define("Ember", ["Handlebars"], function (Handlebars) {', '\nreturn Ember;});']
                 }
+            },
+            'eip-hbs': {
+                src: 'development/module/eip/templates.compile.js',
+                dest: 'development/module/eip/templates.compile.js',
+                options: {
+                    wrapper: ['EIP.define("templates", ["Ember"], function (Ember) {', '});']
+                }
             }
         },
 
@@ -275,6 +305,7 @@ module.exports = function(grunt) {
                 src: [
                     'development/module/eip/vendor/requirejs/require.js',
                     'development/module/eip/vendor/**/*.js',
+                    'development/module/eip/templates.compile.js',
                     'development/module/eip/main.js'
                 ],
 
@@ -405,8 +436,8 @@ module.exports = function(grunt) {
     grunt.registerTask('modernizr', ['concat:modernizr']);
 
     grunt.registerTask('dev', [
-        'copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass', 'autoprefixer', 'concat:development',
-        'emberTemplates', 'requirejs:development'
+        'copy:vendorDevelopment', 'copy:imagesDevelopment', 'sass:dev', 'autoprefixer', 'concat:development',
+        'emberTemplates:admin', 'requirejs:development'
     ]);
 
     grunt.registerTask('pro', ['clean', 'csso', 'copy:imagesProduction', 'copy:jsProduction', 'copy:vendorProduction',
@@ -414,5 +445,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('docs', ['yuidoc']);
 
-    grunt.registerTask('eip', ['requirejs:eip', 'wrap', 'string-replace', 'concat:eip']);
+    grunt.registerTask('eip', ['emberTemplates:eip', 'requirejs:eip', 'wrap', 'string-replace', 'concat:eip', 'sass:eip']);
 };

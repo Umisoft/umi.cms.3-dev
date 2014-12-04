@@ -1,38 +1,42 @@
-define(['jquery', 'Ember', 'module/eip/core/application/main', 'module/eip/core/router/router', 'topbar'], function($, Ember, application, router, topbar) {
-    'use strict';
+define(
+    ['jquery', 'Ember', 'templates', 'module/eip/core/application/main', 'module/eip/core/router/router', 'topbar'],
 
-    var UMI = {};
+    function($, Ember, templates, application, router, topbar) {
+        'use strict';
 
-    var createRootElement = function() {
-        $('body').prepend('<div id="umi-eip-application"></div>');
-    };
+        var UMI = {};
 
-    createRootElement();
+        var createRootElement = function() {
+            $('body').prepend('<div id="umi-eip-application"></div>');
+        };
 
-    /**
-     * Для отключения "магии" переименования моделей Ember.Data
-     * @class Inflector.inflector
-     */
-    //Ember.Inflector.inflector = new Ember.Inflector();
+        createRootElement();
 
-    UMI = Ember.Application.create({
-        rootElement: '#umi-eip-application',
+        /**
+         * Для отключения "магии" переименования моделей Ember.Data
+         * @class Inflector.inflector
+         */
+        //Ember.Inflector.inflector = new Ember.Inflector();
 
-        Resolver: Ember.DefaultResolver.extend({
-            resolveTemplate: function(parsedName) {
-                parsedName.fullNameWithoutType = 'UMI/' + parsedName.fullNameWithoutType;
-                return this._super(parsedName);
-            }
-        })
-    });
+        UMI = Ember.Application.create({
+            rootElement: '#umi-eip-application',
 
-    UMI.deferReadiness();
+            Resolver: Ember.DefaultResolver.extend({
+                resolveTemplate: function(parsedName) {
+                    parsedName.fullNameWithoutType = 'UMI/' + parsedName.fullNameWithoutType;
+                    return this._super(parsedName);
+                }
+            })
+        });
 
-    application(UMI);
-    router(UMI);
-    topbar(UMI);
+        UMI.deferReadiness();
 
-    UMI.advanceReadiness();
+        application(UMI);
+        router(UMI);
+        topbar(UMI);
 
-    return UMI;
-});
+        UMI.advanceReadiness();
+
+        return UMI;
+    }
+);

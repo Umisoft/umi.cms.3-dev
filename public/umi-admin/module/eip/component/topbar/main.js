@@ -3,7 +3,8 @@ define(['Ember'], function(Ember) {
 
     return function(namespaceApp) {
         namespaceApp.TopbarView = Ember.View.extend({
-            template: Ember.Handlebars.compile('TEST')
+            classNames: ['eip-topbar'],
+            templateName: 'component/topbar/main'
         });
     };
 });
