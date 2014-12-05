@@ -19,14 +19,6 @@ return [
     ],
 
     'elements' => [
-        IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID => [
-            'type' => SingleCollectionObjectRelation::TYPE_NAME,
-            'label' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID,
-            'options' => [
-                'collection' => 'structure',
-                'dataSource' => IProjectSettingsAware::SETTING_DEFAULT_PAGE_GUID
-            ]
-        ],
         IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID => [
             'type' => SingleCollectionObjectRelation::TYPE_NAME,
             'label' => IProjectSettingsAware::SETTING_DEFAULT_LAYOUT_GUID,

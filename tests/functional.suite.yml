@@ -1,0 +1,56 @@
+# Codeception Test Suite Configuration
+
+# suite for functional (integration) tests.
+# emulate web requests and make application process them.
+# Include one of framework modules (Symfony2, Yii2, Laravel4) to use it.
+
+class_name: FunctionalTester
+modules:
+    enabled: [umitest\UmiModule, Filesystem, FunctionalHelper]
+    config:
+        umitest\UmiModule:
+            locale:     'ru-RU'
+            projectUrl: '/php'
+
+env:
+    ru-php:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'ru-RU'
+                    projectUrl: '/php'
+
+    en-php:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'en-US'
+                    projectUrl: '/php/en'
+
+    ru-xslt:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'ru-RU'
+                    projectUrl: '/xslt'
+
+    en-xslt:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'en-US'
+                    projectUrl: '/xslt/en'
+
+    ru-twig:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'ru-RU'
+                    projectUrl: '/twig'
+
+    en-twig:
+        modules:
+            config:
+                umitest\UmiModule:
+                    locale:     'en-US'
+                    projectUrl: '/twig/en'

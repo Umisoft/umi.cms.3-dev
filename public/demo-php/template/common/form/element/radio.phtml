@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
+<div class="form-group <?= $element->attributes->name ?> <?= $element->valid ? '' : 'has-error' ?>">
 
     <label for="<?= $element->attributes->id ?>"><?= $element->label ?></label>
 

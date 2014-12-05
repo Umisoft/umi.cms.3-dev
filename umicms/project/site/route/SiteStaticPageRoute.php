@@ -72,7 +72,7 @@ class SiteStaticPageRoute extends BaseRoute implements IProjectSettingsAware
     protected function matchDefaultPage()
     {
         try {
-            $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
+            $element = $this->structureApi->element()->getDefaultPage();
 
             if ($element instanceof StaticPage && $element->active && !$element->trashed) {
                 $this->setRouteParams($element);

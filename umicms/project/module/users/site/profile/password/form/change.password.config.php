@@ -37,10 +37,13 @@ return [
         ],
 
         'newPassword' => [
-            'type' => PasswordWithConfirmation::TYPE_NAME,
+            'type' => Password::TYPE_NAME,
             'label' => 'New password',
             'options' => [
                 'dataSource' => RegisteredUser::FIELD_PASSWORD,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
                 ]

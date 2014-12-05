@@ -21,12 +21,11 @@ use umicms\hmvc\component\site\SitePageController;
 class PageController extends SitePageController
 {
     /**
-     * Возвращает хлебные крошки для текущего элемента.
+     * Заполняет стек хлебных крошек для текущего поста
      * @param ICmsPage $page
      * @throws InvalidArgumentException в случае, если не удалось получить хлебные крошки
-     * @return BlogPost[]
      */
-    protected function getNavigationAncestry(ICmsPage $page)
+    protected function populateBreadcrumbsStack(ICmsPage $page)
     {
         if (!$page instanceof BlogPost) {
             throw new InvalidArgumentException($this->translate(
@@ -34,12 +33,13 @@ class PageController extends SitePageController
             ));
         }
 
-        $breadcrumbs = [];
         if (!is_null($page->category)) {
+            /** @var ICmsPage[] $breadcrumbs */
             $breadcrumbs = $page->category->getAncestry()->result()->fetchAll();
-            $breadcrumbs[] = $page->category;
+            foreach ($breadcrumbs as $breadcrumb) {
+                $this->pushPageToBreadcrumbs($breadcrumb);
+            }
+            $this->pushPageToBreadcrumbs($page->category);
         }
-
-        return $breadcrumbs;
     }
 }

@@ -18,10 +18,6 @@ use umi\config\entity\IConfig;
 interface IProjectSettingsAware
 {
     /**
-     * Имя настройки для задания guid главной страницы
-     */
-    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
-    /**
      * Имя настройки для задания guid шаблона по умолчанию
      */
     const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';

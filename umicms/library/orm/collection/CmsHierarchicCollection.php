@@ -31,49 +31,28 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
      */
     public function add($slug  = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null)
     {
-        if ($branch) {
-            $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
-            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
-                /**
-                 * @var ICalculableProperty $localizedSiteChildCount
-                 */
-                $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
-                $localizedSiteChildCount->recalculate();
-            }
-            /**
-             * @var ICalculableProperty $adminChildCount
-             */
-            $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-            $adminChildCount->recalculate();
-        }
-
+        $this->recalcCounters($branch);
         return parent::add($slug, $typeName, $branch, $guid);
     }
 
     /**
      * {@inheritdoc}
      */
+    public function move(IHierarchicObject $object, IHierarchicObject $branch = null, IHierarchicObject $previousSibling = null)
+    {
+        parent::move($object, $branch, $previousSibling);
+        $this->recalcCounters($branch);
+        return $this;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
     public function delete(IObject $object)
     {
-        /**
-         * @var CmsHierarchicObject $object
-         */
-        if ($parent = $object->getParent()) {
-            $siteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
-            foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
-                /**
-                 * @var ICalculableProperty $localizedSiteChildCount
-                 */
-                $localizedSiteChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
-                $localizedSiteChildCount->recalculate();
-            }
-            /**
-             * @var ICalculableProperty $adminChildCount
-             */
-            $adminChildCount = $parent->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
-            $adminChildCount->recalculate();
-        }
-
+        /** @var CmsHierarchicObject $object */
+        $this->recalcCounters($object->getParent());
         return parent::delete($object);
     }
 
@@ -126,5 +105,28 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
                 ->equals($object->getParent());
 
         return (bool) $select->getTotal();
+    }
+
+    /**
+     * @param IHierarchicObject $branch
+     */
+    private function recalcCounters(IHierarchicObject $branch = null)
+    {
+        if (!$branch) {
+            return;
+        }
+        $siteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT);
+        foreach ($siteChildCount->getField()->getLocalizations() as $localeId => $localeInfo) {
+            /**
+             * @var ICalculableProperty $localizedSiteChildCount
+             */
+            $localizedSiteChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_SITE_CHILD_COUNT, $localeId);
+            $localizedSiteChildCount->recalculate();
+        }
+        /**
+         * @var ICalculableProperty $adminChildCount
+         */
+        $adminChildCount = $branch->getProperty(CmsHierarchicObject::FIELD_ADMIN_CHILD_COUNT);
+        $adminChildCount->recalculate();
     }
 }

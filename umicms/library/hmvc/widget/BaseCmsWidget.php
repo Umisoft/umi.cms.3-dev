@@ -18,6 +18,8 @@ use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget;
 use umi\http\Response;
 use umicms\exception\NonexistentEntityException;
+use umicms\hmvc\callstack\IBreadcrumbsStackAware;
+use umicms\hmvc\callstack\TBreadcrumbsStackAware;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -33,10 +35,11 @@ use umicms\serialization\xml\BaseSerializer;
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlManagerAware, IPageCallStackAware
+abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlManagerAware, IPageCallStackAware, IBreadcrumbsStackAware
 {
     use TUrlManagerAware;
     use TPageCallStackAware;
+    use TBreadcrumbsStackAware;
 
     const ACL_RESOURCE_PREFIX = 'widget:';
 
@@ -44,6 +47,20 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
      * @var string $forbiddenTemplate имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.
      */
     public $forbiddenTemplate = 'widget.forbidden';
+
+    /**
+     * @var int $callCounter счетчик вызовов конкретного виджета
+     */
+    protected $callCounter = 0;
+
+    /**
+     * Устанавливает счетчик вызовов конкретного виджета
+     * @param int $callCounter
+     */
+    public function setCallCounter($callCounter)
+    {
+        $this->callCounter = $callCounter;
+    }
 
     /**
      * {@inheritdoc}
@@ -89,6 +106,8 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     protected function createResult($templateName, array $variables = [])
     {
         $variables['widget'] = $this->getShortPath();
+        $variables['widgetId'] = $this->getWidgetId();
+
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
 
         $view->addSerializerConfigurator(
@@ -96,6 +115,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
             {
                 if ($serializer instanceof BaseSerializer) {
                     $serializer->setAttributes(['widget']);
+                    $serializer->setAttributes(['widgetId']);
                 }
             }
         );
@@ -134,6 +154,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     {
         $view = new CmsTreeView($selector);
         $view->setPageCallStack($this->getPageCallStack());
+        $view->setBreadcrumbsStack($this->getBreadcrumbsStack());
 
         return $this->createResult($templateName, [
             'tree' => $view
@@ -160,7 +181,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     }
 
     /**
-     * Возвращает короткий путь виджета, относительно приложения сайта
+     * Возвращает короткий путь виджета, относительно SiteApplication.
      * @return string
      */
     protected function getShortPath()
@@ -172,6 +193,21 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         }
 
         return $this->getName();
+    }
+
+    /**
+     * Возвращает уникальный идентификатор для виджета таким образом, чтобы при выводе двух одинаковых виджетов
+     * на странице у них были разные идентификаторы.
+     * @return string
+     */
+    protected function getWidgetId()
+    {
+        $id = str_replace(IComponent::PATH_SEPARATOR, '_', $this->getShortPath());
+        if ($this->callCounter) {
+            $id .= '_' . $this->callCounter;
+        }
+
+        return $id;
     }
 }
  

@@ -4,8 +4,7 @@
  */
 ?>
 <p>
-    <?= $this->translate('Welcome') ?>, <br>
-    <?= $user->displayName ?>
+    <?= $this->translate('Welcome') ?>, <?= $user->displayName ?>
 </p>
 
 <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>

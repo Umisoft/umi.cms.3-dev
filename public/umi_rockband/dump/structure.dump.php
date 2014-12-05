@@ -144,7 +144,7 @@ return array (
       'locked' => 
       array (
         0 => 'boolean',
-        1 => false,
+        1 => true,
       ),
       'componentName' => 
       array (

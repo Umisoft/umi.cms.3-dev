@@ -19,7 +19,8 @@ return [
     'awareInterfaces' => [
         'umi\hmvc\IMvcEntityFactoryAware',
         'umicms\hmvc\url\IUrlManagerAware',
-        'umicms\hmvc\callstack\IPageCallStackAware'
+        'umicms\hmvc\callstack\IPageCallStackAware',
+        'umicms\hmvc\callstack\IBreadcrumbsStackAware',
     ],
     'services' => [
         'umi\hmvc\IMvcEntityFactory',
