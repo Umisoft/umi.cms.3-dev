@@ -1,1 +1,32 @@
-OK LTS DT
+<div class="eip-topbar-section eip-left">
+
+    <div class="eip-topbar-section-item">
+
+        <span class="eip-topbar-button" data-dropdown data-options="selectorById: false;">
+            <i class="icon icon-butterfly"></i>
+        </span>
+    </div>
+
+    <div class="eip-topbar-section-item">
+        <span class="umi-topbar-label">{{view.activeProject}}</span>
+    </div>
+
+    <div class="eip-topbar-section-item">
+        <a href="{{unbound view.siteUrl}}" class="eip-button eip-button-tiny flat umi-top-bar-button">
+            <i class="icon white icon-viewOnSite"></i>
+        </a>
+    </div>
+</div>
+
+{{#if loading}}
+    <span class="umi-top-bar-label umi-top-bar-loader">
+        {{i18n "Loading"}}...
+    </span>
+    <div class="umi-overlay"></div>
+{{/if}}
+
+<div class="eip-top-bar-list eip-right">
+    <div class="eip-top-bar-section-item">
+        ТУТ
+    </div>
+</div>

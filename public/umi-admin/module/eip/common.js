@@ -3,7 +3,7 @@ require.config({
 
     paths: {
         core: 'module/eip/core/main',
-        adminPackages: 'partials',
+        admin: './',
         jquery: 'vendor/jquery/dist/jquery',
         Handlebars: 'vendor/handlebars/handlebars',
         Ember: 'vendor/ember/ember',

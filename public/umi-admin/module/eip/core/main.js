@@ -1,7 +1,7 @@
 define(
-    ['jquery', 'Ember', 'templates', 'module/eip/core/application/main', 'module/eip/core/router/router', 'topbar'],
+    ['jquery', 'Ember', 'templates', 'module/eip/core/application/main', 'module/eip/core/router/router'],
 
-    function($, Ember, templates, application, router, topbar) {
+    function($, Ember, templates, application, router) {
         'use strict';
 
         var UMI = {};
@@ -33,7 +33,6 @@ define(
 
         application(UMI);
         router(UMI);
-        topbar(UMI);
 
         UMI.advanceReadiness();
 

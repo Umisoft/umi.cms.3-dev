@@ -1,1 +1,20 @@
-@import 'component/topbar/main';
+/**
+UMI.CMS styles
+*/
+
+// Функции Foundation подключаются снала, так как необходим rem-calc()
+@import "foundation/functions";
+
+// Конфигурация Foundation
+@import "core/scss/foundation/settings/main";
+
+// Компоненты Foundation
+@import "foundation";
+
+// Foundation extends
+@import "core/scss/foundation/extend/main";
+
+// UMI components
+@import "core/scss/umi/main";
+
+@import "component/topbar/main";

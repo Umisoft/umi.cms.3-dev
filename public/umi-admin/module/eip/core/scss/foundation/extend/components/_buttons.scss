@@ -1,0 +1,40 @@
+
+$component_name: 'button';
+
+.#{$app_prefix}-#{$component_name}{
+    @include button-base;
+    @include button-size;
+    @include button-style;
+
+    @include single-transition(background-color);
+
+    &-secondary { @include button-style($bg:$secondary-color); }
+    &-success   { @include button-style($bg:$success-color); }
+    &-alert     { @include button-style($bg:$alert-color); }
+
+    &-large  { @include button-size($padding:$button-lrg); }
+    &-small  { @include button-size($padding:$button-sml); }
+    &-tiny   { @include button-size($padding:$button-tny); }
+    &-expand { @include button-size($padding:null,$full-width:true); }
+
+    &-left-align  { text-align: left; text-indent: rem-calc(12); }
+    &-right-align { text-align: right; padding-right: rem-calc(12); }
+
+    &-radius { @include button-style($bg:false, $radius:true); }
+    &-round  { @include button-style($bg:false, $radius:$button-round); }
+
+    &-disabled { @include button-style($bg:$button-bg, $disabled:true);
+        &.#{$app_prefix}-#{$component_name}{
+            &-secondary { @include button-style($bg:$secondary-color, $disabled:true); }
+            &-success { @include button-style($bg:$success-color, $disabled:true); }
+            &-alert { @include button-style($bg:$alert-color, $disabled:true); }
+        }
+    }
+}
+
+@media #{$medium-up} {
+    .#{$app_prefix}-button{
+        @include button-base($style:false, $display:inline-block);
+        @include button-size($padding:false, $full-width:false);
+    }
+}

@@ -1,6 +1,8 @@
-@import "../../scss/settings";
+@import "../../core/scss/umi/variable";
 
 $umi-bg-darken-set: #404959, #181B21;
+$umi-topbar-height: 25px;
+$topbar-font-size: 12px;
 
 body{
     margin-top: 20px !important;
@@ -11,7 +13,26 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: $umi-topbar-height;
     background: linear-gradient(nth($umi-bg-darken-set, 1) 0%, nth($umi-bg-darken-set, 2) 100%);
     z-index: $base_z_index;
+
+    &-section{
+        list-style: none;
+
+        &-item{
+            white-space: normal;
+            display: inline-block;
+            line-height: $umi-topbar-height;
+        }
+    }
+
+    &-button{
+        height: $umi-topbar-height;
+        line-height: $umi-topbar-height;
+        color: #D5D6D8;
+        font-weight: 700;
+        font-size: $topbar-font-size;
+        display: inline-block;
+    }
 }

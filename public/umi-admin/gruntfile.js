@@ -31,9 +31,27 @@ module.exports = function(grunt) {
                     'development/css/styles.css': 'styles/main.scss'
                 }
             },
+
             eip: {
+                options: {
+                    includePaths: ['vendor/foundation/scss/']
+                },
+
                 files: {
                     'development/module/eip/main.css': 'module/eip/main.scss'
+                }
+            }
+        },
+
+        px_to_rem: {
+            dist: {
+                options: {
+                    base: 16,
+                    fallback: true,
+                    fallback_existing_rem: true
+                },
+                files: {
+                    'development/css/styles.css': 'development/css/styles.css'
                 }
             }
         },
@@ -426,6 +444,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-wrap');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-px-to-rem');
 
     grunt.registerTask('default', ['watch']);
 
