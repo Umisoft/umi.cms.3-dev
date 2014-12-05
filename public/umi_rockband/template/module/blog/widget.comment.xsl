@@ -14,12 +14,9 @@
         <xsl:apply-templates select="form" mode="default.form">
             <xsl:with-param name="css.class">col-sm-12 col-md-6</xsl:with-param>
         </xsl:apply-templates>
-
-        <textarea>
-            <xsl:copy-of select="." />
-        </textarea>
-
     </xsl:template>
+
+    <xsl:template match="result[@widget = 'blog.comment.add.addForm'][error]" mode="blog.comments.form" />
     <!-- Форма добавления комментария <Конец> -->
 
     <!-- Кнопка "ответить" на комментарий <Начало> -->
@@ -28,6 +25,8 @@
             <xsl:value-of select="document('translate://project.site.blog/Reply')/result"/>
         </button>
     </xsl:template>
+
+    <xsl:template match="result[@widget = 'blog.comment.add.addForm'][error]" mode="blog.comments.replyTo" />
     <!-- Кнопка "ответить" на комментарий <Конец> -->
 
     <!-- Список комментариев <Начало> -->
