@@ -679,7 +679,25 @@ textarea.form-control {
 	vertical-align: middle;
 	padding-left: 10px;
 }
-
+.replyTo #addComment + button {
+	display: none;
+}
+.comment .comment_close {
+	display: block;
+}
+.comment_close {
+	display: none;
+	color: black;
+	height: 16px;
+	width: 16px;
+}
+.comment_close:hover {
+	cursor: pointer;
+	font-weight: bold;
+}
+.comment_close:after {
+	content: "x";
+}
 .comment .comment {
 	margin-left: -40px;
 	padding-left: 80px;

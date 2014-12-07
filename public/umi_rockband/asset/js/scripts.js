@@ -39,14 +39,30 @@ jQuery(document).ready(function() {
     });
 
 	jQuery('button[name^="re:"]').on('click', function() {
-		var form = jQuery(this).closest('#comments').find('form');
-		form.attr('action', this.value);
-		jQuery('input[name="displayName"]', form).val(this.name);
-		var target = jQuery('textarea', form);
-		jQuery('html, body').animate({scrollTop: jQuery(target).offset().top - 200}, 500, function() {
-			target.focus();
-		});
+		var form = jQuery('#addComment');
+		var closeForm = jQuery('.comment_close', form);
+		var replyTo = jQuery(this).parent();
+		var title = this.name;
+		var action = this.value;
+		var defaultAction = this.value.match(/(.*)\/\d{1,}$/)[1];
+
+		moveForm(form, replyTo, action, title);
+		closeForm.off('click').on('click', function() {
+			restoreForm(form, defaultAction);
+		})
 	});
+	var moveForm = function(form, replyTo, action, title) {
+		jQuery(form).prependTo(replyTo);
+		jQuery('form', form).attr('action', action);
+		jQuery('input[name="displayName"]', form).val(title);
+		jQuery('textarea', form).focus();
+	}
+	var restoreForm = function(form, action) {
+		jQuery(form).appendTo('#comments');
+		jQuery('form', form).attr('action', action);
+		jQuery('input[name="displayName"]', form).val('');
+		jQuery('textarea', form).focus();
+	}
 
 	var comments = jQuery('.comment');
 	if(comments) {

@@ -12,6 +12,9 @@
             <h3>
                 <xsl:value-of select="document('translate://project.site.blog/Add%20comment')/result"/>
             </h3>
+            <div class="row">
+                <div class="col-sm-offset-11 col-sm-1 col-md-offset-5 col-md-1 comment_close"></div>
+            </div>
             <xsl:apply-templates select="form" mode="default.form">
                 <xsl:with-param name="css.class">col-sm-12 col-md-6</xsl:with-param>
             </xsl:apply-templates>
@@ -23,9 +26,11 @@
 
     <!-- Кнопка "ответить" на комментарий <Начало> -->
     <xsl:template match="result[@widget = 'blog.comment.add.addForm']" mode="blog.comments.replyTo">
-        <button class="btn btn-sm btn-primary" name="re:{blogComment/@displayName}" value="{form/attributes/@action}">
-            <xsl:value-of select="document('translate://project.site.blog/Reply')/result"/>
-        </button>
+        <p class="replyTo">
+            <button class="btn btn-sm btn-primary" name="re:{blogComment/@displayName}" value="{form/attributes/@action}">
+                <xsl:value-of select="document('translate://project.site.blog/Reply')/result"/>
+            </button>
+        </p>
     </xsl:template>
 
     <xsl:template match="result[@widget = 'blog.comment.add.addForm'][error]" mode="blog.comments.replyTo" />
@@ -53,13 +58,12 @@
                     </xsl:call-template>
                 </span>
             </div>
-
             <p>
                 <xsl:value-of select=".//property[@name='contents']/value" disable-output-escaping="yes"/>
-                <xsl:apply-templates
-                        select="document(concat('widget://blog.comment.add.addForm?blogPost=', $postGuid, '&amp;blogComment=', @guid))"
-                        mode="blog.comments.replyTo"/>
             </p>
+            <xsl:apply-templates
+                    select="document(concat('widget://blog.comment.add.addForm?blogPost=', $postGuid, '&amp;blogComment=', @guid))"
+                    mode="blog.comments.replyTo"/>
 
             <xsl:apply-templates select="item" mode="blog.comments.list">
                 <xsl:with-param name="postGuid" select="$postGuid"/>
