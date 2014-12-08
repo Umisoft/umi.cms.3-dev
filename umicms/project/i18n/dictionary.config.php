@@ -67,6 +67,8 @@ return [
     'project.admin.rest.blog.poststatus' => '{#lazy:~/project/module/blog/admin/poststatus/i18n/dictionary.config.php}',
     'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
+    'project.admin.rest.forum' => '{#lazy:~/project/module/forum/admin/i18n/dictionary.config.php}',
+
     'project.admin.rest.surveys' => '{#lazy:~/project/module/surveys/admin/i18n/dictionary.config.php}',
     'project.admin.rest.surveys.survey' => '{#lazy:~/project/module/surveys/admin/survey/i18n/dictionary.config.php}',
     'project.admin.rest.surveys.answer' => '{#lazy:~/project/module/surveys/admin/answer/i18n/dictionary.config.php}',

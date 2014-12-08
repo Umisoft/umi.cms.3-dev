@@ -51,6 +51,7 @@ return [
         'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
         'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
         'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}',
+        'forum' => '{#lazy:~/project/module/forum/admin/module.config.php}',
         'seo' => '{#lazy:~/project/module/seo/admin/module.config.php}',
         'surveys' => '{#lazy:~/project/module/surveys/admin/module.config.php}',
         'files' => '{#lazy:~/project/module/files/admin/module.config.php}',
