@@ -11,20 +11,27 @@
 namespace umicms\project\module\forum\model\collection;
 
 use umi\i18n\ILocalesService;
+use umi\orm\collection\ISimpleHierarchicCollection;
 use umi\orm\metadata\IObjectType;
-use umicms\orm\collection\CmsPageCollection;
+use umi\orm\object\IHierarchicObject;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\TRecyclableCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\forum\model\object\ForumTheme;
 
 /**
  * Коллекция тем форума.
  *
- * @method CmsSelector|ForumTheme[] select() Возвращает селектор для выбора конференций.
- * @method ForumTheme get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает конференцию по GUID
- * @method ForumTheme getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает конференцию по id
- * @method ForumTheme add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает конференцию
- * @method ForumTheme getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает конференцию по его последней части ЧПУ
+ * @method CmsSelector|ForumTheme[] select() Возвращает селектор для выбора темы форума.
+ * @method ForumTheme get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему форума по его GUID.
+ * @method ForumTheme getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему форума по его id
+ * @method ForumTheme add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает тему форума
  */
-class ForumThemeCollection extends CmsPageCollection
+class ForumThemeCollection extends CmsHierarchicCollection implements IRecyclableCollection
 {
+    use TRecyclableCollection {
+        TRecyclableCollection::trash as protected trashInternal;
+        TRecyclableCollection::untrash as protected untrashInternal;
+    }
 }

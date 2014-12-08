@@ -20,10 +20,14 @@ use umicms\orm\object\TCmsPage;
  *
  * @property IObjectSet $messages сообщения темы
  */
-class ForumTheme extends CmsObject implements ICmsPage
+class ForumTheme extends BaseForumTheme implements ICmsPage
 {
     use TCmsPage;
 
+    /**
+     * Тип объекта
+     */
+    const TYPE_NAME = 'forum';
     /**
      * Имя поля для хранения сообщений темы
      */

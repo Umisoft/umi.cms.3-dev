@@ -8,10 +8,16 @@
  * file that was distributed with this source code.
  */
 
-return array_replace_recursive(
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/hierarchicCollection.config.php',
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/recyclable.config.php',
-    [
-        'name' => 'forum_theme'
-    ]
-);
+namespace umicms\project\module\forum\model\object;
+
+/**
+ * Класс ветки тем.
+ */
+class ForumBranchTheme extends BaseForumTheme
+{
+    /**
+     * Тип объекта
+     */
+    const TYPE_NAME = 'branchTheme';
+}
+ 

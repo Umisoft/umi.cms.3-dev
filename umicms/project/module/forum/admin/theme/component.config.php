@@ -8,10 +8,9 @@
  * file that was distributed with this source code.
  */
 
-return array_replace_recursive(
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/hierarchicCollection.config.php',
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/recyclable.config.php',
-    [
-        'name' => 'forum_theme'
-    ]
-);
+use umicms\hmvc\component\admin\collection\CollectionComponent;
+
+return [
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'forumTheme'
+];

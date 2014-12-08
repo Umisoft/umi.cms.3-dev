@@ -13,10 +13,12 @@ return [
         'component:forum:displayName' => 'Forum',
 
         'component:conference:displayName' => 'Conference',
+        'component:theme:displayName' => 'Theme',
     ],
     'ru-RU' => [
         'component:forum:displayName' => 'Форум',
 
         'component:conference:displayName' => 'Конференции',
+        'component:theme:displayName' => 'Темы',
     ]
 ];

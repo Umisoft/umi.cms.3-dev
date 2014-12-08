@@ -16,6 +16,7 @@ return [
 
     AdminComponent::OPTION_COMPONENTS => [
         'conference' => '{#lazy:~/project/module/forum/admin/conference/component.config.php}',
+        'theme' => '{#lazy:~/project/module/forum/admin/theme/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
