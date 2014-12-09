@@ -8,15 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\forum\model\object;
-
-/**
- * Класс ветки сообщений темы.
- */
-class BranchForumMessage extends BaseForumMessage
-{
-    /**
-     * Тип объекта
-     */
-    const TYPE_NAME = 'branchMessage';
-}
+return [
+    'en-US' => [
+        'action:create:message' => 'Add message'
+    ],
+    'ru-RU' => [
+        'action:create:message' => 'Добавить сообщение'
+    ]
+];

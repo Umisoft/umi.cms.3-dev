@@ -8,11 +8,15 @@
  * file that was distributed with this source code.
  */
 
-return [
-    'name' => 'forum',
-    'models' => [
-        'conference' => '~/project/module/forum/configuration/conference',
-        'theme' => '~/project/module/forum/configuration/theme',
-        'message' => '~/project/module/forum/configuration/message'
-    ]
-];
+namespace umicms\project\module\forum\model\object;
+
+/**
+ * Класс ветки сообщений темы.
+ */
+class ForumBranchMessage extends BaseForumMessage
+{
+    /**
+     * Тип объекта
+     */
+    const TYPE_NAME = 'branchMessage';
+}

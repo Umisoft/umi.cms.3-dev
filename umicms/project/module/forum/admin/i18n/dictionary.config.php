@@ -14,11 +14,13 @@ return [
 
         'component:conference:displayName' => 'Conference',
         'component:theme:displayName' => 'Theme',
+        'component:message:displayName' => 'Message',
     ],
     'ru-RU' => [
         'component:forum:displayName' => 'Форум',
 
         'component:conference:displayName' => 'Конференции',
         'component:theme:displayName' => 'Темы',
+        'component:message:displayName' => 'Сообщения',
     ]
 ];

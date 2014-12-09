@@ -19,5 +19,30 @@ class ForumMessage extends BaseForumMessage
      * Тип объекта
      */
     const TYPE_NAME = 'message';
+    /**
+     * Имя поля для хранения комментария
+     */
+    const FIELD_CONTENTS = 'contents';
+    /**
+     * Имя поля для хранения необработанного контента комментария
+     */
+    const FIELD_CONTENTS_RAW = 'contents_raw';
+
+    /**
+     * Мутатор для контентного поля.
+     * @param string $contents контент сообщения
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
+    }
 }
  

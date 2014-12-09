@@ -68,6 +68,7 @@ return [
     'project.admin.rest.blog.commentstatus' => '{#lazy:~/project/module/blog/admin/commentstatus/i18n/dictionary.config.php}',
 
     'project.admin.rest.forum' => '{#lazy:~/project/module/forum/admin/i18n/dictionary.config.php}',
+    'project.admin.rest.forum.message' => '{#lazy:~/project/module/forum/admin/message/i18n/dictionary.config.php}',
 
     'project.admin.rest.surveys' => '{#lazy:~/project/module/surveys/admin/i18n/dictionary.config.php}',
     'project.admin.rest.surveys.survey' => '{#lazy:~/project/module/surveys/admin/survey/i18n/dictionary.config.php}',
@@ -270,6 +271,7 @@ return [
     'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
     'collection.forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/i18n/dictionary.config.php}',
+    'collection.forumMessage' => '{#lazy:~/project/module/forum/configuration/message/i18n/dictionary.config.php}',
 
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',

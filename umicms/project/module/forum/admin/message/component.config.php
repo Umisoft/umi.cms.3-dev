@@ -8,11 +8,9 @@
  * file that was distributed with this source code.
  */
 
+use umicms\hmvc\component\admin\collection\CollectionComponent;
+
 return [
-    'name' => 'forum',
-    'models' => [
-        'conference' => '~/project/module/forum/configuration/conference',
-        'theme' => '~/project/module/forum/configuration/theme',
-        'message' => '~/project/module/forum/configuration/message'
-    ]
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'forumMessage'
 ];
