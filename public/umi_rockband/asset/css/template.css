@@ -502,6 +502,7 @@ textarea.form-control {
 	margin: 3px;
 	white-space: nowrap;
 	transition: .3s;
+	display: inline-block;
 }
 .tags a:hover {
 	color: #4381f3;
