@@ -129,6 +129,9 @@ return [
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
             'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/metadata.config.php}',
 
+            'forumConference' => '{#lazy:~/project/module/forum/configuration/conference/metadata.config.php}',
+            'forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/metadata.config.php}',
+
             'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
             'userUserGroup' => '{#lazy:~/project/module/users/configuration/usergroup/metadata.config.php}',
@@ -166,6 +169,9 @@ return [
             'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
             'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
             'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/collection.config.php}',
+
+            'forumConference' => '{#lazy:~/project/module/forum/configuration/conference/collection.config.php}',
+            'forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/collection.config.php}',
 
             'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',
