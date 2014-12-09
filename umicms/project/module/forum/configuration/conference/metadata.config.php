@@ -15,6 +15,7 @@ use umicms\project\module\forum\model\object\ForumTheme;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/recyclable.config.php',
     [
         'dataSource' => [
             'sourceName' => 'forum_conference',

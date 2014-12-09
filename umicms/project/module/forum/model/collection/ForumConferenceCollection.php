@@ -12,6 +12,8 @@ namespace umicms\project\module\forum\model\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\forum\model\object\ForumConference;
@@ -25,6 +27,10 @@ use umicms\project\module\forum\model\object\ForumConference;
  * @method ForumConference add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает конференцию
  * @method ForumConference getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает конференцию по его последней части ЧПУ
  */
-class ForumConferenceCollection extends CmsPageCollection
+class ForumConferenceCollection extends CmsPageCollection implements IRecyclableCollection
 {
+    use TRecyclableCollection {
+        TRecyclableCollection::trash as protected trashInternal;
+        TRecyclableCollection::untrash as protected untrashInternal;
+    }
 }

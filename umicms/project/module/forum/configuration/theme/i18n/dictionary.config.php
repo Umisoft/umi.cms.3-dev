@@ -8,16 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\forum\model\object;
+use umicms\project\module\forum\model\object\ForumTheme;
 
-/**
- * Класс ветки тем.
- */
-class ForumBranchTheme extends BaseForumTheme
-{
-    /**
-     * Тип объекта
-     */
-    const TYPE_NAME = 'branchTheme';
-}
- 
+return [
+    'en-US' => [
+        ForumTheme::FIELD_CONFERENCE => 'Conference'
+    ],
+    'ru-RU' => [
+        ForumTheme::FIELD_CONFERENCE => 'Конференция'
+    ]
+];

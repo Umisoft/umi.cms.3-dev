@@ -16,19 +16,20 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
-use umicms\orm\collection\CmsHierarchicCollection;
+use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\forum\model\object\ForumTheme;
 
 /**
  * Коллекция тем форума.
  *
- * @method CmsSelector|ForumTheme[] select() Возвращает селектор для выбора темы форума.
- * @method ForumTheme get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему форума по его GUID.
- * @method ForumTheme getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему форума по его id
- * @method ForumTheme add($slug = null, $typeName = IObjectType::BASE, IHierarchicObject $branch = null, $guid = null) Создает и возвращает тему форума
+ * @method CmsSelector|ForumTheme[] select() Возвращает селектор для выбора тем.
+ * @method ForumTheme get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему по GUID
+ * @method ForumTheme getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему по id
+ * @method ForumTheme add($typeName = IObjectType::BASE, $guid = null) Создает и возвращает тему
+ * @method ForumTheme getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает тему по его последней части ЧПУ
  */
-class ForumThemeCollection extends CmsHierarchicCollection implements IRecyclableCollection
+class ForumThemeCollection extends CmsPageCollection implements IRecyclableCollection
 {
     use TRecyclableCollection {
         TRecyclableCollection::trash as protected trashInternal;

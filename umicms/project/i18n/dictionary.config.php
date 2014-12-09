@@ -269,6 +269,8 @@ return [
     'collection.blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/i18n/dictionary.config.php}',
     'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
+    'collection.forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/i18n/dictionary.config.php}',
+
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',

@@ -10,42 +10,32 @@
 
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
-use umicms\project\module\forum\model\object\BaseForumTheme;
-use umicms\project\module\forum\model\object\ForumBranchTheme;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\forum\model\object\ForumTheme;
 
 return array_replace_recursive(
-    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/pageCollection.config.php',
     require CMS_PROJECT_DIR . '/configuration/model/metadata/recyclable.config.php',
     [
         'dataSource' => [
             'sourceName' => 'forum_theme',
         ],
         'fields' => [
-            BaseForumTheme::FIELD_CONFERENCE => [
+            ForumTheme::FIELD_CONFERENCE => [
                 'type' => IField::TYPE_BELONGS_TO,
                 'columnName' => 'conference_id',
                 'target' => 'forumConference',
-                'mutator' => 'setConference'
+                'mutator' => 'setConference',
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ]
         ],
         'types' => [
             IObjectType::BASE => [
-                'objectClass' => 'umicms\project\module\forum\model\object\BaseForumTheme',
-                'fields' => [
-                    BaseForumTheme::FIELD_CONFERENCE => []
-                ]
-            ],
-            ForumBranchTheme::TYPE_NAME => [
-                'objectClass' => 'umicms\project\module\forum\model\object\ForumBranchTheme',
-                'fields' => [
-
-                ]
-            ],
-            ForumTheme::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\forum\model\object\ForumTheme',
                 'fields' => [
-
+                    ForumTheme::FIELD_CONFERENCE => []
                 ]
             ]
         ]

@@ -8,10 +8,20 @@
  * file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\Types\Type;
+
 return array_replace_recursive(
-    require CMS_PROJECT_DIR . '/configuration/model/scheme/hierarchicCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/scheme/pageCollection.config.php',
     require CMS_PROJECT_DIR . '/configuration/model/scheme/recyclable.config.php',
     [
-        'name' => 'forum_theme'
+        'name' => 'forum_theme',
+        'columns' => [
+            'conference_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+        ]
     ]
 );

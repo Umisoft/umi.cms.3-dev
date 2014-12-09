@@ -20,14 +20,10 @@ use umicms\orm\object\TCmsPage;
  *
  * @property IObjectSet $messages сообщения темы
  */
-class ForumTheme extends BaseForumTheme implements ICmsPage
+class ForumTheme extends CmsObject implements ICmsPage
 {
     use TCmsPage;
 
-    /**
-     * Тип объекта
-     */
-    const TYPE_NAME = 'forum';
     /**
      * Имя поля для хранения сообщений темы
      */
@@ -36,5 +32,12 @@ class ForumTheme extends BaseForumTheme implements ICmsPage
      * Имя поля для хранения ссылки на конференцию, к которой относится тема
      */
     const FIELD_CONFERENCE = 'conference';
+
+    public function setConference($value)
+    {
+        $this->getProperty(self::FIELD_CONFERENCE)->setValue($value);
+
+        return $this;
+    }
 }
  

@@ -9,26 +9,22 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umi\orm\metadata\IObjectType;
 use umicms\project\module\forum\model\collection\ForumThemeCollection;
-use umicms\project\module\forum\model\object\ForumBranchTheme;
-use umicms\project\module\forum\model\object\ForumTheme;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
     [
-        'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+        'type' => ICollectionFactory::TYPE_SIMPLE,
         'class' => 'umicms\project\module\forum\model\collection\ForumThemeCollection',
         'handlers' => [
             'admin' => 'forum.theme',
             'site' => 'forum.theme'
         ],
         'forms' => [
-            ForumTheme::TYPE_NAME => [
+            IObjectType::BASE => [
                 ForumThemeCollection::FORM_EDIT => '{#lazy:~/project/module/forum/configuration/theme/form/base.edit.config.php}',
                 ForumThemeCollection::FORM_CREATE => '{#lazy:~/project/module/forum/configuration/theme/form/base.create.config.php}'
-            ],
-            ForumBranchTheme::TYPE_NAME => [
-                ForumThemeCollection::FORM_EDIT => '{#lazy:~/project/module/forum/configuration/theme/form/branchTheme.edit.config.php}'
             ]
         ],
         'dictionaries' => [
