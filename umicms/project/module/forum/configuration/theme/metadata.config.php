@@ -29,13 +29,20 @@ return array_replace_recursive(
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
-            ]
+            ],
+            ForumTheme::FIELD_AUTHOR => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'author_id',
+                'target' => 'forumAuthor',
+                'mutator' => 'setAuthor'
+            ],
         ],
         'types' => [
             IObjectType::BASE => [
                 'objectClass' => 'umicms\project\module\forum\model\object\ForumTheme',
                 'fields' => [
-                    ForumTheme::FIELD_CONFERENCE => []
+                    ForumTheme::FIELD_CONFERENCE => [],
+                    ForumTheme::FIELD_AUTHOR => []
                 ]
             ]
         ]

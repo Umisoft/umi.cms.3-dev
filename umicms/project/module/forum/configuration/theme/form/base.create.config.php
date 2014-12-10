@@ -33,6 +33,17 @@ return array_replace_recursive(
                                 IValidatorFactory::TYPE_REQUIRED => []
                             ]
                         ]
+                    ],
+                    ForumTheme::FIELD_AUTHOR => [
+                        'type' => Select::TYPE_NAME,
+                        'label' => ForumTheme::FIELD_AUTHOR,
+                        'options' => [
+                            'lazy' => true,
+                            'dataSource' => ForumTheme::FIELD_AUTHOR,
+                            'validators' => [
+                                IValidatorFactory::TYPE_REQUIRED => []
+                            ]
+                        ]
                     ]
                 ]
             ]

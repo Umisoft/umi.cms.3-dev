@@ -272,6 +272,7 @@ return [
 
     'collection.forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/i18n/dictionary.config.php}',
     'collection.forumMessage' => '{#lazy:~/project/module/forum/configuration/message/i18n/dictionary.config.php}',
+    'collection.forumAuthor' => '{#lazy:~/project/module/forum/configuration/author/i18n/dictionary.config.php}',
 
     'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',

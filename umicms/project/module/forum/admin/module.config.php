@@ -18,6 +18,7 @@ return [
         'conference' => '{#lazy:~/project/module/forum/admin/conference/component.config.php}',
         'theme' => '{#lazy:~/project/module/forum/admin/theme/component.config.php}',
         'message' => '{#lazy:~/project/module/forum/admin/message/component.config.php}',
+        'author' => '{#lazy:~/project/module/forum/admin/author/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [

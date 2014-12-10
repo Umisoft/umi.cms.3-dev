@@ -22,6 +22,46 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
+            'author_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+        ],
+        'indexes' => [
+            'conference' => [
+                'columns' => [
+                    'conference_id' => []
+                ]
+            ],
+            'author' => [
+                'columns' => [
+                    'author_id' => []
+                ]
+            ]
+        ],
+        'constraints' => [
+            'theme_to_conference' => [
+                'foreignTable' => 'forum_conference',
+                'columns' => [
+                    'conference_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'theme_to_author' => [
+                'foreignTable' => 'forum_author',
+                'columns' => [
+                    'author_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ]
         ]
     ]
 );

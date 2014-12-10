@@ -50,11 +50,22 @@ return array_replace_recursive(
             'publish_time' => [
                 'type' => Type::DATETIME
             ],
+            'author_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ]
         ],
         'indexes' => [
             'theme' => [
                 'columns' => [
                     'theme_id' => []
+                ]
+            ],
+            'author' => [
+                'columns' => [
+                    'author_id' => []
                 ]
             ]
         ],
@@ -63,6 +74,16 @@ return array_replace_recursive(
                 'foreignTable' => 'forum_theme',
                 'columns' => [
                     'theme_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'message_to_author' => [
+                'foreignTable' => 'forum_author',
+                'columns' => [
+                    'author_id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

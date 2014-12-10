@@ -32,10 +32,31 @@ class ForumTheme extends CmsObject implements ICmsPage
      * Имя поля для хранения ссылки на конференцию, к которой относится тема
      */
     const FIELD_CONFERENCE = 'conference';
+    /**
+     * Имя поля для хранения ссылки на автора темы
+     */
+    const FIELD_AUTHOR = 'author';
 
+    /**
+     * Устанавливает конференцию, к которой принадлежит тема.
+     * @param ForumConference|null $value конференция
+     * @return $this
+     */
     public function setConference($value)
     {
         $this->getProperty(self::FIELD_CONFERENCE)->setValue($value);
+
+        return $this;
+    }
+
+    /**
+     * Устанавливает автора, который создал тему.
+     * @param ForumAuthor|null $value автор
+     * @return $this
+     */
+    public function setAuthor($value)
+    {
+        $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
 
         return $this;
     }

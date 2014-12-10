@@ -12,11 +12,13 @@ use umicms\project\module\forum\model\object\ForumMessage;
 
 return [
     'en-US' => [
-        ForumMessage::FIELD_THEME => 'Message',
-        ForumMessage::FIELD_PUBLISH_TIME => 'Publish time'
+        ForumMessage::FIELD_THEME => 'Theme',
+        ForumMessage::FIELD_PUBLISH_TIME => 'Publish time',
+        ForumMessage::FIELD_AUTHOR => 'Author'
     ],
     'ru-RU' => [
-        ForumMessage::FIELD_THEME => 'Сообщение',
-        ForumMessage::FIELD_PUBLISH_TIME => 'Дата публикации'
+        ForumMessage::FIELD_THEME => 'Тема',
+        ForumMessage::FIELD_PUBLISH_TIME => 'Дата публикации',
+        ForumMessage::FIELD_AUTHOR => 'Автор'
     ]
 ];

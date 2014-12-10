@@ -27,6 +27,10 @@ class ForumMessage extends BaseForumMessage
      * Имя поля для хранения необработанного контента комментария
      */
     const FIELD_CONTENTS_RAW = 'contents_raw';
+    /**
+     * Имя поля для хранения ссылки на автора сообщения
+     */
+    const FIELD_AUTHOR = 'author';
 
     /**
      * Мутатор для контентного поля.
@@ -41,6 +45,18 @@ class ForumMessage extends BaseForumMessage
 
         $this->getProperty(self::FIELD_CONTENTS_RAW, $locale)
             ->setValue($contents);
+
+        return $this;
+    }
+
+    /**
+     * Устанавливает автора, который создал тему.
+     * @param ForumAuthor|null $value автор
+     * @return $this
+     */
+    public function setAuthor($value)
+    {
+        $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
 
         return $this;
     }

@@ -61,6 +61,12 @@ return array_replace_recursive(
                     'en-US' => ['columnName' => 'contents_raw_en']
                 ]
             ],
+            ForumMessage::FIELD_AUTHOR => [
+                'type' => IField::TYPE_BELONGS_TO,
+                'columnName' => 'author_id',
+                'target' => 'forumAuthor',
+                'mutator' => 'setAuthor'
+            ],
         ],
         'types' => [
             IObjectType::BASE => [
@@ -83,6 +89,7 @@ return array_replace_recursive(
                     BaseForumMessage::FIELD_THEME => [],
                     ForumMessage::FIELD_CONTENTS => [],
                     ForumMessage::FIELD_CONTENTS_RAW => [],
+                    ForumMessage::FIELD_AUTHOR => []
                 ]
             ]
         ]

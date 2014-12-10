@@ -12,6 +12,7 @@ use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\forum\model\object\ForumMessage;
@@ -48,6 +49,17 @@ return [
                     'options' => [
                         'lazy' => true,
                         'dataSource' => ForumMessage::FIELD_THEME
+                    ]
+                ],
+                ForumMessage::FIELD_AUTHOR => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => ForumMessage::FIELD_AUTHOR,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => ForumMessage::FIELD_AUTHOR,
+                        'validators' => [
+                            IValidatorFactory::TYPE_REQUIRED => []
+                        ]
                     ]
                 ],
                 ForumMessage::FIELD_PUBLISH_TIME => [

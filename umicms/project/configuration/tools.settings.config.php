@@ -132,6 +132,7 @@ return [
             'forumConference' => '{#lazy:~/project/module/forum/configuration/conference/metadata.config.php}',
             'forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/metadata.config.php}',
             'forumMessage' => '{#lazy:~/project/module/forum/configuration/message/metadata.config.php}',
+            'forumAuthor' => '{#lazy:~/project/module/forum/configuration/author/metadata.config.php}',
 
             'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
@@ -174,6 +175,7 @@ return [
             'forumConference' => '{#lazy:~/project/module/forum/configuration/conference/collection.config.php}',
             'forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/collection.config.php}',
             'forumMessage' => '{#lazy:~/project/module/forum/configuration/message/collection.config.php}',
+            'forumAuthor' => '{#lazy:~/project/module/forum/configuration/author/collection.config.php}',
 
             'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
             'userGroup' => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',

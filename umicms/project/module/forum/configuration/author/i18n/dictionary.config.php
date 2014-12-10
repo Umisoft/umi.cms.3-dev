@@ -8,15 +8,13 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\forum\model\object\ForumTheme;
+use umicms\project\module\forum\model\object\ForumAuthor;
 
 return [
     'en-US' => [
-        ForumTheme::FIELD_CONFERENCE => 'Conference',
-        ForumTheme::FIELD_AUTHOR => 'Author'
+        ForumAuthor::FIELD_USER => 'User'
     ],
     'ru-RU' => [
-        ForumTheme::FIELD_CONFERENCE => 'Конференция',
-        ForumTheme::FIELD_AUTHOR => 'Автор'
+        ForumAuthor::FIELD_USER => 'Пользователь'
     ]
 ];

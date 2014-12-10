@@ -13,6 +13,7 @@ return [
     'models' => [
         'conference' => '~/project/module/forum/configuration/conference',
         'theme' => '~/project/module/forum/configuration/theme',
-        'message' => '~/project/module/forum/configuration/message'
+        'message' => '~/project/module/forum/configuration/message',
+        'author' => '~/project/module/forum/configuration/author'
     ]
 ];
