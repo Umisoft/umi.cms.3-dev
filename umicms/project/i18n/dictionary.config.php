@@ -53,6 +53,7 @@ return [
     'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
     'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
     'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
+    'project.admin.rest.seo.redirects' => '{#lazy:~/project/module/seo/admin/redirects/i18n/dictionary.config.php}',
     'project.admin.rest.seo.robots' => '{#lazy:~/project/module/seo/admin/robots/i18n/dictionary.config.php}',
 
     'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
@@ -271,6 +272,7 @@ return [
     'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
     'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
+    'collection.redirects' => '{#lazy:~/project/module/seo/configuration/redirects/i18n/dictionary.config.php}',
     'collection.robots' => '{#lazy:~/project/module/seo/configuration/robots/i18n/dictionary.config.php}',
 
     'collection.survey' => '{#lazy:~/project/module/surveys/configuration/survey/i18n/dictionary.config.php}',

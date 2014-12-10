@@ -26,9 +26,9 @@ use umicms\form\element\Image;
 use umicms\form\element\ObjectRelation;
 use umicms\form\element\PageRelation;
 use umicms\form\element\PasswordWithConfirmation;
+use umicms\form\element\Permissions;
 use umicms\form\element\SingleCollectionObjectRelation;
 use umicms\form\element\Wysiwyg;
-use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
@@ -137,6 +137,7 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
 
+            'redirects' => '{#lazy:~/project/module/seo/configuration/redirects/metadata.config.php}',
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/metadata.config.php}',
 
             'survey' => '{#lazy:~/project/module/surveys/configuration/survey/metadata.config.php}',
@@ -175,6 +176,7 @@ return [
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
 
+            'redirects' => '{#lazy:~/project/module/seo/configuration/redirects/collection.config.php}',
             'robots' => '{#lazy:~/project/module/seo/configuration/robots/collection.config.php}',
 
             'survey' => '{#lazy:~/project/module/surveys/configuration/survey/collection.config.php}',

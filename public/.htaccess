@@ -20,6 +20,10 @@ Options +FollowSymLinks
     # Block access to .svn / .git
     RewriteRule "(^|/)\.(git|svn)" - [F]
 
+    # DO NOT REMOVE THESE COMMENTS
+    # Start UMI.CMS rewrite settings
+    # End UMI.CMS rewrite settings
+
     # Ignore static
     RewriteCond %{REQUEST_URI} !\.(html?|jpe?g|gif|png|bmp|swf|flv|ico|css|js|svg|mpe?g|mov|avi|wav|mp3|eot|ttf|woff)$
     # Pass all requests

@@ -34,11 +34,12 @@ class ItemController extends BaseController
             }
             case 'PUT': {
                 $object = $this->getRequestedObject();
+                $this->save($object, $this->getCollectionIncomingData($object));
 
                 return $this->createViewResponse(
                     'update',
                     [
-                        $object->getCollectionName() => $this->save($object, $this->getCollectionIncomingData($object))
+                        $object->getCollectionName() => $object,
                     ]
                 );
             }
