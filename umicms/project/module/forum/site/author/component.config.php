@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\forum\site\conference;
+namespace umicms\project\module\forum\site\author;
 
 use umicms\hmvc\component\site\SiteGroupComponent;
 
@@ -18,10 +18,14 @@ return [
     SiteGroupComponent::OPTION_CONTROLLERS => [
     ],
 
-    SiteGroupComponent::OPTION_WIDGET => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'view' => '{#lazy:~/project/module/forum/site/author/view/component.config.php}'
     ],
 
     SiteGroupComponent::OPTION_ACL => [
+    ],
+
+    SiteGroupComponent::OPTION_WIDGET => [
     ],
 
     SiteGroupComponent::OPTION_VIEW => [

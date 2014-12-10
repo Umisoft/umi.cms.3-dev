@@ -16,6 +16,7 @@ return [
     SiteGroupComponent::OPTION_COMPONENTS => [
         'conference' => '{#lazy:~/project/module/forum/site/conference/component.config.php}',
         'theme' => '{#lazy:~/project/module/forum/site/theme/component.config.php}',
+        'author' => '{#lazy:~/project/module/forum/site/author/component.config.php}',
     ],
 
     SiteGroupComponent::OPTION_VIEW => [
