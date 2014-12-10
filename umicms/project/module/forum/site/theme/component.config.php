@@ -8,28 +8,26 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\news\site\rubric;
+namespace umicms\project\module\forum\site\theme;
 
-use umicms\hmvc\component\site\SiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
-    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
-    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'forumTheme',
-
-    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteGroupComponent::OPTION_CONTROLLERS => [
     ],
 
-    SiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteGroupComponent::OPTION_WIDGET => [
     ],
 
-    SiteHierarchicPageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_ACL => [
     ],
 
-    SiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/forum/theme']
     ],
 
-    SiteHierarchicPageComponent::OPTION_ROUTES => [
+    SiteGroupComponent::OPTION_ROUTES => [
     ]
 ];
