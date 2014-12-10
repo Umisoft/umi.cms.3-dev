@@ -19,6 +19,7 @@ use umicms\orm\object\TCmsPage;
  * Тема форума.
  *
  * @property IObjectSet $messages сообщения темы
+ * @property ForumAuthor $author автор темы
  */
 class ForumTheme extends CmsObject implements ICmsPage
 {
@@ -56,7 +57,15 @@ class ForumTheme extends CmsObject implements ICmsPage
      */
     public function setAuthor($value)
     {
+        if ($this->author instanceof ForumAuthor) {
+            $this->author->recalculateThemesCount();
+        }
+
         $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
+
+        if ($value instanceof ForumAuthor) {
+            $value->recalculateThemesCount();
+        }
 
         return $this;
     }

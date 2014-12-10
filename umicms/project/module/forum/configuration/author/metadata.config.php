@@ -58,6 +58,22 @@ return array_replace_recursive(
                     'en-US' => ['columnName' => 'contents_raw_en']
                 ]
             ],
+            ForumAuthor::FIELD_MESSAGES_COUNT => [
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'message_count',
+                'defaultValue' => 0,
+                'dataType' => 'integer',
+                'formula' => 'calculateMessagesCount',
+                'readOnly' => true
+            ],
+            ForumAuthor::FIELD_THEMES_COUNT => [
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'themes_count',
+                'defaultValue' => 0,
+                'dataType' => 'integer',
+                'formula' => 'calculateThemesCount',
+                'readOnly' => true
+            ]
         ],
         'types' => [
             'base' => [
@@ -66,6 +82,8 @@ return array_replace_recursive(
                     ForumAuthor::FIELD_PAGE_CONTENTS_RAW => [],
                     ForumAuthor::FIELD_THEMES => [],
                     ForumAuthor::FIELD_MESSAGES => [],
+                    ForumAuthor::FIELD_MESSAGES_COUNT => [],
+                    ForumAuthor::FIELD_THEMES_COUNT => []
                 ]
             ]
         ]

@@ -12,6 +12,8 @@ namespace umicms\project\module\forum\model\object;
 
 /**
  * Класс описывающий сообщение форума.
+ *
+ * @property ForumAuthor $author автор сообщения
  */
 class ForumMessage extends BaseForumMessage
 {
@@ -56,7 +58,15 @@ class ForumMessage extends BaseForumMessage
      */
     public function setAuthor($value)
     {
+        if ($this->author instanceof ForumAuthor) {
+            $this->author->recalculateMessagesCount();
+        }
+
         $this->getProperty(self::FIELD_AUTHOR)->setValue($value);
+
+        if ($value instanceof ForumAuthor) {
+            $value->recalculateMessagesCount();
+        }
 
         return $this;
     }
