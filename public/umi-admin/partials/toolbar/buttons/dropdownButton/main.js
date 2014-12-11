@@ -20,6 +20,10 @@ define(['App', 'moment'], function(UMI, moment) {
                         return this.get('parentView.dropdownId');
                     }.property(),
 
+                    dataOptions: function() {
+                        return 'listStyle: fusion;';
+                    }.property(),
+
                     title: Ember.computed.alias('meta.attributes.title'),
 
                     iconClass: function() {
@@ -57,7 +61,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 extendButton: {
                     dataOptions: function() {
-                        return 'fastSelectHoverSelector: tr; fastSelectTarget: tr;';
+                        return 'fastSelectHoverSelector: tr; fastSelectTarget: tr; listStyle: fusion;';
                     }.property()
                 },
 
@@ -261,7 +265,7 @@ define(['App', 'moment'], function(UMI, moment) {
 
                 extendButton: {
                     dataOptions: function() {
-                        return 'fastSelect: false;';
+                        return 'fastSelect: false; listStyle: fusion;';
                     }.property()
                 },
 

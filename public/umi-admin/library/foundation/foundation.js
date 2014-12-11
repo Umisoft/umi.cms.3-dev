@@ -1235,8 +1235,6 @@
                     }
                 }
 
-                //var listSideMargin = settings.listStyle === 'arrow' ? settings.arrowSize : 0; TODO
-
                 switch (side) {
                     case 'top':
                         if (dropdownSize.height > targetOffset.top &&
