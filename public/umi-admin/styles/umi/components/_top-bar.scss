@@ -100,7 +100,6 @@ $umi-bg-darken-set: #404959, #181B21;
     }
 
     .f-dropdown {
-
         &:after{
             content: "";
             position: absolute;
@@ -115,11 +114,6 @@ $umi-bg-darken-set: #404959, #181B21;
             right: 0;
             border: 0;
             top: auto;
-        }
-
-        &-double {
-            width: 24rem;
-            max-width: 30rem;
         }
     }
 

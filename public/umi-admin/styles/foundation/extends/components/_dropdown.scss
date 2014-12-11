@@ -12,57 +12,18 @@
     opacity: .6;
     transition: opacity 0.1s linear;
     white-space: nowrap;
-    border: none;
     max-width: 330px;
-    padding: 10px 0 10px 10px;
-
-    &-padding {
-        margin: 10px !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,.4);
-    }
-
-    &-border {
-      border: 1px solid #b3b3b3;
-      border-top: none;
-    }
-
-    &-parent {
-        padding: 0;
-        width: auto;
-        max-width: none;
-
-        & > li {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-    }
-
-    &:not(.f-dropdown-parent),
-    &-child {
-        list-style: none;
-        margin: 0;
-        overflow: hidden;
-        padding: 10px 0 10px 10px;
-        background: #fff;
-
-        &.highlighted {
-          background: #f3f3f3;
-          border-top: 1px solid #e6e6e6;
-        }
-
-        li {
-          padding: 0 10px 0 0;
-        }
-    }
+    padding: 10px;
+    border: 1px solid #b3b3b3;
+    box-sizing: border-box;
+    margin: 0;
 
     li {
         @include dropdown-style;
         background: transparent;
         cursor: default;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 0 10px 0 0;
+        list-style: none;
 
         &:hover,
         &:focus {
@@ -73,7 +34,7 @@
             min-width: rem-calc(90);
             display: block;
             color: #222;
-            padding: 0.3rem 0.5rem;
+            padding: rem-calc(10) rem-calc(20);
             font-size: 14px;
 
             &:hover,
@@ -172,12 +133,29 @@
     //UMI extends
 
     //double columns
-    &-double{
+    &-double-wrap{
+        padding: 0;
+        list-style: none;
         width: rem-calc(460);
+        max-width: rem-calc(460);
+
+        > li {
+            padding: 10px;
+            display: block;
+            overflow: hidden;
+        }
+    }
+
+    &-double{
+        margin: 0;
 
         > li{
-            width: 50%;
+            width: calc(50% - 10px);
             float: left;
+
+            &:nth-child(odd) {
+                margin-right: 10px;
+            }
         }
     }
 
@@ -190,7 +168,7 @@
                 text-overflow: ellipsis;
                 position: relative;
                 vertical-align: top;
-                padding-right: rem-calc(30);
+                padding-right: rem-calc(45);
                 box-sizing: border-box;
 
                 div{
@@ -201,9 +179,37 @@
 
             .split-default-button{
                 position: absolute;
-                right: rem-calc(10);
+                right: rem-calc(20);
                 margin-top: 0;
             }
+        }
+    }
+
+    &-highlight{
+        background: #f3f3f3 !important;
+        border-top: 1px solid #e6e6e6;
+    }
+
+    &-arrow {
+        border-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,.4);
+
+        &:before{
+            content: "";
+            position: absolute;
+            display: none;
+            border-style: solid;
+            border-color: transparent;
+        }
+    }
+
+    &-fusion {
+        &.drop-bottom{
+            margin-top: -1px;
+        }
+
+        &.drop-top{
+            margin-top: 1px;
         }
     }
 }

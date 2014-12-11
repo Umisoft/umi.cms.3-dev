@@ -487,7 +487,7 @@ define(['App', 'toolbar'], function(UMI) {
                         }
                     }
 
-                    behaviour.extendButton = behaviour.extendButton = {};
+                    behaviour.extendButton = {};
                     behaviour.extendButton.classNames = ['white square'];
                     behaviour.extendButton.label = null;
 

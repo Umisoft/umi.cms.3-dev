@@ -19,37 +19,8 @@
         }
     }
 
-    &.tiny-arrow:after {
-        border-width: 0.25rem;
-        margin-top: -0.1rem;
-        right: 0.7rem;
-    }
-
-    &.f-arrowed.open:before {
-        content: '';
-        position: absolute;
-        bottom: -0.7rem;
-        right: inherit;
-        left: 50%;
-        margin: 0 0 0 -0.3rem;
-        border: 0.6rem solid transparent;
-        border-bottom-color: #fff;
-    }
-}
-
-
-$dropup-button-pip-top-med: -$button-pip-med;
-
-.button.dropup{
-    @include dropdown-button();
-    border-color: transparent;
-    border-bottom-color: $dropdown-button-pip-color;
-    &:before{
-        margin-top: $dropup-button-pip-top-med + rem-calc(2);
-    }
-    &.white{
-        &:before{
-            border-bottom-color: $dropdown-button-pip-color-alt;
-        }
+    &.open.f-dropdown-target-fusion{
+        z-index: 100;
+        border-color: #b3b3b3;
     }
 }
