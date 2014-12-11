@@ -4,7 +4,9 @@ define(['App'], function(UMI) {
     return function() {
         UMI.DockController = Ember.ObjectController.extend({
             needs: ['application', 'module'],
+
             modulesBinding: 'controllers.application.modules',
+
             sortedModules: function() {
                 var userSettings = UMI.Utils.LS.get('dock.sortedOrder');
                 var modules = this.get('modules');
@@ -24,7 +26,7 @@ define(['App'], function(UMI) {
                 } else {
                     return modules;
                 }
-            }.property('modules'),
+            }.property('modules').volatile(),
 
             activeModuleBinding: 'controllers.module.model',
 
