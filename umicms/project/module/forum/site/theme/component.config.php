@@ -14,24 +14,18 @@ use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
-
     SiteGroupComponent::OPTION_COMPONENTS => [
         'view' => '{#lazy:~/project/module/forum/site/theme/view/component.config.php}'
     ],
-
     SiteGroupComponent::OPTION_CONTROLLERS => [
     ],
-
     SiteGroupComponent::OPTION_WIDGET => [
     ],
-
     SiteGroupComponent::OPTION_ACL => [
     ],
-
     SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/forum/theme']
     ],
-
     SiteGroupComponent::OPTION_ROUTES => [
     ]
 ];

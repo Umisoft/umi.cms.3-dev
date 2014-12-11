@@ -111,16 +111,20 @@ return [
 
     'project.site.forum' => [
         'en-US'=> [
-            'Title' => 'Title',
+            'TitleConference' => 'Title conference',
             'Themes' => 'Themes',
             'Messages' => 'Messages',
             'LastMessage' => 'Last message',
+
+            'TitleTheme' => 'Title theme'
         ],
         'ru-RU' => [
-            'Title' => 'Название',
+            'TitleConference' => 'Название конференции',
             'Themes' => 'Тем',
             'Messages' => 'Сообщений',
             'LastMessage' => 'Последнее сообщещние',
+
+            'TitleTheme' => 'Название темы',
         ]
     ]
 

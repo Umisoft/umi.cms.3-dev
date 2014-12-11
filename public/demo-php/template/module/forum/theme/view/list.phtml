@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var umicms\project\module\forum\model\object\ForumConference $conference
+ * @var umicms\orm\selector\CmsSelector $list
+ */
+
+?>
+
+<?php if ($list->getTotal()) :?>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th><?=$this->translate('TitleTheme')?></th>
+            <th><?=$this->translate('Messages')?></th>
+            <th><?=$this->translate('LastMessage')?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if ($list->getTotal()) : ?>
+            <?php foreach ($list as $theme) : ?>
+                <?= $this->widget('forum.theme.view.view', ['theme' => $theme, 'template' => 'shortView']); ?>
+            <?php endforeach;?>
+        <?php endif; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

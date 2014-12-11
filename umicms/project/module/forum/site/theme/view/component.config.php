@@ -15,13 +15,16 @@ use umicms\hmvc\component\site\SitePageComponent;
 
 return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_CONTROLLERS => [
+        'page' => __NAMESPACE__ . '\controller\PageController'
+    ],
     SitePageComponent::OPTION_COLLECTION_NAME => 'forumTheme',
     SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\ThemeWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget'
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/forum/conference/view']
+        'directories' => ['module/forum/theme/view']
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [

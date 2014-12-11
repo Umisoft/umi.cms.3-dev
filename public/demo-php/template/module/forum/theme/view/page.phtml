@@ -5,7 +5,6 @@
 ?>
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
-<h1><?= $page->getHeader() ?></h1>
+    <h1><?= $page->getHeader() ?></h1>
 <?= $page->contents ?>
 
-<?=$this->widget('forum.theme.view.list', ['conference' => $page]);
