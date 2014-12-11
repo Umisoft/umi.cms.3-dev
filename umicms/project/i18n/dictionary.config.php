@@ -270,6 +270,7 @@ return [
     'collection.blogPostStatus' => '{#lazy:~/project/module/blog/configuration/poststatus/i18n/dictionary.config.php}',
     'collection.blogCommentStatus' => '{#lazy:~/project/module/blog/configuration/commentstatus/i18n/dictionary.config.php}',
 
+    'collection.forumConference' => '{#lazy:~/project/module/forum/configuration/conference/i18n/dictionary.config.php}',
     'collection.forumTheme' => '{#lazy:~/project/module/forum/configuration/theme/i18n/dictionary.config.php}',
     'collection.forumMessage' => '{#lazy:~/project/module/forum/configuration/message/i18n/dictionary.config.php}',
     'collection.forumAuthor' => '{#lazy:~/project/module/forum/configuration/author/i18n/dictionary.config.php}',

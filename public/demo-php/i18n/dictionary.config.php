@@ -107,6 +107,21 @@ return [
             'No query' => 'Запрос пустой',
             'No result' => 'Ничего не найдено',
         ]
+    ],
+
+    'project.site.forum' => [
+        'en-US'=> [
+            'Title' => 'Title',
+            'Themes' => 'Themes',
+            'Messages' => 'Messages',
+            'LastMessage' => 'Last message',
+        ],
+        'ru-RU' => [
+            'Title' => 'Название',
+            'Themes' => 'Тем',
+            'Messages' => 'Сообщений',
+            'LastMessage' => 'Последнее сообщещние',
+        ]
     ]
 
 ];
