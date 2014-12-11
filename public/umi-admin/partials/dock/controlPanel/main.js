@@ -22,7 +22,7 @@ define(['App'], function(UMI) {
         UMI.DockControlPanelView = Ember.View.extend({
             templateName: 'partials/dockControlPanel',
             tagName: 'ul',
-            classNames: ['f-dropdown-child', 'f-dropdown-double', 'small-labels']
+            classNames: ['f-dropdown-double', 'small-labels']
         });
     };
 });

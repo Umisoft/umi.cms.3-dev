@@ -23,9 +23,11 @@ $umi-bg-darken-set: #404959, #181B21;
         &.right {
             text-align: right;
 
-            .f-dropdown-double {
-                width: 16rem;
+            .f-dropdown-double-wrap {
+                width: rem-calc(300);
+            }
 
+            .f-dropdown-double {
                 li {
                     text-align: left;
                 }
@@ -96,24 +98,6 @@ $umi-bg-darken-set: #404959, #181B21;
             &:after{
                 border-top-color: #575e6c;
             }
-        }
-    }
-
-    .f-dropdown {
-        &:after{
-            content: "";
-            position: absolute;
-            float: left;
-            display: block;
-            height: 3px;
-            width: 100%;
-            left: 0;
-            bottom: -3px;
-            background: url($image-to-bottom-shadow);
-            background-repeat: repeat-x;
-            right: 0;
-            border: 0;
-            top: auto;
         }
     }
 
