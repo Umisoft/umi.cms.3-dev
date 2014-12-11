@@ -1,13 +1,14 @@
 <nav class="umi-top-bar row">
     <ul class="umi-top-bar-list left small-5 columns">
         <li>
-            <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
-                  data-options="selectorById: false;">
+            <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown
+                  data-options="selectorById: false; listStyle: arrow;">
                 <i class="icon icon-butterfly"></i>
                 <span>Модули</span>
             </span>
-            <ul class="f-dropdown f-dropdown-padding f-dropdown-parent" data-dropdown-content>
-                    <li><ul class="f-dropdown-double f-dropdown-child">
+            <ul class="f-dropdown f-dropdown-double-wrap" data-dropdown-content>
+                <li>
+                    <ul class="f-dropdown-double">
                         {{#each view.modules}}
                             <li>
                                 {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
@@ -17,8 +18,9 @@
                             </li>
                         {{/each}}
                     </ul>
-                    </li><li>
-                    <ul class="f-dropdown-double f-dropdown-child highlighted">
+                </li>
+                <li class="f-dropdown-highlight">
+                    <ul class="f-dropdown-double">
                         {{#each view.modules}}
                             <li>
                                 {{#link-to "module" name class="umi-top-bar-dropdown-modules-item"}}
@@ -27,7 +29,8 @@
                                 {{/link-to}}
                             </li>
                         {{/each}}
-                    </ul></li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li>
@@ -51,11 +54,11 @@
 
     <ul class="umi-top-bar-list right small-5 columns">
         <li>
-            <span class="button tiny flat dropdown tiny-arrow f-arrowed umi-top-bar-button" data-dropdown
-                  data-options="selectorById: false; align: right; side: right;">
+            <span class="button tiny flat dropdown umi-top-bar-button" data-dropdown
+                  data-options="selectorById: false; listStyle: arrow; align: right; side: bottom;">
                 {{view.userName}}
             </span>
-            <ul class="f-dropdown f-dropdown-padding" data-dropdown-content>
+            <ul class="f-dropdown" data-dropdown-content>
                 <li>
                     <a href="javascript:void(0)" {{action "logout"}}>
                         <i class="icon icon-exit"></i> {{i18n "Logout"}}

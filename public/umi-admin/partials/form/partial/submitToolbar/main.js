@@ -13,10 +13,8 @@ define(['App', 'toolbar'], function(UMI) {
                     var behaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                     behaviour.extendButton = behaviour.extendButton || {};
                     behaviour.extendButton.dataOptions = function() {
-                        return 'side: top; align: right;';
+                        return 'side: top; align: right; listStyle: fusion; replaceTarget: .button;';
                     }.property();
-                    behaviour.extendButton.classNames = ['f-arrowed-top'];
-                    behaviour.listClassNames = 'f-dropdown-padding';
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()
