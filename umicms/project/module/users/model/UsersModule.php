@@ -10,8 +10,7 @@
 
 namespace umicms\project\module\users\model;
 
-use umi\http\IHttpAware;
-use umi\http\THttpAware;
+use umi\http\Request;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\NonexistentEntityException;
@@ -31,9 +30,8 @@ use umicms\Utils;
 /**
  * Модуль для работы с пользователями.
  */
-class UsersModule extends BaseModule implements IHttpAware, ISessionAware
+class UsersModule extends BaseModule implements ISessionAware
 {
-    use THttpAware;
     use TSessionAware;
 
     /**
@@ -68,9 +66,23 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
     public $supervisorGuid = '68347a1d-c6ea-49c0-9ec3-b7406e42b01e';
 
     /**
+     * @var Request $request текущий запрос
+     */
+    protected $request;
+
+    /**
      * @var Visitor $visitor посетитель
      */
     private $visitor;
+
+    /**
+     * Конструктор.
+     * @param Request $request текущий запрос
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * Возвращает репозиторий для работы с пользователями.
@@ -146,7 +158,7 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
         }
 
         $user->registrationDate = new \DateTime();
-        $user->getProperty(RegisteredUser::FIELD_IP)->setValue($this->getHttpRequest()->server->get('REMOTE_ADDR'));
+        $user->getProperty(RegisteredUser::FIELD_IP)->setValue($this->request->server->get('REMOTE_ADDR'));
 
         return $user;
     }
@@ -251,7 +263,7 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
             return $this->visitor;
         }
 
-        $visitorToken = $this->getHttpRequest()->cookies->get(self::VISITOR_TOKEN_COOKIE_NAME);
+        $visitorToken = $this->request->cookies->get(self::VISITOR_TOKEN_COOKIE_NAME);
 
         if (is_null($visitorToken)) {
             throw new RuntimeException(
@@ -285,7 +297,7 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
             return true;
         }
 
-        if ($this->getHttpRequest()->cookies->has(self::VISITOR_TOKEN_COOKIE_NAME)) {
+        if ($this->request->cookies->has(self::VISITOR_TOKEN_COOKIE_NAME)) {
 
             try {
                 $this->getVisitor();
@@ -321,7 +333,7 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
      */
     public function isAuthenticated()
     {
-        if (!$this->getHttpRequest()->cookies->has(Bootstrap::SESSION_COOKIE_NAME)) {
+        if (!$this->request->cookies->has(Bootstrap::SESSION_COOKIE_NAME)) {
             return false;
         }
 
@@ -422,7 +434,9 @@ class UsersModule extends BaseModule implements IHttpAware, ISessionAware
             $visitor->groups->attach($group);
         }
 
-        $visitor->getProperty(Visitor::FIELD_IP)->setValue($this->getHttpRequest()->server->get('REMOTE_ADDR'));
+        $visitor->getProperty(Visitor::FIELD_IP)->setValue(
+            $this->request->server->get('REMOTE_ADDR')
+        );
         $visitor->updateToken();
         $visitor->active = true;
 

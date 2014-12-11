@@ -1,11 +1,15 @@
 {% if (tree) %}
     <ul class="bottomMenu">
         {% for node in tree %}
-            <li>
-                <a href="{{ node.item.getItemUrl() ?: anchor() }}"
-                    {{ node.item.getItemType() == 'externalItem' ? 'target="blank"' }}>
+            <li {% if node.active %}class="active"{% endif %}>
+                {% if node.current %}
                     {{ node.item.displayName }}
-                </a>
+                {% else %}
+                    <a href="{{ node.item.getItemUrl() ?: anchor() }}"
+                            {{ node.item.getItemType() == 'externalItem' ? 'target="blank"' }}>
+                        {{ node.item.displayName }}
+                    </a>
+                {% endif %}
                 {{ include('customMenu.twig', {'tree' : node.children}) }}
             </li>
         {% endfor %}

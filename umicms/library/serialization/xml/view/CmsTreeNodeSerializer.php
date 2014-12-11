@@ -27,6 +27,7 @@ class CmsTreeNodeSerializer extends BaseSerializer
     {
         $this->delegate($node->item, $options);
         $this->delegate(iterator_to_array($node, true), $options);
+        $this->delegate(['current' => $node->current, 'active' => $node->active]);
     }
 }
  

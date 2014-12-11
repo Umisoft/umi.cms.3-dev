@@ -23,7 +23,7 @@ return [
         'Current version' => 'Текущая версия',
         'Latest version' => 'Последняя версия',
         'Release date' => 'Дата выпуска версии',
-        'Nothing update' => 'Обновление не требуются',
+        'Nothing update' => 'Обновление не требуется',
         'Update available' => 'Доступно обновление',
 
         'action:update' => 'Обновить систему'

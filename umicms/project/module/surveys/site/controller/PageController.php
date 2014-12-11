@@ -14,6 +14,7 @@ use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umi\orm\object\property\calculable\ICounterProperty;
 use umicms\exception\NotAllowedOperationException;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\component\site\SitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\surveys\model\object\Answer;
@@ -76,7 +77,7 @@ class PageController extends SitePageController
     {
         if ($this->module->checkIfVoted($this->survey)) {
             throw new NotAllowedOperationException(
-                $this->translate('You have already voted.')
+                $this->translate('You have already voted')
             );
         }
 
@@ -85,6 +86,12 @@ class PageController extends SitePageController
          */
         $answersElement = $form->get(Survey::FIELD_ANSWERS);
         $answers = (array) $answersElement->getValue();
+
+        if (count($answers) < 1) {
+            throw new RuntimeException(
+                $this->translate('Do not select any option')
+            );
+        }
 
         foreach ($answers as $guid) {
             $answer = $this->module->answer()->get($guid);

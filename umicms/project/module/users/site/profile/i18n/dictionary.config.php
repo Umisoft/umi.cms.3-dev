@@ -12,8 +12,8 @@ return [
 
     'en-US' => [
         'Welcome' => 'Welcome',
-        'Edit profile' => 'Edit profile',
-        'Change password' => 'Change password',
+        'EditProfile' => 'Edit profile',
+        'ChangePassword' => 'Change password',
 
         'role:viewer:displayName' => 'View profile',
         'role:passwordExecutor:displayName' => 'Change password'
@@ -21,8 +21,8 @@ return [
 
     'ru-RU' => [
         'Welcome' => 'Добро пожаловать',
-        'Edit profile' => 'Редактировать профиль',
-        'Change password' => 'Смена пароля',
+        'EditProfile' => 'Редактировать профиль',
+        'ChangePassword' => 'Смена пароля',
 
         'role:viewer:displayName' => 'Просмотр профиля пользователя',
         'role:passwordExecutor:displayName' => 'Смена пароля'

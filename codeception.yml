@@ -1,0 +1,12 @@
+namespace: umitest
+actor: Tester
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    helpers: tests/_support
+settings:
+    bootstrap: bootstrap.php
+    colors: true
+    memory_limit: 1024M
+    configuration: phpunit.xml

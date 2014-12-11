@@ -2,11 +2,11 @@
 
 use umi\form\element\CSRF;
 use umi\form\element\Hidden;
+use umi\form\element\Password;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\form\element\Captcha;
-use umicms\form\element\PasswordWithConfirmation;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\model\object\RegisteredUser;
 
@@ -38,7 +38,7 @@ return [
         ],
 
         RegisteredUser::FIELD_PASSWORD => [
-            'type' => PasswordWithConfirmation::TYPE_NAME,
+            'type' => Password::TYPE_NAME,
             'label' => RegisteredUser::FIELD_PASSWORD,
             'options' => [
                 'dataSource' => RegisteredUser::FIELD_PASSWORD,

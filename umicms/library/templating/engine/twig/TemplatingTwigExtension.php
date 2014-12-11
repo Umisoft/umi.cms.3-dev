@@ -77,16 +77,12 @@ class TemplatingTwigExtension extends Twig_Extension
      */
     protected function getTranslationHelper()
     {
-        static $helper;
-
-        if (!$helper) {
-            /** @var CmsDispatcher $dispatcher */
-            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-            $helper = new TranslationHelper($dispatcher);
-            /** @var ITranslator $translator */
-            $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
-            $helper->setTranslator($translator);
-        }
+        /** @var CmsDispatcher $dispatcher */
+        $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+        $helper = new TranslationHelper($dispatcher);
+        /** @var ITranslator $translator */
+        $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
+        $helper->setTranslator($translator);
 
         return $helper;
     }
@@ -97,15 +93,10 @@ class TemplatingTwigExtension extends Twig_Extension
      */
     protected function getIsAllowedResourceHelper()
     {
-        static $isAllowedResourceHelper;
-        if (!$isAllowedResourceHelper) {
-            /** @var CmsDispatcher $dispatcher */
-            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+        /** @var CmsDispatcher $dispatcher */
+        $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
 
-            $isAllowedResourceHelper = new AccessResource($dispatcher);
-        }
-
-        return $isAllowedResourceHelper;
+        return new AccessResource($dispatcher);
     }
 }
  
