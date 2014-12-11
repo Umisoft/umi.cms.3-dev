@@ -619,7 +619,7 @@
     Foundation.libs = Foundation.libs || {};
 
     /**
-     * UMI расширяет поведение выпадающих списков Foundation, изменяя/добавляя следующее:
+     * Расширяет поведение выпадающих списков Foundation, изменяя/добавляя следующее:
      * 1) Событие клика "мимо" списка навешивается в момент открытия списка, и снимается во время закрытия списка.
      *    В Foundation это событие всегда слушает клик, с самого старта приложения.
      * 2) Атрибут Id не является обязательным атрибутом для выборки, достаточно иметь один экземпляр списка на одном
@@ -641,7 +641,7 @@
      */
     Foundation.libs.dropdown = {
         name: 'dropdown',
-        version: '5.3.0.umi-custom',
+        version: '5.3.0.custom',
 
         settings: {
             /**
@@ -1222,7 +1222,7 @@
                 if (settings.checkPositionRegardingElement) {
                     closestTarget = target.closest(settings.checkPositionRegardingElement);
                     target = closestTarget.length ? closestTarget : target;
-                    screenSize.width = target.outerWidth();//TODO: check parent with overflow: hidden
+                    screenSize.width = target.outerWidth();
                 } else if (settings.minWidthLikeElement && !target.is(settings.minWidthLikeElement)) {
                     closestTarget = target.closest(settings.minWidthLikeElement);
                     target = closestTarget.length ? closestTarget : target;
