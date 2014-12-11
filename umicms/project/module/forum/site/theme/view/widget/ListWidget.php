@@ -27,7 +27,7 @@ class ListWidget extends BaseListWidget
     /**
      * @var ForumModule $module модуль "Форум"
      */
-    public $module;
+    protected $module;
 
     /**
      * Конструктор.
