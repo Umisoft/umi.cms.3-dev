@@ -109,7 +109,7 @@ define(['App'], function(UMI) {
                     attributeBindings: ['meta.attributes.title'],
 
                     dataOptions: function() {
-                        return 'replaceTarget: .button;';
+                        return 'replaceTarget: .button; listStyle: fusion;';
                     }.property(),
 
                     label: function() {
@@ -133,6 +133,8 @@ define(['App'], function(UMI) {
                     buttonView.reopen(this.get('extendButton'));
                     return buttonView;
                 }.property(),
+
+                listClassNames: null,
 
                 itemView: ListItemView
             });

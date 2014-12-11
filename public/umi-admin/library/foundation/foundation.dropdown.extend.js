@@ -126,6 +126,10 @@
              */
             closeAfterClickOnElement: 'a',
 
+            listStyle: null,
+
+            arrowSize: 8,
+
             opened: function() {},
 
             closed: function() {}
@@ -429,6 +433,9 @@
 
                     S(this).trigger('closed').trigger('closed.fndtn.dropdown', [S(this)]);
                 }
+
+                S(this).removeClass('f-dropdown-fusion f-dropdown-arrow drop-top drop-bottom drop-left drop-right');
+                target.removeClass('f-dropdown-target-fusion drop-top drop-bottom drop-left drop-right');
             });
 
             this.eventListener.offClickMissDropdown.call(this);
@@ -568,7 +575,11 @@
             var basePosition = this.styleFor._basePosition.call(dropdown, target);
             var computedStyle = this.styleFor.side[side].call(dropdown, target, basePosition);
             computedStyle = $.extend(computedStyle, this.styleFor.align[align].call(dropdown, target, basePosition));
-            computedStyle = $.extend(dropdownStyles, computedStyle);
+            $.extend(dropdownStyles, computedStyle);
+
+            if (this.styleFor[settings.listStyle]) {
+                dropdownStyles = this.styleFor[settings.listStyle].call(this, side, align, dropdownStyles, target, dropdown, settings);
+            }
 
             dropdown.attr('style', '').css(dropdownStyles);
         },
@@ -601,7 +612,6 @@
                     target = closestTarget.length ? closestTarget : target;
                 }
 
-                //TODO: optimize
                 targetSize.width = target.outerWidth();
                 targetOffset.left = target.offset().left;
 
@@ -689,22 +699,28 @@
             side: {
                 top: function(target, basePosition) {
                     this.addClass('drop-top');
+                    target.addClass('drop-top');
 
                     return {top: basePosition.top - this.outerHeight()};
                 },
 
                 bottom: function(target, basePosition) {
+                    this.addClass('drop-bottom');
+                    target.addClass('drop-bottom');
+
                     return {top: basePosition.top + target.outerHeight()};
                 },
 
                 left: function(target, basePosition) {
                     this.addClass('drop-left');
+                    target.addClass('drop-left');
 
                     return {left: basePosition.left - this.outerWidth()};
                 },
 
                 right: function(target, basePosition) {
                     this.addClass('drop-right');
+                    target.addClass('drop-right');
 
                     return {left: basePosition.left + target.outerWidth()};
                 }
@@ -726,14 +742,77 @@
                 right: function(target, basePosition) {
                     return {left: basePosition.left - this.outerWidth() + target.outerWidth()};
                 }
+            },
+
+            arrow: function(side, align, dropdownStyles, target, dropdown, settings) {
+                var sheet = Foundation.stylesheet;
+                this.rule_idx = sheet.cssRules.length;
+                var arrowSize = settings.arrowSize;
+                var selectorBefore = '.f-dropdown-arrow:before';
+                var stylesBefore = [];
+                stylesBefore.push('display: inline-block; border-width: ' + arrowSize + 'px; border-' + side + '-color: #fff;');
+                dropdown.addClass('f-dropdown-arrow');
+                var listOffset = arrowSize * 2 - 1;
+
+                switch (side) {
+                    case 'left':
+                        dropdownStyles.left -= arrowSize;
+                        stylesBefore.push('right: -' + listOffset + 'px;');
+                        break;
+                    case 'top':
+                        dropdownStyles.top -= arrowSize;
+                        stylesBefore.push('bottom: -' + listOffset + 'px;');
+                        break;
+                    case 'right':
+                        dropdownStyles.left += arrowSize;
+                        stylesBefore.push('left: -' + listOffset + 'px;');
+                        break;
+                    case 'bottom':
+                        dropdownStyles.top += arrowSize;
+                        stylesBefore.push('top: -' + listOffset + 'px;');
+                        break;
+                }
+
+                var targetWidth = target.outerWidth();
+                var targetHeight = target.outerHeight();
+
+                switch (align) {
+                    case 'left':
+                        stylesBefore.push('left: ' + (targetWidth / 2 - arrowSize) + 'px;');
+                        break;
+                    case 'top':
+                        stylesBefore.push('top: ' + (targetHeight / 2  - arrowSize) + 'px;');
+                        break;
+                    case 'right':
+                        stylesBefore.push('right: ' + (targetWidth / 2 - arrowSize) + 'px;');
+                        break;
+                    case 'bottom':
+                        stylesBefore.push('bottom: ' + (targetHeight / 2  - arrowSize) + 'px;');
+                        break;
+                }
+
+                stylesBefore = stylesBefore.join('');
+
+                if (sheet.insertRule) {
+                    sheet.insertRule([selectorBefore, '{', stylesBefore, '}'].join(' '), this.rule_idx);
+                } else {
+                    sheet.addRule(selectorBefore, stylesBefore, this.rule_idx);
+                }
+
+                return dropdownStyles;
+            },
+
+            fusion: function(side, align, dropdownStyles, target, dropdown, settings) {
+                target.addClass('f-dropdown-target-fusion');
+                dropdown.addClass('f-dropdown-fusion');
+                return dropdownStyles;
             }
         },
 
         clearIdx: function() {
             var sheet = Foundation.stylesheet;
 
-            if (this.rule_idx) {
-                sheet.deleteRule(this.rule_idx);
+            if (this.rule_idx !== undefined) {
                 sheet.deleteRule(this.rule_idx);
                 delete this.rule_idx;
             }

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Guide UMI.CMS HTML Elements</title>
-        <link rel="stylesheet" type="text/css" href="./development/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./production/css/styles.css">
     </head>
 
     <body style="overflow: auto;">
@@ -128,6 +128,45 @@
 
                 <h3 data-magellan-destination="button-dropdown">Dropdown Button [Кнопка с выпадающим списком].</h3>
 
+                <div>
+                    <h5>Возможны несколько вариантов оформления списков:</h5>
+                    <p>Обычный список:</p>
+                    <a href="#" data-dropdown="umi-drop-9" class="button dropdown">Обычный список</a>
+                    <ul id="umi-drop-9" data-dropdown-content class="f-dropdown">
+                        <li><a href="#">This is a link</a></li>
+                        <li><a href="#">This is another</a></li>
+                        <li><a href="#">Yet another</a></li>
+                    </ul>
+                    <p></p>
+                    <p>Список можно оформить с указателем на кнопку, ориентируемый на центр кнопки:</p>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false;">С указателем</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: bottom; align: right;">С указателем side: bottom, align: right</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: top;  align: left;">С указателем side: top, align: left</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: top; align: right;">С указателем side: top, align: right</a>
+                    <p></p>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: left; align: top;">С указателем side: left, align: top</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: left; align: bottom;">С указателем side: left, align: bottom;</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: right; align: top;">С указателем side: right, align: top</a>
+                    <a href="#" data-dropdown="umi-drop-10" class="button dropdown" data-options="listStyle: arrow; minWidthLikeElement: false; side: right; align: bottom;">С указателем side: right, align: bottom</a>
+
+                    <ul id="umi-drop-10" data-dropdown-content class="f-dropdown">
+                        <li><a href="#">This is a link</a></li>
+                        <li><a href="#">This is another</a></li>
+                        <li><a href="#">Yet another</a></li>
+                    </ul>
+                    <p></p>
+                    <p>Список также можно так же оформить как единный с вызвавшей кнопкой(используется для split button)</p>
+                    <a href="#" class="button large split">Split Button<span data-dropdown="umi-drop-11" data-options="listStyle: fusion; replaceTarget: .button;"></span></a>
+                    <a href="#" class="button large split white">Split Button white<span data-dropdown="umi-drop-11" data-options="listStyle: fusion; replaceTarget: .button;"></span></a>
+                    <a href="#" class="button large split">Split Button side: top, align: left<span data-dropdown="umi-drop-11" data-options="listStyle: fusion; replaceTarget: .button; side: top; align: left;"></span></a>
+                    <ul id="umi-drop-11" data-dropdown-content class="f-dropdown">
+                        <li><a href="#">This is a link</a></li>
+                        <li><a href="#">This is another</a></li>
+                        <li><a href="#">Yet another</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
                 <p></p>
                 <h5>По умолчанию выпадающий список иммет минимальную ширину как у кнопки.</h5>
                 <a href="#" data-dropdown="umi-drop-5" class="button dropdown" data-options="minWidthLikeElement: false;">Dropdown Button [min width off]</a>
@@ -246,21 +285,21 @@
 
                 <a href="#" class="button large split">Split Button<span data-dropdown="umi-drop-2" data-options="replaceTarget: .button;"></span></a>
 
-                <a href="#" class="button secondary split">Split secondary Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false;align: right;"></span></a>
+                <a href="#" class="button secondary split">Split secondary Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false;align: right;replaceTarget: .button;"></span></a>
 
-                <a href="#" class="button split">Split Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false; align: right;"></span></a>
+                <a href="#" class="button split">Split Button<span data-dropdown="umi-drop-2"  data-options="selectOnPress: false; align: right;replaceTarget: .button;"></span></a>
 
                 <a href="#" class="button split white square"><i class="icon icon-viewOnSite"></i> <span
-                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;replaceTarget: .button;"></span></a>
 
                 <a href="#" class="button small split white square"><i class="icon icon-viewOnSite"></i> <span
-                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+                        data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;replaceTarget: .button;"></span></a>
 
                 <a href="#" class="button small secondary split">Split Button
-                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;replaceTarget: .button;"></span></a>
 
                 <a href="#" class="button tiny white split">Split Button
-                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;"></span></a>
+                    <span data-dropdown="umi-drop-2" data-options="selectOnPress: false; align: right;replaceTarget: .button;"></span></a>
                 <ul class="f-dropdown" data-dropdown-content id="umi-drop-2">
                     <li><a href="#" onclick="alert('ooooo');">This is a link</a></li>
                     <li><a href="#">This is another</a></li>

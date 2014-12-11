@@ -103,6 +103,11 @@ define(['App', 'toolbar'], function(UMI) {
                         contentScroll.refresh();
                     }, 100);
                 });
+
+                $(window).on('headerHeightChange.umi.divider', function() {
+                    contentScroll.refresh();
+                });
+
                 // Раскрытие ноды имеющую потомков
                 var setExpanded = function(node) {
                     var itemView = Ember.View.views[node.id];
@@ -546,7 +551,7 @@ define(['App', 'toolbar'], function(UMI) {
                     behaviour.extendButton.label = null;
                     behaviour.extendButton.dataOptions = function() {
                         return 'align: right; checkPositionRegardingElement: .umi-tree-wrapper;' +
-                            ' maxWidthLikeElement: .umi-tree-wrapper;';
+                            ' maxWidthLikeElement: .umi-tree-wrapper; listStyle: fusion; replaceTarget: .button;';
                     }.property();
                     behaviour.actions = behaviour.actions || {};
                     behaviour.actions.sendActionForBehaviour = function(contextBehaviour) {

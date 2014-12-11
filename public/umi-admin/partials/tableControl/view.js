@@ -89,6 +89,9 @@ define(['App', 'toolbar'], function(UMI) {
                             umiTableRight.style.marginTop = scrollContent.y + 'px';
                             umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                         }, 100);// TODO: заменить на событие окончания ресайза iScroll
+                    })
+                    .on('dividerResize.umi.table headerHeightChange.umi.table', function() {
+                        scrollContent.refresh();
                     });
 
                     // Событие изменения ширины колонки
@@ -102,8 +105,9 @@ define(['App', 'toolbar'], function(UMI) {
                         var columnOffset = $(columnEl).offset().left;
                         var columnWidth;
                         var contentCell = umiTableContentRowSize.querySelector('.' + columnName);
+                        var $body = $('body');
 
-                        $('body').on('mousemove.umi.tableControl', function(event) {
+                        $body.on('mousemove.umi.tableControl', function(event) {
                             event.stopPropagation();
                             columnWidth = event.pageX - columnOffset;
                             if (columnWidth >= 60 && columnEl.offsetWidth > 59) {
@@ -111,11 +115,11 @@ define(['App', 'toolbar'], function(UMI) {
                             }
                         });
 
-                        $('body').on('mouseup.umi.tableControl', function() {
+                        $body.on('mouseup.umi.tableControl', function() {
                             $('html').removeClass('s-unselectable');
                             $(handler).removeClass('on-resize');
-                            $('body').off('mousemove');
-                            $('body').off('mouseup.umi.tableControl');
+                            $body.off('mousemove');
+                            $body.off('mouseup.umi.tableControl');
                             scrollContent.refresh();
                             umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                         });
@@ -483,7 +487,7 @@ define(['App', 'toolbar'], function(UMI) {
                         }
                     }
 
-                    behaviour.extendButton = behaviour.extendButton = {};
+                    behaviour.extendButton = {};
                     behaviour.extendButton.classNames = ['white square'];
                     behaviour.extendButton.label = null;
 

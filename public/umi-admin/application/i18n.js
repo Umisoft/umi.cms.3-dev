@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
     return function(UMI) {
-        Ember.Handlebars.registerHelper('i18n', function(label, namespace) {
+        Ember.Handlebars.helper('i18n', function(label, namespace) {
                 if (Ember.typeOf(namespace) !== 'string') {
                     namespace = undefined;
                 }

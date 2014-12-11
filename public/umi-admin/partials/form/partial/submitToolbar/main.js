@@ -13,7 +13,7 @@ define(['App', 'toolbar'], function(UMI) {
                     var behaviour = Ember.get(UMI.splitButtonBehaviour, behaviourName) || {};
                     behaviour.extendButton = behaviour.extendButton || {};
                     behaviour.extendButton.dataOptions = function() {
-                        return 'side: top; align: right;';
+                        return 'side: top; align: right; listStyle: fusion; replaceTarget: .button;';
                     }.property();
                     instance = instance.extend(behaviour);
                     return instance;

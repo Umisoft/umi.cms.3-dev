@@ -198,7 +198,10 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         background-position: -900px 0;
     }
     &.icon-exit{
-        background-position: -940px 0;
+        background-position: -940px -1px;
+    }
+    &.icon-profile{
+        background-position: -540px -2px;
     }
     &.icon-plus-thin{
         background-position: -960px 0;
@@ -244,6 +247,18 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
     }
     &.icon-backToFilter{
         background-position: -1260px 0;
+    }
+    &.icon-dock-small{
+      background-position: -1540px -20px;
+    }
+    &.icon-dock-big{
+      background-position: -1520px -20px;
+    }
+    &.icon-dock-list{
+      background-position: -1580px -20px;
+    }
+    &.icon-dock-dynamic{
+      background-position: -1560px -20px;
     }
 
     &.white{
@@ -621,6 +636,15 @@ $umi-icons-img: $images-path + '/svg/elements/icons-sprite.svg' + $images-versio
         }
         &.icon-backToFilter{
             background-position: -1260px  -40px;
+        }
+    }
+
+    &.blue {
+        &.icon-viewOnSite {
+            background-position: -1160px -60px;
+        }
+        &.icon-documentation {
+            background-position: -1620px -60px;
         }
     }
 }

@@ -2,7 +2,7 @@
     <div class="dock-wrapper-bg">
         <ul class="dock navigation">
             {{#each module in sortedModules}}
-                {{#view 'dockModuleButton' module=module }}
+                {{#view view.dockModuleButtonView module=module }}
                     {{#if view.parentView.isTouchDevice}}
                         <a href="javascript: void(0)" class="dock-module dropdown" data-dropdown=""
                         data-options="selectorById: false; isHover: true; buttonSelector: .dropdown;">

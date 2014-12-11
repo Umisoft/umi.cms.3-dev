@@ -1,23 +1,19 @@
 $umi-hover-background: #A4DCF7;
 $umi-font-color: #535E6D;
 $umi-dark-border-color: #CCD9E2;
-$primary-gradient: #3aadff, #0087d4;
+$umi-tree-color-active: #259cec;
 
-.umi-tree{
+.umi-tree {
     padding: 10px 0 20px;
     box-sizing: border-box;
-    margin-left: rem-calc(5);
+    margin-left: rem-calc(10);
     font-size: rem-calc(13);
 
-    &-wrapper{
+    &-wrapper {
         overflow: hidden;
     }
 
-    ul.f-dropdown {
-        padding-left: 0;
-    }
-
-    ul{
+    &-list{
         margin: 0;
         list-style: none;
         font-size: rem-calc(13);
@@ -40,38 +36,47 @@ $primary-gradient: #3aadff, #0087d4;
         padding: 0 10px 0 28px;
         white-space: nowrap;
         position: relative;
+
         &:hover, &.active{
             margin-left: -10000px;
             padding-left: 10028px;
             padding-right: 10px;
         }
+
         &:hover{
             background: #AFD3EC;
+
             .umi-tree-context-toolbar{
                 .button.split{
                     display: block;
                 }
             }
+
             .tree-item-link{
                 text-decoration: none;
             }
         }
+
         &.active{
-            background: linear-gradient($primary-gradient);
+            background: $umi-tree-color-active;
             color: #FFFFFF;
+
             .tree-item-link{
                 color: #FFFFFF;
                 border-bottom: none!important;
             }
+
             .split.button.open{
                 display: block;
             }
+
             .f-dropdown{
                 .tree-item-link{
                     color: $umi-font-color;
                 }
             }
         }
+
         &.in-active{
             .umi-tree-type-icon, .tree-item-link{
                 opacity: 0.65;
@@ -81,6 +86,7 @@ $primary-gradient: #3aadff, #0087d4;
 
     .umi-tree-type-icon{
         margin: rem-calc(2 0 0 -2);
+
         &.move{
             cursor: move !important;
         }
@@ -92,9 +98,10 @@ $primary-gradient: #3aadff, #0087d4;
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(-26);
+        margin-left: rem-calc(-28);
         padding: rem-calc(2);
         top: 0;
+
         &:hover{
             background: #FFFFFF;
         }
@@ -110,6 +117,7 @@ $primary-gradient: #3aadff, #0087d4;
         border-radius: rem-calc(12);
         margin-left: 28px;
         transition: background 0.2s linear;
+
         &:hover, &:focus {
             background: darken(#C4D2DD, 3%);
         }
@@ -119,6 +127,7 @@ $primary-gradient: #3aadff, #0087d4;
         a, .icon, .move{
             cursor: default;
         }
+
         .umi-item{
             &:hover{
                 background: transparent;
@@ -144,15 +153,17 @@ $primary-gradient: #3aadff, #0087d4;
     // Выпадающее меню --------------------------------------
     .umi-tree-context-toolbar{
         position: absolute;
-        right: rem-calc(4);
+        right: rem-calc(10);
         margin: 0;
         padding: 0;
         margin-top: -24px;
 
         .split.button{
             display: none;
+
             &.open{
                 display: block;
+
                 .f-dropdown{
                     display: block;
                     visibility: visible;
@@ -183,6 +194,7 @@ $primary-gradient: #3aadff, #0087d4;
     cursor: default;
     position: absolute;
     z-index: 100;
+
     i{
         margin: rem-calc(2 -2 2 0);
     }

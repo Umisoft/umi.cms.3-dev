@@ -1,0 +1,9 @@
+{{#each mode in modes}}
+    <li>
+        <a {{bind-attr class="mode.isActive:active mode.name"}} href="javascript: void(0)" {{action
+        "changeDockMode" mode}}>
+            <i class="icon icon-dock-{{unbound mode.name}}"></i>
+            {{i18n mode.title}}
+        </a>
+    </li>
+{{/each}}

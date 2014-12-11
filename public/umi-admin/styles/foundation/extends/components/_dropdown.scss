@@ -12,15 +12,41 @@
     opacity: .6;
     transition: opacity 0.1s linear;
     white-space: nowrap;
-    border: none;
-    box-shadow: 0 0 4px 1px #939699;
     max-width: 330px;
+    padding: 10px;
+    border: 1px solid #b3b3b3;
+    box-sizing: border-box;
+    margin: 0;
 
     li {
         @include dropdown-style;
+        background: transparent;
+        cursor: default;
+        box-sizing: border-box;
+        list-style: none;
 
-        &.hover{
-            background: $f-dropdown-list-hover-bg;
+        &:hover,
+        &:focus {
+            background: transparent;
+        }
+
+        a {
+            min-width: rem-calc(90);
+            display: block;
+            color: #222;
+            padding: rem-calc(10) rem-calc(20);
+            font-size: 14px;
+
+            &:hover,
+            &.active {
+              text-decoration: none;
+              background: #259cec;
+              color: #fff;
+            }
+
+            &.active {
+              cursor: default;
+            }
         }
     }
 
@@ -35,6 +61,8 @@
 
         li{
             cursor: default;
+            padding: 0;
+
             &:hover{
                 background: transparent;
             }
@@ -64,8 +92,13 @@
                 &.selectable{
                     &:hover, &.hover{
                         cursor: pointer;
-                        background: #C5E2F7;
+                        background: #259cec;
+                        color: #fff;
                     }
+                }
+
+                .button i {
+                    margin-top: -10px;
                 }
             }
             td{
@@ -100,12 +133,29 @@
     //UMI extends
 
     //double columns
-    &-double{
+    &-double-wrap{
+        padding: 0;
+        list-style: none;
         width: rem-calc(460);
+        max-width: rem-calc(460);
+
+        > li {
+            padding: 10px;
+            display: block;
+            overflow: hidden;
+        }
+    }
+
+    &-double{
+        margin: 0;
 
         > li{
-            width: 50%;
+            width: calc(50% - 10px);
             float: left;
+
+            &:nth-child(odd) {
+                margin-right: 10px;
+            }
         }
     }
 
@@ -118,7 +168,7 @@
                 text-overflow: ellipsis;
                 position: relative;
                 vertical-align: top;
-                padding-right: rem-calc(30);
+                padding-right: rem-calc(45);
                 box-sizing: border-box;
 
                 div{
@@ -129,9 +179,37 @@
 
             .split-default-button{
                 position: absolute;
-                right: rem-calc(10);
+                right: rem-calc(20);
                 margin-top: 0;
             }
+        }
+    }
+
+    &-highlight{
+        background: #f3f3f3 !important;
+        border-top: 1px solid #e6e6e6;
+    }
+
+    &-arrow {
+        border-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,.4);
+
+        &:before{
+            content: "";
+            position: absolute;
+            display: none;
+            border-style: solid;
+            border-color: transparent;
+        }
+    }
+
+    &-fusion {
+        &.drop-bottom{
+            margin-top: -1px;
+        }
+
+        &.drop-top{
+            margin-top: 1px;
         }
     }
 }

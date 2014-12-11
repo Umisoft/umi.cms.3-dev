@@ -64,6 +64,9 @@ define(['App'], function(UMI) {
                         setTimeout(function() {
                             tableHeader.style.marginLeft = scrollContent.x + 'px';
                         }, 100);
+                    })
+                    .on('dividerResize.umi.table headerHeightChange.umi.table', function() {
+                        scrollContent.refresh();
                     });
 
                     // Событие изменения ширины колонки

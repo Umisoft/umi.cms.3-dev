@@ -19,6 +19,34 @@ $umi-bg-darken-set: #404959, #181B21;
             display: inline-block;
             line-height: $umi-top-bar-height;
         }
+
+        &.right {
+            text-align: right;
+
+            .f-dropdown-double-wrap {
+                width: rem-calc(300);
+            }
+
+            .f-dropdown-double {
+                li {
+                    text-align: left;
+                }
+
+                &.small-labels a {
+                    font-size: 12px;
+                }
+
+                &.highlighted a {
+                    padding-left: 0.6rem;
+                }
+            }
+
+            .f-dropdown-parent {
+                right: 0 !important;
+                left: auto !important;
+                margin-right: 26px !important;
+            }
+        }
     }
 
     &-label{
@@ -44,9 +72,10 @@ $umi-bg-darken-set: #404959, #181B21;
         font-size: rem-calc(12);
         padding-top: 0;
         padding-bottom: 0;
+        z-index: 100;
 
         .icon{
-            margin: -3px 0 0 0;
+            margin: -3px 4px 0 0;
         }
         &:hover{
             background: linear-gradient(#535b69 0%, #31353b 100%);
@@ -69,46 +98,6 @@ $umi-bg-darken-set: #404959, #181B21;
             &:after{
                 border-top-color: #575e6c;
             }
-        }
-    }
-
-    .f-dropdown {
-        padding: 5px 0;
-        box-shadow: none;
-        background: #21252d;
-
-        li{
-            a{
-                min-width: rem-calc(160);
-                display: block;
-                color: #fff;
-                padding: 0.3rem 0.5rem;
-
-                &:hover{
-                    text-decoration: none;
-                    background: #223d53;
-                }
-            }
-        }
-
-        &:after{
-            content: "";
-            position: absolute;
-            float: left;
-            display: block;
-            height: 3px;
-            width: 100%;
-            left: 0;
-            bottom: -3px;
-            background: url($image-to-bottom-shadow);
-            background-repeat: repeat-x;
-            right: 0;
-            border: 0;
-            top: auto;
-        }
-
-        &-double {
-            width: 22.5rem;
         }
     }
 
@@ -147,6 +136,17 @@ $umi-bg-darken-set: #404959, #181B21;
         &.active{
             background: #259cec !important;
             color: #fff;
+        }
+    }
+
+    .active-project {
+        text-align: center;
+
+        .umi-top-bar-label {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 }

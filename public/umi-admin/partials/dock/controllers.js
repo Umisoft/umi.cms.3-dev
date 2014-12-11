@@ -4,9 +4,11 @@ define(['App'], function(UMI) {
     return function() {
         UMI.DockController = Ember.ObjectController.extend({
             needs: ['application', 'module'],
+
             modulesBinding: 'controllers.application.modules',
+
             sortedModules: function() {
-                var userSettings = UMI.Utils.LS.get('dock');
+                var userSettings = UMI.Utils.LS.get('dock.sortedOrder');
                 var modules = this.get('modules');
                 if (Ember.typeOf(userSettings) === 'array') {
                     var sortedModules = [];
@@ -24,8 +26,29 @@ define(['App'], function(UMI) {
                 } else {
                     return modules;
                 }
-            }.property('modules'),
-            activeModuleBinding: 'controllers.module.model'
+            }.property('modules').volatile(),
+
+            activeModuleBinding: 'controllers.module.model',
+
+            modes: [
+                {name: 'small', title: 'Little', isActive: false},
+                {name: 'big', title: 'Big', isActive: false},
+                {name: 'dynamic', title: 'Dynamic', isActive: false},
+                {name: 'list', title: 'Listed', isActive: false}
+            ],
+
+            activeMode: function() {
+                return this.get('modes').findBy('isActive', true);
+            }.property('modes.@each.isActive'),
+
+            init: function() {
+                var activeMode = UMI.Utils.LS.get('dock.activeModeName');
+                var modes = this.get('modes');
+                if (!activeMode || !modes.findBy('name', activeMode)) {
+                    activeMode = Ember.get(modes[0], 'name');
+                }
+                Ember.set(modes.findBy('name', activeMode), 'isActive', true);
+            }
         });
     };
 });
