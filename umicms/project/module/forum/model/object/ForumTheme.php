@@ -20,6 +20,7 @@ use umicms\orm\object\TCmsPage;
  *
  * @property IObjectSet $messages сообщения темы
  * @property ForumAuthor $author автор темы
+ * @property ForumConference $conference автор темы
  */
 class ForumTheme extends CmsObject implements ICmsPage
 {
@@ -45,7 +46,15 @@ class ForumTheme extends CmsObject implements ICmsPage
      */
     public function setConference($value)
     {
+        if ($this->conference instanceof ForumConference) {
+            $this->conference->recalculateThemesCount();
+        }
+
         $this->getProperty(self::FIELD_CONFERENCE)->setValue($value);
+
+        if ($value instanceof ForumConference) {
+            $value->recalculateThemesCount();
+        }
 
         return $this;
     }

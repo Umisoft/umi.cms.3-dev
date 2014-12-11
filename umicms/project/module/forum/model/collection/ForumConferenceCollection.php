@@ -33,4 +33,12 @@ class ForumConferenceCollection extends CmsPageCollection implements IRecyclable
         TRecyclableCollection::trash as protected trashInternal;
         TRecyclableCollection::untrash as protected untrashInternal;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'collection:forumConference';
+    }
 }

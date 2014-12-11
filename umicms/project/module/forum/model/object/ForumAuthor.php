@@ -106,20 +106,17 @@ class ForumAuthor extends CmsObject implements ICmsPage, IUserAssociatedObject
      */
     public function recalculateMessagesCount()
     {
-        $messagesCountProperty = $this->getProperty(self::FIELD_MESSAGES_COUNT);
-        foreach ($messagesCountProperty->getField()->getLocalizations() as $localeId => $localeInfo) {
-            /**
-             * @var ICalculableProperty $localizedMessagesCountProperty
-             */
-            $localizedMessagesCountProperty = $this->getProperty(self::FIELD_MESSAGES_COUNT, $localeId);
-            $localizedMessagesCountProperty->recalculate();
-        }
+        /**
+         * @var ICalculableProperty $localizedMessagesCountProperty
+         */
+        $localizedMessagesCountProperty = $this->getProperty(self::FIELD_MESSAGES_COUNT);
+        $localizedMessagesCountProperty->recalculate();
 
         return $this;
     }
 
     /**
-     * Вычисляет количество опубликованных автором сообщений.
+     * Вычисляет количество опубликованных автором тем.
      * @return int
      */
     public function calculateThemesCount()
@@ -135,9 +132,10 @@ class ForumAuthor extends CmsObject implements ICmsPage, IUserAssociatedObject
 
         return $themesCollection->getInternalSelector()
             ->fields([ForumTheme::FIELD_IDENTIFY])
-            ->types([IObjectType::BASE . '*'])
             ->where(ForumTheme::FIELD_AUTHOR)
                 ->equals($this)
+            ->where(ForumTheme::FIELD_ACTIVE)
+                ->equals(true)
             ->where(ForumTheme::FIELD_TRASHED)
                 ->equals(false)
             ->getTotal();
@@ -149,14 +147,11 @@ class ForumAuthor extends CmsObject implements ICmsPage, IUserAssociatedObject
      */
     public function recalculateThemesCount()
     {
-        $themesCountProperty = $this->getProperty(self::FIELD_THEMES_COUNT);
-        foreach ($themesCountProperty->getField()->getLocalizations() as $localeId => $localeInfo) {
-            /**
-             * @var ICalculableProperty $localizedThemesCountProperty
-             */
-            $localizedThemesCountProperty = $this->getProperty(self::FIELD_THEMES_COUNT, $localeId);
-            $localizedThemesCountProperty->recalculate();
-        }
+        /**
+         * @var ICalculableProperty $localizedThemesCountProperty
+         */
+        $localizedThemesCountProperty = $this->getProperty(self::FIELD_THEMES_COUNT);
+        $localizedThemesCountProperty->recalculate();
 
         return $this;
     }

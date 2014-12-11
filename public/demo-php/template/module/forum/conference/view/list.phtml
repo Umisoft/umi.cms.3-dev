@@ -1,0 +1,24 @@
+<?php
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var \umicms\project\module\forum\model\object\ForumConference $forumConference
+ */
+?>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Тем</th>
+        <th>Сообщений</th>
+        <th>Последнее сообщещние</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php if ($list->getTotal()) : ?>
+            <?php foreach ($list as $forumConference) : ?>
+                <?= $this->widget('forum.conference.view.view', ['forumConference' => $forumConference, 'template' => 'shortView']); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
+</table>

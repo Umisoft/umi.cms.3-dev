@@ -12,9 +12,13 @@ use umicms\project\module\forum\model\object\ForumAuthor;
 
 return [
     'en-US' => [
+        'collection:forumAuthor:displayName' => 'Forum authors',
+
         ForumAuthor::FIELD_USER => 'User'
     ],
     'ru-RU' => [
+        'collection:forumAuthor:displayName' => 'Авторы форума',
+
         ForumAuthor::FIELD_USER => 'Пользователь'
     ]
 ];

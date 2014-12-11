@@ -28,6 +28,22 @@ return array_replace_recursive(
                 'options' => [
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
+            ],
+            'messages_count' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
+            ],
+            'themes_count' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true,
+                    'notnull' => true,
+                    'default' => 0
+                ]
             ]
         ]
     ]

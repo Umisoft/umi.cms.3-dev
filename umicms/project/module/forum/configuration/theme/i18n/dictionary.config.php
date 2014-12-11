@@ -12,10 +12,14 @@ use umicms\project\module\forum\model\object\ForumTheme;
 
 return [
     'en-US' => [
+        'collection:forumTheme:displayName' => 'Forum theme',
+
         ForumTheme::FIELD_CONFERENCE => 'Conference',
         ForumTheme::FIELD_AUTHOR => 'Author'
     ],
     'ru-RU' => [
+        'collection:forumTheme:displayName' => 'Темы форума',
+
         ForumTheme::FIELD_CONFERENCE => 'Конференция',
         ForumTheme::FIELD_AUTHOR => 'Автор'
     ]

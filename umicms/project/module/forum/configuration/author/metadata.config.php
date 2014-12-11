@@ -60,7 +60,7 @@ return array_replace_recursive(
             ],
             ForumAuthor::FIELD_MESSAGES_COUNT => [
                 'type' => IField::TYPE_DELAYED,
-                'columnName' => 'message_count',
+                'columnName' => 'messages_count',
                 'defaultValue' => 0,
                 'dataType' => 'integer',
                 'formula' => 'calculateMessagesCount',

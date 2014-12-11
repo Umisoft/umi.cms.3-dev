@@ -15,6 +15,10 @@ use umicms\hmvc\component\site\SiteGroupComponent;
 return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'view' => '{#lazy:~/project/module/forum/site/conference/view/component.config.php}'
+    ],
+
     SiteGroupComponent::OPTION_CONTROLLERS => [
     ],
 

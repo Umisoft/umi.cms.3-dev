@@ -15,13 +15,33 @@ use umi\rss\TRssFeedAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\module\BaseModule;
+use umicms\project\module\forum\model\collection\ForumConferenceCollection;
+use umicms\project\module\forum\model\object\ForumConference;
 
 /**
- * Class ForumModule
+ * API модуля "Форум".
  */
 class ForumModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 {
     use TRssFeedAware;
     use TUrlManagerAware;
+
+    /**
+     * Возвращает коллекцию конференций.
+     * @return ForumConferenceCollection
+     */
+    public function conference()
+    {
+        return $this->getCollection('forumConference');
+    }
+
+    /**
+     * Возвращает список конференций.
+     * @return CmsSelector|ForumConference[]
+     */
+    public function getConference()
+    {
+        return $this->conference()->select();
+    }
 }
  

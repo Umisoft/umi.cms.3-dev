@@ -25,13 +25,22 @@ return array_replace_recursive(
                 'type' => IField::TYPE_HAS_MANY,
                 'target' => 'forumTheme',
                 'targetField' => ForumTheme::FIELD_CONFERENCE
+            ],
+            ForumConference::FIELD_THEMES_COUNT => [
+                'type' => IField::TYPE_DELAYED,
+                'columnName' => 'themes_count',
+                'defaultValue' => 0,
+                'dataType'     => 'integer',
+                'formula'      => 'calculateThemesCount',
+                'readOnly'     => true
             ]
         ],
         'types' => [
             IObjectType::BASE => [
                 'objectClass' => 'umicms\project\module\forum\model\object\ForumConference',
                 'fields' => [
-                    ForumConference::FIELD_THEMES => []
+                    ForumConference::FIELD_THEMES => [],
+                    ForumConference::FIELD_THEMES_COUNT => []
                 ]
             ]
         ]

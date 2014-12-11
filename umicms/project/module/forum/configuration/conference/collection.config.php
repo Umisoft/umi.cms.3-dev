@@ -10,6 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\forum\model\collection\ForumConferenceCollection;
 
 return array_replace_recursive(
     require CMS_PROJECT_DIR . '/configuration/model/collection/page.common.config.php',
@@ -17,8 +18,8 @@ return array_replace_recursive(
         'type' => ICollectionFactory::TYPE_SIMPLE,
         'class' => 'umicms\project\module\forum\model\collection\ForumConferenceCollection',
         'handlers' => [
-            'admin' => 'forum.conference',
-            'site' => 'forum.conference'
+            ForumConferenceCollection::HANDLER_ADMIN => 'forum.conference',
+            ForumConferenceCollection::HANDLER_SITE => 'forum.conference.view'
         ],
         'forms' => [
             'base' => [

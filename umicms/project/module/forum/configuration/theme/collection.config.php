@@ -18,8 +18,8 @@ return array_replace_recursive(
         'type' => ICollectionFactory::TYPE_SIMPLE,
         'class' => 'umicms\project\module\forum\model\collection\ForumThemeCollection',
         'handlers' => [
-            'admin' => 'forum.theme',
-            'site' => 'forum.theme'
+            ForumThemeCollection::HANDLER_ADMIN => 'forum.theme',
+            ForumThemeCollection::HANDLER_SITE => 'forum.theme.view'
         ],
         'forms' => [
             IObjectType::BASE => [
