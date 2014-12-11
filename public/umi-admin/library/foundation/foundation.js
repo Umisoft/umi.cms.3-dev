@@ -944,8 +944,6 @@
                 S(window).off('.dropdown').on('resize.fndtn.dropdown', self.throttle(function() {
                     self.resize.call(self);
                 }, 50));
-
-                self.resize.call(self);
             },
 
             toggleObserver: function() {
@@ -1099,6 +1097,10 @@
         resize: function() {
             var dropdown = this.S('[' + this.attr_name() + '-content].open');
             var target = this.S('[' + this.attr_name() + '="' + dropdown.attr('id') + '"]');
+
+            if (!target.length) {
+                target = $(dropdown.data('target'));
+            }
 
             if (dropdown.length && target.length) {
                 this.setDropdownStyle(dropdown, target);
