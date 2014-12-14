@@ -15,12 +15,26 @@
 /* navbar */
 .elfinder .elfinder-navbar {
     background: #D6E0E9;
-    /*border: 1px solid #DDE3E6;*/
+    border-right: 1px solid #ADB9C5;
+
+    &::-webkit-scrollbar {
+        background: #D6E0E9;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-color: #D6E0E9;
+    }
+    &::-webkit-scrollbar-button {
+        background: #D6E0E9;
+    }
 }
 
 .elfinder-navbar .ui-state-hover {
     background: transparent;
     border-color: transparent;
+}
+
+.elfinder-navbar-dir:hover {
+    background: #AFD3EC;
 }
 
 .elfinder-navbar .ui-state-active {
@@ -110,4 +124,12 @@
             margin-left: 0;
         }
     }
+}
+
+.elfinder-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }

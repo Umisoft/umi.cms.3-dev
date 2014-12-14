@@ -26,28 +26,22 @@ define(['App'], function(UMI) {
 
         didInsertElement: function() {
             var self = this;
-            $('#elfinder').elfinder({
-                url: window.UmiSettings.baseApiURL + '/files/manager/action/connector',//self.get('controller.connector.source'),
-                lang: 'ru',
-                getFileCallback: function(fileInfo) {
-                    self.fileSelect(fileInfo);
-                },
+            $('#elfinder').elfinder($.extend({},
+                UMI.config.elFinder, {
+                    url: window.UmiSettings.baseApiURL + '/files/manager/action/connector',
+                    getFileCallback: function(fileInfo) {
+                        self.fileSelect(fileInfo);
+                    }/*,
+                    handlers: {
+                        init: function() {
+                            var $wrapper = $('<div class="umi-tree-wrapper"></div>');
+                            $('.elfinder-tree').wrap($wrapper);
+                            var iScrollConfiguration = $.extend({disableMouse: true}, UMI.config.iScroll);
+                            var contentScroll = new IScroll($wrapper[0], iScrollConfiguration);
+                        }
 
-                uiOptions: {
-                    toolbar: [
-                        ['back', 'forward'],
-                        ['reload'],
-                        ['getfile'],
-                        ['mkdir', 'mkfile', 'upload'],
-                        ['download'],
-                        ['copy', 'cut', 'paste'],
-                        ['rm'],
-                        ['duplicate', 'rename', 'edit'],
-                        ['view'],
-                        ['help']
-                    ]
-                }
-            }).elfinder('instance');
+                    }*/
+            })).elfinder('instance');
 
             $('.elfinder-navbar').on('mousedown.umi.fileManager', '.elfinder-navbar-div', function() {
                 $('.elfinder-navbar').children().removeClass('ui-state-active');

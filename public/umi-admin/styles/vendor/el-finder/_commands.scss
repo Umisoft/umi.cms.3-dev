@@ -1,5 +1,3 @@
-@import "../../umi/components/icons";
-
 .elfinder{
     &-dialog-resize {
         overflow: hidden;
@@ -208,14 +206,79 @@
     }
 }
 
-.elfinder-dialog .elfinder-dialog-resize .ui-resizable-e { height:100%; width:10px; }
-.elfinder-dialog .elfinder-dialog-resize .ui-resizable-s { width:100%; height:10px; }
-.elfinder-dialog .elfinder-dialog-resize .ui-resizable-se {
-	background:transparent;
-	bottom:0;
-	right:0;
-	margin-right:-7px;
-	margin-bottom:-7px;
+.elfinder-dialog {
+    & .ui-resizable-handle {
+        position: absolute;
+    }
+
+    & .elfinder-dialog-resize {
+        & .ui-resizable-e {
+            cursor: e-resize;
+            right: -5px;
+            top: 0;
+            height: 100%;
+            width: 10px;
+        }
+
+        & .ui-resizable-s {
+            cursor: s-resize;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height :10px;
+        }
+
+        & .ui-resizable-se {
+            cursor: se-resize;
+            width: 14px;
+            height: 14px;
+            background: transparent;
+            bottom: 0;
+            right: 0;
+            margin-right: -7px;
+            margin-bottom: -7px;
+        }
+
+        & .ui-resizable-n {
+            cursor: n-resize;
+            height: 7px;
+            width: 100%;
+            top: -5px;
+            left: 0;
+        }
+
+        & .ui-resizable-w {
+            cursor: w-resize;
+            width: 7px;
+            left: -5px;
+            top: 0;
+            height: 100%;
+        }
+
+        & .ui-resizable-sw {
+            cursor: sw-resize;
+            width: 9px;
+            height: 9px;
+            left: -5px;
+            bottom: -5px;
+        }
+
+        & .ui-resizable-ne {
+            cursor: ne-resize;
+            width: 9px;
+            height: 9px;
+            right: -5px;
+            top: -5px;
+        }
+
+        & .ui-resizable-nw {
+            cursor: nw-resize;
+            width: 9px;
+            height: 9px;
+            left: -5px;
+            top: -5px;
+        }
+    }
 }
 
 .elfinder-dialog-resize  .ui-icon-grip-solid-vertical {
@@ -259,10 +322,9 @@
 .elfinder-dialog .ui-tabs .ui-tabs-nav li a { padding:.2em 1em;}
 
 .elfinder-help-shortcuts {
-	height:300px;
-	padding:1em;
-	margin:.5em 0;
-	overflow:auto;
+	height: 300px;
+	padding: 1em;
+	margin: .5em 0;
 }
 .elfinder-help-shortcut { white-space:nowrap; clear:both;}
 
@@ -332,6 +394,7 @@
 	position:absolute;
 	left:0;
 	top:45px;
+    line-height: 1.4em;
 }
 
 

@@ -34,7 +34,7 @@ define([], function() {
                         //                      ['info'], ['quicklook'],
                         ['copy', 'cut', 'paste'],
                         ['rm'],
-                        ['duplicate', 'rename', 'edit'],
+                        ['duplicate', 'rename'/*, 'edit'*/],
                         //                      ['extract', 'archive'], ['search'],
                         ['view'],
                         ['help']

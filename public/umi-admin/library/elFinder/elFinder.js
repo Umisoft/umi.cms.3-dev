@@ -491,7 +491,13 @@ window.elFinder = function(node, opts) {
      **/
     this.storage = (function() {
         try {
-            return 'localStorage' in window && window['localStorage'] !== null ? self.localStorage : self.cookie;
+            try {
+                window.localStorage.setItem('testElFinder', 'testElFinder');
+                window.localStorage.removeItem('testElFinder');
+                return self.localStorage;
+            } catch(e) {
+                return self.cookie;
+            }
         } catch (e) {
             return self.cookie;
         }
@@ -4193,10 +4199,11 @@ elFinder.prototype.command = function(fm) {
 
 
 ;
-$.fn.elfinderoverlay = function(opts) {
+$.fn.elfinderoverlay = function(what) {
 
-    this.filter(':not(.elfinder-overlay)').each(function() {
-        opts = $.extend({}, opts);
+    var $elfinder = $('.elfinder');
+    this.each(function() {
+       var opts = $.extend({}, what);
         $(this).addClass('ui-widget-overlay elfinder-overlay').hide().mousedown(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -4209,7 +4216,7 @@ $.fn.elfinderoverlay = function(opts) {
             });
     });
 
-    if (opts == 'show') {
+    if (what == 'show') {
         var o = this.eq(0), cnt = o.data('cnt') + 1, show = o.data('show');
 
         o.data('cnt', cnt);
@@ -4221,7 +4228,7 @@ $.fn.elfinderoverlay = function(opts) {
         }
     }
 
-    if (opts == 'hide') {
+    if (what == 'hide') {
         var o = this.eq(0), cnt = o.data('cnt') - 1, hide = o.data('hide');
 
         o.data('cnt', cnt);
@@ -4376,7 +4383,7 @@ $.fn.elfinderdialog = function(opts) {
                                 d.trigger('totop');
                                 return false;
                             }
-                        })
+                        });
                     } else {
                         // return focus to parent
                         setTimeout(function() {
@@ -4393,6 +4400,7 @@ $.fn.elfinderdialog = function(opts) {
                 }).bind('totop', function() {
                     $(this).mousedown().find('.ui-button:first').focus().end().find(':text:first').focus();
                     $(this).data('modal') && overlay.elfinderoverlay('show');
+
                     overlay.zIndex($(this).zIndex());
                 }).data({modal: opts.modal}), maxZIndex = function() {
                 var z = parent.zIndex() + 10;
@@ -4404,7 +4412,7 @@ $.fn.elfinderdialog = function(opts) {
                             z = _z;
                         }
                     }
-                })
+                });
                 return z;
             }, top;
 
@@ -4475,7 +4483,7 @@ $.fn.elfinderdialog = function(opts) {
 $.fn.elfinderdialog.defaults = {
     cssClass: '',
     title: '',
-    modal: false,
+    modal: true,
     resizable: true,
     autoOpen: true,
     closeOnEscape: true,
@@ -9399,10 +9407,12 @@ elFinder.prototype.commands.resize = function() {
                         }
                     }, crop = {
                         update: function() {
-                            offsetX.val(Math.round((rhandlec.data('w') || rhandlec.width()) / prop));
-                            offsetY.val(Math.round((rhandlec.data('h') || rhandlec.height()) / prop));
+                            var newX = Math.round((rhandlec.data('w') || rhandlec.width()) / prop),
+                                newY = Math.round((rhandlec.data('h') || rhandlec.height()) / prop);
+                            offsetX.val(newX > owidth ? owidth : newX);
+                            offsetY.val(newY > oheight ? oheight : newY);
                             pointX.val(Math.round(((rhandlec.data('x') || rhandlec.offset().left) - imgc.offset().left) / prop));
-                            pointY.val(Math.round(((rhandlec.data('y') || rhandlec.offset().top) - imgc.offset().top) / prop));
+                            pointY.val( Math.round(((rhandlec.data('y') || rhandlec.offset().top) - imgc.offset().top) / prop));
                         },
                         updateView: function() {
                             var x = parseInt(pointX.val()) * prop + imgc.offset().left;
@@ -9553,7 +9563,7 @@ elFinder.prototype.commands.resize = function() {
                                 coverc.width(img.width()).height(img.height());
 
                                 rhandlec.width(imgc.width()).height(imgc.height()).offset(imgc.offset()).resizable({
-                                        containment: basec,
+                                        containment: imgc,
                                         resize: crop.resize_update,
                                         handles: 'all'
                                     }).draggable({

@@ -1,10 +1,10 @@
 $umi-checkbox: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iLTEwIDAgNjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTEwIDAgNjAgMjAiPjxnPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0tMyAxNy41Yy0yLjQ4MSAwLTQuNS0yLjAyLTQuNS00LjV2LTZjMC0yLjQ4MSAyLjAxOS00LjUgNC41LTQuNWg2YzIuNDgxIDAgNC41IDIuMDE5IDQuNSA0LjV2NmMwIDIuNDgtMi4wMTkgNC41LTQuNSA0LjVoLTZ6Ii8+PHBhdGggZmlsbD0iI0U1RTVFNSIgZD0iTTMgM2MyLjIwNiAwIDQgMS43OTQgNCA0djZjMCAyLjIwNi0xLjc5NCA0LTQgNGgtNmMtMi4yMDYgMC00LTEuNzk0LTQtNHYtNmMwLTIuMjA2IDEuNzk0LTQgNC00aDZtMC0xaC02Yy0yLjc2MSAwLTUgMi4yMzgtNSA1djZjMCAyLjc2IDIuMjM5IDUgNSA1aDZjMi43NjEgMCA1LTIuMjQgNS01di02YzAtMi43NjItMi4yMzktNS01LTV6Ii8+PHBhdGggZmlsbD0iIzI1OUJFQSIgZD0iTTIzIDJoLTZjLTIuNzYyIDAtNSAyLjIzOC01IDV2NmMwIDIuNzYgMi4yMzggNSA1IDVoNmMyLjc2MiAwIDUtMi4yNCA1LTV2LTZjMC0yLjc2Mi0yLjIzOC01LTUtNXptLTQuMDUzIDExLjg4OWwtLjAwOC0uMDA4LS4wMDguMDA4LTQuMjQyLTQuMjQyIDEuNDE0LTEuNDE0IDIuODM2IDIuODM1IDQuOTU3LTQuOTU2IDEuNDE0IDEuNDE0LTYuMzYzIDYuMzYzeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0zNyAxNy41Yy0yLjQ4IDAtNC41LTIuMDItNC41LTQuNXYtNmMwLTIuNDgxIDIuMDItNC41IDQuNS00LjVoNmMyLjQ4IDAgNC41IDIuMDE5IDQuNSA0LjV2NmMwIDIuNDgtMi4wMiA0LjUtNC41IDQuNWgtNnoiLz48cGF0aCBmaWxsPSIjRTVFNUU1IiBkPSJNNDMgM2MyLjIwNiAwIDQgMS43OTQgNCA0djZjMCAyLjIwNi0xLjc5NCA0LTQgNGgtNmMtMi4yMDYgMC00LTEuNzk0LTQtNHYtNmMwLTIuMjA2IDEuNzk0LTQgNC00aDZtMC0xaC02Yy0yLjc2MSAwLTUgMi4yMzgtNSA1djZjMCAyLjc2IDIuMjM5IDUgNSA1aDZjMi43NjEgMCA1LTIuMjQgNS01di02YzAtMi43NjItMi4yMzktNS01LTV6Ii8+PHBhdGggZmlsbD0iIzMzMyIgZD0iTTQ0IDEyYzAgMS4xMDQtLjg5NiAyLTIgMmgtNGMtMS4xMDQgMC0yLS44OTYtMi0ydi00YzAtMS4xMDQuODk2LTIgMi0yaDRjMS4xMDQgMCAyIC44OTYgMiAydjR6Ii8+PC9nPjwvc3ZnPg==';
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     display:none;
 }
 
-input[type="checkbox"] + label{
+input[type="checkbox"] + label {
     touch-callout: none;
     user-drag: none;
     tap-hightlight-color: rgba(0, 0, 0, 0);
@@ -13,23 +13,30 @@ input[type="checkbox"] + label{
     margin-right: 0;
 }
 
-input[type="checkbox"] + label span{
+input[type="checkbox"] + label span {
     display: inline-block;
     width: 20px;
     height: 20px;
     margin: -2px 4px 0 0!important;
     vertical-align: middle;
     line-height: 20px;
-    background: url($umi-checkbox);
-    background-position: 0 0;
-    background-repeat: no-repeat;
     cursor: pointer;
+    position: relative;
+}
+input[type="checkbox"] + label span:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url($umi-checkbox) 0 0 no-repeat;
 }
 
-input[type="checkbox"]:checked + label span{
+input[type="checkbox"]:checked + label span:before {
     background-position: -20px 0;
 }
 
-input[type="checkbox"]:indeterminate + label span{
+input[type="checkbox"]:indeterminate + label span:before {
     background-position: -40px 0;
 }
