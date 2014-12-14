@@ -491,7 +491,13 @@ window.elFinder = function(node, opts) {
      **/
     this.storage = (function() {
         try {
-            return 'localStorage' in window && window['localStorage'] !== null ? self.localStorage : self.cookie;
+            try {
+                window.localStorage.setItem('testElFinder', 'testElFinder');
+                window.localStorage.removeItem('testElFinder');
+                return self.localStorage;
+            } catch(e) {
+                return self.cookie;
+            }
         } catch (e) {
             return self.cookie;
         }
