@@ -6,9 +6,9 @@
 
 class_name: FunctionalTester
 modules:
-    enabled: [umitest\UmiModule, Filesystem, FunctionalHelper]
+    enabled: [umitest\UmiFunctionalModule, Filesystem, FunctionalHelper]
     config:
-        umitest\UmiModule:
+        umitest\UmiFunctionalModule:
             locale:     'ru-RU'
             projectUrl: '/php'
 
@@ -16,41 +16,41 @@ env:
     ru-php:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'ru-RU'
                     projectUrl: '/php'
 
     en-php:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'en-US'
                     projectUrl: '/php/en'
 
     ru-xslt:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'ru-RU'
                     projectUrl: '/xslt'
 
     en-xslt:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'en-US'
                     projectUrl: '/xslt/en'
 
     ru-twig:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'ru-RU'
                     projectUrl: '/twig'
 
     en-twig:
         modules:
             config:
-                umitest\UmiModule:
+                umitest\UmiFunctionalModule:
                     locale:     'en-US'
                     projectUrl: '/twig/en'

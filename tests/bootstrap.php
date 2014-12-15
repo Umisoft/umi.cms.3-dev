@@ -12,6 +12,7 @@ require __DIR__ . '/common/MockMessageBox.php';
 require __DIR__ . '/common/BlockMap.php';
 require __DIR__ . '/common/UrlMap.php';
 require __DIR__ . '/common/UmiModule.php';
+require __DIR__ . '/common/UmiFunctionalModule.php';
 require __DIR__ . '/common/UmiConnector.php';
 
 

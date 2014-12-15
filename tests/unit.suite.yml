@@ -3,4 +3,8 @@
 # suite for unit (internal) tests.
 class_name: UnitTester
 modules:
-    enabled: [Asserts, UnitHelper]
+    enabled: [Asserts, UnitHelper, umitest\UmiModule]
+    config:
+        umitest\UmiModule:
+            locale:     'ru-RU'
+            projectUrl: '/php'
